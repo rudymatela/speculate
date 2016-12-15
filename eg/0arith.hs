@@ -3,10 +3,10 @@ import Speculate
 main :: IO ()
 main = speculate args
   { atoms =
-      [ s (0::Int)
-      , s (1::Int)
-      , id     -:> int -| "id"
-      , (+)    -:> int -| "+"
-      , (*)    -:> int -| "*"
+      [ showConstant (0::Int)
+      , showConstant (1::Int)
+      , constant "id" $ (id :: Int -> Int)
+      , constant "+"  $ ((+) :: Int -> Int -> Int)
+      , constant "*"  $ ((*) :: Int -> Int -> Int)
       ]
   }
