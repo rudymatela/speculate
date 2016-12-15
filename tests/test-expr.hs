@@ -166,6 +166,7 @@ tests n =
   -- order (by prefering less arity).  If this ever changes, I will have to
   -- explicitly compare type arity on Ord Expr.
   -- (update: haha it has changed from before!)
+  -- TODO: fix order under GHC <= 7.8
 #if __GLASGOW_HASKELL < 800
   , typeOf ((+) :: Int -> Int -> Int) < typeOf (abs :: Int -> Int)
   , typeOf (abs :: Int -> Int)        < typeOf (0 :: Int)
