@@ -26,17 +26,17 @@ bench/arithficial.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   bench/arithficial.hs
 eg/0arith: \
   eg/0arith.hs \
@@ -66,17 +66,17 @@ eg/0arith.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/0arith.hs
 eg/arith: \
   eg/arith.hs \
@@ -106,17 +106,17 @@ eg/arith.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/arith.hs
 eg/bool: \
   eg/bool.hs \
@@ -146,17 +146,17 @@ eg/bool.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/bool.hs
 eg/color: \
   eg/color.hs \
@@ -186,17 +186,17 @@ eg/color.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/color.hs
 eg/Digraph.o: \
   eg/Digraph.hs
@@ -229,17 +229,17 @@ eg/digraphs.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/digraphs.hs \
   eg/Digraph.hs
 eg/insertsort: \
@@ -270,17 +270,17 @@ eg/insertsort.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/insertsort.hs
 eg/length: \
   eg/length.hs \
@@ -310,17 +310,17 @@ eg/length.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/length.hs
 eg/list: \
   eg/list.hs \
@@ -350,17 +350,17 @@ eg/list.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/list.hs
 eg/minus: \
   eg/minus.hs \
@@ -390,17 +390,17 @@ eg/minus.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/minus.hs
 eg/monad: \
   eg/monad.hs \
@@ -430,21 +430,21 @@ eg/monad.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Function/Show.hs \
-  ../../leancheck/src/Test/LeanCheck/Function/ShowFunction.hs \
-  ../../leancheck/src/Test/LeanCheck/Function.hs \
-  ../../leancheck/src/Test/LeanCheck/Function/ListsOfPairs.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Function/Show.hs \
+  ../leancheck/src/Test/LeanCheck/Function/ShowFunction.hs \
+  ../leancheck/src/Test/LeanCheck/Function.hs \
+  ../leancheck/src/Test/LeanCheck/Function/ListsOfPairs.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/monad.hs
 eg/numbool: \
   eg/numbool.hs \
@@ -474,17 +474,17 @@ eg/numbool.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/numbool.hs
 eg/pretty: \
   eg/pretty.hs \
@@ -514,17 +514,17 @@ eg/pretty.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/pretty.hs
 eg/ratio: \
   eg/ratio.hs \
@@ -554,17 +554,17 @@ eg/ratio.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/ratio.hs
 eg/Set.o: \
   eg/Set.hs
@@ -597,17 +597,17 @@ eg/sets.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/sets.hs \
   eg/Set.hs
 eg/string: \
@@ -638,17 +638,17 @@ eg/string.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/string.hs
 eg/Taut: \
   eg/Taut.hs \
@@ -684,17 +684,17 @@ eg/tauts.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/tauts.hs \
   eg/Taut.hs
 src/Speculate/CondReason.o: \
@@ -717,17 +717,17 @@ src/Speculate/CondReason.o: \
   src/Speculate/Expr/Core.hs \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Engine: \
   mk/toplibs
 src/Speculate/Engine.o: \
@@ -753,17 +753,17 @@ src/Speculate/Engine.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Expr/Canon.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -777,17 +777,17 @@ src/Speculate/Expr/Canon.o: \
   src/Speculate/Expr/Match.hs \
   src/Speculate/Expr/Core.hs \
   src/Speculate/Expr/Canon.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Expr/Core.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -798,12 +798,12 @@ src/Speculate/Expr/Core.o: \
   src/Speculate/Utils/Misc.hs \
   src/Speculate/Utils/List.hs \
   src/Speculate/Expr/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Expr/Equate.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -817,17 +817,17 @@ src/Speculate/Expr/Equate.o: \
   src/Speculate/Expr/Match.hs \
   src/Speculate/Expr/Equate.hs \
   src/Speculate/Expr/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Expr/Ground.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -842,17 +842,17 @@ src/Speculate/Expr/Ground.o: \
   src/Speculate/Expr/Ground.hs \
   src/Speculate/Expr/Equate.hs \
   src/Speculate/Expr/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Expr/Match: \
   mk/toplibs
 src/Speculate/Expr/Match.o: \
@@ -866,12 +866,12 @@ src/Speculate/Expr/Match.o: \
   src/Speculate/Utils/List.hs \
   src/Speculate/Expr/Match.hs \
   src/Speculate/Expr/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Expr.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -888,17 +888,17 @@ src/Speculate/Expr.o: \
   src/Speculate/Expr/Equate.hs \
   src/Speculate/Expr/Core.hs \
   src/Speculate/Expr/Canon.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Expr/TypeInfo.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -911,17 +911,17 @@ src/Speculate/Expr/TypeInfo.o: \
   src/Speculate/Expr/TypeInfo.hs \
   src/Speculate/Expr/Match.hs \
   src/Speculate/Expr/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Misc.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -948,17 +948,17 @@ src/Speculate/Misc.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -984,17 +984,17 @@ src/Speculate.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Reason/Order.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -1012,17 +1012,17 @@ src/Speculate/Reason/Order.o: \
   src/Speculate/Expr/Equate.hs \
   src/Speculate/Expr/Core.hs \
   src/Speculate/Expr/Canon.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Reason.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -1041,17 +1041,17 @@ src/Speculate/Reason.o: \
   src/Speculate/Expr/Equate.hs \
   src/Speculate/Expr/Core.hs \
   src/Speculate/Expr/Canon.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/SemiReason.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -1071,17 +1071,17 @@ src/Speculate/SemiReason.o: \
   src/Speculate/Expr/Equate.hs \
   src/Speculate/Expr/Core.hs \
   src/Speculate/Expr/Canon.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Utils/Class.o: \
   src/Speculate/Utils/List.hs \
   src/Speculate/Utils/Class.hs
@@ -1097,24 +1097,24 @@ src/Speculate/Utils/Digraph.o: \
   src/Speculate/Utils/Misc.hs \
   src/Speculate/Utils/List.hs \
   src/Speculate/Utils/Digraph.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Utils/List.o: \
   src/Speculate/Utils/List.hs
 src/Speculate/Utils/Misc.o: \
   src/Speculate/Utils/String.hs \
   src/Speculate/Utils/Misc.hs \
   src/Speculate/Utils/List.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Utils.o: \
   src/Speculate/Utils/Typeable.hs \
   src/Speculate/Utils/Tuple.hs \
@@ -1124,31 +1124,31 @@ src/Speculate/Utils.o: \
   src/Speculate/Utils.hs \
   src/Speculate/Utils/Misc.hs \
   src/Speculate/Utils/List.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Utils/PrettyPrint.o: \
   src/Speculate/Utils/PrettyPrint.hs \
   src/Speculate/Utils/List.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Utils/String.o: \
   src/Speculate/Utils/String.hs
 src/Speculate/Utils/Tiers.o: \
   src/Speculate/Utils/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Speculate/Utils/Tuple.o: \
   src/Speculate/Utils/Tuple.hs
 src/Speculate/Utils/Typeable.o: \
@@ -1181,17 +1181,17 @@ tests/test-creason.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-creason: \
   tests/Test.hs \
   tests/test-creason.hs \
@@ -1223,17 +1223,17 @@ tests/test-engine.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-engine: \
   tests/Test.hs \
   tests/test-engine.hs \
@@ -1265,17 +1265,17 @@ tests/test-eval.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-eval: \
   tests/Test.hs \
   tests/test-eval.hs \
@@ -1307,17 +1307,17 @@ tests/test-expr.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-expr: \
   tests/Test.hs \
   tests/test-expr.hs \
@@ -1349,17 +1349,17 @@ tests/test-match.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-match: \
   tests/Test.hs \
   tests/test-match.hs \
@@ -1392,17 +1392,17 @@ tests/test-misc.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-misc: \
   tests/Test.hs \
   tests/test-misc.hs \
@@ -1434,17 +1434,17 @@ tests/test-order.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-order: \
   tests/Test.hs \
   tests/test-order.hs \
@@ -1475,17 +1475,17 @@ tests/Test.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-reason.o: \
   tests/test-reason.hs \
   tests/Test.hs \
@@ -1513,17 +1513,17 @@ tests/test-reason.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-reason: \
   tests/test-reason.hs \
   tests/Test.hs \
@@ -1555,17 +1555,17 @@ tests/test-stats.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-stats: \
   tests/test-stats.hs \
   tests/Test.hs \
@@ -1600,17 +1600,17 @@ tests/test-utils.o: \
   src/Speculate/Expr/Canon.hs \
   src/Speculate/Engine.hs \
   src/Speculate/CondReason.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Types.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
-  ../../leancheck/src/Test/LeanCheck/Utils.hs \
-  ../../leancheck/src/Test/LeanCheck/Tiers.hs \
-  ../../leancheck/src/Test/LeanCheck.hs \
-  ../../leancheck/src/Test/LeanCheck/IO.hs \
-  ../../leancheck/src/Test/LeanCheck/Error.hs \
-  ../../leancheck/src/Test/LeanCheck/Derive.hs \
-  ../../leancheck/src/Test/LeanCheck/Core.hs \
-  ../../leancheck/src/Test/LeanCheck/Basic.hs
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 tests/test-utils: \
   tests/test-utils.hs \
   tests/Test.hs \
