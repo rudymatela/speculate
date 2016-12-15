@@ -58,6 +58,13 @@ quick-test: $(patsubst %,%.test,$(QUICKTESTS)) \
 test: all $(patsubst %,%.test,$(TESTS)) \
           $(patsubst %,%.test-model,$(EG) $(wildcard bench/*-c))
 
+legacy-test:
+	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.10 GHCFLAGS=-Werror
+	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.8  GHCFLAGS=-Werror
+	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.6  GHCFLAGS=-Werror
+	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.4  GHCFLAGS=-Werror
+	make clean
+
 slow-test: MAXTESTS =
 slow-test: MAXSIZE =
 slow-test: test
