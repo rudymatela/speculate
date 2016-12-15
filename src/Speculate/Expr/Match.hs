@@ -22,8 +22,9 @@ where
 import Speculate.Expr.Core
 
 import Data.Typeable
-import Data.List (sortOn, find)
+import Data.List (find)
 import Data.Maybe (isJust,fromMaybe)
+import Data.Functor ((<$>))
 import Speculate.Utils
 import Control.Monad ((>=>))
 

@@ -48,9 +48,10 @@ import Speculate.Reason.Order
 import Speculate.Utils
 import Data.Either
 import Data.Tuple (swap)
-import Data.List (partition, (\\), sortOn, sortBy, sort)
+import Data.List (partition, (\\), sortBy, sort)
 import Data.Function (on)
 import Data.Monoid ((<>))
+import Data.Functor ((<$>)) -- for GHC < 7.10
 import qualified Data.List as L (insert)
 import Data.Maybe (fromJust,isJust,listToMaybe,maybeToList,mapMaybe)
 import Control.Monad

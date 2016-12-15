@@ -1,7 +1,11 @@
+{-# LANGUAGE DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
 import Speculate hiding (value)
 import Speculate.Utils.Color
 import Test.LeanCheck
 import Data.Ratio
+
+deriving instance Data     Color -- for GHC < 7.10
+deriving instance Typeable Color -- for GHC < 7.10
 
 -- Just for Listable.tiers enumeration
 data ColorComponent = ColorComponent Rational

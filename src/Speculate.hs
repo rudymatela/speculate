@@ -9,9 +9,14 @@ module Speculate
   , module Speculate.Expr
   , module Speculate.Engine
   , module Test.LeanCheck.Utils
+
+  , Data
+  , Typeable
   )
 where
 
+import Data.Data (Data)
+import Data.Typeable (Typeable)
 import Data.Dynamic
 import Data.Maybe
 import Data.List hiding (insert)

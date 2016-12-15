@@ -15,6 +15,7 @@ where
 
 import Data.String
 import Data.Char
+import Data.Functor ((<$>)) -- for GHC < 7.10
 
 unquote :: String -> String
 unquote ('"':s) | last s == '"' = init s

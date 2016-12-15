@@ -20,6 +20,7 @@ import Speculate.Expr.TypeInfo
 import Speculate.Expr.Equate
 import Test.LeanCheck
 import Data.Ratio
+import Data.Functor ((<$>)) -- for GHC < 7.10
 
 -- TODO: move vassignments / etc here
 

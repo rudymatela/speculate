@@ -1,9 +1,16 @@
+{-# LANGUAGE DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
 import Speculate
 import Test.LeanCheck hiding ((\/))
 import Test.LeanCheck.Utils
 import Data.Function (on)
 
 import Digraph
+
+-- for GHC < 7.10
+deriving instance Data a => Data (Digraph a)
+deriving instance Typeable Digraph
+deriving instance Data     Nat
+deriving instance Typeable Nat
 
 instance Ord a => Ord (Digraph a) where
   compare = compare `on` nodeSuccs

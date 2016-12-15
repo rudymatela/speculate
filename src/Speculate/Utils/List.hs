@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 module Speculate.Utils.List
   ( pairsThat
   , count, counts, countsBy
@@ -9,6 +10,7 @@ module Speculate.Utils.List
   , areAll
   , allLater
   , (+-)
+  , sortOn
   , groupOn
   , collectOn, collectBy, collectWith, collectSndByFst
   , discard, discardLater, discardEarlier, discardOthers, discardByOthers
@@ -114,6 +116,11 @@ xs +- ys = xs ++ drop (length xs) ys
 
 groupOn :: Eq b => (a -> b) -> [a] -> [[a]]
 groupOn f = groupBy ((==) `on` f)
+
+#if __GLASGOW_HASKELL__ < 710
+sortOn :: Ord b => (a -> b) -> [a] -> [a]
+sortOn f = sortBy (compare `on` f)
+#endif
 
 -- TODO: rename this to classify!
 collectOn :: Ord b => (a -> b) -> [a] -> [[a]]

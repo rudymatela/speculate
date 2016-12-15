@@ -1,9 +1,13 @@
 {-# LANGUAGE CPP #-}
+{-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
 import Speculate hiding (($$))
 import Test.LeanCheck
 import Data.Function (on)
 
 import Text.PrettyPrint
+
+deriving instance Data     Doc -- for GHC < 7.10
+deriving instance Typeable Doc -- for GHC < 7.10
 
 #if __GLASGOW_HASKELL__ < 710
 -- pretty <= 1.1.1.1 (bundled with GHC <= 7.8)  does not provide this instance

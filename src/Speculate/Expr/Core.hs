@@ -55,7 +55,7 @@ module Speculate.Expr.Core
   )
 where
 
-import Data.List (intercalate, sortOn, find)
+import Data.List (intercalate, find)
 import Data.Maybe (fromMaybe, isJust, catMaybes)
 import Data.Function (on)
 import Data.Monoid ((<>))

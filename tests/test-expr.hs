@@ -6,6 +6,7 @@ import qualified Test.LeanCheck.Utils as LC (comparison)
 import Speculate.Expr
 import Speculate.Utils
 import Data.List (sort)
+import Data.Functor ((<$>)) -- for GHC < 7.10
 import Data.Typeable (typeOf)
 
 main :: IO ()

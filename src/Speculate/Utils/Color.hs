@@ -29,6 +29,8 @@ import Data.List
 import Data.Maybe
 import Data.Ratio
 import Data.Tuple
+import Data.Functor ((<$>)) -- for GHC < 7.10
+import Control.Applicative ((<*>)) -- for GHC < 7.10
 
 data Color = RGB Rational Rational Rational
   deriving (Eq, Ord)
