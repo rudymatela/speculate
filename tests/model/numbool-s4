@@ -1,15 +1,15 @@
 _ :: Int  (holes: Int)
 _ :: Bool  (holes: Bool)
-False :: Bool
-True :: Bool
-not :: Bool -> Bool
 0 :: Int
 1 :: Int
 (+) :: Int -> Int -> Int
+abs :: Int -> Int
 (<=) :: Int -> Int -> Bool
 (<) :: Int -> Int -> Bool
 (==) :: Int -> Int -> Bool
-abs :: Int -> Int
+False :: Bool
+True :: Bool
+not :: Bool -> Bool
 
        abs 0 == 0
        abs 1 == 1
