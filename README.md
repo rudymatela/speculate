@@ -85,6 +85,8 @@ we get the following as well:
 	abs x <= y ==>     abs (x + y) == x + y
 	abs y <= x ==>     abs (x + y) == x + y
 
+For more examples, see the [eg](eg) folder.
+
 
 More documentation
 ------------------
