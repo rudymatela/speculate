@@ -4,18 +4,18 @@ import Test.LeanCheck ((==>))
 main :: IO ()
 main = speculate args
   { atoms =
-      [ s False
-      , s True
-      , not   -| "not"
-    --, (&&)  -| "&&"
-    --, (||)  -| "||"
+      [ showConstant False
+      , showConstant True
+      , constant "not" not
+    --, constant "&&"  (&&)
+    --, constant "||"  (||)
 
-      , s (0::Int)
-      , s (1::Int)
-      , (+)  -:> int -| "+"
-      , (<=) -:> int -| "<="
-      , (<)  -:> int -| "<"
-      , (==) -:> int -| "=="
-      , abs  -:> int -| "abs"
+      , showConstant (0::Int)
+      , showConstant (1::Int)
+      , constant "+"   $ (+)  -:> int
+      , constant "<="  $ (<=) -:> int
+      , constant "<"   $ (<)  -:> int
+      , constant "=="  $ (==) -:> int
+      , constant "abs" $ abs  -:> int
       ]
   }
