@@ -115,6 +115,7 @@ e `allAbout` es = atomicConstants e `areAll` (`elem` es)
 
 report :: Args -> IO ()
 report args@Args {maxSize = sz, typeInfo_ = ti, maxTests = n, atoms = ds} = do
+  -- TODO: use typs here?
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
   let ds' = map holeOfTy ts `union` ds
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (equal ti n) ds'
