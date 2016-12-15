@@ -22,7 +22,7 @@ You can install them with:
 No `cabal` package has been made yet.  For now, you can compile programs that
 use it with:
 
-	$ ghc -Ipath/to/speculate/src program.hs
+	$ ghc -ipath/to/speculate/src program.hs
 
 
 Using Speculate
