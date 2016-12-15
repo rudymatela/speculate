@@ -6,7 +6,6 @@ import Data.Function (on)
 
 import Text.PrettyPrint
 
-deriving instance Data     Doc -- for GHC < 7.10
 deriving instance Typeable Doc -- for GHC < 7.10
 
 #if __GLASGOW_HASKELL__ < 710

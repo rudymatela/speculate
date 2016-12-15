@@ -6,11 +6,8 @@ import Data.Function (on)
 
 import Digraph
 
--- for GHC < 7.10
-deriving instance Data a => Data (Digraph a)
-deriving instance Typeable Digraph
-deriving instance Data     Nat
-deriving instance Typeable Nat
+deriving instance Typeable Digraph -- for GHC < 7.10
+deriving instance Typeable Nat     -- for GHC < 7.10
 
 instance Ord a => Ord (Digraph a) where
   compare = compare `on` nodeSuccs
