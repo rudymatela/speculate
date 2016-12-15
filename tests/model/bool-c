@@ -1,0 +1,87 @@
+_ :: Bool  (holes: Bool)
+False :: Bool
+True :: Bool
+not :: Bool -> Bool
+(&&) :: Bool -> Bool -> Bool
+(||) :: Bool -> Bool -> Bool
+
+_ :: Bool  (holes: Bool)
+False :: Bool
+True :: Bool
+not _ :: Bool  (holes: Bool)
+_ && _ :: Bool  (holes: Bool, Bool)
+_ || _ :: Bool  (holes: Bool, Bool)
+not (_ && _) :: Bool  (holes: Bool, Bool)
+not (_ || _) :: Bool  (holes: Bool, Bool)
+_ && not _ :: Bool  (holes: Bool, Bool)
+_ || not _ :: Bool  (holes: Bool, Bool)
+_ && (_ && _) :: Bool  (holes: Bool, Bool, Bool)
+_ && (_ || _) :: Bool  (holes: Bool, Bool, Bool)
+_ || _ && _ :: Bool  (holes: Bool, Bool, Bool)
+_ || (_ || _) :: Bool  (holes: Bool, Bool, Bool)
+
+p :: Bool
+False :: Bool
+True :: Bool
+not p :: Bool
+
+p :: Bool
+q :: Bool
+False :: Bool
+True :: Bool
+not p :: Bool
+not q :: Bool
+p && q :: Bool
+p || q :: Bool
+not (p && q) :: Bool
+not (p || q) :: Bool
+p && not q :: Bool
+q && not p :: Bool
+p || not q :: Bool
+q || not p :: Bool
+
+p :: Bool
+q :: Bool
+r :: Bool
+False :: Bool
+True :: Bool
+not p :: Bool
+not q :: Bool
+not r :: Bool
+p && q :: Bool
+p && r :: Bool
+q && r :: Bool
+p || q :: Bool
+p || r :: Bool
+q || r :: Bool
+not (p && q) :: Bool
+not (p && r) :: Bool
+not (q && r) :: Bool
+not (p || q) :: Bool
+not (p || r) :: Bool
+not (q || r) :: Bool
+p && not q :: Bool
+p && not r :: Bool
+q && not p :: Bool
+q && not r :: Bool
+r && not p :: Bool
+r && not q :: Bool
+p || not q :: Bool
+p || not r :: Bool
+q || not p :: Bool
+q || not r :: Bool
+r || not p :: Bool
+r || not q :: Bool
+p && (q && r) :: Bool
+p && (q || r) :: Bool
+q && (p || r) :: Bool
+r && (p || q) :: Bool
+p || q && r :: Bool
+q || p && r :: Bool
+r || p && q :: Bool
+p || (q || r) :: Bool
+
+Number of comparable schema classes: 14
+Number of comparable  1-var classes: 4
+Number of comparable  2-var classes: 14
+Number of comparable  3-var classes: 40

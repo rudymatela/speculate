@@ -1,0 +1,33 @@
+_ :: Set Int  (holes: Set Int)
+_ :: Int  (holes: Int)
+_ :: Bool  (holes: Bool)
+False :: Bool
+True :: Bool
+emptyS :: Set Int
+singleS :: Int -> Set Int
+insertS :: Int -> Set Int -> Set Int
+deleteS :: Int -> Set Int -> Set Int
+sizeS :: Set Int -> Int
+(<~) :: Int -> Set Int -> Bool
+(\/) :: Set Int -> Set Int -> Set Int
+(/\) :: Set Int -> Set Int -> Set Int
+
+          insertS x s == s \/ singleS x
+               s /\ s == s
+               s \/ s == s
+          s /\ emptyS == emptyS
+          s \/ emptyS == s
+     deleteS x emptyS == emptyS
+          x <~ emptyS == False
+deleteS x (singleS x) == emptyS
+       x <~ singleS x == True
+               s /\ t == t /\ s
+               s \/ t == t \/ s
+    sizeS (singleS x) == sizeS (singleS y)
+       x <~ singleS y == y <~ singleS x
+
+           p ==> True
+      emptyS <=  s
+       False ==> p
+sizeS emptyS <=  sizeS s
+

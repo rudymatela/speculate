@@ -1,0 +1,19 @@
+== Signature ==
+  0 :: Int
+ id :: Int -> Int
+(+) :: Int -> Int -> Int
+  f :: Int -> Int -> Int
+  g :: Int -> Int -> Int
+  h :: Int -> Int -> Int
+
+== Laws ==
+id i = i
+i + 0 = i
+0 + i = i
+i + j = j + i
+f i i = f i j
+g i j = g j i
+g i i = g i j
+h j j = h i j
+(i + j) + k = i + (j + k)
+

@@ -1,0 +1,20 @@
+_ :: Int  (holes: Int)
+0 :: Int
+id :: Int -> Int
+(+) :: Int -> Int -> Int
+f :: Int -> Int -> Int
+g :: Int -> Int -> Int
+h :: Int -> Int -> Int
+
+       id x == x
+      x + 0 == x
+(x + y) + z == x + (y + z)
+      x + y == y + x
+      f x y == f x z
+      g x y == g z w
+      h x y == h z y
+
+y <= g x x
+y <= h x 0
+y <= f 0 x
+

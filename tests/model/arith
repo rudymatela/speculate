@@ -1,0 +1,49 @@
+_ :: Int  (holes: Int)
+0 :: Int
+1 :: Int
+id :: Int -> Int
+abs :: Int -> Int
+negate :: Int -> Int
+(+) :: Int -> Int -> Int
+(*) :: Int -> Int -> Int
+
+             id x == x
+            abs 0 == 0
+            abs 1 == 1
+         negate 0 == 0
+      abs (abs x) == abs x
+   abs (negate x) == abs x
+negate (negate x) == x
+            x * 0 == 0
+            x * 1 == x
+            x + 0 == x
+     x * negate y == negate (x * y)
+     negate x + y == negate (x + negate y)
+      abs (x * x) == x * x
+     x + negate x == 0
+      abs (1 + 1) == 1 + 1
+      (x * y) * z == x * (y * z)
+      (x + y) + z == x + (y + z)
+        x * y + x == x * (y + 1)
+  abs (x * abs y) == abs (x * y)
+    abs x * abs y == abs (x * y)
+  abs (x + abs x) == x + abs x
+    abs x + abs x == abs (x + x)
+  abs (1 + abs x) == 1 + abs x
+            x * y == y * x
+            x + y == y + x
+            x + x == x * (1 + 1)
+
+             0 <= 1
+             x <= abs x
+             0 <= abs x
+      negate 1 <= 0
+             x <= x * x
+             x <= x + 1
+             0 <= x * x
+      negate x <= abs x
+negate (abs x) <= x
+negate (abs x) <= 0
+         abs x <= x * x
+negate (abs x) <= negate x
+

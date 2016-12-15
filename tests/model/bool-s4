@@ -1,0 +1,24 @@
+_ :: Bool  (holes: Bool)
+False :: Bool
+True :: Bool
+not :: Bool -> Bool
+(&&) :: Bool -> Bool -> Bool
+(||) :: Bool -> Bool -> Bool
+
+   not False == True
+    not True == False
+    (p && p) == p
+    (p || p) == p
+ not (not p) == p
+(p && False) == False
+ (p && True) == p
+(p || False) == p
+ (p || True) == True
+(p && not p) == False
+(p || not p) == True
+    (p && q) == (q && p)
+    (p || q) == (q || p)
+
+    p ==> True
+False ==> p
+

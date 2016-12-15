@@ -1,0 +1,15 @@
+_ :: [Int]  (holes: [Int])
+_ :: Int  (holes: Int)
+[] :: [Int]
+(:) :: Int -> [Int] -> [Int]
+(++) :: [Int] -> [Int] -> [Int]
+head :: [Int] -> Int
+tail :: [Int] -> [Int]
+
+   xs ++ [] == xs
+   [] ++ xs == xs
+tail (x:xs) == xs
+head (x:xs) == x
+
+[] <= xs
+

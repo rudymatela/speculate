@@ -1,0 +1,14 @@
+_ :: [Int]  (holes: [Int])
+_ :: Int  (holes: Int)
+_ :: Int -> [Int]  (holes: Int -> [Int])
+return :: Int -> [Int]
+(>>=) :: [Int] -> (Int -> [Int]) -> [Int]
+(>=>) :: (Int -> [Int]) -> (Int -> [Int]) -> Int -> [Int]
+
+(xs >>= return) == xs
+ (f >=> return) == f
+ (return >=> f) == f
+            f x == (return x >>= f)
+    (f >=> g) x == (f x >>= g)
+
+

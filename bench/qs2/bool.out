@@ -1,0 +1,32 @@
+== Signature ==
+False :: Bool
+ True :: Bool
+  not :: Bool -> Bool
+ (&&) :: Bool -> Bool -> Bool
+ (||) :: Bool -> Bool -> Bool
+
+== Laws ==
+not False = True
+not True = False
+x && x = x
+x || x = x
+x && False = False
+x && True = x
+False && x = False
+True && x = x
+x || False = x
+x || True = True
+False || x = x
+True || x = True
+not (not x) = x
+x && y = y && x
+x || y = y || x
+x && not x = False
+x || not x = True
+x && (x && y) = x && y
+x && (x || y) = x
+(x && y) && z = x && (y && z)
+x || (x && y) = x
+(x || y) || z = x || (y || z)
+not x && not y = not (x || y)
+

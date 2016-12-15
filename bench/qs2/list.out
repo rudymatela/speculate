@@ -1,0 +1,11 @@
+== Signature ==
+  [] :: [Int]
+ (:) :: Int -> [Int] -> [Int]
+(++) :: [Int] -> [Int] -> [Int]
+
+== Laws ==
+is ++ [] = is
+[] ++ is = is
+(is ++ js) ++ ks = is ++ (js ++ ks)
+i : (is ++ js) = (i : is) ++ js
+

@@ -1,0 +1,23 @@
+_ :: Int  (holes: Int)
+0 :: Int
+1 :: Int
+id :: Int -> Int
+negate :: Int -> Int
+(+) :: Int -> Int -> Int
+(-) :: Int -> Int -> Int
+
+             id x == x
+         negate 0 == 0
+            x - y == x + negate y
+negate (negate x) == x
+            x + 0 == x
+     negate x + y == negate (x + negate y)
+     x + negate x == 0
+      (x + y) + z == x + (y + z)
+            x + y == y + x
+
+       0 <= 1
+negate 1 <= 0
+       x <= x + 1
+   x - 1 <= x
+

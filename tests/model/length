@@ -1,0 +1,20 @@
+_ :: [Int]  (holes: [Int])
+_ :: Int  (holes: Int)
+0 :: Int
+[] :: [Int]
+(:) :: Int -> [Int] -> [Int]
+(++) :: [Int] -> [Int] -> [Int]
+length :: [Int] -> Int
+
+        length [] == 0
+         xs ++ [] == xs
+         [] ++ xs == xs
+ (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
+length (xs ++ ys) == length (ys ++ xs)
+    length (x:xs) == length (y:xs)
+             x:xs == [x] ++ xs
+
+[] <= xs
+ 0 <= length xs
+xs <= xs ++ ys
+

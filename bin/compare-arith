@@ -1,0 +1,21 @@
+#!/bin/bash
+
+hae=/tmp/haexpress-arith-hae
+qs2=/tmp/haexpress-arith-qs2
+
+cat bench/qs2/arith.out |
+grep " = " |
+sed -e "y/ijk/xyz/;s/=/==/" |
+sed -e "s/xd/id/" |
+sort > $qs2
+
+cat tests/model/arith |
+grep " == " |
+sed -e "s/ *//" |
+sed -e 's/\([^a-z]\) (\([a-z]* .\))/\1 \2/g' |
+sed -e 's/^(\([a-z ]*\))/\1/' |
+sort > $hae
+
+diff -rud $qs2 $hae
+
+rm -f $qs2 $hae

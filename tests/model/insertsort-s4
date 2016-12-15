@@ -1,0 +1,42 @@
+_ :: [Int]  (holes: [Int])
+_ :: Int  (holes: Int)
+_ :: Bool  (holes: Bool)
+[] :: [Int]
+(:) :: Int -> [Int] -> [Int]
+(++) :: [Int] -> [Int] -> [Int]
+insert :: Int -> [Int] -> [Int]
+sort :: [Int] -> [Int]
+elem :: Int -> [Int] -> Bool
+ordered :: [Int] -> Bool
+False :: Bool
+True :: Bool
+(==) :: Int -> Int -> Bool
+(<=) :: Int -> Int -> Bool
+all :: (Int -> Bool) -> [Int] -> Bool
+
+              sort [] == []
+           ordered [] == True
+             (x <= x) == True
+             (x == x) == True
+       sort (sort xs) == sort xs
+             xs ++ [] == xs
+          insert x [] == [x]
+             [] ++ xs == xs
+    ordered (sort xs) == True
+            elem x [] == False
+   sort (insert x xs) == sort (x:xs)
+   insert x (sort xs) == sort (x:xs)
+ordered (insert x xs) == ordered xs
+     elem x (sort xs) == elem x xs
+             sort [x] == [x]
+          ordered [x] == True
+        all (x <=) [] == True
+        all (x ==) [] == True
+             (x == y) == (y == x)
+      sort (xs ++ ys) == sort (ys ++ xs)
+
+      p ==> True
+     [] <=  xs
+  False ==> p
+sort xs <=  xs
+

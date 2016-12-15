@@ -1,0 +1,3 @@
+#!/bin/bash
+top=`dirname $0`
+$top/benchmark "$@" | tee bench/runtime-$HOSTNAME

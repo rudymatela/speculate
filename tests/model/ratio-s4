@@ -1,0 +1,49 @@
+_ :: Integer  (holes: Integer)
+_ :: Ratio Integer  (holes: Ratio Integer)
+0 % 1 :: Ratio Integer
+1 % 1 :: Ratio Integer
+id :: Ratio Integer -> Ratio Integer
+abs :: Ratio Integer -> Ratio Integer
+negate :: Ratio Integer -> Ratio Integer
+(+) :: Ratio Integer -> Ratio Integer -> Ratio Integer
+(*) :: Ratio Integer -> Ratio Integer -> Ratio Integer
+(/) :: Ratio Integer -> Ratio Integer -> Ratio Integer
+(%) :: Integer -> Integer -> Ratio Integer
+recip :: Ratio Integer -> Ratio Integer
+numerator :: Ratio Integer -> Integer
+denominator :: Ratio Integer -> Integer
+
+                   id q == q
+    denominator (1 % 1) == denominator (0 % 1)
+      numerator (1 % 1) == denominator (0 % 1)
+            abs (0 % 1) == 0 % 1
+            abs (1 % 1) == 1 % 1
+         negate (0 % 1) == 0 % 1
+          recip (1 % 1) == 1 % 1
+    denominator (abs q) == denominator q
+ denominator (negate q) == denominator q
+            abs (abs q) == abs q
+         abs (negate q) == abs q
+      negate (negate q) == q
+            q * (0 % 1) == 0 % 1
+            q * (1 % 1) == q
+              q + 0 % 1 == q
+            q / (1 % 1) == q
+ recip (negate (1 % 1)) == negate (1 % 1)
+           q * negate r == negate (q * r)
+            abs (q * q) == q * q
+           q + negate q == 0 % 1
+denominator (q + 1 % 1) == denominator q
+     q / negate (1 % 1) == negate q
+    abs (1 % 1 + 1 % 1) == 1 % 1 + 1 % 1
+                  q * r == r * q
+                  q + r == r + q
+
+            0 % 1 <= 1 % 1
+                q <= abs q
+            0 % 1 <= abs q
+   negate (1 % 1) <= 0 % 1
+         negate q <= abs q
+numerator (0 % 1) <= denominator q
+numerator (1 % 1) <= denominator q
+

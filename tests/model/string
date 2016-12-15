@@ -1,0 +1,64 @@
+_ :: [Char]  (holes: [Char])
+_ :: [[Char]]  (holes: [[Char]])
+"" :: [Char]
+" " :: [Char]
+"\n" :: [Char]
+lines :: [Char] -> [[Char]]
+words :: [Char] -> [[Char]]
+unlines :: [[Char]] -> [Char]
+unwords :: [[Char]] -> [Char]
+(++) :: [Char] -> [Char] -> [Char]
+
+                           words " " == lines ""
+                            words "" == lines ""
+                          words "\n" == lines ""
+                            cs ++ "" == cs
+                            "" ++ cs == cs
+                 words (unwords css) == words (unlines css)
+                  unlines (lines "") == ""
+                unlines (lines "\n") == "\n"
+                 unwords (lines " ") == " "
+                  unwords (lines "") == ""
+                unwords (lines "\n") == ""
+                         " " ++ "\n" == unlines (lines " ")
+       unlines (lines (unlines css)) == unlines css
+          lines (unlines (lines cs)) == lines cs
+          lines (unlines (words cs)) == words cs
+          words (unlines (lines cs)) == words cs
+          words (unlines (words cs)) == words cs
+                   words (cs ++ " ") == words cs
+                  words (cs ++ "\n") == words cs
+                   words (" " ++ cs) == words cs
+                  words ("\n" ++ cs) == words cs
+                    (cs ++ ds) ++ es == cs ++ (ds ++ es)
+           words (cs ++ unwords css) == words (cs ++ unlines css)
+            cs ++ unlines (lines cs) == unlines (lines (cs ++ cs))
+        unlines (lines (cs ++ "\n")) == cs ++ "\n"
+unwords (lines (unwords (lines cs))) == unwords (lines cs)
+unwords (lines (unwords (words cs))) == unwords (words cs)
+           cs ++ unlines (lines " ") == unlines (lines (cs ++ " "))
+           " " ++ unwords (lines cs) == unwords (lines (" " ++ cs))
+          "\n" ++ unlines (lines cs) == unlines (lines ("\n" ++ cs))
+           unlines (lines " ") ++ cs == " " ++ ("\n" ++ cs)
+        unwords (lines (" " ++ " ")) == " " ++ " "
+       unwords (lines ("\n" ++ " ")) == " " ++ " "
+      unwords (lines ("\n" ++ "\n")) == " "
+
+                 "" <= cs
+               "\n" <= " "
+           lines "" <= css
+                 cs <= cs ++ ds
+                 cs <= unlines (lines cs)
+lines (unlines css) <= css
+               "\n" <= cs ++ " "
+               "\n" <= cs ++ "\n"
+         "\n" ++ cs <= " "
+         lines "\n" <= lines " "
+ unwords (lines cs) <= cs ++ ds
+         "\n" ++ ds <= cs ++ " "
+ unlines (lines cs) <= cs ++ cs
+ unlines (lines cs) <= cs ++ " "
+ unlines (lines cs) <= cs ++ "\n"
+         cs ++ "\n" <= cs ++ " "
+         "\n" ++ cs <= cs ++ "\n"
+

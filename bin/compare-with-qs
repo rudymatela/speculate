@@ -1,0 +1,14 @@
+#!/bin/bash
+
+HAE=bench/runtime-$HOSTNAME
+QS1=bench/qs1/runtime-$HOSTNAME
+QS2=bench/qs2/runtime-$HOSTNAME
+
+printf "%-12s  %6s  %6s  %6s\n" "" QS1 Haex QS2
+cat $QS1 |
+while read name qs1
+do
+	read nm qs2 <<< $(grep "^$name " $QS2)
+	read nm hae <<< $(grep "^$name " $HAE)
+	printf "%-12s  %6.3f  %6.3f  %6.3f\n" $name $qs1 $hae $qs2
+done

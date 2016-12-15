@@ -1,0 +1,29 @@
+== API ==
+-- functions --
+(+), (*) :: Int -> Int -> Int
+0, 1 :: Int
+
+-- variables --
+x, y, z :: Int
+
+== Testing ==
+Depth 1: 6 terms, 2 tests, 10 evaluations, 6 classes, 0 raw equations.
+Depth 2: 56 terms, 500 tests, 24068 evaluations, 22 classes, 34 raw equations.
+Depth 3: 888 terms, 500 tests, 438418 evaluations, 298 classes, 590 raw equations.
+590 raw equations; 298 terms in universe.
+
+== Equations about (+) ==
+  1: x+y == y+x
+  2: x+0 == x
+  3: x+(y+z) == y+(x+z)
+
+== Equations about (*) ==
+  4: x*y == y*x
+  5: x*0 == 0
+  6: x*1 == x
+  7: x*(y*z) == y*(x*z)
+
+== Equations about several functions ==
+  8: x*(y+y) == y*(x+x)
+  9: (x*y)+(x*z) == x*(y+z)
+

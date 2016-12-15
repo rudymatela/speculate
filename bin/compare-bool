@@ -1,0 +1,20 @@
+#!/bin/bash
+
+hae=/tmp/haexpress-bool-hae
+qs2=/tmp/haexpress-bool-qs2
+
+cat bench/qs2/bool.out |
+grep " = "  |
+sed -e "y/xyz/pqr/;s/=/==/" |
+sort > $qs2
+
+cat tests/model/bool |
+grep " == " |
+sed -e "s/ *//" |
+sed -e 's/\([^a-z]\) (\([a-z]* .\))/\1 \2/g' |
+sed -e 's/^(\([a-z ]*\))/\1/' |
+sort > $hae
+
+diff -rud $qs2 $hae
+
+rm -f $qs2 $hae

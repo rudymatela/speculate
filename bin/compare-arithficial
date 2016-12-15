@@ -1,0 +1,28 @@
+#!/bin/bash
+
+hae=/tmp/haexpress-arithficial-hae
+qs2=/tmp/haexpress-arithficial-qs2
+qs1=/tmp/haexpress-arithficial-qs1
+
+cat bench/qs1/arithficial.out |
+grep " == " |
+sed -e 's/.*: //;s/+/ + /g' |
+sort > $qs1
+
+cat bench/qs2/arithficial.out |
+grep " = " |
+sed -e "y/ijk/xyz/;s/=/==/" |
+sed -e "s/xd/id/" |
+sort > $qs2
+
+cat tests/model/arithficial |
+grep " == " |
+sed -e "s/ *//" |
+sed -e 's/\([^a-z]\) (\([a-z]* .\))/\1 \2/g' |
+sed -e 's/^(\([a-z ]*\))/\1/' |
+sort > $hae
+
+diff -rud $qs1 $qs2
+diff -rud $qs2 $hae
+
+rm -f $qs1 $qs2 $hae

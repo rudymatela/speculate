@@ -1,0 +1,21 @@
+_ :: Name  (holes: Name)
+_ :: Prop  (holes: Prop)
+_ :: Bool  (holes: Bool)
+False :: Bool
+True :: Bool
+(==) :: Prop -> Prop -> Bool
+eval :: Prop -> Prop
+varOf :: Prop -> Name
+subst :: Name -> Bool -> Prop -> Prop
+taut :: Prop -> Bool
+
+     (p == p) == True
+eval (eval p) == eval p
+taut (eval p) == taut p
+     (p == q) == (q == p)
+
+    p ==> True
+False ==> p
+
+p ==> subst n True q == subst n p q
+

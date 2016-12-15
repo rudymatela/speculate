@@ -1,0 +1,55 @@
+#!/bin/bash
+top=`dirname $0`/..
+eg=$top/eg
+model=$top/tests/model
+
+case "$1" in
+	-*) sz="$1"
+	    shift
+		;;
+esac
+
+test-model() {
+	$1 $sz | diff -rud $model/$2$sz - || exit 1
+}
+
+update-test-model() {
+	$1 $sz > $model/$2$sz
+}
+
+tym() {
+	/usr/bin/time -f%e "$@"
+}
+
+mean() {
+	sum="`echo -n $* | sed -e "s/ / + /g"`"
+	mean="`echo "scale = 3; ($sum) / $#" | bc`"
+	printf "%3.3f\n" $mean
+}
+export -f mean
+
+benchmark() {
+	[ -x $1 ] || { echo "$0: not found $1"; return 1; }
+	printf "%-15s  " "$2$sz"
+	for run in {1..3}
+	do
+		tym $1 $sz 2>&1 >/dev/null
+	done | xargs bash -c 'mean "$@"' mean
+}
+
+benchmark-cmp() {
+	[ -x $1 ] || { echo "$0: not found $1"; return 1; }
+	grep "^ *$2$sz " bench/runtime-$HOSTNAME | tr '\n' ' '
+	echo -n ' '
+	for run in {1..1}
+	do
+		tym $1 $sz 2>&1 >/dev/null
+	done | xargs bash -c 'mean "$@"' mean
+}
+
+find $* | sed -e "s/^bench/     /;s/^eg/  /" |
+sort -b | sed -e "s/^     /bench/;s/^  /eg/" |
+while read e
+do
+	`basename $0` $top/$e `basename $e`
+done
