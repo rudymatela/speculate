@@ -8,17 +8,17 @@ main = speculate args
       ordered (x:y:xs) = x <= y && ordered (y:xs)
       ordered _        = True
     in
-      [ s ([] :: [Int])
-      , (:)     -:>  int  -| ":"
-      , (++)    -:> [int] -| "++"
-      , insert  -:>  int  -| "insert"
-      , sort    -:> [int] -| "sort"
-      , elem   ->:> [int] -| "elem"
-      , ordered -:> [int] -| "ordered"
-      , False -| "False"
-      , True  -| "True"
-      , (==) -:> int -| "=="
-      , (<=) -:> int -| "<="
-      , all ->:> [int] -| "all"
+      [ showConstant ([] :: [Int])
+      , constant ":"       $ (:)     -:>  int
+      , constant "++"      $ (++)    -:> [int]
+      , constant "insert"  $ insert  -:>  int
+      , constant "sort"    $ sort    -:> [int]
+      , constant "elem"    $ elem   ->:> [int]
+      , constant "ordered" $ ordered -:> [int]
+      , constant "False"     False
+      , constant "True"      True
+      , constant "=="      $ (==)    -:>  int
+      , constant "<="      $ (<=)    -:>  int
+      , constant "all"     $ all    ->:> [int]
       ]
   }
