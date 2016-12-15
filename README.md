@@ -103,6 +103,8 @@ Haskell functions.  There are some differences:
 | polymorphism   | no             | yes                               |
 | performance    | slower         | faster                            |
 
+For most examples, Speculate runs slower than QuickSpec 2 but faster than QuickSpec 1.
+
 
 More documentation
 ------------------
