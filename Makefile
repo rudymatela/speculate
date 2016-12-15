@@ -63,7 +63,7 @@ legacy-test:
 	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.8  && make quick-test -j8 GHC=ghc-7.8
 	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.6  && make quick-test -j8 GHC=ghc-7.6
 	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.4  && make quick-test -j8 GHC=ghc-7.4
-	make clean && make -C $(LEANCHECKPATH) clean
+	make clean && make -C $(LEANCHECKPATH) clean && make -j8              && make slow-test  -j8
 
 slow-test: MAXTESTS =
 slow-test: MAXSIZE =
