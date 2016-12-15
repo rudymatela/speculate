@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 -- Test library
 import Test
 import qualified Test.LeanCheck.Utils as LC (comparison)
@@ -121,9 +122,9 @@ tests n =
                       Right t -> t == typ e
                       Left  _ -> error "Either Listable Expr is generating ill typed expressions or etyp is wrong!"
 
-  , typs [i_, idE, plusE, timesE] == [typ xx, typ idE, typ plusE]
-  , typs [idE, plusE, timesE] == [typ idE, typ timesE]
-  , typs [c_, ordE, idE, plusE, timesE] == [typ xx, typ ordE, typ cc, typ idE, typ timesE]
+  , typs [i_, idE, plusE, timesE] == sort [typ xx, typ idE, typ plusE]
+  , typs [idE, plusE, timesE] == sort [typ idE, typ timesE]
+  , typs [c_, ordE, idE, plusE, timesE] == sort [typ xx, typ ordE, typ cc, typ idE, typ timesE]
   , exists (n*2) $ \es -> typs es == nubSort (map typ es)
   , exists (n*2) $ \es -> typs es /= nubSort (map typ es)
 
@@ -164,8 +165,14 @@ tests n =
   -- Data.Typeable has changed.  I do rely on this for a "nice" knuth-bendix
   -- order (by prefering less arity).  If this ever changes, I will have to
   -- explicitly compare type arity on Ord Expr.
+  -- (update: haha it has changed from before!)
+#if __GLASGOW_HASKELL < 800
+  , typeOf ((+) :: Int -> Int -> Int) < typeOf (abs :: Int -> Int)
+  , typeOf (abs :: Int -> Int)        < typeOf (0 :: Int)
+#else
   , typeOf ((+) :: Int -> Int -> Int) > typeOf (abs :: Int -> Int)
   , typeOf (abs :: Int -> Int)        > typeOf (0 :: Int)
+#endif
 
   , holds n $ \e1 e2 -> e1 `isSub` e2 == (e1 `elem` subexprsV e2)
   ]
