@@ -59,10 +59,10 @@ test: all $(patsubst %,%.test,$(TESTS)) \
           $(patsubst %,%.test-model,$(EG) $(wildcard bench/*-c))
 
 legacy-test:
-	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.10 GHCFLAGS=-Werror
-	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.8  GHCFLAGS=-Werror
-	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.6  GHCFLAGS="-Werror -fno-warn-unrecognised-pragmas"
-	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.4  GHCFLAGS="-Werror -fno-warn-unrecognised-pragmas"
+	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.10 && make quick-test -j8 GHC=ghc-7.10
+	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.8  && make quick-test -j8 GHC=ghc-7.8
+	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.6  && make quick-test -j8 GHC=ghc-7.6
+	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.4  && make quick-test -j8 GHC=ghc-7.4
 	make clean && make -C $(LEANCHECKPATH) clean
 
 slow-test: MAXTESTS =
