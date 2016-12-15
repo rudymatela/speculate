@@ -12,10 +12,10 @@ main = speculate args
 
       , showConstant (0::Int)
       , showConstant (1::Int)
-      , constant "+"   $ (+)  -:> int
-      , constant "<="  $ (<=) -:> int
-      , constant "<"   $ (<)  -:> int
-      , constant "=="  $ (==) -:> int
-      , constant "abs" $ abs  -:> int
+      , constant "+"   ((+)  :: Int -> Int -> Int)
+      , constant "<="  ((<=) :: Int -> Int -> Bool)
+      , constant "<"   ((<)  :: Int -> Int -> Bool)
+      , constant "=="  ((==) :: Int -> Int -> Bool)
+      , constant "abs" (abs  :: Int -> Int)
       ]
   }
