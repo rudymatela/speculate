@@ -3,9 +3,7 @@ Speculate
 
 Speculate automatically speculates (conditional-/semi-) equational properties
 about given Haskell functions.
-
-(i.e.: [QuickSpec] with conditional- and semi- equations but without
-polymorphism.).
+(it is similar to, and inspired by [QuickSpec].)
 
 It is currently under development, expect it to break often for now.
 
@@ -90,7 +88,25 @@ we get the following as well:
 For more examples, see the [eg](eg) folder.
 
 
+Similarities and Differences to QuickSpec
+-----------------------------------------
+
+Speculate is inspired by [QuickSpec].
+Like QuickSpec, Speculate uses testing to speculate equational laws about given
+Haskell functions.  There are some differences:
+
+|                | Speculate      | QuickSpec                         |
+| -------------- | -------------- | --------------------------------- |
+| testing        | enumerative    | random                            |
+| conditions     | "unrestricted" | restricted to a set of predicates |
+| semi-equations | yes            | no                                |
+| polymorphism   | no             | yes                               |
+| performance    | slower         | faster                            |
+
+
 More documentation
 ------------------
 
 For more examples, see the [eg](eg) and [bench](bench) folders.
+
+[QuickSpec]: https://github.com/nick8325/quickspec
