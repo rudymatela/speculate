@@ -96,7 +96,7 @@ Like QuickSpec, Speculate uses testing to speculate equational laws about given
 Haskell functions.  There are some differences:
 
 |                | Speculate      | QuickSpec                         |
-| -------------- | -------------- | --------------------------------- |
+| -------------: | -------------- | --------------------------------- |
 | testing        | enumerative    | random                            |
 | conditions     | "unrestricted" | restricted to a set of predicates |
 | semi-equations | yes            | no                                |
