@@ -1,3 +1,4 @@
+{-# Language CPP #-}
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
 import Speculate
 import Test.LeanCheck hiding ((\/))
@@ -5,7 +6,11 @@ import Test.LeanCheck hiding ((\/))
 import Set hiding (set)
 import qualified Set
 
+#if __GLASGOW_HASKELL__ < 708
+deriving instance Typeable1 Set
+#else
 deriving instance Typeable Set -- for GHC < 7.10
+#endif
 
 instance (Ord a, Listable a) => Listable (Set a) where
   tiers = setCons Set.set

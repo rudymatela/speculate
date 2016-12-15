@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
 import Speculate
 import Test.LeanCheck hiding ((\/))
@@ -5,8 +6,13 @@ import Test.LeanCheck.Utils
 import Data.Function (on)
 
 import Digraph
+import Data.Typeable (Typeable1) -- for GHC < 7.8
 
-deriving instance Typeable Digraph -- for GHC < 7.10
+#if __GLASGOW_HASKELL__ < 708
+deriving instance Typeable1 Digraph
+#else
+deriving instance Typeable Digraph
+#endif
 deriving instance Typeable Nat     -- for GHC < 7.10
 
 instance Ord a => Ord (Digraph a) where
