@@ -1,5 +1,10 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
+#if __GLASGOW_HASKELL__ == 704
+import Speculate -- go figure...
+#else
 import Speculate hiding (value)
+#endif
 import Speculate.Utils.Color
 import Test.LeanCheck
 import Data.Ratio
