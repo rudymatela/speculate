@@ -1,5 +1,5 @@
 # Makefile for Speculate
-LEANCHECKPATH = ../../leancheck
+LEANCHECKPATH = ../leancheck
 GHCIMPORTDIRS = src:eg:$(LEANCHECKPATH)/src:tests
 GHCFLAGS = -O2 #-prof -auto-all #-caf-all
 # When profiling is enabled, to get the cost centres with more than 6% time:
