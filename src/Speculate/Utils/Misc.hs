@@ -99,7 +99,7 @@ iterateUntilLimit n p f x = let fx = f x
                                  then x
                                  else iterateUntilLimit (n-1) p f (fx)
 
-showRatio :: Show a => Ratio a -> String
+showRatio :: (Integral a, Show a) => Ratio a -> String
 showRatio r = show (numerator r) ++ "/" ++ show (denominator r)
 
 percent :: Integral a => Ratio a -> a
