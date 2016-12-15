@@ -115,6 +115,19 @@ Later Later
   Maybe make a way to automatically detect this.  By considering something
   that implies an equation to be an equation when doing `subConsequence`.
 
+  another example: adding:
+      , showConstant False
+      , showConstant True
+      , constant "null" $ (null) -:> [int]
+  to `eg/list`, generates:
+        null xs ==>               [] == xs
+        null xs ==>         xs ++ xs == xs
+        null xs ==>         xs ++ xs == []
+        null xs ==>              [x] == x:xs
+        ...
+  null xs  *is*  [] == xs
+
+
 * Rename "Speculate" to "Test.Speculate"
 
 ### Properties I want
