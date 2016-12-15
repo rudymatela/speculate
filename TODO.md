@@ -30,9 +30,11 @@ Later
 
   See `git show 4770bfe tests/model/insertsort-c`
 
-* Fix taut output:
-  why does p ==> appears on taut?  it should *not* appear;
-  Review all others and make Speculate discard unecessary things.
+* detect and discard equivalent forms of equations on preconditions, e.g.:
+  `p ==> ...` (equivalent to `p == True ==> ...`)
+  `isNode x (addNode y emptyDigraph) ==> ...` (equiv. to `x == y ==> ...`)
+  `null xs ==> ...` (equivalent to `xs == [] ==> ...`)
+  See relevant section for details.
 
 * include Colin's list module example
 
@@ -41,6 +43,31 @@ Later
 * Implement expand by expanding tiers.  This is more robust and flexible.  It
   will allow extraction of contant values from tiers.  This will also make it
   easy to amend a Thy: do theorization; add a bunch of atoms; do it again.
+
+### detect and discard equivalent forms of equations on preconditions
+
+This problem appears on:
+
+* `eg/taut` as `p ==> ...`
+
+* `eg/digraphs`, after removing `(==) @ Nat`, as:
+  `isNode x (addNode y emptyDigraph) ==> y == x`
+  `isNode x (addNode y emptyDigraph) ==> preds y a == preds x a`
+  `isNode x (addNode y emptyDigraph) ==> succs y a == succs x a`
+  `...`
+
+* `eg/list`, after adding `False`, `True` and `null`, as:
+  `null xs ==>               [] == xs`
+  `null xs ==>         xs ++ xs == xs`
+  `null xs ==>         xs ++ xs == []`
+  `null xs ==>              [x] == x:xs`
+
+Possible ways to solve this problem:
+
+* consider conditions that imply an equation on `subConsequence`.
+* simply preprocess to discover conditions that imply equations beforehand.
+* run the whole process twice!  If conditions implying equations appear,
+  discard those conditions then run again.
 
 
 Later Later
@@ -105,27 +132,6 @@ Later Later
 
 * require _some_ cases of `e1 == e2` before considering `ce ==> e1 == e2`.
   10% by default?
-
-* go into digraph example, remove `(==) @ Nat` from signature.  See that the
-  following appears:
-  `isNode x (addNode y emptyDigraph) ==> y == x`
-  `isNode x (addNode y emptyDigraph) ==> preds y a == preds x a`
-  `isNode x (addNode y emptyDigraph) ==> succs y a == succs x a`
-  `...`
-  Maybe make a way to automatically detect this.  By considering something
-  that implies an equation to be an equation when doing `subConsequence`.
-
-  another example: adding:
-      , showConstant False
-      , showConstant True
-      , constant "null" $ (null) -:> [int]
-  to `eg/list`, generates:
-        null xs ==>               [] == xs
-        null xs ==>         xs ++ xs == xs
-        null xs ==>         xs ++ xs == []
-        null xs ==>              [x] == x:xs
-        ...
-  null xs  *is*  [] == xs
 
 
 * Rename "Speculate" to "Test.Speculate"
