@@ -61,8 +61,8 @@ test: all $(patsubst %,%.test,$(TESTS)) \
 legacy-test:
 	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.10 GHCFLAGS=-Werror
 	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.8  GHCFLAGS=-Werror
-	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.6  GHCFLAGS=-Werror
-	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.4  GHCFLAGS=-Werror
+	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.6  GHCFLAGS="-Werror -fno-warn-unrecognised-pragmas"
+	make clean && make -C $(LEANCHECKPATH) clean && make quick-test -j8 GHC=ghc-7.4  GHCFLAGS="-Werror -fno-warn-unrecognised-pragmas"
 	make clean
 
 slow-test: MAXTESTS =
