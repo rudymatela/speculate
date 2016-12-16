@@ -120,13 +120,13 @@ clean: clean-hi-o
 	make clean -C bench/qs1
 	make clean -C bench/qs2
 
-tests/Test.o: src/Speculate.o
+tests/Test.o: src/Test/Speculate.o
 
 # NOTE: (very hacky!) the following target allows parallel compilation (-jN) of
 # eg and tests programs so long as they don't share dependencies _not_ stored
 # in src/ and tests/.  Runnable binaries should depend on mk/toplibs instead of
 # actual Haskell source files
-mk/toplibs: src/Speculate.o tests/Test.o
+mk/toplibs: src/Test/Speculate.o tests/Test.o
 	touch mk/toplibs
 
 include mk/haskell.mk

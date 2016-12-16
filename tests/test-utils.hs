@@ -2,7 +2,7 @@
 import Test
 
 -- Functions under test
-import Speculate.Utils
+import Test.Speculate.Utils
 
 -- Helper functions
 import Data.List

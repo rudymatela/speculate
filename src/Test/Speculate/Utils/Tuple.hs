@@ -1,4 +1,4 @@
-module Speculate.Utils.Tuple
+module Test.Speculate.Utils.Tuple
   ( module Data.Tuple
   , fst3, fst4
   , snd3, snd4

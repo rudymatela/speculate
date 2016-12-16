@@ -1,14 +1,14 @@
-module Speculate.CondReason where
+module Test.Speculate.CondReason where
 
-import Speculate.Expr
-import Speculate.Reason
-import qualified Speculate.Utils.Digraph as D
-import Speculate.Utils.Digraph (Digraph)
+import Test.Speculate.Expr
+import Test.Speculate.Reason
+import qualified Test.Speculate.Utils.Digraph as D
+import Test.Speculate.Utils.Digraph (Digraph)
 import Data.Maybe (mapMaybe,maybeToList)
 import Data.List (lookup)
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import qualified Data.List as L
-import Speculate.Utils
+import Test.Speculate.Utils
 
 -- Chy = Conditional Thy = Conditional Theory
 data Chy = Chy

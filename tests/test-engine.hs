@@ -2,11 +2,11 @@
 import Test
 
 -- Functions under test
-import Speculate
+import Test.Speculate
 
 -- Helper functions
-import Speculate.Reason (emptyThy)
-import Speculate.Utils
+import Test.Speculate.Reason (emptyThy)
+import Test.Speculate.Utils
 import Data.List
 import Data.Maybe
 

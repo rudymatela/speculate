@@ -1,4 +1,4 @@
-module Speculate.Expr.TypeInfo
+module Test.Speculate.Expr.TypeInfo
   ( TypeInfo
   , TypeInfo1 (..)
   , TypeRep
@@ -29,9 +29,9 @@ module Speculate.Expr.TypeInfo
   )
 where
 
-import Speculate.Expr.Core
-import Speculate.Expr.Match
-import Speculate.Utils
+import Test.Speculate.Expr.Core
+import Test.Speculate.Expr.Match
+import Test.Speculate.Utils
 import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
 import Test.LeanCheck.Error (errorToFalse)

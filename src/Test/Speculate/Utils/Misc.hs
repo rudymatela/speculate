@@ -1,4 +1,4 @@
-module Speculate.Utils.Misc where
+module Test.Speculate.Utils.Misc where
 
 import Test.LeanCheck
 import Data.Maybe
@@ -7,8 +7,8 @@ import Data.Char
 import Data.Function
 import Data.Ratio
 import Data.Tuple
-import Speculate.Utils.String
-import Speculate.Utils.List
+import Test.Speculate.Utils.String
+import Test.Speculate.Utils.List
 
 -- easy debug:
 undefined1 :: a

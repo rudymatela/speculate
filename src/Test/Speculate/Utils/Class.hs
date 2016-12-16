@@ -1,4 +1,4 @@
-module Speculate.Utils.Class
+module Test.Speculate.Utils.Class
   ( merge
   , mergesOn
   , mergesThat
@@ -9,7 +9,7 @@ module Speculate.Utils.Class
   )
 where
 
-import Speculate.Utils.List (collectOn)
+import Test.Speculate.Utils.List (collectOn)
 import Data.Function (on)
 import Data.List (partition)
 import Prelude hiding (map)

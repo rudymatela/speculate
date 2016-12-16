@@ -1,6 +1,6 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
-import Speculate hiding (eval)
+import Test.Speculate hiding (eval)
 import Taut hiding (main)
 import Test.LeanCheck
 

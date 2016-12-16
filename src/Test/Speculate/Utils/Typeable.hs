@@ -1,4 +1,4 @@
-module Speculate.Utils.Typeable
+module Test.Speculate.Utils.Typeable
   ( tyArity
   , typesIn
   , unFunTy
@@ -12,7 +12,7 @@ module Speculate.Utils.Typeable
 where
 
 import Data.Typeable
-import Speculate.Utils.List ((+++))
+import Test.Speculate.Utils.List ((+++))
 
 tyArity :: TypeRep -> Int
 tyArity t

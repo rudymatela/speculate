@@ -1,4 +1,4 @@
-import Speculate
+import Test.Speculate
 import Data.List (sort,insert)
 
 main :: IO ()

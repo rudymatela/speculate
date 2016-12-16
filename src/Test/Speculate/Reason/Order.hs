@@ -1,4 +1,4 @@
-module Speculate.Reason.Order
+module Test.Speculate.Reason.Order
   ( (|>|)
   , (>|)
   , (|>)
@@ -10,8 +10,8 @@ module Speculate.Reason.Order
   )
 where
 
-import Speculate.Expr
-import Speculate.Utils (nubMerge)
+import Test.Speculate.Expr
+import Test.Speculate.Utils (nubMerge)
 
 -- | Greater than or equal number of occurences of each variable
 (>=\/) :: Expr -> Expr -> Bool

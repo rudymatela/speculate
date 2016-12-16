@@ -1,4 +1,4 @@
-module Speculate.Expr.Ground
+module Test.Speculate.Expr.Ground
   ( grounds
   , groundBinds
   , groundAndBinds
@@ -14,10 +14,10 @@ module Speculate.Expr.Ground
   )
 where
 
-import Speculate.Expr.Core
-import Speculate.Expr.Match
-import Speculate.Expr.TypeInfo
-import Speculate.Expr.Equate
+import Test.Speculate.Expr.Core
+import Test.Speculate.Expr.Match
+import Test.Speculate.Expr.TypeInfo
+import Test.Speculate.Expr.Equate
 import Test.LeanCheck
 import Data.Ratio
 import Data.Functor ((<$>)) -- for GHC < 7.10

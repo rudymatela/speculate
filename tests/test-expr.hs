@@ -4,8 +4,8 @@ import Test
 import qualified Test.LeanCheck.Utils as LC (comparison)
 
 -- Functions under test
-import Speculate.Expr
-import Speculate.Utils
+import Test.Speculate.Expr
+import Test.Speculate.Utils
 import Data.List (sort)
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import Data.Typeable (typeOf)

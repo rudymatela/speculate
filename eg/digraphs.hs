@@ -1,6 +1,6 @@
 {-# LANGUAGE CPP #-}
 {-# LANGUAGE DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
-import Speculate
+import Test.Speculate
 import Test.LeanCheck hiding ((\/))
 import Test.LeanCheck.Utils
 import Data.Function (on)

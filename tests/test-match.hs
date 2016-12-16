@@ -2,10 +2,10 @@
 import Test
 
 -- Functions under test
-import Speculate.Expr.Match
+import Test.Speculate.Expr.Match
 
 -- Helper functions
-import Speculate.Utils
+import Test.Speculate.Utils
 import Data.List
 import Data.Maybe
 

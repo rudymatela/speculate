@@ -1,8 +1,8 @@
 import Test
-import Speculate.Utils
+import Test.Speculate.Utils
 
-import Speculate.Expr (subexprsV)
-import Speculate.Reason.Order
+import Test.Speculate.Expr (subexprsV)
+import Test.Speculate.Reason.Order
 
 main :: IO ()
 main = do

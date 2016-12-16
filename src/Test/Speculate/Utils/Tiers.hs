@@ -1,4 +1,4 @@
-module Speculate.Utils.Tiers
+module Test.Speculate.Utils.Tiers
   ( productsList
   , mapTMaybe
   , discardT

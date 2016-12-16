@@ -1,4 +1,4 @@
-import Speculate
+import Test.Speculate
 import Test.LeanCheck ((==>))
 
 main :: IO ()

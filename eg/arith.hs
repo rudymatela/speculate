@@ -1,4 +1,4 @@
-import Speculate
+import Test.Speculate
 
 main :: IO ()
 main = speculate args

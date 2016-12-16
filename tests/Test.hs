@@ -11,7 +11,7 @@ module Test
   -- * Module exports
     module Test.LeanCheck
   , module Test.LeanCheck.Utils
-  , module Speculate
+  , module Test.Speculate
 
   -- * Test reporting
   , reportTests
@@ -108,16 +108,16 @@ import System.Environment (getArgs)
 import System.Exit (exitFailure)
 import Data.List (elemIndices)
 
-import Speculate hiding (getArgs, true, false)
-import Speculate.Reason
-import Speculate.Reason.Order
+import Test.Speculate hiding (getArgs, true, false)
+import Test.Speculate.Reason
+import Test.Speculate.Reason.Order
 
 import Data.Char (ord)
 import Data.Dynamic
 import Data.Function (on)
 import Data.List as L (sort,insert)
 
-import Speculate.Utils
+import Test.Speculate.Utils
 
 
 reportTests :: [Bool] -> IO ()

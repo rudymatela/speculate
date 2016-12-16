@@ -1,4 +1,4 @@
-module Speculate.Expr.Core
+module Test.Speculate.Expr.Core
   ( Expr (..)
   -- * Smart constructors
   , constant
@@ -62,7 +62,7 @@ import Data.Monoid ((<>))
 
 import Data.Dynamic
 import Test.LeanCheck
-import Speculate.Utils
+import Test.Speculate.Utils
 
 
 data Expr = Constant String Dynamic

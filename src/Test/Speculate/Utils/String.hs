@@ -1,4 +1,4 @@
-module Speculate.Utils.String
+module Test.Speculate.Utils.String
   ( module Data.String
   , module Data.Char
   , unquote

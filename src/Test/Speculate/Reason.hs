@@ -1,4 +1,4 @@
-module Speculate.Reason
+module Test.Speculate.Reason
   ( Thy (..)
   , emptyThy
   , normalize
@@ -43,9 +43,9 @@ module Speculate.Reason
   )
 where
 
-import Speculate.Expr
-import Speculate.Reason.Order
-import Speculate.Utils
+import Test.Speculate.Expr
+import Test.Speculate.Reason.Order
+import Test.Speculate.Utils
 import Data.Either
 import Data.Tuple (swap)
 import Data.List (partition, (\\), sortBy, sort)

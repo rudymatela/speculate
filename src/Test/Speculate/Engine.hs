@@ -1,4 +1,4 @@
-module Speculate.Engine
+module Test.Speculate.Engine
   ( vassignments
   , expansions
   , mostGeneral
@@ -20,7 +20,7 @@ module Speculate.Engine
 
   , psortBy
 
-  , module Speculate.Expr
+  , module Test.Speculate.Expr
   )
 where
 
@@ -30,14 +30,14 @@ import Data.List hiding (insert)
 import Data.Function (on)
 import Data.Monoid ((<>))
 
-import Speculate.Utils
-import Speculate.Expr
-import Speculate.Reason
-import Speculate.CondReason
-import Speculate.SemiReason
-import Speculate.Utils.Class (Class)
-import qualified Speculate.Utils.Class as C
-import qualified Speculate.Utils.Digraph as D
+import Test.Speculate.Utils
+import Test.Speculate.Expr
+import Test.Speculate.Reason
+import Test.Speculate.CondReason
+import Test.Speculate.SemiReason
+import Test.Speculate.Utils.Class (Class)
+import qualified Test.Speculate.Utils.Class as C
+import qualified Test.Speculate.Utils.Digraph as D
 
 ------------------------------
 -- * Manipulating expressions

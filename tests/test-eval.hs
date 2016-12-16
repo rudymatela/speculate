@@ -2,8 +2,8 @@
 import Test
 
 -- Functions under test
-import Speculate.Expr.Ground
-import Speculate.Utils
+import Test.Speculate.Expr.Ground
+import Test.Speculate.Utils
 
 import Data.Maybe
 

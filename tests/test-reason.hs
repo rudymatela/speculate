@@ -1,12 +1,12 @@
 {-# LANGUAGE CPP #-}
 -- Test library
 import Test
-import Speculate.Utils
+import Test.Speculate.Utils
 
 -- Functions under test
-import Speculate
-import Speculate.Reason
-import Speculate.Reason.Order
+import Test.Speculate
+import Test.Speculate.Reason
+import Test.Speculate.Reason.Order
 import Data.Tuple (swap)
 import Data.Function (on)
 import Data.List (sortBy,permutations)

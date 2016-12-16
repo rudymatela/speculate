@@ -2,10 +2,10 @@
 import Test
 
 -- Functions under test
-import Speculate.CondReason
+import Test.Speculate.CondReason
 
 -- Utils
-import Speculate.Reason (canonicalEqn, canonicalizeEqn)
+import Test.Speculate.Reason (canonicalEqn, canonicalizeEqn)
 
 main :: IO ()
 main = mainTest tests 10000

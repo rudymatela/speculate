@@ -1,5 +1,5 @@
 {-# LANGUAGE CPP #-}
-module Speculate.Utils.List
+module Test.Speculate.Utils.List
   ( pairsThat
   , count, counts, countsBy
   , firsts

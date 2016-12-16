@@ -1,13 +1,13 @@
-module Speculate.Expr.Canon
+module Test.Speculate.Expr.Canon
   ( canonicalize
   , canonicalizeWith
   , canonicalWith
   )
 where
 
-import Speculate.Expr.Core
-import Speculate.Expr.Match
-import Speculate.Expr.TypeInfo
+import Test.Speculate.Expr.Core
+import Test.Speculate.Expr.Match
+import Test.Speculate.Expr.TypeInfo
 import Data.List ((\\))
 
 -- | Canonicalize variable names in an expression.

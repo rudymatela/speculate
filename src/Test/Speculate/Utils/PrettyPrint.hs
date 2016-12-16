@@ -1,5 +1,5 @@
 -- | A very simple pretty printing library
-module Speculate.Utils.PrettyPrint
+module Test.Speculate.Utils.PrettyPrint
   ( beside
   , above
   , table
@@ -10,7 +10,7 @@ where
 
 import Data.List (intercalate,transpose,isSuffixOf)
 import Data.Char (toUpper,isSpace)
-import Speculate.Utils.List
+import Test.Speculate.Utils.List
 import Test.LeanCheck ((+|))
 
 -- | Appends two Strings side by side, line by line

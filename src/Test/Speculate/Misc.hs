@@ -1,6 +1,6 @@
 -- | Miscellaneous functions I still did not find a reasonable place to put
 --   them in.
-module Speculate.Misc
+module Test.Speculate.Misc
   ( functions1
   , functions2
   , functions3
@@ -12,8 +12,8 @@ module Speculate.Misc
   )
 where
 
-import Speculate
-import Speculate.Utils
+import Test.Speculate
+import Test.Speculate.Utils
 import Data.Dynamic
 import Test.LeanCheck
 

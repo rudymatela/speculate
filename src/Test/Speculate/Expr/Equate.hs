@@ -5,7 +5,7 @@
 --     equations,
 --     inequations
 --     and conditional equations.
-module Speculate.Expr.Equate
+module Test.Speculate.Expr.Equate
   ( equation, unEquation, isEquation, uselessEquation, usefulEquation
   , phonyEquation
 
@@ -20,9 +20,9 @@ where
 
 import Test.LeanCheck ((==>))
 import Data.List ((\\))
-import Speculate.Utils
-import Speculate.Expr.Core
-import Speculate.Expr.TypeInfo
+import Test.Speculate.Utils
+import Test.Speculate.Expr.Core
+import Test.Speculate.Expr.TypeInfo
 
 equation :: TypeInfo -> Expr -> Expr -> Maybe Expr
 equation ti e1 e2 = do

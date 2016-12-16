@@ -1,4 +1,4 @@
-module Speculate
+module Test.Speculate
   ( report
 
   , Args (..)
@@ -6,8 +6,8 @@ module Speculate
   , speculate
   , getArgs
 
-  , module Speculate.Expr
-  , module Speculate.Engine
+  , module Test.Speculate.Expr
+  , module Test.Speculate.Engine
   , module Test.LeanCheck.Utils
 
   , module Data.Typeable
@@ -24,17 +24,17 @@ import Control.Monad
 import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
 import Test.LeanCheck.Tiers (unorderedPairsWith)
-import Speculate.Utils
-import Speculate.Utils.Color
+import Test.Speculate.Utils
+import Test.Speculate.Utils.Color
 import Data.Ratio ((%))
 
 import System.Console.CmdArgs.Explicit
 
-import Speculate.Expr
-import Speculate.Reason
-import Speculate.CondReason
-import Speculate.SemiReason
-import Speculate.Engine
+import Test.Speculate.Expr
+import Test.Speculate.Reason
+import Test.Speculate.CondReason
+import Test.Speculate.SemiReason
+import Test.Speculate.Engine
 
 data Args = Args
   { maxSize              :: Int

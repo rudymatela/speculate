@@ -5,9 +5,9 @@ import Test
 import Data.Function (on)
 
 -- Functions under test
-import Speculate
-import Speculate.Reason
-import Speculate.Utils
+import Test.Speculate
+import Test.Speculate.Reason
+import Test.Speculate.Utils
 
 main :: IO ()
 main = do

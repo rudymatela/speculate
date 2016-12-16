@@ -1,4 +1,4 @@
-module Speculate.Utils.Digraph
+module Test.Speculate.Utils.Digraph
   ( Digraph
   , empty
   , succs
@@ -15,7 +15,7 @@ where
 import Prelude hiding (filter)
 import qualified Data.List as L
 import Data.Maybe (fromMaybe,isJust)
-import Speculate.Utils (collectSndByFst)
+import Test.Speculate.Utils (collectSndByFst)
 
 type Digraph a = [(a,[a])]
 

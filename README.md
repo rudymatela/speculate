@@ -30,7 +30,7 @@ Speculate is used as a library: you import it, then call the function
 `speculate` with relevant arguments.  The following program Speculates about
 the functions `(+)` and `abs`:
 
-	import Speculate
+	import Test.Speculate
 
 	main :: IO ()
 	main = speculate args

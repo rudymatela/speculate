@@ -1,8 +1,8 @@
-module Speculate.SemiReason where
+module Test.Speculate.SemiReason where
 
-import Speculate.Expr
-import Speculate.Reason
-import Speculate.Utils
+import Test.Speculate.Expr
+import Test.Speculate.Reason
+import Test.Speculate.Utils
 import Data.List as L (sortBy, delete)
 import Data.Function (on)
 

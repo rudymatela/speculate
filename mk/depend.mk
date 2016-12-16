@@ -2,30 +2,30 @@ bench/arithficial: \
   bench/arithficial.hs \
   mk/toplibs
 bench/arithficial.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -42,30 +42,30 @@ eg/0arith: \
   eg/0arith.hs \
   mk/toplibs
 eg/0arith.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -82,30 +82,30 @@ eg/arith: \
   eg/arith.hs \
   mk/toplibs
 eg/arith.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -122,30 +122,30 @@ eg/bool: \
   eg/bool.hs \
   mk/toplibs
 eg/bool.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -162,30 +162,30 @@ eg/color: \
   eg/color.hs \
   mk/toplibs
 eg/color.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -205,30 +205,30 @@ eg/digraphs: \
   eg/Digraph.hs \
   mk/toplibs
 eg/digraphs.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -246,30 +246,30 @@ eg/insertsort: \
   eg/insertsort.hs \
   mk/toplibs
 eg/insertsort.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -286,30 +286,30 @@ eg/length: \
   eg/length.hs \
   mk/toplibs
 eg/length.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -326,30 +326,30 @@ eg/list: \
   eg/list.hs \
   mk/toplibs
 eg/list.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -366,30 +366,30 @@ eg/minus: \
   eg/minus.hs \
   mk/toplibs
 eg/minus.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -406,30 +406,30 @@ eg/monad: \
   eg/monad.hs \
   mk/toplibs
 eg/monad.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -450,30 +450,30 @@ eg/numbool: \
   eg/numbool.hs \
   mk/toplibs
 eg/numbool.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -490,30 +490,30 @@ eg/pretty: \
   eg/pretty.hs \
   mk/toplibs
 eg/pretty.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -530,30 +530,30 @@ eg/ratio: \
   eg/ratio.hs \
   mk/toplibs
 eg/ratio.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -573,30 +573,30 @@ eg/sets: \
   eg/Set.hs \
   mk/toplibs
 eg/sets.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -614,30 +614,30 @@ eg/string: \
   eg/string.hs \
   mk/toplibs
 eg/string.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -660,30 +660,30 @@ eg/tauts: \
   eg/Taut.hs \
   mk/toplibs
 eg/tauts.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -697,26 +697,26 @@ eg/tauts.o: \
   ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/tauts.hs \
   eg/Taut.hs
-src/Speculate/CondReason.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/CondReason.hs \
+src/Test/Speculate/CondReason.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -728,31 +728,31 @@ src/Speculate/CondReason.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Engine: \
+src/Test/Speculate/Engine: \
   mk/toplibs
-src/Speculate/Engine.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+src/Test/Speculate/Engine.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -764,19 +764,19 @@ src/Speculate/Engine.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Expr/Canon.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
+src/Test/Speculate/Expr/Canon.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -788,35 +788,35 @@ src/Speculate/Expr/Canon.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Expr/Core.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Expr/Core.hs \
+src/Test/Speculate/Expr/Core.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Expr/Core.hs \
   ../leancheck/src/Test/LeanCheck/Tiers.hs \
   ../leancheck/src/Test/LeanCheck.hs \
   ../leancheck/src/Test/LeanCheck/IO.hs \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Expr/Equate.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
+src/Test/Speculate/Expr/Equate.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -828,20 +828,20 @@ src/Speculate/Expr/Equate.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Expr/Ground.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
+src/Test/Speculate/Expr/Ground.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -853,41 +853,41 @@ src/Speculate/Expr/Ground.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Expr/Match: \
+src/Test/Speculate/Expr/Match: \
   mk/toplibs
-src/Speculate/Expr/Match.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Core.hs \
+src/Test/Speculate/Expr/Match.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Core.hs \
   ../leancheck/src/Test/LeanCheck/Tiers.hs \
   ../leancheck/src/Test/LeanCheck.hs \
   ../leancheck/src/Test/LeanCheck/IO.hs \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Expr.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
+src/Test/Speculate/Expr.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -899,18 +899,18 @@ src/Speculate/Expr.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Expr/TypeInfo.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Core.hs \
+src/Test/Speculate/Expr/TypeInfo.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Core.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -922,32 +922,32 @@ src/Speculate/Expr/TypeInfo.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Misc.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Misc.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+src/Test/Speculate/Misc.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Misc.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -959,31 +959,31 @@ src/Speculate/Misc.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+src/Test/Speculate.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -995,23 +995,23 @@ src/Speculate.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Reason/Order.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
+src/Test/Speculate/Reason/Order.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1023,24 +1023,24 @@ src/Speculate/Reason/Order.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Reason.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
+src/Test/Speculate/Reason.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1052,25 +1052,25 @@ src/Speculate/Reason.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/SemiReason.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
+src/Test/Speculate/SemiReason.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1082,105 +1082,105 @@ src/Speculate/SemiReason.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Utils/Class.o: \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Class.hs
-src/Speculate/Utils/Color.o: \
-  src/Speculate/Utils/Color.hs
-src/Speculate/Utils/Digraph.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
+src/Test/Speculate/Utils/Class.o: \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Class.hs
+src/Test/Speculate/Utils/Color.o: \
+  src/Test/Speculate/Utils/Color.hs
+src/Test/Speculate/Utils/Digraph.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
   ../leancheck/src/Test/LeanCheck/Tiers.hs \
   ../leancheck/src/Test/LeanCheck.hs \
   ../leancheck/src/Test/LeanCheck/IO.hs \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Utils/List.o: \
-  src/Speculate/Utils/List.hs
-src/Speculate/Utils/Misc.o: \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
+src/Test/Speculate/Utils/List.o: \
+  src/Test/Speculate/Utils/List.hs
+src/Test/Speculate/Utils/Misc.o: \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
   ../leancheck/src/Test/LeanCheck/Tiers.hs \
   ../leancheck/src/Test/LeanCheck.hs \
   ../leancheck/src/Test/LeanCheck/IO.hs \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Utils.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
+src/Test/Speculate/Utils.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
   ../leancheck/src/Test/LeanCheck/Tiers.hs \
   ../leancheck/src/Test/LeanCheck.hs \
   ../leancheck/src/Test/LeanCheck/IO.hs \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Utils/PrettyPrint.o: \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils/List.hs \
+src/Test/Speculate/Utils/PrettyPrint.o: \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils/List.hs \
   ../leancheck/src/Test/LeanCheck/Tiers.hs \
   ../leancheck/src/Test/LeanCheck.hs \
   ../leancheck/src/Test/LeanCheck/IO.hs \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Utils/String.o: \
-  src/Speculate/Utils/String.hs
-src/Speculate/Utils/Tiers.o: \
-  src/Speculate/Utils/Tiers.hs \
+src/Test/Speculate/Utils/String.o: \
+  src/Test/Speculate/Utils/String.hs
+src/Test/Speculate/Utils/Tiers.o: \
+  src/Test/Speculate/Utils/Tiers.hs \
   ../leancheck/src/Test/LeanCheck/Tiers.hs \
   ../leancheck/src/Test/LeanCheck.hs \
   ../leancheck/src/Test/LeanCheck/IO.hs \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
-src/Speculate/Utils/Tuple.o: \
-  src/Speculate/Utils/Tuple.hs
-src/Speculate/Utils/Typeable.o: \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/List.hs
+src/Test/Speculate/Utils/Tuple.o: \
+  src/Test/Speculate/Utils/Tuple.hs
+src/Test/Speculate/Utils/Typeable.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/List.hs
 tests/test-creason.o: \
   tests/Test.hs \
   tests/test-creason.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1199,30 +1199,30 @@ tests/test-creason: \
 tests/test-engine.o: \
   tests/Test.hs \
   tests/test-engine.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1241,30 +1241,30 @@ tests/test-engine: \
 tests/test-eval.o: \
   tests/Test.hs \
   tests/test-eval.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1283,30 +1283,30 @@ tests/test-eval: \
 tests/test-expr.o: \
   tests/Test.hs \
   tests/test-expr.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1325,30 +1325,30 @@ tests/test-expr: \
 tests/test-match.o: \
   tests/Test.hs \
   tests/test-match.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1367,31 +1367,31 @@ tests/test-match: \
 tests/test-misc.o: \
   tests/Test.hs \
   tests/test-misc.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Misc.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Misc.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1410,30 +1410,30 @@ tests/test-misc: \
 tests/test-order.o: \
   tests/Test.hs \
   tests/test-order.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1451,30 +1451,30 @@ tests/test-order: \
   mk/toplibs
 tests/Test.o: \
   tests/Test.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1489,30 +1489,30 @@ tests/Test.o: \
 tests/test-reason.o: \
   tests/test-reason.hs \
   tests/Test.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1531,30 +1531,30 @@ tests/test-reason: \
 tests/test-stats.o: \
   tests/test-stats.hs \
   tests/Test.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
@@ -1576,30 +1576,30 @@ tests/Test: \
 tests/test-utils.o: \
   tests/test-utils.hs \
   tests/Test.hs \
-  src/Speculate/Utils/Typeable.hs \
-  src/Speculate/Utils/Tuple.hs \
-  src/Speculate/Utils/Tiers.hs \
-  src/Speculate/Utils/String.hs \
-  src/Speculate/Utils/PrettyPrint.hs \
-  src/Speculate/Utils.hs \
-  src/Speculate/Utils/Misc.hs \
-  src/Speculate/Utils/List.hs \
-  src/Speculate/Utils/Digraph.hs \
-  src/Speculate/Utils/Color.hs \
-  src/Speculate/Utils/Class.hs \
-  src/Speculate/SemiReason.hs \
-  src/Speculate/Reason.hs \
-  src/Speculate/Reason/Order.hs \
-  src/Speculate.hs \
-  src/Speculate/Expr/TypeInfo.hs \
-  src/Speculate/Expr.hs \
-  src/Speculate/Expr/Match.hs \
-  src/Speculate/Expr/Ground.hs \
-  src/Speculate/Expr/Equate.hs \
-  src/Speculate/Expr/Core.hs \
-  src/Speculate/Expr/Canon.hs \
-  src/Speculate/Engine.hs \
-  src/Speculate/CondReason.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Color.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
   ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
   ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \

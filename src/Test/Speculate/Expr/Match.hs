@@ -1,4 +1,4 @@
-module Speculate.Expr.Match
+module Test.Speculate.Expr.Match
   ( Binds
   -- * Assigning
   , fill
@@ -19,13 +19,13 @@ module Speculate.Expr.Match
   )
 where
 
-import Speculate.Expr.Core
+import Test.Speculate.Expr.Core
 
 import Data.Typeable
 import Data.List (find)
 import Data.Maybe (isJust,fromMaybe)
 import Data.Functor ((<$>))
-import Speculate.Utils
+import Test.Speculate.Utils
 import Control.Monad ((>=>))
 
 type Binds = [(String,Expr)]

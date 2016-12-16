@@ -1,5 +1,5 @@
-import Speculate
-import Speculate.Utils (primeCycle)
+import Test.Speculate
+import Test.Speculate.Utils (primeCycle)
 import System.Environment (getArgs)
 
 -- How well does this tool performs on artificial operators

@@ -2,8 +2,8 @@
 import Test
 
 -- Functions under test
-import Speculate.Misc
-import Speculate.Utils
+import Test.Speculate.Misc
+import Test.Speculate.Utils
 
 main :: IO ()
 main = mainTest tests 10000

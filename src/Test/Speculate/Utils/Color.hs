@@ -1,7 +1,7 @@
 -- | Simple color module.  It is used:
 --   * to colorize graphs in partial order graph generation ("Speculate");
 --   * as an example on eg folder.
-module Speculate.Utils.Color
+module Test.Speculate.Utils.Color
   ( Color (RGB)
   , showRGB
   , (.+.), (.-.), (.*.)
