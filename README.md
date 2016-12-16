@@ -51,8 +51,11 @@ You can install them with:
 	$ cabal install cmdargs
 	$ cabal install leancheck
 
-No `cabal` package has been made yet.  For now, you can compile programs that
-use it with:
+No `cabal` package has been made yet.  For now, you clone the repository with:
+
+	$ git clone https://github.com/rudymatela/speculate
+
+and compile programs that use it with:
 
 	$ ghc -ipath/to/speculate/src program.hs
 
@@ -76,7 +79,7 @@ the functions `(+)` and `abs`:
 		  ]
 	  }
 
-when run (`./speculate-sum-abs`), it prints the following:
+when run (`./speculate`), it prints the following:
 
 	_ :: Int  (holes: Int)
 	0 :: Int
@@ -108,7 +111,7 @@ Now, if we add the following to the list of atoms
 	, showConstant False
 	, showConstant True
 
-then run with `-C` argument to activate conditions (`./speculate-sum-abs -C`),
+then run with `-C` argument to activate conditions (`./speculate -C`),
 we get the following as well:
 
 	    y <= x ==> abs (x + abs y) == x + abs y
