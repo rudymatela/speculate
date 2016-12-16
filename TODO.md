@@ -7,7 +7,9 @@ A non-exhaustive list of things TODO for Speculate
 current -- separating algebra for conditions
 --------------------------------------------
 
-* ...
+* improve `not . isAssignment` filtering.  maybe do that afterwards so I can
+  filter whatever is implied by an equivalence?  or maybe that should be only
+  done later, on subConsequence?
 
 * add
   `about :: Expr -> [Expr]`,
