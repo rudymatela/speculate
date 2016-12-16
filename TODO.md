@@ -7,8 +7,6 @@ A non-exhaustive list of things TODO for Speculate
 current -- separating algebra for conditions
 --------------------------------------------
 
-* conditional equivalences now takes two arguments
-
 * ...
 
 * add

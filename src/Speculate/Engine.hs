@@ -166,17 +166,24 @@ semiTheoryFromThyAndReps ti nt nv thy =
 
 conditionalTheoryFromThyAndReps :: TypeInfo -> Int -> Int -> Int
                                 -> Thy -> [Expr] -> Chy
-conditionalTheoryFromThyAndReps ti nt nv csz thy = id
-  . conditionalEquivalences (canonicalCEqnBy ti) (condEqual ti nt) (lessOrEqual ti nt) csz thy
-  . filter (isComparable ti . fst)
-  . classesFromSchemas ti nt nv thy
+conditionalTheoryFromThyAndReps ti nt nv csz thy es' =
+  conditionalEquivalences
+    (canonicalCEqnBy ti)
+    (condEqual ti nt)
+    (lessOrEqual ti nt)
+    csz thy clpres cles
+  where
+  (cles,clpres) = (id *** filter (\(e,_) -> lengthE e <= csz))
+                . partition (\(e,_) -> typ e /= boolTy)
+                . filter (isComparable ti . fst)
+                $ classesFromSchemas ti nt nv thy es'
 
 conditionalEquivalences :: ((Expr,Expr,Expr) -> Bool)
                         -> (Expr -> Expr -> Expr -> Bool)
                         -> (Expr -> Expr -> Bool)
-                        -> Int -> Thy -> [Class Expr] -> Chy
-conditionalEquivalences canon cequal (==>) csz thy cles' = id
-  . foldl (flip cinsert) (Chy [] cdg clpres thy)
+                        -> Int -> Thy -> [Class Expr] -> [Class Expr] -> Chy
+conditionalEquivalences canon cequal (==>) csz thy clpres cles =
+    foldl (flip cinsert) (Chy [] cdg clpres thy)
   . sortBy (\(c1,e11,e12) (c2,e21,e22) -> c1 `compareComplexity` c2
                                        <> ((e11 `phonyEquation` e12) `compareComplexity` (e21 `phonyEquation` e22)))
   . discard (\(pre,e1,e2) -> pre == falseE
@@ -190,8 +197,6 @@ conditionalEquivalences canon cequal (==>) csz thy cles' = id
     ]
   where
   (es,pres) = (map C.rep cles, map C.rep clpres)
-  (cles,clpres) = (id *** filter (\(e,_) -> lengthE e <= csz))
-                $ partition (\(e,_) -> typ e /= boolTy) cles'
   explain e1 e2 = D.narrow (\ep -> cequal ep e1 e2) cdg
   cdg = D.fromEdges
       . pairsThat (==>)
