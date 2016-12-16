@@ -7,9 +7,11 @@ A non-exhaustive list of things TODO for Speculate
 current -- separating algebra for conditions
 --------------------------------------------
 
-* improve `not . isAssignment` filtering.  maybe do that afterwards so I can
-  filter whatever is implied by an equivalence?  or maybe that should be only
-  done later, on subConsequence?
+* lift a filter on conditionalTheoryFromThyAndReps?
+
+    conditionalTheoryFromThyAndReps :: ... -> (Expr -> Bool) -> ...
+    conditionalTheoryFromThyAndReps ... useOnConditions  ... =
+	  ... filter useOnConditions ...
 
 * add
   `about :: Expr -> [Expr]`,
@@ -66,6 +68,9 @@ Possible ways to solve this problem:
 * simply preprocess to discover conditions that imply equations beforehand.
 * run the whole process twice!  If conditions implying equations appear,
   discard those conditions then run again.
+* improve `not . isAssignment` filtering on `conditionalEquivalences`.  maybe
+  do that afterwards so I can filter whatever is implied by an equivalence?  or
+  maybe that should be only done later, on subConsequence?
 
 
 Later Later
