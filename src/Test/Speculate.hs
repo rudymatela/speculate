@@ -145,6 +145,8 @@ report args@Args {maxSize = sz, typeInfo_ = ti, maxTests = n} = do
   let ds = atoms args `union` conditionAtoms args `union` equationAtoms args
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
   let ds' = map holeOfTy ts `union` ds
+            `union` [showConstant True  | showConditions args]
+            `union` [showConstant False | showConditions args]
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (equal ti n) ds'
   when (showAtoms args)        . putStrLn . unlines $ map show ds'
   unless (null uts) . putStrLn
