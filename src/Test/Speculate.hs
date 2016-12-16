@@ -115,6 +115,15 @@ shouldShow3 :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShow3 args (e1,e2,e3) = showConstantLaws args
                            || hasVar e1 || hasVar e2 || hasVar e3
 
+shouldShowConditionalEquation :: Args -> (Expr,Expr,Expr) -> Bool
+shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
+                                             && ce `notAbout` ea
+                                             && e1 `notAbout` ca
+                                             && e2 `notAbout` ca
+  where
+  ca = conditionAtoms args \\ equationAtoms args
+  ea = equationAtoms args \\ conditionAtoms args
+
 -- | Are all atoms in an expression about a list of atoms?
 -- Examples in pseudo-Haskell:
 --
@@ -150,7 +159,7 @@ report args@Args {maxSize = sz, typeInfo_ = ti, maxTests = n} = do
     . semiTheoryFromThyAndReps ti n (maxVars args) thy
     $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
   when (showConditions args) . putStrLn
-    . prettyChy (shouldShow3 args)
+    . prettyChy (shouldShowConditionalEquation args)
     $ conditionalTheoryFromThyAndReps ti n (maxVars args) (computeMaxCondSize args) thy es
   when (showDot args) $
     reportDot ti (maxVars args) n thy es
