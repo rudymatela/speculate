@@ -21,7 +21,7 @@ Clone and enter the repository:
 	$ git clone https://github.com/rudymatela/speculate
 	$ cd speculate
 
-There are some examples in `eg`, for example `eg/numbool`:
+There are some examples in the `eg` folter.  For example `eg/numbool`:
 
 	$ cat eg/numbool
 	...
