@@ -158,7 +158,7 @@ report args@Args {maxSize = sz, typeInfo_ = ti, maxTests = n} = do
     . prettyShy (shouldShowEquation args) (equivalentInstance thy)
     . semiTheoryFromThyAndReps ti n (maxVars args) thy
     $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
-  when (showConditions args) . putStrLn
+  when (showConditions args && boolTy `elem` ts) . putStrLn
     . prettyChy (shouldShowConditionalEquation args)
     $ conditionalTheoryFromThyAndReps ti n (maxVars args) (computeMaxCondSize args) thy es
   when (showDot args) $
