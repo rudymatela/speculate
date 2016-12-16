@@ -37,14 +37,6 @@ current -- separating algebra for conditions
   I may not be printing something that actually should be printed.
   Add an example to show that, use %, ==, odd and even
 
-* add
-  `about :: Expr -> [Expr]`,
-  `about2 :: (Expr,Expr) -> [Expr]` and
-  `about3 :: (Expr,Expr,Expr) -> [Expr]`.
-
-    1 + 3 `about` [(+),(-)] == True
-    (0,x-x) `about2` [(+)] == False
-
 
 Later
 -----
