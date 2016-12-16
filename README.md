@@ -8,6 +8,40 @@ about given Haskell functions.
 It is currently under development, expect it to break often for now.
 
 
+Crash Course
+------------
+
+Install pre-requisites:
+
+	$ cabal install cmdargs
+	$ cabal install leancheck
+
+Clone and enter the repository:
+
+	$ git clone https://github.com/rudymatela/speculate
+	$ cd speculate
+
+There are some examples in `eg`, for example `eg/numbool`:
+
+	$ cat eg/numbool
+	...
+	...
+
+Compile it with:
+
+	$ ghc -isrc eg/numbool.hs
+
+Run it with:
+
+	$ ./eg/numbool
+	...
+
+Pass `-C` to get conditional equations:
+
+	$ ./eg/numbool -C
+	...
+
+
 Installing Speculate
 --------------------
 
