@@ -19,11 +19,11 @@ current -- separating algebra for conditions
   used, see:
 
   atoms          = [ odd, even ]
-  conditionAtoms = [ %, ==, 1, 0 ]
+  conditionAtoms = [ mod, ==, 1, 0 ]
 
   I would want to see:
 
-  x % 2 == 1 ==> something
+  x mod 2 == 1 ==> something
 
   but it would be discarded because the normal form would be:
 
@@ -35,7 +35,7 @@ current -- separating algebra for conditions
 
   On second thought, actually, this happen even when I only filter output.
   I may not be printing something that actually should be printed.
-  Add an example to show that, use %, ==, odd and even
+  Add an example to show that, use mod, ==, odd and even
 
 
 Later
