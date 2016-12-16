@@ -1,0 +1,41 @@
+_ :: Int  (holes: Int)
+_ :: Bool  (holes: Bool)
+0 :: Int
+1 :: Int
+2 :: Int
+False :: Bool
+True :: Bool
+odd :: Int -> Bool
+even :: Int -> Bool
+(`mod`) :: Int -> Int -> Int
+(==) :: Int -> Int -> Bool
+
+          even 0 == True
+          even 1 == False
+          even 2 == True
+           odd 0 == False
+           odd 1 == True
+           odd 2 == False
+        (x == x) == True
+       x `mod` 1 == 0
+       0 `mod` 2 == 0
+       1 `mod` 2 == 1
+       2 `mod` 2 == 0
+        (0 == 1) == False
+        (0 == 2) == False
+        (1 == 2) == False
+even (x `mod` 2) == even x
+ odd (x `mod` 2) == odd x
+        (x == y) == (y == x)
+
+    p ==> True
+False ==> p
+    0 <=  1
+    0 <=  2
+    1 <=  2
+
+even x ==> x `mod` 2 == 0
+ odd x ==> x `mod` x == 0
+ odd x ==> x `mod` 2 == 1
+ odd x ==> 0 `mod` x == 0
+

@@ -57,6 +57,7 @@ eg/ratio
 eg/sets
 eg/monad
 eg/tauts
+eg/oddeven
 bench/expressions
 bench/representatives
 bench/representatives2
