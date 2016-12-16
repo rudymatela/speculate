@@ -13,6 +13,24 @@ current -- separating algebra for conditions
     conditionalTheoryFromThyAndReps ... useOnConditions  ... =
 	  ... filter useOnConditions ...
 
+  problems!  If applying this naively, I might discard something that may be
+  used, see:
+
+  atoms          = [ odd, even ]
+  conditionAtoms = [ %, ==, 1, 0 ]
+
+  I would want to see:
+
+  x % 2 == 1 ==> something
+
+  but it would be discarded because the normal form would be:
+
+  odd x ==> something
+
+  useOnConditions has to be applied to all possible equivalent versions
+
+  for now, just filter *output*, not reasoning
+
 * add
   `about :: Expr -> [Expr]`,
   `about2 :: (Expr,Expr) -> [Expr]` and
