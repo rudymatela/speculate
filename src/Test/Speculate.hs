@@ -9,6 +9,7 @@ module Test.Speculate
   , module Test.Speculate.Expr
   , module Test.Speculate.Engine
   , module Test.LeanCheck.Utils
+  , module Test.LeanCheck
 
   , module Data.Typeable
   )
