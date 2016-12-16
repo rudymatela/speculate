@@ -104,3 +104,9 @@ showRatio r = show (numerator r) ++ "/" ++ show (denominator r)
 
 percent :: Integral a => Ratio a -> a
 percent r = numerator r * 100 `div` denominator r
+
+(.:) :: (c -> d) -> (a -> b -> c) -> a -> b -> d
+(.:) = (.) . (.)
+
+(..:) :: (d -> e) -> (a -> b -> c -> d) -> a -> b -> c -> e
+(..:) = (.) . (.:)

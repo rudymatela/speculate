@@ -3,6 +3,8 @@ TODO
 
 A non-exhaustive list of things TODO for Speculate
 
+Warning: I tend to ramble...
+
 
 current -- separating algebra for conditions
 --------------------------------------------
@@ -30,6 +32,10 @@ current -- separating algebra for conditions
   useOnConditions has to be applied to all possible equivalent versions
 
   for now, just filter *output*, not reasoning
+
+  On second thought, actually, this happen even when I only filter output.
+  I may not be printing something that actually should be printed.
+  Add an example to show that, use %, ==, odd and even
 
 * add
   `about :: Expr -> [Expr]`,

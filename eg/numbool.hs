@@ -8,8 +8,9 @@ main = speculate args
       , showConstant (1::Int)
       , constant "+"   ((+)  :: Int -> Int -> Int)
       , constant "abs" (abs  :: Int -> Int)
-
-      , constant "<="  ((<=) :: Int -> Int -> Bool)
+      ]
+  , conditionAtoms =
+      [ constant "<="  ((<=) :: Int -> Int -> Bool)
       , constant "<"   ((<)  :: Int -> Int -> Bool)
       , constant "=="  ((==) :: Int -> Int -> Bool)
       , showConstant False

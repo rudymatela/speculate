@@ -11,30 +11,14 @@ False :: Bool
 True :: Bool
 not :: Bool -> Bool
 
-       abs 0 == 0
-       abs 1 == 1
-   not False == True
-    not True == False
-    (x <= y) == not (y < x)
-     (x < x) == False
-    (x == x) == True
- abs (abs x) == abs x
-       x + 0 == x
- not (not p) == p
-    (x == 0) == (abs x < 1)
-     (1 < 0) == False
- (x < abs x) == (x < 0)
-(x == abs x) == not (x < 0)
- (abs x < x) == False
- (abs x < 0) == False
- abs (1 + 1) == 1 + 1
-       x + y == y + x
-    (x == y) == (y == x)
-     (0 < x) == not (x < 1)
+      abs 0 == 0
+      abs 1 == 1
+abs (abs x) == abs x
+      x + 0 == x
+abs (1 + 1) == 1 + 1
+      x + y == y + x
 
-    p ==> True
-False ==> p
-    0 <=  1
-    x <=  abs x
-    0 <=  abs x
+0 <= 1
+x <= abs x
+0 <= abs x
 

@@ -7,7 +7,7 @@ module Test.Speculate.Utils.List
   , (+++), nubMerge, nubMergeBy, nubMergeOn, nubMerges, nubMergeMap
   , ordIntersect, ordIntersectBy
   , ordered, orderedBy, orderedOn, strictlyOrdered, strictlyOrderedOn
-  , areAll
+  , areAll, areAny
   , allLater
   , (+-)
   , sortOn
@@ -101,6 +101,9 @@ strictlyOrdered = orderedBy (<)
 
 areAll :: [a] -> (a -> Bool) -> Bool
 xs `areAll` p = all p xs
+
+areAny :: [a] -> (a -> Bool) -> Bool
+xs `areAny` p = any p xs
 
 allLater :: (a -> a -> Bool) -> [a] -> Bool
 allLater (<) (x:xs) = all (< x) xs && allLater (<) xs

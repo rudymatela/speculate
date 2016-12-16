@@ -58,7 +58,9 @@ data Args = Args
 --, keepRewriteRules     :: Bool
   , showHelp             :: Bool
   , extra                :: [String] -- unused, user-defined meaning
-  , atoms                :: [Expr]
+  , atoms                :: [Expr] -- ^ atoms used on both conditions and equations
+  , conditionAtoms       :: [Expr] -- ^ atoms exclusive to conditions
+  , equationAtoms        :: [Expr] -- ^ atoms exclusive to equations
   }
 -- Maybe add an empty Thy here.
 
@@ -85,6 +87,8 @@ args = Args
   , showHelp             = False
   , extra                = []
   , atoms                = []
+  , conditionAtoms       = []
+  , equationAtoms        = []
   }
 
 computeMaxSemiSize :: Args -> Int
@@ -99,6 +103,13 @@ computeMaxCondSize args
 
 shouldShow2 :: Args -> (Expr,Expr) -> Bool
 shouldShow2 args (e1,e2) = showConstantLaws args || hasVar e1 || hasVar e2
+-- `allAbout` atoms // (conditionAtoms `union` equationAtoms)
+
+shouldShowEquation :: Args -> (Expr,Expr) -> Bool
+shouldShowEquation args (e1,e2) =
+  shouldShow2 args (e1,e2) && e1 `notAbout` ca && e2 `notAbout` ca
+  where
+  ca = conditionAtoms args \\ equationAtoms args
 
 shouldShow3 :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShow3 args (e1,e2,e3) = showConstantLaws args
@@ -113,9 +124,16 @@ shouldShow3 args (e1,e2,e3) = showConstantLaws args
 allAbout :: Expr -> [Expr] -> Bool
 e `allAbout` es = atomicConstants e `areAll` (`elem` es)
 
+about :: Expr -> [Expr] -> Bool
+e `about` es = atomicConstants e `areAny` (`elem` es)
+
+notAbout :: Expr -> [Expr] -> Bool
+notAbout = not .: about
+
 report :: Args -> IO ()
-report args@Args {maxSize = sz, typeInfo_ = ti, maxTests = n, atoms = ds} = do
+report args@Args {maxSize = sz, typeInfo_ = ti, maxTests = n} = do
   -- TODO: use typs here?
+  let ds = atoms args `union` conditionAtoms args `union` equationAtoms args
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
   let ds' = map holeOfTy ts `union` ds
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (equal ti n) ds'
@@ -125,10 +143,10 @@ report args@Args {maxSize = sz, typeInfo_ = ti, maxTests = n, atoms = ds} = do
             ++ ", variables of this type will not be considered"
               | t <- uts]
   when (showTheory args)       . putStrLn $ showThy thy
-  when (showEquivalences args) . putStrLn $ prettyThy (shouldShow2 args) ti thy
+  when (showEquivalences args) . putStrLn $ prettyThy (shouldShowEquation args) ti thy
   reportClassesFor ti n (showClassesFor args) thy es
   when (showSemiequivalences args) . putStrLn
-    . prettyShy (shouldShow2 args) (equivalentInstance thy)
+    . prettyShy (shouldShowEquation args) (equivalentInstance thy)
     . semiTheoryFromThyAndReps ti n (maxVars args) thy
     $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
   when (showConditions args) . putStrLn
