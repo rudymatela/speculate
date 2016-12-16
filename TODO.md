@@ -6,36 +6,27 @@ A non-exhaustive list of things TODO for Speculate
 Warning: I tend to ramble...
 
 
-current -- separating algebra for conditions
---------------------------------------------
+current -- enable conditions by default
+---------------------------------------
 
-* lift a filter on conditionalTheoryFromThyAndReps?
+quite a few things are missing for that:
 
-    conditionalTheoryFromThyAndReps :: ... -> (Expr -> Bool) -> ...
-    conditionalTheoryFromThyAndReps ... useOnConditions  ... =
-	  ... filter useOnConditions ...
+* compute wheter I can generate any conditions at all (i.e.: a function
+  returning boolean in atoms).  do condition generation only when this is true
 
-  problems!  If applying this naively, I might discard something that may be
-  used, see:
+* ... ?
 
-  atoms          = [ odd, even ]
-  conditionAtoms = [ mod, ==, 1, 0 ]
+* flip showConditions to true!
 
-  I would want to see:
 
-  x mod 2 == 1 ==> something
+* fix pretty printing of backquote-infix (`infix`) functions
+  currently printed as:
 
-  but it would be discarded because the normal form would be:
+    (`infix`) :: Type
 
-  odd x ==> something
+  should be
 
-  useOnConditions has to be applied to all possible equivalent versions
-
-  for now, just filter *output*, not reasoning
-
-  On second thought, actually, this happen even when I only filter output.
-  I may not be printing something that actually should be printed.
-  Add an example to show that, use mod, ==, odd and even
+    infix :: Type
 
 
 Later
