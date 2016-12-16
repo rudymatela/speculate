@@ -20,8 +20,8 @@ Just :: Ratio Integer -> Maybe (Ratio Integer)
 1 % 1 :: Ratio Integer
 1 % 2 :: Ratio Integer
 
+                     hue red == Just (0 % 1)
                    hue white == hue black
-                Just (0 % 1) == hue red
                 chroma black == 0 % 1
                  chroma blue == 1 % 1
                 chroma green == 1 % 1
@@ -129,9 +129,9 @@ saturation c <= 1 % 1
     chroma c <= saturation c
     chroma c <= value c
        hue c <= Just (1 % 1)
-   hue green <= hue blue
-   hue green <= Just (1 % 2)
-     hue red <= hue blue
-     hue red <= hue green
+Just (1 % 2) <= Just (1 % 1)
 Just (1 % 2) <= hue blue
+   hue green <= Just (1 % 2)
+     hue red <= Just (1 % 2)
+     hue red <= hue green
 
