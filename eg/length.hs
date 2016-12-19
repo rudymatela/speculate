@@ -4,12 +4,12 @@ import Data.List (sort,insert)
 main :: IO ()
 main = speculate args
   { atoms =
-      [ s (0 :: Int)
---    , s (1 :: Int)
-      , s ([] :: [Int])
-      , (:)     -:>  int  -| ":"
-      , (++)    -:> [int] -| "++"
-      , length  -:> [int] -| "length"
---    , (+)     -:> int   -| "+"
+      [ showConstant (0 :: Int)
+--    , showConstant (1 :: Int)
+      , showConstant ([] :: [Int])
+      , constant ":"      $ (:)     -:>  int
+      , constant "++"     $ (++)    -:> [int]
+      , constant "length" $ length  -:> [int]
+--    , constant "+"      $ (+)     -:>  int
       ]
   }
