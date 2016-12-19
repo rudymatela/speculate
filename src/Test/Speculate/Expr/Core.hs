@@ -219,7 +219,7 @@ compareComplexity = (compare `on` lengthE)
                  <> lexicompare
 
 falseE :: Expr
-falseE = False -| "False"
+falseE = showConstant False
 
 -- | 'Just' the value of an expression when possible (correct type, no holes),
 --   'Nothing' otherwise.
