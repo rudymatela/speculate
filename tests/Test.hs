@@ -260,113 +260,113 @@ instance Listable SameTypedPairsE where
 
 
 zero :: Expr
-zero = s (0 :: Int)
+zero = showConstant (0 :: Int)
 
 one :: Expr
-one = s (1 :: Int)
+one = showConstant (1 :: Int)
 
 xx :: Expr -- ex
-xx = int -/ "x"
+xx = var "x" int
 
 yy :: Expr -- wye
-yy = int -/ "y"
+yy = var "y" int
 
 zz :: Expr -- zed
-zz = int -/ "z"
+zz = var "z" int
 
 xx' :: Expr -- ex prime
-xx' = int -/ "x'"
+xx' = var "x'" int
 
 id' :: Expr -> Expr
 id' = (idE :$)
 
 idE :: Expr
-idE = (id :: Int -> Int) -| "id"
+idE = constant "id" (id :: Int -> Int)
 
 abs' :: Expr -> Expr
 abs' = (absE :$)
 
 absE :: Expr
-absE = (abs :: Int -> Int) -| "abs"
+absE = constant "abs" (abs :: Int -> Int)
 
 negate' :: Expr -> Expr
 negate' = (negateE :$)
 
 negateE :: Expr
-negateE = (negate :: Int -> Int) -| "negate"
+negateE = constant "negate" (negate :: Int -> Int)
 
 succ' :: Expr -> Expr
 succ' = (succE :$)
 
 succE :: Expr
-succE = ((1+) :: Int -> Int) -| "succ"
+succE = constant "succ" ((1+) :: Int -> Int)
 
 (-+-) :: Expr -> Expr -> Expr
 e1 -+- e2 = plusE :$ e1 :$ e2
 infixl 6 -+-
 
 plusE :: Expr
-plusE = ((+) :: Int -> Int -> Int) -| "+"
+plusE = constant "+" ((+) :: Int -> Int -> Int)
 
 (-*-) :: Expr -> Expr -> Expr
 e1 -*- e2 = timesE :$ e1 :$ e2
 
 timesE :: Expr
-timesE = ((*) :: Int -> Int -> Int) -| "*"
+timesE = constant "*" ((*) :: Int -> Int -> Int)
 
 (.-.) :: Expr -> Expr -> Expr
 e1 .-. e2 = minusE :$ e1 :$ e2
 
 minusE :: Expr
-minusE = ((-) :: Int -> Int -> Int) -| "-"
+minusE = constant "-" ((-) :: Int -> Int -> Int)
 
 ii :: Expr
-ii = int -/ "i"
+ii = var "i" int
 
 jj :: Expr
-jj = int -/ "j"
+jj = var "j" int
 
 kk :: Expr
-kk = int -/ "k"
+kk = var "k" int
 
 ii' :: Expr
-ii' = int -/ "i'"
+ii' = var "i'" int
 
 ff :: Expr -> Expr
-ff = (ffE :$) where ffE = (undefined :: Int -> Int) -| "f"
+ff = (ffE :$) where ffE = constant "f" (undefined :: Int -> Int)
 
 gg :: Expr -> Expr
-gg = (ggE :$) where ggE = (undefined :: Int -> Int) -| "g"
+gg = (ggE :$) where ggE = constant "g" (undefined :: Int -> Int)
 
 
 true :: Expr
-true = s (True :: Bool)
+true = showConstant (True :: Bool)
 
 false :: Expr
-false = s (False :: Bool)
+false = showConstant (False :: Bool)
 
 pp :: Expr -- pee
-pp = bool -/ "p"
+pp = var "p" bool
 
 qq :: Expr -- cue
-qq = bool -/ "q"
+qq = var "q" bool
 
 rr :: Expr -- ar, I'm a pirate
-rr = bool -/ "r"
+rr = var "r" bool
 
 not' :: Expr -> Expr
-not' = (notE :$) where notE = not -| "not"
+not' = (notE :$) where notE = constant "not" not
 
 (-&&-) :: Expr -> Expr -> Expr
-e1 -&&- e2 = andE :$ e1 :$ e2 where andE = (&&) -| "&&"
+e1 -&&- e2 = andE :$ e1 :$ e2 where andE = constant "&&" (&&)
 infixr 3 -&&-
 
 (-||-) :: Expr -> Expr -> Expr
-e1 -||- e2 = orE :$ e1 :$ e2 where orE = (||) -| "||"
+e1 -||- e2 = orE :$ e1 :$ e2 where orE = constant "||" (||)
 infixr 2 -||-
 
 (-==>-) :: Expr -> Expr -> Expr
-e1 -==>- e2 = impliesE :$ e1 :$ e2 where impliesE = (==>) -| "==>"
+e1 -==>- e2 = impliesE :$ e1 :$ e2 where impliesE = constant "==>" (==>)
 infixr 0 -==>-
 
 (-==-) :: Expr -> Expr -> Expr
@@ -391,59 +391,59 @@ e1 -<- e2 =
 infix 4 -<-
 
 odd' :: Expr -> Expr
-odd' = (oddE :$) where oddE = (odd :: Int -> Bool) -| "odd"
+odd' = (oddE :$) where oddE = constant "odd" (odd :: Int -> Bool)
 
 even' :: Expr -> Expr
-even' = (evenE :$) where evenE = (even :: Int -> Bool) -| "even"
+even' = (evenE :$) where evenE = constant "even" (even :: Int -> Bool)
 
 
 aa :: Expr -- a, the character, not variable
-aa = s 'a'
+aa = showConstant 'a'
 
 cc :: Expr -- cee, a variable character
-cc = char -/ "c"
+cc = var "c" char
 
 dd :: Expr -- dee, a variable character
-dd = char -/ "d"
+dd = var "d" char
 
 ord' :: Expr -> Expr
 ord' = (ordE :$)
 
 ordE :: Expr
-ordE = ord -| "ord"
+ordE = constant "ord" ord
 
 
 ll :: Expr
-ll = s ([] :: [Int])
+ll = showConstant ([] :: [Int])
 
 xxs :: Expr -- exes
-xxs = [int] -/ "xs"
+xxs = var "xs" [int]
 
 yys :: Expr -- wyes
-yys = [int] -/ "ys"
+yys = var "ys" [int]
 
 (-:-) :: Expr -> Expr -> Expr
 e1 -:- e2 = (consE :$ e1 :$ e2)
 infixr 5 -:-
 
 consE :: Expr
-consE = ((:) :: Int -> [Int] -> [Int]) -| ":"
+consE = constant ":" ((:) :: Int -> [Int] -> [Int])
 
 (-++-) :: Expr -> Expr -> Expr
 e1 -++- e2 = appendE :$ e1 :$ e2
 infixr 5 -++-
 
 appendE :: Expr
-appendE = ((++) :: [Int] -> [Int] -> [Int]) -| "++"
+appendE = constant "++" ((++) :: [Int] -> [Int] -> [Int])
 
 insert' :: Expr -> Expr -> Expr
-insert' ex exs = insertE :$ ex :$ exs where insertE = (L.insert :: Int -> [Int] -> [Int]) -| "insert"
+insert' ex exs = insertE :$ ex :$ exs where insertE = constant "insert" (L.insert :: Int -> [Int] -> [Int])
 
 elem' :: Expr -> Expr -> Expr
-elem' ex exs = elemE :$ ex :$ exs where elemE = (elem :: Int -> [Int] -> Bool) -| "elem"
+elem' ex exs = elemE :$ ex :$ exs where elemE = constant "elem" (elem :: Int -> [Int] -> Bool)
 
 sort' :: Expr -> Expr
-sort' exs = sortE :$ exs where sortE = (sort :: [Int] -> [Int]) -| "sort"
+sort' exs = sortE :$ exs where sortE = constant "sort" (sort :: [Int] -> [Int])
 
 -- boolTy already exported by Speculate.TypeInfo
 

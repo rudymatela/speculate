@@ -75,7 +75,7 @@ tests n =
 
   , holds n $ \e -> renameBy id e == e
   , holds n $ \e -> renameBy tail (renameBy ('x':) e) == e
-  , renameBy (++ "1") (xx -+- yy) == ((int -/ "x1") -+- (int -/ "y1"))
+  , renameBy (++ "1") (xx -+- yy) == ((var "x1" int) -+- (var "y1" int))
   , renameBy (\(c:cs) -> succ c:cs) ((xx -+- yy) -+- ord' cc)
                                  == ((yy -+- zz) -+- ord' dd)
 
@@ -150,10 +150,10 @@ tests n =
   ,       (xx -+- (xx -+- xx)) `isInstanceOf` (xx -+- yy)
   , not $ (xx -+- (xx -+- xx)) `isInstanceOf` (xx -+- xx)
 
-  , vars (int -/ "x" -+- int -/ "y") == [(intTy,"x"),(intTy,"y")]
-  , vars (int -/ "x" -+- int -/ "x") == [(intTy,"x")]
-  , vars (int -/ "x" -+- int -/ "x" -+- int -/ "y") == [(intTy,"x"),(intTy,"y")]
-  , vars (int -/ "y" -+- int -/ "x" -+- int -/ "y") == [(intTy,"x"),(intTy,"y")]
+  , vars (xx -+- yy) == [(intTy,"x"),(intTy,"y")]
+  , vars (xx -+- xx) == [(intTy,"x")]
+  , vars (xx -+- xx -+- yy) == [(intTy,"x"),(intTy,"y")]
+  , vars (yy -+- xx -+- yy) == [(intTy,"x"),(intTy,"y")]
 
   ,  (xx -+- xx)         < (xx -+- (xx -+- xx))
   , ((xx -+- xx) -+- xx) > (xx -+- (xx -+- xx))
