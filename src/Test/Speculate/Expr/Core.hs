@@ -8,11 +8,6 @@ module Test.Speculate.Expr.Core
   , holeOfTy
   , ($$)
 
-  -- * Deprecated smart constructors
-  , s
-  , (-|)
-  , (-/)
-
   -- * Smart destructors
   , evaluate
   , eval
@@ -100,18 +95,6 @@ e1 $$ e2 =
 
 -- Deprecated smart constructors:
 
--- | @val -| "val"@ returns a named 'Expr'
-(-|) :: Typeable a => a -> String -> Expr
-x -| s = Constant s (toDyn x)
-infix 0 -|
-
--- | @s val@ returns a named 'Expr' for a given 'Show' type
-s :: (Typeable a, Show a) => a -> Expr
-s x = x -| show x
-
--- | Creates a named hole expression (variable)
-(-/) :: (Listable a, Typeable a) => a -> String -> Expr
-a -/ s = Var s (typeOf a)
 
 
 -- quick and dirty show instance
