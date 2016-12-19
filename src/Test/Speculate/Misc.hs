@@ -23,7 +23,7 @@ functions1 e =
     [] -> []
     _  -> fist l
   where
-  l = \x -> [(e',v) | e' <- fillings e [x -| "x"], let Just v = evaluate e']
+  l = \x -> [(e',v) | e' <- fillings e [constant "x" x], let Just v = evaluate e']
 
 functions2 :: (Typeable a, Typeable b, Typeable c) => Expr -> [(Expr,a->b->c)]
 functions2 e =
@@ -31,7 +31,7 @@ functions2 e =
     [] -> []
     _  -> fist2 l
   where
-  l = \x y -> [(e',v) | e' <- fillings e [x -| "x", y -| "y"]
+  l = \x y -> [(e',v) | e' <- fillings e [constant "x" x, constant "y" y]
                       , let Just v = evaluate e']
 
 functions3 :: (Typeable a, Typeable b, Typeable c, Typeable d)
@@ -41,7 +41,7 @@ functions3 e =
     [] -> []
     _  -> fist3 l
   where
-  l = \x y z -> [(e',v) | e' <- fillings e [x -| "x", y -| "y", z -| "z"]
+  l = \x y z -> [(e',v) | e' <- fillings e [constant "x" x, constant "y" y, constant "z" z]
                         , let Just v = evaluate e']
 
 functions4 :: (Typeable a, Typeable b, Typeable c, Typeable d, Typeable e)
@@ -51,7 +51,7 @@ functions4 e =
     [] -> []
     _  -> fist4 l
   where
-  l = \x y z w -> [(e',v) | e' <- fillings e [x -| "x", y -| "y", z -| "z", w -| "w"]
+  l = \x y z w -> [(e',v) | e' <- fillings e [constant "x" x, constant "y" y, constant "z" z, constant "w" w]
                           , let Just v = evaluate e']
 
 
