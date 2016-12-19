@@ -82,7 +82,7 @@ implication e1 e2
   | typ e1 == boolTy = implicationE :$ e1 $$ e2
   | otherwise        = Nothing
   where
-  implicationE = (==>) -| "==>"
+  implicationE = constant "==>" (==>)
 
 unImplication :: Expr -> (Expr,Expr)
 unImplication (((Constant "==>" _) :$ e1) :$ e2) = (e1,e2)
