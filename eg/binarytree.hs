@@ -79,7 +79,8 @@ main = speculate args
       [ constant "<="  ((<=) :: Item -> Item -> Bool)
       , constant "=="  ((==) :: Item -> Item -> Bool)
       , constant "/="  ((/=) :: Item -> Item -> Bool)
---      TODO: fix after adding this
+--      TODO: when the following is added speculate "breaks" and prints a lot
+--            of junk laws.  Prune those away in speculate.  Then re-add not.
 --    , constant "not" (not :: Bool -> Bool)
       ]
   }
