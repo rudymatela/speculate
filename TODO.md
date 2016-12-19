@@ -9,6 +9,8 @@ Warning: I tend to ramble...
 current -- enable conditions by default
 ---------------------------------------
 
+* simplify typeInfo interface
+
 quite a few things are missing for that:
 
 * compute wheter I can generate any conditions at all (i.e.: a function
