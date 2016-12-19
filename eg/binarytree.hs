@@ -1,3 +1,4 @@
+-- Colin Runciman, December 2016
 import Test.Speculate
 import Test.LeanCheck
 
