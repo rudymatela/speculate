@@ -43,6 +43,7 @@ tests/test-utils
 eg/eg
 eg/arith
 eg/0arith
+eg/binarytree
 eg/bool
 eg/color
 eg/digraphs

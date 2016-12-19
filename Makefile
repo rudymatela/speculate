@@ -22,6 +22,7 @@ EG = \
   eg/arith \
   eg/0arith \
   eg/bool \
+  eg/binarytree \
   eg/color \
   eg/digraphs \
   eg/list \

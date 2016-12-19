@@ -1,0 +1,32 @@
+_ :: [Word2]  (holes: [Word2])
+_ :: BT Word2  (holes: BT Word2)
+_ :: Bool  (holes: Bool)
+_ :: Word2  (holes: Word2)
+Null :: BT Word2
+True :: Bool
+False :: Bool
+insert :: Word2 -> BT Word2 -> BT Word2
+delete :: Word2 -> BT Word2 -> BT Word2
+toList :: BT Word2 -> [Word2]
+fromList :: [Word2] -> BT Word2
+isSearch :: BT Word2 -> Bool
+ordered :: [Word2] -> Bool
+isIn :: Word2 -> BT Word2 -> Bool
+(<=) :: Word2 -> Word2 -> Bool
+(==) :: Word2 -> Word2 -> Bool
+(/=) :: Word2 -> Word2 -> Bool
+
+            isSearch t == True
+         delete x Null == Null
+    ordered (toList t) == True
+           isIn x Null == False
+fromList (toList Null) == Null
+
+          p ==> True
+       Null <=  t
+      False ==> p
+toList Null <=  xs
+
+ordered xs ==> fromList (toList (fromList xs)) == fromList xs
+  isIn x t ==>                      insert x t == t
+
