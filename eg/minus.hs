@@ -3,13 +3,13 @@ import Test.Speculate
 main :: IO ()
 main = speculate args
   { atoms =
-      [ s (0::Int)
-      , s (1::Int)
-      , id     -:> int -| "id"
+      [ showConstant (0::Int)
+      , showConstant (1::Int)
+      , constant "id"     $ id     -:> int
     -- Add abs for 30 seconds runtime in "old" KBC, about 10 without.
-    --, abs    -:> int -| "abs"
-      , negate -:> int -| "negate"
-      , (+)    -:> int -| "+"
-      , (-)    -:> int -| "-"
+    --, constant "abs"    $ abs    -:> int
+      , constant "negate" $ negate -:> int
+      , constant "+"      $ (+)    -:> int
+      , constant "-"      $ (-)    -:> int
       ]
   }
