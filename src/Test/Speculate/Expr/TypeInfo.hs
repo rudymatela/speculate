@@ -74,11 +74,11 @@ typeInfoNames :: (Typeable a, Listable a, Show a, Eq a, Ord a)
               => a -> [String] -> TypeInfo1
 typeInfoNames x ns = TypeInfo1
   { typerep1   = typeOf x
-  , equalityE1 = (errorToFalse .: (==)) -:> x -| "=="
-  , compareE1  = compare -:> x -| "`compare`"
-  , lessEqE1   = (errorToFalse .: (<=)) -:> x -| "<="
-  , lessE1     = (errorToFalse .: (<))  -:> x -| "<"
-  , tiersE1    = mapT s (tiers `asTypeOf` [[x]])
+  , equalityE1 = constant "=="        $ (errorToFalse .: (==)) -:> x
+  , compareE1  = constant "`compare`" $ compare                -:> x
+  , lessEqE1   = constant "<="        $ (errorToFalse .: (<=)) -:> x
+  , lessE1     = constant "<"         $ (errorToFalse .: (<))  -:> x
+  , tiersE1    = mapT showConstant (tiers `asTypeOf` [[x]])
   , names1     = ns
   }
   where
