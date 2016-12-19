@@ -35,43 +35,43 @@ main = speculate args
               : basicTypeInfo
   , maxSize = 4
   , atoms =
-      [ black   -| "black"
-      , white   -| "white"
-      , red     -| "red"
-      , green   -| "green"
-      , blue    -| "blue"
---    , cyan    -| "cyan"
---    , magenta -| "magenta"
---    , yellow  -| "yellow"
---    , orange  -| "orange"
-      , (+)    -:> color -| "+"
-      , (-)    -:> color -| "-"
---    , (*)    -:> color -| "*"
---    , negate -:> color -| "negate"
---    , (.+.) -| ".+."
---    , (.-.) -| ".-."
---    , (.*.) -| ".*."
-      , chroma     -| "chroma"
-      , hue        -| "hue"
-      , saturation -| "saturation"
---    , intensity  -| "intensity"
-      , value      -| "value"
---    , lightness  -| "lightness"
-      , fromHSV    -| "fromHSV"
-      , fromHSL    -| "fromHSL"
-      , mix        -| "mix"
---    , mixHSV     -| "mixHSV"
+      [ constant "black"     black
+      , constant "white"     white
+      , constant "red"       red
+      , constant "green"     green
+      , constant "blue"      blue
+--    , constant "cyan"      cyan
+--    , constant "magenta"   magenta
+--    , constant "yellow"    yellow
+--    , constant "orange"    orange
+      , constant "+"       $ (+)    -:> color
+      , constant "-"       $ (-)    -:> color
+--    , constant "*"       $ (*)    -:> color
+--    , constant "negate"  $ negate -:> color
+--    , constant ".+."     $ (.+.)  -:> color
+--    , constant ".-."     $ (.-.)  -:> color
+--    , constant ".*."     $ (.*.)  -:> color
+      , constant "chroma"     chroma
+      , constant "hue"        hue
+      , constant "saturation" saturation
+--    , constant "intensity"  intensity
+      , constant "value"      value
+--    , constant "lightness"  lightness
+      , constant "fromHSV"    fromHSV
+      , constant "fromHSL"    fromHSL
+      , constant "mix"        mix
+--    , constant "mixHSV"     mixHSV
 
-      , Just -:> rational -| "Just"
+      , constant "Just"     $ Just -:> rational
 
-      , s (0 % 1 :: Rational)
-      , s (1 % 1 :: Rational)
-      , s (1 % 2 :: Rational)
+      , showConstant (0 % 1 :: Rational)
+      , showConstant (1 % 1 :: Rational)
+      , showConstant (1 % 2 :: Rational)
 
---    , (==) -:> color -| "=="
---    , (/=) -:> color -| "/="
---    , False -| "False"
---    , True  -| "True"
---    , primary -| "primary"
+--    , constant "==" $ (==) -:> color
+--    , constant "/=" $ (/=) -:> color
+--    , showConstant False
+--    , showConstant True
+--    , constant primary
       ]
   } 
