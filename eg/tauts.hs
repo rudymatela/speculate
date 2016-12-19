@@ -24,13 +24,13 @@ main = speculate args
   , showConditions = True
   , maxVars = 2
   , atoms =
-      [ s False
-      , s True
-      , ((==) -:> prop) -| "=="
+      [ showConstant False
+      , showConstant True
+      , constant "==" ((==) -:> prop)
 
-      , eval -| "eval"
-      , varOf -| "varOf"
-      , subst -| "subst"
-      , taut -| "taut"
+      , constant "eval"  eval
+      , constant "varOf" varOf
+      , constant "subst" subst
+      , constant "taut"  taut
       ]
   }

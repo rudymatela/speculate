@@ -22,21 +22,21 @@ main = speculate args
   { typeInfo_ = typeInfo (set int) "s"
               : basicTypeInfo
   , atoms =
-      [ False -| "False"
-      , True  -| "True"
-      , emptyS      -:  set int -| "emptyS" 
-      , singleS     -:> int     -| "singleS"
-    --, pairS       -:> int     -| "pairS"
-      , insertS     -:> int     -| "insertS"
-      , deleteS     -:> int     -| "deleteS"
-      , sizeS       -:> set int -| "sizeS"
-      , (<~)        -:> int     -| "<~"
-      , (\/)        -:> set int -| "\\/"
-      , (/\)        -:> set int -| "/\\"
-    --, (\\)        -:> set int -| "\\\\"
-    --, (<~)        -:> set int -| "<~"
-    --, subS        -:> set int -| "subS"
-    --, powerS      -:> set int -| "powerS"
-    --, partitionsS -:> set int -| "partitionsS"
+      [ showConstant False
+      , showConstant True
+      , constant "emptyS"      $ emptyS      -:  set int
+      , constant "singleS"     $ singleS     -:> int    
+    --, constant "pairS"       $ pairS       -:> int    
+      , constant "insertS"     $ insertS     -:> int    
+      , constant "deleteS"     $ deleteS     -:> int    
+      , constant "sizeS"       $ sizeS       -:> set int
+      , constant "<~"          $ (<~)        -:> int    
+      , constant "\\/"         $ (\/)        -:> set int
+      , constant "/\\"         $ (/\)        -:> set int
+    --, constant "\\\\"        $ (\\)        -:> set int
+    --, constant "<~"          $ (<~)        -:> set int
+    --, constant "subS"        $ subS        -:> set int
+    --, constant "powerS"      $ powerS      -:> set int
+    --, constant "partitionsS" $ partitionsS -:> set int
       ]
   }

@@ -27,9 +27,9 @@ main = speculate args
               : basicTypeInfo
   , atoms =
       [ hole (int >- [int])
-      , (return :: A -> [A]) -| "return"
-      , ((>>=) :: [A] -> (A -> [B]) -> [B]) -| ">>="
-      , ((>=>) :: (A -> [B]) -> (B -> [C]) -> (A -> [C])) -| ">=>"
+      , constant "return" (return :: A -> [A])
+      , constant ">>="    ((>>=) :: [A] -> (A -> [B]) -> [B])
+      , constant ">=>"    ((>=>) :: (A -> [B]) -> (B -> [C]) -> (A -> [C]))
       ]
   }
 

@@ -4,15 +4,15 @@ import Data.List (sort,insert)
 main :: IO ()
 main = speculate args
   { atoms = 
-      [ s ""
-      , s " "
-      , s "\n"
+      [ showConstant ""
+      , showConstant " "
+      , showConstant "\n"
 
-      , lines   -| "lines"
-      , words   -| "words"
-      , unlines -| "unlines"
-      , unwords -| "unwords"
+      , constant "lines"   lines
+      , constant "words"   words
+      , constant "unlines" unlines
+      , constant "unwords" unwords
 
-      , (++) -:> [char] -| "++"
+      , constant "++" $ (++) -:> [char]
       ]
   }

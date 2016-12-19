@@ -27,10 +27,10 @@ main = speculate args
               : basicTypeInfo
   , maxSize = 7
   , atoms = 
-      [ ($$) -| "$$"
-      , (<>) -| "<>"
-      , nest -| "nest"
-      , (++) -:> string -| "++"
-      , length -:> string -| "length"
+      [ constant "$$"       ($$)
+      , constant "<>"       (<>)
+      , constant "nest"     nest
+      , constant "++"     $ (++) -:> string
+      , constant "length" $ length -:> string
       ]
   }

@@ -18,11 +18,11 @@ main = speculate args
               : basicTypeInfo
   , atoms =
       [ hole int
-      , s (0::Int)
-      , id  -:> int -| "id"
-      , (+) -:> int -| "+"
-      , f   -:> int -| "f"
-      , g   -:> int -| "g"
-      , h   -:> int -| "h"
+      , showConstant (0::Int)
+      , constant "id" $ id  -:> int
+      , constant "+"  $ (+) -:> int
+      , constant "f"  $ f   -:> int
+      , constant "g"  $ g   -:> int
+      , constant "h"  $ h   -:> int
       ]
   }
