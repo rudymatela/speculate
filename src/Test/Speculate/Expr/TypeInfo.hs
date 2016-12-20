@@ -158,7 +158,8 @@ lessEqE ti = fmap lessEqE1 . (`findInfo` ti)
 -- TODO: include *ALL* prelude types on basicTypeInfo
 basicTypeInfo :: TypeInfo
 basicTypeInfo = concat
-  [ typeInfo (undefined :: ())       "x"
+  [ [ typeInfo1 (undefined :: ()) "x"
+    , typeInfo1 (undefined :: [()]) "xs" ]
   , typeInfo (undefined :: Bool)     "p"
 
   , typeInfo (undefined :: Int)      "x"
