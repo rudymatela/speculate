@@ -67,6 +67,26 @@ typeInfo :: (Typeable a, Listable a, Show a, Eq a, Ord a)
          => a -> String -> TypeInfo1
 typeInfo x n = typeInfoNames x (namesFromTemplate n)
 
+-- this eventually will become the new "typeInfo" constructor
+typeInfoN :: (Typeable a, Listable a, Show a, Eq a, Ord a)
+          => a -> String -> TypeInfo
+typeInfoN x n =
+  [ typeInfo    x      $ n
+  , typeInfo   [x]     $ n ++ "s"
+  , typeInfo  [[x]]    $ n ++ "ss"
+  , typeInfo [[[x]]]   $ n ++ "ss"
+  , typeInfo (x,x)     $ n ++ n           -- TODO: change to n ++ next n, or pairName n
+  , typeInfo (x,x,x)   $ n ++ n ++ n      -- TODO: change to n ++ next n
+  , typeInfo (x,x,x,x) $ n ++ n ++ n ++ n -- TODO: change to n ++ next n
+  , typeInfo [(x,x)]   $ n ++ n ++ "ss"
+  , typeInfo [(x,x,x)] $ n ++ n ++ n ++ "ss"
+  , typeInfo (x,[x])   $ n ++ n ++ "s"
+  , typeInfo ([x],x)   $ n ++ "s" ++ n
+  , typeInfo ([x],[x]) $ n ++ "s" ++ n ++ "s"
+  , typeInfo (x,(x,x)) $ n ++ n ++ n
+  , typeInfo ((x,x),x) $ n ++ n ++ n
+  ]
+
 -- | Usage: @typeInfoNames (undefined :: Type) ["x","y","z","w",...]@
 --
 -- You are probably better off using 'typeInfo'
