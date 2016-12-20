@@ -86,12 +86,12 @@ typeInfo x n =
 
 --, typeInfo1 (x,[x])   $ n ++ m ++ "s"
 --, typeInfo1 ([x],x)   $ n ++ "s" ++ m
-  , typeInfo1 ([x],[x]) $ n ++ "s" ++ m ++ "s"
+--, typeInfo1 ([x],[x]) $ n ++ "s" ++ m ++ "s"
 --, typeInfo1 (x,(x,x)) $ n ++ m ++ o
 --, typeInfo1 ((x,x),x) $ n ++ m ++ o
 
   , typeInfo1 (mayb x)   $ "m" ++ n ++ "1"
-  , typeInfo1 (eith x x) $ "e" ++ n ++ o ++ "1"
+--, typeInfo1 (eith x x) $ "e" ++ n ++ o ++ "1"
   ]
   where
   m = namesFromTemplate n !! 1
@@ -162,7 +162,7 @@ basicTypeInfo = concat
   , typeInfo (undefined :: Bool)     "p"
 
   , typeInfo (undefined :: Int)      "x"
-  , typeInfo (undefined :: Word)     "x"
+--, typeInfo (undefined :: Word)     "x"
   , typeInfo (undefined :: Integer)  "x"
 
   , typeInfo (undefined :: Ordering) "o"
@@ -174,7 +174,7 @@ basicTypeInfo = concat
 
 -- TODO: uncomment the following and investigate why compilation takes so long
 --, typeInfo (undefined :: Int1)     "x"
-  , typeInfo (undefined :: Int2)     "x"
+--, typeInfo (undefined :: Int2)     "x"
 --, typeInfo (undefined :: Int3)     "x"
 --, typeInfo (undefined :: Int4)     "x"
 --, typeInfo (undefined :: Word1)    "x"
