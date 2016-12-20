@@ -75,17 +75,21 @@ typeInfoN x n =
   , typeInfo   [x]     $ n ++ "s"
   , typeInfo  [[x]]    $ n ++ "ss"
   , typeInfo [[[x]]]   $ n ++ "ss"
-  , typeInfo (x,x)     $ n ++ n           -- TODO: change to n ++ next n, or pairName n
-  , typeInfo (x,x,x)   $ n ++ n ++ n      -- TODO: change to n ++ next n
-  , typeInfo (x,x,x,x) $ n ++ n ++ n ++ n -- TODO: change to n ++ next n
-  , typeInfo [(x,x)]   $ n ++ n ++ "ss"
-  , typeInfo [(x,x,x)] $ n ++ n ++ n ++ "ss"
-  , typeInfo (x,[x])   $ n ++ n ++ "s"
-  , typeInfo ([x],x)   $ n ++ "s" ++ n
-  , typeInfo ([x],[x]) $ n ++ "s" ++ n ++ "s"
-  , typeInfo (x,(x,x)) $ n ++ n ++ n
-  , typeInfo ((x,x),x) $ n ++ n ++ n
+  , typeInfo (x,x)     $ n ++ m
+  , typeInfo (x,x,x)   $ n ++ m ++ o
+  , typeInfo (x,x,x,x) $ n ++ m ++ o ++ p
+  , typeInfo [(x,x)]   $ n ++ m ++ "s"
+  , typeInfo [(x,x,x)] $ n ++ m ++ o ++ "ss"
+  , typeInfo (x,[x])   $ n ++ m ++ "s"
+  , typeInfo ([x],x)   $ n ++ "s" ++ m
+  , typeInfo ([x],[x]) $ n ++ "s" ++ m ++ "s"
+  , typeInfo (x,(x,x)) $ n ++ m ++ o
+  , typeInfo ((x,x),x) $ n ++ m ++ o
   ]
+  where
+  m = namesFromTemplate n !! 1
+  o = namesFromTemplate m !! 1
+  p = namesFromTemplate o !! 1
 
 -- | Usage: @typeInfoNames (undefined :: Type) ["x","y","z","w",...]@
 --
