@@ -90,6 +90,10 @@ typeInfoN x n =
   m = namesFromTemplate n !! 1
   o = namesFromTemplate m !! 1
   p = namesFromTemplate o !! 1
+-- NOTE: the function typeInfoN is not perfect: it won't help produce types
+-- combining different sub-types, like for example: (Bool,Int).  But it is
+-- way better than the original version in which I had to explictly define
+-- everything.
 
 -- | Usage: @typeInfoNames (undefined :: Type) ["x","y","z","w",...]@
 --
@@ -145,32 +149,14 @@ lessEqE ti = fmap lessEqE1 . (`findInfo` ti)
 
 -- TODO: include *ALL* prelude types on basicTypeInfo
 basicTypeInfo :: TypeInfo
-basicTypeInfo =
-  [ typeInfo (undefined :: ())       "x"
-  , typeInfo (undefined :: Int)      "x"
-  , typeInfo (undefined :: Integer)  "x"
-  , typeInfo (undefined :: Word2)    "x"
-  , typeInfo (undefined :: Char)     "c"
-  , typeInfo (undefined :: Bool)     "p"
-  , typeInfo (undefined :: Rational) "q"
-  , typeInfo (undefined :: [()])     "xs"
-  , typeInfo (undefined :: [Int])    "xs"
-  , typeInfo (undefined :: [Integer]) "xs"
-  , typeInfo (undefined :: [Word2])  "xs"
-  , typeInfo (undefined :: [Char])   "cs"
-  , typeInfo (undefined :: [Bool])   "ps"
-  , typeInfo (undefined :: [Rational]) "qs"
-  , typeInfo (undefined :: [[()]])   "xss"
-  , typeInfo (undefined :: [[Int]])  "xss"
-  , typeInfo (undefined :: [[Char]]) "css"
-  , typeInfo (undefined :: [[Bool]]) "pss"
-  , typeInfo (int,int)               "xy"
-  , typeInfo (int,int,int)           "xyz"
-  , typeInfo ([int],[int])           "xsys"
-  , typeInfo (bool,bool)             "pq"
-  , typeInfo (bool,bool,bool)        "pqr"
-  , typeInfo ([bool],[bool])         "psqs"
-  , typeInfo (undefined :: Rational, undefined :: Rational) "qr"
+basicTypeInfo = concat
+  [ typeInfoN (undefined :: ())       "x"
+  , typeInfoN (undefined :: Int)      "x"
+  , typeInfoN (undefined :: Integer)  "x"
+  , typeInfoN (undefined :: Word2)    "x"
+  , typeInfoN (undefined :: Char)     "c"
+  , typeInfoN (undefined :: Bool)     "p"
+  , typeInfoN (undefined :: Rational) "q"
   ]
 
 defNames :: [String]
