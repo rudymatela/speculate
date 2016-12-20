@@ -75,20 +75,20 @@ typeInfoN x n =
 
   , typeInfo   [x]     $ n ++ "s"
   , typeInfo  [[x]]    $ n ++ "ss"
-  , typeInfo [[[x]]]   $ n ++ "ss"
+--, typeInfo [[[x]]]   $ n ++ "ss"
 
   , typeInfo (x,x)     $ n ++ m
   , typeInfo (x,x,x)   $ n ++ m ++ o
-  , typeInfo (x,x,x,x) $ n ++ m ++ o ++ p
+--, typeInfo (x,x,x,x) $ n ++ m ++ o ++ p
 
   , typeInfo [(x,x)]   $ n ++ m ++ "s"
-  , typeInfo [(x,x,x)] $ n ++ m ++ o ++ "ss"
+--, typeInfo [(x,x,x)] $ n ++ m ++ o ++ "ss"
 
-  , typeInfo (x,[x])   $ n ++ m ++ "s"
-  , typeInfo ([x],x)   $ n ++ "s" ++ m
+--, typeInfo (x,[x])   $ n ++ m ++ "s"
+--, typeInfo ([x],x)   $ n ++ "s" ++ m
   , typeInfo ([x],[x]) $ n ++ "s" ++ m ++ "s"
-  , typeInfo (x,(x,x)) $ n ++ m ++ o
-  , typeInfo ((x,x),x) $ n ++ m ++ o
+--, typeInfo (x,(x,x)) $ n ++ m ++ o
+--, typeInfo ((x,x),x) $ n ++ m ++ o
 
   , typeInfo (mayb x)   $ "m" ++ n ++ "s"
   , typeInfo (eith x x) $ "e" ++ n ++ o ++ "s"
@@ -101,6 +101,7 @@ typeInfoN x n =
 -- combining different sub-types, like for example: (Bool,Int).  But it is
 -- way better than the original version in which I had to explictly define
 -- everything.  A definitive solution is still to be thought of.
+-- NOTE: see related TODO on the definition of basicTypeInfo
 
 -- | Usage: @typeInfoNames (undefined :: Type) ["x","y","z","w",...]@
 --
@@ -171,21 +172,22 @@ basicTypeInfo = concat
   , typeInfoN (undefined :: Float)    "f"
   , typeInfoN (undefined :: Double)   "f"
 
-  , typeInfoN (undefined :: Int1)     "x"
+-- TODO: uncomment the following and investigate why compilation takes so long
+--, typeInfoN (undefined :: Int1)     "x"
   , typeInfoN (undefined :: Int2)     "x"
-  , typeInfoN (undefined :: Int3)     "x"
-  , typeInfoN (undefined :: Int4)     "x"
-  , typeInfoN (undefined :: Word1)    "x"
+--, typeInfoN (undefined :: Int3)     "x"
+--, typeInfoN (undefined :: Int4)     "x"
+--, typeInfoN (undefined :: Word1)    "x"
   , typeInfoN (undefined :: Word2)    "x"
-  , typeInfoN (undefined :: Word3)    "x"
-  , typeInfoN (undefined :: Word4)    "x"
-  , typeInfoN (undefined :: Nat1)     "x"
-  , typeInfoN (undefined :: Nat2)     "x"
-  , typeInfoN (undefined :: Nat3)     "x"
-  , typeInfoN (undefined :: Nat4)     "x"
-  , typeInfoN (undefined :: Nat5)     "x"
-  , typeInfoN (undefined :: Nat6)     "x"
-  , typeInfoN (undefined :: Nat7)     "x"
+--, typeInfoN (undefined :: Word3)    "x"
+--, typeInfoN (undefined :: Word4)    "x"
+--, typeInfoN (undefined :: Nat1)     "x"
+--, typeInfoN (undefined :: Nat2)     "x"
+--, typeInfoN (undefined :: Nat3)     "x"
+--, typeInfoN (undefined :: Nat4)     "x"
+--, typeInfoN (undefined :: Nat5)     "x"
+--, typeInfoN (undefined :: Nat6)     "x"
+--, typeInfoN (undefined :: Nat7)     "x"
   ]
 -- WHOA!  Have I discovered a "bug" in GHC?  adding to many type compositions
 -- on typeInfoN and types on basicTypeInfo makes compilation of this module
