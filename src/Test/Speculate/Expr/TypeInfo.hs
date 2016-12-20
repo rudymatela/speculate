@@ -187,6 +187,11 @@ basicTypeInfo = concat
   , typeInfoN (undefined :: Nat6)     "x"
   , typeInfoN (undefined :: Nat7)     "x"
   ]
+-- WHOA!  Have I discovered a "bug" in GHC?  adding to many type compositions
+-- on typeInfoN and types on basicTypeInfo makes compilation of this module
+-- *really* slow: it takes a whopping 2 minutes!
+-- (the above report is using -O2, I have not tested without optimizations).
+
 
 defNames :: [String]
 defNames = namesFromTemplate "x"
