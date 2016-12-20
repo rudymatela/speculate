@@ -167,7 +167,6 @@ report args@Args {maxSize = sz, maxTests = n} = do
     $ conditionalTheoryFromThyAndReps ti n (maxVars args) (computeMaxCondSize args) thy es
   when (showDot args) $
     reportDot ti (maxVars args) n thy es
--- TODO: always append basicTypeInfo to provided typeInfo
 
 reportClassesFor :: TypeInfo -> Int -> [Int] -> Thy -> [Expr] -> IO ()
 reportClassesFor ti nTests nVarss thy res = do
