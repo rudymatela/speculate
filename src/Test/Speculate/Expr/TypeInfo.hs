@@ -72,19 +72,26 @@ typeInfoN :: (Typeable a, Listable a, Show a, Eq a, Ord a)
           => a -> String -> TypeInfo
 typeInfoN x n =
   [ typeInfo    x      $ n
+
   , typeInfo   [x]     $ n ++ "s"
   , typeInfo  [[x]]    $ n ++ "ss"
   , typeInfo [[[x]]]   $ n ++ "ss"
+
   , typeInfo (x,x)     $ n ++ m
   , typeInfo (x,x,x)   $ n ++ m ++ o
   , typeInfo (x,x,x,x) $ n ++ m ++ o ++ p
+
   , typeInfo [(x,x)]   $ n ++ m ++ "s"
   , typeInfo [(x,x,x)] $ n ++ m ++ o ++ "ss"
+
   , typeInfo (x,[x])   $ n ++ m ++ "s"
   , typeInfo ([x],x)   $ n ++ "s" ++ m
   , typeInfo ([x],[x]) $ n ++ "s" ++ m ++ "s"
   , typeInfo (x,(x,x)) $ n ++ m ++ o
   , typeInfo ((x,x),x) $ n ++ m ++ o
+
+  , typeInfo (mayb x)   $ "m" ++ n ++ "s"
+  , typeInfo (eith x x) $ "e" ++ n ++ o ++ "s"
   ]
   where
   m = namesFromTemplate n !! 1
@@ -93,7 +100,7 @@ typeInfoN x n =
 -- NOTE: the function typeInfoN is not perfect: it won't help produce types
 -- combining different sub-types, like for example: (Bool,Int).  But it is
 -- way better than the original version in which I had to explictly define
--- everything.
+-- everything.  A definitive solution is still to be thought of.
 
 -- | Usage: @typeInfoNames (undefined :: Type) ["x","y","z","w",...]@
 --
@@ -151,12 +158,34 @@ lessEqE ti = fmap lessEqE1 . (`findInfo` ti)
 basicTypeInfo :: TypeInfo
 basicTypeInfo = concat
   [ typeInfoN (undefined :: ())       "x"
-  , typeInfoN (undefined :: Int)      "x"
-  , typeInfoN (undefined :: Integer)  "x"
-  , typeInfoN (undefined :: Word2)    "x"
-  , typeInfoN (undefined :: Char)     "c"
   , typeInfoN (undefined :: Bool)     "p"
+
+  , typeInfoN (undefined :: Int)      "x"
+  , typeInfoN (undefined :: Word)     "x"
+  , typeInfoN (undefined :: Integer)  "x"
+
+  , typeInfoN (undefined :: Ordering) "o"
+  , typeInfoN (undefined :: Char)     "c"
+
   , typeInfoN (undefined :: Rational) "q"
+  , typeInfoN (undefined :: Float)    "f"
+  , typeInfoN (undefined :: Double)   "f"
+
+  , typeInfoN (undefined :: Int1)     "x"
+  , typeInfoN (undefined :: Int2)     "x"
+  , typeInfoN (undefined :: Int3)     "x"
+  , typeInfoN (undefined :: Int4)     "x"
+  , typeInfoN (undefined :: Word1)    "x"
+  , typeInfoN (undefined :: Word2)    "x"
+  , typeInfoN (undefined :: Word3)    "x"
+  , typeInfoN (undefined :: Word4)    "x"
+  , typeInfoN (undefined :: Nat1)     "x"
+  , typeInfoN (undefined :: Nat2)     "x"
+  , typeInfoN (undefined :: Nat3)     "x"
+  , typeInfoN (undefined :: Nat4)     "x"
+  , typeInfoN (undefined :: Nat5)     "x"
+  , typeInfoN (undefined :: Nat6)     "x"
+  , typeInfoN (undefined :: Nat7)     "x"
   ]
 
 defNames :: [String]
