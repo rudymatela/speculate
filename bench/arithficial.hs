@@ -14,9 +14,7 @@ h x y = y*13+19
 
 main :: IO ()
 main = speculate args
-  { customTypeInfo =
-      [ typeInfoNames int (primeCycle ["x","y","z","w"])
-      ]
+  { customTypeInfo = [typeInfo int "x"]
   , atoms =
       [ hole int
       , showConstant (0::Int)

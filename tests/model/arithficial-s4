@@ -10,7 +10,7 @@ h :: Int -> Int -> Int
 x + 0 == x
 x + y == y + x
 f x y == f x z
-g x y == g z w
+g x y == g z x'
 h x y == h z y
 
 
