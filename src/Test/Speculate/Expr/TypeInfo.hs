@@ -63,35 +63,35 @@ data TypeInfo1 = TypeInfo1
 type TypeInfo = [TypeInfo1]
 
 -- | Usage: @typeInfo (undefined :: Type) "x"@
-typeInfo :: (Typeable a, Listable a, Show a, Eq a, Ord a)
-         => a -> String -> TypeInfo1
-typeInfo x n = typeInfoNames x (namesFromTemplate n)
+typeInfo1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
+          => a -> String -> TypeInfo1
+typeInfo1 x n = typeInfoNames x (namesFromTemplate n)
 
 -- this eventually will become the new "typeInfo" constructor
-typeInfoN :: (Typeable a, Listable a, Show a, Eq a, Ord a)
-          => a -> String -> TypeInfo
-typeInfoN x n =
-  [ typeInfo    x      $ n
+typeInfo :: (Typeable a, Listable a, Show a, Eq a, Ord a)
+         => a -> String -> TypeInfo
+typeInfo x n =
+  [ typeInfo1    x      $ n
 
-  , typeInfo   [x]     $ n ++ "s"
-  , typeInfo  [[x]]    $ n ++ "ss"
---, typeInfo [[[x]]]   $ n ++ "ss"
+  , typeInfo1   [x]     $ n ++ "s"
+  , typeInfo1  [[x]]    $ n ++ "ss"
+--, typeInfo1 [[[x]]]   $ n ++ "ss"
 
-  , typeInfo (x,x)     $ n ++ m
-  , typeInfo (x,x,x)   $ n ++ m ++ o
---, typeInfo (x,x,x,x) $ n ++ m ++ o ++ p
+  , typeInfo1 (x,x)     $ n ++ m
+  , typeInfo1 (x,x,x)   $ n ++ m ++ o
+--, typeInfo1 (x,x,x,x) $ n ++ m ++ o ++ p
 
-  , typeInfo [(x,x)]   $ n ++ m ++ "s"
---, typeInfo [(x,x,x)] $ n ++ m ++ o ++ "ss"
+  , typeInfo1 [(x,x)]   $ n ++ m ++ "s"
+--, typeInfo1 [(x,x,x)] $ n ++ m ++ o ++ "ss"
 
---, typeInfo (x,[x])   $ n ++ m ++ "s"
---, typeInfo ([x],x)   $ n ++ "s" ++ m
-  , typeInfo ([x],[x]) $ n ++ "s" ++ m ++ "s"
---, typeInfo (x,(x,x)) $ n ++ m ++ o
---, typeInfo ((x,x),x) $ n ++ m ++ o
+--, typeInfo1 (x,[x])   $ n ++ m ++ "s"
+--, typeInfo1 ([x],x)   $ n ++ "s" ++ m
+  , typeInfo1 ([x],[x]) $ n ++ "s" ++ m ++ "s"
+--, typeInfo1 (x,(x,x)) $ n ++ m ++ o
+--, typeInfo1 ((x,x),x) $ n ++ m ++ o
 
-  , typeInfo (mayb x)   $ "m" ++ n ++ "s"
-  , typeInfo (eith x x) $ "e" ++ n ++ o ++ "s"
+  , typeInfo1 (mayb x)   $ "m" ++ n ++ "1"
+  , typeInfo1 (eith x x) $ "e" ++ n ++ o ++ "1"
   ]
   where
   m = namesFromTemplate n !! 1
@@ -158,36 +158,36 @@ lessEqE ti = fmap lessEqE1 . (`findInfo` ti)
 -- TODO: include *ALL* prelude types on basicTypeInfo
 basicTypeInfo :: TypeInfo
 basicTypeInfo = concat
-  [ typeInfoN (undefined :: ())       "x"
-  , typeInfoN (undefined :: Bool)     "p"
+  [ typeInfo (undefined :: ())       "x"
+  , typeInfo (undefined :: Bool)     "p"
 
-  , typeInfoN (undefined :: Int)      "x"
-  , typeInfoN (undefined :: Word)     "x"
-  , typeInfoN (undefined :: Integer)  "x"
+  , typeInfo (undefined :: Int)      "x"
+  , typeInfo (undefined :: Word)     "x"
+  , typeInfo (undefined :: Integer)  "x"
 
-  , typeInfoN (undefined :: Ordering) "o"
-  , typeInfoN (undefined :: Char)     "c"
+  , typeInfo (undefined :: Ordering) "o"
+  , typeInfo (undefined :: Char)     "c"
 
-  , typeInfoN (undefined :: Rational) "q"
-  , typeInfoN (undefined :: Float)    "f"
-  , typeInfoN (undefined :: Double)   "f"
+  , typeInfo (undefined :: Rational) "q"
+  , typeInfo (undefined :: Float)    "f"
+  , typeInfo (undefined :: Double)   "f"
 
 -- TODO: uncomment the following and investigate why compilation takes so long
---, typeInfoN (undefined :: Int1)     "x"
-  , typeInfoN (undefined :: Int2)     "x"
---, typeInfoN (undefined :: Int3)     "x"
---, typeInfoN (undefined :: Int4)     "x"
---, typeInfoN (undefined :: Word1)    "x"
-  , typeInfoN (undefined :: Word2)    "x"
---, typeInfoN (undefined :: Word3)    "x"
---, typeInfoN (undefined :: Word4)    "x"
---, typeInfoN (undefined :: Nat1)     "x"
---, typeInfoN (undefined :: Nat2)     "x"
---, typeInfoN (undefined :: Nat3)     "x"
---, typeInfoN (undefined :: Nat4)     "x"
---, typeInfoN (undefined :: Nat5)     "x"
---, typeInfoN (undefined :: Nat6)     "x"
---, typeInfoN (undefined :: Nat7)     "x"
+--, typeInfo (undefined :: Int1)     "x"
+  , typeInfo (undefined :: Int2)     "x"
+--, typeInfo (undefined :: Int3)     "x"
+--, typeInfo (undefined :: Int4)     "x"
+--, typeInfo (undefined :: Word1)    "x"
+  , typeInfo (undefined :: Word2)    "x"
+--, typeInfo (undefined :: Word3)    "x"
+--, typeInfo (undefined :: Word4)    "x"
+--, typeInfo (undefined :: Nat1)     "x"
+--, typeInfo (undefined :: Nat2)     "x"
+--, typeInfo (undefined :: Nat3)     "x"
+--, typeInfo (undefined :: Nat4)     "x"
+--, typeInfo (undefined :: Nat5)     "x"
+--, typeInfo (undefined :: Nat6)     "x"
+--, typeInfo (undefined :: Nat7)     "x"
   ]
 -- WHOA!  Have I discovered a "bug" in GHC?  adding to many type compositions
 -- on typeInfoN and types on basicTypeInfo makes compilation of this module

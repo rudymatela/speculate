@@ -42,7 +42,7 @@ data Args = Args
   , maxTests             :: Int
   , maxSemiSize          :: Int
   , maxCondSize          :: Int
-  , customTypeInfo       :: TypeInfo
+  , customTypeInfo       :: [TypeInfo]
   , showAtoms            :: Bool
   , showTheory           :: Bool
   , showEquivalences     :: Bool
@@ -143,7 +143,7 @@ notAbout = not .: about
 report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
   -- TODO: use typs here?
-  let ti = customTypeInfo args ++ basicTypeInfo
+  let ti = concat (customTypeInfo args) ++ basicTypeInfo
   let ds = atoms args `union` conditionAtoms args `union` equationAtoms args
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
   let ds' = map holeOfTy ts `union` ds

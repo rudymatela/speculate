@@ -32,7 +32,6 @@ main :: IO ()
 main = speculate args
   { customTypeInfo =
       [ typeInfo color    "c"
-      , typeInfo (mayb rational) "mq1"
       ]
   , maxSize = 4
   , atoms =

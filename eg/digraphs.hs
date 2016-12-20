@@ -31,7 +31,6 @@ main :: IO ()
 main = speculate args
   { customTypeInfo =
       [ typeInfo  nat "x"
-      , typeInfo [nat] "xs"
       , typeInfo (digraph nat) "a"
       ]
   , maxTests = 6000
