@@ -30,9 +30,10 @@ rational = undefined
 
 main :: IO ()
 main = speculate args
-  { typeInfo_ = typeInfo color    "c"
-              : typeInfo (mayb rational) "mq1"
-              : basicTypeInfo
+  { customTypeInfo =
+      [ typeInfo color    "c"
+      , typeInfo (mayb rational) "mq1"
+      ]
   , maxSize = 4
   , atoms =
       [ constant "black"     black

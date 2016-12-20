@@ -29,10 +29,11 @@ digraph = undefined
 
 main :: IO ()
 main = speculate args
-  { typeInfo_ = typeInfo  nat "x"
-              : typeInfo [nat] "xs"
-              : typeInfo (digraph nat) "a"
-              : basicTypeInfo
+  { customTypeInfo =
+      [ typeInfo  nat "x"
+      , typeInfo [nat] "xs"
+      , typeInfo (digraph nat) "a"
+      ]
   , maxTests = 6000
   , atoms =
     let

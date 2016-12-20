@@ -23,8 +23,7 @@ instance Listable Doc where
 
 main :: IO ()
 main = speculate args
-  { typeInfo_ = typeInfo (undefined :: Doc) "d1"
-              : basicTypeInfo
+  { customTypeInfo = [typeInfo (undefined :: Doc) "d1"]
   , maxSize = 7
   , atoms = 
       [ constant "$$"       ($$)

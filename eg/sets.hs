@@ -19,8 +19,7 @@ set = undefined
 
 main :: IO ()
 main = speculate args
-  { typeInfo_ = typeInfo (set int) "s"
-              : basicTypeInfo
+  { customTypeInfo = [typeInfo (set int) "s"]
   , atoms =
       [ showConstant False
       , showConstant True

@@ -18,9 +18,10 @@ name = undefined
 
 main :: IO ()
 main = speculate args
-  { typeInfo_ = typeInfo prop "p"
-              : typeInfo name "n"
-              : basicTypeInfo
+  { customTypeInfo =
+      [ typeInfo prop "p"
+      , typeInfo name "n"
+      ]
   , showConditions = True
   , maxVars = 2
   , atoms =
