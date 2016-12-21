@@ -4,7 +4,7 @@ module Test.Speculate.Utils.String
   , unquote
   , atomic
   , outernmostPrec
-  , isInfix, isPrefix
+  , isInfix, isPrefix, isInfixedPrefix
   , toPrefix
   , prec
   , prime, primeCycle
@@ -81,6 +81,11 @@ prec _ = 9
 
 isPrefix :: String -> Bool
 isPrefix = not . isInfix
+
+-- | Is the string of the form @`string`@
+isInfixedPrefix :: String -> Bool
+isInfixedPrefix ('`':cs) = last cs == '`'
+isInfixedPrefix _ = False
 
 -- | Transform an infix operator into an infix function:
 --

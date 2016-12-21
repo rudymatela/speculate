@@ -21,16 +21,6 @@ quite a few things are missing for that:
 * flip showConditions to true!
 
 
-* fix pretty printing of backquote-infix (`infix`) functions
-  currently printed as:
-
-    (`infix`) :: Type
-
-  should be
-
-    infix :: Type
-
-
 Later
 -----
 

@@ -7,7 +7,7 @@ False :: Bool
 True :: Bool
 odd :: Int -> Bool
 even :: Int -> Bool
-(`mod`) :: Int -> Int -> Int
+mod :: Int -> Int -> Int
 (==) :: Int -> Int -> Bool
 
           even 0 == True
