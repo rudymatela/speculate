@@ -15,19 +15,31 @@ isIn :: Word2 -> BT Word2 -> Bool
 (<=) :: Word2 -> Word2 -> Bool
 (==) :: Word2 -> Word2 -> Bool
 (/=) :: Word2 -> Word2 -> Bool
+(==) :: [Word2] -> [Word2] -> Bool
+(==) :: BT Word2 -> BT Word2 -> Bool
+(==) :: Bool -> Bool -> Bool
 
                               isSearch t == True
+                                isIn x t == (t == insert x t)
+                                (t == t) == True
+                              (xs == xs) == True
+                                (p == p) == True
                            delete x Null == Null
                       ordered (toList t) == True
-                             isIn x Null == False
+                             (p == True) == p
                   fromList (toList Null) == Null
+                     (xs == toList Null) == (Null == fromList xs)
+                         ((p == q) == r) == (p == (q == r))
                    delete x (insert x t) == delete x t
                    insert x (insert x t) == insert x t
-                     isIn x (insert x t) == True
-            isIn x (fromList (toList t)) == isIn x t
+                    (Null == insert x t) == False
 toList (fromList (toList (fromList xs))) == toList (fromList xs)
  fromList (toList (fromList (toList t))) == fromList (toList t)
        fromList (toList (insert x Null)) == insert x Null
+           (fromList (toList t) == Null) == (t == Null)
+                                (t == u) == (u == t)
+                              (xs == ys) == (ys == xs)
+                                (p == q) == (q == p)
                    delete x (delete y t) == delete y (delete x t)
 
           p ==> True
@@ -36,9 +48,77 @@ toList (fromList (toList (fromList xs))) == toList (fromList xs)
 toList Null <=  xs
           t <=  insert x t
 
-ordered xs ==> fromList (toList (fromList xs)) == fromList xs
-    x /= y ==>        delete y (insert x Null) == insert x Null
-  isIn x t ==>                      insert x t == t
-  isIn x t ==>  insert x (fromList (toList t)) == fromList (toList t)
-  isIn y t ==>           insert y (insert x t) == insert x t
+         ordered xs ==> fromList (toList (fromList xs)) == fromList xs
+             x /= y ==>        delete y (insert x Null) == insert x Null
+           isIn x t ==>                      insert x t == t
+           isIn x t ==>  insert x (fromList (toList t)) == fromList (toList t)
+           isIn y t ==>           insert y (insert x t) == insert x t
+False == ordered xs ==>                      delete y u == delete x t
+False == ordered xs ==>                      delete x u == delete x t
+False == ordered xs ==>                      insert x u == insert x t
+False == ordered xs ==>           delete y (delete z u) == delete x t
+False == ordered xs ==>           delete x (delete y u) == delete x t
+False == ordered xs ==>           delete y (delete z t) == delete x t
+False == ordered xs ==>           insert x (delete y u) == insert x t
+False == ordered xs ==>           delete y (delete y u) == delete x t
+False == ordered xs ==>             toList (delete y u) == toList (delete x t)
+False == ordered xs ==>  fromList (toList (delete y u)) == delete x t
+False == ordered xs ==>  delete y (fromList (toList u)) == delete x t
+False == ordered xs ==>           delete x (delete x u) == delete x t
+False == ordered xs ==>           insert x (delete x u) == insert x t
+False == ordered xs ==>             toList (delete x u) == toList (delete x t)
+False == ordered xs ==>             toList (insert x u) == toList (insert x t)
+False == ordered xs ==>  fromList (toList (delete x u)) == delete x t
+False == ordered xs ==>  fromList (toList (insert x u)) == insert x t
+False == ordered xs ==>  delete x (fromList (toList u)) == delete x t
+False == ordered xs ==>  insert x (fromList (toList u)) == insert x t
+False == ordered xs ==>           delete x (delete z u) == delete x (delete y t)
+False == ordered xs ==>           delete y (delete z u) == delete x (delete y t)
+False == ordered xs ==>           insert x (delete z u) == insert x (delete y t)
+False == ordered xs ==>           delete z (delete z u) == delete x (delete y t)
+False == ordered xs ==>  fromList (toList (delete z u)) == delete x (delete y t)
+False == ordered xs ==>  delete z (fromList (toList u)) == delete x (delete y t)
+False == ordered xs ==>           delete x (delete y u) == delete x (delete y t)
+False == ordered xs ==>           delete x (insert y u) == delete x (insert y t)
+False == ordered xs ==>           delete y (delete z t) == delete x (delete y t)
+False == ordered xs ==>           insert x (delete y u) == insert x (delete y t)
+False == ordered xs ==>           insert x (insert y u) == insert x (insert y t)
+False == ordered xs ==>           delete x (delete x u) == delete x (delete y t)
+False == ordered xs ==>           delete y (delete y u) == delete x (delete y t)
+False == ordered xs ==>           delete y (delete y u) == delete x (delete x t)
+False == ordered xs ==>           delete z (delete z t) == delete x (delete y t)
+False == ordered xs ==>           insert x (delete x u) == insert x (delete y t)
+False == ordered xs ==>  fromList (toList (delete x u)) == delete x (delete y t)
+False == ordered xs ==>  fromList (toList (delete y u)) == delete x (delete y t)
+False == ordered xs ==>  fromList (toList (delete y u)) == delete x (delete x t)
+False == ordered xs ==>  fromList (toList (delete z t)) == delete x (delete y t)
+False == ordered xs ==>  fromList (toList (insert x u)) == insert x (delete y t)
+False == ordered xs ==>  delete x (fromList (toList u)) == delete x (delete y t)
+False == ordered xs ==>  delete y (fromList (toList u)) == delete x (delete y t)
+False == ordered xs ==>  delete y (fromList (toList u)) == delete x (delete x t)
+False == ordered xs ==>  delete z (fromList (toList t)) == delete x (delete y t)
+False == ordered xs ==>  insert x (fromList (toList u)) == insert x (delete y t)
+False == ordered xs ==>  fromList (toList (delete y u)) == fromList (toList (delete x t))
+False == ordered xs ==>  delete y (fromList (toList u)) == fromList (toList (delete x t))
+False == ordered xs ==>  delete y (fromList (toList u)) == delete x (fromList (toList t))
+False == ordered xs ==>           delete x (delete x u) == delete x (delete x t)
+False == ordered xs ==>           insert x (delete x u) == insert x (delete x t)
+False == ordered xs ==>  fromList (toList (delete x u)) == delete x (delete x t)
+False == ordered xs ==>  fromList (toList (insert x u)) == insert x (delete x t)
+False == ordered xs ==>  delete x (fromList (toList u)) == delete x (delete x t)
+False == ordered xs ==>  insert x (fromList (toList u)) == insert x (delete x t)
+False == ordered xs ==>  fromList (toList (delete x u)) == fromList (toList (delete x t))
+False == ordered xs ==>  fromList (toList (insert x u)) == fromList (toList (insert x t))
+False == ordered xs ==>  delete x (fromList (toList u)) == fromList (toList (delete x t))
+False == ordered xs ==>  delete x (fromList (toList u)) == delete x (fromList (toList t))
+False == ordered xs ==>  insert x (fromList (toList u)) == fromList (toList (insert x t))
+False == ordered xs ==>  insert x (fromList (toList u)) == insert x (fromList (toList t))
+False == ordered ys ==>          delete y (fromList xs) == delete x t
+False == ordered ys ==>           delete y (delete z t) == delete x (fromList xs)
+False == ordered ys ==>           delete x (delete y t) == delete x (fromList xs)
+False == ordered ys ==>           insert x (delete y t) == insert x (fromList xs)
+False == ordered ys ==>           delete y (delete y t) == delete x (fromList xs)
+False == ordered ys ==>  fromList (toList (delete y t)) == delete x (fromList xs)
+False == ordered ys ==>  delete y (fromList (toList t)) == delete x (fromList xs)
+False == ordered ys ==> toList (delete y (fromList xs)) == toList (delete x t)
 

@@ -15,12 +15,23 @@ isIn :: Word2 -> BT Word2 -> Bool
 (<=) :: Word2 -> Word2 -> Bool
 (==) :: Word2 -> Word2 -> Bool
 (/=) :: Word2 -> Word2 -> Bool
+(==) :: [Word2] -> [Word2] -> Bool
+(==) :: BT Word2 -> BT Word2 -> Bool
+(==) :: Bool -> Bool -> Bool
 
             isSearch t == True
+              (t == t) == True
+            (xs == xs) == True
+              (p == p) == True
          delete x Null == Null
     ordered (toList t) == True
            isIn x Null == False
+           (p == True) == p
 fromList (toList Null) == Null
+   (xs == toList Null) == (Null == fromList xs)
+              (t == u) == (u == t)
+            (xs == ys) == (ys == xs)
+              (p == q) == (q == p)
 
           p ==> True
        Null <=  t

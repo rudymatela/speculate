@@ -13,41 +13,58 @@ True :: Bool
 (==) :: Int -> Int -> Bool
 (<=) :: Int -> Int -> Bool
 all :: (Int -> Bool) -> [Int] -> Bool
+(==) :: [Int] -> [Int] -> Bool
+(==) :: Bool -> Bool -> Bool
 
                 sort [] == []
              ordered [] == True
+             (xs == xs) == True
                (x <= x) == True
+               (p == p) == True
          sort (sort xs) == sort xs
                xs ++ [] == xs
             insert x [] == [x]
                [] ++ xs == xs
       ordered (sort xs) == True
               elem x [] == False
+            (p == True) == p
      sort (insert x xs) == sort (x:xs)
      insert x (sort xs) == sort (x:xs)
   ordered (insert x xs) == ordered xs
        elem x (sort xs) == elem x xs
+        (xs == sort xs) == ordered xs
                sort [x] == [x]
             ordered [x] == True
           all (x <=) [] == True
           all (x ==) [] == True
+        (sort xs == []) == (xs == [])
        (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
    elem x (insert y xs) == elem x (y:xs)
+        ((p == q) == r) == (p == (q == r))
         insert x (x:xs) == x:(x:xs)
           elem x (x:xs) == True
       elem x (xs ++ xs) == elem x xs
+           (xs == x:xs) == False
+    (xs == insert x xs) == False
+       (xs ++ ys == xs) == (ys == [])
    sort (xs ++ sort ys) == sort (xs ++ ys)
     ordered (x:sort xs) == all (x <=) xs
+           ([] == x:xs) == False
+    ([] == insert x xs) == False
    all (x <=) (sort xs) == all (x <=) xs
    all (x ==) (sort xs) == all (x ==) xs
 ordered (xs ++ sort xs) == ordered (xs ++ xs)
 ordered (sort xs ++ xs) == ordered (xs ++ xs)
+             (xs == ys) == (ys == xs)
                (x == y) == (y == x)
+               (p == q) == (q == p)
         sort (xs ++ ys) == sort (ys ++ xs)
                    x:xs == [x] ++ xs
                (x == y) == elem x [y]
+             (xs == []) == ([] == xs ++ xs)
  insert x (insert y xs) == insert y (insert x xs)
       elem x (xs ++ ys) == elem x (ys ++ xs)
+       (xs == ys ++ zs) == (xs == zs ++ ys)
            insert x [y] == insert y [x]
 
         ordered xs ==>             sort xs == xs

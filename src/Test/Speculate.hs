@@ -150,6 +150,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let ds' = map holeOfTy ts `union` ds
             `union` [showConstant True  | showConditions']
             `union` [showConstant False | showConditions']
+            `union` catMaybes [equalityE ti t | t <- ts, showConditions']
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (equal ti n) ds'
   when (showAtoms args)        . putStrLn . unlines $ map show ds'
   unless (null uts) . putStrLn

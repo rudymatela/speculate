@@ -9,24 +9,30 @@ odd :: Int -> Bool
 even :: Int -> Bool
 mod :: Int -> Int -> Int
 (==) :: Int -> Int -> Bool
+(==) :: Bool -> Bool -> Bool
 
-          even 0 == True
-          even 1 == False
-          even 2 == True
-           odd 0 == False
-           odd 1 == True
-           odd 2 == False
-        (x == x) == True
-       x `mod` 1 == 0
-       0 `mod` 2 == 0
-       1 `mod` 2 == 1
-       2 `mod` 2 == 0
-        (0 == 1) == False
-        (0 == 2) == False
-        (1 == 2) == False
-even (x `mod` 2) == even x
- odd (x `mod` 2) == odd x
-        (x == y) == (y == x)
+           even 0 == True
+           even 1 == False
+           even 2 == True
+            odd 0 == False
+            odd 1 == True
+            odd 2 == False
+         (x == x) == True
+         (p == p) == True
+        x `mod` 1 == 0
+      (p == True) == p
+        0 `mod` 2 == 0
+        1 `mod` 2 == 1
+        2 `mod` 2 == 0
+         (0 == 1) == False
+         (0 == 2) == False
+         (1 == 2) == False
+ even (x `mod` 2) == even x
+  odd (x `mod` 2) == odd x
+(False == even x) == odd x
+ (False == odd x) == even x
+         (x == y) == (y == x)
+         (p == q) == (q == p)
 
     p ==> True
 False ==> p

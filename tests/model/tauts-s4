@@ -8,10 +8,17 @@ eval :: Prop -> Prop
 varOf :: Prop -> Name
 subst :: Name -> Bool -> Prop -> Prop
 taut :: Prop -> Bool
+(==) :: Name -> Name -> Bool
+(==) :: Bool -> Bool -> Bool
 
+     (n == n) == True
+     (p == p) == True
      (p == p) == True
 eval (eval p) == eval p
 taut (eval p) == taut p
+  (p == True) == p
+     (n == o) == (o == n)
+     (p == q) == (q == p)
      (p == q) == (q == p)
 
     p ==> True
