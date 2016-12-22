@@ -4,6 +4,7 @@ module Test.Speculate.Utils.Typeable
   , unFunTy
   , argumentTy
   , resultTy
+  , finalResultTy
   , boolTy
   , mkEqnTy
   , funTyCon
@@ -29,6 +30,11 @@ typesIn t
   | isFunTy t = typesIn (argumentTy t)
             +++ typesIn (resultTy   t)
   | otherwise = [t]
+
+finalResultTy :: TypeRep -> TypeRep
+finalResultTy t
+  | isFunTy t = finalResultTy (resultTy t)
+  | otherwise = t
 
 unFunTy :: TypeRep -> (TypeRep,TypeRep)
 unFunTy t

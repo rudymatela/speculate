@@ -11,9 +11,6 @@ current -- enable conditions by default
 
 quite a few things are missing for that:
 
-* compute wheter I can generate any conditions at all (i.e.: a function
-  returning boolean in atoms).  do condition generation only when this is true
-
 * auto add (==) to atoms
 
 * ... ?

@@ -146,9 +146,10 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let ti = concat (customTypeInfo args) ++ basicTypeInfo
   let ds = atoms args `union` conditionAtoms args `union` equationAtoms args
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
+  let showConditions' = showConditions args && boolTy `elem` map (finalResultTy . typ) ds
   let ds' = map holeOfTy ts `union` ds
-            `union` [showConstant True  | showConditions args]
-            `union` [showConstant False | showConditions args]
+            `union` [showConstant True  | showConditions']
+            `union` [showConstant False | showConditions']
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (equal ti n) ds'
   when (showAtoms args)        . putStrLn . unlines $ map show ds'
   unless (null uts) . putStrLn
@@ -162,7 +163,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
     . prettyShy (shouldShowEquation args) (equivalentInstance thy)
     . semiTheoryFromThyAndReps ti n (maxVars args) thy
     $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
-  when (showConditions args && boolTy `elem` ts) . putStrLn
+  when showConditions' . putStrLn
     . prettyChy (shouldShowConditionalEquation args)
     $ conditionalTheoryFromThyAndReps ti n (maxVars args) (computeMaxCondSize args) thy es
   when (showDot args) $
