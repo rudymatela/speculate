@@ -15,11 +15,11 @@ quite a few things are missing for that:
 
 * flip showConditions to true!
 
-* rename atoms to constants
-
 
 Later
 -----
+
+* rename atoms to constants
 
 * remove redundant equation on numbool -s4
 
