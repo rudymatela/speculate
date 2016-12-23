@@ -1,8 +1,6 @@
 _ :: Set Int  (holes: Set Int)
 _ :: Int  (holes: Int)
 _ :: Bool  (holes: Bool)
-False :: Bool
-True :: Bool
 emptyS :: Set Int
 singleS :: Int -> Set Int
 insertS :: Int -> Set Int -> Set Int
@@ -11,6 +9,11 @@ sizeS :: Set Int -> Int
 (<~) :: Int -> Set Int -> Bool
 (\/) :: Set Int -> Set Int -> Set Int
 (/\) :: Set Int -> Set Int -> Set Int
+False :: Bool
+True :: Bool
+(==) :: Set Int -> Set Int -> Bool
+(==) :: Int -> Int -> Bool
+(==) :: Bool -> Bool -> Bool
 
           insertS x s == s \/ singleS x
                s /\ s == s
@@ -19,15 +22,16 @@ sizeS :: Set Int -> Int
           s \/ emptyS == s
      deleteS x emptyS == emptyS
           x <~ emptyS == False
+       x <~ singleS y == (x == y)
 deleteS x (singleS x) == emptyS
-       x <~ singleS x == True
+(emptyS == singleS x) == False
                s /\ t == t /\ s
                s \/ t == t \/ s
     sizeS (singleS x) == sizeS (singleS y)
-       x <~ singleS y == y <~ singleS x
 
-           p ==> True
-      emptyS <=  s
-       False ==> p
-sizeS emptyS <=  sizeS s
+      emptyS <= s
+sizeS emptyS <= sizeS s
+
+x <~ s ==>    insertS x s == s
+x <~ s ==> s /\ singleS x == singleS x
 

@@ -4,23 +4,32 @@ True :: Bool
 not :: Bool -> Bool
 (&&) :: Bool -> Bool -> Bool
 (||) :: Bool -> Bool -> Bool
+(==) :: Bool -> Bool -> Bool
 
       not False == True
        not True == False
        (p && p) == p
+       (p == p) == True
        (p || p) == p
     not (not p) == p
    (p && False) == False
     (p && True) == p
+   (p == False) == not p
+    (p == True) == p
    (p || False) == p
     (p || True) == True
    not (p || q) == (not p && not q)
+   (p == not q) == not (p == q)
    (p || not q) == not (q && not p)
    (p && not p) == False
 ((p && q) && r) == (p && (q && r))
 ((p || q) || r) == (p || (q || r))
+  (p && p == q) == (p && q)
 (p && (p || q)) == p
+(p == (p && q)) == not (p && not q)
+(p == (p || q)) == not (q && not p)
   (p || p && q) == p
+  (p || p == q) == not (q && not p)
        (p && q) == (q && p)
        (p || q) == (q || p)
 
@@ -28,4 +37,6 @@ not :: Bool -> Bool
  False ==> p
      p ==> p || q
 p && q ==> p
+p && q ==> p == q
+
 

@@ -107,11 +107,8 @@ Now, if we add the following to the list of atoms
 
 	, constant "<="  ((<=) :: Int -> Int -> Bool)
 	, constant "<"   ((<)  :: Int -> Int -> Bool)
-	, constant "=="  ((==) :: Int -> Int -> Bool)
-	, showConstant False
-	, showConstant True
 
-then run with `-C` argument to activate conditions (`./speculate -C`),
+then run again,
 we get the following as well:
 
 	    y <= x ==> abs (x + abs y) == x + abs y

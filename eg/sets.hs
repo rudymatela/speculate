@@ -21,9 +21,7 @@ main :: IO ()
 main = speculate args
   { customTypeInfo = [typeInfo (set int) "s"]
   , atoms =
-      [ showConstant False
-      , showConstant True
-      , constant "emptyS"      $ emptyS      -:  set int
+      [ constant "emptyS"      $ emptyS      -:  set int
       , constant "singleS"     $ singleS     -:> int    
     --, constant "pairS"       $ pairS       -:> int    
       , constant "insertS"     $ insertS     -:> int    
@@ -37,5 +35,9 @@ main = speculate args
     --, constant "subS"        $ subS        -:> set int
     --, constant "powerS"      $ powerS      -:> set int
     --, constant "partitionsS" $ partitionsS -:> set int
+      ]
+  , backgroundAtoms =
+      [ showConstant False
+      , showConstant True
       ]
   }

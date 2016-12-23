@@ -1,8 +1,6 @@
 _ :: Set Int  (holes: Set Int)
 _ :: Int  (holes: Int)
 _ :: Bool  (holes: Bool)
-False :: Bool
-True :: Bool
 emptyS :: Set Int
 singleS :: Int -> Set Int
 insertS :: Int -> Set Int -> Set Int
@@ -11,6 +9,11 @@ sizeS :: Set Int -> Int
 (<~) :: Int -> Set Int -> Bool
 (\/) :: Set Int -> Set Int -> Set Int
 (/\) :: Set Int -> Set Int -> Set Int
+False :: Bool
+True :: Bool
+(==) :: Set Int -> Set Int -> Bool
+(==) :: Int -> Int -> Bool
+(==) :: Bool -> Bool -> Bool
 
                   insertS x s == s \/ singleS x
                        s /\ s == s
@@ -18,9 +21,10 @@ sizeS :: Set Int -> Int
                   s /\ emptyS == emptyS
                   s \/ emptyS == s
              deleteS x emptyS == emptyS
+                (s == emptyS) == (sizeS s == sizeS emptyS)
                   x <~ emptyS == False
+               x <~ singleS y == (x == y)
         deleteS x (singleS x) == emptyS
-               x <~ singleS x == True
            deleteS x (s /\ t) == s /\ deleteS x t
                 (s /\ t) /\ u == s /\ (t /\ u)
                 (s \/ t) \/ u == s \/ (t \/ u)
@@ -29,18 +33,25 @@ sizeS :: Set Int -> Int
                 s \/ (s /\ t) == s
              s \/ deleteS x s == s
       deleteS x (deleteS x s) == deleteS x s
+           (s == deleteS x s) == (False == x <~ s)
              x <~ deleteS x s == False
+                (s /\ t == s) == (t == s \/ t)
+     (singleS x == singleS y) == (x == y)
                        s /\ t == t /\ s
                        s \/ t == t \/ s
             sizeS (singleS x) == sizeS (singleS y)
-               x <~ singleS y == y <~ singleS x
              s /\ deleteS x t == t /\ deleteS x s
       deleteS x (deleteS y s) == deleteS y (deleteS x s)
 sizeS (deleteS x (singleS y)) == sizeS (deleteS y (singleS x))
 
-                     p ==> True
-                emptyS <=  s
-                 False ==> p
-          sizeS emptyS <=  sizeS s
-singleS (sizeS emptyS) <=  singleS (sizeS s)
+                emptyS <= s
+          sizeS emptyS <= sizeS s
+singleS (sizeS emptyS) <= singleS (sizeS s)
+
+x <~ s ==>        insertS x s == s
+x <~ s ==>     s /\ singleS x == singleS x
+x <~ s ==>   s \/ deleteS x t == s \/ t
+x <~ s ==> insertS x (s \/ t) == s \/ t
+x <~ s ==> insertS x (s /\ t) == s /\ insertS x t
+x <~ t ==> insertS x (s \/ t) == s \/ t
 
