@@ -34,16 +34,18 @@ main = speculate args
       , typeInfo (digraph nat) "a"
       ]
   , maxTests = 6000
+  , maxVars = 2
+  , showConditions = True
   , atoms =
     let
+      -- totalize functions for nicer output
+      -- (but also works without totalized functions)
       addNode' n g | isNode n g = g
                    | otherwise  = addNode n g
       addEdge' n1 n2 g | isEdge n1 n2 g = g
                        | otherwise = addEdge n1 n2 g
     in
-      [ showConstant False
-      , showConstant True
-      , showConstant ([]::[Nat])
+      [ showConstant ([]::[Nat])
       , constant "emptyDigraph" $ emptyDigraph -: digraph nat
       , constant "preds"        $ preds    -:>  nat
       , constant "succs"        $ succs    -:>  nat
@@ -53,7 +55,10 @@ main = speculate args
       , constant "addNode"      $ addNode' -:>  nat
       , constant "addEdge"      $ addEdge' -:>  nat
       , constant "subgraph"     $ subgraph -:> [nat]
-      , constant "=="           $ (==)     -:>  nat
       , constant "elem"         $ elem    ->:> [nat]
+      ]
+  , backgroundAtoms =
+      [ showConstant False
+      , showConstant True
       ]
   }
