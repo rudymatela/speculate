@@ -6,18 +6,17 @@ A non-exhaustive list of things TODO for Speculate
 Warning: I tend to ramble...
 
 
-current -- enable conditions by default
----------------------------------------
+current
+-------
 
-quite a few things are missing for that:
+* sort the following by priority
 
-* ... ?
+* (Colin) another pruning principle:
 
-* flip showConditions to true!
+  0 <= x ==>           abs x == x
+  0 <= x ==> abs (x + abs y) == x + abs y
 
-
-Later
------
+When 0 <= x, then 0 <= x + abs y, so the second is just an instance of the first.
 
 * rename atoms to constants
 
