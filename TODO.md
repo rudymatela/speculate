@@ -11,8 +11,6 @@ current -- enable conditions by default
 
 quite a few things are missing for that:
 
-* auto add (==) to atoms
-
 * ... ?
 
 * flip showConditions to true!
