@@ -8,16 +8,16 @@ insert :: Int -> [Int] -> [Int]
 sort :: [Int] -> [Int]
 elem :: Int -> [Int] -> Bool
 ordered :: [Int] -> Bool
+all :: (Int -> Bool) -> [Int] -> Bool
 False :: Bool
 True :: Bool
 (==) :: Int -> Int -> Bool
 (<=) :: Int -> Int -> Bool
-all :: (Int -> Bool) -> [Int] -> Bool
+(==) :: [Int] -> [Int] -> Bool
+(==) :: Bool -> Bool -> Bool
 
               sort [] == []
            ordered [] == True
-             (x <= x) == True
-             (x == x) == True
        sort (sort xs) == sort xs
              xs ++ [] == xs
           insert x [] == [x]
@@ -28,15 +28,17 @@ all :: (Int -> Bool) -> [Int] -> Bool
    insert x (sort xs) == sort (x:xs)
 ordered (insert x xs) == ordered xs
      elem x (sort xs) == elem x xs
+      (xs == sort xs) == ordered xs
              sort [x] == [x]
           ordered [x] == True
         all (x <=) [] == True
         all (x ==) [] == True
-             (x == y) == (y == x)
+      (sort xs == []) == (xs == [])
       sort (xs ++ ys) == sort (ys ++ xs)
 
-      p ==> True
-     [] <=  xs
-  False ==> p
-sort xs <=  xs
+     [] <= xs
+sort xs <= xs
+
+ordered xs ==>     sort xs == xs
+ordered xs ==> sort (x:xs) == insert x xs
 

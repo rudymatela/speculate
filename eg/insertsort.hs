@@ -15,10 +15,14 @@ main = speculate args
       , constant "sort"    $ sort    -:> [int]
       , constant "elem"    $ elem   ->:> [int]
       , constant "ordered" $ ordered -:> [int]
-      , constant "False"     False
+      , constant "all"     $ all    ->:> [int]
+      ]
+  , backgroundAtoms =
+      [ constant "False"     False
       , constant "True"      True
       , constant "=="      $ (==)    -:>  int
       , constant "<="      $ (<=)    -:>  int
-      , constant "all"     $ all    ->:> [int]
       ]
+  , maxVars = 2
+  , showConditions = True
   }

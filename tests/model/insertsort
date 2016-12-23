@@ -8,15 +8,16 @@ insert :: Int -> [Int] -> [Int]
 sort :: [Int] -> [Int]
 elem :: Int -> [Int] -> Bool
 ordered :: [Int] -> Bool
+all :: (Int -> Bool) -> [Int] -> Bool
 False :: Bool
 True :: Bool
 (==) :: Int -> Int -> Bool
 (<=) :: Int -> Int -> Bool
-all :: (Int -> Bool) -> [Int] -> Bool
+(==) :: [Int] -> [Int] -> Bool
+(==) :: Bool -> Bool -> Bool
 
                 sort [] == []
              ordered [] == True
-               (x <= x) == True
          sort (sort xs) == sort xs
                xs ++ [] == xs
             insert x [] == [x]
@@ -27,34 +28,61 @@ all :: (Int -> Bool) -> [Int] -> Bool
      insert x (sort xs) == sort (x:xs)
   ordered (insert x xs) == ordered xs
        elem x (sort xs) == elem x xs
+        (xs == sort xs) == ordered xs
                sort [x] == [x]
             ordered [x] == True
           all (x <=) [] == True
           all (x ==) [] == True
+        (sort xs == []) == (xs == [])
        (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
    elem x (insert y xs) == elem x (y:xs)
         insert x (x:xs) == x:(x:xs)
           elem x (x:xs) == True
       elem x (xs ++ xs) == elem x xs
+           (xs == x:xs) == False
+    (xs == insert x xs) == False
+       (xs ++ ys == xs) == (ys == [])
    sort (xs ++ sort ys) == sort (xs ++ ys)
     ordered (x:sort xs) == all (x <=) xs
+           ([] == x:xs) == False
+    ([] == insert x xs) == False
    all (x <=) (sort xs) == all (x <=) xs
    all (x ==) (sort xs) == all (x ==) xs
 ordered (xs ++ sort xs) == ordered (xs ++ xs)
 ordered (sort xs ++ xs) == ordered (xs ++ xs)
-               (x == y) == (y == x)
         sort (xs ++ ys) == sort (ys ++ xs)
                    x:xs == [x] ++ xs
                (x == y) == elem x [y]
+             (xs == []) == ([] == xs ++ xs)
  insert x (insert y xs) == insert y (insert x xs)
       elem x (xs ++ ys) == elem x (ys ++ xs)
+       (xs == ys ++ zs) == (xs == zs ++ ys)
            insert x [y] == insert y [x]
 
-          p ==> True
          [] <=  xs
-      False ==> p
     sort xs <=  xs
          xs <=  xs ++ ys
+   xs == [] ==> ordered xs
 insert x xs <=  x:xs
-     x == y ==> x <= y
+
+        ordered xs ==>             sort xs == xs
+        ordered xs ==>         sort (x:xs) == insert x xs
+         elem x xs ==>   insert x xs ++ ys == insert x (xs ++ ys)
+         elem x xs ==>   insert x xs ++ xs == insert x (xs ++ xs)
+            x <= y ==>     insert x (y:xs) == x:(y:xs)
+ordered (ys ++ xs) ==>       ys ++ sort xs == sort (xs ++ ys)
+ordered (ys ++ xs) ==>       sort ys ++ xs == sort (xs ++ ys)
+ordered (ys ++ xs) ==>  sort ys ++ sort xs == sort (xs ++ ys)
+     all (x <=) xs ==>         insert x xs == x:xs
+     all (x <=) xs ==>           x:sort xs == sort (x:xs)
+     all (x <=) xs ==>     insert y (x:xs) == insert x (insert y xs)
+     all (x <=) xs ==> insert x (xs ++ xs) == x:(xs ++ xs)
+     all (x <=) ys ==>   insert x xs ++ ys == insert x (xs ++ ys)
+     all (x ==) xs ==>           xs ++ [x] == x:xs
+     all (x ==) xs ==>           xs ++ [x] == insert x xs
+     all (x ==) xs ==>           xs ++ [x] == sort (x:xs)
+     all (x ==) xs ==>           xs ++ [x] == x:sort xs
+     all (x ==) xs ==>        x:(xs ++ ys) == xs ++ (x:ys)
+     all (x ==) xs ==>   insert x xs ++ ys == xs ++ (x:ys)
+     all (x ==) xs ==> insert x (xs ++ xs) == xs ++ (x:xs)
 
