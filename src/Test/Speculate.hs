@@ -59,6 +59,7 @@ data Args = Args
 --, keepRewriteRules     :: Bool
   , showHelp             :: Bool
   , extra                :: [String] -- unused, user-defined meaning
+  , backgroundAtoms      :: [Expr] -- ^ background atoms
   , atoms                :: [Expr] -- ^ atoms used on both conditions and equations
   , conditionAtoms       :: [Expr] -- ^ atoms exclusive to conditions
   , equationAtoms        :: [Expr] -- ^ atoms exclusive to equations
@@ -87,6 +88,7 @@ args = Args
 --, keepRewriteRules     = False
   , showHelp             = False
   , extra                = []
+  , backgroundAtoms      = []
   , atoms                = []
   , conditionAtoms       = []
   , equationAtoms        = []
@@ -110,7 +112,7 @@ shouldShowEquation :: Args -> (Expr,Expr) -> Bool
 shouldShowEquation args (e1,e2) =
   shouldShow2 args (e1,e2) && (e1 `about` ea || e2 `about` ea)
   where
-  ea = equationAtoms args ++ (atoms args \\ conditionAtoms args)
+  ea = equationAtoms args ++ ((atoms args \\ conditionAtoms args) \\ backgroundAtoms args)
 
 shouldShow3 :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShow3 args (e1,e2,e3) = showConstantLaws args
@@ -122,8 +124,8 @@ shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
                                               || e1 `about` ea
                                               || e2 `about` ea)
   where
-  ca = conditionAtoms args ++ (atoms args \\ equationAtoms args)
-  ea = equationAtoms args  ++ (atoms args \\ conditionAtoms args)
+  ca = conditionAtoms args ++ ((atoms args \\ equationAtoms args)  \\ backgroundAtoms args)
+  ea = equationAtoms args  ++ ((atoms args \\ conditionAtoms args) \\ backgroundAtoms args)
 
 -- | Are all atoms in an expression about a list of atoms?
 -- Examples in pseudo-Haskell:
@@ -144,7 +146,7 @@ report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
   -- TODO: use typs here?
   let ti = concat (customTypeInfo args) ++ basicTypeInfo
-  let ds = atoms args `union` conditionAtoms args `union` equationAtoms args
+  let ds = atoms args `union` backgroundAtoms args `union` conditionAtoms args `union` equationAtoms args
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
   let showConditions' = showConditions args && boolTy `elem` map (finalResultTy . typ) ds
   let ds' = map holeOfTy ts `union` ds

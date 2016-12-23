@@ -4,10 +4,12 @@ import Test.LeanCheck ((==>))
 main :: IO ()
 main = speculate args
   { atoms =
+      [ constant "+"   ((+)  :: Int -> Int -> Int)
+      , constant "abs" (abs  :: Int -> Int)
+      ]
+  , backgroundAtoms =
       [ showConstant (0::Int)
       , showConstant (1::Int)
-      , constant "+"   ((+)  :: Int -> Int -> Int)
-      , constant "abs" (abs  :: Int -> Int)
       ]
   , conditionAtoms =
       [ constant "<="  ((<=) :: Int -> Int -> Bool)

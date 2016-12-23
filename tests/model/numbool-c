@@ -1,9 +1,9 @@
 _ :: Int  (holes: Int)
 _ :: Bool  (holes: Bool)
-0 :: Int
-1 :: Int
 (+) :: Int -> Int -> Int
 abs :: Int -> Int
+0 :: Int
+1 :: Int
 (<=) :: Int -> Int -> Bool
 (<) :: Int -> Int -> Bool
 (==) :: Int -> Int -> Bool
@@ -17,7 +17,6 @@ not :: Bool -> Bool
     abs (abs x) == abs x
           x + 0 == x
        (x == 0) == (abs x < 1)
-        (1 < 0) == False
     (x < abs x) == (x < 0)
    (x == abs x) == not (x < 0)
     (abs x < x) == False
@@ -35,7 +34,6 @@ abs (x + abs x) == x + abs x
     (x + x < 1) == not (0 < x)
 abs (1 + abs x) == 1 + abs x
           x + y == y + x
-        (0 < x) == not (x < 1)
     not (x < y) == (y < x + 1)
 
         y <= x ==> abs (x + abs y) == x + abs y
