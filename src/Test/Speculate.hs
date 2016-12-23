@@ -108,9 +108,9 @@ shouldShow2 args (e1,e2) = showConstantLaws args || hasVar e1 || hasVar e2
 
 shouldShowEquation :: Args -> (Expr,Expr) -> Bool
 shouldShowEquation args (e1,e2) =
-  shouldShow2 args (e1,e2) && e1 `notAbout` ca && e2 `notAbout` ca
+  shouldShow2 args (e1,e2) && (e1 `about` ea || e2 `about` ea)
   where
-  ca = conditionAtoms args \\ equationAtoms args
+  ea = equationAtoms args ++ (atoms args \\ conditionAtoms args)
 
 shouldShow3 :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShow3 args (e1,e2,e3) = showConstantLaws args
@@ -118,12 +118,12 @@ shouldShow3 args (e1,e2,e3) = showConstantLaws args
 
 shouldShowConditionalEquation :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
-                                             && ce `notAbout` ea
-                                             && e1 `notAbout` ca
-                                             && e2 `notAbout` ca
+                                             && (ce `about` ca
+                                              || e1 `about` ea
+                                              || e2 `about` ea)
   where
-  ca = conditionAtoms args \\ equationAtoms args
-  ea = equationAtoms args \\ conditionAtoms args
+  ca = conditionAtoms args ++ (atoms args \\ equationAtoms args)
+  ea = equationAtoms args  ++ (atoms args \\ conditionAtoms args)
 
 -- | Are all atoms in an expression about a list of atoms?
 -- Examples in pseudo-Haskell:

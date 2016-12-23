@@ -40,7 +40,6 @@ all :: (Int -> Bool) -> [Int] -> Bool
         (sort xs == []) == (xs == [])
        (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
    elem x (insert y xs) == elem x (y:xs)
-        ((p == q) == r) == (p == (q == r))
         insert x (x:xs) == x:(x:xs)
           elem x (x:xs) == True
       elem x (xs ++ xs) == elem x xs
@@ -55,9 +54,7 @@ all :: (Int -> Bool) -> [Int] -> Bool
    all (x ==) (sort xs) == all (x ==) xs
 ordered (xs ++ sort xs) == ordered (xs ++ xs)
 ordered (sort xs ++ xs) == ordered (xs ++ xs)
-             (xs == ys) == (ys == xs)
                (x == y) == (y == x)
-               (p == q) == (q == p)
         sort (xs ++ ys) == sort (ys ++ xs)
                    x:xs == [x] ++ xs
                (x == y) == elem x [y]

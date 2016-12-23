@@ -11,9 +11,13 @@ current -- enable conditions by default
 
 quite a few things are missing for that:
 
+* add backgroundAtoms?
+
 * ... ?
 
 * flip showConditions to true!
+
+* rename atoms to constants
 
 
 Later

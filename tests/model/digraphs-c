@@ -35,16 +35,12 @@ elem :: Nat -> [Nat] -> Bool
       isPath x y emptyDigraph == False
         preds x (addNode y a) == preds x a
         succs x (addNode y a) == succs x a
-              ((p == q) == r) == (p == (q == r))
   subgraph xs (subgraph xs a) == subgraph xs a
       addNode x (addNode x a) == addNode x a
        isNode x (addNode x a) == True
            (a == addNode x a) == isNode x a
 (emptyDigraph == addNode x a) == False
-                   (xs == ys) == (ys == xs)
                      (x == y) == (y == x)
-                     (a == b) == (b == a)
-                     (p == q) == (q == p)
                      (x == y) == isNode x (addNode y emptyDigraph)
   subgraph xs (subgraph ys a) == subgraph ys (subgraph xs a)
       addNode x (addNode y a) == addNode y (addNode x a)

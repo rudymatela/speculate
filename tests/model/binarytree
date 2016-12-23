@@ -20,7 +20,10 @@ isIn :: Word2 -> BT Word2 -> Bool
 (==) :: Bool -> Bool -> Bool
 
                               isSearch t == True
+                                (x == y) == (False == (x /= y))
                                 isIn x t == (t == insert x t)
+                                (x /= x) == False
+                                (x <= x) == True
                                 (t == t) == True
                               (xs == xs) == True
                                 (p == p) == True
@@ -29,7 +32,6 @@ isIn :: Word2 -> BT Word2 -> Bool
                              (p == True) == p
                   fromList (toList Null) == Null
                      (xs == toList Null) == (Null == fromList xs)
-                         ((p == q) == r) == (p == (q == r))
                    delete x (insert x t) == delete x t
                    insert x (insert x t) == insert x t
                     (Null == insert x t) == False
@@ -37,9 +39,6 @@ toList (fromList (toList (fromList xs))) == toList (fromList xs)
  fromList (toList (fromList (toList t))) == fromList (toList t)
        fromList (toList (insert x Null)) == insert x Null
            (fromList (toList t) == Null) == (t == Null)
-                                (t == u) == (u == t)
-                              (xs == ys) == (ys == xs)
-                                (p == q) == (q == p)
                    delete x (delete y t) == delete y (delete x t)
 
           p ==> True

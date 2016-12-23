@@ -32,7 +32,6 @@ mod :: Int -> Int -> Int
 (False == even x) == odd x
  (False == odd x) == even x
          (x == y) == (y == x)
-         (p == q) == (q == p)
 
     p ==> True
 False ==> p

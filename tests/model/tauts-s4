@@ -17,8 +17,6 @@ taut :: Prop -> Bool
 eval (eval p) == eval p
 taut (eval p) == taut p
   (p == True) == p
-     (n == o) == (o == n)
-     (p == q) == (q == p)
      (p == q) == (q == p)
 
     p ==> True
