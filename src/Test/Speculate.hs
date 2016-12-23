@@ -185,25 +185,25 @@ reportClassesFor ti nTests nVarss thy res = do
 -- for cmdArgs
 prepareArgs :: Args -> Mode Args
 prepareArgs args =
-  mode "hello" args "" (flagArg (\s a -> Right a {extra = s:extra a}) "")
-  [ "ssize"               --= \s a -> a {maxSize  = read s}
-  , "ttests"              --= \s a -> a {maxTests = read s}
-  , "zsemisize"           --= \s a -> a {maxSemiSize = read s}
-  , "xcondsize"           --= \s a -> a {maxCondSize = read s}
-  , "Aatoms"              --.   \a -> a {showAtoms = False}
-  , "Ttheory"             --.   \a -> a {showTheory = True}
-  , "Enoequivalences"     --.   \a -> a {showEquivalences = False}
-  , "Snosemiequivalences" --.   \a -> a {showSemiequivalences = False}
-  , "Cnosideconditions"   --.   \a -> a {showConditions = True}
-  , "0noconstantlaws"     --.   \a -> a {showConstantLaws = False}
-  , "cclasses-for"        --= \s a -> a {showClassesFor = read s `L.insert` showClassesFor a}
-  , "vvars"               --= \s a -> a {maxVars = read s}
-  , "ddot"                --.   \a -> a {showDot = True
+  mode "speculate" args "" (flagArg (\s a -> Right a {extra = s:extra a}) "")
+  [ "ssize"              --= \s a -> a {maxSize  = read s}
+  , "ttests"             --= \s a -> a {maxTests = read s}
+  , "zsemisize"          --= \s a -> a {maxSemiSize = read s}
+  , "xcondsize"          --= \s a -> a {maxCondSize = read s}
+  , "Aatoms"             --.   \a -> a {showAtoms = False}
+  , "Ttheory"            --.   \a -> a {showTheory = True}
+  , "Eno-equations"      --.   \a -> a {showEquivalences = False}
+  , "Sno-semiequations"  --.   \a -> a {showSemiequivalences = False}
+  , "Cno-sideconditions" --.   \a -> a {showConditions = True}
+  , "0no-constant-laws"  --.   \a -> a {showConstantLaws = False}
+  , "cclasses-for"       --= \s a -> a {showClassesFor = read s `L.insert` showClassesFor a}
+  , "vvars"              --= \s a -> a {maxVars = read s}
+  , "ddot"               --.   \a -> a {showDot = True
                                         ,showAtoms = False
                                         ,showEquivalences = False
                                         ,showSemiequivalences = False
                                         ,showConditions = False}
-  , "hhelp"               --.   \a -> a {showHelp = True}
+  , "hhelp"              --.   \a -> a {showHelp = True}
   ]
   where
   (short:long) --= fun = flagReq  [[short],long] ((Right .) . fun) "X" ""
