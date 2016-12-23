@@ -1,3 +1,0 @@
-#!/bin/bash
-EG=`dirname "$0"`/../eg
-$EG/numbool -SCv2 -x0

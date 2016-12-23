@@ -11,8 +11,6 @@ current -- enable conditions by default
 
 quite a few things are missing for that:
 
-* add backgroundAtoms?
-
 * ... ?
 
 * flip showConditions to true!
@@ -22,6 +20,8 @@ quite a few things are missing for that:
 
 Later
 -----
+
+* remove redundant equation on numbool -s4
 
 * Remove redundant equations from insertsort:
 

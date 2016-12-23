@@ -10,6 +10,7 @@ abs :: Int -> Int
 False :: Bool
 True :: Bool
 not :: Bool -> Bool
+(==) :: Bool -> Bool -> Bool
 
        abs 0 == 0
        abs 1 == 1
@@ -25,4 +26,11 @@ not :: Bool -> Bool
 
 x <= abs x
 0 <= abs x
+
+    x <= 0 ==>   x + abs x == 0
+    0 <= x ==>       abs x == x
+    0 <= x ==> abs (x + 1) == x + 1
+abs x <= y ==> abs (x + y) == x + y
+abs y <= x ==> abs (x + y) == x + y
+1 == abs x ==> abs (x + 1) == x + abs x
 
