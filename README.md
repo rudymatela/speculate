@@ -146,3 +146,5 @@ More documentation
 For more examples, see the [eg](eg) and [bench](bench) folders.
 
 [QuickSpec]: https://github.com/nick8325/quickspec
+[leancheck]: https://hackage.haskell.org/package/leancheck
+[cmdargs]: https://hackage.haskell.org/package/cmdargs
