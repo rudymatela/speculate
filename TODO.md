@@ -13,13 +13,6 @@ current
 
 * remove redundant equation on numbool -s4
 
-* Remove redundant equations from insertsort:
-
-	elem x xs ==> (insert x xs) ++ ys == insert x (xs ++ ys)
-	elem x xs ==> (insert x xs) ++ xs == insert x (xs ++ xs)
-
-  See `git show 4770bfe tests/model/insertsort-c`
-
 * Implement expand by expanding tiers.  This is more robust and flexible.  It
   will allow extraction of contant values from tiers.  This will also make it
   easy to amend a Thy: do theorization; add a bunch of atoms; do it again.
