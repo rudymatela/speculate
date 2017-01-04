@@ -16,6 +16,16 @@ tests :: Int -> [Bool]
 tests n =
   [ True
 
+  , holds n $ \(IntE e1) (IntE e2) -> match (e1 -+- e2) (xx -+- yy) == Just [("y",e2),("x",e1)]
+  , holds n $ \(IntE e)            -> match (e -+- e)   (xx -+- xx) == Just [("x",e)]
+  , holds n $ \(IntE e1) (IntE e2) -> e1 /= e2 ==> match (e1 -+- e2) (xx -+- xx) == Nothing
+  , holds n $ \(IntE e1) (IntE e2) (IntE e3) -> e2 /= e3
+                ==> match ((e1 -+- e1) -+- (e2 -+- e3)) (xx -+- (yy -+- yy)) == Nothing
+  , holds n $ \(IntE e1) (IntE e2) -> matchWith [("x",e1)] (e1 -+- e2) (xx -+- yy) == Just [("y",e2),("x",e1)]
+  , holds n $ \(IntE e1) (IntE e2) -> e1 /= e2 ==> matchWith [("x",e2)] (e1 -+- e2) (xx -+- yy) == Nothing
+  , holds n $ \e1 e2 -> e1 `match` e2 == matchWith [] e1 e2
+
+
   , assign "y" (yy -+- zz) ((xx -+- yy) -+- (yy -+- zz))
       == (xx -+- (yy -+- zz)) -+- ((yy -+- zz) -+- zz)
 
