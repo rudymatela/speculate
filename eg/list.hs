@@ -5,9 +5,10 @@ main :: IO ()
 main = speculate args
   { atoms =
       [ showConstant ([] :: [Int])
-      , constant ":"    $ (:)    -:>  int
-      , constant "++"   $ (++)   -:> [int]
-      , constant "head" $ (head) -:> [int]
-      , constant "tail" $ (tail) -:> [int]
+      , constant ":"    $ (:)  -:>  int
+      , constant "++"   $ (++) -:> [int]
+      , constant "head" $ head -:> [int]
+      , constant "tail" $ tail -:> [int]
+--    , constant "null" $ null -:> [int]
       ]
   }
