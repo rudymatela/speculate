@@ -73,6 +73,12 @@ cequivalent :: Chy -> Expr -> Expr -> Expr -> Bool
 cequivalent chy ce e1 e2 =
   equivalent (unThy chy) (cnormalize chy ce e1) (cnormalize chy ce e2)
 
+cIsInstanceOf :: Chy -> (Expr,Expr,Expr) -> (Expr,Expr,Expr) -> Bool
+cIsInstanceOf chy (ce2,le2,re2) (ce1,le1,re1) =
+  case match2 (le2,re2) (le1,re1) of
+    Nothing -> False
+    Just bs -> equivalent (unThy chy) (ce1 `assigning` bs) ce2
+
 -- TODO: make cinsert result independent of insertion order
 cinsert :: (Expr,Expr,Expr) -> Chy -> Chy
 cinsert ceq@(ce,e1,e2) chy@Chy{cequations = eqs}
@@ -86,10 +92,10 @@ cdiscard :: ((Expr,Expr,Expr) -> Bool) -> Chy -> Chy
 cdiscard p = cfilter (not . p)
 
 cdelete :: Chy -> Chy
-cdelete chy =
-  updateCEquationsBy
-    (discardByOthers $ \(ce,e1,e2) eqs -> cequivalent chy{cequations = eqs} ce e1 e2)
-    chy
+cdelete chy = updateCEquationsBy upd chy
+  where
+  upd = id -- discardLater (cIsInstanceOf chy) uneeded
+      . discardByOthers (\(ce,e1,e2) eqs -> cequivalent chy{cequations = eqs} ce e1 e2)
 
 cfinalize :: Chy -> Chy
 cfinalize chy@Chy{cequations = ceqs} =

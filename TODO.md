@@ -9,28 +9,6 @@ Warning: I tend to ramble...
 current
 -------
 
-* (Colin) another pruning principle:
-
-  0 <= x ==>           abs x == x
-  0 <= x ==> abs (x + abs y) == x + abs y
-
-When 0 <= x, then 0 <= x + abs y, so the second is just an instance of the first.
-Algorithm:
-
-First, get the match:
-
-	match (abs x == x) abs (x + abs y == ...) = (x, x + abs y)
-
-Then apply it to precondition:
-
-  0 <= x --> 0 <= x + abs y
-
-Check if the preconditions are equivalent:
-
-  0 <= x `equivalent` 0 <= x + abs y
-
-Since they are, prune away.
-
 * rename atoms to constants
 
 * remove redundant equation on numbool -s4
