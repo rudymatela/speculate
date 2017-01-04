@@ -19,10 +19,6 @@ current
 
 	isEdge x x b ==> succs x (subgraph xs a) == preds x (subgraph xs a)
 
-* remove weirdness on taut example:
-
-	taut p ==> subst o (taut q) p == subst n False p  -- what?
-
 * remove redundancy on taut example:
 
 	taut q ==> subst n (taut q) p == subst n True p
