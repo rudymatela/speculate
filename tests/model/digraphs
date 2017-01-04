@@ -46,12 +46,7 @@ emptyDigraph <= a
 
    elem x xs ==> subgraph xs (addNode x emptyDigraph) == addNode x emptyDigraph
    elem x xs ==>            addNode x (subgraph xs a) == subgraph xs (addNode x a)
+  isNode x a ==>                          addNode x a == a
 isEdge x y a ==>                        addEdge x y a == a
-isEdge x y a ==>                        addEdge x y a == addNode x a
-isEdge y x a ==>                        addEdge y x a == addNode x a
-isPath x y a ==>                          addNode y a == addNode x a
-isPath x y a ==>              addNode x (addNode y a) == a
-isPath x y a ==>            subgraph xs (addNode y a) == subgraph xs (addNode x a)
-isEdge x x a ==>                        addEdge x x a == addNode x a
 isEdge x x b ==>              succs x (subgraph xs a) == preds x (subgraph xs a)
 

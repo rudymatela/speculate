@@ -183,12 +183,13 @@ conditionalEquivalences :: ((Expr,Expr,Expr) -> Bool)
                         -> (Expr -> Expr -> Bool)
                         -> Int -> Thy -> [Class Expr] -> [Class Expr] -> Chy
 conditionalEquivalences canon cequal (==>) csz thy clpres cles =
+--  cfilter (\(ce,e1,e2) -> subConsequence thy clpres ce e1 e2)
     foldl (flip cinsert) (Chy [] cdg clpres thy)
   . sortBy (\(c1,e11,e12) (c2,e21,e22) -> c1 `compareComplexity` c2
                                        <> ((e11 `phonyEquation` e12) `compareComplexity` (e21 `phonyEquation` e22)))
   . discard (\(pre,e1,e2) -> pre == falseE
                           || length ((vars pre) \\ (vars e1 +++ vars e2)) > 1
-                          || subConsequence thy clpres pre e1 e2)
+                          || subConsequence thy [] pre e1 e2)
   . filter canon
   $ [ (ce, e1, e2)
     | e1 <- es, e2 <- es, e1 /= e2, canon (falseE,e1,e2)

@@ -79,6 +79,9 @@ cinsert ceq@(ce,e1,e2) chy@Chy{cequations = eqs}
   | cequivalent chy ce e1 e2 = chy
   | otherwise = cdelete $ chy {cequations = eqs ++ [ceq]}
 
+cfilter :: ((Expr,Expr,Expr) -> Bool) -> Chy -> Chy
+cfilter p = updateCEquationsBy (filter p)
+
 cdelete :: Chy -> Chy
 cdelete chy =
   updateCEquationsBy
