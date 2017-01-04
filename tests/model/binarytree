@@ -49,9 +49,6 @@ toList Null <=  xs
 
          ordered xs ==> fromList (toList (fromList xs)) == fromList xs
              x /= y ==>        delete y (insert x Null) == insert x Null
-           isIn x t ==>                      insert x t == t
-           isIn x t ==>  insert x (fromList (toList t)) == fromList (toList t)
-           isIn y t ==>           insert y (insert x t) == insert x t
 False == ordered xs ==>                      delete y u == delete x t
 False == ordered xs ==>                      delete x u == delete x t
 False == ordered xs ==>                      insert x u == insert x t

@@ -42,8 +42,6 @@ x <= x + 1
 
         y <= x ==> abs (x + abs y) == x + abs y
         x <= 0 ==>       x + abs x == 0
-        0 <= x ==>           abs x == x
-        0 <= x ==> abs (x + abs y) == x + abs y
     0 <= x + y ==> abs (x + abs y) == x + abs y
 abs x <= abs y ==> abs (x + abs y) == x + abs y
 

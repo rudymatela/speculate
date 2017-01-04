@@ -82,6 +82,9 @@ cinsert ceq@(ce,e1,e2) chy@Chy{cequations = eqs}
 cfilter :: ((Expr,Expr,Expr) -> Bool) -> Chy -> Chy
 cfilter p = updateCEquationsBy (filter p)
 
+cdiscard :: ((Expr,Expr,Expr) -> Bool) -> Chy -> Chy
+cdiscard p = cfilter (not . p)
+
 cdelete :: Chy -> Chy
 cdelete chy =
   updateCEquationsBy

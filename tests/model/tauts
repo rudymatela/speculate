@@ -22,9 +22,6 @@ taut (eval p) == taut p
     p ==> True
 False ==> p
 
-     p ==>         subst n True q == subst n p q
-     p ==>  eval (subst n True q) == eval (subst n p q)
-     p ==>  subst n True (eval q) == subst n p (eval q)
 taut p ==>     subst o (taut q) p == subst n False p
 taut p ==>     subst o (taut q) p == subst n True p
 taut p ==>     subst n (taut p) p == subst n True p
