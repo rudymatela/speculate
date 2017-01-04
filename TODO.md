@@ -9,6 +9,8 @@ Warning: I tend to ramble...
 current
 -------
 
+* go through all test-models and list what is redundant here
+
 * rename atoms to constants
 
 * Implement expand by expanding tiers.  This is more robust and flexible.  It
