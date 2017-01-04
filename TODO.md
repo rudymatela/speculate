@@ -9,7 +9,33 @@ Warning: I tend to ramble...
 current
 -------
 
-* go through all test-models and list what is redundant here
+* go through all test-models and list what is redundant or wrong here
+
+* remove wrong laws on binarytree example, e.g.:
+
+	False == ordered xs ==> delete y u == delete x t
+
+* remove the following wrong law on graph example:
+
+	isEdge x x b ==> succs x (subgraph xs a) == preds x (subgraph xs a)
+
+* remove weirdness on taut example:
+
+	taut p ==> subst o (taut q) p == subst n False p  -- what?
+
+* remove redundancy on taut example:
+
+	taut q ==> subst n (taut q) p == subst n True p
+
+  pruning principle:
+  1. `genericMatch LHS RHS = [(taut q, True)]`
+  2. `equivalent thy (taut q) (taut q == True)`
+
+* remove the following redundant laws on insertsort:
+
+	ordered (ys ++ xs) ==>       ys ++ sort xs == sort (xs ++ ys)
+	ordered (ys ++ xs) ==>       sort ys ++ xs == sort (xs ++ ys)
+	ordered (ys ++ xs) ==>  sort ys ++ sort xs == sort (xs ++ ys)
 
 * rename atoms to constants
 
