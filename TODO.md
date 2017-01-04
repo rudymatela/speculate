@@ -29,31 +29,9 @@ When 0 <= x, then 0 <= x + abs y, so the second is just an instance of the first
 
   See `git show 4770bfe tests/model/insertsort-c`
 
-* detect and discard equivalent forms of equations on preconditions, e.g.:
-  `p ==> ...` (equivalent to `p == True ==> ...`)
-  `isNode x (addNode y emptyDigraph) ==> ...` (equiv. to `x == y ==> ...`)
-  `null xs ==> ...` (equivalent to `xs == [] ==> ...`)
-  See relevant section for details.
-
 * Implement expand by expanding tiers.  This is more robust and flexible.  It
   will allow extraction of contant values from tiers.  This will also make it
   easy to amend a Thy: do theorization; add a bunch of atoms; do it again.
-
-### detect and discard equivalent forms of equations on preconditions
-
-This problem appears on:
-
-* `eg/taut` as `p ==> ...`
-
-Possible ways to solve this problem:
-
-* consider conditions that imply an equation on `subConsequence`.
-* simply preprocess to discover conditions that imply equations beforehand.
-* run the whole process twice!  If conditions implying equations appear,
-  discard those conditions then run again.
-* improve `not . isAssignment` filtering on `conditionalEquivalences`.  maybe
-  do that afterwards so I can filter whatever is implied by an equivalence?  or
-  maybe that should be only done later, on subConsequence?
 
 
 Later Later
