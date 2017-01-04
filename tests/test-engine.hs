@@ -75,11 +75,13 @@ tests n =
 --         == subConsequence emptyThy (e1 -==- e2) e4 e3
 --, holds n $ \...
 --         -> not $ subConsequence emptyThy (e1 -<=- e2) e3 e4
-  ,       subConsequence emptyThy (xx -==- yy) (xx -+- yy) (xx -+- xx)
-  , not $ subConsequence emptyThy (xx -<=- yy) (xx -+- yy) (xx -+- xx)
-  ,       subConsequence emptyThy (abs' xx -==- abs' yy) (abs' xx) (abs' yy)
-  , not $ subConsequence emptyThy (abs' xx -<=- abs' yy) (abs' xx) (abs' yy)
-  , not $ subConsequence emptyThy (abs' xx -==- one) (xx -+- abs' xx) (zero)
+  ,       subConsequence emptyThy [] (xx -==- yy) (xx -+- yy) (xx -+- xx)
+  , not $ subConsequence emptyThy [] (xx -<=- yy) (xx -+- yy) (xx -+- xx)
+  ,       subConsequence emptyThy [(xx -<=- yy, [xx -==- yy])]
+                                     (xx -<=- yy) (xx -+- yy) (xx -+- xx)
+  ,       subConsequence emptyThy [] (abs' xx -==- abs' yy) (abs' xx) (abs' yy)
+  , not $ subConsequence emptyThy [] (abs' xx -<=- abs' yy) (abs' xx) (abs' yy)
+  , not $ subConsequence emptyThy [] (abs' xx -==- one) (xx -+- abs' xx) (zero)
   ]
   where
   x === y = equal basicTypeInfo 1000 x y

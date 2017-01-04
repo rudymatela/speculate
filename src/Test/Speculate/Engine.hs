@@ -188,7 +188,7 @@ conditionalEquivalences canon cequal (==>) csz thy clpres cles =
                                        <> ((e11 `phonyEquation` e12) `compareComplexity` (e21 `phonyEquation` e22)))
   . discard (\(pre,e1,e2) -> pre == falseE
                           || length ((vars pre) \\ (vars e1 +++ vars e2)) > 1
-                          || subConsequence thy pre e1 e2)
+                          || subConsequence thy clpres pre e1 e2)
   . filter canon
   $ [ (ce, e1, e2)
     | e1 <- es, e2 <- es, e1 /= e2, canon (falseE,e1,e2)
@@ -207,15 +207,17 @@ conditionalEquivalences canon cequal (==>) csz thy clpres cles =
 -- > subConsequence (x <= y) (x + y) (x + x) == False -- not sub
 -- > subConsequence (abs x == abs y) (abs x) (abs y) == True
 -- > subConsequence (abs x == 1) (x + abs x) (20) == False (artificial)
-subConsequence :: Thy -> Expr -> Expr -> Expr -> Bool
-subConsequence thy (((Constant "==" _) :$ ea) :$ eb) e1 e2
+subConsequence :: Thy -> [Class Expr] -> Expr -> Expr -> Expr -> Bool
+subConsequence thy clpres (((Constant "==" _) :$ ea) :$ eb) e1 e2
   -- NOTE: the first 4 are uneeded, but make it a bit faster...
   | ea `isSub` e1 && equivalent thy{closureLimit=1} (sub ea eb e1) e2 = True
   | eb `isSub` e1 && equivalent thy{closureLimit=1} (sub eb ea e1) e2 = True
   | ea `isSub` e2 && equivalent thy{closureLimit=1} (sub ea eb e2) e1 = True
   | eb `isSub` e2 && equivalent thy{closureLimit=1} (sub eb ea e2) e1 = True
   | equivalent ((ea,eb) `insert` thy){closureLimit=1} e1 e2 = True
-subConsequence _ _ _ _ = False
+subConsequence thy clpres ce e1 e2 = or
+  [ subConsequence thy clpres ce' e1 e2
+  | (rce,ces) <- clpres, ce == rce, ce' <- ces ]
 
 psortBy :: (a -> a -> Bool) -> [a] -> [(a,a)]
 psortBy (<) xs = [(x,y) | x <- xs, y <- xs, x < y, none (\z -> x < z && z < y) xs]
