@@ -94,7 +94,7 @@ cdiscard p = cfilter (not . p)
 cdelete :: Chy -> Chy
 cdelete chy = updateCEquationsBy upd chy
   where
-  upd = id -- discardLater (cIsInstanceOf chy) uneeded
+  upd = discardLater (cIsInstanceOf chy)
       . discardByOthers (\(ce,e1,e2) eqs -> cequivalent chy{cequations = eqs} ce e1 e2)
 
 cfinalize :: Chy -> Chy

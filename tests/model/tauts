@@ -24,7 +24,6 @@ False ==> p
 
 taut p ==>     subst o (taut q) p == subst n False p
 taut p ==>     subst o (taut q) p == subst n True p
-taut p ==>     subst n (taut p) p == subst n True p
 taut p ==>  eval (subst n True p) == eval (subst n False p)
 taut q ==>     subst n (taut q) p == subst n True p
 taut q ==>     subst o (taut p) q == subst n (taut p) q

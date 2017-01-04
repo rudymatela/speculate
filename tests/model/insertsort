@@ -66,7 +66,6 @@ ordered (sort xs ++ xs) == ordered (xs ++ xs)
 insert x xs <=  x:xs
 
          elem x xs ==>   insert x xs ++ ys == insert x (xs ++ ys)
-         elem x xs ==>   insert x xs ++ xs == insert x (xs ++ xs)
             x <= y ==>     insert x (y:xs) == x:(y:xs)
 ordered (ys ++ xs) ==>       ys ++ sort xs == sort (xs ++ ys)
 ordered (ys ++ xs) ==>       sort ys ++ xs == sort (xs ++ ys)
