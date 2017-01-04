@@ -9,8 +9,6 @@ Warning: I tend to ramble...
 current
 -------
 
-* sort the following by priority
-
 * (Colin) another pruning principle:
 
   0 <= x ==>           abs x == x
