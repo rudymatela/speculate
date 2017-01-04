@@ -11,8 +11,6 @@ current
 
 * rename atoms to constants
 
-* remove redundant equation on numbool -s4
-
 * Implement expand by expanding tiers.  This is more robust and flexible.  It
   will allow extraction of contant values from tiers.  This will also make it
   easy to amend a Thy: do theorization; add a bunch of atoms; do it again.
