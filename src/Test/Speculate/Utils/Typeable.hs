@@ -2,6 +2,7 @@ module Test.Speculate.Utils.Typeable
   ( tyArity
   , typesIn
   , unFunTy
+  , isFunTy
   , argumentTy
   , resultTy
   , finalResultTy

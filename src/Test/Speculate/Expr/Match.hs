@@ -9,6 +9,7 @@ module Test.Speculate.Expr.Match
 
   -- * Matching
   , match
+  , match2
   , matchWith
   , unify
   , unification
@@ -114,6 +115,16 @@ renameBy f e = e
 -- > (x + x) + (1 + 2) `match` x + (y + y) = Nothing
 match :: Expr -> Expr -> Maybe Binds
 match e1' e2' = matchWith [] e1' e2'
+
+-- | List matches of pairs of expressions if possible
+--
+-- > (0,1)   `match2` (x,y)   = Just [x=0, y=1]
+-- > (0,1+2) `match2` (x,y+y) = Nothing
+match2 :: (Expr,Expr) -> (Expr,Expr) -> Maybe Binds
+match2 (e1,e2) (e3,e4) =
+  case matchWith [] e1 e3 of
+    Nothing -> Nothing
+    Just bs -> matchWith bs e2 e4
 
 -- | List matches with preexisting bindings:
 --
