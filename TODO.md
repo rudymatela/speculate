@@ -35,8 +35,6 @@ When 0 <= x, then 0 <= x + abs y, so the second is just an instance of the first
   `null xs ==> ...` (equivalent to `xs == [] ==> ...`)
   See relevant section for details.
 
-* include Colin's list module example
-
 * Implement expand by expanding tiers.  This is more robust and flexible.  It
   will allow extraction of contant values from tiers.  This will also make it
   easy to amend a Thy: do theorization; add a bunch of atoms; do it again.
@@ -46,18 +44,6 @@ When 0 <= x, then 0 <= x + abs y, so the second is just an instance of the first
 This problem appears on:
 
 * `eg/taut` as `p ==> ...`
-
-* `eg/digraphs`, after removing `(==) @ Nat`, as:
-  `isNode x (addNode y emptyDigraph) ==> y == x`
-  `isNode x (addNode y emptyDigraph) ==> preds y a == preds x a`
-  `isNode x (addNode y emptyDigraph) ==> succs y a == succs x a`
-  `...`
-
-* `eg/list`, after adding `False`, `True` and `null`, as:
-  `null xs ==>               [] == xs`
-  `null xs ==>         xs ++ xs == xs`
-  `null xs ==>         xs ++ xs == []`
-  `null xs ==>              [x] == x:xs`
 
 Possible ways to solve this problem:
 
@@ -72,6 +58,8 @@ Possible ways to solve this problem:
 
 Later Later
 -----------
+
+* include Colin's list module example
 
 * fix wrong laws that appear on `./eg/digraphs -s6`
 
