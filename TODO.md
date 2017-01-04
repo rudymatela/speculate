@@ -9,6 +9,8 @@ Warning: I tend to ramble...
 current
 -------
 
+* require minimum number of tests to pass, will need `minTests` config
+
 * go through all test-models and list what is redundant or wrong here
 
 * remove wrong laws on binarytree example, e.g.:
