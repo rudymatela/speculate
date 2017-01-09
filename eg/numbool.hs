@@ -5,6 +5,7 @@ main :: IO ()
 main = speculate args
   { constants =
       [ constant "+"   ((+)  :: Int -> Int -> Int)
+      , constant "id"  (id   :: Int -> Int)
       , constant "abs" (abs  :: Int -> Int)
       ]
   , backgroundConstants =

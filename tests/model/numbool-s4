@@ -1,6 +1,7 @@
 _ :: Int  (holes: Int)
 _ :: Bool  (holes: Bool)
 (+) :: Int -> Int -> Int
+id :: Int -> Int
 abs :: Int -> Int
 0 :: Int
 1 :: Int
@@ -12,6 +13,7 @@ True :: Bool
 not :: Bool -> Bool
 (==) :: Bool -> Bool -> Bool
 
+        id x == x
        abs 0 == 0
        abs 1 == 1
  abs (abs x) == abs x
