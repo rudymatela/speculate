@@ -6,13 +6,13 @@ _ :: Int  (holes: Int)
 (++) :: [Int] -> [Int] -> [Int]
 length :: [Int] -> Int
 
-        length [] == 0
          xs ++ [] == xs
          [] ++ xs == xs
+             x:xs == [x] ++ xs
  (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
+        length [] == 0
 length (xs ++ ys) == length (ys ++ xs)
     length (x:xs) == length (y:xs)
-             x:xs == [x] ++ xs
 
 [] <= xs
  0 <= length xs

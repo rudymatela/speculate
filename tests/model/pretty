@@ -13,12 +13,12 @@ length :: [Char] -> Int
            (d1 $$ d2) $$ d3 == d1 $$ (d2 $$ d3)
            (d1 $$ d2) <> d3 == d1 $$ (d2 <> d3)
            (d1 <> d2) <> d3 == d1 <> (d2 <> d3)
-           (cs ++ ds) ++ es == cs ++ (ds ++ es)
+         nest x (nest y d1) == nest y (nest x d1)
 nest (length (cs ++ ds)) d1 == nest (length cs) (nest (length ds) d1)
     d1 <> (nest x d2 <> d3) == d1 <> (d2 <> d3)
           length (cs ++ ds) == length (ds ++ cs)
-         nest x (nest y d1) == nest y (nest x d1)
   length (cs ++ (ds ++ es)) == length (cs ++ (es ++ ds))
+           (cs ++ ds) ++ es == cs ++ (ds ++ es)
 
               d1 <= d1 $$ d2
               d1 <= d1 <> d2

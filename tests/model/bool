@@ -18,6 +18,8 @@ not :: Bool -> Bool
     (p == True) == p
    (p || False) == p
     (p || True) == True
+       (p && q) == (q && p)
+       (p || q) == (q || p)
    not (p || q) == (not p && not q)
    (p == not q) == not (p == q)
    (p || not q) == not (q && not p)
@@ -30,8 +32,6 @@ not :: Bool -> Bool
 (p == (p || q)) == not (q && not p)
   (p || p && q) == p
   (p || p == q) == not (q && not p)
-       (p && q) == (q && p)
-       (p || q) == (q || p)
 
      p ==> True
  False ==> p

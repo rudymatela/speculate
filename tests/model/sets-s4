@@ -21,13 +21,13 @@ True :: Bool
           s /\ emptyS == emptyS
           s \/ emptyS == s
      deleteS x emptyS == emptyS
-          x <~ emptyS == False
-       x <~ singleS y == (x == y)
-deleteS x (singleS x) == emptyS
-(emptyS == singleS x) == False
                s /\ t == t /\ s
                s \/ t == t \/ s
+deleteS x (singleS x) == emptyS
     sizeS (singleS x) == sizeS (singleS y)
+          x <~ emptyS == False
+       x <~ singleS y == (x == y)
+(emptyS == singleS x) == False
 
       emptyS <= s
 sizeS emptyS <= sizeS s

@@ -11,10 +11,10 @@ taut :: Prop -> Bool
 (==) :: Name -> Name -> Bool
 (==) :: Bool -> Bool -> Bool
 
+eval (eval p) == eval p
      (n == n) == True
      (p == p) == True
      (p == p) == True
-eval (eval p) == eval p
 taut (eval p) == taut p
   (p == True) == p
      (p == q) == (q == p)

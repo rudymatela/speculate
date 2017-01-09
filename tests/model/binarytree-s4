@@ -19,6 +19,8 @@ isIn :: Word2 -> BT Word2 -> Bool
 (==) :: BT Word2 -> BT Word2 -> Bool
 (==) :: Bool -> Bool -> Bool
 
+         delete x Null == Null
+fromList (toList Null) == Null
             isSearch t == True
               (x /= x) == False
               (x <= x) == True
@@ -26,11 +28,9 @@ isIn :: Word2 -> BT Word2 -> Bool
               (t == t) == True
             (xs == xs) == True
               (p == p) == True
-         delete x Null == Null
     ordered (toList t) == True
            isIn x Null == False
            (p == True) == p
-fromList (toList Null) == Null
    (xs == toList Null) == (Null == fromList xs)
 
           p ==> True

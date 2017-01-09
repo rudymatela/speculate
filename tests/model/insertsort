@@ -17,32 +17,38 @@ True :: Bool
 (==) :: Bool -> Bool -> Bool
 
                 sort [] == []
-             ordered [] == True
          sort (sort xs) == sort xs
                xs ++ [] == xs
             insert x [] == [x]
                [] ++ xs == xs
-      ordered (sort xs) == True
-              elem x [] == False
+                   x:xs == [x] ++ xs
      sort (insert x xs) == sort (x:xs)
      insert x (sort xs) == sort (x:xs)
+               sort [x] == [x]
+        sort (xs ++ ys) == sort (ys ++ xs)
+       (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
+        insert x (x:xs) == x:(x:xs)
+   sort (xs ++ sort ys) == sort (xs ++ ys)
+ insert x (insert y xs) == insert y (insert x xs)
+           insert x [y] == insert y [x]
+             ordered [] == True
+      ordered (sort xs) == True
+              elem x [] == False
+               (x == y) == elem x [y]
+             (xs == []) == ([] == xs ++ xs)
   ordered (insert x xs) == ordered xs
        elem x (sort xs) == elem x xs
         (xs == sort xs) == ordered xs
-               sort [x] == [x]
             ordered [x] == True
           all (x <=) [] == True
           all (x ==) [] == True
         (sort xs == []) == (xs == [])
-       (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
    elem x (insert y xs) == elem x (y:xs)
-        insert x (x:xs) == x:(x:xs)
           elem x (x:xs) == True
       elem x (xs ++ xs) == elem x xs
            (xs == x:xs) == False
     (xs == insert x xs) == False
        (xs ++ ys == xs) == (ys == [])
-   sort (xs ++ sort ys) == sort (xs ++ ys)
     ordered (x:sort xs) == all (x <=) xs
            ([] == x:xs) == False
     ([] == insert x xs) == False
@@ -50,14 +56,8 @@ True :: Bool
    all (x ==) (sort xs) == all (x ==) xs
 ordered (xs ++ sort xs) == ordered (xs ++ xs)
 ordered (sort xs ++ xs) == ordered (xs ++ xs)
-        sort (xs ++ ys) == sort (ys ++ xs)
-                   x:xs == [x] ++ xs
-               (x == y) == elem x [y]
-             (xs == []) == ([] == xs ++ xs)
- insert x (insert y xs) == insert y (insert x xs)
       elem x (xs ++ ys) == elem x (ys ++ xs)
        (xs == ys ++ zs) == (xs == zs ++ ys)
-           insert x [y] == insert y [x]
 
          [] <=  xs
     sort xs <=  xs

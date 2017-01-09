@@ -17,12 +17,12 @@ negate (negate x) == x
             x * 0 == 0
             x * 1 == x
             x + 0 == x
+            x * y == y * x
+            x + y == y + x
      x * negate y == negate (x * y)
       abs (x * x) == x * x
      x + negate x == 0
       abs (1 + 1) == 1 + 1
-            x * y == y * x
-            x + y == y + x
 
        0 <= 1
        x <= abs x

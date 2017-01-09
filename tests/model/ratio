@@ -13,15 +13,21 @@ recip :: Ratio Integer -> Ratio Integer
 numerator :: Ratio Integer -> Integer
 denominator :: Ratio Integer -> Integer
 
-                                 id q == q
                   denominator (1 % 1) == denominator (0 % 1)
                     numerator (1 % 1) == denominator (0 % 1)
+                  denominator (abs q) == denominator q
+               denominator (negate q) == denominator q
+              denominator (q + 1 % 1) == denominator q
+            numerator (1 % 1 + 1 % 1) == denominator (recip (1 % 1 + 1 % 1))
+              denominator (q * abs r) == denominator (q * r)
+denominator (x % denominator (0 % 1)) == denominator (0 % 1)
+  numerator (x % denominator (0 % 1)) == x
+    numerator (recip (1 % 1 + 1 % 1)) == denominator (0 % 1)
+                                 id q == q
                           abs (0 % 1) == 0 % 1
                           abs (1 % 1) == 1 % 1
                        negate (0 % 1) == 0 % 1
                         recip (1 % 1) == 1 % 1
-                  denominator (abs q) == denominator q
-               denominator (negate q) == denominator q
                           abs (abs q) == abs q
                        abs (negate q) == abs q
                     negate (negate q) == q
@@ -30,38 +36,32 @@ denominator :: Ratio Integer -> Integer
                             q + 0 % 1 == q
                           q / (1 % 1) == q
                recip (negate (1 % 1)) == negate (1 % 1)
+                                q * r == r * q
+                                q + r == r + q
+                                q + q == q * (1 % 1 + 1 % 1)
                          q * negate r == negate (q * r)
                          negate q + r == negate (q + negate r)
                           abs (q * q) == q * q
                          q + negate q == 0 % 1
-              denominator (q + 1 % 1) == denominator q
                    q / negate (1 % 1) == negate q
-            numerator (1 % 1 + 1 % 1) == denominator (recip (1 % 1 + 1 % 1))
                   abs (1 % 1 + 1 % 1) == 1 % 1 + 1 % 1
                           (q * r) * s == q * (r * s)
                           (q + r) + s == q + (r + s)
                             q * r + q == q * (r + 1 % 1)
-              denominator (q * abs r) == denominator (q * r)
                       abs (q * abs r) == abs (q * r)
                         abs q * abs r == abs (q * r)
                       abs (q + abs q) == q + abs q
                         abs q + abs q == abs (q + q)
         denominator q % denominator q == 1 % 1
           numerator q % denominator q == q
-denominator (x % denominator (0 % 1)) == denominator (0 % 1)
-  numerator (x % denominator (0 % 1)) == x
                   abs (1 % 1 + abs q) == 1 % 1 + abs q
        x % numerator (negate (1 % 1)) == negate (x % denominator (0 % 1))
     numerator (0 % 1) % denominator q == 0 % 1
-    numerator (recip (1 % 1 + 1 % 1)) == denominator (0 % 1)
           abs (recip (1 % 1 + 1 % 1)) == recip (1 % 1 + 1 % 1)
        recip (negate (1 % 1 + 1 % 1)) == negate (recip (1 % 1 + 1 % 1))
         recip (recip (1 % 1 + 1 % 1)) == 1 % 1 + 1 % 1
             (0 % 1) / (1 % 1 + 1 % 1) == 0 % 1
             (1 % 1) / (1 % 1 + 1 % 1) == recip (1 % 1 + 1 % 1)
-                                q * r == r * q
-                                q + r == r + q
-                                q + q == q * (1 % 1 + 1 % 1)
 
                      0 % 1 <= 1 % 1
                          q <= abs q

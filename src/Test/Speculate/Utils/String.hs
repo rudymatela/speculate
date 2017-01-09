@@ -77,6 +77,7 @@ prec "<=<" = 1
 prec "$"  = 0
 prec "`seq`" = 0
 prec "==>" = 0
+prec "<==>" = 0
 prec _ = 9
 
 isPrefix :: String -> Bool

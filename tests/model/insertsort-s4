@@ -17,24 +17,24 @@ True :: Bool
 (==) :: Bool -> Bool -> Bool
 
               sort [] == []
-           ordered [] == True
        sort (sort xs) == sort xs
              xs ++ [] == xs
           insert x [] == [x]
              [] ++ xs == xs
-    ordered (sort xs) == True
-            elem x [] == False
    sort (insert x xs) == sort (x:xs)
    insert x (sort xs) == sort (x:xs)
+             sort [x] == [x]
+      sort (xs ++ ys) == sort (ys ++ xs)
+           ordered [] == True
+    ordered (sort xs) == True
+            elem x [] == False
 ordered (insert x xs) == ordered xs
      elem x (sort xs) == elem x xs
       (xs == sort xs) == ordered xs
-             sort [x] == [x]
           ordered [x] == True
         all (x <=) [] == True
         all (x ==) [] == True
       (sort xs == []) == (xs == [])
-      sort (xs ++ ys) == sort (ys ++ xs)
 
      [] <= xs
 sort xs <= xs

@@ -5,12 +5,12 @@ return :: Int -> [Int]
 (>>=) :: [Int] -> (Int -> [Int]) -> [Int]
 (>=>) :: (Int -> [Int]) -> (Int -> [Int]) -> Int -> [Int]
 
+               f x == (return x >>= f)
    (xs >>= return) == xs
+       (f >=> g) x == (f x >>= g)
+(xs >>= (f >=> g)) == ((xs >>= f) >>= g)
     (f >=> return) == f
     (return >=> f) == f
  ((f >=> g) >=> h) == (f >=> (g >=> h))
-               f x == (return x >>= f)
-       (f >=> g) x == (f x >>= g)
-(xs >>= (f >=> g)) == ((xs >>= f) >>= g)
 
 

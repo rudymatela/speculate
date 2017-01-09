@@ -17,6 +17,9 @@ negate (negate x) == x
             x * 0 == 0
             x * 1 == x
             x + 0 == x
+            x * y == y * x
+            x + y == y + x
+            x + x == x * (1 + 1)
      x * negate y == negate (x * y)
      negate x + y == negate (x + negate y)
       abs (x * x) == x * x
@@ -30,9 +33,6 @@ negate (negate x) == x
   abs (x + abs x) == x + abs x
     abs x + abs x == abs (x + x)
   abs (1 + abs x) == 1 + abs x
-            x * y == y * x
-            x + y == y + x
-            x + x == x * (1 + 1)
 
              0 <= 1
              x <= abs x

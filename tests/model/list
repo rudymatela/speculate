@@ -8,10 +8,10 @@ tail :: [Int] -> [Int]
 
         xs ++ [] == xs
         [] ++ xs == xs
-     tail (x:xs) == xs
-     head (x:xs) == x
-(xs ++ ys) ++ zs == xs ++ (ys ++ zs)
             x:xs == [x] ++ xs
+     tail (x:xs) == xs
+(xs ++ ys) ++ zs == xs ++ (ys ++ zs)
+     head (x:xs) == x
 
 [] <= xs
 xs <= xs ++ ys

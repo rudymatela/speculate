@@ -11,8 +11,8 @@ negate :: Int -> Int
             x - y == x + negate y
 negate (negate x) == x
             x + 0 == x
-     x + negate x == 0
             x + y == y + x
+     x + negate x == 0
 
        0 <= 1
 negate 1 <= 0

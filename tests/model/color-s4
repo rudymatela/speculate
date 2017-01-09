@@ -22,6 +22,12 @@ Just :: Ratio Integer -> Maybe (Ratio Integer)
 
                      hue red == Just (0 % 1)
                    hue white == hue black
+           hue (mix c black) == hue c
+           hue (mix c white) == hue c
+          hue (green + blue) == Just (1 % 2)
+        hue (mix green blue) == Just (1 % 2)
+          hue (mix red blue) == hue (red + blue)
+         hue (mix red green) == hue (red + green)
                 chroma black == 0 % 1
                  chroma blue == 1 % 1
                 chroma green == 1 % 1
@@ -37,30 +43,6 @@ Just :: Ratio Integer -> Maybe (Ratio Integer)
                  value green == 1 % 1
                    value red == 1 % 1
                  value white == 1 % 1
-                       c - c == black
-                     mix c c == c
-                   c + black == c
-                   c + white == white
-                   c - black == c
-                   c - white == black
-                   black - c == black
-                 blue + blue == blue
-               green + green == green
-                   red + red == red
-                blue - green == blue
-                  blue - red == blue
-                green - blue == green
-                 green - red == green
-                  red - blue == red
-                 red - green == red
-                white - blue == red + green
-               white - green == red + blue
-                 white - red == green + blue
-       fromHSL mq1 q (0 % 1) == black
-       fromHSL mq1 q (1 % 1) == white
-       fromHSV mq1 q (0 % 1) == black
-           hue (mix c black) == hue c
-           hue (mix c white) == hue c
         chroma (mix c white) == chroma (mix c black)
           chroma (white - c) == chroma c
        saturation (c + blue) == chroma (c + blue)
@@ -76,11 +58,6 @@ Just :: Ratio Integer -> Maybe (Ratio Integer)
             value (blue - c) == chroma (blue - c)
            value (green - c) == chroma (green - c)
              value (red - c) == chroma (red - c)
- fromHSL mq1 (0 % 1) (1 % 2) == mix black white
-          hue (green + blue) == Just (1 % 2)
-        hue (mix green blue) == Just (1 % 2)
-          hue (mix red blue) == hue (red + blue)
-         hue (mix red green) == hue (red + green)
        chroma (green + blue) == 1 % 1
          chroma (red + blue) == 1 % 1
         chroma (red + green) == 1 % 1
@@ -106,8 +83,31 @@ saturation (mix white green) == 1 % 2
       value (mix white blue) == 1 % 1
      value (mix white green) == 1 % 1
        value (mix white red) == 1 % 1
+                       c - c == black
+                     mix c c == c
+                   c + black == c
+                   c + white == white
+                   c - black == c
+                   c - white == black
+                   black - c == black
+                 blue + blue == blue
+               green + green == green
+                   red + red == red
+                blue - green == blue
+                  blue - red == blue
+                green - blue == green
+                 green - red == green
+                  red - blue == red
+                 red - green == red
+                white - blue == red + green
+               white - green == red + blue
+                 white - red == green + blue
                        c + d == d + c
                      mix c d == mix d c
+       fromHSL mq1 q (0 % 1) == black
+       fromHSL mq1 q (1 % 1) == white
+       fromHSV mq1 q (0 % 1) == black
+ fromHSL mq1 (0 % 1) (1 % 2) == mix black white
        fromHSL mq1 (0 % 1) q == fromHSL mq2 (0 % 1) q
        fromHSL mq1 (0 % 1) q == fromHSV mq2 (0 % 1) q
 

@@ -6,9 +6,9 @@ _ :: Int  (holes: Int)
 (++) :: [Int] -> [Int] -> [Int]
 length :: [Int] -> Int
 
-        length [] == 0
          xs ++ [] == xs
          [] ++ xs == xs
+        length [] == 0
 length (xs ++ ys) == length (ys ++ xs)
     length (x:xs) == length (y:xs)
 

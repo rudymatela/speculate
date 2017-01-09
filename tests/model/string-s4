@@ -9,12 +9,8 @@ unlines :: [[Char]] -> [Char]
 unwords :: [[Char]] -> [Char]
 (++) :: [Char] -> [Char] -> [Char]
 
-                    words " " == lines ""
-                     words "" == lines ""
-                   words "\n" == lines ""
                      cs ++ "" == cs
                      "" ++ cs == cs
-          words (unwords css) == words (unlines css)
            unlines (lines "") == ""
          unlines (lines "\n") == "\n"
           unwords (lines " ") == " "
@@ -22,6 +18,10 @@ unwords :: [[Char]] -> [Char]
          unwords (lines "\n") == ""
                   " " ++ "\n" == unlines (lines " ")
 unlines (lines (unlines css)) == unlines css
+                    words " " == lines ""
+                     words "" == lines ""
+                   words "\n" == lines ""
+          words (unwords css) == words (unlines css)
    lines (unlines (lines cs)) == lines cs
    lines (unlines (words cs)) == words cs
    words (unlines (lines cs)) == words cs

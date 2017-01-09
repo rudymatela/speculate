@@ -21,9 +21,8 @@ True :: Bool
                   s /\ emptyS == emptyS
                   s \/ emptyS == s
              deleteS x emptyS == emptyS
-                (s == emptyS) == (sizeS s == sizeS emptyS)
-                  x <~ emptyS == False
-               x <~ singleS y == (x == y)
+                       s /\ t == t /\ s
+                       s \/ t == t \/ s
         deleteS x (singleS x) == emptyS
            deleteS x (s /\ t) == s /\ deleteS x t
                 (s /\ t) /\ u == s /\ (t /\ u)
@@ -33,16 +32,17 @@ True :: Bool
                 s \/ (s /\ t) == s
              s \/ deleteS x s == s
       deleteS x (deleteS x s) == deleteS x s
+             s /\ deleteS x t == t /\ deleteS x s
+      deleteS x (deleteS y s) == deleteS y (deleteS x s)
+            sizeS (singleS x) == sizeS (singleS y)
+sizeS (deleteS x (singleS y)) == sizeS (deleteS y (singleS x))
+                (s == emptyS) == (sizeS s == sizeS emptyS)
+                  x <~ emptyS == False
+               x <~ singleS y == (x == y)
            (s == deleteS x s) == (False == x <~ s)
              x <~ deleteS x s == False
                 (s /\ t == s) == (t == s \/ t)
      (singleS x == singleS y) == (x == y)
-                       s /\ t == t /\ s
-                       s \/ t == t \/ s
-            sizeS (singleS x) == sizeS (singleS y)
-             s /\ deleteS x t == t /\ deleteS x s
-      deleteS x (deleteS y s) == deleteS y (deleteS x s)
-sizeS (deleteS x (singleS y)) == sizeS (deleteS y (singleS x))
 
                 emptyS <= s
           sizeS emptyS <= sizeS s
