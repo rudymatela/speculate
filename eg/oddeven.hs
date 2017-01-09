@@ -3,7 +3,7 @@ import Test.Speculate
 main :: IO ()
 main = speculate args
   { showConditions = True
-  , atoms =
+  , constants =
       [ showConstant (0::Int)
       , showConstant (1::Int)
       , showConstant (2::Int)

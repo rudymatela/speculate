@@ -63,7 +63,7 @@ main :: IO ()
 main = speculate args
   { customTypeInfo = [typeInfo (undefined :: BT Item) "t"]
   , showConditions = True
-  , atoms =
+  , constants =
       [ showConstant (Null :: BT Item)
       , showConstant True
       , showConstant False
@@ -75,7 +75,7 @@ main = speculate args
       , constant "ordered" (ordered :: [Item] -> Bool)
       , constant "isIn" (isIn :: Item -> BT Item -> Bool)
       ]
-  , conditionAtoms =
+  , conditionConstants =
       [ constant "<="  ((<=) :: Item -> Item -> Bool)
       , constant "=="  ((==) :: Item -> Item -> Bool)
       , constant "/="  ((/=) :: Item -> Item -> Bool)

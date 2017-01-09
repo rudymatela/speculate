@@ -3,7 +3,7 @@ import Data.List (sort,insert)
 
 main :: IO ()
 main = speculate args
-  { atoms =
+  { constants =
     let
       ordered (x:y:xs) = x <= y && ordered (y:xs)
       ordered _        = True
@@ -17,7 +17,7 @@ main = speculate args
       , constant "ordered" $ ordered -:> [int]
       , constant "all"     $ all    ->:> [int]
       ]
-  , backgroundAtoms =
+  , backgroundConstants =
       [ constant "False"     False
       , constant "True"      True
       , constant "=="      $ (==)    -:>  int

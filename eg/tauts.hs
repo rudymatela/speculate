@@ -25,7 +25,7 @@ main = speculate args
   , showConditions = True
   , maxVars = 2
   , maxTests = 4000
-  , atoms =
+  , constants =
       [ showConstant False
       , showConstant True
       , constant "==" ((==) -:> prop)

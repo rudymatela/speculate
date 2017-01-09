@@ -43,7 +43,7 @@ data Args = Args
   , maxSemiSize          :: Int
   , maxCondSize          :: Int
   , customTypeInfo       :: [TypeInfo]
-  , showAtoms            :: Bool
+  , showConstants        :: Bool
   , showTheory           :: Bool
   , showEquivalences     :: Bool
   , showSemiequivalences :: Bool
@@ -59,10 +59,10 @@ data Args = Args
 --, keepRewriteRules     :: Bool
   , showHelp             :: Bool
   , extra                :: [String] -- unused, user-defined meaning
-  , backgroundAtoms      :: [Expr] -- ^ background atoms
-  , atoms                :: [Expr] -- ^ atoms used on both conditions and equations
-  , conditionAtoms       :: [Expr] -- ^ atoms exclusive to conditions
-  , equationAtoms        :: [Expr] -- ^ atoms exclusive to equations
+  , backgroundConstants  :: [Expr] -- ^ background constants
+  , constants            :: [Expr] -- ^ constants used on both conditions and equations
+  , conditionConstants   :: [Expr] -- ^ constants exclusive to conditions
+  , equationConstants    :: [Expr] -- ^ constants exclusive to equations
   }
 -- Maybe add an empty Thy here.
 
@@ -72,7 +72,7 @@ args = Args
   , maxSemiSize          = -2
   , maxCondSize          = -1
   , customTypeInfo       = []
-  , showAtoms            = True
+  , showConstants        = True
   , showTheory           = False
   , showEquivalences     = True
   , showSemiequivalences = True
@@ -88,10 +88,10 @@ args = Args
 --, keepRewriteRules     = False
   , showHelp             = False
   , extra                = []
-  , backgroundAtoms      = []
-  , atoms                = []
-  , conditionAtoms       = []
-  , equationAtoms        = []
+  , backgroundConstants  = []
+  , constants            = []
+  , conditionConstants   = []
+  , equationConstants    = []
   }
 
 computeMaxSemiSize :: Args -> Int
@@ -106,13 +106,14 @@ computeMaxCondSize args
 
 shouldShow2 :: Args -> (Expr,Expr) -> Bool
 shouldShow2 args (e1,e2) = showConstantLaws args || hasVar e1 || hasVar e2
--- `allAbout` atoms // (conditionAtoms `union` equationAtoms)
+-- `allAbout` constants // (conditionAtoms `union` equationAtoms)
 
 shouldShowEquation :: Args -> (Expr,Expr) -> Bool
 shouldShowEquation args (e1,e2) =
   shouldShow2 args (e1,e2) && (e1 `about` ea || e2 `about` ea)
   where
-  ea = equationAtoms args ++ ((atoms args \\ conditionAtoms args) \\ backgroundAtoms args)
+  ea = equationConstants args
+    ++ ((constants args \\ conditionConstants args) \\ backgroundConstants args)
 
 shouldShow3 :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShow3 args (e1,e2,e3) = showConstantLaws args
@@ -124,10 +125,10 @@ shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
                                               || e1 `about` ea
                                               || e2 `about` ea)
   where
-  ca = conditionAtoms args ++ ((atoms args \\ equationAtoms args)  \\ backgroundAtoms args)
-  ea = equationAtoms args  ++ ((atoms args \\ conditionAtoms args) \\ backgroundAtoms args)
+  ca = conditionConstants args ++ ((constants args \\ equationConstants args)  \\ backgroundConstants args)
+  ea = equationConstants args  ++ ((constants args \\ conditionConstants args) \\ backgroundConstants args)
 
--- | Are all atoms in an expression about a list of atoms?
+-- | Are all constants in an expression about a list of constants?
 -- Examples in pseudo-Haskell:
 --
 -- > x + y `allAbout` [(+)] == True
@@ -146,7 +147,7 @@ report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
   -- TODO: use typs here?
   let ti = concat (customTypeInfo args) ++ basicTypeInfo
-  let ds = atoms args `union` backgroundAtoms args `union` conditionAtoms args `union` equationAtoms args
+  let ds = constants args `union` backgroundConstants args `union` conditionConstants args `union` equationConstants args
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
   let showConditions' = showConditions args && boolTy `elem` map (finalResultTy . typ) ds
   let ds' = map holeOfTy ts `union` ds
@@ -154,7 +155,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
             `union` [showConstant False | showConditions']
             `union` catMaybes [equalityE ti t | t <- ts, showConditions']
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (equal ti n) ds'
-  when (showAtoms args)        . putStrLn . unlines $ map show ds'
+  when (showConstants args)    . putStrLn . unlines $ map show ds'
   unless (null uts) . putStrLn
     $ unlines ["Warning: no typeInfo about " ++ show t
             ++ ", variables of this type will not be considered"
@@ -190,7 +191,7 @@ prepareArgs args =
   , "ttests"             --= \s a -> a {maxTests = read s}
   , "zsemisize"          --= \s a -> a {maxSemiSize = read s}
   , "xcondsize"          --= \s a -> a {maxCondSize = read s}
-  , "Aatoms"             --.   \a -> a {showAtoms = False}
+  , "Aconstants"         --.   \a -> a {showConstants = False}
   , "Ttheory"            --.   \a -> a {showTheory = True}
   , "Eno-equations"      --.   \a -> a {showEquivalences = False}
   , "Sno-semiequations"  --.   \a -> a {showSemiequivalences = False}
@@ -199,10 +200,10 @@ prepareArgs args =
   , "cclasses-for"       --= \s a -> a {showClassesFor = read s `L.insert` showClassesFor a}
   , "vvars"              --= \s a -> a {maxVars = read s}
   , "ddot"               --.   \a -> a {showDot = True
-                                        ,showAtoms = False
-                                        ,showEquivalences = False
-                                        ,showSemiequivalences = False
-                                        ,showConditions = False}
+                                       ,showConstants = False
+                                       ,showEquivalences = False
+                                       ,showSemiequivalences = False
+                                       ,showConditions = False}
   , "hhelp"              --.   \a -> a {showHelp = True}
   ]
   where

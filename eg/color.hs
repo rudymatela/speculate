@@ -34,7 +34,7 @@ main = speculate args
       [ typeInfo color    "c"
       ]
   , maxSize = 4
-  , atoms =
+  , constants =
       [ constant "black"     black
       , constant "white"     white
       , constant "red"       red

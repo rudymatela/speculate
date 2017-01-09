@@ -3,15 +3,15 @@ import Test.LeanCheck ((==>))
 
 main :: IO ()
 main = speculate args
-  { atoms =
+  { constants =
       [ constant "+"   ((+)  :: Int -> Int -> Int)
       , constant "abs" (abs  :: Int -> Int)
       ]
-  , backgroundAtoms =
+  , backgroundConstants =
       [ showConstant (0::Int)
       , showConstant (1::Int)
       ]
-  , conditionAtoms =
+  , conditionConstants =
       [ constant "<="  ((<=) :: Int -> Int -> Bool)
       , constant "<"   ((<)  :: Int -> Int -> Bool)
       , constant "=="  ((==) :: Int -> Int -> Bool)

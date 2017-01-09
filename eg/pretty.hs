@@ -25,7 +25,7 @@ main :: IO ()
 main = speculate args
   { customTypeInfo = [typeInfo (undefined :: Doc) "d1"]
   , maxSize = 7
-  , atoms = 
+  , constants =
       [ constant "$$"       ($$)
       , constant "<>"       (<>)
       , constant "nest"     nest

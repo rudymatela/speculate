@@ -3,7 +3,7 @@ import Test.LeanCheck ((==>))
 
 main :: IO ()
 main = speculate args
-  { atoms =
+  { constants =
       [ showConstant False
       , showConstant True
       , constant "not" not

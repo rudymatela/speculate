@@ -3,7 +3,7 @@ import Data.List (sort,insert)
 
 main :: IO ()
 main = speculate args
-  { atoms =
+  { constants =
       [ showConstant ([] :: [Int])
       , constant ":"    $ (:)  -:>  int
       , constant "++"   $ (++) -:> [int]

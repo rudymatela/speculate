@@ -36,7 +36,7 @@ main = speculate args
   , maxTests = 6000
   , maxVars = 2
   , showConditions = True
-  , atoms =
+  , constants =
     let
       -- totalize functions for nicer output
       -- (but also works without totalized functions)
@@ -57,7 +57,7 @@ main = speculate args
       , constant "subgraph"     $ subgraph -:> [nat]
       , constant "elem"         $ elem    ->:> [nat]
       ]
-  , backgroundAtoms =
+  , backgroundConstants =
       [ showConstant False
       , showConstant True
       ]
