@@ -23,6 +23,7 @@ main = speculate args
     --, constant "||"  (||)
       ]
   , showConditions = True
+  , showConstantLaws = False
   , maxVars        = 2
   , maxCondSize    = 0  -- == maxSize
   }

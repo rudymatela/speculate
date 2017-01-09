@@ -14,12 +14,9 @@ not :: Bool -> Bool
 (==) :: Bool -> Bool -> Bool
 
            id x == x
-          abs 0 == 0
-          abs 1 == 1
     abs (abs x) == abs x
           x + 0 == x
           x + y == y + x
-    abs (1 + 1) == 1 + 1
     (x + y) + z == x + (y + z)
 abs (x + abs x) == x + abs x
   abs x + abs x == abs (x + x)
