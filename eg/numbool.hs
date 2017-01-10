@@ -10,12 +10,9 @@ main = speculate args
   , backgroundConstants =
       [ showConstant (0::Int)
       , showConstant (1::Int)
-      ]
-  , conditionConstants =
-      [ constant "<="  ((<=) :: Int -> Int -> Bool)
+      , constant "<="  ((<=) :: Int -> Int -> Bool)
       , constant "<"   ((<)  :: Int -> Int -> Bool)
       ]
-  , showConditions = True
   , showConstantLaws = False
   , maxVars        = 2
   , maxCondSize    = 0  -- == maxSize
