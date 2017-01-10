@@ -7,10 +7,10 @@ abs :: Int -> Int
 1 :: Int
 (<=) :: Int -> Int -> Bool
 (<) :: Int -> Int -> Bool
-(==) :: Int -> Int -> Bool
 not :: Bool -> Bool
 True :: Bool
 False :: Bool
+(==) :: Int -> Int -> Bool
 (==) :: Bool -> Bool -> Bool
 
         id x == x

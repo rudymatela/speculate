@@ -14,7 +14,6 @@ main = speculate args
   , conditionConstants =
       [ constant "<="  ((<=) :: Int -> Int -> Bool)
       , constant "<"   ((<)  :: Int -> Int -> Bool)
-      , constant "=="  ((==) :: Int -> Int -> Bool)
       , constant "not" not
       ]
   , showConditions = True
