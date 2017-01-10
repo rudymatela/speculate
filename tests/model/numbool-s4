@@ -8,9 +8,9 @@ abs :: Int -> Int
 (<=) :: Int -> Int -> Bool
 (<) :: Int -> Int -> Bool
 (==) :: Int -> Int -> Bool
-False :: Bool
-True :: Bool
 not :: Bool -> Bool
+True :: Bool
+False :: Bool
 (==) :: Bool -> Bool -> Bool
 
         id x == x
