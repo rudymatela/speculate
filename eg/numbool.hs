@@ -1,5 +1,4 @@
 import Test.Speculate
-import Test.LeanCheck ((==>))
 
 main :: IO ()
 main = speculate args
@@ -19,8 +18,6 @@ main = speculate args
       , showConstant False
       , showConstant True
       , constant "not" not
-    --, constant "&&"  (&&)
-    --, constant "||"  (||)
       ]
   , showConditions = True
   , showConstantLaws = False
