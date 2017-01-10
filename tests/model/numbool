@@ -7,7 +7,6 @@ abs :: Int -> Int
 1 :: Int
 (<=) :: Int -> Int -> Bool
 (<) :: Int -> Int -> Bool
-not :: Bool -> Bool
 True :: Bool
 False :: Bool
 (==) :: Int -> Int -> Bool
@@ -22,18 +21,26 @@ abs (x + abs x) == x + abs x
   abs x + abs x == abs (x + x)
 abs (1 + abs x) == 1 + abs x
        (x == 0) == (abs x < 1)
+       (x <= y) == (x < y + 1)
     (x < abs x) == (x < 0)
-   (x == abs x) == not (x < 0)
+   (x <= abs x) == True
+   (x == abs x) == (0 <= x)
     (abs x < x) == False
+   (abs x <= x) == (0 <= x)
+   (0 <= abs x) == True
     (abs x < 0) == False
-    not (x < y) == (y < x + 1)
     (x < x + y) == (0 < y)
    (x == x + y) == (abs y < 1)
     (x + y < x) == (y < 0)
+   (x + y <= x) == (y < 1)
+   (x + 1 <= y) == (x < y)
+    (0 < x + x) == (0 < x)
     (1 < x + x) == (0 < x)
+   (0 <= x + x) == (0 <= x)
    (1 == x + x) == False
     (x + x < 0) == (x < 0)
-    (x + x < 1) == not (0 < x)
+    (x + x < 1) == (x < 1)
+   (x + x <= 1) == (x < 1)
 
 x <= abs x
 0 <= abs x
