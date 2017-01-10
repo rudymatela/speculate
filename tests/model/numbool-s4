@@ -28,8 +28,5 @@ False :: Bool
 x <= abs x
 0 <= abs x
 
-    x <= 0 ==>   x + abs x == 0
-abs x <= y ==> abs (x + y) == x + y
-abs y <= x ==> abs (x + y) == x + y
-1 == abs x ==> abs (x + 1) == x + abs x
+x <= 0 ==> x + abs x == 0
 
