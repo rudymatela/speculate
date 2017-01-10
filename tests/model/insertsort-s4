@@ -16,7 +16,6 @@ True :: Bool
 (==) :: [Int] -> [Int] -> Bool
 (==) :: Bool -> Bool -> Bool
 
-              sort [] == []
        sort (sort xs) == sort xs
              xs ++ [] == xs
           insert x [] == [x]
@@ -25,7 +24,6 @@ True :: Bool
    insert x (sort xs) == sort (x:xs)
              sort [x] == [x]
       sort (xs ++ ys) == sort (ys ++ xs)
-           ordered [] == True
     ordered (sort xs) == True
             elem x [] == False
 ordered (insert x xs) == ordered xs

@@ -12,21 +12,9 @@ mod :: Int -> Int -> Int
 (==) :: Bool -> Bool -> Bool
 
         x `mod` 1 == 0
-        0 `mod` 2 == 0
-        1 `mod` 2 == 1
-        2 `mod` 2 == 0
-           even 0 == True
-           even 1 == False
-           even 2 == True
-            odd 0 == False
-            odd 1 == True
-            odd 2 == False
          (x == x) == True
          (p == p) == True
       (p == True) == p
-         (0 == 1) == False
-         (0 == 2) == False
-         (1 == 2) == False
          (x == y) == (y == x)
  even (x `mod` 2) == even x
   odd (x `mod` 2) == odd x
@@ -35,9 +23,6 @@ mod :: Int -> Int -> Int
 
     p ==> True
 False ==> p
-    0 <=  1
-    0 <=  2
-    1 <=  2
 
 even x ==> x `mod` 2 == 0
  odd x ==> x `mod` x == 0

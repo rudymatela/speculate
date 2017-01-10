@@ -8,9 +8,6 @@ negate :: Int -> Int
 (*) :: Int -> Int -> Int
 
              id x == x
-            abs 0 == 0
-            abs 1 == 1
-         negate 0 == 0
       abs (abs x) == abs x
    abs (negate x) == abs x
 negate (negate x) == x
@@ -22,11 +19,8 @@ negate (negate x) == x
      x * negate y == negate (x * y)
       abs (x * x) == x * x
      x + negate x == 0
-      abs (1 + 1) == 1 + 1
 
-       0 <= 1
        x <= abs x
        0 <= abs x
-negate 1 <= 0
 negate x <= abs x
 

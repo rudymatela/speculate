@@ -7,7 +7,6 @@ negate :: Int -> Int
 (-) :: Int -> Int -> Int
 
              id x == x
-         negate 0 == 0
             x - y == x + negate y
 negate (negate x) == x
             x + 0 == x
@@ -16,8 +15,6 @@ negate (negate x) == x
      x + negate x == 0
       (x + y) + z == x + (y + z)
 
-       0 <= 1
-negate 1 <= 0
-       x <= x + 1
-   x - 1 <= x
+    x <= x + 1
+x - 1 <= x
 

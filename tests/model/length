@@ -10,7 +10,6 @@ length :: [Int] -> Int
          [] ++ xs == xs
              x:xs == [x] ++ xs
  (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
-        length [] == 0
 length (xs ++ ys) == length (ys ++ xs)
     length (x:xs) == length (y:xs)
 

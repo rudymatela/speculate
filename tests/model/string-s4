@@ -11,16 +11,7 @@ unwords :: [[Char]] -> [Char]
 
                      cs ++ "" == cs
                      "" ++ cs == cs
-           unlines (lines "") == ""
-         unlines (lines "\n") == "\n"
-          unwords (lines " ") == " "
-           unwords (lines "") == ""
-         unwords (lines "\n") == ""
-                  " " ++ "\n" == unlines (lines " ")
 unlines (lines (unlines css)) == unlines css
-                    words " " == lines ""
-                     words "" == lines ""
-                   words "\n" == lines ""
           words (unwords css) == words (unlines css)
    lines (unlines (lines cs)) == lines cs
    lines (unlines (words cs)) == words cs
@@ -31,8 +22,6 @@ unlines (lines (unlines css)) == unlines css
             words (" " ++ cs) == words cs
            words ("\n" ++ cs) == words cs
 
-        "" <= cs
-      "\n" <= " "
-  lines "" <= css
-lines "\n" <= lines " "
+      "" <= cs
+lines "" <= css
 

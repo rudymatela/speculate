@@ -6,8 +6,6 @@ not :: Bool -> Bool
 (||) :: Bool -> Bool -> Bool
 (==) :: Bool -> Bool -> Bool
 
-   not False == True
-    not True == False
     (p && p) == p
     (p == p) == True
     (p || p) == p

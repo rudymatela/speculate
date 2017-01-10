@@ -21,7 +21,6 @@ isIn :: Word2 -> BT Word2 -> Bool
 
 toList (fromList (toList (fromList xs))) == toList (fromList xs)
                            delete x Null == Null
-                  fromList (toList Null) == Null
                    delete x (insert x t) == delete x t
                    insert x (insert x t) == insert x t
  fromList (toList (fromList (toList t))) == fromList (toList t)
