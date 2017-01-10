@@ -14,6 +14,5 @@ main = speculate args
       , constant "<"   ((<)  :: Int -> Int -> Bool)
       ]
   , showConstantLaws = False
-  , maxVars        = 2
   , maxCondSize    = 0  -- == maxSize
   }
