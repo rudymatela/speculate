@@ -1,7 +1,5 @@
 _ :: Integer  (holes: Integer)
 _ :: Ratio Integer  (holes: Ratio Integer)
-0 % 1 :: Ratio Integer
-1 % 1 :: Ratio Integer
 id :: Ratio Integer -> Ratio Integer
 abs :: Ratio Integer -> Ratio Integer
 negate :: Ratio Integer -> Ratio Integer
@@ -12,6 +10,8 @@ negate :: Ratio Integer -> Ratio Integer
 recip :: Ratio Integer -> Ratio Integer
 numerator :: Ratio Integer -> Integer
 denominator :: Ratio Integer -> Integer
+0 % 1 :: Ratio Integer
+1 % 1 :: Ratio Integer
 
                   denominator (abs q) == denominator q
                denominator (negate q) == denominator q
