@@ -12,10 +12,14 @@ numerator :: Ratio Integer -> Integer
 denominator :: Ratio Integer -> Integer
 0 % 1 :: Ratio Integer
 1 % 1 :: Ratio Integer
+0 :: Integer
+1 :: Integer
 
     denominator (abs q) == denominator q
  denominator (negate q) == denominator q
 denominator (q + 1 % 1) == denominator q
+    denominator (x % 1) == 1
+      numerator (x % 1) == x
                    id q == q
             abs (abs q) == abs q
          abs (negate q) == abs q
@@ -30,10 +34,11 @@ denominator (q + 1 % 1) == denominator q
             abs (q * q) == q * q
            q + negate q == 0 % 1
      q / negate (1 % 1) == negate q
+      0 % denominator q == 0 % 1
 
-                q <= abs q
-            0 % 1 <= abs q
-         negate q <= abs q
-numerator (0 % 1) <= denominator q
-numerator (1 % 1) <= denominator q
+       q <= abs q
+       0 <= denominator q
+       1 <= denominator q
+   0 % 1 <= abs q
+negate q <= abs q
 

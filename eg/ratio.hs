@@ -22,5 +22,7 @@ main = speculate args
   , backgroundConstants =
       [ showConstant (0 :: Rational)
       , showConstant (1 :: Rational)
+      , showConstant (0 :: Integer)
+      , showConstant (1 :: Integer)
       ]
   }
