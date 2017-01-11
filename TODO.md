@@ -13,6 +13,19 @@ current
 
 * go through all test-models and list what is redundant or wrong here
 
+* after adding:
+
+    constant "/=" $ (/=) -:> integer
+
+  to `backgroundConstants`, these:
+
+    (q == negate q) == False
+       (q == q + r) == False
+
+  along with a handful of other strange laws appear.
+  Find out why and remove them.
+
+
 * remove wrong laws on binarytree example, e.g.:
 
 	False == ordered xs ==> delete y u == delete x t
