@@ -65,8 +65,6 @@ main = speculate args
   , showConditions = True
   , constants =
       [ showConstant (Null :: BT Item)
-      , showConstant True
-      , showConstant False
       , constant "insert" (insert :: Item -> BT Item -> BT Item)
       , constant "delete" (delete :: Item -> BT Item -> BT Item)
       , constant "toList" (toList :: BT Item -> [Item])
@@ -75,9 +73,8 @@ main = speculate args
       , constant "ordered" (ordered :: [Item] -> Bool)
       , constant "isIn" (isIn :: Item -> BT Item -> Bool)
       ]
-  , conditionConstants =
+  , backgroundConstants =
       [ constant "<="  ((<=) :: Item -> Item -> Bool)
-      , constant "=="  ((==) :: Item -> Item -> Bool)
       , constant "/="  ((/=) :: Item -> Item -> Bool)
 --      TODO: when the following is added speculate "breaks" and prints a lot
 --            of junk laws.  Prune those away in speculate.  Then re-add not.

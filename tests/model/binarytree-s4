@@ -3,8 +3,6 @@ _ :: BT Word2  (holes: BT Word2)
 _ :: Bool  (holes: Bool)
 _ :: Word2  (holes: Word2)
 Null :: BT Word2
-True :: Bool
-False :: Bool
 insert :: Word2 -> BT Word2 -> BT Word2
 delete :: Word2 -> BT Word2 -> BT Word2
 toList :: BT Word2 -> [Word2]
@@ -13,29 +11,22 @@ isSearch :: BT Word2 -> Bool
 ordered :: [Word2] -> Bool
 isIn :: Word2 -> BT Word2 -> Bool
 (<=) :: Word2 -> Word2 -> Bool
-(==) :: Word2 -> Word2 -> Bool
 (/=) :: Word2 -> Word2 -> Bool
+True :: Bool
+False :: Bool
 (==) :: [Word2] -> [Word2] -> Bool
 (==) :: BT Word2 -> BT Word2 -> Bool
 (==) :: Bool -> Bool -> Bool
+(==) :: Word2 -> Word2 -> Bool
 
       delete x Null == Null
          isSearch t == True
-           (x /= x) == False
-           (x <= x) == True
-           (x == x) == True
-           (t == t) == True
-         (xs == xs) == True
-           (p == p) == True
  ordered (toList t) == True
         isIn x Null == False
-        (p == True) == p
 (xs == toList Null) == (Null == fromList xs)
 
-          p ==> True
-       Null <=  t
-      False ==> p
-toList Null <=  xs
+       Null <= t
+toList Null <= xs
 
 ordered xs ==> fromList (toList (fromList xs)) == fromList xs
   isIn x t ==>                      insert x t == t
