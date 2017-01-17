@@ -19,6 +19,7 @@ module Test.Speculate.Utils.List
   , zipWithReverse
   , medianate
   , takeGreaterHalf
+  , accum
   )
 where
 
@@ -182,3 +183,9 @@ medianate f xs = zipWith f (takeGreaterHalf xs) (takeGreaterHalf $ reverse xs)
 
 takeGreaterHalf :: [a] -> [a]
 takeGreaterHalf xs = take (uncurry (+) $ length xs `divMod` 2) xs
+
+accum :: Num a => [a] -> [a]
+accum = a 0
+  where
+  a _ []     = []
+  a s (x:xs) = (s+x : a (s+x) xs)
