@@ -195,7 +195,7 @@ prepareArgs args =
   , "Ttheory"            --.   \a -> a {showTheory = True}
   , "Eno-equations"      --.   \a -> a {showEquivalences = False}
   , "Sno-semiequations"  --.   \a -> a {showSemiequivalences = False}
-  , "Cno-sideconditions" --.   \a -> a {showConditions = True}
+  , "Cno-sideconditions" --.   \a -> a {showConditions = False}
   , "0no-constant-laws"  --.   \a -> a {showConstantLaws = False}
   , "cclasses-for"       --= \s a -> a {showClassesFor = read s `L.insert` showClassesFor a}
   , "vvars"              --= \s a -> a {maxVars = read s}
