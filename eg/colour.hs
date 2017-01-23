@@ -35,16 +35,7 @@ main = speculate args
       ]
   , maxSize = 4
   , constants =
-      [ constant "black"     black
-      , constant "white"     white
-      , constant "red"       red
-      , constant "green"     green
-      , constant "blue"      blue
---    , constant "cyan"      cyan
---    , constant "magenta"   magenta
---    , constant "yellow"    yellow
---    , constant "orange"    orange
-      , constant "+"       $ (+)    -:> colour
+      [ constant "+"       $ (+)    -:> colour
       , constant "-"       $ (-)    -:> colour
 --    , constant "*"       $ (*)    -:> colour
 --    , constant "negate"  $ negate -:> colour
@@ -62,16 +53,26 @@ main = speculate args
       , constant "mix"        mix
 --    , constant "mixHSV"     mixHSV
 
-      , constant "Just"     $ Just -:> rational
-
-      , showConstant (0 % 1 :: Rational)
-      , showConstant (1 % 1 :: Rational)
-      , showConstant (1 % 2 :: Rational)
-
 --    , constant "==" $ (==) -:> colour
 --    , constant "/=" $ (/=) -:> colour
 --    , showConstant False
 --    , showConstant True
 --    , constant primary
+      ]
+    , backgroundConstants =
+      [ constant "black"     black
+      , constant "white"     white
+      , constant "red"       red
+      , constant "green"     green
+      , constant "blue"      blue
+--    , constant "cyan"      cyan
+--    , constant "magenta"   magenta
+--    , constant "yellow"    yellow
+--    , constant "orange"    orange
+      , constant "Just"     $ Just -:> rational
+
+      , showConstant (0 % 1 :: Rational)
+      , showConstant (1 % 1 :: Rational)
+      , showConstant (1 % 2 :: Rational)
       ]
   } 
