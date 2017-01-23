@@ -71,6 +71,8 @@ main = speculate args
       , showConstant (1 % 1 :: Rational)
       , showConstant (1 % 2 :: Rational)
 
+--    , constant "%" $ (%) -:> integer
+
 --    , constant "<=" $ (<=) -:> rational
 --    , constant "<"  $ (<)  -:> rational
 

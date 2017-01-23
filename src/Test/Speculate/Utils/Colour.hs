@@ -23,6 +23,7 @@ module Test.Speculate.Utils.Colour
   -- * Misc Utils
   , frac
   , coerceRatio
+  , modulo
   )
 where
 
@@ -236,8 +237,9 @@ fromHCL h c l = fromHCM h c m  where m = (1 - c) * l
 
 -- | From hue, chroma and min
 fromHCM :: Rational -> Rational -> Rational -> Colour
-fromHCM h c m = RGB (r' + m) (g' + m) (b' + m)
+fromHCM h' c m = RGB (r' + m) (g' + m) (b' + m)
   where
+  h = h' `modulo` 1
   x = c * (1 - abs ((h*6) `modulo` 2 - 1))
   (r',g',b')
     | 0%6 <= h && h <= 1%6 = (c,x,0)
