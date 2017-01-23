@@ -2,7 +2,6 @@ _ :: [Nat]  (holes: [Nat])
 _ :: Digraph Nat  (holes: Digraph Nat)
 _ :: Nat  (holes: Nat)
 _ :: Bool  (holes: Bool)
-[] :: [Nat]
 emptyDigraph :: Digraph Nat
 preds :: Nat -> Digraph Nat -> [Nat]
 succs :: Nat -> Digraph Nat -> [Nat]
@@ -12,9 +11,10 @@ isPath :: Nat -> Nat -> Digraph Nat -> Bool
 addNode :: Nat -> Digraph Nat -> Digraph Nat
 addEdge :: Nat -> Nat -> Digraph Nat -> Digraph Nat
 subgraph :: [Nat] -> Digraph Nat -> Digraph Nat
-elem :: Nat -> [Nat] -> Bool
 False :: Bool
 True :: Bool
+[] :: [Nat]
+elem :: Nat -> [Nat] -> Bool
 (==) :: [Nat] -> [Nat] -> Bool
 (==) :: Digraph Nat -> Digraph Nat -> Bool
 (==) :: Nat -> Nat -> Bool
@@ -30,7 +30,6 @@ True :: Bool
       addNode x (addNode x a) == addNode x a
   subgraph xs (subgraph ys a) == subgraph ys (subgraph xs a)
       addNode x (addNode y a) == addNode y (addNode x a)
-                    elem x [] == False
         isNode x emptyDigraph == False
                      (x == y) == isNode x (addNode y emptyDigraph)
                  isEdge x y a == elem x (preds y a)
@@ -41,7 +40,6 @@ True :: Bool
 (emptyDigraph == addNode x a) == False
            elem x (preds y a) == elem y (succs x a)
 
-          [] <= xs
 emptyDigraph <= a
 
    elem x xs ==> subgraph xs (addNode x emptyDigraph) == addNode x emptyDigraph
