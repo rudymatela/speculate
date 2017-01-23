@@ -18,6 +18,7 @@ grey :: Colour
 green :: Colour
 blue :: Colour
 Just :: Ratio Integer -> Maybe (Ratio Integer)
+Nothing :: Maybe (Ratio Integer)
 0 % 1 :: Ratio Integer
 1 % 1 :: Ratio Integer
 1 % 2 :: Ratio Integer
@@ -38,10 +39,10 @@ Just :: Ratio Integer -> Maybe (Ratio Integer)
       fromHSL mq1 q (0 % 1) == black
       fromHSL mq1 q (1 % 1) == white
       fromHSV mq1 q (0 % 1) == black
+      fromHSV mq1 (0 % 1) q == fromHSL Nothing (0 % 1) q
 fromHSL mq1 (0 % 1) (1 % 2) == grey
 fromHSV mq1 (1 % 1) (1 % 1) == fromHSL mq1 (1 % 1) (1 % 2)
       fromHSL mq1 (0 % 1) q == fromHSL mq2 (0 % 1) q
-      fromHSL mq1 (0 % 1) q == fromHSV mq2 (0 % 1) q
         chroma (mix c grey) == chroma (mix c black)
        chroma (mix c white) == chroma (mix c black)
           chroma (grey - c) == chroma (c + grey)
@@ -68,7 +69,6 @@ fromHSV mq1 (1 % 1) (1 % 1) == fromHSL mq1 (1 % 1) (1 % 2)
  lightness c <= 1 % 1
 saturation c <= 1 % 1
      value c <= 1 % 1
-   hue black <= mq1
     chroma c <= saturation c
     chroma c <= value c
  lightness c <= value c

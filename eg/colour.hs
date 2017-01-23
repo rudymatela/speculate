@@ -69,6 +69,7 @@ main = speculate args
 --    , constant "yellow"    yellow
 --    , constant "orange"    orange
       , constant "Just"     $ Just -:> rational
+      , constant "Nothing"  (Nothing :: Maybe Rational)
 
       , showConstant (0 % 1 :: Rational)
       , showConstant (1 % 1 :: Rational)
