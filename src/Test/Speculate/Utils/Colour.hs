@@ -4,11 +4,10 @@ module Test.Speculate.Utils.Colour
   , Color
   , showRGB
   , (.+.), (.-.), (.*.)
-  , black, white
+  , black, white, grey
   , red, green, blue
   , cyan, magenta, yellow
-  , orange
-  , grey
+  , violet, orange, lime, aquamarine, azure, indigo
   , makeGrey
   , grey1, grey2, grey3, grey4, grey5, grey6, grey7, grey8, grey9
   , rgb, cmy
@@ -119,8 +118,23 @@ magenta = RGB 1 0 1
 yellow :: Colour
 yellow = RGB 1 1 0
 
+violet :: Colour
+violet = red `mix` magenta
+
 orange :: Colour
-orange = RGB 1 (1%2) 0
+orange = red `mix` yellow
+
+lime :: Colour
+lime = green `mix` yellow
+
+aquamarine :: Colour
+aquamarine = green `mix` cyan
+
+azure :: Colour
+azure = blue `mix` cyan
+
+indigo :: Colour
+indigo = blue `mix` magenta
 
 grey :: Colour
 grey = grey5
