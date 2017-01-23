@@ -26,7 +26,7 @@ import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
 import Test.LeanCheck.Tiers (unorderedPairsWith)
 import Test.Speculate.Utils
-import Test.Speculate.Utils.Color
+import Test.Speculate.Utils.Colour
 import Data.Ratio ((%))
 
 import System.Console.CmdArgs.Explicit
@@ -243,7 +243,7 @@ reportDot ti quiet nVars n thy es = do
   unless quiet . putStrLn . unlines
            . map (\(r,e) -> showExprNode e
                          ++ " [style=filled, fillcolor = \""
-                         ++ showNodeColor (length (vars e) % (nVars*2)) r
+                         ++ showNodeColour (length (vars e) % (nVars*2)) r
                          ++ "\"]")
            . filter (\(r,e) -> typ e == boolTy)
            $ res
@@ -267,7 +267,7 @@ reportDot ti quiet nVars n thy es = do
                                     ++ "\\n" ++ showRatio tre
                                     ++ "\\n" ++ show (percent tre) ++ "%\""
     | otherwise = "\"" ++ showExpr e ++ "\""
-  showNodeColor varRatio trueRatio =
+  showNodeColour varRatio trueRatio =
     showRGB $ fromHSV (hue blue) (frac $ coerceRatio varRatio) 1
         `mix` fromHSV (hue orange) (1 - frac (coerceRatio trueRatio)) 1
         `mix` white

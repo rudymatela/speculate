@@ -5,25 +5,25 @@ import Test.Speculate -- go figure...
 #else
 import Test.Speculate hiding (value)
 #endif
-import Test.Speculate.Utils.Color
+import Test.Speculate.Utils.Colour
 import Test.LeanCheck
 import Data.Ratio
 
-deriving instance Typeable Color -- for GHC < 7.10
+deriving instance Typeable Colour -- for GHC < 7.10
 
 -- Just for Listable.tiers enumeration
-data ColorComponent = ColorComponent Rational
+data ColourComponent = ColourComponent Rational
 
-instance Listable ColorComponent where
-  tiers = mapT (ColorComponent . uncurry (%))
+instance Listable ColourComponent where
+  tiers = mapT (ColourComponent . uncurry (%))
         $ tiers `suchThat` (\(n,d) -> n >= 0 && d > 0 && n <= d && n `gcd` d == 1)
                 `ofWeight` 0
 
-instance Listable Color where
-  tiers = cons3 (\(ColorComponent r) (ColorComponent g) (ColorComponent b) -> RGB r g b)
+instance Listable Colour where
+  tiers = cons3 (\(ColourComponent r) (ColourComponent g) (ColourComponent b) -> RGB r g b)
 
-color :: Color
-color = undefined
+colour :: Colour
+colour = undefined
 
 rational :: Rational
 rational = undefined
@@ -31,7 +31,7 @@ rational = undefined
 main :: IO ()
 main = speculate args
   { customTypeInfo =
-      [ typeInfo color    "c"
+      [ typeInfo colour    "c"
       ]
   , maxSize = 4
   , constants =
@@ -44,13 +44,13 @@ main = speculate args
 --    , constant "magenta"   magenta
 --    , constant "yellow"    yellow
 --    , constant "orange"    orange
-      , constant "+"       $ (+)    -:> color
-      , constant "-"       $ (-)    -:> color
---    , constant "*"       $ (*)    -:> color
---    , constant "negate"  $ negate -:> color
---    , constant ".+."     $ (.+.)  -:> color
---    , constant ".-."     $ (.-.)  -:> color
---    , constant ".*."     $ (.*.)  -:> color
+      , constant "+"       $ (+)    -:> colour
+      , constant "-"       $ (-)    -:> colour
+--    , constant "*"       $ (*)    -:> colour
+--    , constant "negate"  $ negate -:> colour
+--    , constant ".+."     $ (.+.)  -:> colour
+--    , constant ".-."     $ (.-.)  -:> colour
+--    , constant ".*."     $ (.*.)  -:> colour
       , constant "chroma"     chroma
       , constant "hue"        hue
       , constant "saturation" saturation
@@ -68,8 +68,8 @@ main = speculate args
       , showConstant (1 % 1 :: Rational)
       , showConstant (1 % 2 :: Rational)
 
---    , constant "==" $ (==) -:> color
---    , constant "/=" $ (/=) -:> color
+--    , constant "==" $ (==) -:> colour
+--    , constant "/=" $ (/=) -:> colour
 --    , showConstant False
 --    , showConstant True
 --    , constant primary
