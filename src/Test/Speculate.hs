@@ -151,8 +151,8 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
   let showConditions' = showConditions args && boolTy `elem` map (finalResultTy . typ) ds
   let ds' = map holeOfTy ts `union` ds
-            `union` [showConstant True  | showConditions']
-            `union` [showConstant False | showConditions']
+            `union` [showConstant True  | showConditions' || showDot args]
+            `union` [showConstant False | showConditions' || showDot args]
             `union` catMaybes [equalityE ti t | t <- ts, showConditions']
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (equal ti n) ds'
   when (showConstants args)    . putStrLn . unlines $ map show ds'
