@@ -50,6 +50,7 @@ data Args = Args
   , showConditions       :: Bool
   , showConstantLaws     :: Bool
   , showDot              :: Bool
+  , quietDot             :: Bool
   , showClassesFor       :: [Int]
   , maxVars              :: Int
 --, closureLimit         :: Int
@@ -77,8 +78,9 @@ args = Args
   , showEquivalences     = True
   , showSemiequivalences = True
   , showConditions       = True
-  , showDot              = False
   , showConstantLaws     = False
+  , showDot              = False
+  , quietDot             = False
   , showClassesFor       = []
   , maxVars              = 2
 --, closureLimit         = 2
@@ -171,7 +173,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
     . prettyChy (shouldShowConditionalEquation args)
     $ conditionalTheoryFromThyAndReps ti n (maxVars args) (computeMaxCondSize args) thy es
   when (showDot args) $
-    reportDot ti (maxVars args) n thy es
+    reportDot ti (quietDot args) (maxVars args) n thy es
 
 reportClassesFor :: TypeInfo -> Int -> [Int] -> Thy -> [Expr] -> IO ()
 reportClassesFor ti nTests nVarss thy res = do
@@ -200,6 +202,13 @@ prepareArgs args =
   , "cclasses-for"       --= \s a -> a {showClassesFor = read s `L.insert` showClassesFor a}
   , "vvars"              --= \s a -> a {maxVars = read s}
   , "ddot"               --.   \a -> a {showDot = True
+                                       ,quietDot = False
+                                       ,showConstants = False
+                                       ,showEquivalences = False
+                                       ,showSemiequivalences = False
+                                       ,showConditions = False}
+  , "Dquiet-dot"         --.   \a -> a {showDot = True
+                                       ,quietDot = True
                                        ,showConstants = False
                                        ,showEquivalences = False
                                        ,showSemiequivalences = False
@@ -220,8 +229,8 @@ speculate args = do
 getArgs :: Args -> IO Args
 getArgs = processArgs . prepareArgs
 
-reportDot :: TypeInfo -> Int -> Int -> Thy -> [Expr] -> IO ()
-reportDot ti nVars n thy es = do
+reportDot :: TypeInfo -> Bool -> Int -> Int -> Thy -> [Expr] -> IO ()
+reportDot ti quiet nVars n thy es = do
   let ces = distinctFromSchemas ti n nVars thy
           $ filter (isComparable ti) es
   let res = [(trueRatio ti n e, e) | e <- ces, typ e == boolTy]
@@ -231,7 +240,7 @@ reportDot ti nVars n thy es = do
            . map showExprEdge
            . psortBy ((/=) &&&& lessOrEqual ti n)
            $ ces
-  putStrLn . unlines
+  unless quiet . putStrLn . unlines
            . map (\(r,e) -> showExprNode e
                          ++ " [style=filled, fillcolor = \""
                          ++ showNodeColor (length (vars e) % (nVars*2)) r
@@ -253,10 +262,10 @@ reportDot ti nVars n thy es = do
                  ++ " }"
   showExprEdge (e1,e2) = "  " ++ showExprNode e1 ++ " -> " ++ showExprNode e2
   showExprNode e
-    | typ e == boolTy = let tre = trueRatio ti n e
-                        in "\"" ++ showExpr e
-                       ++ "\\n" ++ showRatio tre
-                       ++ "\\n" ++ show (percent tre) ++ "%\""
+    | typ e == boolTy && not quiet = let tre = trueRatio ti n e
+                                     in "\"" ++ showExpr e
+                                    ++ "\\n" ++ showRatio tre
+                                    ++ "\\n" ++ show (percent tre) ++ "%\""
     | otherwise = "\"" ++ showExpr e ++ "\""
   showNodeColor varRatio trueRatio =
     showRGB $ fromHSV (hue blue) (frac $ coerceRatio varRatio) 1
