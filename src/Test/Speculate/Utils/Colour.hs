@@ -18,7 +18,10 @@ module Test.Speculate.Utils.Colour
   , saturation, saturationHSV, saturationHSL, saturationHSI
   , fromRGB, fromCMY, fromHSV, fromHSL, fromHCL, fromHCM
   , mix, mixHSV
-  , primary
+
+  -- * colour properties
+  , primary, secondary, tertiary
+  , primary'
 
   -- * Misc Utils
   , frac
@@ -262,7 +265,25 @@ mixHSV c1 c2 = fromHSV h
     hc2 <- hue c2
     return $ (hc1 + hc2) / 2
 
+primary' :: Colour -> Bool
+primary' c = c == red
+          || c == green
+          || c == blue
+
 primary :: Colour -> Bool
-primary c = c == red
-         || c == green
-         || c == blue
+primary c = hue c == hue red
+         || hue c == hue green
+         || hue c == hue blue
+
+secondary :: Colour -> Bool
+secondary c = hue c == hue cyan
+           || hue c == hue magenta
+           || hue c == hue yellow
+
+tertiary :: Colour -> Bool
+tertiary c = hue c == hue violet
+          || hue c == hue orange
+          || hue c == hue lime
+          || hue c == hue aquamarine
+          || hue c == hue azure
+          || hue c == hue indigo
