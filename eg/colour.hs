@@ -78,8 +78,11 @@ main = speculate args
 
 --    , constant "==" $ (==) -:> colour
 --    , constant "/=" $ (/=) -:> colour
+--    , constant "isGrey"    isGrey
+--    , constant "notGrey"   notGrey
 --    , constant "primary"   primary
 --    , constant "secondary" secondary
 --    , constant "tertiary"  tertiary
+--    , constant "`isOppositeTo`" isOppositeTo
       ]
   } 

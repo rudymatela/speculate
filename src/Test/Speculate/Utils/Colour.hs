@@ -22,6 +22,9 @@ module Test.Speculate.Utils.Colour
   -- * colour properties
   , primary, secondary, tertiary
   , primary'
+  , isGrey
+  , notGrey
+  , isOppositeTo
 
   -- * Misc Utils
   , frac
@@ -287,3 +290,15 @@ tertiary c = hue c == hue violet
           || hue c == hue aquamarine
           || hue c == hue azure
           || hue c == hue indigo
+
+isGrey :: Colour -> Bool
+isGrey = isNothing . hue
+
+notGrey :: Colour -> Bool
+notGrey = isJust . hue
+
+isOppositeTo :: Colour -> Colour -> Bool
+c1 `isOppositeTo` c2 = notGrey c1 && notGrey c2
+                    && saturation c1 == saturation c2
+                    && lightness c1 == lightness c2
+                    && (hue0 c1 + 1/2) `modulo` 1 == hue0 c2
