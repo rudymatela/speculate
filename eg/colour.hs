@@ -47,7 +47,7 @@ main = speculate args
       , constant "saturation" saturation
 --    , constant "intensity"  intensity
       , constant "value"      value
---    , constant "lightness"  lightness
+      , constant "lightness"  lightness
       , constant "fromHSV"    fromHSV
       , constant "fromHSL"    fromHSL
       , constant "mix"        mix
@@ -55,14 +55,13 @@ main = speculate args
 
 --    , constant "==" $ (==) -:> colour
 --    , constant "/=" $ (/=) -:> colour
---    , showConstant False
---    , showConstant True
 --    , constant primary
       ]
     , backgroundConstants =
       [ constant "black"     black
       , constant "white"     white
       , constant "red"       red
+      , constant "grey"      grey
       , constant "green"     green
       , constant "blue"      blue
 --    , constant "cyan"      cyan
