@@ -52,10 +52,6 @@ main = speculate args
       , constant "fromHSL"    fromHSL
       , constant "mix"        mix
 --    , constant "mixHSV"     mixHSV
-
---    , constant "==" $ (==) -:> colour
---    , constant "/=" $ (/=) -:> colour
---    , constant primary
       ]
     , backgroundConstants =
       [ constant "black"     black
@@ -74,5 +70,12 @@ main = speculate args
       , showConstant (0 % 1 :: Rational)
       , showConstant (1 % 1 :: Rational)
       , showConstant (1 % 2 :: Rational)
+
+--    , constant "<=" $ (<=) -:> rational
+--    , constant "<"  $ (<)  -:> rational
+
+--    , constant "==" $ (==) -:> colour
+--    , constant "/=" $ (/=) -:> colour
+--    , constant "primary" primary
       ]
   } 
