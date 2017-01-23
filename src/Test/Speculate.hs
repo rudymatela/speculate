@@ -268,6 +268,6 @@ reportDot ti quiet nVars n thy es = do
                                     ++ "\\n" ++ show (percent tre) ++ "%\""
     | otherwise = "\"" ++ showExpr e ++ "\""
   showNodeColour varRatio trueRatio =
-    showRGB $ fromHSV (hue blue) (frac $ coerceRatio varRatio) 1
-        `mix` fromHSV (hue orange) (1 - frac (coerceRatio trueRatio)) 1
+    showRGB $ fromHSV (hue0 blue) (frac $ coerceRatio varRatio) 1
+        `mix` fromHSV (hue0 orange) (1 - frac (coerceRatio trueRatio)) 1
         `mix` white

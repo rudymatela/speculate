@@ -12,6 +12,7 @@ module Test.Speculate.Utils.Colour
   , grey1, grey2, grey3, grey4, grey5, grey6, grey7, grey8, grey9
   , rgb, cmy
   , chroma
+  , hue0
   , hue
   , intensity, value, lightness
   , saturation, saturationHSV, saturationHSL, saturationHSI
@@ -168,11 +169,14 @@ mini (RGB r g b) = minimum [r,g,b]
 chroma :: Colour -> Rational
 chroma c = maxi c - mini c
 
+hue0 :: Colour -> Rational
+hue0 = fromMaybe 0 . hue
+
 hue :: Colour -> Maybe Rational
-hue color@(RGB r g b) = (\h' -> mod1 $ h' / 6) <$> h' -- * 60 / 360
+hue colour@(RGB r g b) = (\h' -> mod1 $ h' / 6) <$> h' -- * 60 / 360
   where
-  c = chroma color
-  m = maxi color
+  c = chroma colour
+  m = maxi colour
   h' | c == 0 = Nothing
      | m == r = Just $ (g - b) / c
      | m == g = Just $ (b - r) / c + 2
@@ -215,44 +219,46 @@ fromRGB = RGB
 fromCMY :: Rational -> Rational -> Rational -> Colour
 fromCMY c m y = RGB (1 - c) (1 - m) (1 - y)
 
-fromHSV :: Maybe Rational -> Rational -> Rational -> Colour
+fromHSV :: Rational -> Rational -> Rational -> Colour
 fromHSV h s v = fromHCM h c m
   where
   c = v * s
   m = v - c
 
-fromHSL :: Maybe Rational -> Rational -> Rational -> Colour
+fromHSL :: Rational -> Rational -> Rational -> Colour
 fromHSL h s l = fromHCM h c m
   where
   c = (1 - abs (2*l - 1)) * s
   m = l - c / 2
 
-fromHCL :: Maybe Rational -> Rational -> Rational -> Colour
+fromHCL :: Rational -> Rational -> Rational -> Colour
 fromHCL h c l = fromHCM h c m  where m = (1 - c) * l
 
 -- | From hue, chroma and min
-fromHCM :: Maybe Rational -> Rational -> Rational -> Colour
+fromHCM :: Rational -> Rational -> Rational -> Colour
 fromHCM h c m = RGB (r' + m) (g' + m) (b' + m)
   where
-  h' = case h of
-         Nothing -> 0
-         Just h' -> mod1 h'
-  x = c * (1 - abs ((h'*6) `modulo` 2 - 1))
+  x = c * (1 - abs ((h*6) `modulo` 2 - 1))
   (r',g',b')
-    | 0%6 <= h' && h' <= 1%6 = (c,x,0)
-    | 1%6 <= h' && h' <= 2%6 = (x,c,0)
-    | 2%6 <= h' && h' <= 3%6 = (0,c,x)
-    | 3%6 <= h' && h' <= 4%6 = (0,x,c)
-    | 4%6 <= h' && h' <= 5%6 = (x,0,c)
-    | 5%6 <= h' && h' <= 6%6 = (c,0,x)
+    | 0%6 <= h && h <= 1%6 = (c,x,0)
+    | 1%6 <= h && h <= 2%6 = (x,c,0)
+    | 2%6 <= h && h <= 3%6 = (0,c,x)
+    | 3%6 <= h && h <= 4%6 = (0,x,c)
+    | 4%6 <= h && h <= 5%6 = (x,0,c)
+    | 5%6 <= h && h <= 6%6 = (c,0,x)
 
 mix :: Colour -> Colour -> Colour
 mix (RGB r1 g1 b1) (RGB r2 g2 b2) = RGB ((r1 + r2) / 2) ((g1 + g2) / 2) ((b1 + b2) / 2)
 
 mixHSV :: Colour -> Colour -> Colour
-mixHSV c1 c2 = fromHSV (mod1 <$> ((+) <$> hue c1 <*> hue c2))
+mixHSV c1 c2 = fromHSV h
                        ((saturationHSV c1 + saturationHSV c2) / 2)
                        ((value c1 + value c2) / 2)
+  where
+  h = fromMaybe 0 $ do
+    hc1 <- hue c1
+    hc2 <- hue c2
+    return $ (hc1 + hc2) / 2
 
 primary :: Colour -> Bool
 primary c = c == red
