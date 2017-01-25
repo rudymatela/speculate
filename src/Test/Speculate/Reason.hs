@@ -100,6 +100,7 @@ mapEquations = updateEquationsBy . map
 instance Eq Thy where
   t == u = rules t == rules u
         && equations t == equations u
+        && closureLimit t == closureLimit u -- useful when self-speculating
 
 (|==|) :: Thy -> Thy -> Bool
 (|==|) t u = rules t =|= rules u
