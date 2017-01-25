@@ -10,34 +10,15 @@ instance Ord Thy where
          <> (compare `on` equations)
          <> (compare `on` closureLimit)
 
-warnWrong :: IO () -> IO ()
-warnWrong action = do
-  putStrLn "WARNING: most laws below are not correct (see source)"
-  action
-  putStrLn "WARNING: most laws above are not correct (see source)"
-
--- WARNING: this example right now is not correct as the number of tests is too
--- low.  When the number of tests is > 1406, some combination of functions and
--- values cause an infinite loop for the reason library.
--- Possible fixes:
---   * add a timeout to the Speculate eval function (laborious);
---   * make Reason always terminate (hard);
---   * remove some functions from constants (probably won't work).
---
--- To run this, it is better to change (on Listable Thy from Test.hs):
--- 
---   $ concatMapT expandKeepE
---
--- to
---
---   $ mapT defaultKeep
+-- NOTE: we get wrong laws for size 5, but no wrong laws for size 4.
+-- increasing the number of tests can get rid of those laws
 
 main :: IO ()
-main = warnWrong $ speculate args
-  { maxTests = 1406 -- 1407 infinite loop?
+main = speculate args
+  { maxTests = 8000 -- one of the datatypes is too wide!
   , showConditions = False
   , showSemiequivalences = False
-  , maxSize = 3
+  , evalTimeout = Just 0.1
   , customTypeInfo =
       [ typeInfo (undefined :: Thy) "t"
       , typeInfo (undefined :: (Expr,Expr)) "eq"
@@ -51,12 +32,12 @@ main = warnWrong $ speculate args
       , constant "append"        append
 
       , constant "normalize"     normalize
-      , constant "isNormal"      isNormal
+--    , constant "isNormal"      isNormal
       , constant "equivalent"    equivalent
 
-      , constant "initialize"    initialize
+--    , constant "initialize"    initialize
 --    , constant "theorize"      theorize
-      , constant "finalize"      finalize
+--    , constant "finalize"      finalize
 
 --    , constant "criticalPairs" criticalPairs
 --    , constant "normalizedCriticalPairs" normalizedCriticalPairs

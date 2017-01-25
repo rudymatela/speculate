@@ -1,5 +1,3 @@
-WARNING: most laws below are not correct (see source)
-_ :: Int  (holes: Int)
 _ :: (Expr,Expr)  (holes: (Expr,Expr))
 _ :: Expr  (holes: Expr)
 _ :: Bool  (holes: Bool)
@@ -10,21 +8,16 @@ insert :: (Expr,Expr) -> Thy -> Thy
 complete :: Thy -> Thy
 append :: Thy -> [(Expr,Expr)] -> Thy
 normalize :: Thy -> Expr -> Expr
-isNormal :: Thy -> Expr -> Bool
 equivalent :: Thy -> Expr -> Expr -> Bool
-initialize :: Int -> (Expr -> Expr -> Bool) -> [(Expr,Expr)] -> Thy
-finalize :: Thy -> Thy
 emptyThy :: Thy
 True :: Bool
 False :: Bool
 
- normalize emptyThy e == e
-        normalize t e == normalize u e
-              okThy t == True
-  isNormal emptyThy e == True
-         isNormal t e == isNormal u f
-         append t eqs == t
-complete (complete t) == complete t
-finalize (finalize t) == finalize t
+            normalize emptyThy e == e
+      normalize (append t eqs) e == normalize t e
+     normalize t (normalize t e) == normalize t e
+normalize (insert eq emptyThy) e == normalize (insert eq' emptyThy) e
+                         okThy t == True
+                equivalent t e e == True
+         equivalent emptyThy e f == equivalent emptyThy f e
 
-WARNING: most laws above are not correct (see source)

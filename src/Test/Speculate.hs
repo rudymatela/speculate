@@ -53,6 +53,7 @@ data Args = Args
   , quietDot             :: Bool
   , showClassesFor       :: [Int]
   , maxVars              :: Int
+  , evalTimeout          :: Maybe Double
 --, closureLimit         :: Int
 --, order                :: OptOrder  -- data OptOrder = Dershowitz | KnuthBendix
 --, maxRuleSize          :: Maybe Int
@@ -83,6 +84,7 @@ args = Args
   , quietDot             = False
   , showClassesFor       = []
   , maxVars              = 2
+  , evalTimeout          = Nothing
 --, closureLimit         = 2
 --, order                = Dershowitz
 --, maxRuleSize          = Nothing
@@ -145,6 +147,10 @@ e `about` es = atomicConstants e `areAny` (`elem` es)
 notAbout :: Expr -> [Expr] -> Bool
 notAbout = not .: about
 
+timeout :: Args -> Bool -> Bool
+timeout Args{evalTimeout = Nothing} = id
+timeout Args{evalTimeout = Just t}  = timeoutToFalse t
+
 report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
   -- TODO: use typs here?
@@ -156,7 +162,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
             `union` [showConstant True  | showConditions' || showDot args]
             `union` [showConstant False | showConditions' || showDot args]
             `union` catMaybes [equalityE ti t | t <- ts, showConditions']
-  let (thy,es) = theoryAndRepresentativesFromAtoms sz (equal ti n) ds'
+  let (thy,es) = theoryAndRepresentativesFromAtoms sz (timeout args .: equal ti n) ds'
   when (showConstants args)    . putStrLn . unlines $ map show ds'
   unless (null uts) . putStrLn
     $ unlines ["Warning: no typeInfo about " ++ show t
@@ -201,6 +207,7 @@ prepareArgs args =
   , "0no-constant-laws"  --.   \a -> a {showConstantLaws = True}
   , "cclasses-for"       --= \s a -> a {showClassesFor = read s `L.insert` showClassesFor a}
   , "vvars"              --= \s a -> a {maxVars = read s}
+  , "eeval-timeout"      --= \s a -> a {evalTimeout = Just $ read s}
   , "ddot"               --.   \a -> a {showDot = True
                                        ,quietDot = False
                                        ,showConstants = False
