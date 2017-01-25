@@ -21,7 +21,8 @@ warnWrong action = do
 -- values cause an infinite loop for the reason library.
 -- Possible fixes:
 --   * add a timeout to the Speculate eval function (laborious);
---   * make Reason always terminate (hard).
+--   * make Reason always terminate (hard);
+--   * remove some functions from constants (probably won't work).
 --
 -- To run this, it is better to change:
 -- 
