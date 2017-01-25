@@ -30,6 +30,7 @@ EG = \
   eg/minus \
   eg/numbool \
   eg/insertsort \
+  eg/speculate-reason \
   eg/string \
   eg/oddeven \
   eg/pretty \

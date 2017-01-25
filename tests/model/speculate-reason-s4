@@ -1,0 +1,37 @@
+WARNING: most laws below are not correct (see source)
+_ :: Int  (holes: Int)
+_ :: (Expr,Expr)  (holes: (Expr,Expr))
+_ :: Expr  (holes: Expr)
+_ :: Bool  (holes: Bool)
+_ :: [(Expr,Expr)]  (holes: [(Expr,Expr)])
+_ :: Thy  (holes: Thy)
+okThy :: Thy -> Bool
+insert :: (Expr,Expr) -> Thy -> Thy
+complete :: Thy -> Thy
+append :: Thy -> [(Expr,Expr)] -> Thy
+normalize :: Thy -> Expr -> Expr
+isNormal :: Thy -> Expr -> Bool
+equivalent :: Thy -> Expr -> Expr -> Bool
+initialize :: Int -> (Expr -> Expr -> Bool) -> [(Expr,Expr)] -> Thy
+finalize :: Thy -> Thy
+emptyThy :: Thy
+True :: Bool
+False :: Bool
+
+            normalize emptyThy e == e
+                   normalize t e == normalize u e
+                         okThy t == True
+             isNormal emptyThy e == True
+                    isNormal t e == isNormal u f
+                equivalent t e e == True
+                equivalent t e f == equivalent u e f
+                equivalent t e f == equivalent u f e
+                    append t eqs == t
+           complete (complete t) == complete t
+           finalize (finalize t) == finalize t
+complete (finalize (complete t)) == finalize (complete t)
+   complete (insert eq emptyThy) == insert eq emptyThy
+finalize (complete (finalize t)) == complete (finalize t)
+   finalize (insert eq emptyThy) == insert eq emptyThy
+
+WARNING: most laws above are not correct (see source)

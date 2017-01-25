@@ -53,6 +53,7 @@ eg/length
 eg/minus
 eg/numbool
 eg/insertsort
+eg/speculate-reason
 eg/string
 eg/pretty
 eg/ratio
