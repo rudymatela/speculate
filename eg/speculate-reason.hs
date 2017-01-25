@@ -24,7 +24,7 @@ warnWrong action = do
 --   * make Reason always terminate (hard);
 --   * remove some functions from constants (probably won't work).
 --
--- To run this, it is better to change:
+-- To run this, it is better to change (on Listable Thy from Test.hs):
 -- 
 --   $ concatMapT expandKeepE
 --
