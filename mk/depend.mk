@@ -4,6 +4,7 @@ bench/arithficial: \
 bench/arithficial.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -44,6 +45,7 @@ eg/0arith: \
 eg/0arith.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -84,6 +86,7 @@ eg/arith: \
 eg/arith.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -124,6 +127,7 @@ eg/binarytree: \
 eg/binarytree.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -164,6 +168,7 @@ eg/bool: \
 eg/bool.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -204,6 +209,7 @@ eg/colour: \
 eg/colour.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -247,6 +253,7 @@ eg/digraphs: \
 eg/digraphs.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -288,6 +295,7 @@ eg/insertsort: \
 eg/insertsort.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -328,6 +336,7 @@ eg/length: \
 eg/length.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -368,6 +377,7 @@ eg/list: \
 eg/list.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -408,6 +418,7 @@ eg/minus: \
 eg/minus.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -448,6 +459,7 @@ eg/monad: \
 eg/monad.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -492,6 +504,7 @@ eg/numbool: \
 eg/numbool.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -532,6 +545,7 @@ eg/oddeven: \
 eg/oddeven.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -572,6 +586,7 @@ eg/pretty: \
 eg/pretty.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -612,6 +627,7 @@ eg/ratio: \
 eg/ratio.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -655,6 +671,7 @@ eg/sets: \
 eg/sets.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -694,6 +711,7 @@ eg/speculate-reason.o: \
   tests/Test.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -738,6 +756,7 @@ eg/string: \
 eg/string.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -784,6 +803,7 @@ eg/tauts: \
 eg/tauts.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -822,6 +842,7 @@ eg/tauts.o: \
 src/Test/Speculate/CondReason.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -855,6 +876,7 @@ src/Test/Speculate/Engine: \
 src/Test/Speculate/Engine.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -889,6 +911,7 @@ src/Test/Speculate/Engine.o: \
 src/Test/Speculate/Expr/Canon.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -913,6 +936,7 @@ src/Test/Speculate/Expr/Canon.o: \
 src/Test/Speculate/Expr/Core.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -929,6 +953,7 @@ src/Test/Speculate/Expr/Core.o: \
 src/Test/Speculate/Expr/Equate.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -953,6 +978,7 @@ src/Test/Speculate/Expr/Equate.o: \
 src/Test/Speculate/Expr/Ground.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -980,6 +1006,7 @@ src/Test/Speculate/Expr/Match: \
 src/Test/Speculate/Expr/Match.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -997,6 +1024,7 @@ src/Test/Speculate/Expr/Match.o: \
 src/Test/Speculate/Expr.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1024,6 +1052,7 @@ src/Test/Speculate/Expr.o: \
 src/Test/Speculate/Expr/TypeInfo.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1047,6 +1076,7 @@ src/Test/Speculate/Expr/TypeInfo.o: \
 src/Test/Speculate/Misc.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1084,6 +1114,7 @@ src/Test/Speculate/Misc.o: \
 src/Test/Speculate.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1120,6 +1151,7 @@ src/Test/Speculate.o: \
 src/Test/Speculate/Reason/Order.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1148,6 +1180,7 @@ src/Test/Speculate/Reason/Order.o: \
 src/Test/Speculate/Reason.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1177,6 +1210,7 @@ src/Test/Speculate/Reason.o: \
 src/Test/Speculate/SemiReason.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1212,6 +1246,7 @@ src/Test/Speculate/Utils/Colour.o: \
 src/Test/Speculate/Utils/Digraph.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1240,6 +1275,7 @@ src/Test/Speculate/Utils/Misc.o: \
 src/Test/Speculate/Utils.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1271,6 +1307,8 @@ src/Test/Speculate/Utils/Tiers.o: \
   ../leancheck/src/Test/LeanCheck/Derive.hs \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs
+src/Test/Speculate/Utils/Timeout.o: \
+  src/Test/Speculate/Utils/Timeout.hs
 src/Test/Speculate/Utils/Tuple.o: \
   src/Test/Speculate/Utils/Tuple.hs
 src/Test/Speculate/Utils/Typeable.o: \
@@ -1281,6 +1319,7 @@ tests/test-creason.o: \
   tests/test-creason.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1323,6 +1362,7 @@ tests/test-engine.o: \
   tests/test-engine.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1365,6 +1405,7 @@ tests/test-eval.o: \
   tests/test-eval.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1407,6 +1448,7 @@ tests/test-expr.o: \
   tests/test-expr.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1449,6 +1491,7 @@ tests/test-match.o: \
   tests/test-match.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1491,6 +1534,7 @@ tests/test-misc.o: \
   tests/test-misc.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1534,6 +1578,7 @@ tests/test-order.o: \
   tests/test-order.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1575,6 +1620,7 @@ tests/Test.o: \
   tests/Test.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1613,6 +1659,7 @@ tests/test-reason.o: \
   tests/Test.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1655,6 +1702,7 @@ tests/test-stats.o: \
   tests/Test.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
@@ -1700,6 +1748,7 @@ tests/test-utils.o: \
   tests/Test.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
   src/Test/Speculate/Utils/Tiers.hs \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/PrettyPrint.hs \
