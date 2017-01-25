@@ -221,7 +221,6 @@ evaluate e = v e >>= fromDynamic
 --   Returns a default value otherwise.
 eval :: Typeable a => a -> Expr -> a
 eval x e = fromMaybe x (evaluate e)
--- TODO: flip arguments?  makes this consistent with fromMaybe
 
 -- | The type of an expression.  This raises errors, but those should not
 --   happen if expressions are smart-constructed.
