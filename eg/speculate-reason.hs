@@ -10,30 +10,36 @@ instance Ord Thy where
          <> (compare `on` equations)
          <> (compare `on` closureLimit)
 
+instance Eq Thyght where
+  (==) = (==) `on` unThyght
+
+instance Ord Thyght where
+  compare = compare `on` unThyght
+
 -- NOTE: we get wrong laws for size 5, but no wrong laws for size 4.
 -- increasing the number of tests can get rid of those laws
 
 main :: IO ()
 main = speculate args
-  { maxTests = 8000 -- one of the datatypes is too wide!
+  { maxTests = 6000 -- one of the datatypes is too wide!
   , showConditions = False
   , showSemiequivalences = False
-  , evalTimeout = Just 0.1
+  , evalTimeout = Just 0.2
   , customTypeInfo =
-      [ typeInfo (undefined :: Thy) "t"
-      , typeInfo (undefined :: (Expr,Expr)) "eq"
-      , typeInfo (undefined :: Expr) "e"
+      [ typeInfo (undefined :: Thyght)   "t"
+      , typeInfo (undefined :: Equation) "eq"
+      , typeInfo (undefined :: Expr)     "e"
       ]
   , constants =
-      [ constant "okThy"         okThy
+      [ constant "okThy"      $ \(Thyght t)       -> okThy t
 
-      , constant "insert"        insert
-      , constant "complete"      complete
-      , constant "append"        append
+      , constant "insert"     $ \eq (Thyght t)    -> Thyght $ insert (unEquation eq) t
+      , constant "complete"   $ \(Thyght t)       -> Thyght $ complete t
+--    , constant "append"     $ \(Thyght t) eqs   -> Thyght $ append t $ map unEquation eqs
 
-      , constant "normalize"     normalize
+      , constant "normalize"  $ \(Thyght t) e     -> normalize t e
 --    , constant "isNormal"      isNormal
-      , constant "equivalent"    equivalent
+      , constant "equivalent" $ \(Thyght t) e1 e2 -> equivalent t e1 e2
 
 --    , constant "initialize"    initialize
 --    , constant "theorize"      theorize
@@ -45,7 +51,7 @@ main = speculate args
 --    , constant "showThy"       showThy
       ]
   , backgroundConstants =
-      [ constant "emptyThy" emptyThy
+      [ constant "emptyThy" $ Thyght emptyThy
       , constant "True" True
       , constant "False" False
       ]

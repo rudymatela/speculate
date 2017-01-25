@@ -1,19 +1,17 @@
-_ :: (Expr,Expr)  (holes: (Expr,Expr))
+_ :: Thyght  (holes: Thyght)
 _ :: Expr  (holes: Expr)
 _ :: Bool  (holes: Bool)
-_ :: [(Expr,Expr)]  (holes: [(Expr,Expr)])
-_ :: Thy  (holes: Thy)
-okThy :: Thy -> Bool
-insert :: (Expr,Expr) -> Thy -> Thy
-complete :: Thy -> Thy
-append :: Thy -> [(Expr,Expr)] -> Thy
-normalize :: Thy -> Expr -> Expr
-equivalent :: Thy -> Expr -> Expr -> Bool
-emptyThy :: Thy
+okThy :: Thyght -> Bool
+insert :: Expr -> Thyght -> Thyght
+complete :: Thyght -> Thyght
+normalize :: Thyght -> Expr -> Expr
+equivalent :: Thyght -> Expr -> Expr -> Bool
+emptyThy :: Thyght
 True :: Bool
 False :: Bool
 
-   normalize emptyThy e == e
-equivalent emptyThy e e == True
-equivalent emptyThy e f == equivalent emptyThy f e
+normalize emptyThy e == e
+             okThy t == True
+    equivalent t e e == True
+    equivalent t e f == equivalent t f e
 
