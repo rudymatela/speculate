@@ -3,6 +3,7 @@ module Test.Speculate.Utils.Timeout
   , fromTimeout
   , timeoutToFalse
   , timeoutToTrue
+  , timeoutToError
   )
 where
 
@@ -30,3 +31,6 @@ timeoutToFalse n = fromTimeout n False
 
 timeoutToTrue :: RealFrac s => s -> Bool -> Bool
 timeoutToTrue n = fromTimeout n True
+
+timeoutToError :: RealFrac s => s -> a -> a
+timeoutToError n = fromTimeout n (error "timeoutToError: timed out")
