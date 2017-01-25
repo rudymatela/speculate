@@ -1,5 +1,6 @@
 import Test.Speculate
 import Test.Speculate.Reason
+import Test.Speculate.Utils.Timeout (timeoutToError)
 import Test
 
 import Data.Function (on)
@@ -22,9 +23,9 @@ instance Ord Thyght where
 main :: IO ()
 main = speculate args
   { maxTests = 6000 -- one of the datatypes is too wide!
+  , maxSize = 4
   , showConditions = False
   , showSemiequivalences = False
-  , evalTimeout = Just 0.2
   , customTypeInfo =
       [ typeInfo (undefined :: Thyght)   "t"
       , typeInfo (undefined :: Equation) "eq"
@@ -34,12 +35,13 @@ main = speculate args
       [ constant "okThy"      $ \(Thyght t)       -> okThy t
 
       , constant "insert"     $ \eq (Thyght t)    -> Thyght $ insert (unEquation eq) t
-      , constant "complete"   $ \(Thyght t)       -> Thyght $ complete t
---    , constant "append"     $ \(Thyght t) eqs   -> Thyght $ append t $ map unEquation eqs
+      , constant "complete"   $ \(Thyght t)       -> Thyght $ complete t -- $ timeoutToError 0.2 $ complete t
 
       , constant "normalize"  $ \(Thyght t) e     -> normalize t e
---    , constant "isNormal"      isNormal
       , constant "equivalent" $ \(Thyght t) e1 e2 -> equivalent t e1 e2
+
+      , constant "append"     $ \(Thyght t) eqs   -> Thyght $ append t $ map unEquation eqs
+--    , constant "isNormal"      isNormal
 
 --    , constant "initialize"    initialize
 --    , constant "theorize"      theorize
@@ -54,5 +56,6 @@ main = speculate args
       [ constant "emptyThy" $ Thyght emptyThy
       , constant "True" True
       , constant "False" False
+      , constant "Equation" $ Equation
       ]
   } 
