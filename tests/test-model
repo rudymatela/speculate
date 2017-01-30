@@ -21,12 +21,21 @@ tym() {
 	/usr/bin/time -f%e "$@"
 }
 
+spc() {
+	/usr/bin/time -f%M "$@"
+}
+
 mean() {
 	sum="`echo -n $* | sed -e "s/ / + /g"`"
 	mean="`echo "scale = 3; ($sum) / $#" | bc`"
 	printf "%3.3f\n" $mean
 }
 export -f mean
+
+div1024() {
+	printf "%3.0f\n" "`echo "$1 / 1024" | bc`"
+}
+export -f div1024
 
 benchmark() {
 	[ -x $1 ] || { echo "$0: not found $1"; return 1; }
@@ -35,6 +44,16 @@ benchmark() {
 	do
 		tym $1 $sz 2>&1 >/dev/null
 	done | xargs bash -c 'mean "$@"' mean
+}
+
+memory-benchmark() {
+	[ -x $1 ] || { echo "$0: not found $1"; return 1; }
+	printf "%-15s  " "$2$sz"
+	for run in {1..3}
+	do
+		spc $1 $sz 2>&1 >/dev/null
+	done | xargs bash -c 'mean    "$@"' mean |
+	       xargs bash -c 'div1024 "$@"' div1024
 }
 
 benchmark-cmp() {

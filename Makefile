@@ -105,6 +105,9 @@ bench: all
 save-bench: all
 	./tests/benchmark-save $(EG) bench/*-c
 
+memory-benchmark: all
+	./tests/memory-benchmark $(EG) bench/*-c
+
 qs-bench:
 	make -sC bench/qs1 bench
 	make -sC bench/qs2 bench
