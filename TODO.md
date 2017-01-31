@@ -58,13 +58,23 @@ redundancy to remove
 
   implied by `ordered (sort xs) == True` *and* `sort (xs++ys) == sort (ys++xs)`
 
+* On `./eg/digraphs -s6`, I get
+  `False == isNode x a ==>  succs x a == preds x a`
+  (and other related equations.) A more general version wouldn't be
+  `False == isNode x a ==>  succs x a == []`?
+
+  I checked on ghci, it does hold for 30000 tests, so the library isn't buggy.
+
+  Maybe the issue is that `== []` is redundant and discarded?
+
+  There are lots of other redundant equations there.  Maybe those are related
+  to the planned genericMatch pruning principle?  (see a bit above)
+
 
 Later Later
 -----------
 
 * include Colin's list module example
-
-* fix wrong laws that appear on `./eg/digraphs -s6`
 
 * (for performance and interface): actually compute what happens with
   undefined values.  e.g.: head [] == undefined.  This will/may make things
