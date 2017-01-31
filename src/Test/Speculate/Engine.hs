@@ -95,23 +95,23 @@ rehole e = e
 ----------------------------
 -- * Enumerating expressions
 
-theoryFromAtoms :: Int -> (Expr -> Expr -> Bool) -> [Expr] -> Thy
-theoryFromAtoms sz (===) = fst . theoryAndRepresentativesFromAtoms sz (===)
+theoryFromAtoms :: Int -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> Thy
+theoryFromAtoms sz keep (===) = fst . theoryAndRepresentativesFromAtoms sz keep (===)
 
-representativesFromAtoms :: Int -> (Expr -> Expr -> Bool) -> [Expr] -> [Expr]
-representativesFromAtoms sz (===) = snd . theoryAndRepresentativesFromAtoms sz (===)
+representativesFromAtoms :: Int -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> [Expr]
+representativesFromAtoms sz keep (===) = snd . theoryAndRepresentativesFromAtoms sz keep (===)
 
-expand :: (Expr -> Expr -> Bool) -> (Thy,[Expr]) -> (Thy,[Expr])
-expand (===) (thy,ss) = foldl (flip $ consider (===)) (thy,ss)
-                      . concat . zipWithReverse (*$*)
-                      $ collectOn lengthE ss
+expand :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> (Thy,[Expr]) -> (Thy,[Expr])
+expand keep (===) (thy,ss) = foldl (flip $ consider (===)) (thy,ss)
+                           . concat . zipWithReverse (*$*)
+                           $ collectOn lengthE ss
   where
-  fes *$* xes = catMaybes [fe $$ xe | fe <- fes, xe <- xes]
+  fes *$* xes = filter keep $ catMaybes [fe $$ xe | fe <- fes, xe <- xes]
 
-theoryAndRepresentativesFromAtoms :: Int -> (Expr -> Expr -> Bool)
+theoryAndRepresentativesFromAtoms :: Int -> (Expr -> Bool) -> (Expr -> Expr -> Bool)
                                   -> [Expr] -> (Thy,[Expr])
-theoryAndRepresentativesFromAtoms sz (===) ds =
-  iterate ((complete *** id) . expand (===)) dsThy !! (sz-1)
+theoryAndRepresentativesFromAtoms sz keep (===) ds =
+  iterate ((complete *** id) . expand keep (===)) dsThy !! (sz-1)
   where
   dsThy = (complete *** id) $ foldl (flip $ consider (===)) (iniThy,[]) ds
   iniThy = emptyThy { keepE = keepUpToLength sz

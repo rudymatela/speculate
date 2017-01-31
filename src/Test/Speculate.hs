@@ -53,6 +53,7 @@ data Args = Args
   , quietDot             :: Bool
   , showClassesFor       :: [Int]
   , maxVars              :: Int
+  , maxConstants         :: Maybe Int
   , evalTimeout          :: Maybe Double
 --, closureLimit         :: Int
 --, order                :: OptOrder  -- data OptOrder = Dershowitz | KnuthBendix
@@ -84,6 +85,7 @@ args = Args
   , quietDot             = False
   , showClassesFor       = []
   , maxVars              = 2
+  , maxConstants         = Nothing
   , evalTimeout          = Nothing
 --, closureLimit         = 2
 --, order                = Dershowitz
@@ -132,6 +134,12 @@ shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
   ca = conditionConstants args ++ ((constants args \\ equationConstants args)  \\ backgroundConstants args)
   ea = equationConstants args  ++ ((constants args \\ conditionConstants args) \\ backgroundConstants args)
 
+keepExpr :: Args -> Expr -> Bool
+keepExpr (Args {maxConstants = Nothing}) e = True
+keepExpr (Args {maxConstants = Just n})  e = nConstants e <= n
+  where
+  nConstants = length . vals
+
 -- | Are all constants in an expression about a list of constants?
 -- Examples in pseudo-Haskell:
 --
@@ -162,7 +170,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
             `union` [showConstant True  | showConditions' || showDot args]
             `union` [showConstant False | showConditions' || showDot args]
             `union` catMaybes [equalityE ti t | t <- ts, showConditions']
-  let (thy,es) = theoryAndRepresentativesFromAtoms sz (timeout args .: equal ti n) ds'
+  let (thy,es) = theoryAndRepresentativesFromAtoms sz (keepExpr args) (timeout args .: equal ti n) ds'
   when (showConstants args)    . putStrLn . unlines $ map show ds'
   unless (null uts) . putStrLn
     $ unlines ["Warning: no typeInfo about " ++ show t
@@ -207,6 +215,8 @@ prepareArgs args =
   , "0no-constant-laws"  --.   \a -> a {showConstantLaws = True}
   , "cclasses-for"       --= \s a -> a {showClassesFor = read s `L.insert` showClassesFor a}
   , "vvars"              --= \s a -> a {maxVars = read s}
+  -- TODO: here 'm' -> 'c', then cclasses-for -> rclass-representatives-for
+  , "mmax-constants"     --= \s a -> a {maxConstants = Just $ read s}
   , "eeval-timeout"      --= \s a -> a {evalTimeout = Just $ read s}
   , "ddot"               --.   \a -> a {showDot = True
                                        ,quietDot = False
