@@ -9,8 +9,8 @@ negate :: Int -> Int
 
              id x == x
       abs (abs x) == abs x
-   abs (negate x) == abs x
 negate (negate x) == x
+   abs (negate x) == abs x
             x * 0 == 0
             x * 1 == x
             x + 0 == x

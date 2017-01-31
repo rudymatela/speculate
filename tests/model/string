@@ -14,18 +14,18 @@ unwords :: [[Char]] -> [Char]
        unlines (lines (unlines css)) == unlines css
                     (cs ++ ds) ++ es == cs ++ (ds ++ es)
             cs ++ unlines (lines cs) == unlines (lines (cs ++ cs))
-        unlines (lines (cs ++ "\n")) == cs ++ "\n"
 unwords (lines (unwords (lines cs))) == unwords (lines cs)
 unwords (lines (unwords (words cs))) == unwords (words cs)
+        unlines (lines (cs ++ "\n")) == cs ++ "\n"
            cs ++ unlines (lines " ") == unlines (lines (cs ++ " "))
            " " ++ unwords (lines cs) == unwords (lines (" " ++ cs))
           "\n" ++ unlines (lines cs) == unlines (lines ("\n" ++ cs))
            unlines (lines " ") ++ cs == " " ++ ("\n" ++ cs)
                  words (unwords css) == words (unlines css)
           lines (unlines (lines cs)) == lines cs
+          words (unlines (words cs)) == words cs
           lines (unlines (words cs)) == words cs
           words (unlines (lines cs)) == words cs
-          words (unlines (words cs)) == words cs
                    words (cs ++ " ") == words cs
                   words (cs ++ "\n") == words cs
                    words (" " ++ cs) == words cs
@@ -37,14 +37,14 @@ unwords (lines (unwords (words cs))) == unwords (words cs)
                  cs <= cs ++ ds
                  cs <= unlines (lines cs)
 lines (unlines css) <= css
-               "\n" <= cs ++ " "
                "\n" <= cs ++ "\n"
+               "\n" <= cs ++ " "
          "\n" ++ cs <= " "
  unwords (lines cs) <= cs ++ ds
          "\n" ++ ds <= cs ++ " "
  unlines (lines cs) <= cs ++ cs
+         "\n" ++ cs <= cs ++ "\n"
+         cs ++ "\n" <= cs ++ " "
  unlines (lines cs) <= cs ++ " "
  unlines (lines cs) <= cs ++ "\n"
-         cs ++ "\n" <= cs ++ " "
-         "\n" ++ cs <= cs ++ "\n"
 

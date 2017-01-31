@@ -22,8 +22,8 @@ denominator (q + 1 % 1) == denominator q
       numerator (x % 1) == x
                    id q == q
             abs (abs q) == abs q
-         abs (negate q) == abs q
       negate (negate q) == q
+         abs (negate q) == abs q
             q * (0 % 1) == 0 % 1
             q * (1 % 1) == q
               q + 0 % 1 == q

@@ -200,6 +200,7 @@ compareComplexity :: Expr -> Expr -> Ordering
 compareComplexity = (compare `on` lengthE)
                  <> (flip compare `on` length . vars)
                  <> (flip compare `on` length . repVars)
+                 <> (compare `on` length . vals)
                  <> lexicompare
 
 falseE :: Expr
@@ -299,6 +300,7 @@ vals :: Expr -> [Expr]
 vals (e1 :$ e2)       = vals e1 +++ vals e2
 vals e@(Constant _ _) = [e]
 vals _                = []
+-- TODO: rename to constants (note of potential conflict in Speculate module
 
 
 -- | Returns the length of an expression.  In term rewriting terms: |s|

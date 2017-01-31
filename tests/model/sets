@@ -24,16 +24,16 @@ True :: Bool
                        s /\ t == t /\ s
                        s \/ t == t \/ s
         deleteS x (singleS x) == emptyS
-           deleteS x (s /\ t) == s /\ deleteS x t
                 (s /\ t) /\ u == s /\ (t /\ u)
                 (s \/ t) \/ u == s \/ (t \/ u)
+           deleteS x (s /\ t) == s /\ deleteS x t
+      deleteS x (deleteS x s) == deleteS x s
                 s /\ (s \/ t) == s
              s /\ deleteS x s == deleteS x s
                 s \/ (s /\ t) == s
              s \/ deleteS x s == s
-      deleteS x (deleteS x s) == deleteS x s
-             s /\ deleteS x t == t /\ deleteS x s
       deleteS x (deleteS y s) == deleteS y (deleteS x s)
+             s /\ deleteS x t == t /\ deleteS x s
             sizeS (singleS x) == sizeS (singleS y)
 sizeS (deleteS x (singleS y)) == sizeS (deleteS y (singleS x))
                 (s == emptyS) == (sizeS s == sizeS emptyS)

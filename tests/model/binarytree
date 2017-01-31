@@ -21,8 +21,8 @@ False :: Bool
 
 toList (fromList (toList (fromList xs))) == toList (fromList xs)
                            delete x Null == Null
-                   delete x (insert x t) == delete x t
                    insert x (insert x t) == insert x t
+                   delete x (insert x t) == delete x t
  fromList (toList (fromList (toList t))) == fromList (toList t)
        fromList (toList (insert x Null)) == insert x Null
                    delete x (delete y t) == delete y (delete x t)
@@ -51,8 +51,8 @@ False == ordered xs ==>  fromList (toList (insert x u)) == fromList (toList (ins
 False == ordered xs ==>  insert x (fromList (toList u)) == fromList (toList (insert x t))
 False == ordered ys ==>          delete y (fromList xs) == delete x t
 False == ordered ys ==>           delete x (delete y t) == delete x (fromList xs)
-False == ordered ys ==>           insert x (delete y t) == insert x (fromList xs)
 False == ordered ys ==>           delete y (delete y t) == delete x (fromList xs)
+False == ordered ys ==>           insert x (delete y t) == insert x (fromList xs)
 False == ordered ys ==>  fromList (toList (delete y t)) == delete x (fromList xs)
 False == ordered ys ==> toList (delete y (fromList xs)) == toList (delete x t)
 

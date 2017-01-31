@@ -42,8 +42,8 @@ Nothing :: Maybe (Ratio Integer)
       fromHSV q (0 % 1) r == fromHSL (0 % 1) (0 % 1) r
       fromHSL (1 % 1) q r == fromHSL (0 % 1) q r
       fromHSV (1 % 1) q r == fromHSV (0 % 1) q r
-fromHSL q (0 % 1) (1 % 2) == grey
 fromHSV q (1 % 1) (1 % 1) == fromHSL q (1 % 1) (1 % 2)
+fromHSL q (0 % 1) (1 % 2) == grey
       fromHSL q (0 % 1) r == fromHSL s (0 % 1) r
       chroma (mix c grey) == chroma (mix c black)
      chroma (mix c white) == chroma (mix c black)

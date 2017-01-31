@@ -7,12 +7,12 @@ nest :: Int -> Doc -> Doc
 (++) :: [Char] -> [Char] -> [Char]
 length :: [Char] -> Int
 
+           (d1 $$ d2) $$ d3 == d1 $$ (d2 $$ d3)
+           (d1 <> d2) <> d3 == d1 <> (d2 <> d3)
             d1 <> nest x d2 == d1 <> d2
           nest x (d1 $$ d2) == nest x d1 $$ nest x d2
           nest x (d1 <> d2) == nest x d1 <> d2
-           (d1 $$ d2) $$ d3 == d1 $$ (d2 $$ d3)
            (d1 $$ d2) <> d3 == d1 $$ (d2 <> d3)
-           (d1 <> d2) <> d3 == d1 <> (d2 <> d3)
          nest x (nest y d1) == nest y (nest x d1)
 nest (length (cs ++ ds)) d1 == nest (length cs) (nest (length ds) d1)
     d1 <> (nest x d2 <> d3) == d1 <> (d2 <> d3)
@@ -25,13 +25,13 @@ nest (length (cs ++ ds)) d1 == nest (length cs) (nest (length ds) d1)
               cs <= cs ++ ds
        length cs <= length (cs ++ ds)
         d1 $$ d2 <= d1 $$ (d2 $$ d3)
+        d1 <> d2 <= d1 <> (d2 <> d3)
+        cs ++ ds <= cs ++ (ds ++ es)
         d1 $$ d2 <= d1 $$ (d2 <> d3)
         d1 $$ d2 <= d1 <> (d2 $$ d3)
         d1 $$ d2 <= (d1 <> d2) $$ d3
         d1 $$ d2 <= (d1 <> d3) $$ d2
         d1 <> d2 <= d1 <> (d2 $$ d3)
-        d1 <> d2 <= d1 <> (d2 <> d3)
-        cs ++ ds <= cs ++ (ds ++ es)
         d1 $$ d2 <= d1 <> (d1 $$ d2)
 d1 $$ (d2 <> d3) <= (d1 <> d2) $$ d3
 d1 $$ (d2 <> d3) <= (d1 <> d3) $$ d2
