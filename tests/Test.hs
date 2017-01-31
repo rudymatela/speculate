@@ -560,7 +560,6 @@ expandKeepE thy = cons0 thy
                \/ cons0 thy {keepE = keepUpToLength (maxLen + 4)} `ofWeight` 8
   where
   maxLen = maximum . map lengthE . catPairs $ equations thy ++ rules thy
--- TODO: cons1ify this (improve LeanCheck by exporting Nat cons?)
 
 expandClosureLimit :: Thy -> [[Thy]]
 expandClosureLimit thy = cons0 thy {closureLimit = 3}
