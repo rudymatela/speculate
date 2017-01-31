@@ -66,7 +66,7 @@ reportCountsBy f xs = putStrLn . unlines
                  ++ show (100 * n `div` len) ++ "%"
 
 -- O(1) bell number implementation (I'm lazy)
--- TODO: actually implement this
+-- TODO: actually implement bell
 bell :: Int -> Int
 bell 0 = 1
 bell 1 = 1
