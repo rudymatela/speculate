@@ -35,10 +35,6 @@ current
   tests should not discard it.
 
 
-* remove wrong laws on binarytree example, e.g.:
-
-	False == ordered xs ==> delete y u == delete x t
-
 * remove the following wrong law on graph example:
 
 	isEdge x x b ==> succs x (subgraph xs a) == preds x (subgraph xs a)
