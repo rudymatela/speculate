@@ -66,10 +66,6 @@ Later Later
 
 * fix wrong laws that appear on `./eg/digraphs -s6`
 
-* Colin: why _not_, for example:
-  isPath x y (subgraph zs a) ==> isPath x y a
-  (size 6)
-
 * (for performance and interface): actually compute what happens with
   undefined values.  e.g.: head [] == undefined.  This will/may make things
   faster as we can prune foo (head []) or head [] ++ head [], which are also
