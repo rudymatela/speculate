@@ -53,9 +53,9 @@ equal :: TypeInfo -> Int -> Expr -> Expr -> Bool
 -- equal ti _ e1 e2 | e1 == e2 = isComparable ti e1 -- optional optimization
 equal ti n e1 e2 = maybe False (true ti n) (equation ti e1 e2)
 -- TODO: discover why the optimization above changes the output
--- 1. $ make eg/list && ./eg/list -ES -c0 -s4 > without
+-- 1. $ make eg/list && ./eg/list -ES -r0 -s4 > without
 -- 2. uncomment above
--- 3. $ make eg/list && ./eg/list -ES -c0 -s4 > with
+-- 3. $ make eg/list && ./eg/list -ES -r0 -s4 > with
 -- 4. diff -rud without with
 -- 5. see that there are less equivalence classes now!
 

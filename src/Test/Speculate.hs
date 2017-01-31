@@ -213,10 +213,9 @@ prepareArgs args =
   , "Sno-semiequations"  --.   \a -> a {showSemiequivalences = False}
   , "Cno-sideconditions" --.   \a -> a {showConditions = False}
   , "0no-constant-laws"  --.   \a -> a {showConstantLaws = True}
-  , "cclasses-for"       --= \s a -> a {showClassesFor = read s `L.insert` showClassesFor a}
+  , "rclass-reps-for"    --= \s a -> a {showClassesFor = read s `L.insert` showClassesFor a}
   , "vvars"              --= \s a -> a {maxVars = read s}
-  -- TODO: here 'm' -> 'c', then cclasses-for -> rclass-representatives-for
-  , "mmax-constants"     --= \s a -> a {maxConstants = Just $ read s}
+  , "cmax-constants"     --= \s a -> a {maxConstants = Just $ read s}
   , "eeval-timeout"      --= \s a -> a {evalTimeout = Just $ read s}
   , "ddot"               --.   \a -> a {showDot = True
                                        ,quietDot = False

@@ -1,3 +1,3 @@
 #!/bin/bash
 EG=`dirname "$0"`/../eg
-$EG/arith -ES -c0 -c1 -c2 -c3
+$EG/arith -ES -r0 -r1 -r2 -r3
