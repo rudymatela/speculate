@@ -9,9 +9,13 @@ Warning: I tend to ramble...
 current
 -------
 
-* require minimum number of tests to pass, will need `minTests` config
+* Implement expand by expanding tiers (more robust and flexible).  It
+  will allow extraction of constant values from tiers.  This will also make it
+  easy to amend a Thy: do theorization; add a bunch of atoms; do it again.
 
-* go through all test-models and list what is redundant or wrong here
+
+stranger things
+---------------
 
 * after adding:
 
@@ -35,6 +39,9 @@ current
   tests should not discard it.
 
 
+redundancy to remove
+--------------------
+
 * remove redundancy on taut example:
 
 	taut q ==> subst n (taut q) p == subst n True p
@@ -49,9 +56,7 @@ current
 	ordered (ys ++ xs) ==>       sort ys ++ xs == sort (xs ++ ys)
 	ordered (ys ++ xs) ==>  sort ys ++ sort xs == sort (xs ++ ys)
 
-* Implement expand by expanding tiers.  This is more robust and flexible.  It
-  will allow extraction of contant values from tiers.  This will also make it
-  easy to amend a Thy: do theorization; add a bunch of atoms; do it again.
+  implied by `ordered (sort xs) == True` *and* `sort (xs++ys) == sort (ys++xs)`
 
 
 Later Later
