@@ -26,6 +26,15 @@ current
   Find out why and remove them.
 
 
+* see commit `f7b323a`, why does the following equation disappears after
+  requiring a minimum number of tests to pass?
+
+    x /= y ==>        delete y (insert x Null) == insert x Null
+
+  The precondition should hold most of the time, so, a minimum number of
+  tests should not discard it.
+
+
 * remove wrong laws on binarytree example, e.g.:
 
 	False == ordered xs ==> delete y u == delete x t
