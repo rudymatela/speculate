@@ -17,12 +17,12 @@ tests :: Int -> [Bool]
 tests n =
   [ True
   
-  , vals (xx -+- yy) == [plusE]
-  , vals (xx -+- (yy -+- zz)) == [plusE]
-  , vals (zero -+- one) =$ sort $= [zero, one, plusE]
-  , vals ((zero -+- abs' zero) -+- (ord' aa -+- ord' cc))
+  , consts (xx -+- yy) == [plusE]
+  , consts (xx -+- (yy -+- zz)) == [plusE]
+  , consts (zero -+- one) =$ sort $= [zero, one, plusE]
+  , consts ((zero -+- abs' zero) -+- (ord' aa -+- ord' cc))
       =$ sort $= [zero, aa, absE, plusE, ordE]
-  , holds n $ \e1 e2 -> timesE `elem` vals (e1 -*- e2)
+  , holds n $ \e1 e2 -> timesE `elem` consts (e1 -*- e2)
 
 
   , arity zero == 0

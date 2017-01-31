@@ -136,9 +136,7 @@ shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
 
 keepExpr :: Args -> Expr -> Bool
 keepExpr (Args {maxConstants = Nothing}) e = True
-keepExpr (Args {maxConstants = Just n})  e = nConstants e <= n
-  where
-  nConstants = length . vals
+keepExpr (Args {maxConstants = Just n})  e = length (consts e) <= n
 
 -- | Are all constants in an expression about a list of constants?
 -- Examples in pseudo-Haskell:

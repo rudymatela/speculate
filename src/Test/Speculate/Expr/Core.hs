@@ -19,7 +19,7 @@ module Test.Speculate.Expr.Core
   , arity
   , holes
   , vars
-  , vals
+  , consts
   , atomicConstants
   , subexprs
   , subexprsV
@@ -200,7 +200,7 @@ compareComplexity :: Expr -> Expr -> Ordering
 compareComplexity = (compare `on` lengthE)
                  <> (flip compare `on` length . vars)
                  <> (flip compare `on` length . repVars)
-                 <> (compare `on` length . vals)
+                 <> (compare `on` length . consts)
                  <> lexicompare
 
 falseE :: Expr
@@ -296,11 +296,10 @@ repVars (Var s t) = [(t,s)]
 repVars _ = []
 
 -- | List terminal constants in an expression.  This does not repeat values.
-vals :: Expr -> [Expr]
-vals (e1 :$ e2)       = vals e1 +++ vals e2
-vals e@(Constant _ _) = [e]
-vals _                = []
--- TODO: rename to constants (note of potential conflict in Speculate module
+consts :: Expr -> [Expr]
+consts (e1 :$ e2)       = consts e1 +++ consts e2
+consts e@(Constant _ _) = [e]
+consts _                = []
 
 
 -- | Returns the length of an expression.  In term rewriting terms: |s|
