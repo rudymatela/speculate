@@ -131,8 +131,6 @@ Later Later
   10% by default?
 
 
-* Rename "Speculate" to "Test.Speculate"
-
 ### Properties I want
 
 From:
