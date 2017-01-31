@@ -3,7 +3,7 @@ module Regex
   )
 where
 
-import Text.Regex.TDFA
+import Text.Regex.TDFA as O
 
 -- | Abstract representation of a Regular Expression.  This is a simple
 --   abstraction supporting only the operations in a Kleene's algebra.
@@ -17,7 +17,7 @@ data RE a = Empty            -- Empty/"":      one
 
 -- | Compile an abstract regular expression to be used by Text.Regex
 compile :: (a -> String) -> RE a -> String
-compile f r = c r
+compile f r = "^" ++ c r ++ "$"
   where
   c Empty    = "()"
   c None     = "$u^" -- unmatchable
