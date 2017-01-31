@@ -35,10 +35,6 @@ current
   tests should not discard it.
 
 
-* remove the following wrong law on graph example:
-
-	isEdge x x b ==> succs x (subgraph xs a) == preds x (subgraph xs a)
-
 * remove redundancy on taut example:
 
 	taut q ==> subst n (taut q) p == subst n True p
