@@ -35,6 +35,7 @@ EG = \
   eg/oddeven \
   eg/pretty \
   eg/ratio \
+  eg/regexes \
   eg/sets \
   eg/tauts \
   eg/monad \

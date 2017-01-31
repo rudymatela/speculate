@@ -662,6 +662,15 @@ eg/ratio.o: \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/ratio.hs
+eg/regexes: \
+  eg/Regex.hs \
+  eg/regexes.hs \
+  mk/toplibs
+eg/regexes.o: \
+  eg/Regex.hs \
+  eg/regexes.hs
+eg/Regex.o: \
+  eg/Regex.hs
 eg/Set.o: \
   eg/Set.hs
 eg/sets: \

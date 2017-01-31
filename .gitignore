@@ -57,6 +57,7 @@ eg/speculate-reason
 eg/string
 eg/pretty
 eg/ratio
+eg/regexes
 eg/sets
 eg/monad
 eg/tauts
