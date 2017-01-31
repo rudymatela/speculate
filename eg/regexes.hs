@@ -1,5 +1,5 @@
-import Test.Speculate
-
+import Test.Speculate hiding (match)
+import Data.Function (on)
 import Regex
 
 instance Listable Symbol where
@@ -15,20 +15,32 @@ instance Listable a => Listable (RE a) where
        \/ cons2 (:+)
        \/ cons2 (:.)
 
+class    Charable a      where toChar :: a -> Char
+instance Charable Char   where toChar = id
+instance Charable Symbol where toChar (Symbol c) = c
+
+instance (Listable a, Show a, Charable a) => Eq (RE a) where
+  r1 == r2 = holds 25 $ \e -> match toChar e r1 == match toChar e r2
+
+instance (Listable a, Show a, Charable a) => Ord (RE a) where
+  r1 `compare` r2 = error "not implemented"
+
 main :: IO ()
 main = speculate args
-  { customTypeInfo =
+  { maxTests = 25
+  , maxSize = 4
+  , customTypeInfo =
       [ typeInfo (undefined :: Symbol)    "c"
       , typeInfo (undefined :: RE Symbol) "r"
       ]
   , constants =
-      [ constant "=~"    (=~)
-      , constant "Empty" (Empty :: RE Symbol)
+      [ constant "Empty" (Empty :: RE Symbol)
       , constant "None"  (None  :: RE Symbol)
-      , constant "Lit"   (Lit   :: Symbol -> RE Symbol)
       , constant "Star"  (Star  :: RE Symbol -> RE Symbol)
       , constant ":+"    ((:+)  :: RE Symbol -> RE Symbol -> RE Symbol)
       , constant ":."    ((:.)  :: RE Symbol -> RE Symbol -> RE Symbol)
+--    , constant "=~"    (=~)
+--    , constant "Lit"   (Lit   :: Symbol -> RE Symbol)
       ]
   , showConditions       = False
   , showSemiequivalences = False

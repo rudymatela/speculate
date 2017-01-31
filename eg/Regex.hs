@@ -1,6 +1,7 @@
 module Regex
   ( RE (..)
   , (=~)
+  , match
   , Symbol (..)
   , stringToSymbols
   )
@@ -16,7 +17,7 @@ data RE a = Empty            -- Empty/"":      one
           | Star (RE a)      -- Star/Asterisk: *
           | (RE a) :+ (RE a) -- Choice/Plus:   +
           | (RE a) :. (RE a) -- Append/Concat: .
-  deriving (Show, Eq, Ord)
+  deriving Show
 
 -- | Compile an abstract regular expression to be used by Text.Regex
 compile :: (a -> Char) -> RE a -> String
