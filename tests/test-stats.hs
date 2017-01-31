@@ -25,9 +25,6 @@ main = do
   putStrLn "typ (e1 :: Expr) == typ (e2 :: Expr)"
   reportCountsBy equalTypes . map unSameTypeE . take n $ list
 
-  putStrLn "typs es == nubSort (map typ es)"
-  reportCountsBy (show . \es -> typs es == nubSort (map typ es)) (take n $ list)
-
   putStrLn "okThy thy"
   reportCountsBy (show . okThy) (take n $ list)
 

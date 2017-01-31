@@ -113,12 +113,6 @@ tests n =
                       Right t -> t == typ e
                       Left  _ -> error "Either Listable Expr is generating ill typed expressions or etyp is wrong!"
 
-  , typs [i_, idE, plusE, timesE] == sort [typ xx, typ idE, typ plusE]
-  , typs [idE, plusE, timesE] == sort [typ idE, typ timesE]
-  , typs [c_, ordE, idE, plusE, timesE] == sort [typ xx, typ ordE, typ cc, typ idE, typ timesE]
-  , exists (n*2) $ \es -> typs es == nubSort (map typ es)
-  , exists (n*2) $ \es -> typs es /= nubSort (map typ es)
-
   , allUnique (take (n`div`10) $ list :: [Expr])
   , allUnique (take (n`div`10) $ map unSameTypeE list)
   , allUnique (take (n`div`10) $ map unIntE list)

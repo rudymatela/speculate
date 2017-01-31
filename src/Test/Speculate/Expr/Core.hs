@@ -32,7 +32,6 @@ module Test.Speculate.Expr.Core
   , countVar
   , countVars
   , unrepeatedVars
-  , typs
   , isAssignment
   , lexicompare
   , compareComplexity
@@ -319,14 +318,6 @@ countVars e = map (\(t,n) -> (t,n,countVar t n e)) $ vars e
 
 unrepeatedVars :: Expr -> Bool
 unrepeatedVars = all (\(_,_,n) -> n == 1) . countVars
-
--- All possible types that can be constructed by application of given
--- expressions (:$) / ($$)
-typs :: [Expr] -> [TypeRep]
-typs ds = iterateUntil (==) expand (nubSort (map typ ds))
-  where
-  expand ts = ts +++ applications ts
-  applications ts = nubSort $ catMaybes [funResultTy t1 t2 | t1 <- ts, t2 <- ts]
 
 -- Is this espression an assignment of a variable to a value?
 isAssignment :: Expr -> Bool
