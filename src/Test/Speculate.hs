@@ -110,6 +110,9 @@ computeMaxCondSize args
   | maxCondSize args > 0 = maxCondSize args
   | otherwise            = maxSize args + maxCondSize args
 
+computeTypeInfo :: Args -> TypeInfo
+computeTypeInfo args = concat (customTypeInfo args) ++ basicTypeInfo
+
 shouldShow2 :: Args -> (Expr,Expr) -> Bool
 shouldShow2 args (e1,e2) = showConstantLaws args || hasVar e1 || hasVar e2
 -- `allAbout` constants // (conditionAtoms `union` equationAtoms)
@@ -159,7 +162,7 @@ timeout Args{evalTimeout = Just t}  = timeoutToFalse t
 
 report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
-  let ti = concat (customTypeInfo args) ++ basicTypeInfo
+  let ti = computeTypeInfo args
   let ds = constants args `union` backgroundConstants args `union` conditionConstants args `union` equationConstants args
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
   let showConditions' = showConditions args && boolTy `elem` map (finalResultTy . typ) ds
