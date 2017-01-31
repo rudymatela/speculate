@@ -73,11 +73,6 @@ ordered (ys ++ xs) ==>  sort ys ++ sort xs == sort (xs ++ ys)
      all (x <=) xs ==>     insert y (x:xs) == insert x (insert y xs)
      all (x <=) xs ==> insert x (xs ++ xs) == x:(xs ++ xs)
      all (x <=) ys ==>   insert x xs ++ ys == insert x (xs ++ ys)
-     all (x ==) xs ==>           xs ++ [x] == x:xs
-     all (x ==) xs ==>           xs ++ [x] == insert x xs
-     all (x ==) xs ==>           xs ++ [x] == sort (x:xs)
-     all (x ==) xs ==>           xs ++ [x] == x:sort xs
      all (x ==) xs ==>        x:(xs ++ ys) == xs ++ (x:ys)
      all (x ==) xs ==>   insert x xs ++ ys == xs ++ (x:ys)
-     all (x ==) xs ==> insert x (xs ++ xs) == xs ++ insert x xs
 

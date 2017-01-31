@@ -40,6 +40,7 @@ import Test.Speculate.Engine
 data Args = Args
   { maxSize              :: Int
   , maxTests             :: Int
+  , minTests             :: Int -> Int
   , maxSemiSize          :: Int
   , maxCondSize          :: Int
   , customTypeInfo       :: [TypeInfo]
@@ -72,6 +73,7 @@ data Args = Args
 args = Args
   { maxSize              = 5
   , maxTests             = 500
+  , minTests             = \n -> n `div` 20 -- defaults to 5% of maxTests
   , maxSemiSize          = -2
   , maxCondSize          = -1
   , customTypeInfo       = []
@@ -130,10 +132,12 @@ shouldShow3 args (e1,e2,e3) = showConstantLaws args
 
 shouldShowConditionalEquation :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
+                                             && cem ce e1 e2
                                              && (ce `about` ca
                                               || e1 `about` ea
                                               || e2 `about` ea)
   where
+  cem = condEqualM (computeTypeInfo args) (maxTests args) (minTests args (maxTests args))
   ca = conditionConstants args ++ ((constants args \\ equationConstants args)  \\ backgroundConstants args)
   ea = equationConstants args  ++ ((constants args \\ conditionConstants args) \\ backgroundConstants args)
 
@@ -205,6 +209,7 @@ prepareArgs args =
   mode "speculate" args "" (flagArg (\s a -> Right a {extra = s:extra a}) "")
   [ "ssize"              --= \s a -> a {maxSize  = read s}
   , "ttests"             --= \s a -> a {maxTests = read s}
+  , "mmin-tests"         --= \s a -> a {minTests = parseMinTests s}
   , "zsemisize"          --= \s a -> a {maxSemiSize = read s}
   , "xcondsize"          --= \s a -> a {maxCondSize = read s}
   , "Aconstants"         --.   \a -> a {showConstants = False}
@@ -234,6 +239,9 @@ prepareArgs args =
   where
   (short:long) --= fun = flagReq  [[short],long] ((Right .) . fun) "X" ""
   (short:long) --. fun = flagNone [[short],long] fun                   ""
+  parseMinTests :: String -> Int -> Int
+  parseMinTests s | last s == '%' = \x -> read (init s) * x `div` 100
+                  | otherwise     = const (read s)
 
 speculate :: Args -> IO ()
 speculate args = do

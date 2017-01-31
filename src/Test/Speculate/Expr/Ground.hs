@@ -9,6 +9,7 @@ module Test.Speculate.Expr.Ground
   , true
   , false
   , condEqual
+  , condEqualM
   , trueBinds
   , trueRatio
   )
@@ -21,6 +22,7 @@ import Test.Speculate.Expr.Equate
 import Test.LeanCheck
 import Data.Ratio
 import Data.Functor ((<$>)) -- for GHC < 7.10
+import Data.Maybe (fromMaybe)
 
 -- TODO: move vassignments / etc here
 
@@ -64,6 +66,18 @@ equal ti n e1 e2 = maybe False (true ti n) (equation ti e1 e2)
 --   for a given number of tests?
 condEqual :: TypeInfo -> Int -> Expr -> Expr -> Expr -> Bool
 condEqual ti n pre e1 e2 = maybe False (true ti n) (conditionalEquation ti pre e1 e2)
+
+-- | Are two expressions equal
+--   under a given condition
+--   for a given number of tests
+--   and a minimum amount of tests
+condEqualM :: TypeInfo -> Int -> Int -> Expr -> Expr -> Expr -> Bool
+condEqualM ti n n0 pre e1 e2 = condEqual ti n pre e1 e2 && length cs >= n0
+  where
+  cs =  fromMaybe []
+     $  filter (eval False) . map condition . take n . grounds ti
+    <$> conditionalEquation ti pre e1 e2
+  condition ceq = let (ce,_,_) = unConditionalEquation ceq in ce
 
 -- | Are two expressions less-than-or-equal for a given number of tests?
 lessOrEqual :: TypeInfo -> Int -> Expr -> Expr -> Bool

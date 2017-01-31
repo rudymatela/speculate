@@ -37,22 +37,5 @@ toList (fromList (toList (fromList xs))) == toList (fromList xs)
 toList Null <= xs
           t <= insert x t
 
-         ordered xs ==> fromList (toList (fromList xs)) == fromList xs
-             x /= y ==>        delete y (insert x Null) == insert x Null
-False == ordered xs ==>                      delete y u == delete x t
-False == ordered xs ==>                      insert x u == insert x t
-False == ordered xs ==>             toList (delete y u) == toList (delete x t)
-False == ordered xs ==>  fromList (toList (delete y u)) == delete x t
-False == ordered xs ==>             toList (insert x u) == toList (insert x t)
-False == ordered xs ==>  fromList (toList (insert x u)) == insert x t
-False == ordered xs ==>  fromList (toList (delete y u)) == fromList (toList (delete x t))
-False == ordered xs ==>  delete y (fromList (toList u)) == fromList (toList (delete x t))
-False == ordered xs ==>  fromList (toList (insert x u)) == fromList (toList (insert x t))
-False == ordered xs ==>  insert x (fromList (toList u)) == fromList (toList (insert x t))
-False == ordered ys ==>          delete y (fromList xs) == delete x t
-False == ordered ys ==>           delete x (delete y t) == delete x (fromList xs)
-False == ordered ys ==>           delete y (delete y t) == delete x (fromList xs)
-False == ordered ys ==>           insert x (delete y t) == insert x (fromList xs)
-False == ordered ys ==>  fromList (toList (delete y t)) == delete x (fromList xs)
-False == ordered ys ==> toList (delete y (fromList xs)) == toList (delete x t)
+ordered xs ==> fromList (toList (fromList xs)) == fromList xs
 
