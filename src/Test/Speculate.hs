@@ -159,7 +159,6 @@ timeout Args{evalTimeout = Just t}  = timeoutToFalse t
 
 report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
-  -- TODO: use typs here?
   let ti = concat (customTypeInfo args) ++ basicTypeInfo
   let ds = constants args `union` backgroundConstants args `union` conditionConstants args `union` equationConstants args
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
