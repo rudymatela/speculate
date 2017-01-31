@@ -9,6 +9,9 @@ Warning: I tend to ramble...
 current
 -------
 
+* add regex example, for Saloomaa inference, we only need conditional
+  equations.  For Kozen, we need conditional inequations.
+
 * Implement expand by expanding tiers (more robust and flexible).  It
   will allow extraction of constant values from tiers.  This will also make it
   easy to amend a Thy: do theorization; add a bunch of atoms; do it again.
@@ -80,9 +83,6 @@ Later Later
   undefined values.  e.g.: head [] == undefined.  This will/may make things
   faster as we can prune foo (head []) or head [] ++ head [], which are also
   undefined.
-
-* add regex example, for Saloomaa inference, we only need conditional
-  equations.  For Kozen, we need conditional inequations.
 
 * (for performance) note that variable assignments form a lattice.  So I only
   need to test stuff from upper if the lower is true.  Of course, testing is
