@@ -4,7 +4,7 @@ HAE=bench/runtime-$HOSTNAME
 QS1=bench/qs1/runtime-$HOSTNAME
 QS2=bench/qs2/runtime-$HOSTNAME
 
-printf "%-12s  %6s  %6s  %6s\n" "" QS1 Haex QS2
+printf "%-12s  %6s  %6s  %6s\n" "" QS1 Splte QS2
 cat $QS1 |
 while read name qs1
 do
