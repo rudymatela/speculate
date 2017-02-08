@@ -10,6 +10,7 @@ module Test.Speculate.Utils.String
   , prime, primeCycle
   , namesFromTemplate
   , indent, alignRight, alignLeft
+  , splitAtCommas
   )
 where
 
@@ -132,3 +133,12 @@ alignLeft n cs = cs ++ replicate (n - length cs) ' '
 
 indent :: Int -> String -> String
 indent n = unlines . map (replicate n ' ' ++) . lines
+
+splitAtCommas :: String -> [String]
+splitAtCommas = words . map commaToSpace
+  where
+  commaToSpace ',' = ' '
+  commaToSpace  c  =  c
+-- FIXME (uncomma): quick-and-dirty implementation
+-- weird behaviour: uncomma "123 456,789" == ["123","456","789"]
+-- but that's fine for speculate (Haskell symbols cannot have spaces)

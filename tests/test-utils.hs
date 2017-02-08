@@ -97,4 +97,8 @@ tests n =
       == "[Int,Bool]"
   , show (typesIn $ typeOf (undefined :: (Int -> Char) -> Integer -> Bool))
       == "[Integer,Int,Char,Bool]"
+
+  , splitAtCommas "1,2,3" == ["1","2","3"]
+  , splitAtCommas "123,456,789," == ["123","456","789"]
+  , splitAtCommas "123 456,789"  == ["123","456","789"] -- weird behaviour, but fine for speculate
   ]
