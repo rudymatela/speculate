@@ -1,24 +1,16 @@
 _ :: RE Symbol  (holes: RE Symbol)
-_ :: [Symbol]  (holes: [Symbol])
-_ :: Symbol  (holes: Symbol)
-_ :: Bool  (holes: Bool)
-(=~) :: [Symbol] -> RE Symbol -> Bool
 Empty :: RE Symbol
 None :: RE Symbol
-Lit :: Symbol -> RE Symbol
 Star :: RE Symbol -> RE Symbol
 (:+) :: RE Symbol -> RE Symbol -> RE Symbol
 (:.) :: RE Symbol -> RE Symbol -> RE Symbol
 
-         cs =~ None == ds =~ None
-         cs =~ None == ds =~ (r :. None)
-         cs =~ None == ds =~ (None :. r)
-   cs =~ Star Empty == cs =~ Empty
-    cs =~ Star None == cs =~ Empty
-     cs =~ (r :+ r) == cs =~ r
-cs =~ Star (Star r) == cs =~ Star r
-  cs =~ (r :+ None) == cs =~ r
- cs =~ (r :. Empty) == cs =~ r
-     cs =~ (r :+ s) == cs =~ (s :+ r)
-     cs =~ (r :. s) == cs =~ (s :. r)
+    Star r == Empty
+    r :+ r == r
+r :+ Empty == Empty
+ r :+ None == r
+r :. Empty == r
+ r :. None == None
+    r :+ s == s :+ r
+    r :. s == s :. r
 
