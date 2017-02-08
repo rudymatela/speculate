@@ -15,6 +15,7 @@ do
 	read nm qs2 <<< $(grep "^$name " $QS2)
   case $name in
     plus-abs) read    spl <<< $(tym ./eg/plus-abs --exclude="<=,<" -SC -s7 -d4) ;;
+    arith)    read    spl <<< $(tym ./eg/arith                     -SC -s7 -d4) ;;
     *)        read nm spl <<< $(grep "^$name " $SPL) ;;
   esac
 	printf "%-16s  %9.3f  %9.3f  %9.3f\n" $name $qs1 $spl $qs2

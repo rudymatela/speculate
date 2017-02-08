@@ -10,5 +10,5 @@ main =
     , "+" `fun2` ((+) :: I -> I -> I)
     , "*" `fun2` ((*) :: I -> I -> I)
     , withSize  7
-    , withDepth 3
+    , withDepth 4
     ]

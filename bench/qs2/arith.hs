@@ -3,8 +3,8 @@ import QuickSpec
 main =
   quickSpec
     signature
-      { maxTermSize = Just 5
-      , maxTermDepth = Just 3
+      { maxTermSize = Just 7
+      , maxTermDepth = Just 4
       , constants =
           [ constant "0" (0 :: Int)
           , constant "1" (1 :: Int)

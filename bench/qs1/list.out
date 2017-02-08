@@ -9,9 +9,9 @@ x, y, z :: Int
 xs, ys, zs :: [Int]
 
 == Testing ==
-Depth 1: 8 terms, 2 tests, 12 evaluations, 8 classes, 0 raw equations.
-Depth 2: 36 terms, 500 tests, 5572 evaluations, 29 classes, 7 raw equations.
-Depth 3: 708 terms, 500 tests, 146410 evaluations, 533 classes, 175 raw equations.
+Depth 1: 8 terms, 3 tests, 14 evaluations, 8 classes, 0 raw equations.
+Depth 2: 36 terms, 500 tests, 5557 evaluations, 29 classes, 7 raw equations.
+Depth 3: 708 terms, 500 tests, 146594 evaluations, 533 classes, 175 raw equations.
 175 raw equations; 533 terms in universe.
 
 == Equations about (++) ==
