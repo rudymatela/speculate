@@ -1,8 +1,6 @@
-[2 of 2] Compiling Main             ( regexes.hs, regexes.o )
-Linking regexes ...
-arith            0.190
-arith-negate-abs 0.460
-bool             0.240
-list             0.110
-arithficial      0.250
-regexes          12.700
+arith            0.200
+arith-negate-abs 0.480
+bool             0.250
+list             0.120
+arithficial      0.260
+regexes          12.640

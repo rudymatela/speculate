@@ -17,7 +17,7 @@ bench: all
 	@echo "This will take a couple minutes to run (regexes)" > /dev/stderr
 	@echo -n "regexes          "; /usr/bin/time -f%e0 ./regexes          2>&1 >          regexes.out
 
-save-bench:
+save-bench: bench
 	make -s bench > runtime-$$HOSTNAME
 
 # this takes a few minutes
