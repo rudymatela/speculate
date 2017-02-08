@@ -123,6 +123,10 @@ tests n =
   , depthE  (zero -+- (xx -+- yy)) == 3
   , lengthE (((xx -+- yy) -*- zz) -==- ((xx -*- zz) -+- (yy -*- zz))) == 13
   , depthE  (((xx -+- yy) -*- zz) -==- ((xx -*- zz) -+- (yy -*- zz))) ==  4
+  , depthE  (xx -*- yy -+- xx -*- zz -==- xx -*- (yy -+- zz)) == 4
+  , lengthE (xx -*- yy -+- xx -*- zz -==- xx -*- (yy -+- zz)) == 13
+  , depthE  (xx -*- yy -+- xx -*- zz) == 3
+  , depthE  (xx -*- (yy -+- zz)) == 3
 
   , allUnique (take (n`div`10) $ list :: [Expr])
   , allUnique (take (n`div`10) $ map unSameTypeE list)
