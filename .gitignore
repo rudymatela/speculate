@@ -75,3 +75,5 @@ bench/qs*/bool
 bench/qs*/list
 bench/qs*/arithficial
 bench/qs*/quickspec
+bench/qs*/regexes
+bench/qs*/regex

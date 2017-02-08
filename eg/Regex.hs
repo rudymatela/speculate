@@ -1,6 +1,6 @@
 module Regex
   ( RE (..)
-  , (=~)
+  , (=~), (===)
   , match
   , Symbol (..)
   , stringToSymbols
@@ -41,6 +41,9 @@ newtype Symbol = Symbol Char deriving (Eq, Ord, Show)
 (=~) = match symbolToChar
   where
   symbolToChar (Symbol c) = c
+
+(===) :: RE Symbol -> RE Symbol -> [Symbol] -> Bool
+e1 === e2 = \s -> s =~ e1 == s =~ e1
 
 stringToSymbols :: String -> [Symbol]
 stringToSymbols = map Symbol

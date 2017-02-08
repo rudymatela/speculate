@@ -3,6 +3,7 @@ BENCH = \
   arith-negate-abs \
   bool \
   list \
+  regexes \
   arithficial
 
 all: $(BENCH)
@@ -13,6 +14,8 @@ bench: all
 	@echo -n "bool             "; /usr/bin/time -f%e0 ./bool             2>&1 >             bool.out
 	@echo -n "list             "; /usr/bin/time -f%e0 ./list             2>&1 >             list.out
 	@echo -n "arithficial      "; /usr/bin/time -f%e0 ./arithficial      2>&1 >      arithficial.out
+	@echo "This will take a couple minutes to run (regexes)" > /dev/stderr
+	@echo -n "regexes          "; /usr/bin/time -f%e0 ./regexes          2>&1 >          regexes.out
 
 save-bench:
 	make -s bench > runtime-$$HOSTNAME
@@ -25,7 +28,7 @@ prepare:
 
 
 %: %.hs
-	ghc -O2 -package-db .cabal-sandbox/*-packages.conf.d $< && touch $@
+	ghc -O2 -i../../eg -package-db .cabal-sandbox/*-packages.conf.d $< && touch $@
 
 clean:
 	rm -rf *.o *.hi $(BENCH)
