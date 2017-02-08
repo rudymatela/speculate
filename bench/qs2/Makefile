@@ -3,6 +3,7 @@ BENCH = \
   arith-negate-abs \
   bool \
   list \
+  regexes \
   arithficial
 
 all: $(BENCH)
@@ -25,7 +26,7 @@ prepare:
 	cabal install quickspec
 
 %: %.hs
-	ghc -O2 -package-db .cabal-sandbox/*-packages.conf.d $< && touch $@
+	ghc -O2 -i../../eg -package-db .cabal-sandbox/*-packages.conf.d $< && touch $@
 
 clean:
 	rm -rf *.o *.hi $(BENCH)
