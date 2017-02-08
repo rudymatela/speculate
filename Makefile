@@ -20,7 +20,7 @@ TESTS = \
   tests/test-stats
 EG = \
   eg/arith \
-  eg/0arith \
+  eg/arith-negate-abs \
   eg/bool \
   eg/binarytree \
   eg/colour \
@@ -28,11 +28,11 @@ EG = \
   eg/list \
   eg/length \
   eg/minus \
-  eg/numbool \
   eg/insertsort \
   eg/speculate-reason \
   eg/string \
   eg/oddeven \
+  eg/plus-abs \
   eg/pretty \
   eg/ratio \
   eg/regexes \

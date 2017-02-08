@@ -9,16 +9,6 @@ Warning: I tend to ramble...
 current
 -------
 
-* rename examples:
-
-	- arith:            `0, 1, +, *`
-	- arith-negate-abs: `0, 1, +, *, id, negate, abs`
-	- plus-abs:         `0, 1, +, id, abs`
-
-this helps because, arith is now consistent with QS1 and 2.
-plus-abs is the cover example;
-arith-negate-abs is a lightweight stress test.
-
 * add regex benchmark for qs1 and qs2, see what those spit out
 
 * Implement expand by expanding tiers (more robust and flexible).  It

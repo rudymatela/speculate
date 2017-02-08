@@ -42,6 +42,7 @@ tests/test-stats
 tests/test-utils
 eg/eg
 eg/arith
+eg/arith-negate-abs
 eg/0arith
 eg/binarytree
 eg/bool
@@ -55,6 +56,7 @@ eg/numbool
 eg/insertsort
 eg/speculate-reason
 eg/string
+eg/plus-abs
 eg/pretty
 eg/ratio
 eg/regexes

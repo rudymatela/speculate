@@ -1,113 +1,47 @@
 _ :: Int  (holes: Int)
 0 :: Int
 1 :: Int
-id :: Int -> Int
-abs :: Int -> Int
-negate :: Int -> Int
 (+) :: Int -> Int -> Int
 (*) :: Int -> Int -> Int
 
 _ :: Int  (holes: Int)
 0 :: Int
 1 :: Int
-abs _ :: Int  (holes: Int)
-negate _ :: Int  (holes: Int)
-negate 1 :: Int
-negate (abs _) :: Int  (holes: Int)
 _ + _ :: Int  (holes: Int, Int)
 _ + 1 :: Int  (holes: Int)
 1 + 1 :: Int
 _ * _ :: Int  (holes: Int, Int)
-abs (_ + _) :: Int  (holes: Int, Int)
-abs (_ + 1) :: Int  (holes: Int)
-abs (_ * _) :: Int  (holes: Int, Int)
-negate (_ + _) :: Int  (holes: Int, Int)
-negate (_ + 1) :: Int  (holes: Int)
-negate (1 + 1) :: Int
-negate (_ * _) :: Int  (holes: Int, Int)
-_ + abs _ :: Int  (holes: Int, Int)
-_ + negate _ :: Int  (holes: Int, Int)
-_ + negate 1 :: Int  (holes: Int)
-1 + abs _ :: Int  (holes: Int)
-1 + negate _ :: Int  (holes: Int)
-_ * abs _ :: Int  (holes: Int, Int)
-abs (_ + abs _) :: Int  (holes: Int, Int)
-abs (_ + negate _) :: Int  (holes: Int, Int)
-abs (_ + negate 1) :: Int  (holes: Int)
-negate (abs (_ + _)) :: Int  (holes: Int, Int)
-negate (abs (_ + 1)) :: Int  (holes: Int)
-negate (abs (_ * _)) :: Int  (holes: Int, Int)
-negate (_ + abs _) :: Int  (holes: Int, Int)
-negate (1 + abs _) :: Int  (holes: Int)
-negate (_ * abs _) :: Int  (holes: Int, Int)
-_ + negate (abs _) :: Int  (holes: Int, Int)
 _ + (_ + _) :: Int  (holes: Int, Int, Int)
 _ + (_ + 1) :: Int  (holes: Int, Int)
 _ + (1 + 1) :: Int  (holes: Int)
 _ + _ * _ :: Int  (holes: Int, Int, Int)
-1 + negate (abs _) :: Int  (holes: Int)
 1 + (1 + 1) :: Int
 1 + _ * _ :: Int  (holes: Int, Int)
 _ * (_ + _) :: Int  (holes: Int, Int, Int)
 _ * (_ + 1) :: Int  (holes: Int, Int)
 _ * (1 + 1) :: Int  (holes: Int)
 _ * (_ * _) :: Int  (holes: Int, Int, Int)
-abs _ + abs _ :: Int  (holes: Int, Int)
-abs _ + negate _ :: Int  (holes: Int, Int)
-abs _ + negate 1 :: Int  (holes: Int)
 
 x :: Int
 0 :: Int
 1 :: Int
-abs x :: Int
-negate x :: Int
-negate 1 :: Int
-negate (abs x) :: Int
 x + x :: Int
 x + 1 :: Int
 1 + 1 :: Int
 x * x :: Int
-abs (x + x) :: Int
-abs (x + 1) :: Int
-negate (x + x) :: Int
-negate (x + 1) :: Int
-negate (1 + 1) :: Int
-negate (x * x) :: Int
-x + abs x :: Int
-x + negate 1 :: Int
-1 + abs x :: Int
-1 + negate x :: Int
-x * abs x :: Int
-abs (x + negate 1) :: Int
-negate (abs (x + x)) :: Int
-negate (abs (x + 1)) :: Int
-negate (x + abs x) :: Int
-negate (1 + abs x) :: Int
-negate (x * abs x) :: Int
-x + negate (abs x) :: Int
 x + (x + x) :: Int
 x + (x + 1) :: Int
 x + (1 + 1) :: Int
 x + x * x :: Int
-1 + negate (abs x) :: Int
 1 + (1 + 1) :: Int
 1 + x * x :: Int
 x * (x + x) :: Int
 x * (x * x) :: Int
-abs x + negate x :: Int
-abs x + negate 1 :: Int
 
 x :: Int
 y :: Int
 0 :: Int
 1 :: Int
-abs x :: Int
-abs y :: Int
-negate x :: Int
-negate y :: Int
-negate 1 :: Int
-negate (abs x) :: Int
-negate (abs y) :: Int
 x + x :: Int
 x + y :: Int
 y + y :: Int
@@ -117,62 +51,6 @@ y + 1 :: Int
 x * x :: Int
 x * y :: Int
 y * y :: Int
-abs (x + x) :: Int
-abs (x + y) :: Int
-abs (y + y) :: Int
-abs (x + 1) :: Int
-abs (y + 1) :: Int
-abs (x * y) :: Int
-negate (x + x) :: Int
-negate (x + y) :: Int
-negate (y + y) :: Int
-negate (x + 1) :: Int
-negate (y + 1) :: Int
-negate (1 + 1) :: Int
-negate (x * x) :: Int
-negate (x * y) :: Int
-negate (y * y) :: Int
-x + abs x :: Int
-x + abs y :: Int
-y + abs x :: Int
-y + abs y :: Int
-x + negate y :: Int
-y + negate x :: Int
-x + negate 1 :: Int
-y + negate 1 :: Int
-1 + abs x :: Int
-1 + abs y :: Int
-1 + negate x :: Int
-1 + negate y :: Int
-x * abs x :: Int
-x * abs y :: Int
-y * abs x :: Int
-y * abs y :: Int
-abs (x + abs y) :: Int
-abs (y + abs x) :: Int
-abs (x + negate y) :: Int
-abs (x + negate 1) :: Int
-abs (y + negate 1) :: Int
-negate (abs (x + x)) :: Int
-negate (abs (x + y)) :: Int
-negate (abs (y + y)) :: Int
-negate (abs (x + 1)) :: Int
-negate (abs (y + 1)) :: Int
-negate (abs (x * y)) :: Int
-negate (x + abs x) :: Int
-negate (x + abs y) :: Int
-negate (y + abs x) :: Int
-negate (y + abs y) :: Int
-negate (1 + abs x) :: Int
-negate (1 + abs y) :: Int
-negate (x * abs x) :: Int
-negate (x * abs y) :: Int
-negate (y * abs x) :: Int
-negate (y * abs y) :: Int
-x + negate (abs x) :: Int
-x + negate (abs y) :: Int
-y + negate (abs x) :: Int
-y + negate (abs y) :: Int
 x + (x + x) :: Int
 x + (x + y) :: Int
 x + (y + y) :: Int
@@ -188,8 +66,6 @@ x + y * y :: Int
 y + x * x :: Int
 y + x * y :: Int
 y + y * y :: Int
-1 + negate (abs x) :: Int
-1 + negate (abs y) :: Int
 1 + (1 + 1) :: Int
 1 + x * x :: Int
 1 + x * y :: Int
@@ -203,29 +79,12 @@ x * (x * x) :: Int
 x * (x * y) :: Int
 x * (y * y) :: Int
 y * (y * y) :: Int
-abs x + abs y :: Int
-abs x + negate x :: Int
-abs x + negate y :: Int
-abs y + negate x :: Int
-abs y + negate y :: Int
-abs x + negate 1 :: Int
-abs y + negate 1 :: Int
 
 x :: Int
 y :: Int
 z :: Int
 0 :: Int
 1 :: Int
-abs x :: Int
-abs y :: Int
-abs z :: Int
-negate x :: Int
-negate y :: Int
-negate z :: Int
-negate 1 :: Int
-negate (abs x) :: Int
-negate (abs y) :: Int
-negate (abs z) :: Int
 x + x :: Int
 x + y :: Int
 x + z :: Int
@@ -242,121 +101,6 @@ x * z :: Int
 y * y :: Int
 y * z :: Int
 z * z :: Int
-abs (x + x) :: Int
-abs (x + y) :: Int
-abs (x + z) :: Int
-abs (y + y) :: Int
-abs (y + z) :: Int
-abs (z + z) :: Int
-abs (x + 1) :: Int
-abs (y + 1) :: Int
-abs (z + 1) :: Int
-abs (x * y) :: Int
-abs (x * z) :: Int
-abs (y * z) :: Int
-negate (x + x) :: Int
-negate (x + y) :: Int
-negate (x + z) :: Int
-negate (y + y) :: Int
-negate (y + z) :: Int
-negate (z + z) :: Int
-negate (x + 1) :: Int
-negate (y + 1) :: Int
-negate (z + 1) :: Int
-negate (1 + 1) :: Int
-negate (x * x) :: Int
-negate (x * y) :: Int
-negate (x * z) :: Int
-negate (y * y) :: Int
-negate (y * z) :: Int
-negate (z * z) :: Int
-x + abs x :: Int
-x + abs y :: Int
-x + abs z :: Int
-y + abs x :: Int
-y + abs y :: Int
-y + abs z :: Int
-z + abs x :: Int
-z + abs y :: Int
-z + abs z :: Int
-x + negate y :: Int
-x + negate z :: Int
-y + negate x :: Int
-y + negate z :: Int
-z + negate x :: Int
-z + negate y :: Int
-x + negate 1 :: Int
-y + negate 1 :: Int
-z + negate 1 :: Int
-1 + abs x :: Int
-1 + abs y :: Int
-1 + abs z :: Int
-1 + negate x :: Int
-1 + negate y :: Int
-1 + negate z :: Int
-x * abs x :: Int
-x * abs y :: Int
-x * abs z :: Int
-y * abs x :: Int
-y * abs y :: Int
-y * abs z :: Int
-z * abs x :: Int
-z * abs y :: Int
-z * abs z :: Int
-abs (x + abs y) :: Int
-abs (x + abs z) :: Int
-abs (y + abs x) :: Int
-abs (y + abs z) :: Int
-abs (z + abs x) :: Int
-abs (z + abs y) :: Int
-abs (x + negate y) :: Int
-abs (x + negate z) :: Int
-abs (y + negate z) :: Int
-abs (x + negate 1) :: Int
-abs (y + negate 1) :: Int
-abs (z + negate 1) :: Int
-negate (abs (x + x)) :: Int
-negate (abs (x + y)) :: Int
-negate (abs (x + z)) :: Int
-negate (abs (y + y)) :: Int
-negate (abs (y + z)) :: Int
-negate (abs (z + z)) :: Int
-negate (abs (x + 1)) :: Int
-negate (abs (y + 1)) :: Int
-negate (abs (z + 1)) :: Int
-negate (abs (x * y)) :: Int
-negate (abs (x * z)) :: Int
-negate (abs (y * z)) :: Int
-negate (x + abs x) :: Int
-negate (x + abs y) :: Int
-negate (x + abs z) :: Int
-negate (y + abs x) :: Int
-negate (y + abs y) :: Int
-negate (y + abs z) :: Int
-negate (z + abs x) :: Int
-negate (z + abs y) :: Int
-negate (z + abs z) :: Int
-negate (1 + abs x) :: Int
-negate (1 + abs y) :: Int
-negate (1 + abs z) :: Int
-negate (x * abs x) :: Int
-negate (x * abs y) :: Int
-negate (x * abs z) :: Int
-negate (y * abs x) :: Int
-negate (y * abs y) :: Int
-negate (y * abs z) :: Int
-negate (z * abs x) :: Int
-negate (z * abs y) :: Int
-negate (z * abs z) :: Int
-x + negate (abs x) :: Int
-x + negate (abs y) :: Int
-x + negate (abs z) :: Int
-y + negate (abs x) :: Int
-y + negate (abs y) :: Int
-y + negate (abs z) :: Int
-z + negate (abs x) :: Int
-z + negate (abs y) :: Int
-z + negate (abs z) :: Int
 x + (x + x) :: Int
 x + (x + y) :: Int
 x + (x + z) :: Int
@@ -394,9 +138,6 @@ z + x * z :: Int
 z + y * y :: Int
 z + y * z :: Int
 z + z * z :: Int
-1 + negate (abs x) :: Int
-1 + negate (abs y) :: Int
-1 + negate (abs z) :: Int
 1 + (1 + 1) :: Int
 1 + x * x :: Int
 1 + x * y :: Int
@@ -429,23 +170,8 @@ y * (y * y) :: Int
 y * (y * z) :: Int
 y * (z * z) :: Int
 z * (z * z) :: Int
-abs x + abs y :: Int
-abs x + abs z :: Int
-abs y + abs z :: Int
-abs x + negate x :: Int
-abs x + negate y :: Int
-abs x + negate z :: Int
-abs y + negate x :: Int
-abs y + negate y :: Int
-abs y + negate z :: Int
-abs z + negate x :: Int
-abs z + negate y :: Int
-abs z + negate z :: Int
-abs x + negate 1 :: Int
-abs y + negate 1 :: Int
-abs z + negate 1 :: Int
 
-Number of comparable schema classes: 48
-Number of comparable  1-var classes: 40
-Number of comparable  2-var classes: 113
-Number of comparable  3-var classes: 233
+Number of comparable schema classes: 17
+Number of comparable  1-var classes: 15
+Number of comparable  2-var classes: 41
+Number of comparable  3-var classes: 90
