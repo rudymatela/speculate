@@ -11,10 +11,10 @@ r1, r2, r3 :: RE Symbol
 RE Symbol
 
 == Testing ==
-Depth 1: 6 terms, 8 tests, 35 evaluations, 6 classes, 0 raw equations.
-Depth 2: 61 terms, 1000 tests, 26433 evaluations, 24 classes, 37 raw equations.
-Depth 3: 1087 terms, 2000 tests, 622006 evaluations, 534 classes, 553 raw equations.
-553 raw equations; 534 terms in universe.
+Depth 1: 6 terms, 12 tests, 41 evaluations, 6 classes, 0 raw equations.
+Depth 2: 61 terms, 500 tests, 25187 evaluations, 24 classes, 37 raw equations.
+Depth 3: 1087 terms, 2000 tests, 672692 evaluations, 527 classes, 560 raw equations.
+560 raw equations; 527 terms in universe.
 
 == Equations about Star ==
   1: Star Empty == Empty

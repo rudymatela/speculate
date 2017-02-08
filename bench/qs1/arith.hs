@@ -9,4 +9,6 @@ main =
     , "1" `fun0` (1   :: I)
     , "+" `fun2` ((+) :: I -> I -> I)
     , "*" `fun2` ((*) :: I -> I -> I)
+    , withSize  7
+    , withDepth 3
     ]
