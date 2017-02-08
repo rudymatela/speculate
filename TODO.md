@@ -78,6 +78,8 @@ redundancy to remove
 Later Later
 -----------
 
+* add maximum commutative size limit?
+
 * improve error message for missing typeInfo.  Maybe add full suggestion.
 
 * include Colin's list module example
