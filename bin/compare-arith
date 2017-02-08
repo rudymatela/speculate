@@ -5,6 +5,7 @@ qs2=/tmp/haexpress-arith-qs2
 
 cat bench/qs2/arith.out |
 grep " = " |
+sed -e "s/^...\. //" |
 sed -e "y/ijk/xyz/;s/=/==/" |
 sed -e "s/xd/id/" |
 sort > $qs2
@@ -15,6 +16,8 @@ sed -e "s/ *//" |
 sed -e 's/\([^a-z]\) (\([a-z]* .\))/\1 \2/g' |
 sed -e 's/^(\([a-z ]*\))/\1/' |
 sort > $hae
+
+cat $qs2
 
 diff -rud $qs2 $hae
 

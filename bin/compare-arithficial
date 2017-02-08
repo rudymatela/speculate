@@ -11,6 +11,7 @@ sort > $qs1
 
 cat bench/qs2/arithficial.out |
 grep " = " |
+sed -e "s/^...\. //" |
 sed -e "y/ijk/xyz/;s/=/==/" |
 sed -e "s/xd/id/" |
 sort > $qs2
