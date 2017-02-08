@@ -228,8 +228,8 @@ prepareArgs args =
   , "vvars"              --= \s a -> a {maxVars = read s}
   , "cmax-constants"     --= \s a -> a {maxConstants = Just $ read s}
   , "eeval-timeout"      --= \s a -> a {evalTimeout = Just $ read s}
-  , " depth"             --= \s a -> a {maxDepth = Just $ read s}
-  , "ddot"               --.   \a -> a {showDot = True
+  , "ddepth"             --= \s a -> a {maxDepth = Just $ read s}
+  , "gsemi-digraph"      --.   \a -> a {showDot = True
                                        ,quietDot = False
                                        ,showConstants = False
                                        ,showEquivalences = False

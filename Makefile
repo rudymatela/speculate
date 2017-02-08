@@ -139,16 +139,16 @@ mk/toplibs: src/Test/Speculate.o tests/Test.o
 include mk/haskell.mk
 
 %-3.dot: %
-	./$< -dv3 > $@
+	./$< -gv3 > $@
 
 %.dot: %
-	./$< -dv2 > $@
+	./$< -gv2 > $@
 
 %-2.dot: %
-	./$< -dv2 > $@
+	./$< -gv2 > $@
 
 %-1.dot: %
-	./$< -dv1 > $@
+	./$< -gv1 > $@
 
 %.eps: %.dot
 	dot -Teps $< > $@
