@@ -4,8 +4,8 @@
 (++) :: [Int] -> [Int] -> [Int]
 
 == Laws ==
-is ++ [] = is
-[] ++ is = is
-(is ++ js) ++ ks = is ++ (js ++ ks)
-i : (is ++ js) = (i : is) ++ js
+  1. xs ++ [] = xs
+  2. [] ++ xs = xs
+  3. (xs ++ ys) ++ zs = xs ++ (ys ++ zs)
+  4. x : (xs ++ ys) = (x : xs) ++ ys
 

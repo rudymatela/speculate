@@ -7,13 +7,13 @@
   h :: Int -> Int -> Int
 
 == Laws ==
-id i = i
-i + 0 = i
-0 + i = i
-i + j = j + i
-f i i = f i j
-g i j = g j i
-g i i = g i j
-h j j = h i j
-(i + j) + k = i + (j + k)
+  1. id x = x
+  2. x + 0 = x
+  3. 0 + x = x
+  4. x + y = y + x
+  5. f x x = f x y
+  6. g x y = g y x
+  7. g x x = g x y
+  8. h y y = h x y
+  9. (x + y) + z = x + (y + z)
 

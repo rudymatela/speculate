@@ -1,0 +1,20 @@
+== Signature ==
+  0 :: Int
+  1 :: Int
+(+) :: Int -> Int -> Int
+(*) :: Int -> Int -> Int
+
+== Laws ==
+  1. x * 0 = 0
+  2. x * 1 = x
+  3. 0 * x = 0
+  4. 1 * x = x
+  5. x + 0 = x
+  6. 0 + x = x
+  7. x * y = y * x
+  8. x + y = y + x
+  9. (x * y) * z = x * (y * z)
+ 10. (x + y) + z = x + (y + z)
+ 11. x * (y + 1) = x + (x * y)
+ 12. x * (y + y) = y * (x + x)
+

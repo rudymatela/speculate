@@ -27,6 +27,8 @@ prepare:
 
 
 
+regexes: regexes.hs ../../eg/Regex.hs
+
 %: %.hs
 	ghc -O2 -i../../eg -package-db .cabal-sandbox/*-packages.conf.d $< && touch $@
 

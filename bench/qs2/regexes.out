@@ -1,0 +1,11 @@
+== Signature ==
+Empty :: RE Symbol
+ None :: RE Symbol
+ Star :: RE Symbol -> RE Symbol
+ (:+) :: RE Symbol -> RE Symbol -> RE Symbol
+ (:.) :: RE Symbol -> RE Symbol -> RE Symbol
+
+== Laws ==
+  1. Star Empty = Empty
+  2. Star None = Empty
+

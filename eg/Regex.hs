@@ -8,6 +8,8 @@ module Regex
 where
 
 import qualified Text.Regex.TDFA as O
+-- import qualified Text.Regex.Posix as O -- just as slow
+-- import qualified Text.Regex.PCRE as O -- fails!
 
 -- | Abstract representation of a Regular Expression.  This is a simple
 --   abstraction supporting only the operations in a Kleene's algebra.
