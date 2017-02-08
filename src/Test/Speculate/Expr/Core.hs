@@ -26,6 +26,7 @@ module Test.Speculate.Expr.Core
   , isSub
   , hasVar
   , unfoldApp
+  , isConstantNamed
 
   -- * Properties of expressions
   , lengthE
@@ -352,6 +353,10 @@ sub ef et = s
   s e | e == ef = et
   s (e1 :$ e2)  = s e1 :$ s e2
   s e           = e
+
+isConstantNamed :: Expr -> String -> Bool
+Constant n' _ `isConstantNamed` n = n' == n
+_             `isConstantNamed` _ = False
 
 -- | Unfold function application:
 --

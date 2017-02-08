@@ -67,6 +67,7 @@ data Args = Args
   , constants            :: [Expr] -- ^ constants used on both conditions and equations
   , conditionConstants   :: [Expr] -- ^ constants exclusive to conditions
   , equationConstants    :: [Expr] -- ^ constants exclusive to equations
+  , exclude              :: [String] -- ^ exclude this symbols from signature before running
   }
 -- Maybe add an empty Thy here.
 
@@ -100,6 +101,7 @@ args = Args
   , constants            = []
   , conditionConstants   = []
   , equationConstants    = []
+  , exclude              = []
   }
 
 computeMaxSemiSize :: Args -> Int
@@ -167,7 +169,8 @@ timeout Args{evalTimeout = Just t}  = timeoutToFalse t
 report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
   let ti = computeTypeInfo args
-  let ds = constants args `union` backgroundConstants args `union` conditionConstants args `union` equationConstants args
+  let ds = discard (\c -> any (c `isConstantNamed`) (exclude args))
+         $ constants args `union` backgroundConstants args `union` conditionConstants args `union` equationConstants args
   let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
   let showConditions' = showConditions args && boolTy `elem` map (finalResultTy . typ) ds
   let ds' = map holeOfTy ts `union` ds
@@ -235,6 +238,7 @@ prepareArgs args =
                                        ,showSemiequivalences = False
                                        ,showConditions = False}
   , "hhelp"              --.   \a -> a {showHelp = True}
+  , " exclude"           --= \s a -> a {exclude = exclude a ++ splitAtCommas s}
   ]
   where
   (short:long) --= fun = flagReq  [[short],long] ((Right .) . fun) "X" ""
