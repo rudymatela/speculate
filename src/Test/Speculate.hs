@@ -47,8 +47,8 @@ data Args = Args
   , customTypeInfo       :: [TypeInfo]
   , showConstants        :: Bool
   , showTheory           :: Bool
-  , showEquivalences     :: Bool
-  , showSemiequivalences :: Bool
+  , showEquations        :: Bool
+  , showSemiequations    :: Bool
   , showConditions       :: Bool
   , showConstantLaws     :: Bool
   , showDot              :: Bool
@@ -82,8 +82,8 @@ args = Args
   , customTypeInfo       = []
   , showConstants        = True
   , showTheory           = False
-  , showEquivalences     = True
-  , showSemiequivalences = True
+  , showEquations        = True
+  , showSemiequations    = True
   , showConditions       = True
   , showConstantLaws     = False
   , showDot              = False
@@ -187,9 +187,9 @@ report args@Args {maxSize = sz, maxTests = n} = do
             ++ ", variables of this type will not be considered"
               | t <- uts]
   when (showTheory args)       . putStrLn $ showThy thy
-  when (showEquivalences args) . putStrLn $ prettyThy (shouldShowEquation args) ti thy
+  when (showEquations args) . putStrLn $ prettyThy (shouldShowEquation args) ti thy
   reportClassesFor ti n (showClassesFor args) thy es
-  when (showSemiequivalences args) . putStrLn
+  when (showSemiequations args) . putStrLn
     . prettyShy (shouldShowEquation args) (equivalentInstance thy)
     . semiTheoryFromThyAndReps ti n (maxVars args) thy
     $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
@@ -220,8 +220,8 @@ prepareArgs args =
   , "xcondsize"          --= \s a -> a {maxCondSize = read s}
   , "Aconstants"         --.   \a -> a {showConstants = False}
   , "Ttheory"            --.   \a -> a {showTheory = True}
-  , "Eno-equations"      --.   \a -> a {showEquivalences = False}
-  , "Sno-semiequations"  --.   \a -> a {showSemiequivalences = False}
+  , "Eno-equations"      --.   \a -> a {showEquations = False}
+  , "Sno-semiequations"  --.   \a -> a {showSemiequations = False}
   , "Cno-sideconditions" --.   \a -> a {showConditions = False}
   , "0no-constant-laws"  --.   \a -> a {showConstantLaws = True}
   , "rclass-reps-for"    --= \s a -> a {showClassesFor = read s `L.insert` showClassesFor a}
@@ -232,14 +232,14 @@ prepareArgs args =
   , "gsemi-digraph"      --.   \a -> a {showDot = True
                                        ,quietDot = False
                                        ,showConstants = False
-                                       ,showEquivalences = False
-                                       ,showSemiequivalences = False
+                                       ,showEquations = False
+                                       ,showSemiequations = False
                                        ,showConditions = False}
   , "Dquiet-dot"         --.   \a -> a {showDot = True
                                        ,quietDot = True
                                        ,showConstants = False
-                                       ,showEquivalences = False
-                                       ,showSemiequivalences = False
+                                       ,showEquations = False
+                                       ,showSemiequations = False
                                        ,showConditions = False}
   , "hhelp"              --.   \a -> a {showHelp = True}
   , " exclude"           --= \s a -> a {exclude = exclude a ++ splitAtCommas s}

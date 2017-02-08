@@ -25,7 +25,7 @@ main = speculate args
   { maxTests = 6000 -- one of the datatypes is too wide!
   , maxSize = 4
   , showConditions = False
-  , showSemiequivalences = False
+  , showSemiequations = False
   , customTypeInfo =
       [ typeInfo (undefined :: Thyght)   "t"
       , typeInfo (undefined :: Equation) "eq"

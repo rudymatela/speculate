@@ -42,6 +42,6 @@ main = speculate args
 --    , constant "=~"    (=~)
 --    , constant "Lit"   (Lit   :: Symbol -> RE Symbol)
       ]
-  , showConditions       = False
-  , showSemiequivalences = False
+  , showConditions    = False
+  , showSemiequations = False
   }
