@@ -1,8 +1,9 @@
 #!/bin/bash
 
-hae=/tmp/haexpress-arithficial-hae
-qs2=/tmp/haexpress-arithficial-qs2
-qs1=/tmp/haexpress-arithficial-qs1
+tempdir=`mktemp -d /tmp/speculate-XXXXXXXXXX`
+speculate=$tempdir/speculate.out
+qs1=$tempdir/quickspec2.out
+qs2=$tempdir/quickspec2.out
 
 cat bench/qs1/arithficial.out |
 grep " == " |
@@ -21,9 +22,9 @@ grep " == " |
 sed -e "s/ *//" |
 sed -e 's/\([^a-z]\) (\([a-z]* .\))/\1 \2/g' |
 sed -e 's/^(\([a-z ]*\))/\1/' |
-sort > $hae
+sort > $speculate
 
 diff -rud $qs1 $qs2
-diff -rud $qs2 $hae
+diff -rud $qs2 $speculate
 
-rm -f $qs1 $qs2 $hae
+rm -r $tempdir

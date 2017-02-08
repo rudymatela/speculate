@@ -1,7 +1,8 @@
 #!/bin/bash
 
-hae=/tmp/haexpress-bool-hae
-qs2=/tmp/haexpress-bool-qs2
+tempdir=`mktemp -d /tmp/speculate-XXXXXXXXXX`
+speculate=$tempdir/speculate.out
+qs2=$tempdir/quickspec2.out
 
 cat bench/qs2/bool.out |
 grep " = "  |
@@ -14,9 +15,9 @@ grep " == " |
 sed -e "s/ *//" |
 sed -e 's/\([^a-z]\) (\([a-z]* .\))/\1 \2/g' |
 sed -e 's/^(\([a-z ]*\))/\1/' |
-sort > $hae
+sort > $speculate
 
-diff -rud $qs2 $hae
-#dwdiff -c $qs2 $hae
+diff -rud $qs2 $speculate
+#dwdiff -c $qs2 $speculate
 
-rm -f $qs2 $hae
+rm -r $tempdir
