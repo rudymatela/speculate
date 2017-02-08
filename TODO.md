@@ -11,6 +11,8 @@ current
 
 * add regex benchmark for qs1 and qs2, see what those spit out
 
+* allow configuration of depth limit
+
 * Implement expand by expanding tiers (more robust and flexible).  It
   will allow extraction of constant values from tiers.  This will also make it
   easy to amend a Thy: do theorization; add a bunch of atoms; do it again.
@@ -75,6 +77,8 @@ redundancy to remove
 
 Later Later
 -----------
+
+* improve error message for missing typeInfo.  Maybe add full suggestion.
 
 * include Colin's list module example
 
