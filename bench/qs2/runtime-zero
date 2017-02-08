@@ -1,6 +1,7 @@
-arith            0.200
-arith-negate-abs 0.480
-bool             0.250
-list             0.120
-arithficial      0.260
-regexes          12.640
+arith            0.190
+arith-negate-abs 0.470
+bool             0.240
+list             0.110
+arithficial      0.250
+plus-abs         0.310
+regexes          0.000

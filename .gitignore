@@ -71,6 +71,7 @@ bench/arithficial
 bench/qs*/0arith
 bench/qs*/arith-negate-abs
 bench/qs*/arith
+bench/qs*/plus-abs
 bench/qs*/bool
 bench/qs*/list
 bench/qs*/arithficial

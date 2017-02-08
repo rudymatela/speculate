@@ -1,0 +1,38 @@
+== API ==
+-- functions --
+(+) :: Int -> Int -> Int
+id, abs :: Int -> Int
+0, 1 :: Int
+
+-- variables --
+x, y, z :: Int
+
+== Testing ==
+Depth 1: 6 terms, 3 tests, 14 evaluations, 6 classes, 0 raw equations.
+Depth 2: 41 terms, 500 tests, 16550 evaluations, 19 classes, 22 raw equations.
+Depth 3: 366 terms, 500 tests, 177894 evaluations, 128 classes, 238 raw equations.
+Depth 4: 1080 terms, 500 tests, 520863 evaluations, 243 classes, 837 raw equations.
+837 raw equations; 243 terms in universe.
+
+== Equations about (+) ==
+  1: x+y == y+x
+  2: x+0 == x
+  3: x+(y+z) == y+(x+z)
+
+== Equations about id ==
+  4: id x == x
+
+== Equations about abs ==
+  5: abs 0 == 0
+  6: abs 1 == 1
+  7: abs (abs x) == abs x
+
+== Equations about several functions ==
+  8: abs x+abs x == abs (x+x)
+  9: abs (x+abs x) == x+abs x
+ 10: abs (abs x+abs y) == abs x+abs y
+ 11: abs (abs x+(x+x)) == x+abs (x+x)
+ 12: abs x+abs (x+x) == abs (x+(x+x))
+ 13: abs (abs x+(x+1)) == abs x+(x+1)
+ 14: abs x+abs (x+1) == abs (x+(x+1))
+
