@@ -43,6 +43,7 @@ data Args = Args
   , minTests             :: Int -> Int
   , maxSemiSize          :: Int
   , maxCondSize          :: Int
+  , maxDepth             :: Maybe Int
   , customTypeInfo       :: [TypeInfo]
   , showConstants        :: Bool
   , showTheory           :: Bool
@@ -77,6 +78,7 @@ args = Args
   , minTests             = \n -> n `div` 20 -- defaults to 5% of maxTests
   , maxSemiSize          = -2
   , maxCondSize          = -1
+  , maxDepth             = Nothing
   , customTypeInfo       = []
   , showConstants        = True
   , showTheory           = False
@@ -144,8 +146,9 @@ shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
   ea = equationConstants args  ++ ((constants args \\ conditionConstants args) \\ backgroundConstants args)
 
 keepExpr :: Args -> Expr -> Bool
-keepExpr (Args {maxConstants = Nothing}) e = True
-keepExpr (Args {maxConstants = Just n})  e = length (consts e) <= n
+keepExpr Args{maxConstants = Just n} e | length (consts e) > n = False
+keepExpr Args{maxDepth     = Just n} e |         depthE e  > n = False
+keepExpr _                           _                         = True
 
 -- | Are all constants in an expression about a list of constants?
 -- Examples in pseudo-Haskell:
@@ -225,6 +228,7 @@ prepareArgs args =
   , "vvars"              --= \s a -> a {maxVars = read s}
   , "cmax-constants"     --= \s a -> a {maxConstants = Just $ read s}
   , "eeval-timeout"      --= \s a -> a {evalTimeout = Just $ read s}
+  , " depth"             --= \s a -> a {maxDepth = Just $ read s}
   , "ddot"               --.   \a -> a {showDot = True
                                        ,quietDot = False
                                        ,showConstants = False

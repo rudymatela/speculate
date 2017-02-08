@@ -113,6 +113,17 @@ tests n =
                       Right t -> t == typ e
                       Left  _ -> error "Either Listable Expr is generating ill typed expressions or etyp is wrong!"
 
+  , lengthE zero == 1
+  , depthE  zero == 1
+  , lengthE one  == 1
+  , depthE  one  == 1
+  , lengthE (zero -+- one) == 3
+  , depthE  (zero -+- one) == 2
+  , lengthE (zero -+- (xx -+- yy)) == 5
+  , depthE  (zero -+- (xx -+- yy)) == 3
+  , lengthE (((xx -+- yy) -*- zz) -==- ((xx -*- zz) -+- (yy -*- zz))) == 13
+  , depthE  (((xx -+- yy) -*- zz) -==- ((xx -*- zz) -+- (yy -*- zz))) ==  4
+
   , allUnique (take (n`div`10) $ list :: [Expr])
   , allUnique (take (n`div`10) $ map unSameTypeE list)
   , allUnique (take (n`div`10) $ map unIntE list)

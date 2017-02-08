@@ -30,6 +30,7 @@ module Test.Speculate.Expr.Core
 
   -- * Properties of expressions
   , lengthE
+  , depthE
   , countVar
   , countVars
   , unrepeatedVars
@@ -306,6 +307,11 @@ consts _                = []
 lengthE :: Expr -> Int
 lengthE (e1 :$ e2)  = lengthE e1 + lengthE e2
 lengthE _           = 1
+
+-- | Returns the maximum depth of an expression.
+depthE :: Expr -> Int
+depthE e@(_:$_) = 1 + maximum (map depthE $ unfoldApp e)
+depthE _        = 1
 
 -- | Number of occurrences of a given variable name.
 -- In term rewriting terms: |s|_x
