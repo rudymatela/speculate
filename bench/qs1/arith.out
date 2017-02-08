@@ -1,17 +1,16 @@
 == API ==
 -- functions --
 (+), (*) :: Int -> Int -> Int
-id, abs, negate :: Int -> Int
 0, 1 :: Int
 
 -- variables --
 x, y, z :: Int
 
 == Testing ==
-Depth 1: 6 terms, 5 tests, 16 evaluations, 6 classes, 0 raw equations.
-Depth 2: 71 terms, 500 tests, 28102 evaluations, 29 classes, 42 raw equations.
-Depth 3: 1658 terms, 500 tests, 821208 evaluations, 568 classes, 1090 raw equations.
-1090 raw equations; 568 terms in universe.
+Depth 1: 6 terms, 3 tests, 12 evaluations, 6 classes, 0 raw equations.
+Depth 2: 56 terms, 500 tests, 24067 evaluations, 22 classes, 34 raw equations.
+Depth 3: 888 terms, 500 tests, 438422 evaluations, 298 classes, 590 raw equations.
+590 raw equations; 298 terms in universe.
 
 == Equations about (+) ==
   1: x+y == y+x
@@ -24,25 +23,7 @@ Depth 3: 1658 terms, 500 tests, 821208 evaluations, 568 classes, 1090 raw equati
   6: x*1 == x
   7: x*(y*z) == y*(x*z)
 
-== Equations about id ==
-  8: id x == x
-
-== Equations about abs ==
-  9: abs 0 == 0
- 10: abs 1 == 1
- 11: abs (abs x) == abs x
-
-== Equations about negate ==
- 12: negate 0 == 0
- 13: negate (negate x) == x
-
 == Equations about several functions ==
- 14: x*negate y == negate (x*y)
- 15: x*(y+y) == y*(x+x)
- 16: abs (negate x) == abs x
- 17: abs (x*x) == x*x
- 18: x+negate x == 0
- 19: (x*y)+(x*z) == x*(y+z)
- 20: abs x*abs y == abs (x*y)
- 21: abs x+abs x == abs (x+x)
+  8: x*(y+y) == y*(x+x)
+  9: (x*y)+(x*z) == x*(y+z)
 

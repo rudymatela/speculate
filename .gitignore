@@ -69,6 +69,7 @@ bench/representatives
 bench/representatives2
 bench/arithficial
 bench/qs*/0arith
+bench/qs*/arith-negate-abs
 bench/qs*/arith
 bench/qs*/bool
 bench/qs*/list

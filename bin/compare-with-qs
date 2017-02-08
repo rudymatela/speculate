@@ -1,14 +1,14 @@
 #!/bin/bash
 
-HAE=bench/runtime-$HOSTNAME
+SPL=bench/runtime-$HOSTNAME
 QS1=bench/qs1/runtime-$HOSTNAME
 QS2=bench/qs2/runtime-$HOSTNAME
 
-printf "%-12s  %6s  %6s  %6s\n" "" QS1 Splte QS2
+printf "%-16s %10s %10s %10s\n" "" QuickSpec1 Speculate QuickSpec2
 cat $QS1 |
 while read name qs1
 do
 	read nm qs2 <<< $(grep "^$name " $QS2)
-	read nm hae <<< $(grep "^$name " $HAE)
-	printf "%-12s  %6.3f  %6.3f  %6.3f\n" $name $qs1 $hae $qs2
+	read nm spl <<< $(grep "^$name " $SPL)
+	printf "%-16s  %9.3f  %9.3f  %9.3f\n" $name $qs1 $spl $qs2
 done

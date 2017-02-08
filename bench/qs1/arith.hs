@@ -9,7 +9,4 @@ main =
     , "1" `fun0` (1   :: I)
     , "+" `fun2` ((+) :: I -> I -> I)
     , "*" `fun2` ((*) :: I -> I -> I)
-    , "id"     `fun1` (id     :: I -> I)
-    , "abs"    `fun1` (abs    :: I -> I)
-    , "negate" `fun1` (negate :: I -> I)
     ]

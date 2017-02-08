@@ -1,5 +1,5 @@
-0arith       0.450
-arith        0.860
-bool         0.230
-list         0.210
-arithficial  1.250
+arith            0.440
+arith-negate-abs 0.840
+bool             0.230
+list             0.210
+arithficial      1.280

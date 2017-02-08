@@ -1,6 +1,6 @@
 BENCH = \
-  0arith \
   arith \
+  arith-negate-abs \
   bool \
   list \
   arithficial
@@ -8,14 +8,14 @@ BENCH = \
 all: $(BENCH)
 
 bench: all
-	@echo -n "0arith       "; /usr/bin/time -f%e0 ./0arith      2>&1 >      0arith.out
-	@echo -n "arith        "; /usr/bin/time -f%e0 ./arith       2>&1 >       arith.out
-	@echo -n "bool         "; /usr/bin/time -f%e0 ./bool        2>&1 >        bool.out
-	@echo -n "list         "; /usr/bin/time -f%e0 ./list        2>&1 >        list.out
-	@echo -n "arithficial  "; /usr/bin/time -f%e0 ./arithficial 2>&1 > arithficial.out
+	@echo -n "arith            "; /usr/bin/time -f%e0 ./0arith           2>&1 >            arith.out
+	@echo -n "arith-negate-abs "; /usr/bin/time -f%e0 ./arith-negate-abs 2>&1 > arith-negate-abs.out
+	@echo -n "bool             "; /usr/bin/time -f%e0 ./bool             2>&1 >             bool.out
+	@echo -n "list             "; /usr/bin/time -f%e0 ./list             2>&1 >             list.out
+	@echo -n "arithficial      "; /usr/bin/time -f%e0 ./arithficial      2>&1 >      arithficial.out
 
-save-bench: bench
-	make bench > runtime-$$HOSTNAME
+save-bench:
+	make bench -s > runtime-$$HOSTNAME
 
 # this takes a few minutes
 prepare:
