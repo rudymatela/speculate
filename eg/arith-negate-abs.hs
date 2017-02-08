@@ -11,4 +11,8 @@ main = speculate args
       , constant "+"      ((+)    :: Int -> Int -> Int)
       , constant "*"      ((*)    :: Int -> Int -> Int)
       ]
+--, backgroundConstants =
+--    [ constant "<="  ((<=) :: Int -> Int -> Bool)
+--    , constant "<"   ((<)  :: Int -> Int -> Bool)
+--    ]
   }
