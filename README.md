@@ -1,7 +1,9 @@
 Speculate
 =========
 
-Speculate automatically speculates (conditional-/semi-) equational properties
+Speculate automatically speculates
+equational, inequational and conditional laws
+about a collection of Haskell functions.
 about given Haskell functions.
 (it is similar to, and inspired by [QuickSpec].)
 
