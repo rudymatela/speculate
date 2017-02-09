@@ -21,24 +21,16 @@ Clone and enter the repository:
 	$ git clone https://github.com/rudymatela/speculate
 	$ cd speculate
 
-There are some examples in the `eg` folter.  For example `eg/numbool`:
+There are some examples in the `eg` folter.  For example `eg/plus-abs.hs`:
 
-	$ cat eg/numbool
+	$ cat eg/plus-abs.hs
 	...
 	...
 
-Compile it with:
+Compile and run with:
 
-	$ ghc -isrc eg/numbool.hs
-
-Run it with:
-
-	$ ./eg/numbool
-	...
-
-Pass `-C` to get conditional equations:
-
-	$ ./eg/numbool -C
+	$ ghc -isrc eg/plus-abs.hs
+	$ ./eg/plus-abs
 	...
 
 
