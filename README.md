@@ -71,7 +71,7 @@ the functions `(+)` and `abs`:
 		  ]
 	  }
 
-when run (`./speculate`), it prints the following:
+when run, it prints the following:
 
 	_ :: Int  (holes: Int)
 	0 :: Int
