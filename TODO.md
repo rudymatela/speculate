@@ -9,6 +9,8 @@ Warning: I tend to ramble...
 current
 -------
 
+* increase default limit for semi-equations?
+
 * check Eq and Ord instances before running:
   including consistency between them.
   refuse to run if errors are found
@@ -57,6 +59,14 @@ stranger things
 
 redundancy to remove
 --------------------
+
+* on `eg/list`:
+
+  xs <= head xs:tail xs
+
+  this follows from xs == head xs:tail xs
+  but is actually not true in general (empty xs)
+  so maybe just test the reverse and discard if it holds?
 
 * remove redundancy on taut example:
 
