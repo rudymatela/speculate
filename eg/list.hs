@@ -1,9 +1,17 @@
 import Test.Speculate
-import Data.List (sort,insert)
+import Data.List
 
 main :: IO ()
 main = speculate args
-  { constants =
+  { maxSemiSize = 0
+  , maxVars     = 3
+  , instances =
+      [
+--      ordWith (isPrefixOf -:> [int])
+--      ordWith (isInfixOf  -:> [int])
+--      ordWith ((>=)       -:> [int])
+      ]
+  , constants =
       [ showConstant ([] :: [Int])
       , constant ":"    $ (:)  -:>  int
       , constant "++"   $ (++) -:> [int]

@@ -11,5 +11,7 @@ tail :: [Int] -> [Int]
 tail (x:xs) == xs
 head (x:xs) == x
 
-[] <= xs
+ [] <= xs
+ xs <= xs ++ ys
+[x] <= x:xs
 

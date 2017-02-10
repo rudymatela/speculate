@@ -13,6 +13,8 @@ tail :: [Int] -> [Int]
 (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
      head (x:xs) == x
 
-[] <= xs
-xs <= xs ++ ys
+      [] <= xs
+      xs <= xs ++ ys
+      xs <= head xs:tail xs
+xs ++ ys <= xs ++ (ys ++ zs)
 
