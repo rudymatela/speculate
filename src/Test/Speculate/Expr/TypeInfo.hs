@@ -13,7 +13,6 @@ module Test.Speculate.Expr.TypeInfo
   , existsInfo
   , names
   , equalityE
-  , compareE
   , lessEqE
   , lessE
   , tiersE
@@ -45,16 +44,17 @@ import Data.List (find,(\\))
 data TypeInfo1 = TypeInfo1
   { typerep1   :: TypeRep
   , equalityE1 :: Expr     -- equality function expression
-  , compareE1  :: Expr     -- comparison function expression
   , lessEqE1   :: Expr
   , lessE1     :: Expr
   , tiersE1    :: [[Expr]] -- tiers of expressions
   , names1     :: [String] -- infinite list of template names for that type
   }
 
+
+
 -- TODO: allow partially specifying TypeInfo
 -- data TypeInfo1 = Eq TypeRep Expr
---                | Compare TypeRep Expr
+--                | Ord TypeRep Expr
 --                ... ... ...
 --                | Tiers TypeRep [[Expr]]
 --                | Names TypeRep [String]
@@ -111,7 +111,6 @@ typeInfoNames :: (Typeable a, Listable a, Show a, Eq a, Ord a)
 typeInfoNames x ns = TypeInfo1
   { typerep1   = typeOf x
   , equalityE1 = constant "=="        $ (errorToFalse .: (==)) -:> x
-  , compareE1  = constant "`compare`" $ compare                -:> x
   , lessEqE1   = constant "<="        $ (errorToFalse .: (<=)) -:> x
   , lessE1     = constant "<"         $ (errorToFalse .: (<))  -:> x
   , tiersE1    = mapT showConstant (tiers `asTypeOf` [[x]])
@@ -145,9 +144,6 @@ tiersE t ti =
 
 equalityE :: TypeInfo -> TypeRep -> Maybe Expr
 equalityE ti = fmap equalityE1 . (`findInfo` ti)
-
-compareE :: TypeInfo -> TypeRep -> Maybe Expr
-compareE ti = fmap compareE1 . (`findInfo` ti)
 
 lessE :: TypeInfo -> TypeRep -> Maybe Expr
 lessE ti = fmap lessE1 . (`findInfo` ti)

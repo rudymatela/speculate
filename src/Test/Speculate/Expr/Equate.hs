@@ -9,7 +9,7 @@ module Test.Speculate.Expr.Equate
   ( equation, unEquation, isEquation, uselessEquation, usefulEquation
   , phonyEquation
 
-  , comparison, comparisonL, comparisonLE, unComparison
+  , comparisonL, comparisonLE, unComparison
 
   , implication, unImplication, usefulImplication
 
@@ -53,11 +53,6 @@ uselessEquation = uncurry (==) . unEquation
 
 usefulEquation :: Expr -> Bool
 usefulEquation = uncurry (/=) . unEquation
-
-comparison :: TypeInfo -> Expr -> Expr -> Maybe Expr
-comparison ti e1 e2 = do
-  ti <- findInfo (typ e1) ti
-  compareE1 ti :$ e1 $$ e2
 
 comparisonL :: TypeInfo -> Expr -> Expr -> Maybe Expr
 comparisonL ti e1 e2 = do
