@@ -182,10 +182,9 @@ report args@Args {maxSize = sz, maxTests = n} = do
             `union` catMaybes [eqE ti t | t <- ts, showConditions']
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (keepExpr args) (timeout args .: equal ti n) ds'
   when (showConstants args)    . putStrLn . unlines $ map show ds'
-  unless (null uts) . putStrLn
-    $ unlines ["Warning: no Listable instance for " ++ show t
-            ++ ", variables of this type will not be considered"
-              | t <- uts]
+  putLines ["Warning: no Listable instance for " ++ show t
+         ++ ", variables of this type will not be considered"
+           | t <- uts]
   when (showTheory args)       . putStrLn $ showThy thy
   when (showEquations args) . putStrLn $ prettyThy (shouldShowEquation args) ti thy
   reportClassesFor ti n (showClassesFor args) thy es
