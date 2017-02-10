@@ -91,17 +91,30 @@ ins n x = concat
 -- NOTE: see related TODO on the definition of basicInstances
 
 eq :: (Typeable a, Eq a) => a -> Instances
-eq x = [Eq (typeOf x) . constant "==" $ (errorToFalse .: (==)) -:> x]
+eq x = eqWith $ (==) -:> x
 
 ord :: (Typeable a, Ord a) => a -> Instances
-ord x = [Ord (typeOf x) (constant "<=" $ (errorToFalse .: (<=)) -:> x)
-                        (constant "<"  $ (errorToFalse .: (<))  -:> x)]
+ord x = ordWith $ (<=) -:> x
 
 listable :: (Typeable a, Show a, Listable a) => a -> Instances
 listable x = [Listable (typeOf x) . mapT showConstant $ tiers `asTypeOf` [[x]]]
 
 name :: Typeable a => String -> a -> Instances
 name n x = [Names (typeOf x) (namesFromTemplate n)]
+
+eqWith :: (Typeable a, Eq a) => (a -> a -> Bool) -> Instances
+eqWith (==) = [Eq (typeOf $ arg (==)) $ constant "==" $ errorToFalse .: (==)]
+  where
+  arg :: (a -> b) -> a
+  arg _ = undefined
+
+ordWith :: (Typeable a, Ord a) => (a -> a -> Bool) -> Instances
+ordWith (<=) = [Ord (typeOf $ arg (<=))
+                    (constant "<=" $ (errorToFalse .: (<=)))
+                    (constant "<"  $ ((errorToFalse . not) .: flip (<=)))]
+  where
+  arg :: (a -> b) -> a
+  arg _ = undefined
 
 -- TODO: make types consistent!  add isOrdE and isEqE?
 isOrd :: Instances -> Expr -> Bool
