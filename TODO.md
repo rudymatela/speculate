@@ -9,16 +9,10 @@ Warning: I tend to ramble...
 current
 -------
 
-* warn when no Ord or Eq instances
-
 * review README file.
 
-* separate type information -- allow providing of *some* instances
-
-* rename `customTypeInfo` to `instances` or `types`?
-
-* derive `tiers` using speculate itself.  Use provided constructors.  Maybe a
-  new field in args?
+* derive `tiers` using speculate itself.  Use provided constructors.
+  Maybe a new field in args?
 
 
 
