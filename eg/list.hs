@@ -7,7 +7,7 @@ main = speculate args
   , maxVars     = 3
 --, instances = [ ordWith (isPrefixOf      :: [Int] -> [Int] -> Bool) ]
 --, instances = [ ordWith (isInfixOf       :: [Int] -> [Int] -> Bool) ]
---, instances = [ ordWith (isSubsequenceOf :: [Int] -> [Int] -> Bool) ]
+  , instances = [ ordWith (isSubsequenceOf :: [Int] -> [Int] -> Bool) ]
   , constants =
       [ showConstant ([] :: [Int])
       , constant ":"    ((:)  ::  Int  -> [Int] -> [Int])

@@ -13,5 +13,8 @@ head (x:xs) == x
 
  [] <= xs
  xs <= xs ++ ys
+ xs <= ys ++ xs
+ xs <= x:xs
+ xs <= tail (xs ++ xs)
 [x] <= x:xs
 
