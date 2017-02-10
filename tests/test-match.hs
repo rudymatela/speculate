@@ -46,4 +46,4 @@ tests n =
   , holds n $ \(IntE e1) (IntE e2) -> sub e1 e2 (e1 -+- e1) == (e2 -+- e2)
   ]
   where
-  x === y = equal basicTypeInfo 1000 x y
+  x === y = equal preludeInstances 1000 x y

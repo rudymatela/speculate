@@ -84,4 +84,4 @@ tests n =
   , not $ subConsequence emptyThy [] (abs' xx -==- one) (xx -+- abs' xx) (zero)
   ]
   where
-  x === y = equal basicTypeInfo 1000 x y
+  x === y = equal preludeInstances 1000 x y

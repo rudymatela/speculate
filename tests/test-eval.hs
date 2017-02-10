@@ -16,7 +16,7 @@ tests :: Int -> [Bool]
 tests n =
   [ True
 
-  , holds n' $ \e -> if isEq basicTypeInfo e
+  , holds n' $ \e -> if isEq preludeInstances e
                       then e === e
                       else e =/= e
   ,                                    xx -+- yy === yy -+- xx
@@ -29,27 +29,27 @@ tests n =
   , holds n' $       zero //= one
   , holds n' $ not $   xx //= yy
 
-  , holds n' $ \e1 e2 -> case equation basicTypeInfo e1 e2 of
-                           Just e1e2 -> condEqual basicTypeInfo 500 e1e2 e1 e2
+  , holds n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
+                           Just e1e2 -> condEqual preludeInstances 500 e1e2 e1 e2
                            Nothing   -> True
-  , holds n' $ \e1 e2 -> case equation basicTypeInfo e1 e2 of
-                           Just e1e2 -> condEqualM basicTypeInfo 500 0 e1e2 e1 e2
+  , holds n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
+                           Just e1e2 -> condEqualM preludeInstances 500 0 e1e2 e1 e2
                            Nothing   -> True
-  , holds n' $ \e1 e2 -> case equation basicTypeInfo e1 e2 of
-                           Just e1e2 -> condEqualM basicTypeInfo 500 1 e1e2 e1 e2
+  , holds n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
+                           Just e1e2 -> condEqualM preludeInstances 500 1 e1e2 e1 e2
                            Nothing   -> True
-  , fails n' $ \e1 e2 -> case equation basicTypeInfo e1 e2 of
-                           Just e1e2 -> condEqualM basicTypeInfo 500 500 e1e2 e1 e2
+  , fails n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
+                           Just e1e2 -> condEqualM preludeInstances 500 500 e1e2 e1 e2
                            Nothing   -> True
 
-  , trueBinds basicTypeInfo 500 (xx -==- zero) == [[("x",zero)]]
-  , trueBinds basicTypeInfo 500 (xx -==- one)  == [[("x",one)]]
-  , trueBinds basicTypeInfo 500 ((xx -==- one) -&&- (yy -==- zero))  == [[("x",one),("y",zero)]]
+  , trueBinds preludeInstances 500 (xx -==- zero) == [[("x",zero)]]
+  , trueBinds preludeInstances 500 (xx -==- one)  == [[("x",one)]]
+  , trueBinds preludeInstances 500 ((xx -==- one) -&&- (yy -==- zero))  == [[("x",one),("y",zero)]]
   ]
   where
   n' = n `div` 50
-  x === y = equal basicTypeInfo 500 x y
+  x === y = equal preludeInstances 500 x y
   infix 4 ===
   x =/= y = not (x === y)
   infix 4 =/=
-  x //= y = inequal basicTypeInfo 500 x y
+  x //= y = inequal preludeInstances 500 x y
