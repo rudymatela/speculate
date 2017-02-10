@@ -97,7 +97,7 @@ ord :: (Typeable a, Ord a) => a -> Instances
 ord x = ordWith $ (<=) -:> x
 
 listable :: (Typeable a, Show a, Listable a) => a -> Instances
-listable x = [Listable (typeOf x) . mapT showConstant $ tiers `asTypeOf` [[x]]]
+listable x = listableWith $ tiers `asTypeOf` [[x]]
 
 name :: Typeable a => String -> a -> Instances
 name n x = [Names (typeOf x) (namesFromTemplate n)]
@@ -115,6 +115,10 @@ ordWith (<=) = [Ord (typeOf $ arg (<=))
   where
   arg :: (a -> b) -> a
   arg _ = undefined
+
+listableWith :: (Typeable a, Show a) => [[a]] -> Instances
+listableWith xss =
+  [Listable (typeOf $ head $ head xss) (mapT showConstant xss)]
 
 -- TODO: make types consistent!  add isOrdE and isEqE?
 isOrd :: Instances -> Expr -> Bool
