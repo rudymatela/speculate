@@ -5,6 +5,9 @@ module Test.Speculate.Expr.TypeInfo
 
   -- * Smart constructors
   , ins
+  , eq,       eqWith
+  , ord,      ordWith
+  , listable, listableWith
 
   -- * Queries on Instances1 lists
   , findInfo

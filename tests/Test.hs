@@ -109,7 +109,7 @@ import System.Environment (getArgs)
 import System.Exit (exitFailure)
 import Data.List (elemIndices)
 
-import Test.Speculate hiding (getArgs, true, false)
+import Test.Speculate hiding (getArgs, true, false, ord)
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
 
