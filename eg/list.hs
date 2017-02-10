@@ -5,12 +5,9 @@ main :: IO ()
 main = speculate args
   { maxSemiSize = 0
   , maxVars     = 3
-  , instances =
-      [
---      ordWith (isPrefixOf      :: [Int] -> [Int] -> Bool)
---      ordWith (isInfixOf       :: [Int] -> [Int] -> Bool)
---      ordWith (isSubsequenceOf :: [Int] -> [Int] -> Bool)
-      ]
+--, instances = [ ordWith (isPrefixOf      :: [Int] -> [Int] -> Bool) ]
+--, instances = [ ordWith (isInfixOf       :: [Int] -> [Int] -> Bool) ]
+--, instances = [ ordWith (isSubsequenceOf :: [Int] -> [Int] -> Bool) ]
   , constants =
       [ showConstant ([] :: [Int])
       , constant ":"    ((:)  ::  Int  -> [Int] -> [Int])
