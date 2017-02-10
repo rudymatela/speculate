@@ -7,9 +7,10 @@ main = speculate args
   , maxVars     = 3
   , instances =
       [
---      ordWith (isPrefixOf -:> [int])
---      ordWith (isInfixOf  -:> [int])
---      ordWith ((>=)       -:> [int])
+--      ordWith (isPrefixOf      -:> [int])
+--      ordWith (isInfixOf       -:> [int])
+--      ordWith (isSubsequenceOf -:> [int])
+--      ordWith ((>=)            -:> [int])
       ]
   , constants =
       [ showConstant ([] :: [Int])
