@@ -110,8 +110,8 @@ q == (p || r) :: Bool
 r == (p || q) :: Bool
 p == (q == r) :: Bool
 
-Number of comparable schema classes: 21
-Number of comparable  1-var classes: 4
-Number of comparable  2-var classes: 16
-Number of comparable  3-var classes: 59
+Number of Eq schema classes: 21
+Number of Eq 1-var classes: 4
+Number of Eq 2-var classes: 16
+Number of Eq 3-var classes: 59
 

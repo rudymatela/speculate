@@ -765,7 +765,7 @@ tail (tail []) ++ xs :: [Int]
 tail (tail []) ++ ys :: [Int]
 tail (tail []) ++ zs :: [Int]
 
-Number of comparable schema classes: 90
-Number of comparable  1-var classes: 68
-Number of comparable  2-var classes: 191
-Number of comparable  3-var classes: 406
+Number of Eq schema classes: 90
+Number of Eq 1-var classes: 68
+Number of Eq 2-var classes: 191
+Number of Eq 3-var classes: 406

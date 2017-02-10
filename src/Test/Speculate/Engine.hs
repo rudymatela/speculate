@@ -70,7 +70,7 @@ vassignmentsEqn = filter (uncurry (/=)) . map unEquation . vassignments . uncurr
 
 expansions :: TypeInfo -> Int -> Expr -> [Expr]
 expansions ti n e =
-  [ foldl fill e [ [ Var (names t ti !! i) t | i <- is ]
+  [ foldl fill e [ [ Var (names ti t !! i) t | i <- is ]
                  | (t,is) <- fs ]
   | fs <- productsList [[(t,is) | is <- foo c n] | (t,c) <- counts (holes e)] ]
   where
@@ -162,7 +162,7 @@ semiTheoryFromThyAndReps ti nt nv thy =
                       && typ e1 == typ e2
                       && lessOrEqual ti nt e1 e2)
   . distinctFromSchemas ti nt nv thy
-  . filter (isComparable ti)
+  . filter (isOrd ti)
 
 conditionalTheoryFromThyAndReps :: TypeInfo -> Int -> Int -> Int
                                 -> Thy -> [Expr] -> Chy
@@ -175,7 +175,7 @@ conditionalTheoryFromThyAndReps ti nt nv csz thy es' =
   where
   (cles,clpres) = (id *** filter (\(e,_) -> lengthE e <= csz))
                 . partition (\(e,_) -> typ e /= boolTy)
-                . filter (isComparable ti . fst)
+                . filter (isEq ti . fst)
                 $ classesFromSchemas ti nt nv thy es'
 
 conditionalEquivalences :: ((Expr,Expr,Expr) -> Bool)

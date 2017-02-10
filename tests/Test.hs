@@ -207,7 +207,7 @@ instance Listable BoolE where
                     \/ consBB (-||-)  `addWeight` 2
                     \/ consBB (-==>-) `addWeight` 3
                     \/ maybeCons1 (uncurry (equation     basicTypeInfo) . unSameTypeE) `addWeight` 3
-                    \/ maybeCons1 (uncurry (comparisonL  basicTypeInfo) . unSameTypeE) `addWeight` 4
+                    \/ maybeCons1 (uncurry (comparisonLT basicTypeInfo) . unSameTypeE) `addWeight` 4
                     \/ maybeCons1 (uncurry (comparisonLE basicTypeInfo) . unSameTypeE) `addWeight` 4
                     \/ consI odd'   `addWeight` 1
                     \/ consI even'  `addWeight` 1
@@ -386,7 +386,7 @@ infix 4 -<=-
 
 (-<-) :: Expr -> Expr -> Expr
 e1 -<- e2 =
-  case comparisonL basicTypeInfo e1 e2 of
+  case comparisonLT basicTypeInfo e1 e2 of
     Nothing -> error $ "(-<-): cannot less " ++ show e1 ++ " and " ++ show e2
     Just eq -> eq
 infix 4 -<-

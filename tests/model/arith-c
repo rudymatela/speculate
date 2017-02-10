@@ -171,7 +171,7 @@ y * (y * z) :: Int
 y * (z * z) :: Int
 z * (z * z) :: Int
 
-Number of comparable schema classes: 17
-Number of comparable  1-var classes: 15
-Number of comparable  2-var classes: 41
-Number of comparable  3-var classes: 90
+Number of Eq schema classes: 17
+Number of Eq 1-var classes: 15
+Number of Eq 2-var classes: 41
+Number of Eq 3-var classes: 90

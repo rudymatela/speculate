@@ -9,12 +9,12 @@ module Test.Speculate.Expr.Equate
   ( equation, unEquation, isEquation, uselessEquation, usefulEquation
   , phonyEquation
 
-  , comparisonL, comparisonLE, unComparison
+  , comparisonLT, comparisonLE, unComparison
 
   , implication, unImplication, usefulImplication
 
   , conditionalEquation, unConditionalEquation, usefulConditionalEquation
-  , conditionalComparisonL, conditionalComparisonLE, unConditionalComparison
+  , conditionalComparisonLT, conditionalComparisonLE, unConditionalComparison
   )
 where
 
@@ -26,8 +26,8 @@ import Test.Speculate.Expr.TypeInfo
 
 equation :: TypeInfo -> Expr -> Expr -> Maybe Expr
 equation ti e1 e2 = do
-  eqE <- equalityE ti (typ e1)
-  eqE :$ e1 $$ e2
+  e <- eqE ti (typ e1)
+  e :$ e1 $$ e2
 
 phonyEquation :: Expr -> Expr -> Expr
 phonyEquation e1 e2 | typ e1 /= typ e2 = error $ "phonyEquation: type mismatch "
@@ -54,14 +54,14 @@ uselessEquation = uncurry (==) . unEquation
 usefulEquation :: Expr -> Bool
 usefulEquation = uncurry (/=) . unEquation
 
-comparisonL :: TypeInfo -> Expr -> Expr -> Maybe Expr
-comparisonL ti e1 e2 = do
-  e <- lessE ti (typ e1)
+comparisonLT :: TypeInfo -> Expr -> Expr -> Maybe Expr
+comparisonLT ti e1 e2 = do
+  e <- ltE ti (typ e1)
   e :$ e1 $$ e2
 
 comparisonLE :: TypeInfo -> Expr -> Expr -> Maybe Expr
 comparisonLE ti e1 e2 = do
-  e <- lessEqE ti (typ e1)
+  e <- leE ti (typ e1)
   e :$ e1 $$ e2
 
 unComparison :: Expr -> (Expr,Expr)
@@ -109,8 +109,8 @@ usefulConditionalEquation e = e1 /= e2 && vp \\ ve /= vp
 conditionalComparisonLE :: TypeInfo -> Expr -> Expr -> Expr -> Maybe Expr
 conditionalComparisonLE ti pre e1 e2 = (pre `implication`) =<< comparisonLE ti e1 e2
 
-conditionalComparisonL :: TypeInfo -> Expr -> Expr -> Expr -> Maybe Expr
-conditionalComparisonL ti pre e1 e2 = (pre `implication`) =<< comparisonL ti e1 e2
+conditionalComparisonLT :: TypeInfo -> Expr -> Expr -> Expr -> Maybe Expr
+conditionalComparisonLT ti pre e1 e2 = (pre `implication`) =<< comparisonLT ti e1 e2
 
 unConditionalComparison :: Expr -> (Expr,Expr,Expr)
 unConditionalComparison e = (econd,e1,e2)

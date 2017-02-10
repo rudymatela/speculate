@@ -9,6 +9,8 @@ Warning: I tend to ramble...
 current
 -------
 
+* warn when no Ord or Eq instances
+
 * review README file.
 
 * separate type information -- allow providing of *some* instances

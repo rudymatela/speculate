@@ -42,7 +42,7 @@ grounds ti e = (e `assigning`) <$> groundBinds ti e
 -- >      , [("x",1),("y",0)] ]
 groundBinds :: TypeInfo -> Expr -> [Binds]
 groundBinds ti e =
-  concat $ products [mapT ((,) n) ts | (t,n) <- vars e, let ts = tiersE t ti]
+  concat $ products [mapT ((,) n) (tiersE ti t) | (t,n) <- vars e]
 
 -- | List all possible variable bindings and valuations to an expression
 --
@@ -85,7 +85,7 @@ lessOrEqual ti n e1 e2 = maybe False (true ti n) (comparisonLE ti e1 e2)
 
 -- | Are two expressions less-than for a given number of tests?
 less        :: TypeInfo -> Int -> Expr -> Expr -> Bool
-less        ti n e1 e2 = maybe False (true ti n) (comparisonL  ti e1 e2)
+less        ti n e1 e2 = maybe False (true ti n) (comparisonLT ti e1 e2)
 
 -- | Are two expressions inequal for *all* variable assignments?
 --   Note this is different than @not . equal@.

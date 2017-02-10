@@ -16,7 +16,7 @@ tests :: Int -> [Bool]
 tests n =
   [ True
 
-  , holds n' $ \e -> if isComparable basicTypeInfo e
+  , holds n' $ \e -> if isEq basicTypeInfo e
                       then e === e
                       else e =/= e
   ,                                    xx -+- yy === yy -+- xx

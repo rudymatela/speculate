@@ -25,7 +25,7 @@ canonicalizeWith ti e = e `assigning` ((\(t,n,n') -> (n,Var n' t)) `map` cr [] e
   cr bs (e1 :$ e2) = cr (cr bs e1) e2
   cr bs (Var n t)
     | any (\(t',n',_) -> t == t' && n == n') bs = bs
-    | otherwise = (t,n,head $ names t ti \\ map (\(_,_,n) -> n) bs):bs
+    | otherwise = (t,n,head $ names ti t \\ map (\(_,_,n) -> n) bs):bs
   cr bs _ = bs
 
 canonicalize :: Expr -> Expr

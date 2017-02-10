@@ -8,14 +8,12 @@ module Test.Speculate.Expr.TypeInfo
   , typeInfoNames
 
   -- * Queries on TypeInfo1 lists
-  , isComparable
   , findInfo
-  , existsInfo
   , names
-  , equalityE
-  , lessEqE
-  , lessE
-  , tiersE
+  , eqE,      isEq
+  , leE, ltE, isOrd
+  ,           isEqOrd
+  , tiersE,   isListable
 
   -- * Type info for standard Haskell types
   , basicTypeInfo
@@ -36,41 +34,30 @@ import Test.LeanCheck.Utils hiding (comparison)
 import Test.LeanCheck.Error (errorToFalse)
 import Data.Dynamic
 
-import Data.Maybe (isJust)
+import Data.Maybe (isJust,fromMaybe,listToMaybe,catMaybes)
 import Data.List (find,(\\))
 
 
--- | Type information needed to Speculate expressions (single type).
-data TypeInfo1 = TypeInfo1
-  { typerep1   :: TypeRep
-  , equalityE1 :: Expr     -- equality function expression
-  , lessEqE1   :: Expr
-  , lessE1     :: Expr
-  , tiersE1    :: [[Expr]] -- tiers of expressions
-  , names1     :: [String] -- infinite list of template names for that type
-  }
-
-
-
--- TODO: allow partially specifying TypeInfo
--- data TypeInfo1 = Eq TypeRep Expr
---                | Ord TypeRep Expr
---                ... ... ...
---                | Tiers TypeRep [[Expr]]
---                | Names TypeRep [String]
+-- | Type information needed to Speculate expressions (single type / single class).
+data TypeInfo1 = Eq TypeRep Expr
+               | Ord TypeRep Expr Expr
+               | Listable TypeRep [[Expr]]
+               | Names TypeRep [String]
+-- TODO: rename TypeInfo1 -> Instance
+-- TODO: rename TypeInfo -> Instances
 
 -- | Type information needed to Speculate expressions.
 type TypeInfo = [TypeInfo1]
 
 -- | Usage: @typeInfo (undefined :: Type) "x"@
 typeInfo1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
-          => a -> String -> TypeInfo1
+          => a -> String -> TypeInfo
 typeInfo1 x n = typeInfoNames x (namesFromTemplate n)
 
 -- this eventually will become the new "typeInfo" constructor
 typeInfo :: (Typeable a, Listable a, Show a, Eq a, Ord a)
          => a -> String -> TypeInfo
-typeInfo x n =
+typeInfo x n = concat
   [ typeInfo1    x      $ n
 
   , typeInfo1   [x]     $ n ++ "s"
@@ -107,55 +94,78 @@ typeInfo x n =
 --
 -- You are probably better off using 'typeInfo'
 typeInfoNames :: (Typeable a, Listable a, Show a, Eq a, Ord a)
-              => a -> [String] -> TypeInfo1
-typeInfoNames x ns = TypeInfo1
-  { typerep1   = typeOf x
-  , equalityE1 = constant "=="        $ (errorToFalse .: (==)) -:> x
-  , lessEqE1   = constant "<="        $ (errorToFalse .: (<=)) -:> x
-  , lessE1     = constant "<"         $ (errorToFalse .: (<))  -:> x
-  , tiersE1    = mapT showConstant (tiers `asTypeOf` [[x]])
-  , names1     = ns
-  }
+              => a -> [String] -> TypeInfo
+typeInfoNames x ns =
+  [ Eq       (typeOf x) $ constant "==" $ (errorToFalse .: (==)) -:> x
+  , Ord      (typeOf x) (constant "<=" $ (errorToFalse .: (<=)) -:> x)
+                        (constant "<"  $ (errorToFalse .: (<))  -:> x)
+  , Listable (typeOf x) $ mapT showConstant (tiers `asTypeOf` [[x]])
+  , Names    (typeOf x) $ ns
+  ]
   where
   (.:) = (.) . (.)
 
-findInfo :: TypeRep -> TypeInfo -> Maybe TypeInfo1
-findInfo t = find ((== t) . typerep1)
+-- TODO: make types consistent!  add isOrdE and isEqE?
+isOrd :: TypeInfo -> Expr -> Bool
+isOrd ti = isJust . ltE ti . typ
 
-existsInfo :: TypeInfo -> TypeRep -> Bool
-existsInfo ti = isJust . (`findInfo` ti)
+isEq :: TypeInfo -> Expr -> Bool
+isEq ti = isJust . eqE ti . typ
 
+isEqOrd :: TypeInfo -> Expr -> Bool
+isEqOrd ti e = isOrd ti e && isEq ti e
 
-isComparable :: TypeInfo -> Expr -> Bool
-isComparable ti = isJust . (`findInfo` ti) . typ
+isListable :: TypeInfo -> TypeRep -> Bool
+isListable ti t = isJust $ findInfo m ti
+  where
+  m (Listable t' ts) | t' == t = Just ts
+  m _                          = Nothing
 
+-- TODO: implement above using something similar to the following
+-- isComparable ti = isJust . (`findInfo` ti) . typ
 
-names :: TypeRep -> TypeInfo -> [String]
-names t ti =
-  case findInfo t ti of
-    Nothing -> defNames
-    Just ti -> names1 ti
+findInfo :: (TypeInfo1 -> Maybe a) -> TypeInfo -> Maybe a
+findInfo may = listToMaybe . catMaybes . map may
 
-tiersE :: TypeRep -> TypeInfo -> [[Expr]]
-tiersE t ti =
-  case findInfo t ti of
-    Nothing -> error $ "could not find type information for " ++ show t
-    Just ti -> tiersE1 ti
+findInfoOr :: a -> (TypeInfo1 -> Maybe a) -> TypeInfo -> a
+findInfoOr def may = fromMaybe def . findInfo may
 
-equalityE :: TypeInfo -> TypeRep -> Maybe Expr
-equalityE ti = fmap equalityE1 . (`findInfo` ti)
+names :: TypeInfo -> TypeRep -> [String]
+names ti t = findInfoOr defNames m ti
+  where
+  m (Names t' ns) | t == t' = Just ns
+  m _                       = Nothing
 
-lessE :: TypeInfo -> TypeRep -> Maybe Expr
-lessE ti = fmap lessE1 . (`findInfo` ti)
+tiersE :: TypeInfo -> TypeRep -> [[Expr]]
+tiersE ti t = findInfoOr (error $ "could not find Listable " ++ show t) m ti
+  where
+  m (Listable t' ts) | t == t' = Just ts
+  m _                          = Nothing
 
-lessEqE :: TypeInfo -> TypeRep -> Maybe Expr
-lessEqE ti = fmap lessEqE1 . (`findInfo` ti)
+eqE :: TypeInfo -> TypeRep -> Maybe Expr
+eqE ti t = findInfo m ti
+  where
+  m (Eq t' eq) | t == t' = Just eq
+  m _                    = Nothing
+
+ltE :: TypeInfo -> TypeRep -> Maybe Expr
+ltE ti t = findInfo m ti
+  where
+  m (Ord t' _ lt) | t == t' = Just lt
+  m _                       = Nothing
+
+leE :: TypeInfo -> TypeRep -> Maybe Expr
+leE ti t = findInfo m ti
+  where
+  m (Ord t' le _) | t == t' = Just le
+  m _                       = Nothing
 
 -- TODO: include *ALL* prelude types on basicTypeInfo
 basicTypeInfo :: TypeInfo
 basicTypeInfo = concat
-  [ [ typeInfo1 (undefined :: ()) "x"
-    , typeInfo1 (undefined :: [()]) "xs" ]
+  [ typeInfo1 (undefined :: ()) "x"
+  , typeInfo1 (undefined :: [()]) "xs"
+
   , typeInfo (undefined :: Bool)     "p"
 
   , typeInfo (undefined :: Int)      "x"

@@ -174,16 +174,16 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let ti = computeTypeInfo args
   let ds = discard (\c -> any (c `isConstantNamed`) (exclude args))
          $ constants args `union` backgroundConstants args `union` conditionConstants args `union` equationConstants args
-  let (ts,uts) = partition (existsInfo ti) $ nubMergeMap (typesIn . typ) ds
+  let (ts,uts) = partition (isListable ti) $ nubMergeMap (typesIn . typ) ds
   let showConditions' = showConditions args && boolTy `elem` map (finalResultTy . typ) ds
   let ds' = map holeOfTy ts `union` ds
             `union` [showConstant True  | showConditions' || showDot args]
             `union` [showConstant False | showConditions' || showDot args]
-            `union` catMaybes [equalityE ti t | t <- ts, showConditions']
+            `union` catMaybes [eqE ti t | t <- ts, showConditions']
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (keepExpr args) (timeout args .: equal ti n) ds'
   when (showConstants args)    . putStrLn . unlines $ map show ds'
   unless (null uts) . putStrLn
-    $ unlines ["Warning: no typeInfo about " ++ show t
+    $ unlines ["Warning: no Listable instance for " ++ show t
             ++ ", variables of this type will not be considered"
               | t <- uts]
   when (showTheory args)       . putStrLn $ showThy thy
@@ -204,9 +204,9 @@ reportClassesFor ti nTests nVarss thy res = do
   mapM_ (putStrLn . unlines . map show . r) nVarss
   mapM_ pn nVarss
   where
-  pn 0 = putStrLn $ "Number of comparable schema classes: " ++ show (length $ r 0)
-  pn n = putStrLn $ "Number of comparable  " ++ show n ++ "-var classes: " ++ show (length $ r n)
-  r 0 = filter (isComparable ti) res
+  pn 0 = putStrLn $ "Number of Eq schema classes: " ++ show (length $ r 0)
+  pn n = putStrLn $ "Number of Eq " ++ show n ++ "-var classes: " ++ show (length $ r n)
+  r 0 = filter (isEq ti) res
   r n = distinctFromSchemas ti nTests n thy (r 0)
 
 -- for cmdArgs
@@ -264,7 +264,7 @@ getArgs = processArgs . prepareArgs
 reportDot :: TypeInfo -> Bool -> Int -> Int -> Thy -> [Expr] -> IO ()
 reportDot ti quiet nVars n thy es = do
   let ces = distinctFromSchemas ti n nVars thy
-          $ filter (isComparable ti) es
+          $ filter (isEqOrd ti) es
   let res = [(trueRatio ti n e, e) | e <- ces, typ e == boolTy]
   putStrLn "digraph G {"
   putStrLn "  rankdir = BT"

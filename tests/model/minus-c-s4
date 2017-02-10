@@ -219,7 +219,7 @@ z - (1 + 1) :: Int
 1 - (y + z) :: Int
 1 - (z + z) :: Int
 
-Number of comparable schema classes: 26
-Number of comparable  1-var classes: 21
-Number of comparable  2-var classes: 53
-Number of comparable  3-var classes: 109
+Number of Eq schema classes: 26
+Number of Eq 1-var classes: 21
+Number of Eq 2-var classes: 53
+Number of Eq 3-var classes: 109
