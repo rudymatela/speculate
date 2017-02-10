@@ -39,9 +39,9 @@ import Data.List (find,(\\))
 
 -- | Type information needed to Speculate expressions (single type / single class).
 data Instance = Eq TypeRep Expr
-               | Ord TypeRep Expr Expr
-               | Listable TypeRep [[Expr]]
-               | Names TypeRep [String]
+              | Ord TypeRep Expr Expr
+              | Listable TypeRep [[Expr]]
+              | Names TypeRep [String]
 
 -- | Type information needed to Speculate expressions.
 type Instances = [Instance]
