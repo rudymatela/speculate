@@ -9,13 +9,23 @@ Warning: I tend to ramble...
 current
 -------
 
-* add regex benchmark for qs1 and qs2, see what those spit out
+* separate type information -- allow providing of *some* instances
 
-* allow configuration of depth limit
+* rename `customTypeInfo` to `instances` or `types`?
+
+* derive `tiers` using speculate itself.  Use provided constructors.  Maybe a
+  new field in args?
+
+
+
+later
+-----
 
 * Implement expand by expanding tiers (more robust and flexible).  It
   will allow extraction of constant values from tiers.  This will also make it
-  easy to amend a Thy: do theorization; add a bunch of atoms; do it again.
+  easy to amend a Thy: do theorization; add a bunch of atoms; do it again;
+
+* make regex work on qs1 and qs2.
 
 
 stranger things
