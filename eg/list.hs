@@ -7,17 +7,16 @@ main = speculate args
   , maxVars     = 3
   , instances =
       [
---      ordWith (isPrefixOf      -:> [int])
---      ordWith (isInfixOf       -:> [int])
---      ordWith (isSubsequenceOf -:> [int])
---      ordWith ((>=)            -:> [int])
+--      ordWith (isPrefixOf      :: [Int] -> [Int] -> Bool)
+--      ordWith (isInfixOf       :: [Int] -> [Int] -> Bool)
+--      ordWith (isSubsequenceOf :: [Int] -> [Int] -> Bool)
       ]
   , constants =
       [ showConstant ([] :: [Int])
-      , constant ":"    $ (:)  -:>  int
-      , constant "++"   $ (++) -:> [int]
-      , constant "head" $ head -:> [int]
-      , constant "tail" $ tail -:> [int]
---    , constant "null" $ null -:> [int]
+      , constant ":"    ((:)  ::  Int  -> [Int] -> [Int])
+      , constant "++"   ((++) :: [Int] -> [Int] -> [Int])
+      , constant "head" (head :: [Int] ->  Int)
+      , constant "tail" (tail :: [Int] -> [Int])
+--    , constant "null" (null :: [Int] -> Bool)
       ]
   }
