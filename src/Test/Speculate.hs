@@ -174,7 +174,8 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let ti = computeInstances args
   let ds = discard (\c -> any (c `isConstantNamed`) (exclude args))
          $ constants args `union` backgroundConstants args `union` conditionConstants args `union` equationConstants args
-  let (ts,uts) = partition (isListable ti) $ nubMergeMap (typesIn . typ) ds
+  let ats = nubMergeMap (typesIn . typ) ds
+  let ts = filter (isListable ti) ats
   let showConditions' = showConditions args && boolTy `elem` map (finalResultTy . typ) ds
   let ds' = map holeOfTy ts `union` ds
             `union` [showConstant True  | showConditions' || showDot args]
@@ -182,9 +183,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
             `union` catMaybes [eqE ti t | t <- ts, showConditions']
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (keepExpr args) (timeout args .: equal ti n) ds'
   when (showConstants args)    . putStrLn . unlines $ map show ds'
-  putLines ["Warning: no Listable instance for " ++ show t
-         ++ ", variables of this type will not be considered"
-           | t <- uts]
+  warnMissingInstances ti ats
   when (showTheory args)       . putStrLn $ showThy thy
   when (showEquations args) . putStrLn $ prettyThy (shouldShowEquation args) ti thy
   reportClassesFor ti n (showClassesFor args) thy es
@@ -197,6 +196,18 @@ report args@Args {maxSize = sz, maxTests = n} = do
     $ conditionalTheoryFromThyAndReps ti n (maxVars args) (computeMaxCondSize args) thy es
   when (showDot args) $
     reportDot ti (quietDot args) (maxVars args) n thy es
+
+warnMissingInstances :: Instances -> [TypeRep] -> IO ()
+warnMissingInstances is ts = putLines
+  $  ["Warning: no Listable instance for " ++ show t ++
+      ", variables of this type will not be considered"
+     | t <- ts, not (isListable is t)]
+  ++ ["Warning: no Eq instance for " ++ show t ++
+      ", equations of this type will not be considered"
+     | t <- ts, not (isEq is t)]
+  ++ ["Warning: no Ord instance for " ++ show t ++
+      ", inequations of this type will not be considered"
+     | t <- ts, not (isOrd is t)]
 
 reportClassesFor :: Instances -> Int -> [Int] -> Thy -> [Expr] -> IO ()
 reportClassesFor ti nTests nVarss thy res = do
