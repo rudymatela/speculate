@@ -162,7 +162,7 @@ semiTheoryFromThyAndReps ti nt nv thy =
                       && typ e1 == typ e2
                       && lessOrEqual ti nt e1 e2)
   . distinctFromSchemas ti nt nv thy
-  . filter (isOrd ti)
+  . filter (isOrdE ti)
 
 conditionalTheoryFromThyAndReps :: Instances -> Int -> Int -> Int
                                 -> Thy -> [Expr] -> Chy
@@ -175,7 +175,7 @@ conditionalTheoryFromThyAndReps ti nt nv csz thy es' =
   where
   (cles,clpres) = (id *** filter (\(e,_) -> lengthE e <= csz))
                 . partition (\(e,_) -> typ e /= boolTy)
-                . filter (isEq ti . fst)
+                . filter (isEqE ti . fst)
                 $ classesFromSchemas ti nt nv thy es'
 
 conditionalEquivalences :: ((Expr,Expr,Expr) -> Bool)

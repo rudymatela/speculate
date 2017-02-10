@@ -206,7 +206,7 @@ reportClassesFor ti nTests nVarss thy res = do
   where
   pn 0 = putStrLn $ "Number of Eq schema classes: " ++ show (length $ r 0)
   pn n = putStrLn $ "Number of Eq " ++ show n ++ "-var classes: " ++ show (length $ r n)
-  r 0 = filter (isEq ti) res
+  r 0 = filter (isEqE ti) res
   r n = distinctFromSchemas ti nTests n thy (r 0)
 
 -- for cmdArgs
@@ -264,7 +264,7 @@ getArgs = processArgs . prepareArgs
 reportDot :: Instances -> Bool -> Int -> Int -> Thy -> [Expr] -> IO ()
 reportDot ti quiet nVars n thy es = do
   let ces = distinctFromSchemas ti n nVars thy
-          $ filter (isEqOrd ti) es
+          $ filter (isEqOrdE ti) es
   let res = [(trueRatio ti n e, e) | e <- ces, typ e == boolTy]
   putStrLn "digraph G {"
   putStrLn "  rankdir = BT"

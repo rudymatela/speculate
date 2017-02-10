@@ -16,7 +16,7 @@ tests :: Int -> [Bool]
 tests n =
   [ True
 
-  , holds n' $ \e -> if isEq preludeInstances e
+  , holds n' $ \e -> if isEqE preludeInstances e
                       then e === e
                       else e =/= e
   ,                                    xx -+- yy === yy -+- xx

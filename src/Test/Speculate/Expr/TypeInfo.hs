@@ -12,9 +12,9 @@ module Test.Speculate.Expr.TypeInfo
   -- * Queries on Instances1 lists
   , findInfo
   , names
-  , eqE,      isEq
-  , leE, ltE, isOrd
-  ,           isEqOrd
+  , eqE,      isEq,       isEqE
+  , leE, ltE, isOrd,      isOrdE
+  ,           isEqOrd,    isEqOrdE
   , tiersE,   isListable
 
   -- * Type info for standard Haskell types
@@ -123,15 +123,23 @@ listableWith :: (Typeable a, Show a) => [[a]] -> Instances
 listableWith xss =
   [Listable (typeOf $ head $ head xss) (mapT showConstant xss)]
 
--- TODO: make types consistent!  add isOrdE and isEqE?
-isOrd :: Instances -> Expr -> Bool
-isOrd ti = isJust . ltE ti . typ
+isEq :: Instances -> TypeRep -> Bool
+isEq ti = isJust . eqE ti
 
-isEq :: Instances -> Expr -> Bool
-isEq ti = isJust . eqE ti . typ
+isOrd :: Instances -> TypeRep -> Bool
+isOrd ti = isJust . ltE ti
 
-isEqOrd :: Instances -> Expr -> Bool
-isEqOrd ti e = isOrd ti e && isEq ti e
+isEqOrd :: Instances -> TypeRep -> Bool
+isEqOrd ti t = isOrd ti t && isEq ti t
+
+isEqE :: Instances -> Expr -> Bool
+isEqE ti = isEq ti . typ
+
+isOrdE :: Instances -> Expr -> Bool
+isOrdE ti = isOrd ti . typ
+
+isEqOrdE :: Instances -> Expr -> Bool
+isEqOrdE ti = isEqOrd ti . typ
 
 isListable :: Instances -> TypeRep -> Bool
 isListable ti t = isJust $ findInfo m ti
