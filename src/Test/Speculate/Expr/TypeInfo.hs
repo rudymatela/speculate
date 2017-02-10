@@ -5,7 +5,6 @@ module Test.Speculate.Expr.TypeInfo
 
   -- * Smart constructors
   , typeInfo
-  , typeInfoNames
 
   -- * Queries on TypeInfo1 lists
   , findInfo
@@ -28,7 +27,7 @@ where
 
 import Test.Speculate.Expr.Core
 import Test.Speculate.Expr.Match
-import Test.Speculate.Utils
+import Test.Speculate.Utils hiding (ord)
 import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
 import Test.LeanCheck.Error (errorToFalse)
@@ -52,7 +51,7 @@ type TypeInfo = [TypeInfo1]
 -- | Usage: @typeInfo (undefined :: Type) "x"@
 typeInfo1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
           => a -> String -> TypeInfo
-typeInfo1 x n = typeInfoNames x (namesFromTemplate n)
+typeInfo1 x n = eq x ++ ord x ++ listable x ++ name n x
 
 -- this eventually will become the new "typeInfo" constructor
 typeInfo :: (Typeable a, Listable a, Show a, Eq a, Ord a)
@@ -90,20 +89,18 @@ typeInfo x n = concat
 -- everything.  A definitive solution is still to be thought of.
 -- NOTE: see related TODO on the definition of basicTypeInfo
 
--- | Usage: @typeInfoNames (undefined :: Type) ["x","y","z","w",...]@
---
--- You are probably better off using 'typeInfo'
-typeInfoNames :: (Typeable a, Listable a, Show a, Eq a, Ord a)
-              => a -> [String] -> TypeInfo
-typeInfoNames x ns =
-  [ Eq       (typeOf x) $ constant "==" $ (errorToFalse .: (==)) -:> x
-  , Ord      (typeOf x) (constant "<=" $ (errorToFalse .: (<=)) -:> x)
-                        (constant "<"  $ (errorToFalse .: (<))  -:> x)
-  , Listable (typeOf x) $ mapT showConstant (tiers `asTypeOf` [[x]])
-  , Names    (typeOf x) $ ns
-  ]
-  where
-  (.:) = (.) . (.)
+eq :: (Typeable a, Eq a) => a -> TypeInfo
+eq x = [Eq (typeOf x) . constant "==" $ (errorToFalse .: (==)) -:> x]
+
+ord :: (Typeable a, Ord a) => a -> TypeInfo
+ord x = [Ord (typeOf x) (constant "<=" $ (errorToFalse .: (<=)) -:> x)
+                        (constant "<"  $ (errorToFalse .: (<))  -:> x)]
+
+listable :: (Typeable a, Show a, Listable a) => a -> TypeInfo
+listable x = [Listable (typeOf x) . mapT showConstant $ tiers `asTypeOf` [[x]]]
+
+name :: Typeable a => String -> a -> TypeInfo
+name n x = [Names (typeOf x) (namesFromTemplate n)]
 
 -- TODO: make types consistent!  add isOrdE and isEqE?
 isOrd :: TypeInfo -> Expr -> Bool
