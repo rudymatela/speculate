@@ -68,7 +68,7 @@ vassignments e =
 vassignmentsEqn :: (Expr,Expr) -> [(Expr,Expr)]
 vassignmentsEqn = filter (uncurry (/=)) . map unEquation . vassignments . uncurry phonyEquation
 
-expansions :: TypeInfo -> Int -> Expr -> [Expr]
+expansions :: Instances -> Int -> Expr -> [Expr]
 expansions ti n e =
   [ foldl fill e [ [ Var (names ti t !! i) t | i <- is ]
                  | (t,is) <- fs ]
@@ -129,10 +129,10 @@ consider (===) s (thy,ss)
     where
     eqs = concatMap (equivalencesBetween (===) s) $ filter (s ===) ss
 
-distinctFromSchemas :: TypeInfo -> Int -> Int -> Thy -> [Expr] -> [Expr]
+distinctFromSchemas :: Instances -> Int -> Int -> Thy -> [Expr] -> [Expr]
 distinctFromSchemas ti nt nv thy = map C.rep . classesFromSchemas ti nt nv thy
 
-classesFromSchemas :: TypeInfo -> Int -> Int -> Thy -> [Expr] -> [Class Expr]
+classesFromSchemas :: Instances -> Int -> Int -> Thy -> [Expr] -> [Class Expr]
 classesFromSchemas ti nt nv thy = C.mergesThat (equal ti nt)
                                 . C.mergesOn (normalizeE thy)
                                 . concatMap (classesFromSchema ti thy nv)
@@ -140,21 +140,21 @@ classesFromSchemas ti nt nv thy = C.mergesThat (equal ti nt)
 -- won't detect all equivalences.  here we test the few remaining
 -- there shouldn't be that much overhead
 
-classesFromSchema :: TypeInfo -> Thy -> Int -> Expr -> [Class Expr]
+classesFromSchema :: Instances -> Thy -> Int -> Expr -> [Class Expr]
 classesFromSchema ti thy n = C.mergesOn (normalizeE thy)
                            . map C.fromRep
                            . expansions ti n
 
 -- Return relevant equivalences between holed expressions:
 --
--- > equivalencesBetween basicTypeInfo 500 (_ + _) (_ + _) =
+-- > equivalencesBetween basicInstances 500 (_ + _) (_ + _) =
 -- >   [i + j == j + i]
 equivalencesBetween :: (Expr -> Expr -> Bool) -> Expr -> Expr -> [(Expr,Expr)]
 equivalencesBetween (===) e1 e2 = discardLater (isInstanceOf `on` uncurry phonyEquation)
                                 . filter (uncurry (===))
                                 $ vassignmentsEqn (e1,e2)
 
-semiTheoryFromThyAndReps :: TypeInfo -> Int -> Int
+semiTheoryFromThyAndReps :: Instances -> Int -> Int
                          -> Thy -> [Expr] -> Shy
 semiTheoryFromThyAndReps ti nt nv thy =
     stheorize
@@ -164,7 +164,7 @@ semiTheoryFromThyAndReps ti nt nv thy =
   . distinctFromSchemas ti nt nv thy
   . filter (isOrd ti)
 
-conditionalTheoryFromThyAndReps :: TypeInfo -> Int -> Int -> Int
+conditionalTheoryFromThyAndReps :: Instances -> Int -> Int -> Int
                                 -> Thy -> [Expr] -> Chy
 conditionalTheoryFromThyAndReps ti nt nv csz thy es' =
   conditionalEquivalences

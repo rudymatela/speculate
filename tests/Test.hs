@@ -206,9 +206,9 @@ instance Listable BoolE where
                     \/ consBB (-&&-)  `addWeight` 1
                     \/ consBB (-||-)  `addWeight` 2
                     \/ consBB (-==>-) `addWeight` 3
-                    \/ maybeCons1 (uncurry (equation     basicTypeInfo) . unSameTypeE) `addWeight` 3
-                    \/ maybeCons1 (uncurry (comparisonLT basicTypeInfo) . unSameTypeE) `addWeight` 4
-                    \/ maybeCons1 (uncurry (comparisonLE basicTypeInfo) . unSameTypeE) `addWeight` 4
+                    \/ maybeCons1 (uncurry (equation     preludeInstances) . unSameTypeE) `addWeight` 3
+                    \/ maybeCons1 (uncurry (comparisonLT preludeInstances) . unSameTypeE) `addWeight` 4
+                    \/ maybeCons1 (uncurry (comparisonLE preludeInstances) . unSameTypeE) `addWeight` 4
                     \/ consI odd'   `addWeight` 1
                     \/ consI even'  `addWeight` 1
                     \/ consIL elem' `addWeight` 4
@@ -372,21 +372,21 @@ infixr 0 -==>-
 
 (-==-) :: Expr -> Expr -> Expr
 e1 -==- e2 =
-  case equation basicTypeInfo e1 e2 of
+  case equation preludeInstances e1 e2 of
     Nothing -> error $ "(-==-): cannot equate " ++ show e1 ++ " and " ++ show e2
     Just eq -> eq
 infix 4 -==-
 
 (-<=-) :: Expr -> Expr -> Expr
 e1 -<=- e2 =
-  case comparisonLE basicTypeInfo e1 e2 of
+  case comparisonLE preludeInstances e1 e2 of
     Nothing -> error $ "(-<=-): cannot lessEq " ++ show e1 ++ " and " ++ show e2
     Just eq -> eq
 infix 4 -<=-
 
 (-<-) :: Expr -> Expr -> Expr
 e1 -<- e2 =
-  case comparisonLT basicTypeInfo e1 e2 of
+  case comparisonLT preludeInstances e1 e2 of
     Nothing -> error $ "(-<-): cannot less " ++ show e1 ++ " and " ++ show e2
     Just eq -> eq
 infix 4 -<-

@@ -18,9 +18,9 @@ name = undefined
 
 main :: IO ()
 main = speculate args
-  { customTypeInfo =
-      [ typeInfo prop "p"
-      , typeInfo name "n"
+  { instances =
+      [ ins "p" prop
+      , ins "n" name
       ]
   , showConditions = True
   , maxVars = 2

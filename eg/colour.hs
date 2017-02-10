@@ -30,9 +30,8 @@ rational = undefined
 
 main :: IO ()
 main = speculate args
-  { customTypeInfo =
-      [ typeInfo colour    "c"
-      ]
+  { instances =
+      [ ins "c" colour ]
   , maxSize = 4
   , constants =
       [ constant "+"       $ (+)    -:> colour

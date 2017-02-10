@@ -26,10 +26,10 @@ main = speculate args
   , maxSize = 4
   , showConditions = False
   , showSemiequations = False
-  , customTypeInfo =
-      [ typeInfo (undefined :: Thyght)   "t"
-      , typeInfo (undefined :: Equation) "eq"
-      , typeInfo (undefined :: Expr)     "e"
+  , instances =
+      [ ins "t"  (undefined :: Thyght)
+      , ins "eq" (undefined :: Equation)
+      , ins "e"  (undefined :: Expr)
       ]
   , constants =
       [ constant "okThy"      $ \(Thyght t)       -> okThy t

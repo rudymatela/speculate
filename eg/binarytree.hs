@@ -61,7 +61,7 @@ type Item = Word2
 
 main :: IO ()
 main = speculate args
-  { customTypeInfo = [typeInfo (undefined :: BT Item) "t"]
+  { instances = [ins "t" (undefined :: BT Item)]
   , showConditions = True
   , constants =
       [ showConstant (Null :: BT Item)

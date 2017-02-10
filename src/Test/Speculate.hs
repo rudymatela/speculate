@@ -44,7 +44,7 @@ data Args = Args
   , maxSemiSize          :: Int
   , maxCondSize          :: Int
   , maxDepth             :: Maybe Int
-  , customTypeInfo       :: [TypeInfo]
+  , instances            :: [Instances]
   , showConstants        :: Bool
   , showTheory           :: Bool
   , showEquations        :: Bool
@@ -79,7 +79,7 @@ args = Args
   , maxSemiSize          = -2
   , maxCondSize          = -1
   , maxDepth             = Nothing
-  , customTypeInfo       = []
+  , instances            = []
   , showConstants        = True
   , showTheory           = False
   , showEquations        = True
@@ -116,8 +116,8 @@ computeMaxCondSize args
   | maxCondSize args > 0 = maxCondSize args
   | otherwise            = maxSize args + maxCondSize args
 
-computeTypeInfo :: Args -> TypeInfo
-computeTypeInfo args = concat (customTypeInfo args) ++ basicTypeInfo
+computeInstances :: Args -> Instances
+computeInstances args = concat (instances args) ++ preludeInstances
 
 shouldShow2 :: Args -> (Expr,Expr) -> Bool
 shouldShow2 args (e1,e2) = showConstantLaws args || hasVar e1 || hasVar e2
@@ -141,7 +141,7 @@ shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
                                               || e1 `about` ea
                                               || e2 `about` ea)
   where
-  cem = condEqualM (computeTypeInfo args) (maxTests args) (minTests args (maxTests args))
+  cem = condEqualM (computeInstances args) (maxTests args) (minTests args (maxTests args))
   ca = conditionConstants args ++ ((constants args \\ equationConstants args)  \\ backgroundConstants args)
   ea = equationConstants args  ++ ((constants args \\ conditionConstants args) \\ backgroundConstants args)
 
@@ -171,7 +171,7 @@ timeout Args{evalTimeout = Just t}  = timeoutToFalse t
 
 report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
-  let ti = computeTypeInfo args
+  let ti = computeInstances args
   let ds = discard (\c -> any (c `isConstantNamed`) (exclude args))
          $ constants args `union` backgroundConstants args `union` conditionConstants args `union` equationConstants args
   let (ts,uts) = partition (isListable ti) $ nubMergeMap (typesIn . typ) ds
@@ -199,7 +199,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
   when (showDot args) $
     reportDot ti (quietDot args) (maxVars args) n thy es
 
-reportClassesFor :: TypeInfo -> Int -> [Int] -> Thy -> [Expr] -> IO ()
+reportClassesFor :: Instances -> Int -> [Int] -> Thy -> [Expr] -> IO ()
 reportClassesFor ti nTests nVarss thy res = do
   mapM_ (putStrLn . unlines . map show . r) nVarss
   mapM_ pn nVarss
@@ -261,7 +261,7 @@ speculate args = do
 getArgs :: Args -> IO Args
 getArgs = processArgs . prepareArgs
 
-reportDot :: TypeInfo -> Bool -> Int -> Int -> Thy -> [Expr] -> IO ()
+reportDot :: Instances -> Bool -> Int -> Int -> Thy -> [Expr] -> IO ()
 reportDot ti quiet nVars n thy es = do
   let ces = distinctFromSchemas ti n nVars thy
           $ filter (isEqOrd ti) es

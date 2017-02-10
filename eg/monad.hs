@@ -23,7 +23,7 @@ instance (Listable a, Ord b) => Ord (a -> b) where
 
 main :: IO ()
 main = speculate args
-  { customTypeInfo = [typeInfo (int >- [int]) "f"]
+  { instances = [ins "f" (int >- [int])]
   , constants =
       [ hole (int >- [int])
       , constant "return" (return :: A -> [A])

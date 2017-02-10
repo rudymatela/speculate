@@ -29,9 +29,9 @@ main :: IO ()
 main = speculate args
   { maxTests = 25
   , maxSize = 4
-  , customTypeInfo =
-      [ typeInfo (undefined :: Symbol)    "c"
-      , typeInfo (undefined :: RE Symbol) "r"
+  , instances =
+      [ ins "c" (undefined :: Symbol)
+      , ins "r" (undefined :: RE Symbol)
       ]
   , constants =
       [ constant "Empty" (Empty :: RE Symbol)

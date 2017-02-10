@@ -29,9 +29,9 @@ digraph = undefined
 
 main :: IO ()
 main = speculate args
-  { customTypeInfo =
-      [ typeInfo  nat "x"
-      , typeInfo (digraph nat) "a"
+  { instances =
+      [ ins "x" nat
+      , ins "a" (digraph nat)
       ]
   , maxTests = 6000
   , maxVars = 2

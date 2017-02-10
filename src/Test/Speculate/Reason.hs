@@ -353,19 +353,19 @@ collapse thy@Thy {equations = eqs, rules = rs} =
      && not (e2 `hasInstanceOf` e1)
 
 canonicalizeThy :: Thy -> Thy
-canonicalizeThy = canonicalizeThyWith basicTypeInfo
+canonicalizeThy = canonicalizeThyWith preludeInstances
 
-canonicalizeThyWith :: TypeInfo -> Thy -> Thy
+canonicalizeThyWith :: Instances -> Thy -> Thy
 canonicalizeThyWith ti = mapRules (canonicalizeRuleWith ti)
                        . mapEquations (canonicalizeEqnWith ti)
 
 canonicalizeEqn :: Equation -> Equation
-canonicalizeEqn = canonicalizeEqnWith basicTypeInfo
+canonicalizeEqn = canonicalizeEqnWith preludeInstances
 
 canonicalEqn :: Equation -> Bool
 canonicalEqn eq = canonicalizeEqn eq == eq
 
-canonicalizeEqnWith :: TypeInfo -> Equation -> Equation
+canonicalizeEqnWith :: Instances -> Equation -> Equation
 canonicalizeEqnWith ti = swap . canonicalizeRuleWith ti . swap . o
   where
   o (e1,e2) | e1 `compareComplexity` e2 == LT = (e2,e1)
@@ -373,12 +373,12 @@ canonicalizeEqnWith ti = swap . canonicalizeRuleWith ti . swap . o
 
 
 canonicalizeRule :: Rule -> Rule
-canonicalizeRule = canonicalizeRuleWith basicTypeInfo
+canonicalizeRule = canonicalizeRuleWith preludeInstances
 
 canonicalRule :: Rule -> Bool
 canonicalRule r = canonicalizeRule r == r
 
-canonicalizeRuleWith :: TypeInfo -> Rule -> Rule
+canonicalizeRuleWith :: Instances -> Rule -> Rule
 canonicalizeRuleWith ti (e1,e2) =
   case canonicalizeWith ti (e1 :$ e2) of
     e1' :$ e2' -> (e1',e2')
@@ -402,7 +402,7 @@ showThy thy = (if null rs
   showEquations = unlines . map showEquation
   showEquation (e1,e2) = showExpr e1 ++ " == " ++ showExpr e2
 
-prettyThy :: (Equation -> Bool) -> TypeInfo -> Thy -> String
+prettyThy :: (Equation -> Bool) -> Instances -> Thy -> String
 prettyThy shouldShow ti thy =
     table "r l l" . map showEquation
   . sortOn (typ . fst) . sortOn (lengthE . fst)

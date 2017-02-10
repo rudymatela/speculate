@@ -24,7 +24,7 @@ import Test.Speculate.Utils
 import Test.Speculate.Expr.Core
 import Test.Speculate.Expr.TypeInfo
 
-equation :: TypeInfo -> Expr -> Expr -> Maybe Expr
+equation :: Instances -> Expr -> Expr -> Maybe Expr
 equation ti e1 e2 = do
   e <- eqE ti (typ e1)
   e :$ e1 $$ e2
@@ -54,12 +54,12 @@ uselessEquation = uncurry (==) . unEquation
 usefulEquation :: Expr -> Bool
 usefulEquation = uncurry (/=) . unEquation
 
-comparisonLT :: TypeInfo -> Expr -> Expr -> Maybe Expr
+comparisonLT :: Instances -> Expr -> Expr -> Maybe Expr
 comparisonLT ti e1 e2 = do
   e <- ltE ti (typ e1)
   e :$ e1 $$ e2
 
-comparisonLE :: TypeInfo -> Expr -> Expr -> Maybe Expr
+comparisonLE :: Instances -> Expr -> Expr -> Maybe Expr
 comparisonLE ti e1 e2 = do
   e <- leE ti (typ e1)
   e :$ e1 $$ e2
@@ -90,7 +90,7 @@ usefulImplication e = vp \\ ve /= vp
   vp = vars pre
   ve = vars e'
 
-conditionalEquation :: TypeInfo -> Expr -> Expr -> Expr -> Maybe Expr
+conditionalEquation :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
 conditionalEquation ti pre e1 e2 = (pre `implication`) =<< equation ti e1 e2
 
 unConditionalEquation :: Expr -> (Expr,Expr,Expr)
@@ -106,10 +106,10 @@ usefulConditionalEquation e = e1 /= e2 && vp \\ ve /= vp
   vp = vars pre
   ve = vars e1 +++ vars e2
 
-conditionalComparisonLE :: TypeInfo -> Expr -> Expr -> Expr -> Maybe Expr
+conditionalComparisonLE :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
 conditionalComparisonLE ti pre e1 e2 = (pre `implication`) =<< comparisonLE ti e1 e2
 
-conditionalComparisonLT :: TypeInfo -> Expr -> Expr -> Expr -> Maybe Expr
+conditionalComparisonLT :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
 conditionalComparisonLT ti pre e1 e2 = (pre `implication`) =<< comparisonLT ti e1 e2
 
 unConditionalComparison :: Expr -> (Expr,Expr,Expr)

@@ -111,9 +111,9 @@ cfinalize chy@Chy{cequations = ceqs} =
                  ]
 
 canonicalizeCEqn :: (Expr,Expr,Expr) -> (Expr,Expr,Expr)
-canonicalizeCEqn = canonicalizeCEqnWith basicTypeInfo
+canonicalizeCEqn = canonicalizeCEqnWith preludeInstances
 
-canonicalizeCEqnWith :: TypeInfo -> (Expr,Expr,Expr) -> (Expr,Expr,Expr)
+canonicalizeCEqnWith :: Instances -> (Expr,Expr,Expr) -> (Expr,Expr,Expr)
 canonicalizeCEqnWith ti = c . o
   where
   c (ce,e1,e2) = case canonicalizeWith ti (e2 :$ (e1 :$ ce)) of
@@ -123,11 +123,11 @@ canonicalizeCEqnWith ti = c . o
   o (ce,e1,e2) | e1 `compareComplexity` e2 == LT = (ce,e2,e1)
                | otherwise                       = (ce,e1,e2)
 
-canonicalCEqnBy :: TypeInfo -> (Expr,Expr,Expr) -> Bool
+canonicalCEqnBy :: Instances -> (Expr,Expr,Expr) -> Bool
 canonicalCEqnBy ti ceqn = canonicalizeCEqnWith ti ceqn == ceqn
 
 canonicalCEqn :: (Expr,Expr,Expr) -> Bool
-canonicalCEqn = canonicalCEqnBy basicTypeInfo
+canonicalCEqn = canonicalCEqnBy preludeInstances
 
 prettyChy :: ((Expr,Expr,Expr) -> Bool) -> Chy -> String
 prettyChy shouldShow =

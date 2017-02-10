@@ -19,7 +19,7 @@ set = undefined
 
 main :: IO ()
 main = speculate args
-  { customTypeInfo = [typeInfo (set int) "s"]
+  { instances = [ins "s" (set int)]
   , constants =
       [ constant "emptyS"      $ emptyS      -:  set int
       , constant "singleS"     $ singleS     -:> int    

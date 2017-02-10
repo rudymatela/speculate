@@ -14,7 +14,7 @@ h x y = y*13+19
 
 main :: IO ()
 main = speculate args
-  { customTypeInfo = [typeInfo int "x"]
+  { instances = [ins "x" int]
   , constants =
       [ hole int
       , showConstant (0::Int)

@@ -18,7 +18,7 @@ import Data.List ((\\))
 -- > canonicalize ((w + z) + (z + x)) = ((x + y) + (y + z))
 -- > canonicalize (y + abs y) = (x + abs x)
 -- > canonicalize ((y + x) == (x + y)) = ((x + y) == (y + x))
-canonicalizeWith :: TypeInfo -> Expr -> Expr
+canonicalizeWith :: Instances -> Expr -> Expr
 canonicalizeWith ti e = e `assigning` ((\(t,n,n') -> (n,Var n' t)) `map` cr [] e)
   where
   cr :: [(TypeRep,String,String)] -> Expr -> [(TypeRep,String,String)]
@@ -29,7 +29,7 @@ canonicalizeWith ti e = e `assigning` ((\(t,n,n') -> (n,Var n' t)) `map` cr [] e
   cr bs _ = bs
 
 canonicalize :: Expr -> Expr
-canonicalize = canonicalizeWith basicTypeInfo
+canonicalize = canonicalizeWith preludeInstances
 
-canonicalWith :: TypeInfo -> Expr -> Bool
+canonicalWith :: Instances -> Expr -> Bool
 canonicalWith ti e = canonicalizeWith ti e == e
