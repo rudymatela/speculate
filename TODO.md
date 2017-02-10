@@ -9,6 +9,8 @@ Warning: I tend to ramble...
 current
 -------
 
+* review README file.
+
 * separate type information -- allow providing of *some* instances
 
 * rename `customTypeInfo` to `instances` or `types`?
