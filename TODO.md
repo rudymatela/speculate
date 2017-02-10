@@ -9,6 +9,10 @@ Warning: I tend to ramble...
 current
 -------
 
+* check Eq and Ord instances before running:
+  including consistency between them.
+  refuse to run if errors are found
+
 * review README file.
 
 * derive `tiers` using speculate itself.  Use provided constructors.
