@@ -13,4 +13,6 @@ negate (negate x) == x
             x + y == y + x
      x + negate x == 0
 
+    x <= x + 1
+x - 1 <= x
 

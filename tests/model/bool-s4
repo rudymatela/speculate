@@ -22,7 +22,10 @@ not :: Bool -> Bool
 (p && not p) == False
 (p || not p) == True
 
-    p ==> True
-False ==> p
+     p ==> True
+ False ==> p
+     p ==> p || q
+p && q ==> p
+p && q ==> p == q
 
 

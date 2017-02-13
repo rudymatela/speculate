@@ -9,4 +9,7 @@ length :: [Char] -> Int
 
 length (cs ++ ds) == length (ds ++ cs)
 
+d1 <= d1 $$ d2
+d1 <= d1 <> d2
+cs <= cs ++ ds
 

@@ -57,11 +57,28 @@ ordered (sort xs ++ xs) == ordered (xs ++ xs)
       elem x (xs ++ ys) == elem x (ys ++ xs)
        (xs == ys ++ zs) == (xs == zs ++ ys)
 
-         [] <=  xs
-    sort xs <=  xs
-         xs <=  xs ++ ys
-   xs == [] ==> ordered xs
-insert x xs <=  x:xs
+                [] <=  xs
+           sort xs <=  xs
+                xs <=  xs ++ ys
+          xs == [] ==> ordered xs
+       insert x xs <=  x:xs
+ordered (xs ++ ys) ==> ordered xs
+ordered (xs ++ ys) ==> ordered ys
+     xs == sort ys ==> ordered xs
+     all (x ==) xs ==> ordered xs
+     xs ++ sort ys <=  xs ++ ys
+     sort xs ++ ys <=  xs ++ ys
+       sort (x:xs) <=  insert x xs
+          xs == [] ==> ordered (x:xs)
+          xs == [] ==> all (x <=) xs
+          xs == [] ==> all (x ==) xs
+   sort (xs ++ ys) <=  xs ++ sort ys
+   sort (xs ++ ys) <=  sort xs ++ ys
+     all (x ==) xs ==> all (x <=) xs
+    ordered (x:xs) ==> all (x <=) xs
+     all (x ==) xs ==> ordered (x:xs)
+     all (x ==) xs ==> ordered (xs ++ xs)
+     sort xs ++ xs <=  xs ++ sort xs
 
          elem x xs ==>   insert x xs ++ ys == insert x (xs ++ ys)
             x <= y ==>     insert x (y:xs) == x:(y:xs)

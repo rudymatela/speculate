@@ -8,6 +8,7 @@ import Test.Speculate hiding (value)
 import Test.Speculate.Utils.Colour
 import Test.LeanCheck
 import Data.Ratio
+import Data.Function (on)
 
 deriving instance Typeable Colour -- for GHC < 7.10
 
@@ -31,8 +32,11 @@ rational = undefined
 main :: IO ()
 main = speculate args
   { instances =
-      [ ins "c" colour ]
+      [ ordWith ((<=) `on` lightness)
+      , ins "c" colour
+      ]
   , maxSize = 4
+  , maxSemiSize = 2
   , constants =
       [ constant "+"       $ (+)    -:> colour
       , constant "-"       $ (-)    -:> colour

@@ -31,10 +31,16 @@ not :: Bool -> Bool
   (p || p && q) == p
   (p || p == q) == not (q && not p)
 
-     p ==> True
- False ==> p
-     p ==> p || q
-p && q ==> p
-p && q ==> p == q
+           p ==> True
+       False ==> p
+           p ==> p || q
+      p && q ==> p
+      p && q ==> p == q
+       not p ==> not (p && q)
+      p == q ==> p || not q
+not (p == q) ==> p || q
+not (p || q) ==> p == q
+not (p == q) ==> not (p && q)
+  p && not q ==> not (p == q)
 
 

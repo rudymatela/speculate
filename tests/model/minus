@@ -15,6 +15,7 @@ negate (negate x) == x
      x + negate x == 0
       (x + y) + z == x + (y + z)
 
-    x <= x + 1
-x - 1 <= x
+             x <= x + 1
+         x - 1 <= x
+negate (x + 1) <= negate x
 

@@ -27,6 +27,7 @@ False :: Bool
 
        Null <= t
 toList Null <= xs
+          t <= insert x t
 
 ordered xs ==> fromList (toList (fromList xs)) == fromList xs
   isIn x t ==>                      insert x t == t

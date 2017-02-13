@@ -32,19 +32,35 @@ unwords (lines (unwords (words cs))) == unwords (words cs)
                   words ("\n" ++ cs) == words cs
            words (cs ++ unwords css) == words (cs ++ unlines css)
 
-                 "" <= cs
-           lines "" <= css
-                 cs <= cs ++ ds
-                 cs <= unlines (lines cs)
-lines (unlines css) <= css
-               "\n" <= cs ++ "\n"
-               "\n" <= cs ++ " "
-         "\n" ++ cs <= " "
- unwords (lines cs) <= cs ++ ds
-         "\n" ++ ds <= cs ++ " "
- unlines (lines cs) <= cs ++ cs
-         "\n" ++ cs <= cs ++ "\n"
-         cs ++ "\n" <= cs ++ " "
- unlines (lines cs) <= cs ++ " "
- unlines (lines cs) <= cs ++ "\n"
+                           "" <= cs
+                     lines "" <= css
+                           cs <= cs ++ ds
+                           cs <= unlines (lines cs)
+          lines (unlines css) <= css
+                         "\n" <= cs ++ "\n"
+                         "\n" <= cs ++ " "
+                   "\n" ++ cs <= " "
+                     lines cs <= lines (cs ++ ds)
+                     words cs <= words (cs ++ ds)
+           unwords (lines cs) <= cs ++ ds
+                   "\n" ++ ds <= cs ++ " "
+           unlines (lines cs) <= cs ++ cs
+                   "\n" ++ cs <= cs ++ "\n"
+unwords (lines (unwords css)) <= unwords css
+                     words cs <= lines (unwords (words cs))
+                  unwords css <= unwords (lines (unlines css))
+                   cs ++ "\n" <= cs ++ " "
+                  unlines css <= unwords css ++ " "
+                  unlines css <= unwords css ++ "\n"
+           unlines (lines cs) <= cs ++ " "
+           unlines (lines cs) <= cs ++ "\n"
+                   lines "\n" <= lines (cs ++ "\n")
+                   lines "\n" <= lines (cs ++ " ")
+           lines ("\n" ++ cs) <= lines " "
+   lines (unwords (lines cs)) <= lines (cs ++ ds)
+unwords (lines (unlines css)) <= unwords css ++ cs
+           lines ("\n" ++ ds) <= lines (cs ++ " ")
+           lines ("\n" ++ cs) <= lines (cs ++ "\n")
+           lines (cs ++ "\n") <= lines (cs ++ " ")
+           unlines css ++ " " <= unwords css ++ " "
 

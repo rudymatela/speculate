@@ -22,6 +22,19 @@ unlines (lines (unlines css)) == unlines css
             words (" " ++ cs) == words cs
            words ("\n" ++ cs) == words cs
 
-      "" <= cs
-lines "" <= css
+                 "" <= cs
+           lines "" <= css
+                 cs <= cs ++ ds
+                 cs <= unlines (lines cs)
+lines (unlines css) <= css
+               "\n" <= cs ++ "\n"
+               "\n" <= cs ++ " "
+         "\n" ++ cs <= " "
+ unwords (lines cs) <= cs ++ ds
+         "\n" ++ ds <= cs ++ " "
+ unlines (lines cs) <= cs ++ cs
+         "\n" ++ cs <= cs ++ "\n"
+         cs ++ "\n" <= cs ++ " "
+ unlines (lines cs) <= cs ++ " "
+ unlines (lines cs) <= cs ++ "\n"
 

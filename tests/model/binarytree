@@ -33,9 +33,13 @@ toList (fromList (toList (fromList xs))) == toList (fromList xs)
                     (Null == insert x t) == False
            (fromList (toList t) == Null) == (t == Null)
 
-       Null <= t
-toList Null <= xs
-          t <= insert x t
+                  Null <=  t
+           toList Null <=  xs
+                     t <=  insert x t
+      t == fromList xs ==> ordered xs
+        xs == toList t ==> ordered xs
+           fromList xs <=  fromList (toList (fromList xs))
+delete x (fromList xs) <=  fromList (toList (fromList xs))
 
 ordered xs ==> fromList (toList (fromList xs)) == fromList xs
 

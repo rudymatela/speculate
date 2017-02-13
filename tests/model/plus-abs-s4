@@ -27,6 +27,7 @@ False :: Bool
 
 x <= abs x
 0 <= abs x
+x <= x + 1
 
 x <= 0 ==> x + abs x == 0
 

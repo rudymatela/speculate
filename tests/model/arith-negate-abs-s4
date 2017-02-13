@@ -20,7 +20,14 @@ negate (negate x) == x
       abs (x * x) == x * x
      x + negate x == 0
 
-       x <= abs x
-       0 <= abs x
-negate x <= abs x
+             x <= abs x
+             0 <= abs x
+             x <= x * x
+             x <= x + 1
+             0 <= x * x
+      negate x <= abs x
+negate (abs x) <= x
+negate (abs x) <= 0
+         abs x <= x * x
+negate (abs x) <= negate x
 
