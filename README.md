@@ -45,7 +45,7 @@ You can install them with:
 	$ cabal install cmdargs
 	$ cabal install leancheck
 
-No `cabal` package has been made yet.  For now, you clone the repository with:
+No `cabal` package has been made yet.  For now, clone the repository with:
 
 	$ git clone https://github.com/rudymatela/speculate
 
@@ -57,20 +57,20 @@ and compile programs that use it with:
 Using Speculate
 ---------------
 
-Speculate is used as a library: you import it, then call the function
-`speculate` with relevant arguments.  The following program Speculates about
-the functions `(+)` and `abs`:
+Speculate is used as a library: import it, then call the function `speculate`
+with relevant arguments.  The following program Speculates about the functions
+`(+)` and `abs`:
 
 	import Test.Speculate
 
 	main :: IO ()
 	main = speculate args
-	  { atoms =
-		  [ showConstant (0::Int)
-		  , showConstant (1::Int)
-		  , constant "+"   ((+)  :: Int -> Int -> Int)
-		  , constant "abs" (abs  :: Int -> Int)
-		  ]
+	  { constants =
+	      [ showConstant (0::Int)
+	      , showConstant (1::Int)
+	      , constant "+"   ((+)  :: Int -> Int -> Int)
+	      , constant "abs" (abs  :: Int -> Int)
+	      ]
 	  }
 
 when run, it prints the following:
@@ -81,35 +81,30 @@ when run, it prints the following:
 	(+) :: Int -> Int -> Int
 	abs :: Int -> Int
 
-	          abs 0 == 0
-	          abs 1 == 1
 	    abs (abs x) == abs x
 	          x + 0 == x
-	    abs (1 + 1) == 1 + 1
+	          x + y == y + x
 	    (x + y) + z == x + (y + z)
 	abs (x + abs x) == x + abs x
 	  abs x + abs x == abs (x + x)
 	abs (1 + abs x) == 1 + abs x
-	          x + y == y + x
 
-	0 <= 1
 	x <= abs x
 	0 <= abs x
 	x <= x + 1
 
-Now, if we add the following to the list of atoms
 
-	, constant "<="  ((<=) :: Int -> Int -> Bool)
-	, constant "<"   ((<)  :: Int -> Int -> Bool)
+Now, if we add `<=` and `<` as `backgroundConstants` on `args`
 
-then run again,
-we get the following as well:
+	  , backgroundConstants =
+	      [ constant "<="  ((<=) :: Int -> Int -> Bool)
+	      , constant "<"   ((<)  :: Int -> Int -> Bool)
+	      ]
+
+then run again, we get the following as well:
 
 	    y <= x ==> abs (x + abs y) == x + abs y
 	    x <= 0 ==>       x + abs x == 0
-	    0 <= x ==>           abs x == x
-	    0 <= x ==>     abs (x + 1) == x + 1
-	    0 <= x ==> abs (x + abs y) == x + abs y
 	abs x <= y ==>     abs (x + y) == x + y
 	abs y <= x ==>     abs (x + y) == x + y
 
@@ -123,13 +118,14 @@ Speculate is inspired by [QuickSpec].
 Like QuickSpec, Speculate uses testing to speculate equational laws about given
 Haskell functions.  There are some differences:
 
-|                | Speculate      | QuickSpec                         |
-| -------------: | -------------- | --------------------------------- |
-| testing        | enumerative    | random                            |
-| conditions     | "unrestricted" | restricted to a set of predicates |
-| semi-equations | yes            | no                                |
-| polymorphism   | no             | yes                               |
-| performance    | slower         | faster                            |
+|                   | Speculate                 | QuickSpec                         |
+| ----------------: | ------------------------- | --------------------------------- |
+| testing           | enumerative ([LeanCheck]) | random ([QuickCheck])             |
+| equational laws   | yes (after completion)    | yes (as discovered)               |
+| inequational laws | yes                       | no                                |
+| conditional laws  | yes                       | restricted to a set of predicates |
+| polymorphism      | no                        | yes                               |
+| performance       | slower                    | faster                            |
 
 For most examples, Speculate runs slower than QuickSpec 2 but faster than QuickSpec 1.
 
@@ -139,6 +135,8 @@ More documentation
 
 For more examples, see the [eg](eg) and [bench](bench) folders.
 
-[QuickSpec]: https://github.com/nick8325/quickspec
 [leancheck]: https://hackage.haskell.org/package/leancheck
+[LeanCheck]: https://hackage.haskell.org/package/leancheck
+[QuickSpec]: https://github.com/nick8325/quickspec
+[QuickCheck]: https://hackage.haskell.org/package/QuickCheck
 [cmdargs]: https://hackage.haskell.org/package/cmdargs
