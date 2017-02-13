@@ -8,6 +8,8 @@ import Test.Speculate.Utils
 import Data.List
 import Data.Function
 
+import Test.LeanCheck.Utils (comparison)
+
 main :: IO ()
 main = mainTest tests 10000
 
@@ -101,4 +103,10 @@ tests n =
   , splitAtCommas "1,2,3" == ["1","2","3"]
   , splitAtCommas "123,456,789," == ["123","456","789"]
   , splitAtCommas "123 456,789"  == ["123","456","789"] -- weird behaviour, but fine for speculate
+
+  , compareIndex [3,2,1] 3 1 == LT
+  , compareIndex [3,2,1] 1 3 == GT
+  , compareIndex [3,2,1] 4 1 == GT
+  , compareIndex [3,2,1] 1 0 == LT
+  , holds n $ \xs -> comparison (compareIndex (xs::[Int]))
   ]

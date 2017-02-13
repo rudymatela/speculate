@@ -7,6 +7,7 @@ module Test.Speculate.Utils
   , module Test.Speculate.Utils.Tiers
   , module Test.Speculate.Utils.Typeable
   , module Test.Speculate.Utils.Timeout
+  , module Test.Speculate.Utils.Ord
   )
 where
 
@@ -18,3 +19,4 @@ import Test.Speculate.Utils.List
 import Test.Speculate.Utils.Tiers
 import Test.Speculate.Utils.Typeable
 import Test.Speculate.Utils.Timeout
+import Test.Speculate.Utils.Ord
