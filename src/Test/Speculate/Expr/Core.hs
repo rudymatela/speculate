@@ -191,18 +191,27 @@ lexicompare = cmp
   Var _ _       `cmp` _             = LT
   -- Var < Constants < Apps
 
+-- | Compares two expressions first by their complexity:
+--   1st length;
+--   2nd number of variables (more variables is less complex);
+--   3nd sum of number of variable occurrences;
+--   4th their depth;
+--   5th normal `compare`.
+compareComplexityThen :: (Expr -> Expr -> Ordering) -> Expr -> Expr -> Ordering
+compareComplexityThen cmp = (compare `on` lengthE)
+                         <> (flip compare `on` length . vars)
+                         <> (flip compare `on` length . repVars)
+                         <> (compare `on` length . consts)
+                         <> cmp
 
 -- | Compares two expressions first by their complexity:
 --   1st length;
 --   2nd number of variables (more variables is less complex);
 --   3nd sum of number of variable occurrences;
---   4rd normal `compare`.
+--   4th their depth;
+--   5th lexicompare.
 compareComplexity :: Expr -> Expr -> Ordering
-compareComplexity = (compare `on` lengthE)
-                 <> (flip compare `on` length . vars)
-                 <> (flip compare `on` length . repVars)
-                 <> (compare `on` length . consts)
-                 <> lexicompare
+compareComplexity = compareComplexityThen lexicompare
 
 falseE :: Expr
 falseE = showConstant False
