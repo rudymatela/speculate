@@ -7,6 +7,7 @@ module Test.Speculate.Expr.TypeInfo
   , ins
   , eq,       eqWith
   , ord,      ordWith
+  , eqOrd
   , listable, listableWith
 
   -- * Queries on Instances1 lists
@@ -49,7 +50,7 @@ data Instance = Eq TypeRep Expr
 -- | Type information needed to Speculate expressions.
 type Instances = [Instance]
 
--- | Usage: @typeInfo (undefined :: Type) "x"@
+-- | Usage: @ins1 "x" (undefined :: Type)@
 ins1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
           => String -> a -> Instances
 ins1 n x = eq x ++ ord x ++ listable x ++ name n x
@@ -98,6 +99,9 @@ eq x = eqWith $ (==) -:> x
 
 ord :: (Typeable a, Ord a) => a -> Instances
 ord x = ordWith $ (<=) -:> x
+
+eqOrd :: (Typeable a, Eq a, Ord a) => a -> Instances
+eqOrd x = eq x ++ ord x
 
 listable :: (Typeable a, Show a, Listable a) => a -> Instances
 listable x = listableWith $ tiers `asTypeOf` [[x]]
