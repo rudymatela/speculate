@@ -13,12 +13,18 @@ current
 
 * check Eq and Ord instances before running:
   including consistency between them.
-  refuse to run if errors are found
+  refuse to run if errors are found.
+  Also, equivalences (==) should be congruences (s == s' ==> f s == f s')
+
+* improve printing:
+  - add main settings used to run (size / depth limit);
+  - separate variables, constants and background constants.
 
 * review README file.
 
 * derive `tiers` using speculate itself.  Use provided constructors.
-  Maybe a new field in args?
+  Maybe a new field in args?  Or even things begining with capital letters and
+  ":".
 
 
 
