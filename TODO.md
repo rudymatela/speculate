@@ -9,8 +9,6 @@ Warning: I tend to ramble...
 current
 -------
 
-* increase default limit for semi-equations?
-
 * check Eq and Ord instances before running:
   including consistency between them.
   refuse to run if errors are found.
@@ -19,8 +17,6 @@ current
 * improve printing:
   - add main settings used to run (size / depth limit);
   - separate variables, constants and background constants.
-
-* review README file.
 
 * derive `tiers` using speculate itself.  Use provided constructors.
   Maybe a new field in args?  Or even things begining with capital letters and
