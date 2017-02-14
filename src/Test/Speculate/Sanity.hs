@@ -7,35 +7,39 @@ module Test.Speculate.Sanity
 where
 
 import Test.Speculate.Expr
+import Test.LeanCheck ((==>))
+import Data.Maybe (fromMaybe)
 
--- NOTE: WARNING: FIXME: TODO: these checks are wrong!!!!!
--- (x == y) == (y == x) for all assignments of x and y
--- NOT:
--- (x == y) for all assignments of x and y
--- equal to
--- (y == x) for all assignments of y and x
--- currently this module implements the last one, not the first
+(-==>-) :: Expr -> Expr -> Expr
+e1 -==>- e2 = impliesE :$ e1 :$ e2 where impliesE = constant "==>" (==>)
+infixr 0 -==>-
+
+(-&&-) :: Expr -> Expr -> Expr
+e1 -&&- e2 = andE :$ e1 :$ e2 where andE = constant "&&" (&&)
+infixr 0 -&&-
 
 -- returns a list of errors on the Eq instances (if any)
 -- returns an empty list when ok
 eqErrors :: Instances -> TypeRep -> Int -> [String]
-eqErrors is t n = ["not reflexive"  | x === x]
-               ++ ["not symmetric"  | (x === y) == (y === x)]
-               ++ ["not transitive" | (x === y && y === z ==> x === z)]
+eqErrors is t n = ["not reflexive"  | tru $  x -==- x]
+               ++ ["not symmetric"  | tru $ (x -==- y) -==- (y -==- x)]
+               ++ ["not transitive" | tru $  x -==- y -&&- y -==- z -==>- x -==- z]
   where
-  (===) = equal is n
+  tru = true is n
+  e1 -==- e2 = fromMaybe falseE $ equation is e1 e2
   x = Var "x" t
   y = Var "y" t
   z = Var "z" t
 
 -- returns a list of errors on the Ord instance (if any)
 ordErrors :: Instances -> TypeRep -> Int -> [String]
-ordErrors is t n = ["not reflexive"     | x <= x]
-                ++ ["not antisymmetric" | x <= y && y <= x ==> x == y]
-                ++ ["not transitive"    | x <= y && y <= z ==> x <= z]
+ordErrors is t n = ["not reflexive"     | tru $ x -<=- x]
+                ++ ["not antisymmetric" | tru $ x -<=- y -&&- y -<=- x -==>- x -==- y]
+                ++ ["not transitive"    | tru $ x -<=- y -&&- y -<=- z -==>- x -<=- z]
   where
-  (==) = equal is n
-  (<=) = lessOrEqual is n
+  tru = true is n
+  e1 -==- e2 = fromMaybe falseE $ equation is e1 e2
+  e1 -<=- e2 = fromMaybe falseE $ comparisonLE is e1 e2
   x = Var "x" t
   y = Var "y" t
   z = Var "z" t
@@ -44,4 +48,4 @@ eqOrdErrors :: Instances -> TypeRep -> Int -> [String]
 eqOrdErrors is t n = undefined
 
 instanceErrors :: Instances -> Int -> [String]
-instanceErrors is t n = undefined
+instanceErrors is n = undefined
