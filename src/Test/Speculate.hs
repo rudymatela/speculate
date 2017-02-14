@@ -64,6 +64,7 @@ data Args = Args
 --, maxEquationSize      :: Maybe Int
 --, keepRewriteRules     :: Bool
   , showHelp             :: Bool
+  , force                :: Bool  -- ^ ignore errors
   , extra                :: [String] -- unused, user-defined meaning
   , backgroundConstants  :: [Expr] -- ^ background constants
   , constants            :: [Expr] -- ^ constants used on both conditions and equations
@@ -99,6 +100,7 @@ args = Args
 --, maxEquationSize      = Nothing
 --, keepRewriteRules     = False
   , showHelp             = False
+  , force                = False
   , extra                = []
   , backgroundConstants  = []
   , constants            = []
@@ -185,14 +187,15 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (keepExpr args) (timeout args .: equal ti n) ds'
   when (showConstants args)    . putStrLn . unlines $ map show ds'
   warnMissingInstances ti ats
-  {-
   let ies = instanceErrors ti n ats
   when (not (null ies)) $ do
-    putStr . unlines $ ies
-    putStrLn "There were instance errors."
-    putStrLn "Refusing to run, use --force to ignore instance errors."
-    fail "exiting"
-  -}
+    let pref | force args = "Warning: "
+             | otherwise  = "Error: "
+    putStrLn . unlines . map (pref ++) $ ies
+    unless (force args) $ do
+      putStrLn "There were instance errors, refusing to run."
+      putStrLn "Use `--force` or `args{force=true}` to ignore instance errors."
+      fail "exiting"
   when (showTheory args)       . putStrLn $ showThy thy
   when (showEquations args) . putStrLn $ prettyThy (shouldShowEquation args) ti thy
   reportClassesFor ti n (showClassesFor args) thy es
@@ -260,6 +263,7 @@ prepareArgs args =
                                        ,showEquations = False
                                        ,showSemiequations = False
                                        ,showConditions = False}
+  , "fforce"             --.   \a -> a {force = True}
   , "hhelp"              --.   \a -> a {showHelp = True}
   , " exclude"           --= \s a -> a {exclude = exclude a ++ splitAtCommas s}
   ]

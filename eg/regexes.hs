@@ -44,4 +44,5 @@ main = speculate args
       ]
   , showConditions    = False
   , showSemiequations = False
+  , force = True
   }
