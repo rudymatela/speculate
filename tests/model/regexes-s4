@@ -5,7 +5,8 @@ Star :: RE Symbol -> RE Symbol
 (:+) :: RE Symbol -> RE Symbol -> RE Symbol
 (:.) :: RE Symbol -> RE Symbol -> RE Symbol
 
-Warning: (<=) :: RE Symbol -> RE Symbol -> Bool  is not an ordering (not reflexive, not antisymmetric, not transitive)
+Warning: (<=) :: RE Symbol -> RE Symbol -> Bool  is not an ordering (not reflexive)
+Warning: (==) and (<=) :: RE Symbol -> RE Symbol -> Bool are inconsistent: (x == y) /= (x <= y && y <= x)
 
     Star r == Empty
     r :+ r == r

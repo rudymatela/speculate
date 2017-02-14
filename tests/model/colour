@@ -23,6 +23,9 @@ Nothing :: Maybe (Ratio Integer)
 1 % 1 :: Ratio Integer
 1 % 2 :: Ratio Integer
 
+Warning: (<=) :: Colour -> Colour -> Bool  is not an ordering (not antisymmetric)
+Warning: (==) and (<=) :: Colour -> Colour -> Bool are inconsistent: (x == y) /= (x <= y && y <= x)
+
         hue (mix c black) == hue c
          hue (mix c grey) == hue c
         hue (mix c white) == hue c

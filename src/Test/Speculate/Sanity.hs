@@ -28,7 +28,7 @@ eqErrors is n t =
   ++ ["not symmetric"  | f  ((x -==- y) -==- (y -==- x))]
   ++ ["not transitive" | f (((x -==- y) -&&- (y -==- z)) -==>- (x -==- z))]
   where
-  f = false is n
+  f = not . true is n
   e1 -==- e2 = fromMaybe falseE $ equation is e1 e2
   x = Var "x" t
   y = Var "y" t
@@ -41,7 +41,7 @@ ordErrors is n t =
   ++ ["not antisymmetric" | f (((x -<=- y) -&&- (y -<=- x)) -==>- (x -==- y))]
   ++ ["not transitive"    | f (((x -<=- y) -&&- (y -<=- z)) -==>- (x -<=- z))]
   where
-  f = false is n
+  f = not . true is n
   e1 -==- e2 = fromMaybe falseE $ equation     is e1 e2
   e1 -<=- e2 = fromMaybe falseE $ comparisonLE is e1 e2
   x = Var "x" t
@@ -55,8 +55,9 @@ eqOrdErrors is n t =
   ++ [ "(<=) :: " ++ ty ++ "  is not an ordering ("     ++ intercalate ", " es ++ ")"
      | let es = ordErrors is n t, isOrd is t, not (null es) ]
   ++ [ "(==) and (<=) :: " ++ ty ++ " are inconsistent: (x == y) /= (x <= y && y <= x)"
-     | false is n $ (x -==- y) -==- (x -<=- y -&&- y -<=- x)]
+     | f $ (x -==- y) -==- (x -<=- y -&&- y -<=- x)]
   where
+  f = not . true is n
   x = Var "x" t
   y = Var "y" t
   z = Var "z" t

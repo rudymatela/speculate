@@ -9,6 +9,7 @@ import Test.Speculate.Utils.Colour
 import Test.LeanCheck
 import Data.Ratio
 import Data.Function (on)
+import Test.Speculate.Sanity
 
 deriving instance Typeable Colour -- for GHC < 7.10
 
@@ -37,6 +38,7 @@ main = speculate args
       ]
   , maxSize = 4
   , maxSemiSize = 2
+  , force = True
   , constants =
       [ constant "+"       $ (+)    -:> colour
       , constant "-"       $ (-)    -:> colour

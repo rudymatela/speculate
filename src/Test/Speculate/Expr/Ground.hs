@@ -106,5 +106,6 @@ trueRatio :: Instances -> Int -> Expr -> Ratio Int
 trueRatio ti n e = length (trueBinds ti n e) % length (take n $ groundAndBinds ti e)
 
 -- | Is an expression ALWAYS false?
+-- This is *NOT* the same as not true
 false :: Instances -> Int -> Expr -> Bool
 false ti n e = and . map (not . (eval False)) . take n $ grounds ti e
