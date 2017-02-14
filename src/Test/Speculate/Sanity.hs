@@ -9,6 +9,7 @@ where
 import Test.Speculate.Expr
 import Test.LeanCheck ((==>))
 import Data.Maybe (fromMaybe)
+import Data.List (intercalate)
 
 (-==>-) :: Expr -> Expr -> Expr
 e1 -==>- e2 = impliesE :$ e1 :$ e2 where impliesE = constant "==>" (==>)
@@ -44,8 +45,13 @@ ordErrors is t n = ["not reflexive"     | tru $ x -<=- x]
   y = Var "y" t
   z = Var "z" t
 
-eqOrdErrors :: Instances -> TypeRep -> Int -> [String]
-eqOrdErrors is t n = undefined
+eqOrdErrors :: Instances -> Int -> TypeRep -> [String]
+eqOrdErrors is n t = [ "(==) :: " ++ show t ++ " -> " ++ show t ++ " -> Bool "
+                       ++ "is not an equiavalence (" ++ intercalate ", " es ++ ")"
+                     | let es = eqErrors is t n, not (null es) ]
+                  ++ [ "(<=) :: " ++ show t ++ " -> " ++ show t ++ " -> Bool "
+                       ++ "is not an ordering (" ++ intercalate ", " es ++ ")"
+                     | let es = ordErrors is t n, not (null es) ]
 
 instanceErrors :: Instances -> Int -> [String]
 instanceErrors is n = undefined
