@@ -10,7 +10,8 @@ module Test.Speculate.Expr.TypeInfo
   , eqOrd
   , listable, listableWith
 
-  -- * Queries on Instances1 lists
+  -- * Queries on Instances
+  , instanceType
   , findInfo
   , names
   , eqE,      isEq,       isEqE
@@ -49,6 +50,12 @@ data Instance = Eq TypeRep Expr
 
 -- | Type information needed to Speculate expressions.
 type Instances = [Instance]
+
+instanceType :: Instance -> TypeRep
+instanceType (Eq       t _)   = t
+instanceType (Ord      t _ _) = t
+instanceType (Listable t _)   = t
+instanceType (Names    t _)   = t
 
 -- | Usage: @ins1 "x" (undefined :: Type)@
 ins1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
