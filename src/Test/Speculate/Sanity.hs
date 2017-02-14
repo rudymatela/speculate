@@ -48,9 +48,9 @@ ordErrors is t n = ["not reflexive"     | f $ x -<=- x]
 
 eqOrdErrors :: Instances -> Int -> TypeRep -> [String]
 eqOrdErrors is n t =
-     [ "(==) :: " ++ ty ++ " is not an equiavalence  (" ++ intercalate ", " es ++ ")"
+     [ "(==) :: " ++ ty ++ "  is not an equiavalence (" ++ intercalate ", " es ++ ")"
      | let es = eqErrors is t n, isEq is t, not (null es) ]
-  ++ [ "(<=) :: " ++ ty ++ " is not an ordering  (" ++ intercalate ", " es ++ ")"
+  ++ [ "(<=) :: " ++ ty ++ "  is not an ordering (" ++ intercalate ", " es ++ ")"
      | let es = ordErrors is t n, isOrd is t, not (null es) ]
   where
   ty = show t ++ " -> " ++ show t ++ " -> Bool"
