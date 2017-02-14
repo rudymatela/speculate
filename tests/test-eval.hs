@@ -35,9 +35,6 @@ tests n =
   , holds n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
                            Just e1e2 -> condEqualM preludeInstances 500 0 e1e2 e1 e2
                            Nothing   -> True
-  , holds n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
-                           Just e1e2 -> condEqualM preludeInstances 500 1 e1e2 e1 e2
-                           Nothing   -> True
   , fails n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
                            Just e1e2 -> condEqualM preludeInstances 500 500 e1e2 e1 e2
                            Nothing   -> True

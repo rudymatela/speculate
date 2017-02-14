@@ -581,6 +581,9 @@ expandCanReduceTo thy = cons0 thy
 
 listThyInefficient :: [Thy]
 listThyInefficient = concat
+                   . concatMapT expandCanReduceTo
+                   . concatMapT expandClosureLimit
+                   . concatMapT expandKeepE
                    $ cons2 (\(SameTypedPairsE rs) (SameTypedPairsE eqs)
                               -> emptyThy { rules     = sort rs
                                           , equations = sort eqs
