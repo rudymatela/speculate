@@ -185,6 +185,14 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (keepExpr args) (timeout args .: equal ti n) ds'
   when (showConstants args)    . putStrLn . unlines $ map show ds'
   warnMissingInstances ti ats
+  {-
+  let ies = instanceErrors ti n ats
+  when (not (null ies)) $ do
+    putStr . unlines $ ies
+    putStrLn "There were instance errors."
+    putStrLn "Refusing to run, use --force to ignore instance errors."
+    fail "exiting"
+  -}
   when (showTheory args)       . putStrLn $ showThy thy
   when (showEquations args) . putStrLn $ prettyThy (shouldShowEquation args) ti thy
   reportClassesFor ti n (showClassesFor args) thy es
