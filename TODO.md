@@ -9,8 +9,6 @@ Warning: I tend to ramble...
 current
 -------
 
-* check if equivalences (==) are congruences (s == s' ==> f s == f s')
-
 * improve printing:
   - add main settings used to run (size / depth limit);
   - separate variables, constants and background constants.
@@ -29,6 +27,8 @@ later
   easy to amend a Thy: do theorization; add a bunch of atoms; do it again;
 
 * make regex work on qs1 and qs2.
+
+* check if equivalences (==) are congruences (s == s' ==> f s == f s')
 
 
 stranger things
