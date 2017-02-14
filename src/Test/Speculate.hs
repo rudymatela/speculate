@@ -36,6 +36,7 @@ import Test.Speculate.Reason
 import Test.Speculate.CondReason
 import Test.Speculate.SemiReason
 import Test.Speculate.Engine
+import Test.Speculate.Sanity
 
 data Args = Args
   { maxSize              :: Int
