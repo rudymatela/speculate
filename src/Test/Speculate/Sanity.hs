@@ -47,12 +47,13 @@ ordErrors is t n = ["not reflexive"     | f $ x -<=- x]
   z = Var "z" t
 
 eqOrdErrors :: Instances -> Int -> TypeRep -> [String]
-eqOrdErrors is n t = [ "(==) :: " ++ show t ++ " -> " ++ show t ++ " -> Bool "
-                       ++ "is not an equiavalence  (" ++ intercalate ", " es ++ ")"
-                     | let es = eqErrors is t n, isEq is t, not (null es) ]
-                  ++ [ "(<=) :: " ++ show t ++ " -> " ++ show t ++ " -> Bool "
-                       ++ "is not an ordering  (" ++ intercalate ", " es ++ ")"
-                     | let es = ordErrors is t n, isOrd is t, not (null es) ]
+eqOrdErrors is n t =
+     [ "(==) :: " ++ ty ++ " is not an equiavalence  (" ++ intercalate ", " es ++ ")"
+     | let es = eqErrors is t n, isEq is t, not (null es) ]
+  ++ [ "(<=) :: " ++ ty ++ " is not an ordering  (" ++ intercalate ", " es ++ ")"
+     | let es = ordErrors is t n, isOrd is t, not (null es) ]
+  where
+  ty = show t ++ " -> " ++ show t ++ " -> Bool"
 
 instanceErrors :: Instances -> Int -> [TypeRep] -> [String]
 instanceErrors is n = concatMap $ eqOrdErrors is n
