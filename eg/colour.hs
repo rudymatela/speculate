@@ -56,7 +56,7 @@ main = speculate args
       , constant "mix"        mix
 --    , constant "mixHSV"     mixHSV
       ]
-    , backgroundConstants =
+  , backgroundConstants =
       [ constant "black"     black
       , constant "white"     white
       , constant "red"       red
