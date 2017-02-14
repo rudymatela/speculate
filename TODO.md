@@ -102,6 +102,8 @@ redundancy to remove
 Later Later
 -----------
 
+* print errors on stderr, not on stdout
+
 * add maximum commutative size limit?
 
 * improve error message for missing typeInfo.  Maybe add full suggestion.
