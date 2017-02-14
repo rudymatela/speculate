@@ -9,8 +9,6 @@ Warning: I tend to ramble...
 current
 -------
 
-* fix "make slow-test", it is failing
-
 * check Eq and Ord instances before running:
   including consistency between them.
   refuse to run if errors are found.
