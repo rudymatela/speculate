@@ -52,7 +52,14 @@ eqOrdErrors is n t =
      | let es = eqErrors is t n, isEq is t, not (null es) ]
   ++ [ "(<=) :: " ++ ty ++ "  is not an ordering (" ++ intercalate ", " es ++ ")"
      | let es = ordErrors is t n, isOrd is t, not (null es) ]
+  ++ [ "(==) and (<=) :: " ++ ty ++ " are inconsistent: (x == y) /= (x <= y && x >= y)"
+     | false is n $ (x -==- y) -==- (x -<=- y -&&- y -<=- x)]
   where
+  x = Var "x" t
+  y = Var "y" t
+  z = Var "z" t
+  e1 -==- e2 = fromMaybe falseE $ equation is e1 e2
+  e1 -<=- e2 = fromMaybe falseE $ comparisonLE is e1 e2
   ty = show t ++ " -> " ++ show t ++ " -> Bool"
 
 instanceErrors :: Instances -> Int -> [TypeRep] -> [String]
