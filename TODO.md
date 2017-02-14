@@ -9,10 +9,7 @@ Warning: I tend to ramble...
 current
 -------
 
-* check Eq and Ord instances before running:
-  including consistency between them.
-  refuse to run if errors are found.
-  Also, equivalences (==) should be congruences (s == s' ==> f s == f s')
+* check if equivalences (==) are congruences (s == s' ==> f s == f s')
 
 * improve printing:
   - add main settings used to run (size / depth limit);
