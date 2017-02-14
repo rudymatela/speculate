@@ -54,7 +54,7 @@ eqOrdErrors is n t =
      | let es = eqErrors is t n, isEq is t, not (null es) ]
   ++ [ "(<=) :: " ++ ty ++ "  is not an ordering ("     ++ intercalate ", " es ++ ")"
      | let es = ordErrors is t n, isOrd is t, not (null es) ]
-  ++ [ "(==) and (<=) :: " ++ ty ++ " are inconsistent: (x == y) /= (x <= y && x >= y)"
+  ++ [ "(==) and (<=) :: " ++ ty ++ " are inconsistent: (x == y) /= (x <= y && y <= x)"
      | false is n $ (x -==- y) -==- (x -<=- y -&&- y -<=- x)]
   where
   x = Var "x" t
