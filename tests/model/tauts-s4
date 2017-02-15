@@ -1,3 +1,8 @@
+max expr size  =    4
+max  #-tests   = 4000
+min  #-tests   =  200  (to consider p ==> q true)
+max  #-vars    =    2  (for inequational and conditional laws)
+
 _ :: Name  (holes: Name)
 _ :: Prop  (holes: Prop)
 _ :: Bool  (holes: Bool)

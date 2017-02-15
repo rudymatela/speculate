@@ -84,7 +84,7 @@ args = Args
   , maxDepth             = Nothing
   , instances            = []
   , showConstants        = True
-  , showArgs             = False
+  , showArgs             = True
   , showTheory           = False
   , showEquations        = True
   , showSemiequations    = True
@@ -264,7 +264,7 @@ prepareArgs args =
   , "zsemisize"          --= \s a -> a {maxSemiSize = read s}
   , "xcondsize"          --= \s a -> a {maxCondSize = read s}
   , "Aconstants"         --.   \a -> a {showConstants = False} -- TODO: fix name
-  , "Ohide-args"         --.   \a -> a {showArgs = True} -- TODO: flip to False
+  , "Ohide-args"         --.   \a -> a {showArgs = False}
   , "Ttheory"            --.   \a -> a {showTheory = True}
   , "Eno-equations"      --.   \a -> a {showEquations = False}
   , "Sno-semiequations"  --.   \a -> a {showSemiequations = False}

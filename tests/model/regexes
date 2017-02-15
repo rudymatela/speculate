@@ -1,3 +1,7 @@
+max expr size  =    4
+max  #-tests   =   25
+max  #-vars    =    2  (for inequational and conditional laws)
+
 _ :: RE Symbol  (holes: RE Symbol)
 Empty :: RE Symbol
 None :: RE Symbol

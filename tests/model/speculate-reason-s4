@@ -1,3 +1,7 @@
+max expr size  =    4
+max  #-tests   = 6000
+max  #-vars    =    2  (for inequational and conditional laws)
+
 _ :: [Expr]  (holes: [Expr])
 _ :: Thyght  (holes: Thyght)
 _ :: Expr  (holes: Expr)
