@@ -280,13 +280,15 @@ prepareArgs args =
                                        ,showConstants = False
                                        ,showEquations = False
                                        ,showSemiequations = False
-                                       ,showConditions = False}
+                                       ,showConditions = False
+                                       ,showArgs = False}
   , "Dquiet-dot"         --.   \a -> a {showDot = True
                                        ,quietDot = True
                                        ,showConstants = False
                                        ,showEquations = False
                                        ,showSemiequations = False
-                                       ,showConditions = False}
+                                       ,showConditions = False
+                                       ,showArgs = False}
   , "fforce"             --.   \a -> a {force = True}
   , "hhelp"              --.   \a -> a {showHelp = True}
   , " exclude"           --= \s a -> a {exclude = exclude a ++ splitAtCommas s}
