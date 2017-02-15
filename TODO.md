@@ -9,9 +9,7 @@ Warning: I tend to ramble...
 current
 -------
 
-* improve printing:
-  - add main settings used to run (size / depth limit);
-  - separate variables, constants and background constants.
+* improve printing by separating variables, constants and background constants.
 
 * derive `tiers` using speculate itself.  Use provided constructors.
   Maybe a new field in args?  Or even things begining with capital letters and
