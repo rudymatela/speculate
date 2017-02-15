@@ -178,7 +178,12 @@ timeout Args{evalTimeout = Just t}  = timeoutToFalse t
 
 putArgs :: Args -> IO ()
 putArgs args = when (showArgs args) $ do
-  putOpt "max expr size" (maxSize args)
+  let sz = maxSize args
+  let isz = computeMaxSemiSize args
+  let csz = computeMaxCondSize args
+  putOpt "max expr size" sz
+  when (isz /= sz) $ putOpt "  |- on ineqs" isz
+  when (csz /= sz) $ putOpt "  |- on conds"  csz
   case maxDepth args of
     Nothing -> return ()
     Just d  -> putOpt "max expr depth" (show d)

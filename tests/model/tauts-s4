@@ -1,4 +1,6 @@
 max expr size  =    4
+  |- on ineqs  =    3
+  |- on conds  =    3
 max  #-tests   = 4000
 min  #-tests   =  200  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
