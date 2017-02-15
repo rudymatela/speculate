@@ -72,6 +72,7 @@ data Args = Args
   , conditionConstants   :: [Expr] -- ^ constants exclusive to conditions
   , equationConstants    :: [Expr] -- ^ constants exclusive to equations
   , exclude              :: [String] -- ^ exclude this symbols from signature before running
+  , onlyTypes            :: [String] -- ^ only allow those types at top-level equations / semi-equations
   }
 -- Maybe add an empty Thy here.
 
@@ -109,6 +110,7 @@ args = Args
   , conditionConstants   = []
   , equationConstants    = []
   , exclude              = []
+  , onlyTypes            = []
   }
 
 computeMaxSemiSize :: Args -> Int
@@ -230,7 +232,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
     . prettyChy (shouldShowConditionalEquation args)
     $ conditionalTheoryFromThyAndReps ti n (maxVars args) (computeMaxCondSize args) thy es
   when (showDot args) $
-    reportDot ti (quietDot args) (maxVars args) n thy es
+    reportDot ti (onlyTypes args) (quietDot args) (maxVars args) n thy es
 
 warnMissingInstances :: Instances -> [TypeRep] -> IO ()
 warnMissingInstances is ts = putLines
@@ -289,6 +291,7 @@ prepareArgs args =
                                        ,showSemiequations = False
                                        ,showConditions = False
                                        ,showArgs = False}
+  , " only-types"        --= \s a -> a {onlyTypes = onlyTypes a ++ splitAtCommas s}
   , "fforce"             --.   \a -> a {force = True}
   , "hhelp"              --.   \a -> a {showHelp = True}
   , " exclude"           --= \s a -> a {exclude = exclude a ++ splitAtCommas s}
@@ -310,9 +313,12 @@ speculate args = do
 getArgs :: Args -> IO Args
 getArgs = processArgs . prepareArgs
 
-reportDot :: Instances -> Bool -> Int -> Int -> Thy -> [Expr] -> IO ()
-reportDot ti quiet nVars n thy es = do
+reportDot :: Instances -> [String] -> Bool -> Int -> Int -> Thy -> [Expr] -> IO ()
+reportDot ti onlyTypes quiet nVars n thy es = do
   let ces = distinctFromSchemas ti n nVars thy
+          $ (if null onlyTypes
+               then id
+               else filter ((`elem` map (map toLower) onlyTypes) . map toLower . show . typ))
           $ filter (isEqOrdE ti) es
   let res = [(trueRatio ti n e, e) | e <- ces, typ e == boolTy]
   putStrLn "digraph G {"
