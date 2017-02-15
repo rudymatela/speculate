@@ -19,11 +19,14 @@ class    Charable a      where toChar :: a -> Char
 instance Charable Char   where toChar = id
 instance Charable Symbol where toChar (Symbol c) = c
 
+testMatches :: (Listable a, Charable a) => RE a -> [Bool]
+testMatches r = map (\e -> match toChar e r) $ take 25 list
+
 instance (Listable a, Show a, Charable a) => Eq (RE a) where
-  r1 == r2 = holds 25 $ \e -> match toChar e r1 == match toChar e r2
+  (==) = (==) `on` testMatches
 
 instance (Listable a, Show a, Charable a) => Ord (RE a) where
-  r1 `compare` r2 = error "not implemented"
+  compare = compare `on` testMatches
 
 main :: IO ()
 main = speculate args
@@ -43,6 +46,5 @@ main = speculate args
 --    , constant "Lit"   (Lit   :: Symbol -> RE Symbol)
       ]
   , showConditions    = False
-  , showSemiequations = False
   , force = True
   }

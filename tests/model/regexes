@@ -9,9 +9,6 @@ Star :: RE Symbol -> RE Symbol
 (:+) :: RE Symbol -> RE Symbol -> RE Symbol
 (:.) :: RE Symbol -> RE Symbol -> RE Symbol
 
-Warning: (<=) :: RE Symbol -> RE Symbol -> Bool  is not an ordering (not reflexive)
-Warning: (==) and (<=) :: RE Symbol -> RE Symbol -> Bool are inconsistent: (x == y) /= (x <= y && y <= x)
-
     Star r == Empty
     r :+ r == r
 r :+ Empty == Empty
@@ -20,4 +17,10 @@ r :. Empty == r
  r :. None == None
     r :+ s == s :+ r
     r :. s == s :. r
+
+  None <= r
+     r <= r :+ s
+r :. s <= r
+r :. s <= Empty
+r :. s <= r :. r
 
