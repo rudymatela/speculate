@@ -57,6 +57,7 @@ data Args = Args
   , showClassesFor       :: [Int]
   , maxVars              :: Int
   , maxConstants         :: Maybe Int
+  , showArgs             :: Bool
   , evalTimeout          :: Maybe Double
 --, closureLimit         :: Int
 --, order                :: OptOrder  -- data OptOrder = Dershowitz | KnuthBendix
@@ -83,6 +84,7 @@ args = Args
   , maxDepth             = Nothing
   , instances            = []
   , showConstants        = True
+  , showArgs             = False
   , showTheory           = False
   , showEquations        = True
   , showSemiequations    = True
@@ -172,6 +174,23 @@ timeout :: Args -> Bool -> Bool
 timeout Args{evalTimeout = Nothing} = id
 timeout Args{evalTimeout = Just t}  = timeoutToFalse t
 
+putArgs :: Args -> IO ()
+putArgs args = when (showArgs args) $ do
+  putStrLn $ "max expr size  = " ++ show (maxSize args)
+  case maxDepth args of
+    Nothing -> return ()
+    Just d  -> putStrLn $ "max expr depth = " ++ show d
+  putStrLn $ "max  #-tests   = " ++ show (maxTests args)
+  when (showConditions args) $
+    putStrLn $ "min  #-tests   = " ++ show (minTests args $ maxTests args)
+            ++ "  (for postconditions)"
+  putStrLn $ "max  #-vars    = " ++ show (maxVars args)
+          ++ "  (for inequational and conditional laws)"
+  case evalTimeout args of
+    Nothing -> return ()
+    Just t  -> putStrLn $ "eval timeout   = " ++ show t ++ "s"
+  putStrLn ""
+
 report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
   let ti = computeInstances args
@@ -185,6 +204,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
             `union` [showConstant False | showConditions' || showDot args]
             `union` catMaybes [eqE ti t | t <- ts, showConditions']
   let (thy,es) = theoryAndRepresentativesFromAtoms sz (keepExpr args) (timeout args .: equal ti n) ds'
+  putArgs args
   when (showConstants args)    . putStrLn . unlines $ map show ds'
   warnMissingInstances ti ats
   let ies = instanceErrors ti n ats
@@ -240,7 +260,8 @@ prepareArgs args =
   , "mmin-tests"         --= \s a -> a {minTests = parseMinTests s}
   , "zsemisize"          --= \s a -> a {maxSemiSize = read s}
   , "xcondsize"          --= \s a -> a {maxCondSize = read s}
-  , "Aconstants"         --.   \a -> a {showConstants = False}
+  , "Aconstants"         --.   \a -> a {showConstants = False} -- TODO: fix name
+  , "Ohide-args"         --.   \a -> a {showArgs = True} -- TODO: flip to False
   , "Ttheory"            --.   \a -> a {showTheory = True}
   , "Eno-equations"      --.   \a -> a {showEquations = False}
   , "Sno-semiequations"  --.   \a -> a {showSemiequations = False}
