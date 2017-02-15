@@ -176,20 +176,23 @@ timeout Args{evalTimeout = Just t}  = timeoutToFalse t
 
 putArgs :: Args -> IO ()
 putArgs args = when (showArgs args) $ do
-  putStrLn $ "max expr size  = " ++ show (maxSize args)
+  putOpt "max expr size" (maxSize args)
   case maxDepth args of
     Nothing -> return ()
-    Just d  -> putStrLn $ "max expr depth = " ++ show d
-  putStrLn $ "max  #-tests   = " ++ show (maxTests args)
+    Just d  -> putOpt "max expr depth" (show d)
+  putOpt "max  #-tests" (maxTests args)
   when (showConditions args) $
-    putStrLn $ "min  #-tests   = " ++ show (minTests args $ maxTests args)
-            ++ "  (for postconditions)"
-  putStrLn $ "max  #-vars    = " ++ show (maxVars args)
-          ++ "  (for inequational and conditional laws)"
+    putOptSuffix "min  #-tests"  (minTests args $ maxTests args) "  (to consider p ==> q true)"
+  putOptSuffix "max  #-vars" (maxVars args) "  (for inequational and conditional laws)"
   case evalTimeout args of
     Nothing -> return ()
-    Just t  -> putStrLn $ "eval timeout   = " ++ show t ++ "s"
+    Just t  -> putOptSuffix "eval timeout" t "s"
   putStrLn ""
+  where
+  putOpt :: Show a => String -> a -> IO ()
+  putOpt  s x   = putOptSuffix s x ""
+  putOptSuffix :: Show a => String -> a -> String -> IO ()
+  putOptSuffix s x p = putStrLn $ alignLeft 14 s ++ " = " ++ alignRight 4 (show x) ++ p
 
 report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
