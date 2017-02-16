@@ -9,7 +9,8 @@ Warning: I tend to ramble...
 current
 -------
 
-* fix observational equality for regular expression example
+* fix observational equality for regular expression example.  I should zip or
+  filter and subset.  Not compare the resulting lists.
 
 * group semi and conditional equations by type (as it is the case with equations)
 
