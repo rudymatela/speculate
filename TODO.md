@@ -9,6 +9,8 @@ Warning: I tend to ramble...
 current
 -------
 
+* group semi and conditional equations by type (as it is the case with equations)
+
 * improve printing by separating variables, constants and background constants.
 
 * derive `tiers` using speculate itself.  Use provided constructors.
