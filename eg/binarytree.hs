@@ -62,7 +62,6 @@ type Item = Word2
 main :: IO ()
 main = speculate args
   { instances = [ins "t" (undefined :: BT Item)]
-  , showConditions = True
   , constants =
       [ showConstant (Null :: BT Item)
       , constant "insert" (insert :: Item -> BT Item -> BT Item)
