@@ -29,7 +29,7 @@ testMatches :: (Listable a, Show a, Charable a) => RE a -> [Bool]
 testMatches r = map (\e -> match toChar e r) $ take 100 list
 
 testMatchesMemory :: (Listable a, Show a, Charable a, Ord a) => M.Map (RE a) [Bool]
-testMatchesMemory = foldr (uncurry M.insert) M.empty $ take 1080 $ map rm list
+testMatchesMemory = foldr (uncurry M.insert) M.empty $ take 2160 $ map rm list
   where
   rm r = (r, testMatches r)
 
