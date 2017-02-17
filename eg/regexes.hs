@@ -26,10 +26,10 @@ instance Charable Char   where toChar = id
 instance Charable Symbol where toChar (Symbol c) = c
 
 testMatches :: (Listable a, Show a, Charable a, Ord a) => RE a -> [Bool]
-testMatches = tm `withMemory` testMatchesMemory
+testMatches = tm `withMemory` mem
   where
   tm r = map (\e -> match toChar e r) $ take 100 list
-  testMatchesMemory = memory tm -- induces "Ord a" constraint
+  mem = memory tm -- induces "Ord a" constraint
 
 main :: IO ()
 main = speculate args
