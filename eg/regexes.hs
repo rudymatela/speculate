@@ -1,9 +1,9 @@
 {-# LANGUAGE StandaloneDeriving #-}
 import Test.Speculate hiding (match)
+import Test.Speculate.Utils.Memoize
 import Data.Function (on)
 import Regex
-import Data.Maybe (fromJust, fromMaybe)
-import qualified Data.Map as M
+import Data.Maybe (fromJust)
 
 instance Listable Symbol where
   tiers = cons0 (Symbol 'a')
@@ -25,24 +25,19 @@ class    Charable a      where toChar :: a -> Char
 instance Charable Char   where toChar = id
 instance Charable Symbol where toChar (Symbol c) = c
 
-testMatches :: (Listable a, Show a, Charable a) => RE a -> [Bool]
-testMatches r = map (\e -> match toChar e r) $ take 100 list
-
-testMatchesMemory :: (Listable a, Show a, Charable a, Ord a) => M.Map (RE a) [Bool]
-testMatchesMemory = foldr (uncurry M.insert) M.empty $ take 2160 $ map rm list
+testMatches :: (Listable a, Show a, Charable a, Ord a) => RE a -> [Bool]
+testMatches = tm `withMemory` testMatchesMemory
   where
-  rm r = (r, testMatches r)
-
-memoTestMatches :: (Listable a, Show a, Charable a, Ord a) => RE a -> [Bool]
-memoTestMatches r = fromMaybe (testMatches r) (M.lookup r testMatchesMemory)
+  tm r = map (\e -> match toChar e r) $ take 100 list
+  testMatchesMemory = memory tm -- induces "Ord a" constraint
 
 main :: IO ()
 main = speculate args
   { maxTests = 25
   , maxSize = 4
   , instances =
-      [ eqWith  $ ((==) `on` memoTestMatches :: RE Symbol -> RE Symbol -> Bool)
-      , ordWith $ ((<=) `on` memoTestMatches :: RE Symbol -> RE Symbol -> Bool)
+      [ eqWith  $ ((==) `on` testMatches :: RE Symbol -> RE Symbol -> Bool)
+      , ordWith $ ((<=) `on` testMatches :: RE Symbol -> RE Symbol -> Bool)
       , ins "c" (undefined :: Symbol)
       , ins "r" (undefined :: RE Symbol)
       ]
