@@ -29,7 +29,7 @@ testMatches :: (Listable a, Show a, Charable a, Ord a) => RE a -> [Bool]
 testMatches = tm `withMemory` mem
   where
   tm r = map (\e -> match toChar e r) $ take 100 list
-  mem = memory tm -- induces "Ord a" constraint
+  mem = memoryFor 720720 tm -- induces "Ord a" constraint
 
 observingList :: (a -> a -> Bool) -> (b -> [a]) -> b -> b -> Bool
 observingList g f = and .: (zipWith g `on` f) where (.:) = (.) . (.)
