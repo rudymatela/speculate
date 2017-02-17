@@ -34,6 +34,12 @@ testMatches = tm `withMemory` mem
 observingList :: (a -> a -> Bool) -> (b -> [a]) -> b -> b -> Bool
 observingList g f = and .: (zipWith g `on` f) where (.:) = (.) . (.)
 
+(/==/) :: RE Symbol -> RE Symbol -> Bool
+(/==/) = (==) `on` testMatches
+
+(/<=/) :: RE Symbol -> RE Symbol -> Bool
+(/<=/) = (<=) `observingList` testMatches
+
 -- when running this, unless you set maxTests to 360
 -- the following wrong law will appear:
 -- r :. r <= r :+ s
@@ -43,8 +49,8 @@ main = speculate args
   { maxTests = 30
   , maxSize = 4
   , instances =
-      [ eqWith  $ ((==) `on` testMatches :: RE Symbol -> RE Symbol -> Bool)
-      , ordWith $ ((<=) `observingList` testMatches :: RE Symbol -> RE Symbol -> Bool)
+      [ eqWith  (/==/)
+      , ordWith (/<=/)
       , ins "c" (undefined :: Symbol)
       , ins "r" (undefined :: RE Symbol)
       ]
