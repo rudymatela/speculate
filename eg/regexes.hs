@@ -6,13 +6,11 @@ import Regex
 import Data.Maybe (fromJust)
 
 instance Listable Symbol where
-  tiers = cons0 (Symbol 'a')
-       \/ cons0 (Symbol 'b')
-       \/ cons0 (Symbol 'c')
+  list = [Symbol 'a', Symbol 'b', Symbol 'c']
 
 instance Listable a => Listable (RE a) where
   tiers = cons0 Empty
-       \/ cons0 None
+       \/ cons0 None `ofWeight` 1
        \/ cons1 Lit
        \/ cons1 Star
        \/ cons2 (:+)
