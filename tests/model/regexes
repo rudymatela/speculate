@@ -5,23 +5,34 @@ max  #-tests   =   30
 max  #-vars    =    2  (for inequational and conditional laws)
 
 _ :: RE Symbol  (holes: RE Symbol)
+_ :: Bool  (holes: Bool)
 Empty :: RE Symbol
 None :: RE Symbol
 Star :: RE Symbol -> RE Symbol
 (:+) :: RE Symbol -> RE Symbol -> RE Symbol
 (:.) :: RE Symbol -> RE Symbol -> RE Symbol
+(<=) :: RE Symbol -> RE Symbol -> Bool
+(==) :: RE Symbol -> RE Symbol -> Bool
+False :: Bool
+True :: Bool
 
-    Star r == Empty
-    r :+ r == r
-r :+ Empty == Empty
- r :+ None == r
-r :. Empty == r
- r :. None == None
-    r :+ s == s :+ r
-    r :. s == s :. r
+      Star r == Empty
+      r :+ r == r
+  r :+ Empty == Empty
+   r :+ None == r
+  r :. Empty == r
+   r :. None == None
+      r :+ s == s :+ r
+      r :. s == s :. r
+(r <= Empty) == True
+(r == Empty) == (Empty <= r)
+ (r == None) == (r <= None)
+ (None <= r) == True
 
-  None <= r
-     r <= r :+ s
-r :. s <= s
-r :. r <= r :+ s
+      None <=  r
+         r <=  r :+ s
+    r :. s <=  s
+    r :. r <=  r :+ s
+ r <= None ==> r <= s
+Empty <= s ==> r <= s
 

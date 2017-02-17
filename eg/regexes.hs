@@ -63,6 +63,12 @@ main = speculate args
 --    , constant "=~"    (=~)
 --    , constant "Lit"   (Lit   :: Symbol -> RE Symbol)
       ]
+  , backgroundConstants =
+      [ constant "<=" (/<=/)
+      , constant "==" (/==/)
+      , showConstant False
+      , showConstant True
+      ]
   , showConditions    = False
   , force = True
   }
