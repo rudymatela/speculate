@@ -50,14 +50,27 @@ deal (x:xs) = (x:ys,zs)
 -}
 
 isSearch :: Ord a => BT a -> Bool
-isSearch = ordered . toList
+isSearch = strictlyOrdered . toList
 
 ordered :: Ord a => [a] -> Bool
 ordered [] = True
 ordered xs = and (zipWith (<=) xs $ tail xs)
 
+strictlyOrdered :: Ord a => [a] -> Bool
+strictlyOrdered [] = True
+strictlyOrdered xs = and (zipWith (<) xs $ tail xs)
+
+-- | truncate tiers of values in the presence of one empty size
+--
+-- truncateT [[x,y],[z,w],[],[],[],...] == [[x,y],[z,w]]
+truncateT :: [[a]] -> [[a]]
+truncateT ([]:xss) = []
+truncateT (xs:xss) = xs:truncateT xss
+truncateT xss = xss
+
 instance (Ord a, Listable a) => Listable (BT a) where
-  tiers = cons0 Null \/ cons3 Fork `suchThat` isSearch
+  tiers = truncateT
+        $ cons0 Null \/ cons3 Fork `suchThat` isSearch
 
 type Item = Word2
 
@@ -82,6 +95,7 @@ main = speculate args
       , constant "fromList" (fromList :: [Item] -> BT Item)
       , constant "isSearch" (isSearch :: BT Item -> Bool)
       , constant "ordered" (ordered :: [Item] -> Bool)
+      , constant "strictlyOrdered" (strictlyOrdered :: [Item] -> Bool)
       , constant "isIn" (isIn :: Item -> BT Item -> Bool)
       ]
   , backgroundConstants =

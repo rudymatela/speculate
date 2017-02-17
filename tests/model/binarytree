@@ -16,6 +16,7 @@ toList :: BT Word2 -> [Word2]
 fromList :: [Word2] -> BT Word2
 isSearch :: BT Word2 -> Bool
 ordered :: [Word2] -> Bool
+strictlyOrdered :: [Word2] -> Bool
 isIn :: Word2 -> BT Word2 -> Bool
 (<=) :: Word2 -> Word2 -> Bool
 (/=) :: Word2 -> Word2 -> Bool
@@ -26,30 +27,33 @@ False :: Bool
 (==) :: Bool -> Bool -> Bool
 (==) :: Word2 -> Word2 -> Bool
 
-                    delete x Null == Null
-  fromList (toList (fromList xs)) == fromList xs
-            insert x (insert x t) == insert x t
-            delete x (insert x t) == delete x t
-   insert x (fromList (toList t)) == fromList (toList (insert x t))
-fromList (toList (insert x Null)) == insert x Null
-            delete x (delete y t) == delete y (delete x t)
-            insert x (insert y t) == insert y (insert x t)
-                       isSearch t == True
-                         isIn x t == (t == insert x t)
-               ordered (toList t) == True
-              (xs == toList Null) == (Null == fromList xs)
-           (toList t == toList u) == (t == u)
-             (Null == insert x t) == False
-    (Null == fromList (toList t)) == (Null == t)
+         fromList (toList t) == t
+               delete x Null == Null
+       delete x (delete x t) == delete x t
+       insert x (insert x t) == insert x t
+       delete x (insert x t) == delete x t
+       insert x (delete x t) == insert x t
+       delete x (delete y t) == delete y (delete x t)
+       insert x (insert y t) == insert y (insert x t)
+                  isSearch t == True
+                    isIn x t == (t == insert x t)
+          ordered (toList t) == True
+  strictlyOrdered (toList t) == True
+         (xs == toList Null) == (Null == fromList xs)
+      (toList t == toList u) == (t == u)
+        (Null == insert x t) == False
+(xs == toList (fromList xs)) == strictlyOrdered xs
 
                Null <=  t
         toList Null <=  xs
                   t <=  insert x t
          delete x t <=  t
-fromList (toList t) <=  t
+ strictlyOrdered xs ==> ordered xs
       insert x Null <=  insert x t
-   t == fromList xs ==> ordered xs
      xs == toList t ==> ordered xs
+     xs == toList t ==> strictlyOrdered xs
+     xs == toList t ==> t == fromList xs
+False == ordered xs ==> False == strictlyOrdered xs
 
 x /= y ==> insert y (delete x t) == delete x (insert y t)
 
