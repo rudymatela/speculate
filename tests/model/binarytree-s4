@@ -26,16 +26,19 @@ False :: Bool
 (==) :: Bool -> Bool -> Bool
 (==) :: Word2 -> Word2 -> Bool
 
-      delete x Null == Null
-         isSearch t == True
- ordered (toList t) == True
-        isIn x Null == False
-(xs == toList Null) == (Null == fromList xs)
+                  delete x Null == Null
+fromList (toList (fromList xs)) == fromList xs
+                     isSearch t == True
+             ordered (toList t) == True
+                    isIn x Null == False
+            (xs == toList Null) == (Null == fromList xs)
 
-       Null <= t
-toList Null <= xs
-          t <= insert x t
+               Null <= t
+        toList Null <= xs
+                  t <= insert x t
+         delete x t <= t
+fromList (toList t) <= t
+      insert x Null <= insert x t
 
-ordered xs ==> fromList (toList (fromList xs)) == fromList xs
-  isIn x t ==>                      insert x t == t
+isIn x t ==> insert x t == t
 

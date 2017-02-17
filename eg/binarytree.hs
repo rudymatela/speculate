@@ -1,6 +1,8 @@
 -- Colin Runciman, December 2016
 import Test.Speculate
 import Test.LeanCheck
+import Data.Function (on)
+import Data.List (isSubsequenceOf)
 
 data BT a = Null | Fork (BT a) a (BT a)
             deriving (Eq,Ord,Show)
@@ -59,9 +61,19 @@ instance (Ord a, Listable a) => Listable (BT a) where
 
 type Item = Word2
 
+(|==|) :: (Listable a, Eq a, Ord a) => BT a -> BT a -> Bool
+(|==|) = (==) `on` toList
+
+(|<=|) :: (Listable a, Eq a, Ord a) => BT a -> BT a -> Bool
+(|<=|) = isSubsequenceOf `on` toList
+
 main :: IO ()
 main = speculate args
-  { instances = [ins "t" (undefined :: BT Item)]
+  { instances =
+      [ eqWith  ((|==|) :: BT Item -> BT Item -> Bool)
+      , ordWith ((|<=|) :: BT Item -> BT Item -> Bool)
+      , ins "t" (undefined :: BT Item)
+      ]
   , constants =
       [ showConstant (Null :: BT Item)
       , constant "insert" (insert :: Item -> BT Item -> BT Item)
