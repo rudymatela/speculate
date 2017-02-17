@@ -11,6 +11,7 @@ bench/arithficial.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -57,6 +58,7 @@ eg/arith-negate-abs.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -97,6 +99,7 @@ eg/arith.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -140,6 +143,7 @@ eg/binarytree.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -183,6 +187,7 @@ eg/bool.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -226,6 +231,7 @@ eg/colour.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -272,6 +278,7 @@ eg/digraphs.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -316,6 +323,7 @@ eg/insertsort.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -359,6 +367,7 @@ eg/length.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -402,6 +411,7 @@ eg/list.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -445,6 +455,7 @@ eg/minus.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -488,6 +499,7 @@ eg/monad.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -535,6 +547,7 @@ eg/oddeven.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -578,6 +591,7 @@ eg/plus-abs.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -621,6 +635,7 @@ eg/pretty.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -664,6 +679,7 @@ eg/ratio.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -708,6 +724,7 @@ eg/regexes.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -757,6 +774,7 @@ eg/sets.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -799,6 +817,7 @@ eg/speculate-reason.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -846,6 +865,7 @@ eg/string.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -895,6 +915,7 @@ eg/tauts.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -936,6 +957,7 @@ src/Test/Speculate/CondReason.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Reason.hs \
@@ -971,6 +993,7 @@ src/Test/Speculate/Engine.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Class.hs \
@@ -1007,6 +1030,7 @@ src/Test/Speculate/Expr/Canon.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr/TypeInfo.hs \
   src/Test/Speculate/Expr/Match.hs \
@@ -1033,6 +1057,7 @@ src/Test/Speculate/Expr/Core.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr/Core.hs \
   ../leancheck/src/Test/LeanCheck/Tiers.hs \
@@ -1051,6 +1076,7 @@ src/Test/Speculate/Expr/Equate.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr/TypeInfo.hs \
   src/Test/Speculate/Expr/Match.hs \
@@ -1077,6 +1103,7 @@ src/Test/Speculate/Expr/Ground.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr/TypeInfo.hs \
   src/Test/Speculate/Expr/Match.hs \
@@ -1106,6 +1133,7 @@ src/Test/Speculate/Expr/Match.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Core.hs \
@@ -1125,6 +1153,7 @@ src/Test/Speculate/Expr.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr/TypeInfo.hs \
   src/Test/Speculate/Expr.hs \
@@ -1154,6 +1183,7 @@ src/Test/Speculate/Expr/TypeInfo.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr/TypeInfo.hs \
   src/Test/Speculate/Expr/Match.hs \
@@ -1179,6 +1209,7 @@ src/Test/Speculate/Misc.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1219,6 +1250,7 @@ src/Test/Speculate.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1258,6 +1290,7 @@ src/Test/Speculate/Reason/Order.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Reason/Order.hs \
   src/Test/Speculate/Expr/TypeInfo.hs \
@@ -1288,6 +1321,7 @@ src/Test/Speculate/Reason.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Reason.hs \
   src/Test/Speculate/Reason/Order.hs \
@@ -1319,6 +1353,7 @@ src/Test/Speculate/Sanity.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Sanity.hs \
   src/Test/Speculate/Expr/TypeInfo.hs \
@@ -1349,6 +1384,7 @@ src/Test/Speculate/SemiReason.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/SemiReason.hs \
   src/Test/Speculate/Reason.hs \
@@ -1386,6 +1422,7 @@ src/Test/Speculate/Utils/Digraph.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   ../leancheck/src/Test/LeanCheck/Tiers.hs \
@@ -1396,6 +1433,14 @@ src/Test/Speculate/Utils/Digraph.o: \
   ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Test/Speculate/Utils/List.o: \
   src/Test/Speculate/Utils/List.hs
+src/Test/Speculate/Utils/Memoize.o: \
+  src/Test/Speculate/Utils/Memoize.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs
 src/Test/Speculate/Utils/Misc.o: \
   src/Test/Speculate/Utils/String.hs \
   src/Test/Speculate/Utils/Misc.hs \
@@ -1418,6 +1463,7 @@ src/Test/Speculate/Utils.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   ../leancheck/src/Test/LeanCheck/Tiers.hs \
   ../leancheck/src/Test/LeanCheck.hs \
@@ -1463,6 +1509,7 @@ tests/test-creason.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1508,6 +1555,7 @@ tests/test-engine.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1553,6 +1601,7 @@ tests/test-eval.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1598,6 +1647,7 @@ tests/test-expr.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1643,6 +1693,7 @@ tests/test-match.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1688,6 +1739,7 @@ tests/test-misc.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1734,6 +1786,7 @@ tests/test-order.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1778,6 +1831,7 @@ tests/Test.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1819,6 +1873,7 @@ tests/test-reason.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1864,6 +1919,7 @@ tests/test-stats.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
@@ -1912,6 +1968,7 @@ tests/test-utils.o: \
   src/Test/Speculate/Utils.hs \
   src/Test/Speculate/Utils/Ord.hs \
   src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Utils/Digraph.hs \
   src/Test/Speculate/Utils/Colour.hs \
