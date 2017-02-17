@@ -15,11 +15,11 @@ delete :: Word2 -> BT Word2 -> BT Word2
 toList :: BT Word2 -> [Word2]
 fromList :: [Word2] -> BT Word2
 isSearch :: BT Word2 -> Bool
-ordered :: [Word2] -> Bool
-strictlyOrdered :: [Word2] -> Bool
 isIn :: Word2 -> BT Word2 -> Bool
 (<=) :: Word2 -> Word2 -> Bool
 (/=) :: Word2 -> Word2 -> Bool
+ordered :: [Word2] -> Bool
+strictlyOrdered :: [Word2] -> Bool
 True :: Bool
 False :: Bool
 (==) :: [Word2] -> [Word2] -> Bool
@@ -35,12 +35,11 @@ strictlyOrdered (toList t) == True
                isIn x Null == False
        (xs == toList Null) == (Null == fromList xs)
 
-              Null <=  t
-       toList Null <=  xs
-                 t <=  insert x t
-        delete x t <=  t
-strictlyOrdered xs ==> ordered xs
-     insert x Null <=  insert x t
+         Null <= t
+  toList Null <= xs
+            t <= insert x t
+   delete x t <= t
+insert x Null <= insert x t
 
 isIn x t ==> insert x t == t
 

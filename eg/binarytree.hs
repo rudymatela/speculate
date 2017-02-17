@@ -94,13 +94,13 @@ main = speculate args
       , constant "toList" (toList :: BT Item -> [Item])
       , constant "fromList" (fromList :: [Item] -> BT Item)
       , constant "isSearch" (isSearch :: BT Item -> Bool)
-      , constant "ordered" (ordered :: [Item] -> Bool)
-      , constant "strictlyOrdered" (strictlyOrdered :: [Item] -> Bool)
       , constant "isIn" (isIn :: Item -> BT Item -> Bool)
       ]
   , backgroundConstants =
       [ constant "<="  ((<=) :: Item -> Item -> Bool)
       , constant "/="  ((/=) :: Item -> Item -> Bool)
+      , constant "ordered" (ordered :: [Item] -> Bool)
+      , constant "strictlyOrdered" (strictlyOrdered :: [Item] -> Bool)
 --      TODO: when the following is added speculate "breaks" and prints a lot
 --            of junk laws.  Prune those away in speculate.  Then re-add not.
 --    , constant "not" (not :: Bool -> Bool)
