@@ -28,7 +28,7 @@ instance Charable Symbol where toChar (Symbol c) = c
 testMatches :: (Listable a, Show a, Charable a, Ord a) => RE a -> [Bool]
 testMatches = tm `withMemory` mem
   where
-  tm r = map (\e -> match toChar e r) $ take 100 list
+  tm r = map (\e -> match toChar e r) $ take 120 list
   mem = memoryFor 720720 tm -- induces "Ord a" constraint
 
 observingList :: (a -> a -> Bool) -> (b -> [a]) -> b -> b -> Bool
@@ -36,7 +36,7 @@ observingList g f = and .: (zipWith g `on` f) where (.:) = (.) . (.)
 
 main :: IO ()
 main = speculate args
-  { maxTests = 25
+  { maxTests = 30
   , maxSize = 4
   , instances =
       [ eqWith  $ ((==) `on` testMatches :: RE Symbol -> RE Symbol -> Bool)
