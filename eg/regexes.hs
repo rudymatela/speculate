@@ -31,13 +31,16 @@ testMatches = tm `withMemory` mem
   tm r = map (\e -> match toChar e r) $ take 100 list
   mem = memory tm -- induces "Ord a" constraint
 
+observingList :: (a -> a -> Bool) -> (b -> [a]) -> b -> b -> Bool
+observingList g f = and .: (zipWith g `on` f) where (.:) = (.) . (.)
+
 main :: IO ()
 main = speculate args
   { maxTests = 25
   , maxSize = 4
   , instances =
       [ eqWith  $ ((==) `on` testMatches :: RE Symbol -> RE Symbol -> Bool)
-      , ordWith $ ((<=) `on` testMatches :: RE Symbol -> RE Symbol -> Bool)
+      , ordWith $ ((<=) `observingList` testMatches :: RE Symbol -> RE Symbol -> Bool)
       , ins "c" (undefined :: Symbol)
       , ins "r" (undefined :: RE Symbol)
       ]

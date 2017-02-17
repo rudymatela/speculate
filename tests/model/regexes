@@ -22,7 +22,6 @@ r :. Empty == r
 
   None <= r
      r <= r :+ s
-r :. s <= r
-r :. s <= Empty
-r :. s <= r :. r
+r :. s <= s
+r :. r <= r :+ s
 
