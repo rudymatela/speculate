@@ -34,6 +34,10 @@ testMatches = tm `withMemory` mem
 observingList :: (a -> a -> Bool) -> (b -> [a]) -> b -> b -> Bool
 observingList g f = and .: (zipWith g `on` f) where (.:) = (.) . (.)
 
+-- when running this, unless you set maxTests to 360
+-- the following wrong law will appear:
+-- r :. r <= r :+ s
+-- when using -t360, better use 7207200 as memory for good measure
 main :: IO ()
 main = speculate args
   { maxTests = 30
