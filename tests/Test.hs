@@ -75,6 +75,7 @@ module Test
   , ll
   , xxs, yys
   , (-:-), (-++-)
+  , head', tail'
   , insert', elem', sort'
 
   , consE, appendE
@@ -436,6 +437,12 @@ infixr 5 -++-
 
 appendE :: Expr
 appendE = constant "++" ((++) :: [Int] -> [Int] -> [Int])
+
+head' :: Expr -> Expr
+head' exs = headE :$ exs where headE = constant "head" (head :: [Int] -> Int)
+
+tail' :: Expr -> Expr
+tail' exs = tailE :$ exs where tailE = constant "tail" (tail :: [Int] -> [Int])
 
 insert' :: Expr -> Expr -> Expr
 insert' ex exs = insertE :$ ex :$ exs where insertE = constant "insert" (L.insert :: Int -> [Int] -> [Int])
