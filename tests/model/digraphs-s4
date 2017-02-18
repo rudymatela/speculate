@@ -36,7 +36,10 @@ subgraph xs emptyDigraph == emptyDigraph
  isEdge x y emptyDigraph == False
  isPath x y emptyDigraph == False
 
-emptyDigraph <= a
+          emptyDigraph <= a
+                     a <= addNode x a
+         subgraph xs a <= a
+addNode x emptyDigraph <= addNode x a
 
 isNode x a ==> addNode x a == a
 

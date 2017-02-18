@@ -4,6 +4,7 @@ import Test.Speculate
 import Test.LeanCheck hiding ((\/))
 import Test.LeanCheck.Utils
 import Data.Function (on)
+import Data.List (isSubsequenceOf)
 
 import Digraph
 import Data.Typeable (Typeable1) -- for GHC < 7.8
@@ -16,7 +17,8 @@ deriving instance Typeable Digraph
 deriving instance Typeable Nat     -- for GHC < 7.10
 
 instance Ord a => Ord (Digraph a) where
-  compare = compare `on` nodeSuccs
+  (<=) = (isSubsequenceOf `on` edges)
+    &&&& (isSubsequenceOf `on` nodes)
 
 instance (Ord a, Listable a) => Listable (Digraph a) where
   tiers = concatMapT graphs $ setsOf tiers

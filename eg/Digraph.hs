@@ -3,7 +3,7 @@
 -- Colin Runciman, May 2015
 
 module Digraph (Digraph(..), okDigraph, strictOrder,
-                sources, targets, nodes, preds, succs,
+                sources, targets, nodes, edges, preds, succs,
                 isNode, isEdge, isPath,
                 emptyDigraph, addNode, addEdge, assoc1toNdigraph,
                 transitiveClosure, topoSort,
@@ -36,6 +36,9 @@ strictOrder _          =  True
 
 nodes :: Digraph a -> [a]
 nodes (D d)  =  [s | (s,_) <- d]
+
+edges :: Digraph a -> [(a,a)]
+edges (D d)  =  [(s,t) | (s,ts) <- d, t <- ts]
 
 sources :: Digraph a -> [a]
 sources (D d)  =  [s | (s,ts) <- d, not (null ts)]
