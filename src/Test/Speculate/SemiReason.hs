@@ -44,6 +44,8 @@ simplerThan seq = updateSEquationsBy upd
     where
     r  =          takeWhile (/= seq) eqs
     r' = drop 1 $ dropWhile (/= seq) eqs
+-- simplerThan used to be just:
+-- simplerThan seq = updateSEquationsBy (takeWhile (/= seq))
 
 transConsequence :: Shy -> Equation -> Bool
 transConsequence shy (e1,e2) = or [ e1' == e2'
