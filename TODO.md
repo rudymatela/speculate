@@ -98,6 +98,14 @@ redundancy to remove
   There are lots of other redundant equations there.  Maybe those are related
   to the planned genericMatch pruning principle?  (see a bit above)
 
+* On `./eg/binarytree`, when toList and fromList are moved into the foreground,
+  the following redundant laws appear:
+
+  (xs == []) == (Null == fromList xs)
+  xs == toList t ==> ordered xs
+  xs == toList t ==> strictlyOrdered xs
+  xs == toList t ==> t == fromList xs
+
 
 Later Later
 -----------
