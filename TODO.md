@@ -9,12 +9,7 @@ Warning: I tend to ramble...
 current
 -------
 
-* discard consequences of substitution on equations and inequations
-  (see redundancy section)
-
 * consistency: rename semi to inequations everywhere.
-
-* group semi and conditional equations by type (as it is the case with equations)
 
 * improve printing by separating variables, constants and background constants.
 

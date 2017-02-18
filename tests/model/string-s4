@@ -30,10 +30,8 @@ unlines (lines (unlines css)) == unlines css
            words ("\n" ++ cs) == words cs
 
                  "" <= cs
-           lines "" <= css
                  cs <= cs ++ ds
                  cs <= unlines (lines cs)
-lines (unlines css) <= css
                "\n" <= cs ++ "\n"
                "\n" <= cs ++ " "
          "\n" ++ cs <= " "
@@ -44,4 +42,6 @@ lines (unlines css) <= css
          cs ++ "\n" <= cs ++ " "
  unlines (lines cs) <= cs ++ " "
  unlines (lines cs) <= cs ++ "\n"
+           lines "" <= css
+lines (unlines css) <= css
 

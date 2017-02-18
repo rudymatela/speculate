@@ -66,6 +66,7 @@ prettyShy :: (Equation -> Bool) -> (Expr -> Expr -> Bool) -> Shy -> String
 prettyShy shouldShow equivalentInstanceOf shy =
     table "r l l"
   . map showSELine
+  . sortOn (typ . fst)
   . filter shouldShow
   . discardLater (equivalentInstanceOf `on` uncurry phonyEquation)
   . discard (transConsequence shy)

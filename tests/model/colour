@@ -73,6 +73,7 @@ fromHSL q (0 % 1) (1 % 2) == grey
         value (green - c) == chroma (green - c)
           value (red - c) == chroma (red - c)
 
+       hue c <= Just (1 % 1)
        0 % 1 <= chroma c
        0 % 1 <= lightness c
        0 % 1 <= saturation c
@@ -84,5 +85,4 @@ saturation c <= 1 % 1
     chroma c <= saturation c
     chroma c <= value c
  lightness c <= value c
-       hue c <= Just (1 % 1)
 

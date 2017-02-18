@@ -28,11 +28,11 @@ mod :: Int -> Int -> Int
 (False == even x) == odd x
  (False == odd x) == even x
 
-        p ==> True
-    False ==> p
 x `mod` 2 <=  2
         0 <=  x `mod` 2
 x `mod` 2 <=  1
+        p ==> True
+    False ==> p
    x == 0 ==> even x
    x == 1 ==> odd x
    x == 2 ==> even x

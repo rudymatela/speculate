@@ -135,6 +135,7 @@ prettyChy shouldShow =
   . map (\(pre,e1,e2) -> [ showOpExpr "==>" pre
                          , "==>", showOpExpr "==" e1
                          , "==",  showOpExpr "==" e2 ])
+  . sortOn (typ . (\(c,x,y) -> x))
   . filter shouldShow
   . cequations
   . cfinalize

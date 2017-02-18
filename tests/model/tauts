@@ -26,11 +26,11 @@ taut (eval p) == taut p
   (p == True) == p
      (p == q) == (q == p)
 
-              p ==> True
-          False ==> p
     subst n p p <=  p
     subst n p p <=  subst n True p
 subst n False p <=  subst n p p
+              p ==> True
+          False ==> p
     p == eval q ==> p == eval p
 
 taut q ==> subst n (taut q) p == subst n True p

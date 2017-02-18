@@ -44,11 +44,11 @@ Star (r :+ Empty) == Star r
     r :. r <=  Star r
 r :+ Empty <=  Star r
     r :. s <=  r :+ s
+r :+ Empty <=  r :+ s
     r <= s ==> r <= Empty
     r <= s ==> Empty <= s
     s <= r ==> r <= Empty
     r == s ==> r == Empty
-r :+ Empty <=  r :+ s
  r <= None ==> r <= s
     s <= r ==> r == Empty
  r <= None ==> s <= Empty

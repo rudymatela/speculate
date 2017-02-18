@@ -37,8 +37,8 @@ deleteS x (singleS x) == emptyS
 (emptyS == singleS x) == False
 
                 emptyS <= s
-          sizeS emptyS <= sizeS s
 singleS (sizeS emptyS) <= singleS (sizeS s)
+          sizeS emptyS <= sizeS s
 
 x <~ s ==>    insertS x s == s
 x <~ s ==> s /\ singleS x == singleS x

@@ -44,8 +44,8 @@ ordered (insert x xs) == ordered xs
          [] <=  xs
     sort xs <=  xs
          xs <=  xs ++ ys
-   xs == [] ==> ordered xs
 insert x xs <=  x:xs
         [x] <=  x:xs
+   xs == [] ==> ordered xs
 
 
