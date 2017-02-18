@@ -300,6 +300,8 @@ prepareArgs args =
   , "fforce"             --.   \a -> a {force = True}
   , "hhelp"              --.   \a -> a {showHelp = True}
   , " exclude"           --= \s a -> a {exclude = exclude a ++ splitAtCommas s}
+  , "aall-foreground"    --.   \a -> a {constants = constants a ++ backgroundConstants a
+                                       ,backgroundConstants = []}
   ]
   where
   (short:long) --= fun = flagReq  [[short],long] ((Right .) . fun) "X" ""
