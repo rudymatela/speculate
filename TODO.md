@@ -9,8 +9,9 @@ Warning: I tend to ramble...
 current
 -------
 
-* fix observational equality for regular expression example.  I should zip or
-  filter and subset.  Not compare the resulting lists.
+* discard consequences of substitution on equations and inequations
+
+* consistency: rename semi to inequations everywhere.
 
 * group semi and conditional equations by type (as it is the case with equations)
 
