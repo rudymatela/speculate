@@ -106,6 +106,16 @@ redundancy to remove
   xs == toList t ==> strictlyOrdered xs
   xs == toList t ==> t == fromList xs
 
+* On `./eg/digraphs` we get:
+
+	1. isEdge x y a ==> isNode x a
+	2. isEdge x y a ==> isNode y a
+	3. isPath x y a ==> isNode x a
+	4. isPath x y a ==> isNode y a
+	5. isEdge x y a ==> isPath x y a
+
+  3 and 4 are implied by 1, 2, 5.
+
 
 Later Later
 -----------
