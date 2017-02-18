@@ -10,6 +10,7 @@ current
 -------
 
 * discard consequences of substitution on equations and inequations
+  (see redundancy section)
 
 * consistency: rename semi to inequations everywhere.
 
