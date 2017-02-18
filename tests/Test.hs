@@ -111,6 +111,7 @@ import System.Exit (exitFailure)
 import Data.List (elemIndices)
 
 import Test.Speculate hiding (getArgs, true, false, ord)
+import qualified Test.Speculate as S
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
 
@@ -121,6 +122,11 @@ import Data.List as L (sort,insert)
 
 import Test.Speculate.Utils
 
+isTrue :: Instances -> Int -> Expr -> Bool
+isTrue = S.true
+
+isFalse :: Instances -> Int -> Expr -> Bool
+isFalse = S.false
 
 reportTests :: [Bool] -> IO ()
 reportTests tests =
