@@ -125,7 +125,9 @@ redundancy to remove
 	4. isPath x y a ==> isNode y a
 	5. isEdge x y a ==> isPath x y a
 
-  3 and 4 are implied by 1, 2, 5.
+  1 and 2 are implied by 3, 4, 5.
+
+  EDIT: They are but will not be pruned as isPath is more complex than isEdge
 
 
 Later Later

@@ -24,6 +24,17 @@ lesser  shy e = [ e1 | (e1,e2) <- sequations shy, e == e2 ]
 greater :: Shy -> Expr -> [Expr]
 greater shy e = [ e2 | (e1,e2) <- sequations shy, e == e1 ]
 
+-- | given a semi-equation (inequality),
+--   simplerThan restricts the Shy (SemiTheory)
+--   into only equations simpler
+--   than the given semi-equation
+--   or that are instances of simpler equations.
+--
+-- half-baked example:
+--
+-- @x + 1@ is simpler than @x + y@ and it is returned.
+-- @(1 + 1) + 1@ is more complex than @x + y@
+-- but it is returned as well as it is an instance of @x + 1@.
 simplerThan :: Equation -> Shy -> Shy
 simplerThan seq = updateSEquationsBy upd
   where
