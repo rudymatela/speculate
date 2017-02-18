@@ -64,23 +64,6 @@ stranger things
 redundancy to remove
 --------------------
 
-* on `eg/list`:
-
-  xs <= head xs:tail xs
-
-  this follows from xs == head xs:tail xs
-  but is actually not true in general (empty xs)
-  so maybe just test the reverse and discard if it holds?
-
-  WHOA!  This is True in general!  Lazyness remember?
-
-  > [] < (head []:tail [])
-  True
-  > [] < (undefined:undefined)
-  True
-
-  Great thing to report in the paper.
-
 * remove redundancy on taut example:
 
 	taut q ==> subst n (taut q) p == subst n True p
@@ -116,18 +99,6 @@ redundancy to remove
   xs == toList t ==> ordered xs
   xs == toList t ==> strictlyOrdered xs
   xs == toList t ==> t == fromList xs
-
-* On `./eg/digraphs` we get:
-
-	1. isEdge x y a ==> isNode x a
-	2. isEdge x y a ==> isNode y a
-	3. isPath x y a ==> isNode x a
-	4. isPath x y a ==> isNode y a
-	5. isEdge x y a ==> isPath x y a
-
-  1 and 2 are implied by 3, 4, 5.
-
-  EDIT: They are but will not be pruned as isPath is more complex than isEdge
 
 
 Later Later
