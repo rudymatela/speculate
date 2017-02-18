@@ -72,6 +72,15 @@ redundancy to remove
   but is actually not true in general (empty xs)
   so maybe just test the reverse and discard if it holds?
 
+  WHOA!  This is True in general!  Lazyness remember?
+
+  > [] < (head []:tail [])
+  True
+  > [] < (undefined:undefined)
+  True
+
+  Great thing to report in the paper.
+
 * remove redundancy on taut example:
 
 	taut q ==> subst n (taut q) p == subst n True p
