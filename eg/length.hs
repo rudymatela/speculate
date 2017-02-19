@@ -1,15 +1,17 @@
 import Test.Speculate
-import Data.List (sort,insert)
+import Data.List (isSubsequenceOf)
 
 main :: IO ()
 main = speculate args
   { constants =
-      [ showConstant (0 :: Int)
---    , showConstant (1 :: Int)
-      , showConstant ([] :: [Int])
+      [ constant "length" $ length  -:> [int]
+      ]
+  , backgroundConstants =
+      [ showConstant ([] :: [Int])
       , constant ":"      $ (:)     -:>  int
       , constant "++"     $ (++)    -:> [int]
-      , constant "length" $ length  -:> [int]
---    , constant "+"      $ (+)     -:>  int
+      , showConstant (0 :: Int)
+--    , showConstant (1 :: Int)
       ]
+  , instances = [ ordWith (isSubsequenceOf :: [Int] -> [Int] -> Bool) ]
   }
