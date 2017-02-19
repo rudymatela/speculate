@@ -75,6 +75,13 @@ redundancy to remove
 
   implied by `ordered (sort xs) == True` *and* `sort (xs++ys) == sort (ys++xs)`
 
+* on `./eg/insertsort`, we get:
+
+    xs == sort ys ==> ordered xs
+    (sort xs == []) == (xs == [])
+
+  those are consequences of substitution
+
 * On `./eg/digraphs -s6`, I get
   `False == isNode x a ==>  succs x a == preds x a`
   (and other related equations.) A more general version wouldn't be

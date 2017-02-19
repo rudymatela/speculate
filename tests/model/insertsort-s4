@@ -8,44 +8,35 @@ max  #-vars    =    2  (for inequational and conditional laws)
 _ :: [Int]  (holes: [Int])
 _ :: Int  (holes: Int)
 _ :: Bool  (holes: Bool)
-[] :: [Int]
-(:) :: Int -> [Int] -> [Int]
-(++) :: [Int] -> [Int] -> [Int]
 insert :: Int -> [Int] -> [Int]
 sort :: [Int] -> [Int]
+False :: Bool
+True :: Bool
+[] :: [Int]
+(==) :: Int -> Int -> Bool
+(<=) :: Int -> Int -> Bool
+(:) :: Int -> [Int] -> [Int]
+(++) :: [Int] -> [Int] -> [Int]
 elem :: Int -> [Int] -> Bool
 ordered :: [Int] -> Bool
 all :: (Int -> Bool) -> [Int] -> Bool
-False :: Bool
-True :: Bool
-(==) :: Int -> Int -> Bool
-(<=) :: Int -> Int -> Bool
 (==) :: [Int] -> [Int] -> Bool
 (==) :: Bool -> Bool -> Bool
 
        sort (sort xs) == sort xs
-             xs ++ [] == xs
           insert x [] == [x]
-             [] ++ xs == xs
    sort (insert x xs) == sort (x:xs)
    insert x (sort xs) == sort (x:xs)
              sort [x] == [x]
       sort (xs ++ ys) == sort (ys ++ xs)
     ordered (sort xs) == True
-            elem x [] == False
 ordered (insert x xs) == ordered xs
      elem x (sort xs) == elem x xs
       (xs == sort xs) == ordered xs
-          ordered [x] == True
-        all (x <=) [] == True
-        all (x ==) [] == True
       (sort xs == []) == (xs == [])
 
-         [] <=  xs
-    sort xs <=  xs
-         xs <=  xs ++ ys
-insert x xs <=  x:xs
-        [x] <=  x:xs
-   xs == [] ==> ordered xs
+    sort xs <= xs
+insert x xs <= x:xs
+insert x [] <= x:xs
 
 
