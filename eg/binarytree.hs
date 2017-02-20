@@ -5,7 +5,13 @@ import Data.Function (on)
 import Data.List (isSubsequenceOf)
 
 data BT a = Null | Fork (BT a) a (BT a)
-            deriving (Eq,Ord,Show)
+            deriving (Show)
+
+instance (Eq a, Ord a) => Eq (BT a) where
+  (==) = (==) `on` toList
+
+instance (Eq a, Ord a) => Ord (BT a) where
+  (<=) = isSubsequenceOf `on` toList
 
 insert :: Ord a => a -> BT a -> BT a
 insert x Null             = Fork Null x Null
@@ -74,18 +80,10 @@ instance (Ord a, Listable a) => Listable (BT a) where
 
 type Item = Word2
 
-(|==|) :: (Listable a, Eq a, Ord a) => BT a -> BT a -> Bool
-(|==|) = (==) `on` toList
-
-(|<=|) :: (Listable a, Eq a, Ord a) => BT a -> BT a -> Bool
-(|<=|) = isSubsequenceOf `on` toList
-
 main :: IO ()
 main = speculate args
   { instances =
-      [ eqWith  ((|==|) :: BT Item -> BT Item -> Bool)
-      , ordWith ((|<=|) :: BT Item -> BT Item -> Bool)
-      , ins "t" (undefined :: BT Item)
+      [ ins "t" (undefined :: BT Item)
       ]
   , constants =
       [ showConstant (Null :: BT Item)
