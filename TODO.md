@@ -9,6 +9,12 @@ Warning: I tend to ramble...
 current
 -------
 
+* automatically detect and use orders.  algorithm sketch:
+  1. list everything of the type a -> a -> Bool
+  2. check and filter everything that is an order
+  3. parameterize semiTheoryFromEtc so that it takes an order re-run for
+     several different types
+
 * consistency: rename semi to inequations everywhere.
 
 * improve printing by separating variables, constants and background constants.
