@@ -1,6 +1,10 @@
 import Test.Speculate
 import Data.List (sort,insert)
 
+ordered :: Ord a => [a] -> Bool
+ordered (x:y:xs) = x <= y && ordered (y:xs)
+ordered _        = True
+
 main :: IO ()
 main = speculate args
   { constants =
@@ -8,10 +12,6 @@ main = speculate args
       , constant "sort"    $ sort    -:> [int]
       ]
   , backgroundConstants =
-    let
-      ordered (x:y:xs) = x <= y && ordered (y:xs)
-      ordered _        = True
-    in
       [ constant "False"     False
       , constant "True"      True
       , showConstant ([] :: [Int])
