@@ -17,6 +17,7 @@ main = speculate args
       , showConstant ([] :: [Int])
       , constant "=="      $ (==)    -:>  int
       , constant "<="      $ (<=)    -:>  int
+      , constant "<"       $ (<)     -:>  int
       , constant ":"       $ (:)     -:>  int
       , constant "++"      $ (++)    -:> [int]
       , constant "elem"    $ elem   ->:> [int]
