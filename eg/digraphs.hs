@@ -17,8 +17,8 @@ deriving instance Typeable Digraph
 deriving instance Typeable Nat     -- for GHC < 7.10
 
 instance Ord a => Ord (Digraph a) where
-  (<=) = (isSubsequenceOf `on` edges)
-    &&&& (isSubsequenceOf `on` nodes)
+  g1 <= g2 = nodes g1 `isSubsequenceOf` nodes g2
+          && edges g1 `isSubsequenceOf` edges g2
 
 instance (Ord a, Listable a) => Listable (Digraph a) where
   tiers = concatMapT graphs $ setsOf tiers
