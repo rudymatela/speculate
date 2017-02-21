@@ -40,6 +40,9 @@ module Test.Speculate.Reason
 
   , reductions1
   , reductionsO
+
+  , dwoBy
+  , (|>)
   )
 where
 

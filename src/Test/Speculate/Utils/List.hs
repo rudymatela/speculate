@@ -3,7 +3,7 @@ module Test.Speculate.Utils.List
   ( pairsThat
   , count, counts, countsBy
   , firsts
-  , nubSort
+  , nubSort, nubSortBy
   , (+++), nubMerge, nubMergeBy, nubMergeOn, nubMerges, nubMergeMap
   , ordIntersect, ordIntersectBy
   , ordered, orderedBy, orderedOn, strictlyOrdered, strictlyOrderedOn
@@ -45,6 +45,9 @@ firsts (x:xs) = x : firsts (filter (/= x) xs)
 
 nubSort :: Ord a => [a] -> [a]
 nubSort = nub . sort
+
+nubSortBy :: (a -> a -> Ordering) -> [a] -> [a]
+nubSortBy cmp = nubBy (\x y -> x `cmp` y == EQ) . sortBy cmp
 
 nubMergeBy :: (a -> a -> Ordering) -> [a] -> [a] -> [a]
 nubMergeBy cmp (x:xs) (y:ys) = case x `cmp` y of
