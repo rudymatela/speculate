@@ -27,7 +27,7 @@ testMatches :: (Listable a, Show a, Charable a, Ord a) => RE a -> [Bool]
 testMatches = tm `withMemory` mem
   where
   tm r = map (\e -> match toChar e r) $ take 120 list
-  mem = memoryFor 720720 tm -- induces "Ord a" constraint
+  mem = memoryFor 10000000 tm -- induces "Ord a" constraint
 
 observingList :: (a -> a -> Bool) -> (b -> [a]) -> b -> b -> Bool
 observingList g f = and .: (zipWith g `on` f) where (.:) = (.) . (.)
@@ -41,7 +41,6 @@ observingList g f = and .: (zipWith g `on` f) where (.:) = (.) . (.)
 -- when running this, unless you set maxTests to 360
 -- the following wrong law will appear:
 -- r :. r <= r :+ s
--- when using -t360, better use 7207200 as memory for good measure
 main :: IO ()
 main = speculate args
   { maxTests = 30
