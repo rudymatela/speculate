@@ -26,31 +26,20 @@ True :: Bool
       r :+ Star r == Star r
 Star (r :+ Empty) == Star r
   Empty :+ Star r == Star r
+     (r <= Empty) == True
+     (r == Empty) == (Empty <= r)
       (r == None) == (r <= None)
       (None <= r) == True
-    (r <= Star r) == True
-    (r == Star r) == (Star r <= r)
-(Empty <= Star r) == True
-(Empty == Star r) == (r <= Empty)
-(Star r <= Empty) == (r <= Empty)
+    (r <= Star s) == True
+    (r == Star s) == (Star s <= r)
  (Star r <= None) == False
-    (r <= Star s) == (r <= Star t)
 
       None <=  r
          r <=  Star r
      Empty <=  Star r
          r <=  r :+ s
-     Empty <=  r :+ s
     r :. r <=  Star r
 r :+ Empty <=  Star r
     r :. s <=  r :+ s
-r :+ Empty <=  r :+ s
-    r <= s ==> r <= Empty
-    r <= s ==> Empty <= s
-    s <= r ==> r <= Empty
-    r == s ==> r == Empty
  r <= None ==> r <= s
-    s <= r ==> r == Empty
- r <= None ==> s <= Empty
- r <= None ==> s == Empty
 

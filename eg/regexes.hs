@@ -10,7 +10,7 @@ instance Listable Symbol where
 
 instance Listable a => Listable (RE a) where
   tiers = cons0 Empty
-       \/ cons0 None `ofWeight` 1
+       \/ cons0 None
        \/ cons1 Lit
        \/ cons1 Star
        \/ cons2 (:+)
@@ -39,9 +39,8 @@ observingList g f = and .: (zipWith g `on` f) where (.:) = (.) . (.)
 (/<=/) :: RE Symbol -> RE Symbol -> Bool
 (/<=/) = (<=) `observingList` testMatches
 
--- when running this, unless you set maxTests to 360
--- the following wrong law will appear:
--- r :. r <= r :+ s
+-- wrong laws appear when setting maxSize to 5, even when tests are increased
+-- to 500 (or more)
 main :: IO ()
 main = speculate args
   { maxTests = 30
