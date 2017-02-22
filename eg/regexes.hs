@@ -16,6 +16,27 @@ instance Listable a => Listable (RE a) where
        \/ cons2 (:+)
        \/ cons2 (:.)
 
+canonicalRE :: (Eq a, Ord a) => RE a -> Bool
+-- by laws of size 3
+canonicalRE (Star (Star r))             = False -- == Star r
+canonicalRE (r      :+ s)      | r >= s = False -- == r or == s :+ r
+canonicalRE (r      :+ None)            = False -- == r
+canonicalRE (None   :+ r)               = False -- == r
+canonicalRE (r      :. Empty)           = False -- == r
+canonicalRE (Empty  :. r)               = False -- == r
+canonicalRE (r      :. None)            = False -- == None
+canonicalRE (None   :. r)               = False -- == None
+-- by laws of size 4
+canonicalRE (r      :+ Star s) | r == s = False -- == Star r
+canonicalRE (Star r :+ s)      | r == s = False -- == Star r
+canonicalRE (Star r :. s)      | r == s = False -- == r :. Star r
+canonicalRE (Star (r :+ Empty))         = False -- == Star r
+canonicalRE (Star (Empty :+ r))         = False -- == Star r
+canonicalRE (Empty  :+ Star r)          = False -- == Star r
+canonicalRE (Star r :+ Empty)           = False -- == Star r
+canonicalRE _                           = True
+
+
 deriving instance Eq a => Eq (RE a)
 deriving instance Ord a => Ord (RE a)
 
