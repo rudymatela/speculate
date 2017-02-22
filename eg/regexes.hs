@@ -44,6 +44,19 @@ canonicalRE ((r :+ Empty) :. s)           = False -- == s :+ (r :. s)
 canonicalRE (Star (r :. Star s)) | r == s = False -- == Star r
 canonicalRE (Star (Star r :. s)) | r == s = False -- == Star r
 canonicalRE (Star r :. Star s)   | r == s = False -- == Star r
+-- by laws of size 6
+canonicalRE (r :+ Star (r' :+ s))     | r == r'  =  False -- == Star (r :+ s)
+canonicalRE (r :+ Star (s :+ r'))     | r == r'  =  False -- == Star (r :+ s)
+canonicalRE (Star (r' :+ s) :+ r)     | r == r'  =  False -- == Star (r :+ s)
+canonicalRE (Star (s :+ r') :+ r)     | r == r'  =  False -- == Star (r :+ s)
+canonicalRE (Star r :. (r' :. s))     | r == r'  =  False -- == r :. (Star r :. s)
+canonicalRE (Star (r :. s) :. r')     | r == r'  =  False -- == r :. Star (s :. r)
+canonicalRE (r :+ (r' :. Star s))     | r == r'  =  False -- == r :. Star s
+canonicalRE (r :+ (Star s :. r'))     | r == r'  =  False -- == Star s :. r
+canonicalRE (Star (Star r :. Star s))            =  False -- == Star (r :+ s)
+canonicalRE (Star (r :+ (r' :. r''))) | r == r' && r == r'' =  False -- == Star r
+canonicalRE (Star r :+ (r' :. r''))   | r == r' && r == r'' =  False -- == Star r
+canonicalRE (Empty :+ (r :. Star r')) | r == r'  =  False -- == Star r
 -- default
 canonicalRE _ = True
 
