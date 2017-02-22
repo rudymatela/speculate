@@ -18,14 +18,14 @@ instance Listable a => Listable (RE a) where
 
 canonicalRE :: (Eq a, Ord a) => RE a -> Bool
 -- by laws of size 3
-canonicalRE (Star (Star r))             = False -- == Star r
-canonicalRE (r      :+ s)      | r >= s = False -- == r or == s :+ r
-canonicalRE (r      :+ None)            = False -- == r
-canonicalRE (None   :+ r)               = False -- == r
-canonicalRE (r      :. Empty)           = False -- == r
-canonicalRE (Empty  :. r)               = False -- == r
-canonicalRE (r      :. None)            = False -- == None
-canonicalRE (None   :. r)               = False -- == None
+canonicalRE (Star (Star r))        = False -- == Star r
+canonicalRE (r      :+ s) | r >= s = False -- == r or == s :+ r
+canonicalRE (r      :+ None)       = False -- == r
+canonicalRE (None   :+ r)          = False -- == r
+canonicalRE (r      :. Empty)      = False -- == r
+canonicalRE (Empty  :. r)          = False -- == r
+canonicalRE (r      :. None)       = False -- == None
+canonicalRE (None   :. r)          = False -- == None
 -- by laws of size 4
 canonicalRE (r      :+ Star s) | r == s = False -- == Star r
 canonicalRE (Star r :+ s)      | r == s = False -- == Star r
@@ -34,7 +34,19 @@ canonicalRE (Star (r :+ Empty))         = False -- == Star r
 canonicalRE (Star (Empty :+ r))         = False -- == Star r
 canonicalRE (Empty  :+ Star r)          = False -- == Star r
 canonicalRE (Star r :+ Empty)           = False -- == Star r
-canonicalRE _                           = True
+-- by laws of size 5
+canonicalRE ((r :+ s) :+ t)               = False -- == r :+ (s :+ t)
+canonicalRE ((r :. s) :. t)               = False -- == r :. (s :. t)
+canonicalRE (Star (r :+ Star s))          = False -- == Star (r :+ s)
+canonicalRE (Star (Star r :+ s))          = False -- == Star (r :+ s)
+canonicalRE (r :. (s :+ Empty))           = False -- == r :+ (r :. s)
+canonicalRE ((r :+ Empty) :. s)           = False -- == s :+ (r :. s)
+canonicalRE (Star (r :. Star s)) | r == s = False -- == Star r
+canonicalRE (Star (Star r :. s)) | r == s = False -- == Star r
+canonicalRE (Star r :. Star s)   | r == s = False -- == Star r
+-- default
+canonicalRE _ = True
+
 
 
 deriving instance Eq a => Eq (RE a)
