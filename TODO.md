@@ -112,6 +112,20 @@ redundancy to remove
 Later Later
 -----------
 
+* improve performance of inequality generation by using the following
+  algorithm:
+
+	1. compute a theory and equivalence classes of schemas as usual;
+	2. from classes of schemas, build class representatives of canonical
+	   expressions (first occurrences in lexicographic order);
+	3. rehole those representatives then compute <= relations
+	4. expand <= expressions, filtering those that are true and discarding
+	   redundancies "internally" (within possible variable namings)
+	5. filter redundant <= expressions.  I believe this has to be adapted a
+	   tiny bit.
+
+  I am not sure if it will work.  But it might be worth a try.
+
 * print errors on stderr, not on stdout
 
 * add maximum commutative size limit?
