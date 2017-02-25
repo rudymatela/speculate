@@ -1,0 +1,12 @@
+#!/bin/bash
+time ./eg/regexes -t200 -s4 -z4 -v2 | tee -a etc/regexes-20170223-0100-t200-s4-z4-v2; eject
+time ./eg/regexes -t200 -s5 -z5 -v2 | tee -a etc/regexes-20170223-0100-t200-s5-z5-v2; eject
+time ./eg/regexes -t200 -s6 -z6 -v2 | tee -a etc/regexes-20170223-0100-t200-s6-z6-v2; eject
+time ./eg/regexes -t200 -s6 -z6 -v3 | tee -a etc/regexes-20170223-0100-t200-s6-z6-v3; eject
+time ./eg/regexes -t200 -s7 -z7 -v2 | tee -a etc/regexes-20170223-0100-t200-s7-z7-v2; eject
+time ./eg/regexes -t200 -s7 -z7 -v3 | tee -a etc/regexes-20170223-0100-t200-s7-z7-v3; eject
+# runtimes:
+# 442    7m 00s
+# 552   38m 01s
+# 662  233m 14s
+# 663 1172m 26s (~ 19 hours -- user: 1079m 35s)
