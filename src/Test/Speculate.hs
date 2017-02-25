@@ -67,10 +67,8 @@ data Args = Args
   , showHelp             :: Bool
   , force                :: Bool  -- ^ ignore errors
   , extra                :: [String] -- unused, user-defined meaning
-  , backgroundConstants  :: [Expr] -- ^ background constants
   , constants            :: [Expr] -- ^ constants used on both conditions and equations
-  , conditionConstants   :: [Expr] -- ^ constants exclusive to conditions
-  , equationConstants    :: [Expr] -- ^ constants exclusive to equations
+  , backgroundConstants  :: [Expr] -- ^ background constants
   , exclude              :: [String] -- ^ exclude this symbols from signature before running
   , onlyTypes            :: [String] -- ^ only allow those types at top-level equations / semi-equations
   }
@@ -107,8 +105,6 @@ args = Args
   , extra                = []
   , backgroundConstants  = []
   , constants            = []
-  , conditionConstants   = []
-  , equationConstants    = []
   , exclude              = []
   , onlyTypes            = []
   }
@@ -134,8 +130,7 @@ shouldShowEquation :: Args -> (Expr,Expr) -> Bool
 shouldShowEquation args (e1,e2) =
   shouldShow2 args (e1,e2) && (e1 `about` ea || e2 `about` ea)
   where
-  ea = equationConstants args
-    ++ ((constants args \\ conditionConstants args) \\ backgroundConstants args)
+  ea = constants args \\ backgroundConstants args
 
 shouldShow3 :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShow3 args (e1,e2,e3) = showConstantLaws args
@@ -144,13 +139,12 @@ shouldShow3 args (e1,e2,e3) = showConstantLaws args
 shouldShowConditionalEquation :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
                                              && cem ce e1 e2
-                                             && (ce `about` ca
+                                             && (ce `about` ea
                                               || e1 `about` ea
                                               || e2 `about` ea)
   where
   cem = condEqualM (computeInstances args) (maxTests args) (minTests args (maxTests args))
-  ca = conditionConstants args ++ ((constants args \\ equationConstants args)  \\ backgroundConstants args)
-  ea = equationConstants args  ++ ((constants args \\ conditionConstants args) \\ backgroundConstants args)
+  ea = constants args \\ backgroundConstants args
 
 keepExpr :: Args -> Expr -> Bool
 keepExpr Args{maxConstants = Just n} e | length (consts e) > n = False
@@ -176,10 +170,7 @@ types = nubMergeMap (typesIn . typ) . allConstants
 
 allConstants :: Args -> [Expr]
 allConstants args = discard (\c -> any (c `isConstantNamed`) (exclude args))
-                  $ constants args
-            `union` backgroundConstants args
-            `union` conditionConstants args
-            `union` equationConstants args
+                  $ constants args `union` backgroundConstants args
 
 -- | Are all constants in an expression about a list of constants?
 -- Examples in pseudo-Haskell:
