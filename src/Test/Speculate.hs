@@ -128,9 +128,9 @@ shouldShow2 args (e1,e2) = showConstantLaws args || hasVar e1 || hasVar e2
 
 shouldShowEquation :: Args -> (Expr,Expr) -> Bool
 shouldShowEquation args (e1,e2) =
-  shouldShow2 args (e1,e2) && (e1 `about` ea || e2 `about` ea)
+  shouldShow2 args (e1,e2) && (e1 `about` fore || e2 `about` fore)
   where
-  ea = constants args \\ backgroundConstants args
+  fore = foregroundConstants args
 
 shouldShow3 :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShow3 args (e1,e2,e3) = showConstantLaws args
@@ -139,12 +139,12 @@ shouldShow3 args (e1,e2,e3) = showConstantLaws args
 shouldShowConditionalEquation :: Args -> (Expr,Expr,Expr) -> Bool
 shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
                                              && cem ce e1 e2
-                                             && (ce `about` ea
-                                              || e1 `about` ea
-                                              || e2 `about` ea)
+                                             && (ce `about` fore
+                                              || e1 `about` fore
+                                              || e2 `about` fore)
   where
   cem = condEqualM (computeInstances args) (maxTests args) (minTests args (maxTests args))
-  ea = constants args \\ backgroundConstants args
+  fore = foregroundConstants args
 
 keepExpr :: Args -> Expr -> Bool
 keepExpr Args{maxConstants = Just n} e | length (consts e) > n = False
@@ -167,6 +167,9 @@ atoms args = map holeOfTy ts
 
 types :: Args -> [TypeRep]
 types = nubMergeMap (typesIn . typ) . allConstants
+
+foregroundConstants :: Args -> [Expr]
+foregroundConstants args = constants args \\ backgroundConstants args
 
 allConstants :: Args -> [Expr]
 allConstants args = discard (\c -> any (c `isConstantNamed`) (exclude args))
