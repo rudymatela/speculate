@@ -170,6 +170,27 @@ instance Ord Expr where
   compare = compareComplexity
 
 
+lexicompareBy :: (Expr -> Expr -> Ordering) -> Expr -> Expr -> Ordering
+lexicompareBy compareConstants = cmp
+  where
+  c1@(Constant _ _) `cmp` c2@(Constant _ _) = c1 `compareConstants` c2
+  Var      s1 _ `cmp` Var      s2 _ = s1 `compare` s2
+  (f :$ x)      `cmp` (g :$ y)      = f  `compare` g   `thn`  x `compare` y
+  (_ :$ _)      `cmp` _             = GT
+  _             `cmp` (_ :$ _)      = LT
+  _             `cmp` Var _ _       = GT
+  Var _ _       `cmp` _             = LT
+  -- Var < Constants < Apps
+
+lexicompareConstants :: Expr -> Expr -> Ordering
+lexicompareConstants = cmp
+  where
+  e1 `cmp` e2 | typ e1 /= typ e2 = if arity e1 /= arity e2
+                                     then arity e1 `compare` arity e2
+                                     else   typ e1 `compare`   typ e2
+  Constant s1 _ `cmp` Constant s2 _ = s1 `compare` s2
+  _ `cmp` _ = error "lexicompareConstants can only compare constants"
+
 -- | Compare two expressiosn lexicographically
 --
 -- 1st their type arity;
