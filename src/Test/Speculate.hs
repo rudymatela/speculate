@@ -264,7 +264,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
     $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
   when (reallyShowConditions args) . putStrLn
     . prettyChy (shouldShowConditionalEquation args)
-    $ conditionalTheoryFromThyAndReps ti n (maxVars args) (computeMaxCondSize args) thy es
+    $ conditionalTheoryFromThyAndReps ti (compareExpr args) n (maxVars args) (computeMaxCondSize args) thy es
   when (showDot args) $
     reportDot ti (onlyTypes args) (quietDot args) (maxVars args) n thy es
 

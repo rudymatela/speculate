@@ -168,11 +168,14 @@ semiTheoryFromThyAndReps ti cmp nt nv thy =
   . distinctFromSchemas ti nt nv thy
   . filter (isOrdE ti)
 
-conditionalTheoryFromThyAndReps :: Instances -> Int -> Int -> Int
+conditionalTheoryFromThyAndReps :: Instances
+                                -> (Expr -> Expr -> Ordering)
+                                -> Int -> Int -> Int
                                 -> Thy -> [Expr] -> Chy
-conditionalTheoryFromThyAndReps ti nt nv csz thy es' =
+conditionalTheoryFromThyAndReps ti cmp nt nv csz thy es' =
   conditionalEquivalences
-    (canonicalCEqnBy ti)
+    cmp
+    (canonicalCEqnBy cmp ti)
     (condEqual ti nt)
     (lessOrEqual ti nt)
     csz thy clpres cles
@@ -182,15 +185,16 @@ conditionalTheoryFromThyAndReps ti nt nv csz thy es' =
                 . filter (isEqE ti . fst)
                 $ classesFromSchemas ti nt nv thy es'
 
-conditionalEquivalences :: ((Expr,Expr,Expr) -> Bool)
+conditionalEquivalences :: (Expr -> Expr -> Ordering)
+                        -> ((Expr,Expr,Expr) -> Bool)
                         -> (Expr -> Expr -> Expr -> Bool)
                         -> (Expr -> Expr -> Bool)
                         -> Int -> Thy -> [Class Expr] -> [Class Expr] -> Chy
-conditionalEquivalences canon cequal (==>) csz thy clpres cles =
+conditionalEquivalences cmp canon cequal (==>) csz thy clpres cles =
     cdiscard (\(ce,e1,e2) -> subConsequence thy clpres ce e1 e2)
   . foldl (flip cinsert) (Chy [] cdg clpres thy)
-  . sortBy (\(c1,e11,e12) (c2,e21,e22) -> c1 `compareComplexity` c2
-                                       <> ((e11 `phonyEquation` e12) `compareComplexity` (e21 `phonyEquation` e22)))
+  . sortBy (\(c1,e11,e12) (c2,e21,e22) -> c1 `cmp` c2
+                                       <> ((e11 `phonyEquation` e12) `cmp` (e21 `phonyEquation` e22)))
   . discard (\(pre,e1,e2) -> pre == falseE
                           || length ((vars pre) \\ (vars e1 +++ vars e2)) > 0
                           || subConsequence thy [] pre e1 e2)

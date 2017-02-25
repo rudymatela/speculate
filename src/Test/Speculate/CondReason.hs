@@ -110,24 +110,24 @@ cfinalize chy@Chy{cequations = ceqs} =
                  , not $ cequivalent chy' ce' e1 e2
                  ]
 
-canonicalizeCEqn :: (Expr,Expr,Expr) -> (Expr,Expr,Expr)
-canonicalizeCEqn = canonicalizeCEqnWith preludeInstances
+canonicalizeCEqn :: (Expr -> Expr -> Ordering) -> (Expr,Expr,Expr) -> (Expr,Expr,Expr)
+canonicalizeCEqn cmp = canonicalizeCEqnWith cmp preludeInstances
 
-canonicalizeCEqnWith :: Instances -> (Expr,Expr,Expr) -> (Expr,Expr,Expr)
-canonicalizeCEqnWith ti = c . o
+canonicalizeCEqnWith :: (Expr -> Expr -> Ordering) -> Instances -> (Expr,Expr,Expr) -> (Expr,Expr,Expr)
+canonicalizeCEqnWith cmp ti = c . o
   where
   c (ce,e1,e2) = case canonicalizeWith ti (e2 :$ (e1 :$ ce)) of
                    (e2' :$ (e1' :$ ce')) -> (ce',e1',e2')
                    _ -> error $ "canonicalizeCEqnWith: the impossible happened,"
                              ++ "this is definitely a bug, see source!"
-  o (ce,e1,e2) | e1 `compareComplexity` e2 == LT = (ce,e2,e1)
-               | otherwise                       = (ce,e1,e2)
+  o (ce,e1,e2) | e1 `cmp` e2 == LT = (ce,e2,e1)
+               | otherwise         = (ce,e1,e2)
 
-canonicalCEqnBy :: Instances -> (Expr,Expr,Expr) -> Bool
-canonicalCEqnBy ti ceqn = canonicalizeCEqnWith ti ceqn == ceqn
+canonicalCEqnBy :: (Expr -> Expr -> Ordering) -> Instances -> (Expr,Expr,Expr) -> Bool
+canonicalCEqnBy cmp ti ceqn = canonicalizeCEqnWith cmp ti ceqn == ceqn
 
-canonicalCEqn :: (Expr,Expr,Expr) -> Bool
-canonicalCEqn = canonicalCEqnBy preludeInstances
+canonicalCEqn :: (Expr -> Expr -> Ordering) -> (Expr,Expr,Expr) -> Bool
+canonicalCEqn cmp = canonicalCEqnBy cmp preludeInstances
 
 prettyChy :: ((Expr,Expr,Expr) -> Bool) -> Chy -> String
 prettyChy shouldShow =
