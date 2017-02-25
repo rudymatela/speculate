@@ -182,12 +182,13 @@ lexicompareBy compareConstants = cmp
   Var _ _       `cmp` _             = LT
   -- Var < Constants < Apps
 
+compareTy :: TypeRep -> TypeRep -> Ordering
+compareTy = (compare `on` tyArity) <> compare
+
 lexicompareConstants :: Expr -> Expr -> Ordering
 lexicompareConstants = cmp
   where
-  e1 `cmp` e2 | typ e1 /= typ e2 = if arity e1 /= arity e2
-                                     then arity e1 `compare` arity e2
-                                     else   typ e1 `compare`   typ e2
+  e1 `cmp` e2 | typ e1 /= typ e2 = typ e1 `compareTy` typ e2
   Constant s1 _ `cmp` Constant s2 _ = s1 `compare` s2
   _ `cmp` _ = error "lexicompareConstants can only compare constants"
 
@@ -200,9 +201,7 @@ lexicompareConstants = cmp
 lexicompare :: Expr -> Expr -> Ordering
 lexicompare = cmp
   where
-  e1 `cmp` e2 | typ e1 /= typ e2 = if arity e1 /= arity e2
-                                     then arity e1 `compare` arity e2
-                                     else   typ e1 `compare`   typ e2
+  e1 `cmp` e2 | typ e1 /= typ e2 = typ e1 `compareTy` typ e2
   Var      s1 _ `cmp` Var      s2 _ = s1 `compare` s2
   Constant s1 _ `cmp` Constant s2 _ = s1 `compare` s2
   (f :$ x)      `cmp` (g :$ y)      = f  `compare` g   `thn`  x `compare` y
