@@ -200,7 +200,7 @@ timeout Args{evalTimeout = Just t}  = timeoutToFalse t
 
 -- needs lexicompareBy
 compareExpr :: Args -> Expr -> Expr -> Ordering
-compareExpr args = lexicompareBy cmp
+compareExpr args = compareComplexityThen (lexicompareBy cmp)
   where
   e1 `cmp` e2 | arity e1 == 0 && arity e2 /= 0 = LT
   e1 `cmp` e2 | arity e1 /= 0 && arity e2 == 0 = GT

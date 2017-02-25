@@ -29,6 +29,7 @@ False :: Bool
     abs (1 + abs x) == 1 + abs x
             (x < y) == (x + 1 <= y)
            (x == 0) == (abs x <= 0)
+           (0 <= x) == (y <= x + y)
        (x <= abs x) == True
        (x == abs x) == (0 <= x)
        (abs x <= x) == (0 <= x)
@@ -41,7 +42,6 @@ False :: Bool
        (1 == x + x) == False
        (x + x <= 0) == (x <= 0)
        (x + x <= 1) == (x <= 0)
-       (x <= x + y) == (0 <= y)
 
           x <=  abs x
           0 <=  abs x

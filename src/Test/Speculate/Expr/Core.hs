@@ -38,6 +38,7 @@ module Test.Speculate.Expr.Core
   , lexicompare
   , lexicompareBy
   , compareComplexity
+  , compareComplexityThen
 
   -- * Useful expressions
   , falseE
