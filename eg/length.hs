@@ -5,9 +5,8 @@ main :: IO ()
 main = speculate args
   { constants =
       [ constant "length" $ length  -:> [int]
-      ]
-  , backgroundConstants =
-      [ showConstant ([] :: [Int])
+      , background
+      , showConstant ([] :: [Int])
       , constant ":"      $ (:)     -:>  int
       , constant "++"     $ (++)    -:> [int]
       , showConstant (0 :: Int)

@@ -6,6 +6,9 @@ module Test.Speculate
   , speculate
   , getArgs
 
+  , foreground
+  , background
+
   , module Test.Speculate.Expr
   , module Test.Speculate.Engine
   , module Test.LeanCheck.Utils
@@ -68,7 +71,6 @@ data Args = Args
   , force                :: Bool  -- ^ ignore errors
   , extra                :: [String] -- unused, user-defined meaning
   , constants            :: [Expr] -- ^ constants used on both conditions and equations
-  , backgroundConstants  :: [Expr] -- ^ background constants
   , exclude              :: [String] -- ^ exclude this symbols from signature before running
   , onlyTypes            :: [String] -- ^ only allow those types at top-level equations / semi-equations
   }
@@ -103,7 +105,6 @@ args = Args
   , showHelp             = False
   , force                = False
   , extra                = []
-  , backgroundConstants  = []
   , constants            = []
   , exclude              = []
   , onlyTypes            = []
@@ -168,12 +169,14 @@ atoms args = map holeOfTy ts
 types :: Args -> [TypeRep]
 types = nubMergeMap (typesIn . typ) . allConstants
 
-foregroundConstants :: Args -> [Expr]
-foregroundConstants args = constants args \\ backgroundConstants args
+foregroundConstants, backgroundConstants :: Args -> [Expr]
+foregroundConstants = fst . partitionByMarkers foreground background . constants
+backgroundConstants = snd . partitionByMarkers foreground background . constants
 
 allConstants :: Args -> [Expr]
 allConstants args = discard (\c -> any (c `isConstantNamed`) (exclude args))
-                  $ constants args `union` backgroundConstants args
+                  $ discard (\e -> e == foreground || e == background)
+                  $ constants args
 
 -- | Are all constants in an expression about a list of constants?
 -- Examples in pseudo-Haskell:
@@ -203,6 +206,11 @@ compareExpr args = lexicompareBy cmp
   e1 `cmp` e2 = idx e1 `compare` idx e2
   idx e = findIndex (== e) cs
   cs = atoms args
+
+foreground, background :: Expr
+foreground = constant "foreground" (undefined :: Args)
+background = constant "background" (undefined :: Args)
+-- NOTE: Hack!  TODO: add reason why
 
 putArgs :: Args -> IO ()
 putArgs args = when (showArgs args) $ do
@@ -322,8 +330,7 @@ prepareArgs args =
   , "fforce"             --.   \a -> a {force = True}
   , "hhelp"              --.   \a -> a {showHelp = True}
   , " exclude"           --= \s a -> a {exclude = exclude a ++ splitAtCommas s}
-  , "aall-foreground"    --.   \a -> a {constants = constants a ++ backgroundConstants a
-                                       ,backgroundConstants = []}
+  , "aall-foreground"    --.   \a -> a {constants = discard (== background) (constants a)}
   ]
   where
   (short:long) --= fun = flagReq  [[short],long] ((Right .) . fun) "X" ""

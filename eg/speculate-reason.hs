@@ -51,9 +51,9 @@ main = speculate args
 --    , constant "normalizedCriticalPairs" normalizedCriticalPairs
 --    , constant "difference"    difference
 --    , constant "showThy"       showThy
-      ]
-  , backgroundConstants =
-      [ constant "emptyThy" $ Thyght emptyThy
+
+      , background
+      , constant "emptyThy" $ Thyght emptyThy
       , constant "True" True
       , constant "False" False
       , constant "Equation" $ Equation

@@ -35,9 +35,8 @@ main = speculate args
     --, constant "subS"        $ subS        -:> set int
     --, constant "powerS"      $ powerS      -:> set int
     --, constant "partitionsS" $ partitionsS -:> set int
-      ]
-  , backgroundConstants =
-      [ showConstant False
+      , background
+      , showConstant False
       , showConstant True
       ]
   }

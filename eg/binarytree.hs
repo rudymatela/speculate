@@ -90,9 +90,8 @@ main = speculate args
       , constant "insert" (insert :: Item -> BT Item -> BT Item)
       , constant "delete" (delete :: Item -> BT Item -> BT Item)
       , constant "isIn" (isIn :: Item -> BT Item -> Bool)
-      ]
-  , backgroundConstants =
-      [ constant "<="  ((<=) :: Item -> Item -> Bool)
+      , background
+      , constant "<="  ((<=) :: Item -> Item -> Bool)
       , constant "/="  ((/=) :: Item -> Item -> Bool)
       , constant "ordered" (ordered :: [Item] -> Bool)
       , constant "strictlyOrdered" (strictlyOrdered :: [Item] -> Bool)

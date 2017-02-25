@@ -18,9 +18,8 @@ main = speculate args
       , constant "recip"       $ recip       -:>  rational
       , constant "numerator"   $ numerator   -:>  rational
       , constant "denominator" $ denominator -:>  rational
-      ]
-  , backgroundConstants =
-      [ showConstant (0 :: Rational)
+      , background
+      , showConstant (0 :: Rational)
       , showConstant (1 :: Rational)
       , showConstant (0 :: Integer)
       , showConstant (1 :: Integer)

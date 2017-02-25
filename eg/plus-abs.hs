@@ -6,9 +6,8 @@ main = speculate args
       [ constant "+"   ((+)  :: Int -> Int -> Int)
       , constant "id"  (id   :: Int -> Int)
       , constant "abs" (abs  :: Int -> Int)
-      ]
-  , backgroundConstants =
-      [ showConstant (0::Int)
+      , background
+      , showConstant (0::Int)
       , showConstant (1::Int)
       , constant "<="  ((<=) :: Int -> Int -> Bool)
       , constant "<"   ((<)  :: Int -> Int -> Bool)

@@ -105,9 +105,8 @@ main = speculate args
       , constant ":."    ((:.)  :: RE Symbol -> RE Symbol -> RE Symbol)
 --    , constant "=~"    (=~)
 --    , constant "Lit"   (Lit   :: Symbol -> RE Symbol)
-      ]
-  , backgroundConstants =
-      [ constant "<=" (/<=/)
+      , background
+      , constant "<=" (/<=/)
       , constant "==" (/==/)
       , showConstant False
       , showConstant True

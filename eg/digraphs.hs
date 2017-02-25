@@ -56,9 +56,9 @@ main = speculate args
       , constant "addNode"      $ addNode' -:>  nat
       , constant "addEdge"      $ addEdge' -:>  nat
       , constant "subgraph"     $ subgraph -:> [nat]
-      ]
-  , backgroundConstants =
-      [ showConstant False
+
+      , background
+      , showConstant False
       , showConstant True
       , showConstant ([]::[Nat])
       , constant "elem"         $ elem    ->:> [nat]

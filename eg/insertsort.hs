@@ -10,9 +10,9 @@ main = speculate args
   { constants =
       [ constant "insert"  $ insert  -:>  int
       , constant "sort"    $ sort    -:> [int]
-      ]
-  , backgroundConstants =
-      [ constant "False"     False
+
+      , background
+      , constant "False"     False
       , constant "True"      True
       , showConstant ([] :: [Int])
       , constant "=="      $ (==)    -:>  int
