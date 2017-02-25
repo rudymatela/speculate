@@ -31,6 +31,7 @@ import Test.LeanCheck.Tiers (unorderedPairsWith)
 import Test.Speculate.Utils
 import Test.Speculate.Utils.Colour
 import Data.Ratio ((%))
+import Data.Monoid ((<>))
 
 import System.Console.CmdArgs.Explicit
 
@@ -203,9 +204,7 @@ compareExpr args = lexicompareBy cmp
   where
   e1 `cmp` e2 | arity e1 == 0 && arity e2 /= 0 = LT
   e1 `cmp` e2 | arity e1 /= 0 && arity e2 == 0 = GT
-  e1 `cmp` e2 = idx e1 `compare` idx e2
-  idx e = findIndex (== e) cs
-  cs = atoms args
+  e1 `cmp` e2 = compareIndex (atoms args) e1 e2 <> e1 `compare` e2
 
 foreground, background :: Expr
 foreground = constant "foreground" (undefined :: Args)
