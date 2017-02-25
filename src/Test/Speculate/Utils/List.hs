@@ -20,6 +20,7 @@ module Test.Speculate.Utils.List
   , medianate
   , takeGreaterHalf
   , accum
+  , partitionByMarkers
   )
 where
 
@@ -192,3 +193,13 @@ accum = a 0
   where
   a _ []     = []
   a s (x:xs) = (s+x : a (s+x) xs)
+
+-- partitionByMarkers x y [x,a,b,c,y,d,e,f,x,g] == ([a,b,c,g],[d,e,f])
+partitionByMarkers :: Eq a => a -> a -> [a] -> ([a],[a])
+partitionByMarkers y z xs =
+  case span (\x -> x /= y && x /= z) xs of
+    (ys,[])   -> (ys,[])
+    (ys,x:zs)
+      | x == y -> let (ys',zs') = partitionByMarkers y z zs in (ys++ys',zs')
+      | x == z -> let (zs',ys') = partitionByMarkers z y zs in (ys++ys',zs')
+      | otherwise -> error "partitionByMarkers: the impossible happened, this is definitely a bug.  See source."

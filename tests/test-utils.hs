@@ -109,4 +109,13 @@ tests n =
   , compareIndex [3,2,1] 4 1 == GT
   , compareIndex [3,2,1] 1 0 == LT
   , holds n $ \xs -> comparison (compareIndex (xs::[Int]))
+
+  , partitionByMarkers '#' '*' "" == ("","")
+  , partitionByMarkers '#' '*' "abc*def" == ("abc","def")
+  , partitionByMarkers '#' '*'  "abcdef" == ("abcdef","")
+  , partitionByMarkers '#' '*' "#abcdef" == ("abcdef","")
+  , partitionByMarkers '#' '*' "abc#def" == ("abcdef","")
+  , partitionByMarkers '#' '*' "*ab#cd" == ("cd","ab")
+  , partitionByMarkers '#' '*' "abc#def*ghi*jkl#mno*pqr#stu" == ("abcdefmnostu","ghijklpqr")
+  , partitionByMarkers '#' '*' "#foreground*background#foreground" == ("foregroundforeground","background")
   ]
