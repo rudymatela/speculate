@@ -22,34 +22,46 @@ True :: Bool
 (==) :: Int -> Int -> Bool
 (==) :: Bool -> Bool -> Bool
 
-                  insertS x s == s \/ singleS x
                        s /\ s == s
                        s \/ s == s
                   s /\ emptyS == emptyS
                   s \/ emptyS == s
              deleteS x emptyS == emptyS
+             insertS x emptyS == singleS x
                        s /\ t == t /\ s
                        s \/ t == t \/ s
+               s \/ singleS x == insertS x s
         deleteS x (singleS x) == emptyS
+        insertS x (singleS x) == singleS x
+        insertS x (singleS y) == insertS y (singleS x)
                 (s /\ t) /\ u == s /\ (t /\ u)
                 (s \/ t) \/ u == s \/ (t \/ u)
-           deleteS x (s /\ t) == s /\ deleteS x t
+             s /\ deleteS x t == deleteS x (s /\ t)
+             s \/ insertS x t == insertS x (s \/ t)
       deleteS x (deleteS x s) == deleteS x s
+      insertS x (insertS x s) == insertS x s
                 s /\ (s \/ t) == s
-             s /\ deleteS x s == deleteS x s
+             s /\ insertS x s == s
                 s \/ (s /\ t) == s
              s \/ deleteS x s == s
+      deleteS x (insertS x s) == deleteS x s
+      insertS x (deleteS x s) == insertS x s
       deleteS x (deleteS y s) == deleteS y (deleteS x s)
-             s /\ deleteS x t == t /\ deleteS x s
+      insertS x (insertS y s) == insertS y (insertS x s)
             sizeS (singleS x) == sizeS (singleS y)
 sizeS (deleteS x (singleS y)) == sizeS (deleteS y (singleS x))
-                (s == emptyS) == (sizeS s == sizeS emptyS)
+                     (x == y) == x <~ singleS y
                   x <~ emptyS == False
-               x <~ singleS y == (x == y)
-           (s == deleteS x s) == (False == x <~ s)
+               x <~ singleS x == True
+        (emptyS == singleS x) == False
+               x <~ singleS y == y <~ singleS x
+           (s == insertS x s) == x <~ s
              x <~ deleteS x s == False
+             x <~ insertS x s == True
                 (s /\ t == s) == (t == s \/ t)
-     (singleS x == singleS y) == (x == y)
+     (singleS x == singleS y) == x <~ singleS y
+      (emptyS == insertS x s) == False
+            (False == x <~ s) == (s == deleteS x s)
 
                   emptyS <=  s
           s /\ singleS x <=  singleS x
@@ -59,9 +71,10 @@ insertS (sizeS emptyS) s <=  singleS (sizeS s)
 insertS (sizeS emptyS) s <=  singleS (sizeS (singleS x))
             sizeS emptyS <=  sizeS s
                  sizeS s <=  sizeS (s \/ t)
+                 sizeS s <=  sizeS (insertS x s)
           sizeS (s /\ t) <=  sizeS s
      sizeS (deleteS x s) <=  sizeS s
+       sizeS (singleS x) <=  sizeS (insertS y s)
           s == singleS x ==> x <~ s
 
-x <~ s ==> s \/ deleteS x t == s \/ t
 

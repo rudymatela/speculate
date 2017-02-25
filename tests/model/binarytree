@@ -28,16 +28,20 @@ False :: Bool
 (==) :: Bool -> Bool -> Bool
 (==) :: Word2 -> Word2 -> Bool
 
-        delete x Null == Null
-delete x (delete x t) == delete x t
-insert x (insert x t) == insert x t
-delete x (insert x t) == delete x t
-insert x (delete x t) == insert x t
-delete x (delete y t) == delete y (delete x t)
-insert x (insert y t) == insert y (insert x t)
-             isIn x t == (t == insert x t)
-           (xs == []) == (Null == fromList xs)
- (Null == insert x t) == False
+         delete x Null == Null
+ delete x (delete x t) == delete x t
+ insert x (insert x t) == insert x t
+ delete x (insert x t) == delete x t
+ insert x (delete x t) == insert x t
+ delete x (delete y t) == delete y (delete x t)
+ insert x (insert y t) == insert y (insert x t)
+              (x == y) == isIn x (insert y Null)
+           isIn x Null == False
+   isIn x (delete x t) == False
+   isIn x (insert x t) == True
+   (False == (x /= y)) == isIn x (insert y Null)
+   (False == isIn x t) == (toList t == toList (delete x t))
+isIn x (insert y Null) == isIn y (insert x Null)
 
          Null <= t
             t <= insert x t

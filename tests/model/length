@@ -16,6 +16,8 @@ length :: [Int] -> Int
 length (xs ++ ys) == length (ys ++ xs)
     length (x:xs) == length (y:xs)
 
-        0 <= length xs
-length xs <= length (xs ++ ys)
+         0 <= length xs
+ length xs <= length (xs ++ ys)
+ length xs <= length (x:xs)
+length [x] <= length (x:xs)
 

@@ -26,7 +26,6 @@ _ + _ * _ :: Int  (holes: Int, Int, Int)
 1 + _ * _ :: Int  (holes: Int, Int)
 _ * (_ + _) :: Int  (holes: Int, Int, Int)
 _ * (_ + 1) :: Int  (holes: Int, Int)
-_ * (1 + 1) :: Int  (holes: Int)
 _ * (_ * _) :: Int  (holes: Int, Int, Int)
 
 x :: Int
@@ -178,7 +177,7 @@ y * (y * z) :: Int
 y * (z * z) :: Int
 z * (z * z) :: Int
 
-Number of Eq schema classes: 17
+Number of Eq schema classes: 16
 Number of Eq 1-var classes: 15
 Number of Eq 2-var classes: 41
 Number of Eq 3-var classes: 90

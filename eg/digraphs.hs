@@ -47,7 +47,14 @@ main = speculate args
       addEdge' n1 n2 g | isEdge n1 n2 g = g
                        | otherwise = addEdge n1 n2 g
     in
-      [ constant "emptyDigraph" $ emptyDigraph -: digraph nat
+      [ background
+      , showConstant False
+      , showConstant True
+      , showConstant ([]::[Nat])
+      , constant "elem"         $ elem    ->:> [nat]
+
+      , foreground
+      , constant "emptyDigraph" $ emptyDigraph -: digraph nat
       , constant "preds"        $ preds    -:>  nat
       , constant "succs"        $ succs    -:>  nat
       , constant "isNode"       $ isNode   -:>  nat
@@ -56,11 +63,5 @@ main = speculate args
       , constant "addNode"      $ addNode' -:>  nat
       , constant "addEdge"      $ addEdge' -:>  nat
       , constant "subgraph"     $ subgraph -:> [nat]
-
-      , background
-      , showConstant False
-      , showConstant True
-      , showConstant ([]::[Nat])
-      , constant "elem"         $ elem    ->:> [nat]
       ]
   }

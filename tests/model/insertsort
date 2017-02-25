@@ -8,27 +8,26 @@ max  #-vars    =    2  (for inequational and conditional laws)
 _ :: [Int]  (holes: [Int])
 _ :: Int  (holes: Int)
 _ :: Bool  (holes: Bool)
-insert :: Int -> [Int] -> [Int]
-sort :: [Int] -> [Int]
 False :: Bool
 True :: Bool
 [] :: [Int]
-(==) :: Int -> Int -> Bool
-(<=) :: Int -> Int -> Bool
-(<) :: Int -> Int -> Bool
 (:) :: Int -> [Int] -> [Int]
 (++) :: [Int] -> [Int] -> [Int]
 elem :: Int -> [Int] -> Bool
 ordered :: [Int] -> Bool
 all :: (Int -> Bool) -> [Int] -> Bool
+insert :: Int -> [Int] -> [Int]
+sort :: [Int] -> [Int]
+(==) :: Int -> Int -> Bool
+(<=) :: Int -> Int -> Bool
+(<) :: Int -> Int -> Bool
 (==) :: [Int] -> [Int] -> Bool
 (==) :: Bool -> Bool -> Bool
 
          sort (sort xs) == sort xs
             insert x [] == [x]
-     sort (insert x xs) == sort (x:xs)
-     insert x (sort xs) == sort (x:xs)
-               sort [x] == [x]
+            sort (x:xs) == insert x (sort xs)
+     sort (insert x xs) == insert x (sort xs)
         sort (xs ++ ys) == sort (ys ++ xs)
         insert x (x:xs) == x:(x:xs)
    sort (xs ++ sort ys) == sort (xs ++ ys)
@@ -41,18 +40,19 @@ all :: (Int -> Bool) -> [Int] -> Bool
         (sort xs == []) == (xs == [])
    elem x (insert y xs) == elem x (y:xs)
     (xs == insert x xs) == False
-    ordered (x:sort xs) == all (x <=) xs
     ([] == insert x xs) == False
     all (x <) (sort xs) == all (x <) xs
-   all (x <=) (sort xs) == all (x <=) xs
    all (x ==) (sort xs) == all (x ==) xs
 ordered (xs ++ sort xs) == ordered (xs ++ xs)
 ordered (sort xs ++ xs) == ordered (xs ++ xs)
+    ordered (x:sort xs) == all (x <=) xs
 
         sort xs <=  xs
     insert x xs <=  x:xs
   xs ++ sort ys <=  xs ++ ys
+      x:sort xs <=  x:xs
   sort xs ++ ys <=  xs ++ ys
+    sort (x:xs) <=  insert x xs
 sort (xs ++ ys) <=  xs ++ sort ys
 sort (xs ++ ys) <=  sort xs ++ ys
   sort xs ++ xs <=  xs ++ sort xs
@@ -61,13 +61,11 @@ sort (xs ++ ys) <=  sort xs ++ ys
          elem x xs ==>   insert x xs ++ ys == insert x (xs ++ ys)
              x < y ==>     insert y (x:xs) == x:insert y xs
             x <= y ==>     insert x (y:xs) == x:(y:xs)
-            x <= y ==>       x:insert y [] == insert x (insert y [])
-            y <= x ==>       y:insert x [] == insert x (insert y [])
 ordered (ys ++ xs) ==>       ys ++ sort xs == sort (xs ++ ys)
 ordered (ys ++ xs) ==>       sort ys ++ xs == sort (xs ++ ys)
 ordered (ys ++ xs) ==>  sort ys ++ sort xs == sort (xs ++ ys)
      all (x <=) xs ==>         insert x xs == x:xs
-     all (x <=) xs ==>           x:sort xs == sort (insert x xs)
+     all (x <=) xs ==>           x:sort xs == sort (x:xs)
      all (x <=) xs ==>     insert y (x:xs) == insert x (insert y xs)
      all (x <=) xs ==> insert x (xs ++ xs) == x:(xs ++ xs)
      all (x <=) ys ==>   insert x xs ++ ys == insert x (xs ++ ys)

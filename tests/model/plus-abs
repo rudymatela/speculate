@@ -19,35 +19,29 @@ False :: Bool
 (==) :: Int -> Int -> Bool
 (==) :: Bool -> Bool -> Bool
 
-           id x == x
-    abs (abs x) == abs x
-          x + 0 == x
-          x + y == y + x
-    (x + y) + z == x + (y + z)
-abs (x + abs x) == x + abs x
-  abs x + abs x == abs (x + x)
-abs (1 + abs x) == 1 + abs x
-       (x == 0) == (abs x < 1)
-       (x <= y) == (x < y + 1)
-    (x < abs x) == (x < 0)
-   (x <= abs x) == True
-   (x == abs x) == (0 <= x)
-    (abs x < x) == False
-   (abs x <= x) == (0 <= x)
-   (0 <= abs x) == True
-    (abs x < 0) == False
-    (x < x + y) == (0 < y)
-   (x == x + y) == (abs y < 1)
-    (x + y < x) == (y < 0)
-   (x + y <= x) == (y < 1)
-   (x + 1 <= y) == (x < y)
-    (0 < x + x) == (0 < x)
-    (1 < x + x) == (0 < x)
-   (0 <= x + x) == (0 <= x)
-   (1 == x + x) == False
-    (x + x < 0) == (x < 0)
-    (x + x < 1) == (x < 1)
-   (x + x <= 1) == (x < 1)
+               id x == x
+        abs (abs x) == abs x
+              x + 0 == x
+              x + y == y + x
+        abs (x + x) == abs x + abs x
+        (x + y) + z == x + (y + z)
+    abs (x + abs x) == x + abs x
+    abs (1 + abs x) == 1 + abs x
+            (x < y) == (x + 1 <= y)
+           (x == 0) == (abs x <= 0)
+       (x <= abs x) == True
+       (x == abs x) == (0 <= x)
+       (abs x <= x) == (0 <= x)
+       (0 <= abs x) == True
+       (x == x + y) == (abs y <= 0)
+       (x + y <= x) == (y <= 0)
+(False == (x <= y)) == (y + 1 <= x)
+       (0 <= x + x) == (0 <= x)
+       (1 <= x + x) == (1 <= x)
+       (1 == x + x) == False
+       (x + x <= 0) == (x <= 0)
+       (x + x <= 1) == (x <= 0)
+       (x <= x + y) == (0 <= y)
 
           x <=  abs x
           0 <=  abs x
@@ -56,13 +50,12 @@ abs (1 + abs x) == 1 + abs x
           x <=  abs (x + x)
           x <=  1 + abs x
           0 <=  x + abs x
-      abs x <=  abs (x + x)
       x + y <=  x + abs y
-  x + abs x <=  abs (x + x)
 abs (x + 1) <=  1 + abs x
       x < y ==> x < abs y
      x <= y ==> x <= abs y
   abs x < y ==> x < y
+ abs x <= y ==> x <= y
       x < 0 ==> x < abs y
      x <= 0 ==> x <= abs y
  abs x <= y ==> 0 <= y

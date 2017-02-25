@@ -14,17 +14,24 @@ tail :: [Int] -> [Int]
 
         xs ++ [] == xs
         [] ++ xs == xs
-            x:xs == [x] ++ xs
      tail (x:xs) == xs
 (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
+    (x:xs) ++ ys == x:(xs ++ ys)
      head (x:xs) == x
 
-      [] <= xs
-      xs <= xs ++ ys
-      xs <= ys ++ xs
-      xs <= tail (xs ++ xs)
-      xs <= head xs:tail xs
-xs ++ ys <= xs ++ (ys ++ zs)
-xs ++ ys <= xs ++ (zs ++ ys)
-    x:xs <= x:(y:xs)
+       [] <= xs
+       xs <= xs ++ ys
+       xs <= ys ++ xs
+       xs <= x:xs
+       xs <= tail (xs ++ xs)
+      [x] <= x:xs
+       xs <= head xs:tail xs
+ xs ++ ys <= xs ++ (ys ++ zs)
+ xs ++ ys <= xs ++ (zs ++ ys)
+     x:xs <= x:(y:xs)
+ xs ++ ys <= xs ++ (x:ys)
+     x:xs <= x:(xs ++ ys)
+     x:xs <= x:(ys ++ xs)
+    [x,y] <= x:(y:xs)
+xs ++ [x] <= xs ++ (x:ys)
 
