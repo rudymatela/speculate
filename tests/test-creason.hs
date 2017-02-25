@@ -34,11 +34,11 @@ tests n =
       emptyChy{cequations = [(zero -<=- xx, abs' xx, xx)]}
       (zero -<=- yy) (abs' yy -+- yy) (yy -+- yy)
 
-  , holds n $ \e1 e2    -> canonicalCEqn (falseE,e1,e2) == canonicalEqn emptyThy (e1,e2)
-  , holds n $ \e1 e2    -> sndTrd (canonicalizeCEqn (falseE,e1,e2))
+  , holds n $ \e1 e2    -> canonicalCEqn compare (falseE,e1,e2) == canonicalEqn emptyThy (e1,e2)
+  , holds n $ \e1 e2    -> sndTrd (canonicalizeCEqn compare (falseE,e1,e2))
                         == canonicalizeEqn emptyThy (e1,e2)
-  , holds n $ \e1 e2 ce -> sndTrd (canonicalizeCEqn (falseE,e1,e2))
-                        == sndTrd (canonicalizeCEqn (ce,    e1,e2))
+  , holds n $ \e1 e2 ce -> sndTrd (canonicalizeCEqn compare (falseE,e1,e2))
+                        == sndTrd (canonicalizeCEqn compare (ce,    e1,e2))
 
   , const True -- TODO: make the following test pass!
   $ let chy = cinsert ( elem' xx xxs
