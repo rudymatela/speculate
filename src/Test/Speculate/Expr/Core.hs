@@ -366,6 +366,10 @@ subexprsV :: Expr -> [Expr]
 subexprsV e@(e1 :$ e2)  = [e] +++ subexprsV e1 +++ subexprsV e2
 subexprsV e = [e]
 
+isConstant :: Expr -> Bool
+isConstant (Constant _ _) = True
+isConstant _              = False
+
 -- | Is a subexpression of.
 isSub :: Expr -> Expr -> Bool
 isSub e e0 | e == e0 = True
