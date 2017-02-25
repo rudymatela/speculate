@@ -9,8 +9,8 @@ _ :: Int  (holes: Int)
 0 :: Int
 1 :: Int
 id :: Int -> Int
-negate :: Int -> Int
 (+) :: Int -> Int -> Int
+negate :: Int -> Int
 (-) :: Int -> Int -> Int
 
 _ :: Int  (holes: Int)

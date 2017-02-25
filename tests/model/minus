@@ -9,8 +9,8 @@ _ :: Int  (holes: Int)
 0 :: Int
 1 :: Int
 id :: Int -> Int
-negate :: Int -> Int
 (+) :: Int -> Int -> Int
+negate :: Int -> Int
 (-) :: Int -> Int -> Int
 
              id x == x
@@ -18,11 +18,10 @@ negate :: Int -> Int
 negate (negate x) == x
             x + 0 == x
             x + y == y + x
-     negate x + y == negate (x + negate y)
+   negate (x + y) == negate x + negate y
      x + negate x == 0
       (x + y) + z == x + (y + z)
 
-             x <= x + 1
-         x - 1 <= x
-negate (x + 1) <= negate x
+    x <= x + 1
+x - 1 <= x
 
