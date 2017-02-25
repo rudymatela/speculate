@@ -63,26 +63,32 @@ type Rule = (Expr,Expr)
 type Equation = (Expr,Expr)
 
 data Thy = Thy
-         { rules :: [Rule]
-         , equations :: [Equation]
-         , canReduceTo :: Expr -> Expr -> Bool
-         , closureLimit :: Int
-         , keepE :: Expr -> Bool
-         }
+  { rules :: [Rule]
+  , equations :: [Equation]
+  , canReduceTo :: Expr -> Expr -> Bool -- ^ should be compatible with compareE
+  , compareE :: Expr -> Expr -> Ordering -- ^ total order used to "sort" equations
+  , closureLimit :: Int
+  , keepE :: Expr -> Bool
+  }
+
+compareEqn :: Thy -> Equation -> Equation -> Ordering
+compareEqn thy@Thy {compareE = cmp} (e1l,e1r) (e2l,e2r) =
+  e1l `cmp` e2l  <>  e1r `cmp` e2r
 
 -- data invariant
 okThy :: Thy -> Bool
-okThy thy@Thy {rules = rs, equations = eqs, canReduceTo = (->-), keepE = keep} =
-     strictlyOrdered rs
-  && strictlyOrdered eqs
+okThy thy@Thy {rules = rs, equations = eqs, canReduceTo = (->-), keepE = keep, compareE = cmp} =
+     orderedBy (<) rs
+  && orderedBy (<) eqs
   && all (uncurry (->-)) rs
-  && all ((/= LT) . uncurry compareComplexity) eqs
+  && all ((/= LT) . uncurry cmp) eqs
   && all (uncurry ((==) `on` typ)) (rs++eqs)
-  && all canonicalEqn eqs
+  && all (canonicalEqn thy) eqs
   && all canonicalRule rs
 -- && canonicalizeThy thy == thy -- (uneeded, follows from above)
   && all keepEqn (rs++eqs)
   where
+  e1 < e2 = compareEqn thy e1 e2 == LT
   keepEqn (e1,e2) = keep e1 && keep e2
 
 updateRulesBy :: ([Rule] -> [Rule]) -> Thy -> Thy
@@ -119,6 +125,7 @@ emptyThy = Thy
          { rules = []
          , equations = []
          , canReduceTo = (|>)
+         , compareE = compare
          , closureLimit = 0
          , keepE = const True
          }
@@ -196,34 +203,36 @@ groundJoinable thy@Thy{equations = eqs} e1 e2 =
 --            , xwyz, ... ]
 
 normalizedCriticalPairs :: Thy -> [(Expr,Expr)]
-normalizedCriticalPairs thy = nubSort
-                            . map canonicalizeEqn
+normalizedCriticalPairs thy = nubSortBy (compareEqn thy)
+                            . map (canonicalizeEqn thy)
                             . discard (uncurry $ groundJoinable thy)
                             . filter (uncurry (/=))
                             . map (normalize thy *** normalize thy)
                             $ criticalPairs thy
 
 criticalPairs :: Thy -> [(Expr,Expr)]
-criticalPairs Thy {rules = rs} =
+criticalPairs thy@Thy {rules = rs, compareE = cmp} =
   nubMerges [r `criticalPairsWith` s | r <- rs, s <- rs]
-
-criticalPairsWith :: Rule -> Rule -> [(Expr,Expr)]
-r1@(e1,_) `criticalPairsWith` r2@(e2,_) =
-    nubSort
-  . map sortuple
-  . filter (uncurry (/=))
-  . concatMap (\e -> (e `reductions1` r1) ** (e `reductions1` r2))
-  $ overlaps e1 e2
   where
+  criticalPairsWith :: Rule -> Rule -> [(Expr,Expr)]
+  r1@(e1,_) `criticalPairsWith` r2@(e2,_) =
+      nubSortBy (compareEqn thy)
+    . map sortuple
+    . filter (uncurry (/=))
+    . concatMap (\e -> (e `reductions1` r1) ** (e `reductions1` r2))
+    . nubSortBy cmp
+    $ overlaps e1 e2
   xs ** ys = [(x,y) | x <- xs, y <- ys]
   sortuple (x,y) | x < y     = (y,x)
                  | otherwise = (x,y)
+  (<) :: Expr -> Expr -> Bool
+  e1 < e2 = e1 `cmp` e2 == LT
 
 -- Warning: will have to also be applied in reverse to get all overlaps.
 --
 -- canonicalization here is needed for the nub
 overlaps :: Expr -> Expr -> [Expr]
-overlaps e1 e2 = nubSort
+overlaps e1 e2 = id -- nubSort
                . map (canonicalize . (e2' `assigning`))
                $ (e1' `unification`) `mapMaybe` subexprs e2'
   where
@@ -260,12 +269,12 @@ closure thy e = iterateUntilLimit (closureLimit thy) (==) step [normalizeE thy e
 insert :: Equation -> Thy -> Thy
 insert (e1,e2) thy
   | normalize thy e1 == normalize thy e2 = thy
-  | otherwise = complete $ updateEquationsBy (canonicalizeEqn (e1,e2) `L.insert`) thy
+  | otherwise = complete $ updateEquationsBy (canonicalizeEqn thy (e1,e2) `L.insert`) thy
 
 append :: Thy -> [Equation] -> Thy
 append thy eqs = updateEquationsBy (nubSort . (++ eqs')) thy
   where
-  eqs' = map canonicalizeEqn $ filter (uncurry ((/=) `on` normalize thy)) eqs
+  eqs' = map (canonicalizeEqn thy) $ filter (uncurry ((/=) `on` normalize thy)) eqs
 
 difference :: Thy -> Thy -> Thy
 difference thy1@Thy {equations = eqs1, rules = rs1}
@@ -327,7 +336,7 @@ deleteGroundJoinable thy =
 
 -- a.k.a. Simplify-identity
 simplify :: Thy -> Thy
-simplify thy = updateEquationsBy (nubSort . map canonicalizeEqn)
+simplify thy = updateEquationsBy (nubSort . map (canonicalizeEqn thy))
              $ mapEquations (normalize thy *** normalize thy) thy
 
 -- a.k.a. R-Simplify-rule
@@ -345,7 +354,7 @@ collapse thy@Thy {equations = eqs, rules = rs} =
   collapse :: Rule -> [Equation]
   collapse (e1,e2) = foldr (+++) []
                    $ [ nubSort
-                     $ canonicalizeEqn
+                     $ canonicalizeEqn thy
                     <$> (\e -> (e,e2)) <$> reductions1 e1 (e1',e2')
                      | (e1',e2') <- rs
                      , (e1',e2') /= (e1,e2)
@@ -359,20 +368,22 @@ canonicalizeThy :: Thy -> Thy
 canonicalizeThy = canonicalizeThyWith preludeInstances
 
 canonicalizeThyWith :: Instances -> Thy -> Thy
-canonicalizeThyWith ti = mapRules (canonicalizeRuleWith ti)
-                       . mapEquations (canonicalizeEqnWith ti)
+canonicalizeThyWith ti thy = mapRules (canonicalizeRuleWith ti)
+                           . mapEquations (canonicalizeEqnWith thy ti)
+                           $ thy
 
-canonicalizeEqn :: Equation -> Equation
-canonicalizeEqn = canonicalizeEqnWith preludeInstances
+canonicalizeEqn :: Thy -> Equation -> Equation
+canonicalizeEqn thy = canonicalizeEqnWith thy preludeInstances
 
-canonicalEqn :: Equation -> Bool
-canonicalEqn eq = canonicalizeEqn eq == eq
+canonicalEqn :: Thy -> Equation -> Bool
+canonicalEqn thy eq = canonicalizeEqn thy eq == eq
 
-canonicalizeEqnWith :: Instances -> Equation -> Equation
-canonicalizeEqnWith ti = swap . canonicalizeRuleWith ti . swap . o
+canonicalizeEqnWith :: Thy -> Instances -> Equation -> Equation
+canonicalizeEqnWith thy ti = swap . canonicalizeRuleWith ti . swap . o
   where
-  o (e1,e2) | e1 `compareComplexity` e2 == LT = (e2,e1)
-            | otherwise                       = (e1,e2)
+  cmp = compareE thy
+  o (e1,e2) | e1 `cmp` e2 == LT = (e2,e1)
+            | otherwise         = (e1,e2)
 
 
 canonicalizeRule :: Rule -> Rule
@@ -432,12 +443,14 @@ theorizeBy (>) = finalize
                . initialize 3 (>)
 
 initialize :: Int -> (Expr -> Expr -> Bool) -> [Equation] -> Thy
-initialize n (>) eqs = emptyThy
-                     { equations = nubSort $ map canonicalizeEqn eqs
-                     , keepE = keepMaxOf eqs
-                     , canReduceTo = (>)
-                     , closureLimit = n
-                     }
+initialize n (>) eqs = thy
+  where
+  thy = emptyThy
+      { equations = nubSort $ map (canonicalizeEqn thy) eqs
+      , keepE = keepMaxOf eqs
+      , canReduceTo = (>)
+      , closureLimit = n
+      }
 
 defaultKeep :: Thy -> Thy
 defaultKeep thy@Thy {equations = eqs, rules = rs} =

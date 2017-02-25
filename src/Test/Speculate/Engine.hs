@@ -95,11 +95,11 @@ rehole e = e
 ----------------------------
 -- * Enumerating expressions
 
-theoryFromAtoms :: Int -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> Thy
-theoryFromAtoms sz keep (===) = fst . theoryAndRepresentativesFromAtoms sz keep (===)
+theoryFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> Thy
+theoryFromAtoms sz cmp keep (===) = fst . theoryAndRepresentativesFromAtoms sz cmp keep (===)
 
-representativesFromAtoms :: Int -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> [Expr]
-representativesFromAtoms sz keep (===) = snd . theoryAndRepresentativesFromAtoms sz keep (===)
+representativesFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> [Expr]
+representativesFromAtoms sz cmp keep (===) = snd . theoryAndRepresentativesFromAtoms sz cmp keep (===)
 
 expand :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> (Thy,[Expr]) -> (Thy,[Expr])
 expand keep (===) (thy,ss) = foldl (flip $ consider (===)) (thy,ss)
@@ -108,14 +108,18 @@ expand keep (===) (thy,ss) = foldl (flip $ consider (===)) (thy,ss)
   where
   fes *$* xes = filter keep $ catMaybes [fe $$ xe | fe <- fes, xe <- xes]
 
-theoryAndRepresentativesFromAtoms :: Int -> (Expr -> Bool) -> (Expr -> Expr -> Bool)
+theoryAndRepresentativesFromAtoms :: Int
+                                  -> (Expr -> Expr -> Ordering)
+                                  -> (Expr -> Bool) -> (Expr -> Expr -> Bool)
                                   -> [Expr] -> (Thy,[Expr])
-theoryAndRepresentativesFromAtoms sz keep (===) ds =
+theoryAndRepresentativesFromAtoms sz cmp keep (===) ds =
   iterate ((complete *** id) . expand keep (===)) dsThy !! (sz-1)
   where
   dsThy = (complete *** id) $ foldl (flip $ consider (===)) (iniThy,[]) ds
   iniThy = emptyThy { keepE = keepUpToLength sz
                     , closureLimit = 2
+                    , canReduceTo = dwoBy (\e1 e2 -> e1 `cmp` e2 == GT)
+                    , compareE = cmp
                     }
 
 -- considers a schema

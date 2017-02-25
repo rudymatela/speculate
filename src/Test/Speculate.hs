@@ -157,8 +157,26 @@ keepExpr Args{maxConstants = Just n} e | length (consts e) > n = False
 keepExpr Args{maxDepth     = Just n} e |         depthE e  > n = False
 keepExpr _                           _                         = True
 
+reallyShowConditions :: Args -> Bool
+reallyShowConditions args = showConditions args
+                         && boolTy `elem` map (finalResultTy . typ) (allConstants args)
+
+atoms :: Args -> [Expr]
+atoms args = map holeOfTy ts
+     `union` allConstants args
+     `union` [showConstant True  | showConds || showDot args]
+     `union` [showConstant False | showConds || showDot args]
+     `union` catMaybes [eqE (computeInstances args) t | t <- ts, showConds]
+  where
+  ts = types args
+  showConds = reallyShowConditions args
+
+types :: Args -> [TypeRep]
+types = nubMergeMap (typesIn . typ) . allConstants
+
 allConstants :: Args -> [Expr]
-allConstants args = constants args
+allConstants args = discard (\c -> any (c `isConstantNamed`) (exclude args))
+                  $ constants args
             `union` backgroundConstants args
             `union` conditionConstants args
             `union` equationConstants args
@@ -181,6 +199,16 @@ notAbout = not .: about
 timeout :: Args -> Bool -> Bool
 timeout Args{evalTimeout = Nothing} = id
 timeout Args{evalTimeout = Just t}  = timeoutToFalse t
+
+-- needs lexicompareBy
+compareExpr :: Args -> Expr -> Expr -> Ordering
+compareExpr args = lexicompareBy cmp
+  where
+  e1 `cmp` e2 | arity e1 == 0 && arity e2 /= 0 = LT
+  e1 `cmp` e2 | arity e1 /= 0 && arity e2 == 0 = GT
+  e1 `cmp` e2 = idx e1 `compare` idx e2
+  idx e = findIndex (== e) cs
+  cs = atoms args
 
 putArgs :: Args -> IO ()
 putArgs args = when (showArgs args) $ do
@@ -210,16 +238,10 @@ putArgs args = when (showArgs args) $ do
 report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
   let ti = computeInstances args
-  let ds = discard (\c -> any (c `isConstantNamed`) (exclude args))
-         $ allConstants args
-  let ats = nubMergeMap (typesIn . typ) ds
+  let ats = types args
   let ts = filter (isListable ti) ats
-  let showConditions' = showConditions args && boolTy `elem` map (finalResultTy . typ) ds
-  let ds' = map holeOfTy ts `union` ds
-            `union` [showConstant True  | showConditions' || showDot args]
-            `union` [showConstant False | showConditions' || showDot args]
-            `union` catMaybes [eqE ti t | t <- ts, showConditions']
-  let (thy,es) = theoryAndRepresentativesFromAtoms sz (keepExpr args) (timeout args .: equal ti n) ds'
+  let ds' = atoms args
+  let (thy,es) = theoryAndRepresentativesFromAtoms sz compare (keepExpr args) (timeout args .: equal ti n) ds'
   putArgs args
   when (showConstants args)    . putStrLn . unlines $ map show ds'
   warnMissingInstances ti ats
@@ -239,7 +261,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
     . prettyShy (shouldShowEquation args) (equivalentInstance thy)
     . semiTheoryFromThyAndReps ti n (maxVars args) thy
     $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
-  when showConditions' . putStrLn
+  when (reallyShowConditions args) . putStrLn
     . prettyChy (shouldShowConditionalEquation args)
     $ conditionalTheoryFromThyAndReps ti n (maxVars args) (computeMaxCondSize args) thy es
   when (showDot args) $

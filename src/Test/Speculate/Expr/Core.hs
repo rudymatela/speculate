@@ -36,6 +36,7 @@ module Test.Speculate.Expr.Core
   , unrepeatedVars
   , isAssignment
   , lexicompare
+  , lexicompareBy
   , compareComplexity
 
   -- * Useful expressions

@@ -523,7 +523,7 @@ instance Listable Rule where
 instance Listable Equation where
   tiers = (`ofWeight` 0)
         . mapT (uncurry Equation)
-        . filterT canonicalEqn
+        . filterT (canonicalEqn emptyThy)
         . mapT orientEqn
         . filterT (uncurry (<=))
         . mapT unSameTypeE
