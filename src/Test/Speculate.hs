@@ -157,6 +157,12 @@ keepExpr Args{maxConstants = Just n} e | length (consts e) > n = False
 keepExpr Args{maxDepth     = Just n} e |         depthE e  > n = False
 keepExpr _                           _                         = True
 
+allConstants :: Args -> [Expr]
+allConstants args = constants args
+            `union` backgroundConstants args
+            `union` conditionConstants args
+            `union` equationConstants args
+
 -- | Are all constants in an expression about a list of constants?
 -- Examples in pseudo-Haskell:
 --
@@ -205,7 +211,7 @@ report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
   let ti = computeInstances args
   let ds = discard (\c -> any (c `isConstantNamed`) (exclude args))
-         $ constants args `union` backgroundConstants args `union` conditionConstants args `union` equationConstants args
+         $ allConstants args
   let ats = nubMergeMap (typesIn . typ) ds
   let ts = filter (isListable ti) ats
   let showConditions' = showConditions args && boolTy `elem` map (finalResultTy . typ) ds
