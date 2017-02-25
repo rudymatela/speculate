@@ -9,17 +9,6 @@ Warning: I tend to ramble...
 current
 -------
 
-* use provided order as internal order:
-
-               isIn x t == (t == insert x t)
-
-  it would be better to have:
-
-    isIn x (insert x t) == True
-
-  however `(==)` < `isIn` in expression order.
-
-
 * automatically detect and use orders.  algorithm sketch:
   1. list everything of the type a -> a -> Bool
   2. check and filter everything that is an order
