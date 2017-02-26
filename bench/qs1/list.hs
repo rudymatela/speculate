@@ -7,4 +7,6 @@ main =
     , "[]" `fun0` ([]   :: [Int])
     , ":"  `fun2` ((:)  :: Int -> [Int] -> [Int])
     , "++" `fun2` ((++) :: [Int] -> [Int] -> [Int])
+    , "head" `fun1` (head :: [Int] -> Int)
+    , "tail" `fun1` (tail :: [Int] -> [Int])
     ]

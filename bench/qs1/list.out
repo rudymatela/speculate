@@ -2,6 +2,8 @@
 -- functions --
 (:) :: Int -> [Int] -> [Int]
 (++) :: [Int] -> [Int] -> [Int]
+head :: [Int] -> Int
+tail :: [Int] -> [Int]
 [] :: [Int]
 
 -- variables --
@@ -9,16 +11,26 @@ x, y, z :: Int
 xs, ys, zs :: [Int]
 
 == Testing ==
-Depth 1: 8 terms, 3 tests, 14 evaluations, 8 classes, 0 raw equations.
-Depth 2: 36 terms, 500 tests, 5557 evaluations, 29 classes, 7 raw equations.
-Depth 3: 708 terms, 500 tests, 146594 evaluations, 533 classes, 175 raw equations.
-175 raw equations; 533 terms in universe.
+Depth 1: 9 terms, 3 tests, 18 evaluations, 9 classes, 0 raw equations.
+Depth 2: 45 terms, 500 tests, 7590 evaluations, 36 classes, 9 raw equations.
+Depth 3: 1017 terms, 500 tests, 182463 evaluations, 795 classes, 222 raw equations.
+222 raw equations; 795 terms in universe.
 
 == Equations about (++) ==
   1: xs++[] == xs
   2: []++xs == xs
   3: (xs++ys)++zs == xs++(ys++zs)
 
+== Equations about head ==
+  4: head [] == undefined
+
+== Equations about tail ==
+  5: tail [] == undefined
+
 == Equations about several functions ==
-  4: (x:xs)++ys == x:(xs++ys)
+  6: (x:xs)++ys == x:(xs++ys)
+  7: head (x:xs) == x
+  8: tail (x:xs) == xs
+  9: head (xs++xs) == head xs
+ 10: tail xs++xs == tail (xs++xs)
 
