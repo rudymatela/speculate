@@ -1,0 +1,22 @@
+== Signature ==
+    [] :: [Int]
+   (:) :: Int -> [Int] -> [Int]
+  (++) :: [Int] -> [Int] -> [Int]
+insert :: Int -> [Int] -> [Int]
+  sort :: [Int] -> [Int]
+
+== Laws ==
+  1. sort [] = []
+  2. xs ++ [] = xs
+  3. [] ++ xs = xs
+  4. insert x [] = x : []
+  5. sort (sort xs) = sort xs
+  6. sort (x : xs) = insert x (sort xs)
+  7. sort (insert x xs) = insert x (sort xs)
+  8. sort (xs ++ ys) = sort (ys ++ xs)
+  9. (xs ++ ys) ++ zs = xs ++ (ys ++ zs)
+ 10. x : (xs ++ ys) = (x : xs) ++ ys
+ 11. insert x (x : xs) = x : (x : xs)
+ 12. sort (xs ++ sort ys) = sort (xs ++ ys)
+ 13. insert y (insert x xs) = insert x (insert y xs)
+

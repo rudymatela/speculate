@@ -4,6 +4,7 @@ BENCH = \
   plus-abs \
   bool \
   list \
+  insertsort \
   regexes \
   arithficial
 
@@ -14,6 +15,7 @@ bench: all
 	@echo -n "arith-negate-abs "; /usr/bin/time -f%e0 ./arith-negate-abs 2>&1 > arith-negate-abs.out
 	@echo -n "bool             "; /usr/bin/time -f%e0 ./bool             2>&1 >             bool.out
 	@echo -n "list             "; /usr/bin/time -f%e0 ./list             2>&1 >             list.out
+	@echo -n "insertsort       "; /usr/bin/time -f%e0 ./insertsort       2>&1 >       insertsort.out
 	@echo -n "arithficial      "; /usr/bin/time -f%e0 ./arithficial      2>&1 >      arithficial.out
 	@echo -n "plus-abs         "; /usr/bin/time -f%e0 ./plus-abs         2>&1 >         plus-abs.out
 	@echo    "regexes          0.000";

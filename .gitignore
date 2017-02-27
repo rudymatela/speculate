@@ -74,6 +74,7 @@ bench/qs*/arith
 bench/qs*/plus-abs
 bench/qs*/bool
 bench/qs*/list
+bench/qs*/insertsort
 bench/qs*/arithficial
 bench/qs*/quickspec
 bench/qs*/regexes
