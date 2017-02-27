@@ -10,3 +10,4 @@ time ./eg/regexes -t200 -s7 -z7 -v3 | tee -a etc/regexes-20170223-0100-t200-s7-z
 # 552   38m 01s
 # 662  233m 14s
 # 663 1172m 26s (~ 19 hours -- user: 1079m 35s)
+# 772 4230m 10s (~ 3 days)
