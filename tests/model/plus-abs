@@ -20,28 +20,28 @@ False :: Bool
 (==) :: Bool -> Bool -> Bool
 
                id x == x
-        abs (abs x) == abs x
               x + 0 == x
+        abs (abs x) == abs x
               x + y == y + x
         abs (x + x) == abs x + abs x
-        (x + y) + z == x + (y + z)
     abs (x + abs x) == x + abs x
     abs (1 + abs x) == 1 + abs x
-            (x < y) == (x + 1 <= y)
-           (x == 0) == (abs x <= 0)
-           (0 <= x) == (y <= x + y)
+        (x + y) + z == x + (y + z)
        (x <= abs x) == True
+       (0 <= abs x) == True
+       (1 == x + x) == False
        (abs x <= x) == (0 <= x)
        (x == abs x) == (0 <= x)
-       (0 <= abs x) == True
+           (x == 0) == (abs x <= 0)
+           (0 <= x) == (y <= x + y)
        (x + y <= x) == (y <= 0)
-       (x == x + y) == (abs y <= 0)
-(False == (x <= y)) == (y + 1 <= x)
+            (x < y) == (x + 1 <= y)
        (0 <= x + x) == (0 <= x)
        (1 <= x + x) == (1 <= x)
        (x + x <= 0) == (x <= 0)
        (x + x <= 1) == (x <= 0)
-       (1 == x + x) == False
+       (x == x + y) == (abs y <= 0)
+(False == (x <= y)) == (y + 1 <= x)
 
           x <=  abs x
           0 <=  abs x

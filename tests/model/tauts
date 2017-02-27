@@ -22,8 +22,8 @@ eval (eval p) == eval p
      (n == n) == True
      (p == p) == True
      (p == p) == True
-taut (eval p) == taut p
   (p == True) == p
+taut (eval p) == taut p
      (p == q) == (q == p)
 
     subst n p p <=  p

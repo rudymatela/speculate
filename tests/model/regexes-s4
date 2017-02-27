@@ -17,10 +17,10 @@ False :: Bool
 True :: Bool
 
            r :+ r == r
-    Star (Star r) == Star r
         r :+ None == r
        r :. Empty == r
         r :. None == None
+    Star (Star r) == Star r
            r :+ s == s :+ r
            r :. s == s :. r
       r :+ Star r == Star r
@@ -28,11 +28,11 @@ Star (r :+ Empty) == Star r
   Empty :+ Star r == Star r
      (r <= Empty) == True
       (None <= r) == True
+    (r <= Star s) == True
+ (Star r <= None) == False
      (r == Empty) == (Empty <= r)
       (r == None) == (r <= None)
-    (r <= Star s) == True
     (r == Star s) == (Star s <= r)
- (Star r <= None) == False
 
       None <=  r
          r <=  Star r

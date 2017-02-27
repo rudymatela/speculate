@@ -19,16 +19,15 @@ unwords :: [[Char]] -> [Char]
                             cs ++ "" == cs
                             "" ++ cs == cs
        unlines (lines (unlines css)) == unlines css
-                    (cs ++ ds) ++ es == cs ++ (ds ++ es)
-            cs ++ unlines (lines cs) == unlines (lines (cs ++ cs))
 unwords (lines (unwords (lines cs))) == unwords (lines cs)
 unwords (lines (unwords (words cs))) == unwords (words cs)
+        unlines (lines (cs ++ "\n")) == cs ++ "\n"
+                    (cs ++ ds) ++ es == cs ++ (ds ++ es)
+            cs ++ unlines (lines cs) == unlines (lines (cs ++ cs))
            cs ++ unlines (lines " ") == unlines (lines (cs ++ " "))
            " " ++ unwords (lines cs) == unwords (lines (" " ++ cs))
           "\n" ++ unlines (lines cs) == unlines (lines ("\n" ++ cs))
            unlines (lines " ") ++ cs == " " ++ ("\n" ++ cs)
-        unlines (lines (cs ++ "\n")) == cs ++ "\n"
-                 words (unwords css) == words (unlines css)
           lines (unlines (lines cs)) == lines cs
           words (unlines (words cs)) == words cs
           lines (unlines (words cs)) == words cs
@@ -37,6 +36,7 @@ unwords (lines (unwords (words cs))) == unwords (words cs)
                    words (" " ++ cs) == words cs
                   words ("\n" ++ cs) == words cs
           words (unlines (lines cs)) == words cs
+                 words (unwords css) == words (unlines css)
            words (cs ++ unwords css) == words (cs ++ unlines css)
 
                            "" <= cs

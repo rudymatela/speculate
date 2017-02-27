@@ -24,24 +24,24 @@ denominator :: Ratio Integer -> Integer
 
     denominator (abs q) == denominator q
  denominator (negate q) == denominator q
-denominator (q + 1 % 1) == denominator q
-    denominator (x % 1) == 1
       numerator (x % 1) == x
+    denominator (x % 1) == 1
+denominator (q + 1 % 1) == denominator q
                    id q == q
-            abs (abs q) == abs q
       negate (negate q) == q
-         abs (negate q) == abs q
-            q * (0 % 1) == 0 % 1
-            q * (1 % 1) == q
               q + 0 % 1 == q
+            q * (1 % 1) == q
             q / (1 % 1) == q
-                  q * r == r * q
-                  q + r == r + q
-           q * negate r == negate (q * r)
-            abs (q * q) == q * q
+            q * (0 % 1) == 0 % 1
+            abs (abs q) == abs q
+         abs (negate q) == abs q
            q + negate q == 0 % 1
-     q / negate (1 % 1) == negate q
       0 % denominator q == 0 % 1
+                  q + r == r + q
+                  q * r == r * q
+     q / negate (1 % 1) == negate q
+            abs (q * q) == q * q
+           q * negate r == negate (q * r)
 
                    0 <= denominator q
                    1 <= denominator q

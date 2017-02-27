@@ -14,20 +14,20 @@ not :: Bool -> Bool
 (==) :: Bool -> Bool -> Bool
 
     (p && p) == p
-    (p == p) == True
     (p || p) == p
  not (not p) == p
-(p && False) == False
  (p && True) == p
-(p == False) == not p
- (p == True) == p
 (p || False) == p
+    (p == p) == True
+ (p == True) == p
+(p && False) == False
  (p || True) == True
+(p && not p) == False
+(p || not p) == True
+(p == False) == not p
     (p && q) == (q && p)
     (p || q) == (q || p)
 (p == not q) == not (p == q)
-(p && not p) == False
-(p || not p) == True
 
      p ==> True
  False ==> p

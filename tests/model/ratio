@@ -24,44 +24,44 @@ denominator :: Ratio Integer -> Integer
 
             denominator (abs q) == denominator q
          denominator (negate q) == denominator q
-        denominator (q + 1 % 1) == denominator q
-            denominator (x % 1) == 1
               numerator (x % 1) == x
-        denominator (q * abs r) == denominator (q * r)
-denominator (1 % denominator q) == denominator q
+            denominator (x % 1) == 1
+        denominator (q + 1 % 1) == denominator q
   numerator (1 % denominator q) == 1
+denominator (1 % denominator q) == denominator q
+        denominator (q * abs r) == denominator (q * r)
                            id q == q
-                    abs (abs q) == abs q
               negate (negate q) == q
-                 abs (negate q) == abs q
-                    q * (0 % 1) == 0 % 1
-                    q * (1 % 1) == q
                       q + 0 % 1 == q
+                    q * (1 % 1) == q
                     q / (1 % 1) == q
-                          q * r == r * q
-                          q + r == r + q
-                   q * negate r == negate (q * r)
-                   negate q + r == negate (q + negate r)
-                    abs (q * q) == q * q
+                    q * (0 % 1) == 0 % 1
+                    abs (abs q) == abs q
+                 abs (negate q) == abs q
                    q + negate q == 0 % 1
-             q / negate (1 % 1) == negate q
               0 % denominator q == 0 % 1
-                    (q * r) * s == q * (r * s)
-                    (q + r) + s == q + (r + s)
-                    (q + q) * r == q * (r + r)
+                          q + r == r + q
+                          q * r == r * q
+    numerator q % denominator q == q
+             q / negate (1 % 1) == negate q
+  denominator q % denominator q == 1 % 1
+                    abs (q * q) == q * q
+                   q * negate r == negate (q * r)
                 abs (q * abs r) == abs (q * r)
+                   negate q + r == negate (q + negate r)
                   abs q * abs r == abs (q * r)
-                q * (r + 1 % 1) == q + q * r
                 abs (q + abs q) == q + abs q
                   abs q + abs q == abs (q + q)
-  denominator q % denominator q == 1 % 1
-    numerator q % denominator q == q
             abs (1 % 1 + abs q) == 1 % 1 + abs q
         abs (1 % denominator q) == 1 % denominator q
         abs (denominator q % 1) == denominator q % 1
       recip (1 % denominator q) == denominator q % 1
       recip (denominator q % 1) == 1 % denominator q
  x % numerator (negate (1 % 1)) == negate (x % 1)
+                    (q + r) + s == q + (r + s)
+                    (q * r) * s == q * (r * s)
+                    (q + q) * r == q * (r + r)
+                q * (r + 1 % 1) == q + q * r
           numerator (abs q) % 1 == abs (numerator q % 1)
        numerator (negate q) % 1 == negate (numerator q % 1)
 

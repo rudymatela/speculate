@@ -29,8 +29,8 @@ False :: Bool
 (==) :: Word2 -> Word2 -> Bool
 
 delete x Null == Null
-  (t == Null) == ([] == toList t)
   isIn x Null == False
+  (t == Null) == ([] == toList t)
 
          Null <= t
             t <= insert x t

@@ -14,11 +14,11 @@ negate :: Int -> Int
 (-) :: Int -> Int -> Int
 
              id x == x
-            x - y == x + negate y
 negate (negate x) == x
             x + 0 == x
-            x + y == y + x
      x + negate x == 0
+            x + y == y + x
+            x - y == x + negate y
 
     x <= x + 1
 x - 1 <= x

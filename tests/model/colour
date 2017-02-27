@@ -34,44 +34,44 @@ Warning: (<=) :: Colour -> Colour -> Bool  is not an ordering (not antisymmetric
 Warning: (==) and (<=) :: Colour -> Colour -> Bool are inconsistent: (x == y) /= (x <= y && y <= x)
 
         hue (mix c black) == hue c
-         hue (mix c grey) == hue c
         hue (mix c white) == hue c
+         hue (mix c grey) == hue c
               hue (c + c) == hue (c + grey)
-                    c - c == black
                   mix c c == c
                 c + black == c
-                c + white == white
+                    c - c == black
                 c - black == c
-                c - white == black
+                c + white == white
                 black - c == black
-                    c + d == d + c
-                  mix c d == mix d c
+                c - white == black
+      fromHSV q r (0 % 1) == black
       fromHSL q r (0 % 1) == black
       fromHSL q r (1 % 1) == white
-      fromHSL (1 % 1) q r == fromHSL (0 % 1) q r
-      fromHSV q r (0 % 1) == black
-      fromHSV (1 % 1) q r == fromHSV (0 % 1) q r
 fromHSL q (0 % 1) (1 % 2) == grey
-fromHSL q (1 % 1) (1 % 2) == fromHSV q (1 % 1) (1 % 1)
+                    c + d == d + c
+                  mix c d == mix d c
       fromHSL q (0 % 1) r == fromHSL s (0 % 1) r
       fromHSV q (0 % 1) r == fromHSL s (0 % 1) r
-        chroma (grey - c) == chroma (c + grey)
-       chroma (white - c) == chroma c
-      chroma (mix c grey) == chroma (mix c black)
-     chroma (mix c white) == chroma (mix c black)
-    saturation (c + blue) == chroma (c + blue)
-   saturation (c + green) == chroma (c + green)
-     saturation (c + red) == chroma (c + red)
- saturation (mix c black) == saturation c
-         value (c + blue) == 1 % 1
-        value (c + green) == 1 % 1
+      fromHSV (1 % 1) q r == fromHSV (0 % 1) q r
+      fromHSL (1 % 1) q r == fromHSL (0 % 1) q r
+fromHSL q (1 % 1) (1 % 2) == fromHSV q (1 % 1) (1 % 1)
           value (c + red) == 1 % 1
-         value (c - blue) == chroma (c - blue)
-        value (c - green) == chroma (c - green)
+        value (c + green) == 1 % 1
+         value (c + blue) == 1 % 1
+       chroma (white - c) == chroma c
+ saturation (mix c black) == saturation c
+        chroma (grey - c) == chroma (c + grey)
+     chroma (mix c white) == chroma (mix c black)
+      chroma (mix c grey) == chroma (mix c black)
+     saturation (c + red) == chroma (c + red)
+   saturation (c + green) == chroma (c + green)
+    saturation (c + blue) == chroma (c + blue)
           value (c - red) == chroma (c - red)
-         value (blue - c) == chroma (blue - c)
-        value (green - c) == chroma (green - c)
+        value (c - green) == chroma (c - green)
+         value (c - blue) == chroma (c - blue)
           value (red - c) == chroma (red - c)
+        value (green - c) == chroma (green - c)
+         value (blue - c) == chroma (blue - c)
 
        hue c <= Just (1 % 1)
        0 % 1 <= chroma c

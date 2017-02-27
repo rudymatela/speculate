@@ -32,9 +32,9 @@ subgraph :: [Nat] -> Digraph Nat -> Digraph Nat
 subgraph xs emptyDigraph == emptyDigraph
            subgraph [] a == emptyDigraph
    isNode x emptyDigraph == False
-            isPath x x a == isNode x a
  isEdge x y emptyDigraph == False
  isPath x y emptyDigraph == False
+            isPath x x a == isNode x a
 
           emptyDigraph <= a
                      a <= addNode x a

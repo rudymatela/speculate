@@ -20,17 +20,17 @@ False :: Bool
 (==) :: Bool -> Bool -> Bool
 
         id x == x
- abs (abs x) == abs x
        x + 0 == x
+ abs (abs x) == abs x
        x + y == y + x
-    (x == 0) == (abs x <= 0)
- (x < abs x) == (x < 0)
- (abs x < x) == False
 (x <= abs x) == True
-(abs x <= x) == (0 <= x)
-(x == abs x) == (0 <= x)
- (abs x < 0) == False
+ (abs x < x) == False
 (0 <= abs x) == True
+ (abs x < 0) == False
+(abs x <= x) == (0 <= x)
+ (x < abs x) == (x < 0)
+(x == abs x) == (0 <= x)
+    (x == 0) == (abs x <= 0)
 
 x <= abs x
 0 <= abs x

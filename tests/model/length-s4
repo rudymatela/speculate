@@ -13,8 +13,8 @@ length :: [Int] -> Int
 (++) :: [Int] -> [Int] -> [Int]
 0 :: Int
 
-length (xs ++ ys) == length (ys ++ xs)
     length (x:xs) == length (y:xs)
+length (xs ++ ys) == length (ys ++ xs)
 
 0 <= length xs
 

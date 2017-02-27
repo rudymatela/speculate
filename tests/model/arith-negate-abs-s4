@@ -15,17 +15,17 @@ negate :: Int -> Int
 (*) :: Int -> Int -> Int
 
              id x == x
-      abs (abs x) == abs x
 negate (negate x) == x
-   abs (negate x) == abs x
-            x * 0 == 0
-            x * 1 == x
             x + 0 == x
-            x * y == y * x
-            x + y == y + x
-     x * negate y == negate (x * y)
-      abs (x * x) == x * x
+            x * 1 == x
+            x * 0 == 0
+      abs (abs x) == abs x
+   abs (negate x) == abs x
      x + negate x == 0
+            x + y == y + x
+            x * y == y * x
+      abs (x * x) == x * x
+     x * negate y == negate (x * y)
 
              x <= abs x
              0 <= abs x

@@ -419,7 +419,7 @@ showThy thy = (if null rs
 prettyThy :: (Equation -> Bool) -> Instances -> Thy -> String
 prettyThy shouldShow ti thy =
     table "r l l" . map showEquation
-  . sortOn (typ . fst) . sortOn (lengthE . fst)
+  . sortOn (typ . fst) . sortBy (compareE thy `on` uncurry phonyEquation)
   . filter shouldShow
   $ rules thy' ++ (map swap $ equations thy')
   where

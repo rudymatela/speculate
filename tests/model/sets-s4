@@ -22,23 +22,23 @@ True :: Bool
 (==) :: Int -> Int -> Bool
 (==) :: Bool -> Bool -> Bool
 
-               s /\ s == s
                s \/ s == s
-          s /\ emptyS == emptyS
+               s /\ s == s
           s \/ emptyS == s
      deleteS x emptyS == emptyS
+          s /\ emptyS == emptyS
      insertS x emptyS == singleS x
-               s /\ t == t /\ s
-               s \/ t == t \/ s
-       s \/ singleS x == insertS x s
 deleteS x (singleS x) == emptyS
+               s \/ t == t \/ s
+               s /\ t == t /\ s
 insertS x (singleS x) == singleS x
+       s \/ singleS x == insertS x s
 insertS x (singleS y) == insertS y (singleS x)
     sizeS (singleS x) == sizeS (singleS y)
-             (x == y) == x <~ singleS y
           x <~ emptyS == False
        x <~ singleS x == True
 (emptyS == singleS x) == False
+             (x == y) == x <~ singleS y
        x <~ singleS y == y <~ singleS x
 
                 emptyS <= s
