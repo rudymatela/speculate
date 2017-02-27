@@ -27,9 +27,9 @@ True :: Bool
 Star (r :+ Empty) == Star r
   Empty :+ Star r == Star r
      (r <= Empty) == True
+      (None <= r) == True
      (r == Empty) == (Empty <= r)
       (r == None) == (r <= None)
-      (None <= r) == True
     (r <= Star s) == True
     (r == Star s) == (Star s <= r)
  (Star r <= None) == False

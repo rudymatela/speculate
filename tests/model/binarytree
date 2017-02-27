@@ -48,5 +48,5 @@ isIn x (insert y Null) == isIn y (insert x Null)
    delete x t <= t
 insert x Null <= insert x t
 
-x /= y ==> insert y (delete x t) == delete x (insert y t)
+x /= y ==> delete y (insert x t) == insert x (delete y t)
 

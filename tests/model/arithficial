@@ -22,6 +22,6 @@ h :: Int -> Int -> Int
 (x + y) + z == x + (y + z)
 
 y <= g x x
-y <= h x 0
 y <= f 0 x
+y <= h x 0
 

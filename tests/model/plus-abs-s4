@@ -25,12 +25,12 @@ False :: Bool
        x + y == y + x
     (x == 0) == (abs x <= 0)
  (x < abs x) == (x < 0)
-(x <= abs x) == True
-(x == abs x) == (0 <= x)
  (abs x < x) == False
+(x <= abs x) == True
 (abs x <= x) == (0 <= x)
-(0 <= abs x) == True
+(x == abs x) == (0 <= x)
  (abs x < 0) == False
+(0 <= abs x) == True
 
 x <= abs x
 0 <= abs x

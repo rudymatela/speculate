@@ -9,6 +9,7 @@ import Test.Speculate.Utils
 import Data.List (sort)
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import Data.Typeable (typeOf)
+import Data.Maybe (isJust)
 
 main :: IO ()
 main = mainTest tests 10000
@@ -36,6 +37,13 @@ tests n =
   , holds n $ compare ==== compareComplexity
   , holds n $ LC.comparison lexicompare
   , holds n $ LC.comparison compareComplexity
+
+  , holds n $ \(FunE e1) (FunE e2) e3 -> let cmp = lexicompare
+                                         in typ e1 == typ e2 && isJust (e1 $$ e3) && isJust (e2 $$ e3)
+                                        ==> e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
+  , holds n $ \(FunE e1) (FunE e2) e3 -> let cmp = lexicompareBy (flip compare)
+                                         in typ e1 == typ e2 && isJust (e1 $$ e3) && isJust (e2 $$ e3)
+                                        ==> e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
 
   , holds n $ equivalence (eqExprCommuting [plusE])
   , holds n $ equivalence (eqExprCommuting [timesE])

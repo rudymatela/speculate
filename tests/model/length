@@ -17,7 +17,7 @@ length (xs ++ ys) == length (ys ++ xs)
     length (x:xs) == length (y:xs)
 
          0 <= length xs
- length xs <= length (xs ++ ys)
  length xs <= length (x:xs)
+ length xs <= length (xs ++ ys)
 length [x] <= length (x:xs)
 

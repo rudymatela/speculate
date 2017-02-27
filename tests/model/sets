@@ -56,24 +56,24 @@ sizeS (deleteS x (singleS y)) == sizeS (deleteS y (singleS x))
         (emptyS == singleS x) == False
                x <~ singleS y == y <~ singleS x
            (s == insertS x s) == x <~ s
+                (s /\ t == s) == (t == s \/ t)
              x <~ deleteS x s == False
              x <~ insertS x s == True
-                (s /\ t == s) == (t == s \/ t)
      (singleS x == singleS y) == x <~ singleS y
       (emptyS == insertS x s) == False
             (False == x <~ s) == (s == deleteS x s)
 
                   emptyS <=  s
-          s /\ singleS x <=  singleS x
    deleteS x (singleS y) <=  singleS y
+          s /\ singleS x <=  singleS x
   singleS (sizeS emptyS) <=  singleS (sizeS s)
 insertS (sizeS emptyS) s <=  singleS (sizeS s)
 insertS (sizeS emptyS) s <=  singleS (sizeS (singleS x))
             sizeS emptyS <=  sizeS s
-                 sizeS s <=  sizeS (s \/ t)
                  sizeS s <=  sizeS (insertS x s)
-          sizeS (s /\ t) <=  sizeS s
+                 sizeS s <=  sizeS (s \/ t)
      sizeS (deleteS x s) <=  sizeS s
+          sizeS (s /\ t) <=  sizeS s
        sizeS (singleS x) <=  sizeS (insertS y s)
           s == singleS x ==> x <~ s
 

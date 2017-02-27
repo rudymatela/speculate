@@ -28,6 +28,7 @@ module Test
   , BoolE (..)
   , CharE (..)
   , ListE (..)
+  , FunE (..)
   , SameTypeE (..)
   , unSameTypeE
   , SameTypedPairsE (..)

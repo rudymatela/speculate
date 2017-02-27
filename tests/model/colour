@@ -48,17 +48,17 @@ Warning: (==) and (<=) :: Colour -> Colour -> Bool are inconsistent: (x == y) /=
                   mix c d == mix d c
       fromHSL q r (0 % 1) == black
       fromHSL q r (1 % 1) == white
-      fromHSV q r (0 % 1) == black
       fromHSL (1 % 1) q r == fromHSL (0 % 1) q r
+      fromHSV q r (0 % 1) == black
       fromHSV (1 % 1) q r == fromHSV (0 % 1) q r
 fromHSL q (0 % 1) (1 % 2) == grey
 fromHSL q (1 % 1) (1 % 2) == fromHSV q (1 % 1) (1 % 1)
       fromHSL q (0 % 1) r == fromHSL s (0 % 1) r
-      fromHSL q (0 % 1) r == fromHSV s (0 % 1) r
-      chroma (mix c grey) == chroma (mix c black)
-     chroma (mix c white) == chroma (mix c black)
+      fromHSV q (0 % 1) r == fromHSL s (0 % 1) r
         chroma (grey - c) == chroma (c + grey)
        chroma (white - c) == chroma c
+      chroma (mix c grey) == chroma (mix c black)
+     chroma (mix c white) == chroma (mix c black)
     saturation (c + blue) == chroma (c + blue)
    saturation (c + green) == chroma (c + green)
      saturation (c + red) == chroma (c + red)
@@ -75,13 +75,13 @@ fromHSL q (1 % 1) (1 % 2) == fromHSV q (1 % 1) (1 % 1)
 
        hue c <= Just (1 % 1)
        0 % 1 <= chroma c
-       0 % 1 <= lightness c
        0 % 1 <= saturation c
        0 % 1 <= value c
+       0 % 1 <= lightness c
     chroma c <= 1 % 1
- lightness c <= 1 % 1
 saturation c <= 1 % 1
      value c <= 1 % 1
+ lightness c <= 1 % 1
     chroma c <= saturation c
     chroma c <= value c
  lightness c <= value c

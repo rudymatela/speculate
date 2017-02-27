@@ -61,7 +61,6 @@ addEdge x y emptyDigraph <=  addEdge x y a
             isPath x y a ==> isNode y a
             isEdge x y a ==> isPath x y a
 
-   elem x xs ==> subgraph xs (addNode x emptyDigraph) == addNode x emptyDigraph
-   elem x xs ==>            addNode x (subgraph xs a) == subgraph xs (addNode x a)
-isEdge x y a ==>                        addEdge x y a == a
+   elem x xs ==> subgraph xs (addNode x a) == addNode x (subgraph xs a)
+isEdge x y a ==>             addEdge x y a == a
 

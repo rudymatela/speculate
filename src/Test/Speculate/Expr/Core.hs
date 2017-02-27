@@ -178,7 +178,7 @@ lexicompareBy compareConstants = cmp
   c1@(Constant _ _) `cmp` c2@(Constant _ _) = c1 `compareConstants` c2
   e1 `cmp` e2 | typ e1 /= typ e2    = typ e1 `compareTy` typ e2
   Var      s1 _ `cmp` Var      s2 _ = s1 `compare` s2
-  (f :$ x)      `cmp` (g :$ y)      = f  `compare` g   `thn`  x `compare` y
+  (f :$ x)      `cmp` (g :$ y)      = f  `cmp` g   `thn`  x `cmp` y
   (_ :$ _)      `cmp` _             = GT
   _             `cmp` (_ :$ _)      = LT
   _             `cmp` Var _ _       = GT

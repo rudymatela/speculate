@@ -23,20 +23,20 @@ unwords :: [[Char]] -> [Char]
             cs ++ unlines (lines cs) == unlines (lines (cs ++ cs))
 unwords (lines (unwords (lines cs))) == unwords (lines cs)
 unwords (lines (unwords (words cs))) == unwords (words cs)
-        unlines (lines (cs ++ "\n")) == cs ++ "\n"
            cs ++ unlines (lines " ") == unlines (lines (cs ++ " "))
            " " ++ unwords (lines cs) == unwords (lines (" " ++ cs))
           "\n" ++ unlines (lines cs) == unlines (lines ("\n" ++ cs))
            unlines (lines " ") ++ cs == " " ++ ("\n" ++ cs)
+        unlines (lines (cs ++ "\n")) == cs ++ "\n"
                  words (unwords css) == words (unlines css)
           lines (unlines (lines cs)) == lines cs
           words (unlines (words cs)) == words cs
           lines (unlines (words cs)) == words cs
-          words (unlines (lines cs)) == words cs
                    words (cs ++ " ") == words cs
                   words (cs ++ "\n") == words cs
                    words (" " ++ cs) == words cs
                   words ("\n" ++ cs) == words cs
+          words (unlines (lines cs)) == words cs
            words (cs ++ unwords css) == words (cs ++ unlines css)
 
                            "" <= cs
@@ -50,8 +50,8 @@ unwords (lines (unwords (words cs))) == unwords (words cs)
            unlines (lines cs) <= cs ++ cs
                    "\n" ++ cs <= cs ++ "\n"
 unwords (lines (unwords css)) <= unwords css
-                  unwords css <= unwords (lines (unlines css))
                    cs ++ "\n" <= cs ++ " "
+                  unwords css <= unwords (lines (unlines css))
                   unlines css <= unwords css ++ " "
                   unlines css <= unwords css ++ "\n"
            unlines (lines cs) <= cs ++ " "

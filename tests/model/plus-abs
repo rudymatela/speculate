@@ -31,17 +31,17 @@ False :: Bool
            (x == 0) == (abs x <= 0)
            (0 <= x) == (y <= x + y)
        (x <= abs x) == True
-       (x == abs x) == (0 <= x)
        (abs x <= x) == (0 <= x)
+       (x == abs x) == (0 <= x)
        (0 <= abs x) == True
-       (x == x + y) == (abs y <= 0)
        (x + y <= x) == (y <= 0)
+       (x == x + y) == (abs y <= 0)
 (False == (x <= y)) == (y + 1 <= x)
        (0 <= x + x) == (0 <= x)
        (1 <= x + x) == (1 <= x)
-       (1 == x + x) == False
        (x + x <= 0) == (x <= 0)
        (x + x <= 1) == (x <= 0)
+       (1 == x + x) == False
 
           x <=  abs x
           0 <=  abs x
@@ -52,11 +52,9 @@ False :: Bool
           0 <=  x + abs x
       x + y <=  x + abs y
 abs (x + 1) <=  1 + abs x
-      x < y ==> x < abs y
      x <= y ==> x <= abs y
-  abs x < y ==> x < y
  abs x <= y ==> x <= y
-      x < 0 ==> x < abs y
+  abs x < y ==> x < y
      x <= 0 ==> x <= abs y
  abs x <= y ==> 0 <= y
   abs x < y ==> 1 <= y
