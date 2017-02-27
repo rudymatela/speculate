@@ -4,19 +4,28 @@
   (++) :: [Int] -> [Int] -> [Int]
 insert :: Int -> [Int] -> [Int]
   sort :: [Int] -> [Int]
+ (<=0) :: Predicates -> Int
+ (<=1) :: Predicates -> Int
+  (<0) :: Predicates -> Int
+  (<1) :: Predicates -> Int
+  (<=) :: Int -> Int -> Bool
+   (<) :: Int -> Int -> Bool
 
 == Laws ==
-  1. sort [] = []
-  2. xs ++ [] = xs
-  3. [] ++ xs = xs
-  4. insert x [] = x : []
-  5. sort (sort xs) = sort xs
-  6. sort (x : xs) = insert x (sort xs)
-  7. sort (insert x xs) = insert x (sort xs)
-  8. sort (xs ++ ys) = sort (ys ++ xs)
-  9. (xs ++ ys) ++ zs = xs ++ (ys ++ zs)
- 10. x : (xs ++ ys) = (x : xs) ++ ys
- 11. insert x (x : xs) = x : (x : xs)
- 12. sort (xs ++ sort ys) = sort (xs ++ ys)
- 13. insert y (insert x xs) = insert x (insert y xs)
+  1. x < z & x2 <= y => x = y
+  2. sort [] = []
+  3. xs ++ [] = xs
+  4. [] ++ xs = xs
+  5. insert x [] = x : []
+  6. sort (sort xs) = sort xs
+  7. x < x = y < y
+  8. x <= x = y <= y
+  9. sort (x : xs) = insert x (sort xs)
+ 10. sort (insert x xs) = insert x (sort xs)
+ 11. sort (xs ++ ys) = sort (ys ++ xs)
+ 12. (xs ++ ys) ++ zs = xs ++ (ys ++ zs)
+ 13. x : (xs ++ ys) = (x : xs) ++ ys
+ 14. insert x (x : xs) = x : (x : xs)
+ 15. sort (xs ++ sort ys) = sort (xs ++ ys)
+ 16. insert y (insert x xs) = insert x (insert y xs)
 
