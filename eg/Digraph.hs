@@ -5,7 +5,7 @@
 module Digraph (Digraph(..), okDigraph, strictOrder,
                 sources, targets, nodes, edges, preds, succs,
                 isNode, isEdge, isPath,
-                emptyDigraph, addNode, addEdge, assoc1toNdigraph,
+                empty, addNode, addEdge, assoc1toNdigraph,
                 transitiveClosure, topoSort,
                 insert, union, diff, cycles, subgraph, maxDagFrom) where
 
@@ -65,8 +65,8 @@ isEdge s t (D d)  =  case lookup s d of
 isPath :: (Ord a, Eq a) => a -> a -> Digraph a -> Bool
 isPath s t d  =  t `elemOrd` closeInto d [] [s]
 
-emptyDigraph :: Digraph a
-emptyDigraph  =  D []
+empty :: Digraph a
+empty =  D []
 
 addNode :: (Ord a, Eq a) => a -> Digraph a -> Digraph a
 addNode s (D d)  =

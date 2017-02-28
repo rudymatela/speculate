@@ -13,7 +13,7 @@ False :: Bool
 True :: Bool
 [] :: [Nat]
 elem :: Nat -> [Nat] -> Bool
-emptyDigraph :: Digraph Nat
+empty :: Digraph Nat
 preds :: Nat -> Digraph Nat -> [Nat]
 succs :: Nat -> Digraph Nat -> [Nat]
 isNode :: Nat -> Digraph Nat -> Bool
@@ -27,19 +27,19 @@ subgraph :: [Nat] -> Digraph Nat -> Digraph Nat
 (==) :: Nat -> Nat -> Bool
 (==) :: Bool -> Bool -> Bool
 
-    preds x emptyDigraph == []
-    succs x emptyDigraph == []
-subgraph xs emptyDigraph == emptyDigraph
-           subgraph [] a == emptyDigraph
-   isNode x emptyDigraph == False
- isEdge x y emptyDigraph == False
- isPath x y emptyDigraph == False
-            isPath x x a == isNode x a
+    preds x empty == []
+    succs x empty == []
+subgraph xs empty == empty
+    subgraph [] a == empty
+   isNode x empty == False
+ isEdge x y empty == False
+ isPath x y empty == False
+     isPath x x a == isNode x a
 
-          emptyDigraph <= a
-                     a <= addNode x a
-         subgraph xs a <= a
-addNode x emptyDigraph <= addNode x a
+          empty <= a
+              a <= addNode x a
+  subgraph xs a <= a
+addNode x empty <= addNode x a
 
 isNode x a ==> addNode x a == a
 
