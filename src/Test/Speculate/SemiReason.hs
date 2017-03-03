@@ -12,12 +12,12 @@ type Equation = (Expr, Expr)
 data Shy = Shy
   { sequations  :: [Equation] -- <='s
 --, ssequations :: [Equation] -- <'s -- LATER!
-  , scompareE :: Expr -> Expr -> Ordering -- ^ total order used to "sort" equations
+  , sthy :: Thy
   }
 
 emptyShy = Shy
   { sequations = []
-  , scompareE = compare
+  , sthy = emptyThy
   }
 
 updateSemiEquationsBy :: ([Equation] -> [Equation]) -> Shy -> Shy
@@ -66,10 +66,10 @@ transConsequence shy (e1,e2) = or [ e1' == e2'
 updateSEquationsBy :: ([Equation] -> [Equation]) -> Shy -> Shy
 updateSEquationsBy f shy@Shy{sequations = seqs} = shy{sequations = f seqs}
 
-stheorize :: (Expr -> Expr -> Ordering) -> [Equation] -> Shy
-stheorize cmp seqs =
-  Shy{ sequations = sortBy (cmp `on` uncurry phonyEquation) seqs
-     , scompareE = cmp
+stheorize :: Thy -> [Equation] -> Shy
+stheorize thy seqs =
+  Shy{ sequations = sortBy (compareE thy `on` uncurry phonyEquation) seqs
+     , sthy = thy
      }
 
 prettyShy :: (Equation -> Bool) -> Instances -> (Expr -> Expr -> Bool) -> Shy -> String

@@ -260,7 +260,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
   reportClassesFor ti n (showClassesFor args) thy es
   when (showSemiequations args) . putStrLn
     . prettyShy (shouldShowEquation args) ti (equivalentInstance thy)
-    . semiTheoryFromThyAndReps ti (compareExpr args) n (maxVars args) thy
+    . semiTheoryFromThyAndReps ti n (maxVars args) thy
     $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
   when (reallyShowConditions args) . putStrLn
     . prettyChy (shouldShowConditionalEquation args)

@@ -158,10 +158,10 @@ equivalencesBetween (===) e1 e2 = discardLater (isInstanceOf `on` uncurry phonyE
                                 . filter (uncurry (===))
                                 $ vassignmentsEqn (e1,e2)
 
-semiTheoryFromThyAndReps :: Instances -> (Expr -> Expr -> Ordering) -> Int -> Int
+semiTheoryFromThyAndReps :: Instances -> Int -> Int
                          -> Thy -> [Expr] -> Shy
-semiTheoryFromThyAndReps ti cmp nt nv thy =
-    stheorize cmp
+semiTheoryFromThyAndReps ti nt nv thy =
+    stheorize thy
   . pairsThat (\e1 e2 -> e1 /= e2
                       && typ e1 == typ e2
                       && lessOrEqual ti nt e1 e2)
