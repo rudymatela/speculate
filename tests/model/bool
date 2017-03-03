@@ -46,7 +46,9 @@ not :: Bool -> Bool
        not p ==> not (p && q)
 not (p || q) ==> p == q
 not (p == q) ==> p || q
+  p && not q ==> q || p
       p == q ==> p || not q
+  p && not q ==> not (q && p)
 not (p == q) ==> not (p && q)
   p && not q ==> not (p == q)
 

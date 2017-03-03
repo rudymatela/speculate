@@ -20,6 +20,12 @@ emptyShy = Shy
   , scompareE = compare
   }
 
+updateSemiEquationsBy :: ([Equation] -> [Equation]) -> Shy -> Shy
+updateSemiEquationsBy f shy@Shy {sequations = es} = shy {sequations = f es}
+
+mapSemiEquations :: (Equation -> Equation) -> Shy -> Shy
+mapSemiEquations = updateSemiEquationsBy . map
+
 lesser  :: Shy -> Expr -> [Expr]
 lesser  shy e = [ e1 | (e1,e2) <- sequations shy, e == e2 ]
 
@@ -66,8 +72,8 @@ stheorize cmp seqs =
      , scompareE = cmp
      }
 
-prettyShy :: (Equation -> Bool) -> (Expr -> Expr -> Bool) -> Shy -> String
-prettyShy shouldShow equivalentInstanceOf shy =
+prettyShy :: (Equation -> Bool) -> Instances -> (Expr -> Expr -> Bool) -> Shy -> String
+prettyShy shouldShow insts equivalentInstanceOf shy =
     table "r l l"
   . map showSELine
   . sortOn (typ . fst)
@@ -75,7 +81,18 @@ prettyShy shouldShow equivalentInstanceOf shy =
   . discardLater (equivalentInstanceOf `on` uncurry phonyEquation)
   . discard (transConsequence shy)
   . discardLater (isInstanceOf `on` uncurry phonyEquation)
-  $ sequations shy
+  . sequations
+  $ canonicalizeShyWith insts shy
   where
   showSELine (e1,e2) = showLineWithOp (if typ e1 == boolTy then "==>" else "<=") (e1,e2)
   showLineWithOp o (e1,e2) = [showOpExpr o e1, o, showOpExpr o e2]
+
+canonicalizeShyWith :: Instances -> Shy -> Shy
+canonicalizeShyWith = mapSemiEquations . canonicalizeSemiEquationWith
+
+canonicalizeSemiEquationWith :: Instances -> Equation -> Equation
+canonicalizeSemiEquationWith is (e1,e2) =
+  case canonicalizeWith is (e1 :$ e2) of
+  e1' :$ e2' -> (e1',e2')
+  _ -> error $ "canonicalizeShyWith: the impossible happened,"
+            ++ "this is definitely a bug, see source!"

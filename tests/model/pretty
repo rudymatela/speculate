@@ -39,8 +39,8 @@ nest (length (cs ++ ds)) d1 == nest (length cs) (nest (length ds) d1)
         d1 $$ d2 <= d1 <> (d1 $$ d2)
 d1 $$ (d2 <> d3) <= (d1 <> d2) $$ d3
 d1 $$ (d2 <> d3) <= (d1 <> d3) $$ d2
-d2 $$ (d1 <> d1) <= (d2 <> d1) $$ d3
-d2 $$ (d1 <> d1) <= d2 <> (d1 $$ d3)
+d1 $$ (d2 <> d2) <= (d1 <> d2) $$ d3
+d1 $$ (d2 <> d2) <= d1 <> (d2 $$ d3)
 d1 $$ (d1 <> d2) <= d1 <> (d1 $$ d2)
 d1 $$ (d2 <> d1) <= d1 <> (d1 $$ d2)
        length cs <= length (cs ++ ds)

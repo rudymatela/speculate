@@ -26,9 +26,9 @@ eval (eval p) == eval p
 taut (eval p) == taut p
      (p == q) == (q == p)
 
-    subst n p p <=  p
-    subst n p p <=  subst n True p
-subst n False p <=  subst n p p
+    subst n p q <=  q
+    subst n p q <=  subst n True q
+subst n False p <=  subst n q p
               p ==> True
           False ==> p
     p == eval q ==> p == eval p

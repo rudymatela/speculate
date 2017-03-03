@@ -75,6 +75,7 @@ insertS (sizeS emptyS) s <=  singleS (sizeS (singleS x))
      sizeS (deleteS x s) <=  sizeS s
           sizeS (s /\ t) <=  sizeS s
        sizeS (singleS x) <=  sizeS (insertS y s)
+     sizeS (deleteS x s) <=  sizeS (t \/ s)
           s == singleS x ==> x <~ s
 
 

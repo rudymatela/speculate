@@ -20,7 +20,7 @@ f x y == f x z
 h x y == h z y
 x + y == y + x
 
-y <= g x x
-y <= f 0 x
-y <= h x 0
+x <= g y y
+x <= f 0 y
+x <= h y 0
 
