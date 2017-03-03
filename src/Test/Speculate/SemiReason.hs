@@ -26,6 +26,9 @@ updateSemiEquationsBy f shy@Shy {sequations = es} = shy {sequations = f es}
 mapSemiEquations :: (Equation -> Equation) -> Shy -> Shy
 mapSemiEquations = updateSemiEquationsBy . map
 
+scompareE :: Shy -> (Expr -> Expr -> Ordering)
+scompareE = compareE . sthy
+
 lesser  :: Shy -> Expr -> [Expr]
 lesser  shy e = [ e1 | (e1,e2) <- sequations shy, e == e2 ]
 
@@ -71,6 +74,12 @@ stheorize thy seqs =
   Shy{ sequations = sortBy (compareE thy `on` uncurry phonyEquation) seqs
      , sthy = thy
      }
+
+-- list all equation sides in a Shy
+sides :: Shy -> [Expr]
+sides shy = nubSortBy (scompareE shy)
+          . concatMap (\(e1,e2) -> [e1,e2])
+          $ sequations shy
 
 prettyShy :: (Equation -> Bool) -> Instances -> (Expr -> Expr -> Bool) -> Shy -> String
 prettyShy shouldShow insts equivalentInstanceOf shy =
