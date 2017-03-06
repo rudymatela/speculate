@@ -19,9 +19,10 @@ main =
         ]
     }
 
+-- taken from quickspec/examples/Conditionals.hs
 eqLenGen :: Gen [Dynamic]
 eqLenGen = do
   len <- arbitrary
-  xs1 <- (replicateM len arbitrary :: Gen [Int])
-  xs2 <- (replicateM len arbitrary :: Gen [Int])
-  return [toDyn xs1, toDyn xs2]
+  xs <- (replicateM len arbitrary :: Gen [Int])
+  ys <- (replicateM len arbitrary :: Gen [Int])
+  return [toDyn xs, toDyn ys]
