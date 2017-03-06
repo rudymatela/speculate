@@ -27,7 +27,7 @@ EG = \
   eg/digraphs \
   eg/list \
   eg/length \
-  eg/lenzip \
+  eg/zip \
   eg/minus \
   eg/insertsort \
   eg/speculate-reason \

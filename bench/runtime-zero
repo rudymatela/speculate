@@ -9,7 +9,7 @@ colour              1.663
 digraphs            8.740
 insertsort          5.463
 length              0.130
-lenzip              1.356
+zip                 1.356
 list                3.260
 list-c              0.856
 minus               0.510
