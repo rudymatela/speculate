@@ -7,11 +7,11 @@ max  #-vars    =    2  (for inequational and conditional laws)
 
 _ :: [Int]  (holes: [Int])
 _ :: Int  (holes: Int)
-length :: [Int] -> Int
 [] :: [Int]
 (:) :: Int -> [Int] -> [Int]
 (++) :: [Int] -> [Int] -> [Int]
 0 :: Int
+length :: [Int] -> Int
 
     length (x:xs) == length (y:xs)
 length (xs ++ ys) == length (ys ++ xs)
