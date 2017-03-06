@@ -4,20 +4,19 @@ import Test.QuickCheck
 import Data.Dynamic
 import Control.Monad
 
-main =
-  quickSpec signature
-    { maxTermSize = Just 5
-    , maxTests = Just 500
-    , constants =
-        [ constant "++" ((++) :: [Int] -> [Int] -> [Int])
-        , constant "length" (length :: [Int] -> Int)
-        , constant "zip"   (zip :: [Int] -> [Int] -> [(Int,Int)])
-        ]
-    , predicates =
---      [ predicate "eqLen" ((\xs ys -> length xs == length ys) :: [Int] -> [Int] -> Bool)
-        [ predicateGen "eqLen" ((\xs ys -> length xs == length ys) :: [Int] -> [Int] -> Bool) eqLenGen
-        ]
-    }
+main = quickSpec signature
+  { maxTermSize = Just 5
+  , maxTests = Just 500
+  , constants =
+      [ constant "++" ((++) :: [Int] -> [Int] -> [Int])
+      , constant "length" (length :: [Int] -> Int)
+      , constant "zip"   (zip :: [Int] -> [Int] -> [(Int,Int)])
+      ]
+  , predicates =
+--    [ predicate "eqLen" ((\xs ys -> length xs == length ys) :: [Int] -> [Int] -> Bool)
+      [ predicateGen "eqLen" ((\xs ys -> length xs == length ys) :: [Int] -> [Int] -> Bool) eqLenGen
+      ]
+  }
 
 -- taken from quickspec/examples/Conditionals.hs
 eqLenGen :: Gen [Dynamic]
