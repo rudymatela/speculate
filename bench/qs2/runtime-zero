@@ -3,7 +3,7 @@ arith-negate-abs 0.520
 bool             0.270
 list             0.150
 insertsort       0.510
-lenzip           0.320
+zip              0.320
 arithficial      0.280
 plus-abs         0.350
 regexes          13.550

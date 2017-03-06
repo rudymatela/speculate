@@ -16,7 +16,7 @@ bench: all
 	@echo -n "bool             "; /usr/bin/time -f%e0 ./bool             2>&1 >             bool.out
 	@echo -n "list             "; /usr/bin/time -f%e0 ./list             2>&1 >             list.out
 	@echo -n "insertsort       "; /usr/bin/time -f%e0 ./insertsort       2>&1 >       insertsort.out
-	@echo -n "lenzip           "; /usr/bin/time -f%e0 ./lenzip           2>&1 >           lenzip.out
+	@echo -n "zip              "; /usr/bin/time -f%e0 ./zip              2>&1 >              zip.out
 	@echo -n "arithficial      "; /usr/bin/time -f%e0 ./arithficial      2>&1 >      arithficial.out
 	@echo -n "plus-abs         "; /usr/bin/time -f%e0 ./plus-abs         2>&1 >         plus-abs.out
 	@#echo    "regexes          0.000";
