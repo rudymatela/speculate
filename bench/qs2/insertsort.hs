@@ -6,7 +6,7 @@ import Data.Dynamic
 main =
   quickSpec
     signature
-      { maxTermSize = Just 5
+      { maxTermSize = Just 5 -- 9
       , constants =
           [ constant "[]" ([] :: [Int])
           , constant ":"  ((:) :: Int -> [Int] -> [Int])
@@ -16,7 +16,9 @@ main =
           ]
       , predicates =
           [ predicateGen "<=" ((<=) :: Int -> Int -> Bool) leGen
-          , predicateGen "<"  ((<)  :: Int -> Int -> Bool) ltGen ]
+          , predicateGen "<"  ((<)  :: Int -> Int -> Bool) ltGen
+--        [ predicate "-<=-" ((\x y xs -> x <= y) :: Int -> Int -> [Int] -> Bool)
+          ]
       }
 
 leGen :: Gen [Dynamic]
