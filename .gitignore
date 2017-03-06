@@ -51,6 +51,7 @@ eg/colour
 eg/digraphs
 eg/list
 eg/length
+eg/lenzip
 eg/minus
 eg/numbool
 eg/insertsort
@@ -74,6 +75,8 @@ bench/qs*/arith
 bench/qs*/plus-abs
 bench/qs*/bool
 bench/qs*/list
+bench/qs*/length
+bench/qs*/lenzip
 bench/qs*/insertsort
 bench/qs*/arithficial
 bench/qs*/quickspec
