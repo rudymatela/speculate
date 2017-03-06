@@ -16,11 +16,12 @@ bench: all
 	@echo -n "bool             "; /usr/bin/time -f%e0 ./bool             2>&1 >             bool.out
 	@echo -n "list             "; /usr/bin/time -f%e0 ./list             2>&1 >             list.out
 	@echo -n "insertsort       "; /usr/bin/time -f%e0 ./insertsort       2>&1 >       insertsort.out
+	@echo -n "lenzip           "; /usr/bin/time -f%e0 ./lenzip           2>&1 >           lenzip.out
 	@echo -n "arithficial      "; /usr/bin/time -f%e0 ./arithficial      2>&1 >      arithficial.out
 	@echo -n "plus-abs         "; /usr/bin/time -f%e0 ./plus-abs         2>&1 >         plus-abs.out
-	@echo    "regexes          0.000";
-	#@echo "This will take a couple minutes to run (regexes)" > /dev/stderr
-	#@echo -n "regexes          "; /usr/bin/time -f%e0 ./regexes          2>&1 >          regexes.out
+	@#echo    "regexes          0.000";
+	@echo "This will take a couple minutes to run (regexes)" > /dev/stderr
+	@echo -n "regexes          "; /usr/bin/time -f%e0 ./regexes          2>&1 >          regexes.out
 
 save-bench: bench
 	make -s bench > runtime-$$HOSTNAME
