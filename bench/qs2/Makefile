@@ -5,6 +5,7 @@ BENCH = \
   bool \
   list \
   insertsort \
+  zip \
   regexes \
   arithficial
 
