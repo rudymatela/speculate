@@ -52,6 +52,7 @@ eg/digraphs
 eg/list
 eg/length
 eg/lenzip
+eg/zip
 eg/minus
 eg/numbool
 eg/insertsort
@@ -77,6 +78,7 @@ bench/qs*/bool
 bench/qs*/list
 bench/qs*/length
 bench/qs*/lenzip
+bench/qs*/zip
 bench/qs*/insertsort
 bench/qs*/arithficial
 bench/qs*/quickspec
