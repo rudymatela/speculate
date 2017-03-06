@@ -3,7 +3,7 @@ max expr size  =    4
   |- on conds  =    5
 max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
-max  #-vars    =    2  (for inequational and conditional laws)
+max  #-vars    =    3  (for inequational and conditional laws)
 
 _ :: [Int]  (holes: [Int])
 _ :: [(Int,Int)]  (holes: [(Int,Int)])

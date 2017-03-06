@@ -14,4 +14,5 @@ main = speculate args
   , showSemiequations = False
   , maxSemiSize = 5
   , maxCondSize = 5
+  , maxVars = 3
   }

@@ -1,7 +1,7 @@
 max expr size  =    5
 max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
-max  #-vars    =    2  (for inequational and conditional laws)
+max  #-vars    =    3  (for inequational and conditional laws)
 
 _ :: [Int]  (holes: [Int])
 _ :: [(Int,Int)]  (holes: [(Int,Int)])
@@ -21,8 +21,6 @@ zip xs (xs ++ ys) == zip xs xs
 zip (xs ++ ys) xs == zip xs xs
 length (xs ++ ys) == length (ys ++ xs)
 
-length xs == length ys ==> zip xs (ys ++ xs) == zip xs ys
-length xs == length ys ==> zip xs (ys ++ ys) == zip xs ys
-length xs == length ys ==> zip (xs ++ xs) ys == zip xs ys
-length xs == length ys ==> zip (xs ++ ys) ys == zip xs ys
+length xs == length ys ==> zip xs (ys ++ zs) == zip xs ys
+length xs == length ys ==> zip (xs ++ zs) ys == zip xs ys
 
