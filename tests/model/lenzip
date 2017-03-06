@@ -19,7 +19,6 @@ False :: Bool
 
 zip xs (xs ++ ys) == zip xs xs
 zip (xs ++ ys) xs == zip xs xs
-length (xs ++ ys) == length (ys ++ xs)
 
 length xs == length ys ==> zip xs (ys ++ zs) == zip xs ys
 length xs == length ys ==> zip (xs ++ zs) ys == zip xs ys

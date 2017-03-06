@@ -19,6 +19,5 @@ False :: Bool
 (==) :: [(Int,Int)] -> [(Int,Int)] -> Bool
 (==) :: Bool -> Bool -> Bool
 
-length (xs ++ ys) == length (ys ++ xs)
 
 

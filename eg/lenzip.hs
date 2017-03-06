@@ -7,8 +7,8 @@ main = speculate args
       [ background
       , constant "++"     $ (++)    -:> [int]
       , constant "==" $ (==) -:> int
-      , foreground
       , constant "length" $ length  -:> [int]
+      , foreground
       , constant "zip"    $ zip  -:> [int] ->:> [int]
       ]
   , showSemiequations = False
