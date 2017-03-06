@@ -10,10 +10,8 @@ main = speculate args
       , constant "++"     $ (++)    -:> [int]
       , showConstant (0 :: Int)
 --    , showConstant (1 :: Int)
---    , constant "==" $ (==) -:> int
       , foreground
       , constant "length" $ length  -:> [int]
---    , constant "zip"    $ zip  -:> [int] ->:> [int]
       ]
   , instances = [ ordWith (isSubsequenceOf :: [Int] -> [Int] -> Bool) ]
   }
