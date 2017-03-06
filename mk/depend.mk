@@ -398,6 +398,50 @@ eg/length.o: \
   ../leancheck/src/Test/LeanCheck/Core.hs \
   ../leancheck/src/Test/LeanCheck/Basic.hs \
   eg/length.hs
+eg/lenzip: \
+  eg/lenzip.hs \
+  mk/toplibs
+eg/lenzip.o: \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Ord.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Colour.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Sanity.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr/TypeInfo.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Match.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Expr/Canon.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Types.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/TypeBinding.hs \
+  ../leancheck/src/Test/LeanCheck/Utils/Operators.hs \
+  ../leancheck/src/Test/LeanCheck/Utils.hs \
+  ../leancheck/src/Test/LeanCheck/Tiers.hs \
+  ../leancheck/src/Test/LeanCheck.hs \
+  ../leancheck/src/Test/LeanCheck/IO.hs \
+  ../leancheck/src/Test/LeanCheck/Error.hs \
+  ../leancheck/src/Test/LeanCheck/Derive.hs \
+  ../leancheck/src/Test/LeanCheck/Core.hs \
+  ../leancheck/src/Test/LeanCheck/Basic.hs \
+  eg/lenzip.hs
 eg/list: \
   eg/list.hs \
   mk/toplibs

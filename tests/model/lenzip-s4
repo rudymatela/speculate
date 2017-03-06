@@ -1,0 +1,24 @@
+max expr size  =    4
+  |- on ineqs  =    5
+  |- on conds  =    5
+max  #-tests   =  500
+min  #-tests   =   25  (to consider p ==> q true)
+max  #-vars    =    2  (for inequational and conditional laws)
+
+_ :: [Int]  (holes: [Int])
+_ :: [(Int,Int)]  (holes: [(Int,Int)])
+_ :: Int  (holes: Int)
+_ :: Bool  (holes: Bool)
+(++) :: [Int] -> [Int] -> [Int]
+(==) :: Int -> Int -> Bool
+length :: [Int] -> Int
+zip :: [Int] -> [Int] -> [(Int,Int)]
+True :: Bool
+False :: Bool
+(==) :: [Int] -> [Int] -> Bool
+(==) :: [(Int,Int)] -> [(Int,Int)] -> Bool
+(==) :: Bool -> Bool -> Bool
+
+length (xs ++ ys) == length (ys ++ xs)
+
+
