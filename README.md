@@ -94,10 +94,15 @@ when run, it prints the following:
 	x <= x + 1
 
 
-Now, if we add `<=` and `<` as `backgroundConstants` on `args`
+Now, if we add `<=` and `<` as background constants on `args`
 
-	  , backgroundConstants =
-	      [ constant "<="  ((<=) :: Int -> Int -> Bool)
+	  , constants =
+	      [ showConstant (0::Int)
+	      , showConstant (1::Int)
+	      , constant "+"   ((+)  :: Int -> Int -> Int)
+	      , constant "abs" (abs  :: Int -> Int)
+	      , background
+	      , constant "<="  ((<=) :: Int -> Int -> Bool)
 	      , constant "<"   ((<)  :: Int -> Int -> Bool)
 	      ]
 
