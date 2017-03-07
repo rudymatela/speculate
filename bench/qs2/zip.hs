@@ -5,7 +5,7 @@ import Data.Dynamic
 import Control.Monad
 
 main = quickSpec signature
-  { maxTermSize = Just 5
+  { maxTermSize = Just 7
   , maxTests = Just 500
   , constants =
       [ constant "++" ((++) :: [Int] -> [Int] -> [Int])
