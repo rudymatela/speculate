@@ -20,8 +20,6 @@ bench: all
 	@echo -n "zip              "; /usr/bin/time -f%e0 ./zip              2>&1 >              zip.out
 	@echo -n "arithficial      "; /usr/bin/time -f%e0 ./arithficial      2>&1 >      arithficial.out
 	@echo -n "plus-abs         "; /usr/bin/time -f%e0 ./plus-abs         2>&1 >         plus-abs.out
-	@#echo    "regexes          0.000";
-	@echo "This will take a couple minutes to run (regexes)" > /dev/stderr
 	@echo -n "regexes          "; /usr/bin/time -f%e0 ./regexes          2>&1 >          regexes.out
 
 save-bench: bench
