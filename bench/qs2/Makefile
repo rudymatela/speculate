@@ -32,6 +32,13 @@ prepare:
 	cabal sandbox add-source quickspec
 	cabal install quickspec
 
+prepare-algehed:
+	cabal sandbox init
+	git clone https://github.com/MaximilianAlgehed/quickspec
+	# git -C quickspec checkout fd53aae3acdcba0e962a72bce652f102c13aaeb9
+	cabal sandbox add-source quickspec
+	cabal install quickspec
+
 regexes: regexes.hs ../../eg/Regex.hs
 
 %: %.hs
