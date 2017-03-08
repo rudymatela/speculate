@@ -1,4 +1,5 @@
 import Test.Speculate
+import Test.Speculate.Expr
 import Test.Speculate.Reason
 import Test.Speculate.Utils.Timeout (timeoutToError)
 import Test

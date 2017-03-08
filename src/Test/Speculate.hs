@@ -9,9 +9,19 @@ module Test.Speculate
   , foreground
   , background
 
-  , module Test.Speculate.Expr
-  , module Test.LeanCheck.Utils
+  , showConstant
+  , constant
+  , hole
+  , ins, eq, ord, eqWith, ordWith, names
+
+  , Expr
+  , Instances
+
+  -- useful for declaring Listable instances
   , module Test.LeanCheck
+
+  -- test types & type binding operators:
+  , module Test.LeanCheck.Utils
 
   -- useful export for GHC < 7.10:
   , module Data.Typeable
@@ -19,28 +29,36 @@ module Test.Speculate
 where
 
 import Data.Typeable
-import Data.Dynamic
-import Data.Maybe
-import Data.List hiding (insert)
-import qualified Data.List as L
-import Data.Function
-import Control.Monad
 import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
-import Test.LeanCheck.Tiers (unorderedPairsWith)
-import Test.Speculate.Utils
-import Test.Speculate.Utils.Colour
-import Data.Ratio ((%))
-import Data.Monoid ((<>))
 
 import Test.Speculate.Expr
-import Test.Speculate.Reason
-import Test.Speculate.CondReason
-import Test.Speculate.SemiReason
-import Test.Speculate.Engine
-import Test.Speculate.Sanity
+  ( Expr
+  , constant
+  , var
+  , hole
+  , showConstant
+  , Instances
+  , ins
+  , eq
+  , eqWith
+  , ord
+  , ordWith
+  , names
+  )
 import Test.Speculate.Args
-import Test.Speculate.Report
+  ( Args (..)
+  , args
+  , getArgs
+  , foreground
+  , background
+  , processArgs
+  , prepareArgs
+  , HelpFormat (..)
+  , helpText
+  , showHelp
+  )
+import Test.Speculate.Report (report)
 
 speculate :: Args -> IO ()
 speculate args = do

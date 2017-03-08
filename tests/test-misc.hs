@@ -3,6 +3,9 @@ import Test
 
 -- Functions under test
 import Test.Speculate.Misc
+
+-- Utils
+import Test.Speculate.Expr
 import Test.Speculate.Utils
 
 main :: IO ()

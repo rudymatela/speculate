@@ -13,6 +13,7 @@ module Test.Speculate.Misc
 where
 
 import Test.Speculate
+import Test.Speculate.Expr
 import Test.Speculate.Utils
 import Data.Dynamic
 import Test.LeanCheck

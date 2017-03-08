@@ -111,8 +111,9 @@ import System.Environment (getArgs)
 import System.Exit (exitFailure)
 import Data.List (elemIndices)
 
-import Test.Speculate hiding (getArgs, true, false, ord)
-import qualified Test.Speculate as S
+import Test.Speculate hiding (getArgs)
+import Test.Speculate.Expr hiding (true, false, ord)
+import qualified Test.Speculate.Expr as E
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
 
@@ -125,10 +126,10 @@ import Data.Maybe (fromMaybe)
 import Test.Speculate.Utils
 
 isTrue :: Instances -> Int -> Expr -> Bool
-isTrue = S.true
+isTrue = E.true
 
 isFalse :: Instances -> Int -> Expr -> Bool
-isFalse = S.false
+isFalse = E.false
 
 reportTests :: [Bool] -> IO ()
 reportTests tests =
@@ -417,7 +418,7 @@ ord' :: Expr -> Expr
 ord' = (ordE :$)
 
 ordE :: Expr
-ordE = constant "ord" ord
+ordE = constant "ord" Data.Char.ord
 
 
 ll :: Expr

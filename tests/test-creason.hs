@@ -6,6 +6,7 @@ import Test.Speculate.CondReason
 
 -- Utils
 import Test.Speculate.Reason (canonicalEqn, canonicalizeEqn, emptyThy)
+import Test.Speculate.Expr (falseE)
 
 main :: IO ()
 main = mainTest tests 10000

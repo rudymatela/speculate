@@ -1,7 +1,7 @@
 import Test
 import Test.Speculate.Utils
 
-import Test.Speculate.Expr (subexprsV)
+import Test.Speculate.Expr
 import Test.Speculate.Reason.Order
 
 main :: IO ()

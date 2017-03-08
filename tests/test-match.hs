@@ -3,6 +3,7 @@ import Test
 
 -- Functions under test
 import Test.Speculate.Expr.Match
+import Test.Speculate.Expr
 
 -- Helper functions
 import Test.Speculate.Utils

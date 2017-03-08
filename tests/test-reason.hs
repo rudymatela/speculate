@@ -5,6 +5,7 @@ import Test.Speculate.Utils
 
 -- Functions under test
 import Test.Speculate
+import Test.Speculate.Expr
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
 import Data.Tuple (swap)
