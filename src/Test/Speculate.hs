@@ -247,7 +247,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
   when (showConstants args)    . putStrLn . unlines $ map show ds'
   warnMissingInstances ti ats
   let ies = instanceErrors ti n ats
-  when (not (null ies)) $ do
+  unless (null ies) $ do
     let pref | force args = "Warning: "
              | otherwise  = "Error: "
     putStrLn . unlines . map (pref ++) $ ies

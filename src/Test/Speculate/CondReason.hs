@@ -4,7 +4,7 @@ import Test.Speculate.Expr
 import Test.Speculate.Reason
 import qualified Test.Speculate.Utils.Digraph as D
 import Test.Speculate.Utils.Digraph (Digraph)
-import Data.Maybe (mapMaybe,maybeToList)
+import Data.Maybe (mapMaybe,maybeToList,fromMaybe)
 import Data.List (lookup)
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import qualified Data.List as L
@@ -35,13 +35,10 @@ listImplies :: Chy -> Expr -> [Expr]
 listImplies Chy{cimplications = ccss} ce = D.preds ce ccss
 
 listEquivalent :: Chy -> Expr -> [Expr]
-listEquivalent Chy{cclasses = ccss} ce =
-  case lookup ce ccss of
-    Nothing -> [] -- error "error (listEquivalent): cannot find condition in classes"
-    Just cs -> cs
+listEquivalent Chy{cclasses = ccss} ce = fromMaybe [] $ lookup ce ccss
 
 reduceRootWith :: Binds -> Expr -> (Expr,Expr) -> Maybe Expr
-reduceRootWith bs e (e1,e2) = (e2 `assigning`) <$> (matchWith bs e e1)
+reduceRootWith bs e (e1,e2) = (e2 `assigning`) <$> matchWith bs e e1
 
 reductions1With :: Binds -> Expr -> (Expr,Expr) -> [Expr]
 reductions1With bs e (l,_) | lengthE l > lengthE e = [] -- optional optimization
@@ -99,7 +96,7 @@ cdelete chy = updateCEquationsBy upd chy
 
 cfinalize :: Chy -> Chy
 cfinalize chy@Chy{cequations = ceqs} =
-  updateCEquationsBy (concatMap $ expandSmallerConditions) chy
+  updateCEquationsBy (concatMap expandSmallerConditions) chy
   where
   expandSmallerConditions ceq@(ce,e1,e2) =
     (ce,e1,e2) : [ (ce',cnormalize chy' ce' e1,cnormalize chy' ce' e2)
