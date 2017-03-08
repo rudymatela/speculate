@@ -136,7 +136,7 @@ tests n =
   , depthE  (xx -*- yy -+- xx -*- zz) == 3
   , depthE  (xx -*- (yy -+- zz)) == 3
 
-  , allUnique (take (n`div`10) $ list :: [Expr])
+  , allUnique (take (n`div`10) list :: [Expr])
   , allUnique (take (n`div`10) $ map unSameTypeE list)
   , allUnique (take (n`div`10) $ map unIntE list)
 

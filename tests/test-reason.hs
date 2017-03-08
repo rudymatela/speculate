@@ -136,13 +136,13 @@ tests n =
                              | otherwise = (x,y)
           in nubSort . map sortuple
            $ [ (gg xx,                ff (gg (gg (ff xx))))
-             , (gg (ff xx),           ff (gg (xx)))
+             , (gg (ff xx),           ff (gg xx))
              , (gg (ff (ff xx)),      xx)
              , (gg (ff (ff (gg xx))), gg xx) ])
 
   , criticalPairs emptyThy { rules = [ (ff (gg (ff xx)), xx)
                                      , (ff (gg xx), gg (ff xx)) ] }
-      == [ (gg (ff xx),           ff (gg (xx)))
+      == [ (gg (ff xx),           ff (gg xx))
          , (gg (ff (ff xx)),      xx)
          , (ff (gg (gg (ff xx))), gg xx)
          , (gg (ff (ff (gg xx))), gg xx) ]
@@ -172,8 +172,8 @@ tests n =
     , xx -+- succ' yy  ~~  succ' (xx -+- yy) ]
     |==|
     [                 xx -+- zero  ~~  xx
-    , succ' (xx -+- yy)            ~~  xx -+- (succ' yy)
-    , xx -+-        (succ' zero)   ~~          succ' xx
+    , succ' (xx -+- yy)            ~~  xx -+- succ' yy
+    , xx -+-         succ' zero    ~~         succ' xx
     , xx -+- (succ' (succ' zero))  ~~  succ' (succ' xx)
     ] `mkThy` []
 

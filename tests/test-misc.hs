@@ -60,8 +60,8 @@ tests n =
        , [ abs' zero, abs' xx, plusE :$ zero, plusE :$ xx ]
        , [ abs' (abs' zero)
          , abs' (abs' xx)
-         , plusE :$ (abs' zero)
-         , plusE :$ (abs' xx)
+         , plusE :$ abs' zero
+         , plusE :$ abs' xx
          , zero -+- zero
          , zero -+- xx
          , xx -+- zero
@@ -83,6 +83,6 @@ tests n =
     == [ [ (absE, 10 :: Int) ]
        , [ (plusE :$ zero, 10)
          , (plusE :$ one,  11) ]
-       , [ (plusE :$ (abs' zero), 10)
-         , (plusE :$ (abs' one),  11) ] ]
+       , [ (plusE :$ abs' zero, 10)
+         , (plusE :$ abs' one,  11) ] ]
   ]
