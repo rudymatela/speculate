@@ -138,6 +138,14 @@ tests/Test.o: src/Test/Speculate.o
 mk/toplibs: src/Test/Speculate.o tests/Test.o
 	touch mk/toplibs
 
+hlint:
+	hlint \
+	  --ignore "Use import/export shortcut" \
+	  --ignore "Use first" \
+	  --ignore "Use second" \
+	  --ignore "Use ***" \
+	  src bench tests
+
 haddock: doc/index.html
 
 clean-haddock:
