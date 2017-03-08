@@ -353,7 +353,7 @@ collapse thy@Thy {equations = eqs, rules = rs} =
   collapsable = not . null . collapse
   collapse :: Rule -> [Equation]
   collapse (e1,e2) = foldr (+++) []
-                   $ [ nubSort
+                     [ nubSort
                      $ canonicalizeEqn thy
                     <$> (\e -> (e,e2)) <$> reductions1 e1 (e1',e2')
                      | (e1',e2') <- rs
@@ -421,7 +421,7 @@ prettyThy shouldShow ti thy =
     table "r l l" . map showEquation
   . sortOn (typ . fst) . sortBy (compareE thy `on` uncurry phonyEquation)
   . filter shouldShow
-  $ rules thy' ++ (map swap $ equations thy')
+  $ rules thy' ++ map swap (equations thy')
   where
   thy' = canonicalizeThyWith ti . discardRedundantRulesByEquations $ finalize thy
   showEquation (e1,e2)

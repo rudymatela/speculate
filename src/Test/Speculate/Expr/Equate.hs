@@ -36,13 +36,13 @@ phonyEquation e1 e2 | typ e1 /= typ e2 = error $ "phonyEquation: type mismatch "
 phonyEquation e1 e2 = Var "==" (mkEqnTy $ typ e1) :$ e1 :$ e2
 
 unEquation :: Expr -> (Expr,Expr)
-unEquation (((Constant "==" _) :$ e1) :$ e2) = (e1,e2)
-unEquation (((Var      "==" _) :$ e1) :$ e2) = (e1,e2)
+unEquation ((Constant "==" _ :$ e1) :$ e2) = (e1,e2)
+unEquation ((Var      "==" _ :$ e1) :$ e2) = (e1,e2)
 unEquation _ = error "unEquation: not an equation!"
 
 isEquation :: Expr -> Bool
-isEquation (((Constant "==" _) :$ e1) :$ e2) = True
-isEquation (((Var      "==" _) :$ e1) :$ e2) = True
+isEquation ((Constant "==" _ :$ e1) :$ e2) = True
+isEquation ((Var      "==" _ :$ e1) :$ e2) = True
 isEquation _ = False
 
 -- | Given an equation encoded as an 'Expr'.

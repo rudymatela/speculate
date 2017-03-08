@@ -105,7 +105,7 @@ instance Show Expr where
   showsPrec d e = showParen (d > 10)
                 $ showsPrecExpr 0 e
                 . showString " :: "
-                . showsPrec 0 (typ e)
+                . shows (typ e)
                 . showString (showHoles e)
     where
     showHoles e = case holes e of
@@ -350,8 +350,8 @@ unrepeatedVars = all (\(_,_,n) -> n == 1) . countVars
 
 -- Is this espression an assignment of a variable to a value?
 isAssignment :: Expr -> Bool
-isAssignment (((Constant "==" _) :$ (Var _ _)) :$ e2) = True
-isAssignment (((Constant "==" _) :$ e1) :$ (Var _ _)) = True
+isAssignment ((Constant "==" _ :$ (Var _ _)) :$ e2) = True
+isAssignment ((Constant "==" _ :$ e1) :$ (Var _ _)) = True
 isAssignment _ = False
 
 -- | Non-variable sub-expressions of an expression
