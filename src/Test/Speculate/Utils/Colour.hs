@@ -193,7 +193,7 @@ intensity :: Colour -> Rational
 intensity (RGB r g b) = (r + g + b) / 3
 
 value :: Colour -> Rational
-value c = maxi c
+value = maxi
 
 lightness :: Colour -> Rational
 lightness c = (maxi c + mini c) / 2

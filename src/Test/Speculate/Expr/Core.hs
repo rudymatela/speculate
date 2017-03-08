@@ -110,7 +110,7 @@ instance Show Expr where
     where
     showHoles e = case holes e of
                     [] -> ""
-                    hs -> "  (holes: " ++ (intercalate ", " (map show hs)) ++ ")"
+                    hs -> "  (holes: " ++ intercalate ", " (map show hs) ++ ")"
 
 showsPrecExpr :: Int -> Expr -> String -> String
 showsPrecExpr d (Constant s _) | atomic s && isInfixedPrefix s = showString $ toPrefix s
@@ -350,8 +350,8 @@ unrepeatedVars = all (\(_,_,n) -> n == 1) . countVars
 
 -- Is this espression an assignment of a variable to a value?
 isAssignment :: Expr -> Bool
-isAssignment ((Constant "==" _ :$ (Var _ _)) :$ e2) = True
-isAssignment ((Constant "==" _ :$ e1) :$ (Var _ _)) = True
+isAssignment ((Constant "==" _ :$ Var _ _) :$ e2) = True
+isAssignment ((Constant "==" _ :$ e1) :$ Var _ _) = True
 isAssignment _ = False
 
 -- | Non-variable sub-expressions of an expression
