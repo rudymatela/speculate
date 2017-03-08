@@ -103,7 +103,7 @@ sub ef et = s
 --
 -- Note this will affect holes!
 renameBy :: (String -> String) -> Expr -> Expr
-renameBy f (e1 :$ e2) = (renameBy f e1) :$ (renameBy f e2)
+renameBy f (e1 :$ e2) = renameBy f e1 :$ renameBy f e2
 renameBy f (Var n t) = Var (f n) t
 renameBy f e = e
 
@@ -114,7 +114,7 @@ renameBy f e = e
 -- > 0 + (1 + 2) `match` x + (y + y) = Nothing
 -- > (x + x) + (1 + 2) `match` x + (y + y) = Nothing
 match :: Expr -> Expr -> Maybe Binds
-match e1' e2' = matchWith [] e1' e2'
+match = matchWith []
 
 -- | List matches of pairs of expressions if possible
 --

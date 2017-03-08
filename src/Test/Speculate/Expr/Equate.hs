@@ -65,11 +65,11 @@ comparisonLE ti e1 e2 = do
   e :$ e1 $$ e2
 
 unComparison :: Expr -> (Expr,Expr)
-unComparison (((Constant "compare"  _) :$ e1) :$ e2) = (e1,e2)
-unComparison (((Constant "<"        _) :$ e1) :$ e2) = (e1,e2)
-unComparison (((Constant "<="       _) :$ e1) :$ e2) = (e1,e2)
-unComparison (((Constant ">"        _) :$ e1) :$ e2) = (e1,e2)
-unComparison (((Constant ">="       _) :$ e1) :$ e2) = (e1,e2)
+unComparison ((Constant "compare"  _ :$ e1) :$ e2) = (e1,e2)
+unComparison ((Constant "<"        _ :$ e1) :$ e2) = (e1,e2)
+unComparison ((Constant "<="       _ :$ e1) :$ e2) = (e1,e2)
+unComparison ((Constant ">"        _ :$ e1) :$ e2) = (e1,e2)
+unComparison ((Constant ">="       _ :$ e1) :$ e2) = (e1,e2)
 unComparison _ = error "unComparisonL: not a compare/(<)/(<=)/(>)/(>=) application"
 
 implication :: Expr -> Expr -> Maybe Expr
@@ -80,7 +80,7 @@ implication e1 e2
   implicationE = constant "==>" (==>)
 
 unImplication :: Expr -> (Expr,Expr)
-unImplication (((Constant "==>" _) :$ e1) :$ e2) = (e1,e2)
+unImplication ((Constant "==>" _ :$ e1) :$ e2) = (e1,e2)
 unImplication _ = error "unImplication: not an implication"
 
 usefulImplication :: Expr -> Bool
@@ -94,7 +94,7 @@ conditionalEquation :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
 conditionalEquation ti pre e1 e2 = (pre `implication`) =<< equation ti e1 e2
 
 unConditionalEquation :: Expr -> (Expr,Expr,Expr)
-unConditionalEquation (((Constant "==>" _) :$ pre) :$ (((Constant "==" _) :$ e1) :$ e2)) = (pre,e1,e2)
+unConditionalEquation ((Constant "==>" _ :$ pre) :$ ((Constant "==" _ :$ e1) :$ e2)) = (pre,e1,e2)
 unConditionalEquation _ = error "unConditionalEquation: not an equation with side condition"
 
 -- an equation with a side condition is useful when sides of the equation are different

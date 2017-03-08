@@ -84,8 +84,8 @@ ins n x = concat
 --, (x,(x,x)) / n ++ m ++ o
 --, ((x,x),x) / n ++ m ++ o
 
-  , (mayb x)  / "m" ++ n ++ "1"
---, (eith x x) / "e" ++ n ++ o ++ "1"
+  , mayb x    / "m" ++ n ++ "1"
+--, eith x x  / "e" ++ n ++ o ++ "1"
   ]
   where
   (/) :: (Typeable a, Listable a, Show a, Eq a, Ord a)

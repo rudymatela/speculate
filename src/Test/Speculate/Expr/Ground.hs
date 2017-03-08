@@ -94,11 +94,11 @@ inequal ti n e1 e2 = maybe False (false ti n) (equation ti e1 e2)
 
 -- | Is a boolean expression true for all variable assignments?
 true :: Instances -> Int -> Expr -> Bool
-true ti n e = and . map (eval False) . take n $ grounds ti e
+true ti n e = all (eval False) . take n $ grounds ti e
 
 -- | List variable bindings for which an expression holds true.
 trueBinds :: Instances -> Int -> Expr -> [Binds]
-trueBinds ti n e = [bs | (bs,e) <- take n $ groundAndBinds ti e, eval False e == True]
+trueBinds ti n e = [bs | (bs,e) <- take n $ groundAndBinds ti e, eval False e]
 
 -- | Under a maximum number of tests,
 --   returns the ratio for which an expression holds true.
@@ -108,4 +108,4 @@ trueRatio ti n e = length (trueBinds ti n e) % length (take n $ groundAndBinds t
 -- | Is an expression ALWAYS false?
 -- This is *NOT* the same as not true
 false :: Instances -> Int -> Expr -> Bool
-false ti n e = and . map (not . (eval False)) . take n $ grounds ti e
+false ti n e = all (not . eval False) . take n $ grounds ti e
