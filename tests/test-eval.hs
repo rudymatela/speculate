@@ -23,7 +23,7 @@ tests n =
   , holds n' $ \(IntE e1) (IntE e2) -> e1 -+- e2 === e2 -+- e1
   ,                                    xx -+- yy =/= xx -+- xx
   ,                                      abs' xx === abs' (abs' xx)
-  ,                      abs' (xx -+- (abs' xx)) === (xx -+- abs' xx) -- 2*x or 0
+  ,                      abs' (xx -+- abs' xx) === (xx -+- abs' xx) -- 2*x or 0
   , holds n' $ \e1 e2 -> typ e1 /= typ e2 ==> e1 =/= e2
 
   , holds n' $       zero //= one

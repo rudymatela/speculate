@@ -74,7 +74,7 @@ tests n =
 
   , holds n $ \e -> renameBy id e == e
   , holds n $ \e -> renameBy tail (renameBy ('x':) e) == e
-  , renameBy (++ "1") (xx -+- yy) == ((var "x1" int) -+- (var "y1" int))
+  , renameBy (++ "1") (xx -+- yy) == (var "x1" int -+- var "y1" int)
   , renameBy (\(c:cs) -> succ c:cs) ((xx -+- yy) -+- ord' cc)
                                  == ((yy -+- zz) -+- ord' dd)
 
@@ -113,7 +113,7 @@ tests n =
   , holds n $ \(ListE e) -> typ e == typ xxs
   , etyp (xx :$ yy) == Left (i_ :$ i_)
   , etyp (xx :$ (cc :$ yy)) == Left (i_ :$ (c_ :$ i_))
-  , etyp ((ff xx) :$ ((ord' cc) :$ (gg yy))) == Left (i_ :$ (i_ :$ i_))
+  , etyp (ff xx :$ (ord' cc :$ gg yy)) == Left (i_ :$ (i_ :$ i_))
   , holds n $ \(SameTypeE ef eg) (SameTypeE ex ey) -> (etyp (ef :$ ex) == etyp (eg :$ ey))
   , holds n $ \ef eg ex ey -> (etyp ef == etyp eg && etyp ex == etyp ey)
                            == (etyp (ef :$ ex) == etyp (eg :$ ey))

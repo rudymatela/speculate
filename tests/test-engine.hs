@@ -31,10 +31,10 @@ tests n =
 
   , vassignments (ii -+- i_) == [ii -+- xx]
   , map canonicalize (vassignments ((i_ -+- i_) -+- (ord' c_ -+- ord' c_)))
-    == [ (xx -+- yy) -+- ((ord' cc) -+- (ord' dd))
-       , (xx -+- yy) -+- ((ord' cc) -+- (ord' cc))
-       , (xx -+- xx) -+- ((ord' cc) -+- (ord' dd))
-       , (xx -+- xx) -+- ((ord' cc) -+- (ord' cc)) ]
+    == [ (xx -+- yy) -+- (ord' cc -+- ord' dd)
+       , (xx -+- yy) -+- (ord' cc -+- ord' cc)
+       , (xx -+- xx) -+- (ord' cc -+- ord' dd)
+       , (xx -+- xx) -+- (ord' cc -+- ord' cc) ]
 
   , holds n $ \e -> all (null . snd) (vars e)
                 ==> let xs = map (length . vars) $ vassignments e
@@ -81,7 +81,7 @@ tests n =
                                      (xx -<=- yy) (xx -+- yy) (xx -+- xx)
   ,       subConsequence emptyThy [] (abs' xx -==- abs' yy) (abs' xx) (abs' yy)
   , not $ subConsequence emptyThy [] (abs' xx -<=- abs' yy) (abs' xx) (abs' yy)
-  , not $ subConsequence emptyThy [] (abs' xx -==- one) (xx -+- abs' xx) (zero)
+  , not $ subConsequence emptyThy [] (abs' xx -==- one) (xx -+- abs' xx) zero
   ]
   where
   x === y = equal preludeInstances 1000 x y
