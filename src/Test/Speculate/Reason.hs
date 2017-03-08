@@ -353,12 +353,10 @@ collapse thy@Thy {equations = eqs, rules = rs} =
   collapsable = not . null . collapse
   collapse :: Rule -> [Equation]
   collapse (e1,e2) = foldr (+++) []
-                     [ nubSort
-                     $ canonicalizeEqn thy
-                    <$> (\e -> (e,e2)) <$> reductions1 e1 (e1',e2')
-                     | (e1',e2') <- rs
-                     , (e1',e2') /= (e1,e2)
-                     , e1 =| e1' ]
+    [ nubSort [ canonicalizeEqn thy (e,e2) | e <- reductions1 e1 (e1',e2') ]
+    | (e1',e2') <- rs
+    , (e1',e2') /= (e1,e2)
+    , e1 =| e1' ]
   -- emcompasses or ">" or specialization ordering or duck beak
   (=|) :: Expr -> Expr -> Bool
   e1 =| e2 = e1 `hasInstanceOf` e2
