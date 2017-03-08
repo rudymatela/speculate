@@ -20,13 +20,13 @@ main = do
   reportCountsBy lengthInterval (take n list :: [Expr])
 
   putStrLn "typ (e1 :: Expr) == typ (e2 :: Expr)"
-  reportCountsBy equalTypes $ (take n $ list)
+  reportCountsBy equalTypes (take n list)
 
   putStrLn "typ (e1 :: Expr) == typ (e2 :: Expr)"
   reportCountsBy equalTypes . map unSameTypeE . take n $ list
 
   putStrLn "okThy thy"
-  reportCountsBy (show . okThy) (take n $ list)
+  reportCountsBy (show . okThy) (take n list)
 
   putStrLn "length (equations thy)"
   reportCountsBy (show . length . equations) (take n list)
