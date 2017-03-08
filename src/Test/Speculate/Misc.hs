@@ -115,5 +115,5 @@ valuedExpressionsOf :: Typeable a => [Expr] -> [[(Expr,a)]]
 valuedExpressionsOf = mapTMaybe exprValue . expressionsOf
   where
   exprValue :: Typeable a => Expr -> Maybe (Expr,a)
-  exprValue e = ((,) e) `fmap` evaluate e
+  exprValue e = (,) e `fmap` evaluate e
 

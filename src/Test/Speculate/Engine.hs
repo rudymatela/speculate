@@ -196,7 +196,7 @@ conditionalEquivalences cmp canon cequal (==>) csz thy clpres cles =
   . sortBy (\(c1,e11,e12) (c2,e21,e22) -> c1 `cmp` c2
                                        <> ((e11 `phonyEquation` e12) `cmp` (e21 `phonyEquation` e22)))
   . discard (\(pre,e1,e2) -> pre == falseE
-                          || length ((vars pre) \\ (vars e1 +++ vars e2)) > 0
+                          || length (vars pre \\ (vars e1 +++ vars e2)) > 0
                           || subConsequence thy [] pre e1 e2)
   . filter canon
   $ [ (ce, e1, e2)
