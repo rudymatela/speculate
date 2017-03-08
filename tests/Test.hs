@@ -120,6 +120,7 @@ import Data.Char (ord)
 import Data.Dynamic
 import Data.Function (on)
 import Data.List as L (sort,insert)
+import Data.Maybe (fromMaybe)
 
 import Test.Speculate.Utils
 
@@ -174,11 +175,11 @@ tiersExprTypeCorrect n = all typeCorrect $ take n (list :: [Expr])
 -- >   cons1 c = mapT c tiersIntE
 -- >   cons2 c = mapT ...
 
-data IntE  = IntE  { unIntE  :: Expr } deriving Show
-data BoolE = BoolE { unBoolE :: Expr } deriving Show
-data CharE = CharE { unCharE :: Expr } deriving Show
-data ListE = ListE { unListE :: Expr } deriving Show
-data FunE  = FunE  { unFunE  :: Expr } deriving Show
+newtype IntE  = IntE  { unIntE  :: Expr } deriving Show
+newtype BoolE = BoolE { unBoolE :: Expr } deriving Show
+newtype CharE = CharE { unCharE :: Expr } deriving Show
+newtype ListE = ListE { unListE :: Expr } deriving Show
+newtype FunE  = FunE  { unFunE  :: Expr } deriving Show
 
 consI :: (Expr -> a) -> [[a]]; consI f = cons1 (f . unIntE)
 consB :: (Expr -> a) -> [[a]]; consB f = cons1 (f . unBoolE)
@@ -230,11 +231,11 @@ instance Listable CharE where
 instance Listable ListE where
   tiers = mapT ListE $ cons0 ll
                     \/ cons0 xxs
-                    \/ cons0 yys        `addWeight` 1
+                    \/ cons0 yys      `addWeight` 1
                     \/ consIL (-:-)
-                    \/ consLL (-++-)    `addWeight` 1
-                    \/ consIL (insert') `addWeight` 2
-                    \/ consL  (sort')   `addWeight` 2
+                    \/ consLL (-++-)  `addWeight` 1
+                    \/ consIL insert' `addWeight` 2
+                    \/ consL  sort'   `addWeight` 2
 
 instance Listable FunE where
   list = map FunE
@@ -262,7 +263,7 @@ instance Listable SameTypeE where
        \/ cons1 (\(FunE  e1, FunE  e2) -> SameTypeE e1 e2) `ofWeight` 0
           `suchThat` (\(SameTypeE e1 e2) -> typ e1 == typ e2) -- for func, manual
 
-data SameTypedPairsE = SameTypedPairsE [(Expr,Expr)] deriving Show
+newtype SameTypedPairsE = SameTypedPairsE [(Expr,Expr)] deriving Show
 
 instance Listable SameTypedPairsE where
   tiers = cons1 (SameTypedPairsE . map unSameTypeE) `ofWeight` 0
@@ -380,23 +381,20 @@ infixr 0 -==>-
 
 (-==-) :: Expr -> Expr -> Expr
 e1 -==- e2 =
-  case equation preludeInstances e1 e2 of
-    Nothing -> error $ "(-==-): cannot equate " ++ show e1 ++ " and " ++ show e2
-    Just eq -> eq
+  fromMaybe (error $ "(-==-): cannot equate " ++ show e1 ++ " and " ++ show e2)
+            (equation preludeInstances e1 e2)
 infix 4 -==-
 
 (-<=-) :: Expr -> Expr -> Expr
 e1 -<=- e2 =
-  case comparisonLE preludeInstances e1 e2 of
-    Nothing -> error $ "(-<=-): cannot lessEq " ++ show e1 ++ " and " ++ show e2
-    Just eq -> eq
+  fromMaybe (error $ "(-<=-): cannot lessEq " ++ show e1 ++ " and " ++ show e2)
+            (comparisonLE preludeInstances e1 e2)
 infix 4 -<=-
 
 (-<-) :: Expr -> Expr -> Expr
 e1 -<- e2 =
-  case comparisonLT preludeInstances e1 e2 of
-    Nothing -> error $ "(-<-): cannot less " ++ show e1 ++ " and " ++ show e2
-    Just eq -> eq
+  fromMaybe (error $ "(-<-): cannot less " ++ show e1 ++ " and " ++ show e2)
+            (comparisonLT preludeInstances e1 e2)
 infix 4 -<-
 
 odd' :: Expr -> Expr
@@ -432,7 +430,7 @@ yys :: Expr -- wyes
 yys = var "ys" [int]
 
 (-:-) :: Expr -> Expr -> Expr
-e1 -:- e2 = (consE :$ e1 :$ e2)
+e1 -:- e2 = consE :$ e1 :$ e2
 infixr 5 -:-
 
 consE :: Expr
@@ -533,8 +531,8 @@ instance Listable Equation where
     orientEqn (e1,e2) | e1 `compareComplexity` e2 == LT = (e2,e1)
                       | otherwise                       = (e1,e2)
 
-data RuleSet = RuleSet [(Expr,Expr)] deriving Show
-data EquationSet = EquationSet [(Expr,Expr)] deriving Show
+newtype RuleSet = RuleSet [(Expr,Expr)] deriving Show
+newtype EquationSet = EquationSet [(Expr,Expr)] deriving Show
 
 instance Listable RuleSet where
   tiers = setCons (RuleSet . map unRule) `ofWeight` 0
@@ -554,7 +552,7 @@ instance Listable Thy where
                    -> emptyThy { rules     = sort rs
                                , equations = sort eqs })
 
-data Thyght = Thyght { unThyght :: Thy } deriving Show
+newtype Thyght = Thyght { unThyght :: Thy } deriving Show
 
 instance Listable Thyght where
   tiers = mapT Thyght
