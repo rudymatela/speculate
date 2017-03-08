@@ -58,7 +58,7 @@ nubMergeBy cmp (x:xs) (y:ys) = case x `cmp` y of
 nubMergeBy _ xs ys = xs ++ ys
 
 nubMergeOn :: Ord b => (a -> b) -> [a] -> [a] -> [a]
-nubMergeOn f xs ys = nubMergeBy (compare `on` f) xs ys
+nubMergeOn f = nubMergeBy (compare `on` f)
 
 nubMerge :: Ord a => [a] -> [a] -> [a]
 nubMerge = nubMergeBy compare
@@ -192,7 +192,7 @@ accum :: Num a => [a] -> [a]
 accum = a 0
   where
   a _ []     = []
-  a s (x:xs) = (s+x : a (s+x) xs)
+  a s (x:xs) = s+x : a (s+x) xs
 
 -- partitionByMarkers x y [x,a,b,c,y,d,e,f,x,g] == ([a,b,c,g],[d,e,f])
 partitionByMarkers :: Eq a => a -> a -> [a] -> ([a],[a])

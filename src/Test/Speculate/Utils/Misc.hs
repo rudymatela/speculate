@@ -90,14 +90,14 @@ iterateUntil :: (a -> a -> Bool) -> (a -> a) -> a -> a
 iterateUntil p f x = let fx = f x
                      in if x `p` fx
                           then x
-                          else iterateUntil p f (fx)
+                          else iterateUntil p f fx
 
 iterateUntilLimit :: Int -> (a -> a -> Bool) -> (a -> a) -> a -> a
 iterateUntilLimit 0 p f x = x
 iterateUntilLimit n p f x = let fx = f x
                             in if x `p` fx
                                  then x
-                                 else iterateUntilLimit (n-1) p f (fx)
+                                 else iterateUntilLimit (n-1) p f fx
 
 showRatio :: (Integral a, Show a) => Ratio a -> String
 showRatio r = show (numerator r) ++ "/" ++ show (denominator r)

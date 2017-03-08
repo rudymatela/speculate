@@ -16,8 +16,7 @@ import Data.Maybe (fromMaybe)
 
 -- | In microseconds
 usTimeoutToNothing :: Int -> a -> Maybe a
-usTimeoutToNothing n x = unsafePerformIO . timeout n $ do
-  evaluate x >>= return
+usTimeoutToNothing n = unsafePerformIO . timeout n . evaluate
 
 -- | Returns Nothing if value cannot be evaluated to WHNF in a given number of seconds
 timeoutToNothing :: RealFrac s => s -> a -> Maybe a

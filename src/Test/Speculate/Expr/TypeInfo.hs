@@ -38,7 +38,7 @@ import Test.LeanCheck.Utils hiding (comparison)
 import Test.LeanCheck.Error (errorToFalse)
 import Data.Dynamic
 
-import Data.Maybe (isJust,fromMaybe,listToMaybe,catMaybes)
+import Data.Maybe (isJust,fromMaybe,listToMaybe,catMaybes,mapMaybe)
 import Data.List (find,(\\))
 
 
@@ -124,8 +124,8 @@ eqWith (==) = [Eq (typeOf $ arg (==)) $ constant "==" $ errorToFalse .: (==)]
 
 ordWith :: (Typeable a, Ord a) => (a -> a -> Bool) -> Instances
 ordWith (<=) = [Ord (typeOf $ arg (<=))
-                    (constant "<=" $ (errorToFalse .: (<=)))
-                    (constant "<"  $ ((errorToFalse . not) .: flip (<=)))]
+                    (constant "<=" (errorToFalse .: (<=)))
+                    (constant "<"  ((errorToFalse . not) .: flip (<=)))]
   where
   arg :: (a -> b) -> a
   arg _ = undefined
@@ -162,7 +162,7 @@ isListable ti t = isJust $ findInfo m ti
 -- isComparable ti = isJust . (`findInfo` ti) . typ
 
 findInfo :: (Instance -> Maybe a) -> Instances -> Maybe a
-findInfo may = listToMaybe . catMaybes . map may
+findInfo may = listToMaybe . mapMaybe may
 
 findInfoOr :: a -> (Instance -> Maybe a) -> Instances -> a
 findInfoOr def may = fromMaybe def . findInfo may
