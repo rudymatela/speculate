@@ -264,7 +264,7 @@ closure thy e = iterateUntilLimit (closureLimit thy) (==) step [normalizeE thy e
   where
   eqs = equations thy
   step = nubMergeMap reductionsEqs1
-  reductionsEqs1 e = e `L.insert` (nubMergeMap (reductions1 e) (eqs ++ map swap eqs))
+  reductionsEqs1 e = e `L.insert` nubMergeMap (reductions1 e) (eqs ++ map swap eqs)
 
 insert :: Equation -> Thy -> Thy
 insert (e1,e2) thy

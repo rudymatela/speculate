@@ -126,7 +126,7 @@ theoryAndRepresentativesFromAtoms sz cmp keep (===) ds =
 consider :: (Expr -> Expr -> Bool) -> Expr -> (Thy,[Expr]) -> (Thy,[Expr])
 consider (===) s (thy,ss)
   | not (s === s) = (thy,ss++[s])  -- uncomparable type
-  | any (rehole (normalizeE thy (mostGeneral s)) ==) ss = (thy,ss)
+  | rehole (normalizeE thy (mostGeneral s)) `elem` ss = (thy,ss)
   | otherwise =
     ( append thy $ equivalencesBetween (===) s s ++ eqs
     , ss ++ [s | not $ any (\(e1,e2) -> unrepeatedVars e1 && unrepeatedVars e2) eqs])
@@ -217,7 +217,7 @@ conditionalEquivalences cmp canon cequal (==>) csz thy clpres cles =
 -- > subConsequence (abs x == abs y) (abs x) (abs y) == True
 -- > subConsequence (abs x == 1) (x + abs x) (20) == False (artificial)
 subConsequence :: Thy -> [Class Expr] -> Expr -> Expr -> Expr -> Bool
-subConsequence thy clpres (((Constant "==" _) :$ ea) :$ eb) e1 e2
+subConsequence thy clpres ((Constant "==" _ :$ ea) :$ eb) e1 e2
   -- NOTE: the first 4 are uneeded, but make it a bit faster...
   | ea `isSub` e1 && equivalent thy{closureLimit=1} (sub ea eb e1) e2 = True
   | eb `isSub` e1 && equivalent thy{closureLimit=1} (sub eb ea e1) e2 = True

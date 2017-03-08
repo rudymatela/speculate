@@ -85,7 +85,7 @@ fist4 f = map (id *** curry4) $ fist (uncurry4 f)
 fillings :: Expr -> [Expr] -> [Expr]
 fillings e vs = [fill e f | f <- fs]
   where
-  fs = productsList $ [[v | v <- vs, typ v == h] | h <- holes e]
+  fs = productsList [[v | v <- vs, typ v == h] | h <- holes e]
 
 -- | Given a list of atomic expressions, enumerate experssions by application
 --
@@ -115,5 +115,5 @@ valuedExpressionsOf :: Typeable a => [Expr] -> [[(Expr,a)]]
 valuedExpressionsOf = mapTMaybe exprValue . expressionsOf
   where
   exprValue :: Typeable a => Expr -> Maybe (Expr,a)
-  exprValue e = fmap ((,) e) $ evaluate e
+  exprValue e = ((,) e) `fmap` evaluate e
 
