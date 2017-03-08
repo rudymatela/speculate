@@ -2,7 +2,7 @@
 import Test
 
 -- Functions under test
-import Test.Speculate
+import Test.Speculate.Engine
 
 -- Helper functions
 import Test.Speculate.Reason (emptyThy)

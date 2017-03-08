@@ -10,10 +10,10 @@ module Test.Speculate
   , background
 
   , module Test.Speculate.Expr
-  , module Test.Speculate.Engine
   , module Test.LeanCheck.Utils
   , module Test.LeanCheck
 
+  -- useful export for GHC < 7.10:
   , module Data.Typeable
   )
 where
