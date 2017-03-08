@@ -1,3 +1,4 @@
+# cabal stuff
 **/.cabal-sandbox
 **/cabal.sandbox.config
 **/idx/
@@ -84,3 +85,10 @@ bench/qs*/arithficial
 bench/qs*/quickspec
 bench/qs*/regexes
 bench/qs*/regex
+
+# Haddock
+doc/*.html
+doc/*.css
+doc/*.js
+doc/*.png
+doc/*.gif

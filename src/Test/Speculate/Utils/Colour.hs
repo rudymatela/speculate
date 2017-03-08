@@ -180,7 +180,7 @@ hue0 :: Colour -> Rational
 hue0 = fromMaybe 0 . hue
 
 hue :: Colour -> Maybe Rational
-hue colour@(RGB r g b) = (\h' -> mod1 $ h' / 6) <$> h' -- * 60 / 360
+hue colour@(RGB r g b) = (\h' -> mod1 $ h' / 6) <$> h' -- h' * 60 / 360
   where
   c = chroma colour
   m = maxi colour

@@ -54,6 +54,7 @@ QUICKEG = \
   eg/list
 LISTHS = find src tests eg bench/*.hs -name \*.hs
 HSS = $(shell $(LISTHS))
+LISTLIBS=find src -name \*.hs
 
 all: $(EG)
 
@@ -136,6 +137,17 @@ tests/Test.o: src/Test/Speculate.o
 # actual Haskell source files
 mk/toplibs: src/Test/Speculate.o tests/Test.o
 	touch mk/toplibs
+
+haddock: doc/index.html
+
+clean-haddock:
+	rm -f doc/*.{html,css,js,png,gif}
+
+doc/index.html: $(shell $(LISTLIBS))
+	./mk/haddock-i base template-haskell | xargs \
+	haddock --html --no-print-missing-docs --title=speculate \
+	  --optghc=-i$(GHCIMPORTDIRS) \
+	  -odoc $(shell $(LISTLIBS))
 
 include mk/haskell.mk
 
