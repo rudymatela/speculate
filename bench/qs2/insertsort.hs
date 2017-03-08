@@ -21,12 +21,12 @@ main = quickSpec signature
 
 leGen :: Gen [Dynamic]
 leGen = do
-  x1 <- (arbitrary :: Gen Int)
-  x2 <- (arbitrary :: Gen Int)
-  return [toDyn $ x1, toDyn $ x1 + x2]
+  x1 <- arbitrary :: Gen Int
+  x2 <- arbitrary :: Gen Int
+  return [toDyn x1, toDyn $ x1 + x2]
 
 ltGen :: Gen [Dynamic]
 ltGen = do
-  x1 <- (arbitrary :: Gen Int)
-  x2 <- (arbitrary :: Gen Int)
-  return [toDyn $ x1, toDyn $ x1 + x2 + 1]
+  x1 <- arbitrary :: Gen Int
+  x2 <- arbitrary :: Gen Int
+  return [toDyn x1, toDyn $ x1 + x2 + 1]

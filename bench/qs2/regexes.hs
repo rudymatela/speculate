@@ -1,4 +1,3 @@
-{-# LANGUAGE StandaloneDeriving #-}
 import Regex
 import Test.QuickCheck
 import Test.QuickCheck.Gen
