@@ -252,6 +252,7 @@ prepareArgs args =
   parseMinTests :: String -> Int -> Int
   parseMinTests s | last s == '%' = \x -> read (init s) * x `div` 100
                   | otherwise     = const (read s)
+-- TODO: implement space char semantics
 
 getArgs :: Args -> IO Args
 getArgs = processArgs . prepareArgs
