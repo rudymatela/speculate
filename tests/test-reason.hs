@@ -180,8 +180,8 @@ tests n =
   , theorizeBy (|>) [ xx -+- zero      ~~  xx
                     , xx -+- succ' yy  ~~  succ' (xx -+- yy) ]
     |==|
-    [ xx -+- zero        ~~  xx
-    , xx -+- (succ' yy)  ~~  succ' (xx -+- yy)
+    [ xx -+- zero      ~~  xx
+    , xx -+- succ' yy  ~~  succ' (xx -+- yy)
     ] `mkThy` []
 
   -- TODO: fix order under GHC <= 7.8
@@ -200,12 +200,12 @@ tests n =
   , theorizeBy (|>) [ ( zero -+- xx, xx )
                     , ( negate' xx -+- xx, zero )
                     , ( (xx -+- yy) -+- zz, xx -+- (yy -+- zz) ) ]
-    |==| [ ( zero -+- xx                  , xx )
-         , ( negate' xx -+- xx            , zero )
-         , ( (xx -+- yy) -+- zz           , xx -+- (yy -+- zz) )
-         , ( negate' xx -+- (xx -+- yy)   , yy )
-         , ( xx -+- zero                  , xx )
-         , ( xx -+- ((negate' xx) -+- yy) , yy )
+    |==| [ ( zero -+- xx                , xx )
+         , ( negate' xx -+- xx          , zero )
+         , ( (xx -+- yy) -+- zz         , xx -+- (yy -+- zz) )
+         , ( negate' xx -+- (xx -+- yy) , yy )
+         , ( xx -+- zero                , xx )
+         , ( xx -+- (negate' xx -+- yy) , yy )
          , ( negate' (negate' xx)         , xx )
          , ( negate' zero                 , zero )
          , ( xx -+- negate' xx            , zero )
@@ -215,13 +215,13 @@ tests n =
       [ ( zero -+- xx, xx )
       , ( negate' xx -+- xx, zero )
       , ( (xx -+- yy) -+- zz, xx -+- (yy -+- zz) ) ]
-    |==| [ ( zero -+- xx                  , xx )
-         , ( negate' xx -+- xx            , zero )
-         , ( (xx -+- yy) -+- zz           , xx -+- (yy -+- zz) )
-         , ( negate' xx -+- (xx -+- yy)   , yy )
-         , ( negate' zero -+- xx          , xx )
-         , ( xx -+- zero                  , xx )
-         , ( xx -+- ((negate' xx) -+- yy) , yy )
+    |==| [ ( zero -+- xx                , xx )
+         , ( negate' xx -+- xx          , zero )
+         , ( (xx -+- yy) -+- zz         , xx -+- (yy -+- zz) )
+         , ( negate' xx -+- (xx -+- yy) , yy )
+         , ( negate' zero -+- xx        , xx )
+         , ( xx -+- zero                , xx )
+         , ( xx -+- (negate' xx -+- yy) , yy )
          , ( negate' (negate' xx)         , xx )
          , ( xx -+- negate' xx            , zero )
          ] `mkThy` [( negate' zero, zero )]

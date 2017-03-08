@@ -14,10 +14,10 @@ main = do
   n <- getMaxTestsFromArgs 10000
 
   putStrLn "typ (e :: Expr)"
-  reportCountsBy typ            (take n $ list :: [Expr])
+  reportCountsBy typ            (take n list :: [Expr])
 
   putStrLn "lengthE (e :: Expr)"
-  reportCountsBy lengthInterval (take n $ list :: [Expr])
+  reportCountsBy lengthInterval (take n list :: [Expr])
 
   putStrLn "typ (e1 :: Expr) == typ (e2 :: Expr)"
   reportCountsBy equalTypes $ (take n $ list)
