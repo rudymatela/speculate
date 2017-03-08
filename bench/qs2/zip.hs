@@ -22,6 +22,6 @@ main = quickSpec signature
 eqLenGen :: Gen [Dynamic]
 eqLenGen = do
   len <- arbitrary
-  xs <- (replicateM len arbitrary :: Gen [Int])
-  ys <- (replicateM len arbitrary :: Gen [Int])
+  xs <- replicateM len arbitrary :: Gen [Int]
+  ys <- replicateM len arbitrary :: Gen [Int]
   return [toDyn xs, toDyn ys]
