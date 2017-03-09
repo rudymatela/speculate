@@ -34,41 +34,48 @@ import Data.Maybe (catMaybes)
 import Data.Monoid ((<>))
 
 
+-- | Arguments to Speculate
 data Args = Args
-  { maxSize        :: Int  -- ^ maximum size of considered expressions
-  , maxTests       :: Int  -- ^ maximum number of test for each law
-  , minTests       :: Int -> Int  -- ^ minimum number of tests for passing postconditions
-  , maxSemiSize    :: Int  -- ^ maximum size of inqualities RHS/LHS
-  , maxCondSize    :: Int  -- ^ maximum size of considered condition
-  , maxDepth       :: Maybe Int   -- ^ maximum depth of considered expressions
-  , instances      :: [Instances] -- ^ typeclass instance information for @Eq@, @Ord@ and @Listable@
-  , showConstants  :: Bool -- ^ repeat constants on output
-  , showTheory     :: Bool -- ^ whether to show raw theory
-  , showEquations  :: Bool -- ^ whether to show equations
-  , showSemiequations :: Bool -- ^ whether to show inequalties
-  , showConditions    :: Bool -- ^ whether to show conditional equations
-  , showConstantLaws  :: Bool -- ^ whether to show laws with no variables
-  , showDot        :: Bool -- ^ whether to show a Graphviz dotfile with an Ord lattice
-  , quietDot       :: Bool -- ^ whether to show a Graphviz dotfiel with an Ord lattice (less verbose)
-  , showClassesFor :: [Int]
-  , maxVars        :: Int  -- ^ maximum number of variables allowed in inequalities and conditional equations
-  , maxConstants   :: Maybe Int -- ^ maximum nubmer of constants allowed when considering expressions
-  , showArgs       :: Bool -- ^ show _this_ args before running (useful for debug)
-  , evalTimeout    :: Maybe Double -- ^ timeout when evaluating ground expressions
+  { maxSize     :: Int         -- ^ maximum size of considered expressions
+  , maxTests    :: Int         -- ^ maximum number of test for each law
+  , constants   :: [Expr]      -- ^ constants considered when generating expressions
+  , instances   :: [Instances] -- ^ typeclass instance information for @Eq@, @Ord@ and @Listable@
+  , maxSemiSize :: Int         -- ^ maximum size of inqualities RHS/LHS
+  , maxCondSize :: Int         -- ^ maximum size of considered condition
+  , maxVars     :: Int         -- ^ maximum number of variables allowed in inequalities and conditional equations
+
+  , showConstants     :: Bool  -- ^ repeat constants on output
+  , showEquations     :: Bool  -- ^ whether to show equations
+  , showSemiequations :: Bool  -- ^ whether to show inequalties
+  , showConditions    :: Bool  -- ^ whether to show conditional equations
+  , showConstantLaws  :: Bool  -- ^ whether to show laws with no variables
+
+  , minTests    :: Int -> Int  -- ^ __(intermediary)__ minimum number of tests
+                               --   for passing postconditions in function of
+                               --   maximum number of tests
+  , maxConstants :: Maybe Int  -- ^ __(intermediary)__ maximum nubmer of constants allowed when considering expressions
+  , maxDepth     :: Maybe Int  -- ^ __(intermediary)__ maximum depth of considered expressions
+  , showTheory   :: Bool       -- ^ __(debug)__ whether to show raw theory
+  , showArgs     :: Bool       -- ^ __(debug)__ show _this_ args before running
+  , showHelp     :: Bool       -- ^ __(advanced)__ whether to show the command line help
+  , evalTimeout :: Maybe Double -- ^ __(advanced)__ timeout when evaluating ground expressions
+  , force        :: Bool       -- ^ __(advanced)__ ignore errors
+  , extra        :: [String]   -- ^ __(advanced)__ unused, user-defined meaning
+  , exclude      :: [String]   -- ^ __(advanced)__ exclude this symbols from signature before running
+  , onlyTypes    :: [String]   -- ^ __(advanced)__ only allow those types at top-level equations / semi-equations
+  , showClassesFor :: [Int]    -- ^ __(advanced)__ show equivalence classes of expressions
+  , showDot      :: Bool       -- ^ __(advanced)__ whether to show a Graphviz dotfile with an Ord lattice
+  , quietDot     :: Bool       -- ^ __(advanced)__ whether to show a Graphviz dotfiel with an Ord lattice (less verbose)
+  }
+-- TODO: future options:
 --, closureLimit      :: Int
 --, order             :: OptOrder  -- data OptOrder = Dershowitz | KnuthBendix
 --, maxRuleSize       :: Maybe Int
 --, maxEquationSize   :: Maybe Int
 --, keepRewriteRules  :: Bool
-  , showHelp   :: Bool     -- ^ whether to show the command line help
-  , force      :: Bool     -- ^ ignore errors
-  , extra      :: [String] -- ^ unused, user-defined meaning
-  , constants  :: [Expr]   -- ^ constants used on both conditions and equations
-  , exclude    :: [String] -- ^ exclude this symbols from signature before running
-  , onlyTypes  :: [String] -- ^ only allow those types at top-level equations / semi-equations
-  }
 -- Maybe add an empty Thy here.
 
+-- | Default arguments to Speculate
 args :: Args
 args = Args
   { maxSize              = 5
