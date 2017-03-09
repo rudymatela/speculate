@@ -50,8 +50,7 @@ library
                  , Test.Speculate.CondReason
                  , Test.Speculate.Sanity
                  , Test.Speculate.Misc
-  other-modules:   Test
-                 , Test.Speculate.Utils
+  other-modules:   Test.Speculate.Utils
                  , Test.Speculate.Utils.Class
                  , Test.Speculate.Utils.Colour
                  , Test.Speculate.Utils.Digraph
@@ -72,6 +71,7 @@ library
 test-suite expr
   type:                exitcode-stdio-1.0
   main-is:             test-expr.hs
+  other-modules:       Test
   hs-source-dirs:      src, tests
   build-depends: base >= 4 && < 5, leancheck, cmdargs, containers
   default-language:    Haskell2010
