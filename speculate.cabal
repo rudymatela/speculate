@@ -5,11 +5,11 @@ description:
   Speculate automatically discovers laws about Haskell functions.
   Give Speculate a bunch of Haskell functions and it will discover laws like:
   .
-  * equations, such as `id x == x`;
+  * equations, such as 'id x == x';
   .
-  * inequalities, such as `0 <= x * x`;
+  * inequalities, such as '0 <= x * x';
   .
-  * conditional equations, such as `x <= 0  ==>  x + abs x == 0`.
+  * conditional equations, such as 'x <= 0  ==>  x + abs x == 0'.
 
 homepage:            https://github.com/rudymatela/speculate#readme
 license:             BSD3
