@@ -63,14 +63,30 @@ import Test.LeanCheck
 import Test.Speculate.Utils
 
 
+-- | An encoded Haskell functional-application expression for use by Speculate.
 data Expr = Constant String Dynamic
           | Var String TypeRep
           | Expr :$ Expr
 
+-- | Encode a constant Haskell expression for use by Speculate.
+--   It takes a string representation of a value and a value, returning an
+--   'Expr'.  Examples:
+--
+-- > constant "0" 0
+-- > constant "'a'" 'a'
+-- > constant "True" True
+-- > constant "id" (id :: Int -> Int)
+-- > constant "(+)" ((+) :: Int -> Int -> Int)
+-- > constant "sort" (sort :: [Bool] -> [Bool])
 constant :: Typeable a => String -> a -> Expr
 constant s x = Constant s (toDyn x)
 
--- | @showConstant val@ returns a named 'Expr' for a given 'Show' type
+-- | A shorthand for 'constant' to be used on values that are 'Show' instances.
+--   Examples:
+--
+-- > showConstant 0     =  constant "0" 0
+-- > showConstant 'a'   =  constant "'a'" 'a' 
+-- > showConstant True  =  constant "True" True
 showConstant :: (Typeable a, Show a) => a -> Expr
 showConstant x = constant (show x) x
 
@@ -78,7 +94,9 @@ showConstant x = constant (show x) x
 var :: (Listable a, Typeable a) => String -> a -> Expr
 var s a = Var s (typeOf a)
 
--- | @hole (undefined :: Ty)@ returns a hole of type 'Ty'
+-- | __(intended for advanced users)__
+--
+-- @hole (undefined :: Ty)@ returns a hole of type 'Ty'
 --
 -- By convention, a Hole is a variable named with the empty string.
 hole :: (Listable a, Typeable a) => a -> Expr

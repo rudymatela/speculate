@@ -24,23 +24,28 @@
 -- >   }
 module Test.Speculate
   ( speculate
-
   , Args (..)
   , args
-  , getArgs
 
+  -- * The constants list
+  -- | The following combinators are used to build
+  --   the 'constants' list from 'Args'.
+  , Expr
+  , constant
+  , showConstant
+  , hole
   , foreground
   , background
 
-  , Expr
-  , showConstant
-  , constant
-  , hole
-
+  -- * The instances list
+  -- | The following combinators are used to build
+  --   the 'instances' list from 'Args'.
   , Instances
   , ins, eq, ord, eqWith, ordWith, names
 
+  -- * Misc.
   , report
+  , getArgs
 
   -- useful for declaring Listable instances
   , module Test.LeanCheck

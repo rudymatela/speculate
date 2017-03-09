@@ -207,8 +207,18 @@ compareExpr args = compareComplexityThen (lexicompareBy cmp)
   e1 `cmp` e2 | arity e1 /= 0 && arity e2 == 0 = GT
   e1 `cmp` e2 = compareIndex (atoms args) e1 e2 <> e1 `compare` e2
 
-foreground, background :: Expr
+-- | A special 'Expr' value.
+--   When provided on the 'constants' list, 
+--   makes all the following constants 'foreground' constants.
+foreground :: Expr
 foreground = constant "foreground" (undefined :: Args)
+
+-- | A special 'Expr' value.
+--   When provided on the 'constants' list,
+--   makes all the following constants 'background' constants.
+--   Background constants can appear in laws about other constants, but not by
+--   themselves.
+background :: Expr
 background = constant "background" (undefined :: Args)
 -- NOTE: Hack!  TODO: add reason why
 
