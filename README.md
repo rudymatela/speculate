@@ -1,13 +1,14 @@
 Speculate
 =========
 
-Speculate automatically speculates
-equational, inequational and conditional laws
-about a collection of Haskell functions.
-about given Haskell functions.
-(it is similar to, and inspired by [QuickSpec].)
+Speculate automatically discovers laws about Haskell functions.
+Give Speculate a bunch of Haskell functions and it will discover laws like:
 
-It is currently under development, expect it to break often for now.
+  * equations, such as `id x == x`;
+  * inequalities, such as `0 <= x * x`;
+  * conditional equations, such as `x <= 0  ==>  x + abs x == 0`.
+
+Speculate is similar to, and inspired by, [QuickSpec].
 
 
 Crash Course
