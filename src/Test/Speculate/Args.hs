@@ -35,36 +35,36 @@ import Data.Monoid ((<>))
 
 
 data Args = Args
-  { maxSize              :: Int
-  , maxTests             :: Int
-  , minTests             :: Int -> Int
-  , maxSemiSize          :: Int
-  , maxCondSize          :: Int
-  , maxDepth             :: Maybe Int
-  , instances            :: [Instances]
-  , showConstants        :: Bool
-  , showTheory           :: Bool
-  , showEquations        :: Bool
-  , showSemiequations    :: Bool
-  , showConditions       :: Bool
-  , showConstantLaws     :: Bool
-  , showDot              :: Bool
-  , quietDot             :: Bool
-  , showClassesFor       :: [Int]
-  , maxVars              :: Int
-  , maxConstants         :: Maybe Int
-  , showArgs             :: Bool
-  , evalTimeout          :: Maybe Double
---, closureLimit         :: Int
---, order                :: OptOrder  -- data OptOrder = Dershowitz | KnuthBendix
---, maxRuleSize          :: Maybe Int
---, maxEquationSize      :: Maybe Int
---, keepRewriteRules     :: Bool
-  , showHelp             :: Bool
-  , force                :: Bool  -- ^ ignore errors
-  , extra                :: [String] -- unused, user-defined meaning
-  , constants            :: [Expr] -- ^ constants used on both conditions and equations
-  , exclude              :: [String] -- ^ exclude this symbols from signature before running
+  { maxSize           :: Int         -- ^ maximum size of considered expressions
+  , maxTests          :: Int         -- ^ maximum number of test for each law
+  , minTests          :: Int -> Int  -- ^ minimum number of tests for passing postconditions
+  , maxSemiSize       :: Int         -- ^ maximum size of inqualities RHS/LHS
+  , maxCondSize       :: Int         -- ^ maximum size of considered condition
+  , maxDepth          :: Maybe Int   -- ^ maximum depth of considered expressions
+  , instances         :: [Instances] -- ^ typeclass instance information for @Eq@, @Ord@ and @Listable@
+  , showConstants     :: Bool -- ^ repeat constants on output
+  , showTheory        :: Bool -- ^ whether to show raw theory
+  , showEquations     :: Bool -- ^ whether to show equations
+  , showSemiequations :: Bool -- ^ whether to show inequalties
+  , showConditions    :: Bool -- ^ whether to show conditional equations
+  , showConstantLaws  :: Bool -- ^ whether to show laws with no variables
+  , showDot           :: Bool -- ^ whether to show a Graphviz dotfile with an Ord lattice
+  , quietDot          :: Bool -- ^ whether to show a Graphviz dotfiel with an Ord lattice (less verbose)
+  , showClassesFor    :: [Int]
+  , maxVars           :: Int  -- ^ maximum number of variables allowed in inequalities and conditional equations
+  , maxConstants      :: Maybe Int
+  , showArgs          :: Bool
+  , evalTimeout       :: Maybe Double
+--, closureLimit      :: Int
+--, order             :: OptOrder  -- data OptOrder = Dershowitz | KnuthBendix
+--, maxRuleSize       :: Maybe Int
+--, maxEquationSize   :: Maybe Int
+--, keepRewriteRules  :: Bool
+  , showHelp          :: Bool
+  , force             :: Bool  -- ^ ignore errors
+  , extra             :: [String] -- unused, user-defined meaning
+  , constants         :: [Expr] -- ^ constants used on both conditions and equations
+  , exclude           :: [String] -- ^ exclude this symbols from signature before running
   , onlyTypes            :: [String] -- ^ only allow those types at top-level equations / semi-equations
   }
 -- Maybe add an empty Thy here.
