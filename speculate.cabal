@@ -9,7 +9,7 @@ description:
   .
   * inequalities, such as @ 0 <= x * x @;
   .
-  * conditional equations, such as @ x <= 0  ==>  x + abs x == 0 @.
+  * conditional equations, such as @ x \<= 0  ==\>  x + abs x == 0 @.
 
 homepage:            https://github.com/rudymatela/speculate#readme
 license:             BSD3
