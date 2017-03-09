@@ -1,0 +1,69 @@
+name:                speculate
+version:             0.1.0
+synopsis:            discovery of properties about Haskell functions
+description:
+  Speculate automatically discovers laws about Haskell functions.
+  Give Speculate a bunch of Haskell functions and it will discover laws like:
+  .
+  * equations, such as `id x == x`;
+  * inequalities, such as `0 <= x * x`;
+  * conditional equations, such as `x <= 0  ==>  x + abs x == 0`.
+
+homepage:            https://github.com/rudymatela/speculate#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Rudy Matela,  Colin Runciman
+maintainer:          Rudy Matela <rudy@matela.com.br>
+category:            Testing
+build-type:          Simple
+cabal-version:       >=1.10
+
+extra-doc-files: README.md
+               , TODO.md
+tested-with: GHC==8.0, GHC==7.10, GHC==7.8, GHC==7.6, GHC==7.4
+
+source-repository head
+  type:            git
+  location:        https://github.com/rudymatela/speculate
+
+source-repository this
+  type:            git
+  location:        https://github.com/rudymatela/speculate
+  tag:             v0.1.0
+
+
+library
+  exposed-modules: Test.Speculate
+                 , Test.Speculate.Args
+                 , Test.Speculate.Report
+                 , Test.Speculate.Engine
+                 , Test.Speculate.Expr
+                 , Test.Speculate.Expr.Canon
+                 , Test.Speculate.Expr.Core
+                 , Test.Speculate.Expr.Equate
+                 , Test.Speculate.Expr.Ground
+                 , Test.Speculate.Expr.Match
+                 , Test.Speculate.Expr.TypeInfo
+                 , Test.Speculate.Reason
+                 , Test.Speculate.Reason.Order
+                 , Test.Speculate.SemiReason
+                 , Test.Speculate.CondReason
+                 , Test.Speculate.Sanity
+                 , Test.Speculate.Misc
+  other-modules:   Test.Speculate.Utils
+                 , Test.Speculate.Utils.Class
+                 , Test.Speculate.Utils.Colour
+                 , Test.Speculate.Utils.Digraph
+                 , Test.Speculate.Utils.List
+                 , Test.Speculate.Utils.Memoize
+                 , Test.Speculate.Utils.Misc
+                 , Test.Speculate.Utils.Ord
+                 , Test.Speculate.Utils.PrettyPrint
+                 , Test.Speculate.Utils.String
+                 , Test.Speculate.Utils.Tiers
+                 , Test.Speculate.Utils.Timeout
+                 , Test.Speculate.Utils.Tuple
+                 , Test.Speculate.Utils.Typeable
+  build-depends: base >= 4 && < 5, leancheck >= 0.6, cmdargs, containers
+  hs-source-dirs:    src
+  default-language:  Haskell2010
