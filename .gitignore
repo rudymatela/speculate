@@ -57,6 +57,7 @@ eg/zip
 eg/minus
 eg/numbool
 eg/insertsort
+eg/insertsort0
 eg/speculate-reason
 eg/string
 eg/plus-abs
@@ -81,6 +82,7 @@ bench/qs*/length
 bench/qs*/lenzip
 bench/qs*/zip
 bench/qs*/insertsort
+bench/qs*/insertsort0
 bench/qs*/arithficial
 bench/qs*/quickspec
 bench/qs*/regexes

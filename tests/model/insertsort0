@@ -1,0 +1,37 @@
+max expr size  =    5
+  |- on ineqs  =    4
+  |- on conds  =    4
+max  #-tests   =  500
+min  #-tests   =   25  (to consider p ==> q true)
+max  #-vars    =    2  (for inequational and conditional laws)
+
+_ :: [Int]  (holes: [Int])
+_ :: Int  (holes: Int)
+_ :: Bool  (holes: Bool)
+[] :: [Int]
+(:) :: Int -> [Int] -> [Int]
+insert :: Int -> [Int] -> [Int]
+sort :: [Int] -> [Int]
+(<=) :: Int -> Int -> Bool
+(<) :: Int -> Int -> Bool
+True :: Bool
+False :: Bool
+(==) :: [Int] -> [Int] -> Bool
+(==) :: Int -> Int -> Bool
+(==) :: Bool -> Bool -> Bool
+
+               sort [] == []
+        sort (sort xs) == sort xs
+           insert x [] == [x]
+    sort (insert x xs) == insert x (sort xs)
+           sort (x:xs) == insert x (sort xs)
+insert x (insert y xs) == insert y (insert x xs)
+       insert x (x:xs) == x:(x:xs)
+          insert x [y] == insert y [x]
+   (xs == insert x xs) == False
+   ([] == insert x xs) == False
+       (sort xs == []) == (xs == [])
+
+x <= y ==> insert x (y:xs) == x:(y:xs)
+ x < y ==> insert y (x:xs) == x:insert y xs
+

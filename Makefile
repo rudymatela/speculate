@@ -30,6 +30,7 @@ EG = \
   eg/zip \
   eg/minus \
   eg/insertsort \
+  eg/insertsort0 \
   eg/speculate-reason \
   eg/string \
   eg/oddeven \
