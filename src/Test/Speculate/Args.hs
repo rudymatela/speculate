@@ -267,12 +267,11 @@ prepareArgs args =
   , "aall-foreground"    --.   \a -> a {constants = discard (== background) (constants a)}
   ]
   where
-  (short:long) --= fun = flagReq  [[short],long] ((Right .) . fun) "X" ""
-  (short:long) --. fun = flagNone [[short],long] fun                   ""
+  (short:long) --= fun = flagReq  (filter (/= " ") [[short],long]) ((Right .) . fun) "X" ""
+  (short:long) --. fun = flagNone (filter (/= " ") [[short],long]) fun                   ""
   parseMinTests :: String -> Int -> Int
   parseMinTests s | last s == '%' = \x -> read (init s) * x `div` 100
                   | otherwise     = const (read s)
--- TODO: implement space char semantics
 
 getArgs :: Args -> IO Args
 getArgs = processArgs . prepareArgs
