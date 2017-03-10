@@ -48,6 +48,10 @@ report args@Args {maxSize = sz, maxTests = n} = do
   when (showEquations args)        . putStrLn $ prettyEquations equations
   when (showSemiequations args)    . putStrLn $ prettySemiEquations semiEquations
   when (reallyShowConditions args) . putStrLn $ prettyCondEquations condEquations
+  when (showCounts args) . putStrLn . unlines
+    $  [ "#-equations      = " ++ show (length equations)     | showEquations        args ]
+    ++ [ "#-semi-equations = " ++ show (length semiEquations) | showSemiequations    args ]
+    ++ [ "#-cond-equations = " ++ show (length condEquations) | reallyShowConditions args ]
   reportClassesFor ti n (showClassesFor args) thy es
   when (showDot args) $
     reportDot ti (onlyTypes args) (quietDot args) (maxVars args) n thy es

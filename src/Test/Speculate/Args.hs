@@ -55,6 +55,7 @@ data Args = Args
                                --   maximum number of tests
   , maxConstants :: Maybe Int  -- ^ __(intermediary)__ maximum nubmer of constants allowed when considering expressions
   , maxDepth     :: Maybe Int  -- ^ __(intermediary)__ maximum depth of considered expressions
+  , showCounts   :: Bool       -- ^ __(intermediary)__ show counts of equations, inequalities and conditional equations
   , showTheory   :: Bool       -- ^ __(debug)__ whether to show raw theory
   , showArgs     :: Bool       -- ^ __(debug)__ show _this_ args before running
   , showHelp     :: Bool       -- ^ __(advanced)__ whether to show the command line help
@@ -92,6 +93,7 @@ args = Args
   , showSemiequations    = True
   , showConditions       = True
   , showConstantLaws     = False
+  , showCounts           = False
   , showDot              = False
   , quietDot             = False
   , showClassesFor       = []
@@ -243,6 +245,7 @@ prepareArgs args =
   , "cmax-constants"     --= \s a -> a {maxConstants = Just $ read s}
   , "eeval-timeout"      --= \s a -> a {evalTimeout = Just $ read s}
   , "ddepth"             --= \s a -> a {maxDepth = Just $ read s}
+  , " counts"            --.   \a -> a {showCounts = True}
   , "gsemi-digraph"      --.   \a -> a {showDot = True
                                        ,quietDot = False
                                        ,showConstants = False
