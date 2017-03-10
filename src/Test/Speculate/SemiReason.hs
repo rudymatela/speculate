@@ -81,17 +81,19 @@ sides shy = nubSortBy (scompareE shy)
           . concatMap (\(e1,e2) -> [e1,e2])
           $ sequations shy
 
-prettyShy :: (Equation -> Bool) -> Instances -> (Expr -> Expr -> Bool) -> Shy -> String
-prettyShy shouldShow insts equivalentInstanceOf shy =
-    table "r l l"
-  . map showSELine
-  . sortOn (typ . fst)
+finalSemiEquations :: (Equation -> Bool) -> Instances -> (Expr -> Expr -> Bool) -> Shy -> [Equation]
+finalSemiEquations shouldShow insts equivalentInstanceOf shy =
+    sortOn (typ . fst)
   . filter shouldShow
   . discardLater (equivalentInstanceOf `on` uncurry phonyEquation)
   . discard (transConsequence shy)
   . discardLater (isInstanceOf `on` uncurry phonyEquation)
   . sequations
   $ canonicalizeShyWith insts shy
+
+prettyShy :: (Equation -> Bool) -> Instances -> (Expr -> Expr -> Bool) -> Shy -> String
+prettyShy shouldShow insts equivalentInstanceOf =
+  table "r l l" . map showSELine . finalSemiEquations shouldShow insts equivalentInstanceOf
   where
   showSELine (e1,e2) = showLineWithOp (if typ e1 == boolTy then "==>" else "<=") (e1,e2)
   showLineWithOp o (e1,e2) = [showOpExpr o e1, o, showOpExpr o e2]

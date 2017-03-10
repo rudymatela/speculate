@@ -414,14 +414,18 @@ showThy thy = (if null rs
   showEquations = unlines . map showEquation
   showEquation (e1,e2) = showExpr e1 ++ " == " ++ showExpr e2
 
-prettyThy :: (Equation -> Bool) -> Instances -> Thy -> String
-prettyThy shouldShow ti thy =
-    table "r l l" . map showEquation
-  . sortOn (typ . fst) . sortBy (compareE thy `on` uncurry phonyEquation)
+finalEquations :: (Equation -> Bool) -> Instances -> Thy -> [Equation]
+finalEquations shouldShow ti thy =
+    sortOn (typ . fst) . sortBy (compareE thy `on` uncurry phonyEquation)
   . filter shouldShow
   $ rules thy' ++ map swap (equations thy')
   where
   thy' = canonicalizeThyWith ti . discardRedundantRulesByEquations $ finalize thy
+
+prettyThy :: (Equation -> Bool) -> Instances -> Thy -> String
+prettyThy shouldShow ti =
+  table "r l l" . map showEquation . finalEquations shouldShow ti
+  where
   showEquation (e1,e2)
 --  | typ e1 == boolTy = [showOpExpr "<==>" e1, "<==>", showOpExpr "<==>" e2]
     | otherwise        = [showOpExpr "==" e1, "==", showOpExpr "==" e2]

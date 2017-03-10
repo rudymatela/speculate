@@ -126,13 +126,17 @@ canonicalCEqnBy cmp ti ceqn = canonicalizeCEqnWith cmp ti ceqn == ceqn
 canonicalCEqn :: (Expr -> Expr -> Ordering) -> (Expr,Expr,Expr) -> Bool
 canonicalCEqn cmp = canonicalCEqnBy cmp preludeInstances
 
+finalCondEquations :: ((Expr,Expr,Expr) -> Bool) -> Chy -> [(Expr,Expr,Expr)]
+finalCondEquations shouldShow =
+    sortOn (typ . (\(c,x,y) -> x))
+  . filter shouldShow
+  . cequations
+  . cfinalize
+
 prettyChy :: ((Expr,Expr,Expr) -> Bool) -> Chy -> String
 prettyChy shouldShow =
     table "r r r l l"
   . map (\(pre,e1,e2) -> [ showOpExpr "==>" pre
                          , "==>", showOpExpr "==" e1
                          , "==",  showOpExpr "==" e2 ])
-  . sortOn (typ . (\(c,x,y) -> x))
-  . filter shouldShow
-  . cequations
-  . cfinalize
+  . finalCondEquations shouldShow
