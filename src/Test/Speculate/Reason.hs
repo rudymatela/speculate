@@ -15,7 +15,7 @@ module Test.Speculate.Reason
   , (|==|)
   , theorize
   , theorizeBy
-  , prettyThy
+  , finalEquations
   , criticalPairs
   , normalizedCriticalPairs
   , append
@@ -421,14 +421,6 @@ finalEquations shouldShow ti thy =
   $ rules thy' ++ map swap (equations thy')
   where
   thy' = canonicalizeThyWith ti . discardRedundantRulesByEquations $ finalize thy
-
-prettyThy :: (Equation -> Bool) -> Instances -> Thy -> String
-prettyThy shouldShow ti =
-  table "r l l" . map showEquation . finalEquations shouldShow ti
-  where
-  showEquation (e1,e2)
---  | typ e1 == boolTy = [showOpExpr "<==>" e1, "<==>", showOpExpr "<==>" e2]
-    | otherwise        = [showOpExpr "==" e1, "==", showOpExpr "==" e2]
 
 -- | Finalize a theory by discarding redundant equations.  If after finalizing
 --   you 'complete', redundant equations might pop-up again.

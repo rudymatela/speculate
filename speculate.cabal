@@ -46,6 +46,7 @@ library
                  , Test.Speculate.Expr.Ground
                  , Test.Speculate.Expr.Match
                  , Test.Speculate.Expr.TypeInfo
+                 , Test.Speculate.Pretty
                  , Test.Speculate.Reason
                  , Test.Speculate.Reason.Order
                  , Test.Speculate.SemiReason

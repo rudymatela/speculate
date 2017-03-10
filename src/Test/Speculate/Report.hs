@@ -12,6 +12,7 @@ import Test.Speculate.Sanity
 import Test.Speculate.Args
 import Test.Speculate.Utils
 import Test.Speculate.Utils.Colour
+import Test.Speculate.Pretty
 
 import Data.Ratio ((%))
 import Control.Monad (when,unless)

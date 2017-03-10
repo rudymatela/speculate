@@ -132,11 +132,3 @@ finalCondEquations shouldShow =
   . filter shouldShow
   . cequations
   . cfinalize
-
-prettyChy :: ((Expr,Expr,Expr) -> Bool) -> Chy -> String
-prettyChy shouldShow =
-    table "r r r l l"
-  . map (\(pre,e1,e2) -> [ showOpExpr "==>" pre
-                         , "==>", showOpExpr "==" e1
-                         , "==",  showOpExpr "==" e2 ])
-  . finalCondEquations shouldShow

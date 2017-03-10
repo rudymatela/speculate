@@ -91,13 +91,6 @@ finalSemiEquations shouldShow insts equivalentInstanceOf shy =
   . sequations
   $ canonicalizeShyWith insts shy
 
-prettyShy :: (Equation -> Bool) -> Instances -> (Expr -> Expr -> Bool) -> Shy -> String
-prettyShy shouldShow insts equivalentInstanceOf =
-  table "r l l" . map showSELine . finalSemiEquations shouldShow insts equivalentInstanceOf
-  where
-  showSELine (e1,e2) = showLineWithOp (if typ e1 == boolTy then "==>" else "<=") (e1,e2)
-  showLineWithOp o (e1,e2) = [showOpExpr o e1, o, showOpExpr o e2]
-
 canonicalizeShyWith :: Instances -> Shy -> Shy
 canonicalizeShyWith = mapSemiEquations . canonicalizeSemiEquationWith
 
