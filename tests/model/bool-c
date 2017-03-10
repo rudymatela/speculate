@@ -13,6 +13,7 @@ not :: Bool -> Bool
 (||) :: Bool -> Bool -> Bool
 (==) :: Bool -> Bool -> Bool
 
+
 _ :: Bool  (holes: Bool)
 False :: Bool
 True :: Bool
@@ -121,4 +122,3 @@ Number of Eq schema classes: 21
 Number of Eq 1-var classes: 4
 Number of Eq 2-var classes: 16
 Number of Eq 3-var classes: 59
-
