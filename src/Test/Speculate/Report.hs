@@ -40,7 +40,6 @@ report args@Args {maxSize = sz, maxTests = n} = do
       fail "exiting"
   when (showTheory args)       . putStrLn $ showThy thy
   when (showEquations args) . putStrLn $ prettyThy (shouldShowEquation args) ti thy
-  reportClassesFor ti n (showClassesFor args) thy es
   when (showSemiequations args) . putStrLn
     . prettyShy (shouldShowEquation args) ti (equivalentInstance thy)
     . semiTheoryFromThyAndReps ti n (maxVars args) thy
@@ -48,6 +47,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
   when (reallyShowConditions args) . putStrLn
     . prettyChy (shouldShowConditionalEquation args)
     $ conditionalTheoryFromThyAndReps ti (compareExpr args) n (maxVars args) (computeMaxCondSize args) thy es
+  reportClassesFor ti n (showClassesFor args) thy es
   when (showDot args) $
     reportDot ti (onlyTypes args) (quietDot args) (maxVars args) n thy es
 
