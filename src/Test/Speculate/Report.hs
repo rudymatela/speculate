@@ -39,14 +39,15 @@ report args@Args {maxSize = sz, maxTests = n} = do
       putStrLn "Use `--force` or `args{force=true}` to ignore instance errors."
       fail "exiting"
   when (showTheory args)       . putStrLn $ showThy thy
-  when (showEquations args) . putStrLn $ prettyThy (shouldShowEquation args) ti thy
-  when (showSemiequations args) . putStrLn
-    . prettyShy (shouldShowEquation args) ti (equivalentInstance thy)
-    . semiTheoryFromThyAndReps ti n (maxVars args) thy
-    $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
-  when (reallyShowConditions args) . putStrLn
-    . prettyChy (shouldShowConditionalEquation args)
-    $ conditionalTheoryFromThyAndReps ti (compareExpr args) n (maxVars args) (computeMaxCondSize args) thy es
+  let shy = semiTheoryFromThyAndReps ti n (maxVars args) thy
+          $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
+  let chy = conditionalTheoryFromThyAndReps ti (compareExpr args) n (maxVars args) (computeMaxCondSize args) thy es
+  let equations     = finalEquations     (shouldShowEquation args) ti                          thy
+  let semiEquations = finalSemiEquations (shouldShowEquation args) ti (equivalentInstance thy) shy
+  let condEquations = finalCondEquations (shouldShowConditionalEquation args)                  chy
+  when (showEquations args)        . putStrLn $ prettyEquations equations
+  when (showSemiequations args)    . putStrLn $ prettySemiEquations semiEquations
+  when (reallyShowConditions args) . putStrLn $ prettyCondEquations condEquations
   reportClassesFor ti n (showClassesFor args) thy es
   when (showDot args) $
     reportDot ti (onlyTypes args) (quietDot args) (maxVars args) n thy es
