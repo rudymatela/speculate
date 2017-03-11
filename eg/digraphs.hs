@@ -55,13 +55,16 @@ main = speculate args
 
       , foreground
       , constant "empty"    $ empty    -: digraph nat
+      , constant "addNode"  $ addNode' -:>  nat
+      , constant "addEdge"  $ addEdge' -:>  nat
+
       , constant "preds"    $ preds    -:>  nat
       , constant "succs"    $ succs    -:>  nat
+
       , constant "isNode"   $ isNode   -:>  nat
       , constant "isEdge"   $ isEdge   -:>  nat
       , constant "isPath"   $ isPath   -:>  nat
-      , constant "addNode"  $ addNode' -:>  nat
-      , constant "addEdge"  $ addEdge' -:>  nat
+
       , constant "subgraph" $ subgraph -:> [nat]
       ]
   }

@@ -14,13 +14,13 @@ True :: Bool
 [] :: [Nat]
 elem :: Nat -> [Nat] -> Bool
 empty :: Digraph Nat
+addNode :: Nat -> Digraph Nat -> Digraph Nat
+addEdge :: Nat -> Nat -> Digraph Nat -> Digraph Nat
 preds :: Nat -> Digraph Nat -> [Nat]
 succs :: Nat -> Digraph Nat -> [Nat]
 isNode :: Nat -> Digraph Nat -> Bool
 isEdge :: Nat -> Nat -> Digraph Nat -> Bool
 isPath :: Nat -> Nat -> Digraph Nat -> Bool
-addNode :: Nat -> Digraph Nat -> Digraph Nat
-addEdge :: Nat -> Nat -> Digraph Nat -> Digraph Nat
 subgraph :: [Nat] -> Digraph Nat -> Digraph Nat
 (==) :: [Nat] -> [Nat] -> Bool
 (==) :: Digraph Nat -> Digraph Nat -> Bool
