@@ -2,7 +2,10 @@ import Test.QuickSpec
 
 main =
   quickSpec
-    [ ["x", "y", "z"]    `vars` (undefined :: Int)
+    [ withTests 500
+    , withDepth 4
+    , withSize 7
+    , ["x", "y", "z"]    `vars` (undefined :: Int)
     , ["xs", "ys", "zs"] `vars` (undefined :: [Int])
     , "[]" `fun0` ([]   :: [Int])
     , ":"  `fun2` ((:)  :: Int -> [Int] -> [Int])
