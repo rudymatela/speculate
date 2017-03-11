@@ -11,4 +11,5 @@ main =
     , "*" `fun2` ((*) :: I -> I -> I)
     , withSize  7
     , withDepth 4
+    , withTests 500
     ]
