@@ -4,6 +4,7 @@ module Regex
   , match
   , Symbol (..)
   , stringToSymbols
+  , compile
   )
 where
 
