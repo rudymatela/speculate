@@ -116,6 +116,7 @@ import Test.Speculate.Expr hiding (true, false, ord)
 import qualified Test.Speculate.Expr as E
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
+import Test.Speculate.Engine hiding (true, false)
 
 import Data.Char (ord)
 import Data.Dynamic
