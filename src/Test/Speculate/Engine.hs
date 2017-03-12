@@ -95,6 +95,19 @@ rehole e = e
 ----------------------------
 -- * Enumerating expressions
 
+-- | Computes a theory from atomic expressions.  Example:
+--
+-- > > theoryFromAtoms 5 compare (const True) (equal preludeInstances 100)
+-- > >   [hole (undefined :: Int),constant "+" ((+) :: Int -> Int -> Int)]
+-- > Thy { rules = [ (x + y) + z == x + (y + z) ]
+-- >     , equations = [ y + x == x + y
+-- >                   , y + (x + z) == x + (y + z)
+-- >                   , z + (x + y) == x + (y + z)
+-- >                   , z + (y + x) == x + (y + z) ]
+-- >     , canReduceTo = (|>)
+-- >     , closureLimit = 2
+-- >     , keepE = keepUpToLength 5
+-- >     }
 theoryFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> Thy
 theoryFromAtoms sz cmp keep (===) = fst . theoryAndRepresentativesFromAtoms sz cmp keep (===)
 
@@ -108,6 +121,8 @@ expand keep (===) (thy,ss) = foldl (flip $ consider (===)) (thy,ss)
   where
   fes *$* xes = filter keep $ catMaybes [fe $$ xe | fe <- fes, xe <- xes]
 
+-- | Given atomic expressions, compute theory and representative schema
+--   expressions.
 theoryAndRepresentativesFromAtoms :: Int
                                   -> (Expr -> Expr -> Ordering)
                                   -> (Expr -> Bool) -> (Expr -> Expr -> Bool)
@@ -136,6 +151,14 @@ consider (===) s (thy,ss)
 distinctFromSchemas :: Instances -> Int -> Int -> Thy -> [Expr] -> [Expr]
 distinctFromSchemas ti nt nv thy = map C.rep . classesFromSchemas ti nt nv thy
 
+-- > > classesFromSchemas preludeInstances 500 2 thy [_ + _, _ + (_ + _)]
+-- > [ (x + x :: Int,[])
+-- > , (x + y :: Int,[y + x :: Int])
+-- > , (y + y :: Int,[])
+-- > , (x + (x + x) :: Int,[])
+-- > , (x + (x + y) :: Int,[x + (y + x) :: Int,y + (x + x) :: Int])
+-- > , (x + (y + y) :: Int,[y + (x + y) :: Int,y + (y + x) :: Int])
+-- > , (y + (y + y) :: Int,[]) ]
 classesFromSchemas :: Instances -> Int -> Int -> Thy -> [Expr] -> [Class Expr]
 classesFromSchemas ti nt nv thy = C.mergesThat (equal ti nt)
                                 . C.mergesOn (normalizeE thy)
@@ -144,6 +167,14 @@ classesFromSchemas ti nt nv thy = C.mergesThat (equal ti nt)
 -- won't detect all equivalences.  here we test the few remaining
 -- there shouldn't be that much overhead
 
+-- | Returns all classes of expressions that can be build from expression
+--   schemas (single variable expressions).  Examples:
+--
+-- > > classesFromSchema preludeInstances thy 2 (i_ -+- i_)
+-- > [ (x + x :: Int,[])
+-- > , (x + y :: Int,[])
+-- > , (y + x :: Int,[])
+-- > , (y + y :: Int,[]) ]
 classesFromSchema :: Instances -> Thy -> Int -> Expr -> [Class Expr]
 classesFromSchema ti thy n = C.mergesOn (normalizeE thy)
                            . map C.fromRep
