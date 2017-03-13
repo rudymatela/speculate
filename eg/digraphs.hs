@@ -35,7 +35,7 @@ main = speculate args
       [ ins "x" nat
       , ins "a" (digraph nat)
       ]
-  , maxTests = 6000
+  , maxTests = 500
   , maxVars = 2
   , showConditions = True
   , constants =
