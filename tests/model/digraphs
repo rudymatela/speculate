@@ -9,28 +9,22 @@ _ :: [Nat]  (holes: [Nat])
 _ :: Digraph Nat  (holes: Digraph Nat)
 _ :: Nat  (holes: Nat)
 _ :: Bool  (holes: Bool)
-False :: Bool
-True :: Bool
 [] :: [Nat]
 elem :: Nat -> [Nat] -> Bool
 empty :: Digraph Nat
 addNode :: Nat -> Digraph Nat -> Digraph Nat
 addEdge :: Nat -> Nat -> Digraph Nat -> Digraph Nat
-preds :: Nat -> Digraph Nat -> [Nat]
-succs :: Nat -> Digraph Nat -> [Nat]
 isNode :: Nat -> Digraph Nat -> Bool
 isEdge :: Nat -> Nat -> Digraph Nat -> Bool
 isPath :: Nat -> Nat -> Digraph Nat -> Bool
 subgraph :: [Nat] -> Digraph Nat -> Digraph Nat
+True :: Bool
+False :: Bool
 (==) :: [Nat] -> [Nat] -> Bool
 (==) :: Digraph Nat -> Digraph Nat -> Bool
 (==) :: Nat -> Nat -> Bool
 (==) :: Bool -> Bool -> Bool
 
-              preds x empty == []
-              succs x empty == []
-      preds x (addNode y a) == preds x a
-      succs x (addNode y a) == succs x a
           subgraph xs empty == empty
               subgraph [] a == empty
     addNode x (addNode x a) == addNode x a
@@ -38,14 +32,13 @@ subgraph xs (subgraph xs a) == subgraph xs a
     addNode x (addNode y a) == addNode y (addNode x a)
 subgraph xs (subgraph ys a) == subgraph ys (subgraph xs a)
              isNode x empty == False
+           isEdge x y empty == False
            isPath x y empty == False
      isNode x (addNode x a) == True
      (empty == addNode x a) == False
                isPath x x a == isNode x a
          (a == addNode x a) == isNode x a
                    (x == y) == isNode x (addNode y empty)
-               isEdge x y a == elem x (preds y a)
-         elem x (preds y a) == elem y (succs x a)
  isNode x (addNode y empty) == isNode y (addNode x empty)
 
             empty <=  a

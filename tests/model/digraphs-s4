@@ -9,26 +9,22 @@ _ :: [Nat]  (holes: [Nat])
 _ :: Digraph Nat  (holes: Digraph Nat)
 _ :: Nat  (holes: Nat)
 _ :: Bool  (holes: Bool)
-False :: Bool
-True :: Bool
 [] :: [Nat]
 elem :: Nat -> [Nat] -> Bool
 empty :: Digraph Nat
 addNode :: Nat -> Digraph Nat -> Digraph Nat
 addEdge :: Nat -> Nat -> Digraph Nat -> Digraph Nat
-preds :: Nat -> Digraph Nat -> [Nat]
-succs :: Nat -> Digraph Nat -> [Nat]
 isNode :: Nat -> Digraph Nat -> Bool
 isEdge :: Nat -> Nat -> Digraph Nat -> Bool
 isPath :: Nat -> Nat -> Digraph Nat -> Bool
 subgraph :: [Nat] -> Digraph Nat -> Digraph Nat
+True :: Bool
+False :: Bool
 (==) :: [Nat] -> [Nat] -> Bool
 (==) :: Digraph Nat -> Digraph Nat -> Bool
 (==) :: Nat -> Nat -> Bool
 (==) :: Bool -> Bool -> Bool
 
-    preds x empty == []
-    succs x empty == []
 subgraph xs empty == empty
     subgraph [] a == empty
    isNode x empty == False
