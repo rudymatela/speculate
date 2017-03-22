@@ -1,5 +1,6 @@
+{-# Language CPP #-}
 {-# Language DeriveDataTypeable, StandaloneDeriving #-}
-import Test.Speculate hiding (match)
+import Test.Speculate
 import Test.Speculate.Utils.Memoize
 import Data.Function (on)
 import Regex
@@ -17,7 +18,11 @@ instance Listable a => Listable (RE a) where
        \/ cons2 (:.)
 
 deriving instance Typeable Symbol
+#if __GLASGOW_HASKELL__ < 708
+deriving instance Typeable1 RE
+#else
 deriving instance Typeable RE
+#endif
 
 canonicalRE :: (Eq a, Ord a) => RE a -> Bool
 -- by laws of size 3

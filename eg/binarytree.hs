@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC <= 7.8
 -- Colin Runciman, December 2016
 import Test.Speculate
@@ -8,7 +9,11 @@ import Data.Function (on)
 data BT a = Null | Fork (BT a) a (BT a)
             deriving Show
 
+#if __GLASGOW_HASKELL__ < 708
+deriving instance Typeable1 BT
+#else
 deriving instance Typeable BT
+#endif
 
 instance (Eq a, Ord a) => Eq (BT a) where
   (==) = (==) `on` toList
