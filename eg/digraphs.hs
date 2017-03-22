@@ -4,7 +4,6 @@ import Test.Speculate
 import Test.LeanCheck hiding ((\/))
 import Test.LeanCheck.Utils
 import Data.Function (on)
-import Data.List (isSubsequenceOf)
 
 import Digraph
 import Data.Typeable (Typeable1) -- for GHC < 7.8

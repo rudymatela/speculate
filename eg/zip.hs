@@ -1,5 +1,4 @@
 import Test.Speculate
-import Data.List (isSubsequenceOf)
 
 main :: IO ()
 main = speculate args

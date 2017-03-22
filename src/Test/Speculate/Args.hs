@@ -1,3 +1,4 @@
+{-# Language DeriveDataTypeable #-} -- for GHC <= 7.8
 module Test.Speculate.Args
   ( Args (..)
   , args
@@ -68,6 +69,7 @@ data Args = Args
   , showDot      :: Bool       -- ^ __(advanced)__ whether to show a Graphviz dotfile with an Ord lattice
   , quietDot     :: Bool       -- ^ __(advanced)__ whether to show a Graphviz dotfiel with an Ord lattice (less verbose)
   }
+  deriving Typeable -- for GHC <= 7.8
 -- TODO: future options:
 --, closureLimit      :: Int
 --, order             :: OptOrder  -- data OptOrder = Dershowitz | KnuthBendix

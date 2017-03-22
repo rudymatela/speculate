@@ -1,17 +1,27 @@
+{-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC <= 7.8
 -- Colin Runciman, December 2016
 import Test.Speculate
 import Test.LeanCheck
 import Data.Function (on)
-import Data.List (isSubsequenceOf)
+
 
 data BT a = Null | Fork (BT a) a (BT a)
-            deriving (Show)
+            deriving Show
+
+deriving instance Typeable BT
 
 instance (Eq a, Ord a) => Eq (BT a) where
   (==) = (==) `on` toList
 
 instance (Eq a, Ord a) => Ord (BT a) where
   (<=) = isSubsequenceOf `on` toList
+
+isSubsequenceOf :: Eq a => [a] -> [a] -> Bool
+isSubsequenceOf []    _  = True
+isSubsequenceOf (_:_) [] = False
+isSubsequenceOf (x:xs) (y:ys)
+  | x == y    =    xs  `isSubsequenceOf` ys
+  | otherwise = (x:xs) `isSubsequenceOf` ys
 
 insert :: Ord a => a -> BT a -> BT a
 insert x Null             = Fork Null x Null

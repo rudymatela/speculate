@@ -1,4 +1,4 @@
-{-# LANGUAGE StandaloneDeriving #-}
+{-# Language DeriveDataTypeable, StandaloneDeriving #-}
 import Test.Speculate hiding (match)
 import Test.Speculate.Utils.Memoize
 import Data.Function (on)
@@ -15,6 +15,9 @@ instance Listable a => Listable (RE a) where
        \/ cons1 Star
        \/ cons2 (:+)
        \/ cons2 (:.)
+
+deriving instance Typeable Symbol
+deriving instance Typeable RE
 
 canonicalRE :: (Eq a, Ord a) => RE a -> Bool
 -- by laws of size 3

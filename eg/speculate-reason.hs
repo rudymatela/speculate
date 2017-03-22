@@ -1,3 +1,4 @@
+{-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC <= 7.8
 import Test.Speculate
 import Test.Speculate.Expr
 import Test.Speculate.Reason
@@ -6,6 +7,11 @@ import Test
 
 import Data.Function (on)
 import Data.Monoid ((<>))
+
+-- for GHC <= 7.8
+deriving instance Typeable Thyght
+deriving instance Typeable Equation
+deriving instance Typeable Expr
 
 instance Ord Thy where
   compare = (compare `on` rules)

@@ -1,3 +1,4 @@
+{-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC <= 7.8
 module Test.Speculate.Expr.TypeInfo
   ( Instances
   , Instance (..)
@@ -196,6 +197,8 @@ leE ti t = findInfo m ti
   where
   m (Ord t' le _) | t == t' = Just le
   m _                       = Nothing
+
+deriving instance Typeable Word2 -- for GHC <= 7.8
 
 -- TODO: include *ALL* prelude types on basicInstances
 preludeInstances :: Instances
