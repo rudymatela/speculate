@@ -11,21 +11,26 @@ matrix:
   include:
     - ghc: '7.6'
       script: >
-        make      GHCFLAGS="-fno-warn-unrecognised-pragmas" &&
-        make test GHCFLAGS="-fno-warn-unrecognised-pragmas"
+        make depend GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+        make        GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+        make test   GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests
     - ghc: '7.4'
       script: >
-        make      GHCFLAGS="-fno-warn-unrecognised-pragmas" &&
-        make test GHCFLAGS="-fno-warn-unrecognised-pragmas"
+        make depend GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+        make        GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+        make test   GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests
 
 install:
   - cabal install leancheck cmdargs regex-tdfa
 
+# TODO: as a definitive solution, I should not reference the leancheck folder
+# directly and instead use a installed package.  This made sense when
+# Speculate/LeanCheck were in early stages of development.
 script:
   - >
     make depend GHCIMPORTDIRS=src:eg:tests &&
-    make GHCIMPORTDIRS=src:eg:tests &&
-    make test GHCIMPORTDIRS=src:eg:tests
+    make        GHCIMPORTDIRS=src:eg:tests &&
+    make test   GHCIMPORTDIRS=src:eg:tests
   - >
     cabal configure --enable-tests --enable-benchmarks &&
     cabal build &&
