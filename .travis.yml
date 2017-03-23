@@ -22,5 +22,11 @@ install:
   - cabal install leancheck cmdargs regex-tdfa
 
 script:
-  - make && make test
-  - cabal configure --enable-tests --enable-benchmarks && cabal build && cabal test
+  - >
+    make depend GHCIMPORTDIRS=src:eg:tests &&
+    make GHCIMPORTDIRS=src:eg:tests &&
+    make test GHCIMPORTDIRS=src:eg:tests
+  - >
+    cabal configure --enable-tests --enable-benchmarks &&
+    cabal build &&
+    cabal test
