@@ -19,7 +19,7 @@ matrix:
         make test GHCFLAGS="-fno-warn-unrecognised-pragmas"
 
 install:
-  - cabal install cmdargs regex-tdfa
+  - cabal install leancheck cmdargs regex-tdfa
 
 script:
   - make && make test
