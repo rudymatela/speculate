@@ -1,0 +1,26 @@
+sudo: false
+
+language: haskell
+
+ghc:
+  - "8.0"
+  - "7.10"
+  - "7.8"
+
+matrix:
+  include:
+    - ghc: '7.6'
+      script: >
+        make      GHCFLAGS="-fno-warn-unrecognised-pragmas" &&
+        make test GHCFLAGS="-fno-warn-unrecognised-pragmas"
+    - ghc: '7.4'
+      script: >
+        make      GHCFLAGS="-fno-warn-unrecognised-pragmas" &&
+        make test GHCFLAGS="-fno-warn-unrecognised-pragmas"
+
+install:
+  - cabal install cmdargs regex-tdfa
+
+script:
+  - make && make test
+  - cabal configure --enable-tests --enable-benchmarks && cabal build && cabal test
