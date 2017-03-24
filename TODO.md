@@ -13,6 +13,7 @@ current
   ordering:  differenct versions of GHC and related packages impose a different
   order on TypeReps.  This makes tests with older versions of GHC break.  It
   would be nice not to depend on that.
+	- then, make sure travis-ci's building and testing works
 
 * automatically detect and use orders.  algorithm sketch:
   1. list everything of the type a -> a -> Bool
