@@ -9,6 +9,11 @@ Warning: I tend to ramble...
 current
 -------
 
+* implement a total order on TypeReps and use it instead of the default
+  ordering:  differenct versions of GHC and related packages impose a different
+  order on TypeReps.  This makes tests with older versions of GHC break.  It
+  would be nice not to depend on that.
+
 * automatically detect and use orders.  algorithm sketch:
   1. list everything of the type a -> a -> Bool
   2. check and filter everything that is an order
