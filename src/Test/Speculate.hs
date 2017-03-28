@@ -1,4 +1,10 @@
--- | __ Speculate: discovery of properties by reasoning from test results __
+-- |
+-- Module      : Test.Speculate
+-- Copyright   : (c) 2016-2017 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
+--
+-- __ Speculate: discovery of properties by reasoning from test results __
 --
 -- Speculate automatically discovers laws about Haskell functions.
 -- Those laws involve:
