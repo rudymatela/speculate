@@ -1,10 +1,18 @@
--- | This module exports
---     smart constructors,
---     smart destructors
---   and queries over
---     equations,
---     inequations
---     and conditional equations.
+-- |
+-- Module      : Test.Speculate.Expr.Equate
+-- Copyright   : (c) 2016-2017 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
+--
+-- This module is part of Speculate.
+--
+-- This module exports
+--   smart constructors,
+--   smart destructors
+-- and queries over
+--   equations,
+--   inequations
+--   and conditional equations.
 module Test.Speculate.Expr.Equate
   ( equation, unEquation, isEquation, uselessEquation, usefulEquation
   , phonyEquation
