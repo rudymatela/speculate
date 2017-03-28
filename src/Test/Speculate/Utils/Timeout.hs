@@ -1,3 +1,12 @@
+-- |
+-- Module      : Test.Speculate.Utils.Timeout
+-- Copyright   : (c) 2016-2017 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
+--
+-- This module is part of Speculate.
+--
+-- Evaluate values to WHNF until a timeout.
 module Test.Speculate.Utils.Timeout
   ( timeoutToNothing
   , fromTimeout

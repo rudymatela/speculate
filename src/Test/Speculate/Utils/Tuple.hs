@@ -1,3 +1,8 @@
+-- |
+-- Module      : Test.Speculate.Utils.Tuple
+-- Copyright   : (c) 2016-2017 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
 module Test.Speculate.Utils.Tuple
   ( module Data.Tuple
   , fst3, fst4

@@ -1,3 +1,12 @@
+-- |
+-- Module      : Test.Speculate.Utils.Misc
+-- Copyright   : (c) 2016-2017 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
+--
+-- This module is part of Speculate.
+--
+-- Miscellaneous utilities.
 module Test.Speculate.Utils.Misc where
 
 import Test.LeanCheck

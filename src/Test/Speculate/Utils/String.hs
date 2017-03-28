@@ -1,3 +1,12 @@
+-- |
+-- Module      : Test.Speculate.Utils.String
+-- Copyright   : (c) 2016-2017 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
+--
+-- This module is part of Speculate.
+--
+-- Utilities for manipulating strings.
 module Test.Speculate.Utils.String
   ( module Data.String
   , module Data.Char

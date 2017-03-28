@@ -1,3 +1,8 @@
+-- |
+-- Module      : Test.Speculate.Utils.Digraph
+-- Copyright   : (c) 2016 Colin Runciman
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
 module Test.Speculate.Utils.Digraph
   ( Digraph
   , empty

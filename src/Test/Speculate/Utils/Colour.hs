@@ -1,4 +1,12 @@
--- | Simple colour module.
+-- |
+-- Module      : Test.Speculate.Utils.Tuple
+-- Copyright   : (c) 2016-2017 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
+--
+-- This module is part of Speculate
+--
+-- Simple colour module.
 module Test.Speculate.Utils.Colour
   ( Colour (RGB)
   , Color

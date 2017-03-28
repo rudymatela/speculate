@@ -1,5 +1,13 @@
--- | Miscellaneous functions I still did not find a reasonable place to put
---   them in.
+-- |
+-- Module      : Test.Speculate.Misc
+-- Copyright   : (c) 2016-2017 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
+--
+-- This module is part o Speculate.
+--
+-- Miscellaneous functions I still did not find a reasonable place to put
+-- them in.
 module Test.Speculate.Misc
   ( functions1
   , functions2
