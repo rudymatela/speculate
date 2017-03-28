@@ -1,3 +1,12 @@
+-- |
+-- Module      : Test.Speculate.Expr.Core
+-- Copyright   : (c) 2016-2017 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
+--
+-- This module is part of Speculate.
+--
+-- Defines the 'Expr' type and basic operations on it.
 module Test.Speculate.Expr.Core
   ( Expr (..)
   -- * Smart constructors
