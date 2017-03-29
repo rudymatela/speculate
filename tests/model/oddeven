@@ -20,9 +20,9 @@ mod :: Int -> Int -> Int
 
           x `mod` 1 == 0
 (x `mod` 2) `mod` 2 == x `mod` 2
-           (x == x) == True
            (p == p) == True
         (p == True) == p
+           (x == x) == True
            (x == y) == (y == x)
     odd (x `mod` 2) == odd x
    even (x `mod` 2) == even x

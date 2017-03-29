@@ -212,9 +212,6 @@ lexicompareBy compareConstants = cmp
   Var _ _       `cmp` _             = LT
   -- Var < Constants < Apps
 
-compareTy :: TypeRep -> TypeRep -> Ordering
-compareTy = (compare `on` tyArity) <> compare
-
 lexicompareConstants :: Expr -> Expr -> Ordering
 lexicompareConstants = cmp
   where

@@ -43,8 +43,8 @@ denominator (1 % denominator q) == denominator q
                           q + r == r + q
                           q * r == r * q
     numerator q % denominator q == q
-             q / negate (1 % 1) == negate q
   denominator q % denominator q == 1 % 1
+             q / negate (1 % 1) == negate q
                     abs (q * q) == q * q
                    q * negate r == negate (q * r)
                 abs (q * abs r) == abs (q * r)
