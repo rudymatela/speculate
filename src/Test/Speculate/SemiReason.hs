@@ -92,7 +92,7 @@ sides shy = nubSortBy (scompareE shy)
 
 finalSemiEquations :: (Equation -> Bool) -> Instances -> (Expr -> Expr -> Bool) -> Shy -> [Equation]
 finalSemiEquations shouldShow insts equivalentInstanceOf shy =
-    sortOn (typ . fst)
+    sortBy (compareTy `on` (typ . fst))
   . filter shouldShow
   . discardLater (equivalentInstanceOf `on` uncurry phonyEquation)
   . discard (transConsequence shy)

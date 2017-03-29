@@ -14,7 +14,8 @@ import Test.Speculate.Reason
 import qualified Test.Speculate.Utils.Digraph as D
 import Test.Speculate.Utils.Digraph (Digraph)
 import Data.Maybe (mapMaybe,maybeToList,fromMaybe)
-import Data.List (lookup)
+import Data.List (lookup, sortBy)
+import Data.Function (on)
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import qualified Data.List as L
 import Test.Speculate.Utils
@@ -137,7 +138,7 @@ canonicalCEqn cmp = canonicalCEqnBy cmp preludeInstances
 
 finalCondEquations :: ((Expr,Expr,Expr) -> Bool) -> Chy -> [(Expr,Expr,Expr)]
 finalCondEquations shouldShow =
-    sortOn (typ . (\(c,x,y) -> x))
+    sortBy (compareTy `on` (\(c,x,y) -> typ x))
   . filter shouldShow
   . cequations
   . cfinalize

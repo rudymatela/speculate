@@ -16,6 +16,13 @@ Star :: RE Symbol -> RE Symbol
 False :: Bool
 True :: Bool
 
+     (r <= Empty) == True
+      (None <= r) == True
+    (r <= Star s) == True
+ (Star r <= None) == False
+     (r == Empty) == (Empty <= r)
+      (r == None) == (r <= None)
+    (r == Star s) == (Star s <= r)
            r :+ r == r
         r :+ None == r
        r :. Empty == r
@@ -26,14 +33,8 @@ True :: Bool
       r :+ Star r == Star r
 Star (r :+ Empty) == Star r
   Empty :+ Star r == Star r
-     (r <= Empty) == True
-      (None <= r) == True
-    (r <= Star s) == True
- (Star r <= None) == False
-     (r == Empty) == (Empty <= r)
-      (r == None) == (r <= None)
-    (r == Star s) == (Star s <= r)
 
+ r <= None ==> r <= s
       None <=  r
          r <=  Star r
      Empty <=  Star r
@@ -41,5 +42,4 @@ Star (r :+ Empty) == Star r
     r :. r <=  Star r
 r :+ Empty <=  Star r
     r :. s <=  r :+ s
- r <= None ==> r <= s
 

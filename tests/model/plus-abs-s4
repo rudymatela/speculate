@@ -19,10 +19,6 @@ False :: Bool
 (==) :: Bool -> Bool -> Bool
 (==) :: Int -> Int -> Bool
 
-        id x == x
-       x + 0 == x
- abs (abs x) == abs x
-       x + y == y + x
 (x <= abs x) == True
  (abs x < x) == False
 (0 <= abs x) == True
@@ -31,6 +27,10 @@ False :: Bool
  (x < abs x) == (x < 0)
 (x == abs x) == (0 <= x)
     (x == 0) == (abs x <= 0)
+        id x == x
+       x + 0 == x
+ abs (abs x) == abs x
+       x + y == y + x
 
 x <= abs x
 0 <= abs x

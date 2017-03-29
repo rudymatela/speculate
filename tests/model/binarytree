@@ -28,13 +28,6 @@ False :: Bool
 (==) :: BT Word2 -> BT Word2 -> Bool
 (==) :: [Word2] -> [Word2] -> Bool
 
-         delete x Null == Null
- insert x (insert x t) == insert x t
- delete x (delete x t) == delete x t
- insert x (delete x t) == insert x t
- delete x (insert x t) == delete x t
- insert x (insert y t) == insert y (insert x t)
- delete x (delete y t) == delete y (delete x t)
            isIn x Null == False
    isIn x (insert x t) == True
    isIn x (delete x t) == False
@@ -45,6 +38,13 @@ False :: Bool
      (t == delete x t) == (False == isIn x t)
 isIn x (insert y Null) == isIn y (insert x Null)
    (False == (x /= y)) == isIn x (insert y Null)
+         delete x Null == Null
+ insert x (insert x t) == insert x t
+ delete x (delete x t) == delete x t
+ insert x (delete x t) == insert x t
+ delete x (insert x t) == delete x t
+ insert x (insert y t) == insert y (insert x t)
+ delete x (delete y t) == delete y (delete x t)
 
          Null <= t
             t <= insert x t

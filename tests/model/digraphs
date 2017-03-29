@@ -25,12 +25,6 @@ False :: Bool
 (==) :: Digraph Nat -> Digraph Nat -> Bool
 (==) :: [Nat] -> [Nat] -> Bool
 
-          subgraph xs empty == empty
-              subgraph [] a == empty
-    addNode x (addNode x a) == addNode x a
-subgraph xs (subgraph xs a) == subgraph xs a
-    addNode x (addNode y a) == addNode y (addNode x a)
-subgraph xs (subgraph ys a) == subgraph ys (subgraph xs a)
              isNode x empty == False
            isEdge x y empty == False
            isPath x y empty == False
@@ -40,7 +34,18 @@ subgraph xs (subgraph ys a) == subgraph ys (subgraph xs a)
          (a == addNode x a) == isNode x a
                    (x == y) == isNode x (addNode y empty)
  isNode x (addNode y empty) == isNode y (addNode x empty)
+          subgraph xs empty == empty
+              subgraph [] a == empty
+    addNode x (addNode x a) == addNode x a
+subgraph xs (subgraph xs a) == subgraph xs a
+    addNode x (addNode y a) == addNode y (addNode x a)
+subgraph xs (subgraph ys a) == subgraph ys (subgraph xs a)
 
+     isEdge x y a ==> isNode x a
+     isEdge x y a ==> isNode y a
+     isPath x y a ==> isNode x a
+     isPath x y a ==> isNode y a
+     isEdge x y a ==> isPath x y a
             empty <=  a
                 a <=  addNode x a
     subgraph xs a <=  a
@@ -48,11 +53,6 @@ subgraph xs (subgraph ys a) == subgraph ys (subgraph xs a)
   addNode x empty <=  addNode x a
       addNode x a <=  addEdge x y a
 addEdge x y empty <=  addEdge x y a
-     isEdge x y a ==> isNode x a
-     isEdge x y a ==> isNode y a
-     isPath x y a ==> isNode x a
-     isPath x y a ==> isNode y a
-     isEdge x y a ==> isPath x y a
 
    elem x xs ==> subgraph xs (addNode x a) == addNode x (subgraph xs a)
 isEdge x y a ==>             addEdge x y a == a

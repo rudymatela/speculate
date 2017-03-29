@@ -20,6 +20,9 @@ False :: Bool
 (==) :: Int -> Int -> Bool
 (==) :: [Int] -> [Int] -> Bool
 
+   (xs == insert x xs) == False
+   ([] == insert x xs) == False
+       (sort xs == []) == (xs == [])
                sort [] == []
         sort (sort xs) == sort xs
            insert x [] == [x]
@@ -28,9 +31,6 @@ False :: Bool
 insert x (insert y xs) == insert y (insert x xs)
        insert x (x:xs) == x:(x:xs)
           insert x [y] == insert y [x]
-   (xs == insert x xs) == False
-   ([] == insert x xs) == False
-       (sort xs == []) == (xs == [])
 
 x <= y ==> insert x (y:xs) == x:(y:xs)
  x < y ==> insert y (x:xs) == x:insert y xs

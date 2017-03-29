@@ -20,11 +20,11 @@ False :: Bool
 (==) :: Int -> Int -> Bool
 (==) :: [Int] -> [Int] -> Bool
 
+   (sort xs == []) == (xs == [])
            sort [] == []
     sort (sort xs) == sort xs
        insert x [] == [x]
 sort (insert x xs) == insert x (sort xs)
        sort (x:xs) == insert x (sort xs)
-   (sort xs == []) == (xs == [])
 
 

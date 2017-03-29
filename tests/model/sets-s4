@@ -22,6 +22,12 @@ True :: Bool
 (==) :: Int -> Int -> Bool
 (==) :: Set Int -> Set Int -> Bool
 
+          x <~ emptyS == False
+       x <~ singleS x == True
+(emptyS == singleS x) == False
+             (x == y) == x <~ singleS y
+       x <~ singleS y == y <~ singleS x
+    sizeS (singleS x) == sizeS (singleS y)
                s \/ s == s
                s /\ s == s
           s \/ emptyS == s
@@ -34,16 +40,10 @@ deleteS x (singleS x) == emptyS
 insertS x (singleS x) == singleS x
        s \/ singleS x == insertS x s
 insertS x (singleS y) == insertS y (singleS x)
-    sizeS (singleS x) == sizeS (singleS y)
-          x <~ emptyS == False
-       x <~ singleS x == True
-(emptyS == singleS x) == False
-             (x == y) == x <~ singleS y
-       x <~ singleS y == y <~ singleS x
 
+          sizeS emptyS <= sizeS s
                 emptyS <= s
 singleS (sizeS emptyS) <= singleS (sizeS s)
-          sizeS emptyS <= sizeS s
 
 x <~ s ==>    insertS x s == s
 x <~ s ==> s /\ singleS x == singleS x

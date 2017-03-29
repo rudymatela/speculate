@@ -25,12 +25,12 @@ False :: Bool
 (==) :: Digraph Nat -> Digraph Nat -> Bool
 (==) :: [Nat] -> [Nat] -> Bool
 
-subgraph xs empty == empty
-    subgraph [] a == empty
    isNode x empty == False
  isEdge x y empty == False
  isPath x y empty == False
      isPath x x a == isNode x a
+subgraph xs empty == empty
+    subgraph [] a == empty
 
           empty <= a
               a <= addNode x a

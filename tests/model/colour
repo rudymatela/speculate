@@ -33,10 +33,6 @@ Nothing :: Maybe (Ratio Integer)
 Warning: (<=) :: Colour -> Colour -> Bool  is not an ordering (not antisymmetric)
 Warning: (==) and (<=) :: Colour -> Colour -> Bool are inconsistent: (x == y) /= (x <= y && y <= x)
 
-        hue (mix c black) == hue c
-        hue (mix c white) == hue c
-         hue (mix c grey) == hue c
-              hue (c + c) == hue (c + grey)
                   mix c c == c
                 c + black == c
                     c - c == black
@@ -55,6 +51,10 @@ fromHSL q (0 % 1) (1 % 2) == grey
       fromHSV (1 % 1) q r == fromHSV (0 % 1) q r
       fromHSL (1 % 1) q r == fromHSL (0 % 1) q r
 fromHSL q (1 % 1) (1 % 2) == fromHSV q (1 % 1) (1 % 1)
+        hue (mix c black) == hue c
+        hue (mix c white) == hue c
+         hue (mix c grey) == hue c
+              hue (c + c) == hue (c + grey)
           value (c + red) == 1 % 1
         value (c + green) == 1 % 1
          value (c + blue) == 1 % 1

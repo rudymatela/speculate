@@ -28,9 +28,9 @@ False :: Bool
 (==) :: BT Word2 -> BT Word2 -> Bool
 (==) :: [Word2] -> [Word2] -> Bool
 
-delete x Null == Null
   isIn x Null == False
    (xs == []) == (Null == fromList xs)
+delete x Null == Null
 
          Null <= t
             t <= insert x t

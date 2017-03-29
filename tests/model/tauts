@@ -18,20 +18,20 @@ taut :: Prop -> Bool
 (==) :: Bool -> Bool -> Bool
 (==) :: Name -> Name -> Bool
 
-eval (eval p) == eval p
      (p == p) == True
   (p == True) == p
      (n == n) == True
      (p == p) == True
 taut (eval p) == taut p
      (p == q) == (q == p)
+eval (eval p) == eval p
 
-    subst n p q <=  q
-    subst n p q <=  subst n True q
-subst n False p <=  subst n q p
               p ==> True
           False ==> p
     p == eval q ==> p == eval p
+    subst n p q <=  q
+    subst n p q <=  subst n True q
+subst n False p <=  subst n q p
 
 taut q ==> subst n (taut q) p == subst n True p
 

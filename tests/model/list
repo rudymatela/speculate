@@ -12,12 +12,12 @@ _ :: [Int]  (holes: [Int])
 head :: [Int] -> Int
 tail :: [Int] -> [Int]
 
+     head (x:xs) == x
         xs ++ [] == xs
         [] ++ xs == xs
      tail (x:xs) == xs
 (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
     (x:xs) ++ ys == x:(xs ++ ys)
-     head (x:xs) == x
 
        [] <= xs
        xs <= x:xs

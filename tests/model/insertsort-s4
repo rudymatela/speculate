@@ -24,16 +24,16 @@ sort :: [Int] -> [Int]
 (==) :: Bool -> Bool -> Bool
 (==) :: [Int] -> [Int] -> Bool
 
-       sort (sort xs) == sort xs
-          insert x [] == [x]
-      sort (xs ++ ys) == sort (ys ++ xs)
-   sort (insert x xs) == insert x (sort xs)
-          sort (x:xs) == insert x (sort xs)
     ordered (sort xs) == True
 ordered (insert x xs) == ordered xs
       (xs == sort xs) == ordered xs
      elem x (sort xs) == elem x xs
       (sort xs == []) == (xs == [])
+       sort (sort xs) == sort xs
+          insert x [] == [x]
+      sort (xs ++ ys) == sort (ys ++ xs)
+   sort (insert x xs) == insert x (sort xs)
+          sort (x:xs) == insert x (sort xs)
 
     sort xs <= xs
 insert x xs <= x:xs

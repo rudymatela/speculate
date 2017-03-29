@@ -24,15 +24,6 @@ sort :: [Int] -> [Int]
 (==) :: Bool -> Bool -> Bool
 (==) :: [Int] -> [Int] -> Bool
 
-         sort (sort xs) == sort xs
-            insert x [] == [x]
-        sort (xs ++ ys) == sort (ys ++ xs)
-     sort (insert x xs) == insert x (sort xs)
-            sort (x:xs) == insert x (sort xs)
-   sort (xs ++ sort ys) == sort (xs ++ ys)
- insert x (insert y xs) == insert y (insert x xs)
-        insert x (x:xs) == x:(x:xs)
-           insert x [y] == insert y [x]
       ordered (sort xs) == True
   ordered (insert x xs) == ordered xs
     (xs == insert x xs) == False
@@ -46,7 +37,17 @@ sort :: [Int] -> [Int]
 ordered (xs ++ sort xs) == ordered (xs ++ xs)
 ordered (sort xs ++ xs) == ordered (xs ++ xs)
    elem x (insert y xs) == elem x (y:xs)
+         sort (sort xs) == sort xs
+            insert x [] == [x]
+        sort (xs ++ ys) == sort (ys ++ xs)
+     sort (insert x xs) == insert x (sort xs)
+            sort (x:xs) == insert x (sort xs)
+   sort (xs ++ sort ys) == sort (xs ++ ys)
+ insert x (insert y xs) == insert y (insert x xs)
+        insert x (x:xs) == x:(x:xs)
+           insert x [y] == insert y [x]
 
+  xs == sort ys ==> ordered xs
         sort xs <=  xs
     insert x xs <=  x:xs
       x:sort xs <=  x:xs
@@ -56,7 +57,6 @@ ordered (sort xs ++ xs) == ordered (xs ++ xs)
 sort (xs ++ ys) <=  xs ++ sort ys
 sort (xs ++ ys) <=  sort xs ++ ys
   sort xs ++ xs <=  xs ++ sort xs
-  xs == sort ys ==> ordered xs
 
             x <= y ==>     insert x (y:xs) == x:(y:xs)
              x < y ==>     insert y (x:xs) == x:insert y xs
