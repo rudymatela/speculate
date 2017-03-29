@@ -6,6 +6,7 @@ import qualified Test.LeanCheck.Utils as LC (comparison)
 -- Functions under test
 import Test.Speculate.Expr
 import Test.Speculate.Utils
+import Test.Speculate.Reason (emptyThy)
 import Data.List (sort)
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import Data.Typeable (typeOf)
@@ -67,6 +68,21 @@ tests n =
   , absE < timesE
   , aa   < ordE
   , ordE < timesE
+
+  -- precedent types
+  , pp < xx
+  , cc < xx
+  , pp < cc
+  , xx < xxs
+  , aa < zero
+  , Test.true < zero
+  , Test.true < aa
+  , zero < ll
+
+  -- further precedent types
+  , constant "xx" xx < zero
+  , constant "xxeqxx" (Equation xx xx) < constant "xx" xx
+  , constant "xx" xx < constant "emptyThyght" (Thyght emptyThy)
 
   , unfoldApp (abs' xx)          == [absE, xx]
   , unfoldApp (abs' (xx -+- yy)) == [absE, xx -+- yy]
