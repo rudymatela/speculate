@@ -15,9 +15,9 @@ length :: [Int] -> Int
 zip :: [Int] -> [Int] -> [(Int,Int)]
 True :: Bool
 False :: Bool
+(==) :: Bool -> Bool -> Bool
 (==) :: [Int] -> [Int] -> Bool
 (==) :: [(Int,Int)] -> [(Int,Int)] -> Bool
-(==) :: Bool -> Bool -> Bool
 
 
 

@@ -18,9 +18,9 @@ sizeS :: Set Int -> Int
 (/\) :: Set Int -> Set Int -> Set Int
 False :: Bool
 True :: Bool
-(==) :: Set Int -> Set Int -> Bool
-(==) :: Int -> Int -> Bool
 (==) :: Bool -> Bool -> Bool
+(==) :: Int -> Int -> Bool
+(==) :: Set Int -> Set Int -> Bool
 
                s \/ s == s
                s /\ s == s

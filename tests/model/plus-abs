@@ -16,8 +16,8 @@ abs :: Int -> Int
 (<) :: Int -> Int -> Bool
 True :: Bool
 False :: Bool
-(==) :: Int -> Int -> Bool
 (==) :: Bool -> Bool -> Bool
+(==) :: Int -> Int -> Bool
 
                id x == x
               x + 0 == x

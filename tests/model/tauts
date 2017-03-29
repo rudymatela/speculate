@@ -15,8 +15,8 @@ eval :: Prop -> Prop
 varOf :: Prop -> Name
 subst :: Name -> Bool -> Prop -> Prop
 taut :: Prop -> Bool
-(==) :: Name -> Name -> Bool
 (==) :: Bool -> Bool -> Bool
+(==) :: Name -> Name -> Bool
 
 eval (eval p) == eval p
      (p == p) == True

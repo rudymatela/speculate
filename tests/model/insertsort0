@@ -16,9 +16,9 @@ sort :: [Int] -> [Int]
 (<) :: Int -> Int -> Bool
 True :: Bool
 False :: Bool
-(==) :: [Int] -> [Int] -> Bool
-(==) :: Int -> Int -> Bool
 (==) :: Bool -> Bool -> Bool
+(==) :: Int -> Int -> Bool
+(==) :: [Int] -> [Int] -> Bool
 
                sort [] == []
         sort (sort xs) == sort xs

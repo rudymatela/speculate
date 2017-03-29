@@ -176,7 +176,7 @@ atoms args = nubSort (map holeOfTy ts)
      `union` allConstants args
      `union` [showConstant True  | showConds || showDot args]
      `union` [showConstant False | showConds || showDot args]
-     `union` catMaybes [eqE (computeInstances args) t | t <- ts, showConds]
+     `union` (nubSort . catMaybes) [eqE (computeInstances args) t | t <- ts, showConds]
   where
   ts = types args
   showConds = reallyShowConditions args

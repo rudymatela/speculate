@@ -23,14 +23,14 @@ isSearch :: BT Word2 -> Bool
 [] :: [Word2]
 True :: Bool
 False :: Bool
-(==) :: [Word2] -> [Word2] -> Bool
-(==) :: BT Word2 -> BT Word2 -> Bool
 (==) :: Bool -> Bool -> Bool
 (==) :: Word2 -> Word2 -> Bool
+(==) :: BT Word2 -> BT Word2 -> Bool
+(==) :: [Word2] -> [Word2] -> Bool
 
 delete x Null == Null
   isIn x Null == False
-  (t == Null) == ([] == toList t)
+   (xs == []) == (Null == fromList xs)
 
          Null <= t
             t <= insert x t

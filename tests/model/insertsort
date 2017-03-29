@@ -21,8 +21,8 @@ sort :: [Int] -> [Int]
 (==) :: Int -> Int -> Bool
 (<=) :: Int -> Int -> Bool
 (<) :: Int -> Int -> Bool
-(==) :: [Int] -> [Int] -> Bool
 (==) :: Bool -> Bool -> Bool
+(==) :: [Int] -> [Int] -> Bool
 
          sort (sort xs) == sort xs
             insert x [] == [x]

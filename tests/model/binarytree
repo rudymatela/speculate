@@ -23,10 +23,10 @@ isSearch :: BT Word2 -> Bool
 [] :: [Word2]
 True :: Bool
 False :: Bool
-(==) :: [Word2] -> [Word2] -> Bool
-(==) :: BT Word2 -> BT Word2 -> Bool
 (==) :: Bool -> Bool -> Bool
 (==) :: Word2 -> Word2 -> Bool
+(==) :: BT Word2 -> BT Word2 -> Bool
+(==) :: [Word2] -> [Word2] -> Bool
 
          delete x Null == Null
  insert x (insert x t) == insert x t
@@ -38,10 +38,13 @@ False :: Bool
            isIn x Null == False
    isIn x (insert x t) == True
    isIn x (delete x t) == False
+  (Null == insert x t) == False
+            (xs == []) == (Null == fromList xs)
+     (t == insert x t) == isIn x t
               (x == y) == isIn x (insert y Null)
+     (t == delete x t) == (False == isIn x t)
 isIn x (insert y Null) == isIn y (insert x Null)
    (False == (x /= y)) == isIn x (insert y Null)
-   (False == isIn x t) == (toList t == toList (delete x t))
 
          Null <= t
             t <= insert x t

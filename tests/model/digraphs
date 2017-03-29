@@ -20,10 +20,10 @@ isPath :: Nat -> Nat -> Digraph Nat -> Bool
 subgraph :: [Nat] -> Digraph Nat -> Digraph Nat
 True :: Bool
 False :: Bool
-(==) :: [Nat] -> [Nat] -> Bool
-(==) :: Digraph Nat -> Digraph Nat -> Bool
-(==) :: Nat -> Nat -> Bool
 (==) :: Bool -> Bool -> Bool
+(==) :: Nat -> Nat -> Bool
+(==) :: Digraph Nat -> Digraph Nat -> Bool
+(==) :: [Nat] -> [Nat] -> Bool
 
           subgraph xs empty == empty
               subgraph [] a == empty

@@ -18,9 +18,9 @@ sizeS :: Set Int -> Int
 (/\) :: Set Int -> Set Int -> Set Int
 False :: Bool
 True :: Bool
-(==) :: Set Int -> Set Int -> Bool
-(==) :: Int -> Int -> Bool
 (==) :: Bool -> Bool -> Bool
+(==) :: Int -> Int -> Bool
+(==) :: Set Int -> Set Int -> Bool
 
                        s \/ s == s
                        s /\ s == s
@@ -61,7 +61,7 @@ sizeS (deleteS x (singleS y)) == sizeS (deleteS y (singleS x))
                x <~ singleS y == y <~ singleS x
      (singleS x == singleS y) == x <~ singleS y
                 (s /\ t == s) == (t == s \/ t)
-            (False == x <~ s) == (s == deleteS x s)
+           (s == deleteS x s) == (False == x <~ s)
 
                   emptyS <=  s
    deleteS x (singleS y) <=  singleS y
