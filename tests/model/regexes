@@ -4,8 +4,8 @@ max expr size  =    4
 max  #-tests   =   30
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: RE Symbol  (holes: RE Symbol)
 _ :: Bool  (holes: Bool)
+_ :: RE Symbol  (holes: RE Symbol)
 Empty :: RE Symbol
 None :: RE Symbol
 Star :: RE Symbol -> RE Symbol

@@ -5,9 +5,9 @@ max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: Set Int  (holes: Set Int)
-_ :: Int  (holes: Int)
 _ :: Bool  (holes: Bool)
+_ :: Int  (holes: Int)
+_ :: Set Int  (holes: Set Int)
 emptyS :: Set Int
 singleS :: Int -> Set Int
 insertS :: Int -> Set Int -> Set Int

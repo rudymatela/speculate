@@ -5,8 +5,8 @@ max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: Maybe (Ratio Integer)  (holes: Maybe (Ratio Integer))
 _ :: Colour  (holes: Colour)
+_ :: Maybe (Ratio Integer)  (holes: Maybe (Ratio Integer))
 _ :: Ratio Integer  (holes: Ratio Integer)
 (+) :: Colour -> Colour -> Colour
 (-) :: Colour -> Colour -> Colour

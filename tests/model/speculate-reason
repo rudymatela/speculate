@@ -4,11 +4,11 @@ max expr size  =    4
 max  #-tests   = 6000
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: [Expr]  (holes: [Expr])
-_ :: Thyght  (holes: Thyght)
-_ :: Expr  (holes: Expr)
 _ :: Bool  (holes: Bool)
 _ :: Equation  (holes: Equation)
+_ :: Expr  (holes: Expr)
+_ :: Thyght  (holes: Thyght)
+_ :: [Expr]  (holes: [Expr])
 okThy :: Thyght -> Bool
 insert :: Expr -> Thyght -> Thyght
 complete :: Thyght -> Thyght

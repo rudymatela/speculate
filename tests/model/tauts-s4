@@ -5,9 +5,9 @@ max  #-tests   = 4000
 min  #-tests   =  200  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
 
+_ :: Bool  (holes: Bool)
 _ :: Name  (holes: Name)
 _ :: Prop  (holes: Prop)
-_ :: Bool  (holes: Bool)
 False :: Bool
 True :: Bool
 (==) :: Prop -> Prop -> Bool

@@ -172,7 +172,7 @@ reallyShowConditions args = showConditions args
                          && boolTy `elem` map (finalResultTy . typ) (allConstants args)
 
 atoms :: Args -> [Expr]
-atoms args = map holeOfTy ts
+atoms args = nubSort (map holeOfTy ts)
      `union` allConstants args
      `union` [showConstant True  | showConds || showDot args]
      `union` [showConstant False | showConds || showDot args]

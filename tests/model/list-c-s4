@@ -4,16 +4,16 @@ max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    3  (for inequational and conditional laws)
 
-_ :: [Int]  (holes: [Int])
 _ :: Int  (holes: Int)
+_ :: [Int]  (holes: [Int])
 [] :: [Int]
 (:) :: Int -> [Int] -> [Int]
 (++) :: [Int] -> [Int] -> [Int]
 head :: [Int] -> Int
 tail :: [Int] -> [Int]
 
-_ :: [Int]  (holes: [Int])
 _ :: Int  (holes: Int)
+_ :: [Int]  (holes: [Int])
 [] :: [Int]
 head _ :: Int  (holes: [Int])
 head [] :: Int
@@ -103,8 +103,8 @@ tail (tail _) ++ [] :: [Int]  (holes: [Int])
 tail (tail []) ++ _ :: [Int]  (holes: [Int])
 tail (tail []) ++ [] :: [Int]
 
-xs :: [Int]
 x :: Int
+xs :: [Int]
 [] :: [Int]
 head xs :: Int
 head [] :: Int
@@ -172,10 +172,10 @@ head (tail []):xs :: [Int]
 tail (tail xs) ++ xs :: [Int]
 tail (tail []) ++ xs :: [Int]
 
-xs :: [Int]
-ys :: [Int]
 x :: Int
 y :: Int
+xs :: [Int]
+ys :: [Int]
 [] :: [Int]
 head xs :: Int
 head ys :: Int
@@ -364,12 +364,12 @@ tail (tail ys) ++ ys :: [Int]
 tail (tail []) ++ xs :: [Int]
 tail (tail []) ++ ys :: [Int]
 
-xs :: [Int]
-ys :: [Int]
-zs :: [Int]
 x :: Int
 y :: Int
 z :: Int
+xs :: [Int]
+ys :: [Int]
+zs :: [Int]
 [] :: [Int]
 head xs :: Int
 head ys :: Int
