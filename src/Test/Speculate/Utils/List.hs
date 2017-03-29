@@ -13,7 +13,7 @@ module Test.Speculate.Utils.List
   , count, counts, countsBy
   , firsts
   , nubSort, nubSortBy
-  , (+++), nubMerge, nubMergeBy, nubMergeOn, nubMerges, nubMergeMap
+  , (+++), nubMerge, nubMergeBy, nubMergeOn, nubMerges, nubMergesBy, nubMergeMap
   , ordIntersect, ordIntersectBy
   , ordered, orderedBy, orderedOn, strictlyOrdered, strictlyOrderedOn
   , areAll, areAny
@@ -87,9 +87,12 @@ ordIntersect :: Ord a => [a] -> [a] -> [a]
 ordIntersect = ordIntersectBy compare
 
 nubMerges :: Ord a => [[a]] -> [a]
-nubMerges [] = []
-nubMerges [xs] = xs
-nubMerges xss = nubMerges yss `nubMerge` nubMerges zss
+nubMerges = nubMergesBy compare
+
+nubMergesBy :: Ord a => (a -> a -> Ordering) -> [[a]] -> [a]
+nubMergesBy cmp [] = []
+nubMergesBy cmp [xs] = xs
+nubMergesBy cmp xss = nubMergeBy cmp (nubMerges yss) (nubMerges zss)
   where
   (yss,zss) = splitHalf xss
   splitHalf xs = splitAt (length xs `div` 2) xs
