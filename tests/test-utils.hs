@@ -120,4 +120,10 @@ tests n =
   , partitionByMarkers '#' '*' "*ab#cd" == ("cd","ab")
   , partitionByMarkers '#' '*' "abc#def*ghi*jkl#mno*pqr#stu" == ("abcdefmnostu","ghijklpqr")
   , partitionByMarkers '#' '*' "#foreground*background#foreground" == ("foregroundforeground","background")
+
+  , holds n $ \xs ys -> strictlyOrdered xs && strictlyOrdered ys
+                    ==> strictlyOrdered (xs +++ ys :: [Int])
+  , holds n $ \xs ys -> xs +++ ys == ys +++ (xs :: [Int])
+  , holds n $ \xs ys -> strictlyOrdered xs && strictlyOrdered ys
+                    ==> xs +++ ys == nubSort (xs ++ ys :: [Int])
   ]
