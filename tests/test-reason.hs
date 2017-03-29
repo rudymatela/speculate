@@ -120,8 +120,6 @@ tests n =
 
   , holds n $ idempotent finalize
 
-  , holds n $ \e (SameTypeE e1 e2) -> ordered (reductionsO e (e1,e2))
-
   , criticalPairs emptyThy { rules = [ ((xx -+- yy) -+- zz,xx -+- (yy -+- zz))
                                      , (negate' xx -+- xx, zero) ] }
       == [ (negate' xx -+- (xx -+- yy),zero -+- yy)

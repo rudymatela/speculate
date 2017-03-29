@@ -48,7 +48,6 @@ module Test.Speculate.Reason
   , defaultKeep
 
   , reductions1
-  , reductionsO
 
   , dwoBy
   , (|>)
@@ -173,22 +172,13 @@ reduceRoot :: Expr -> Rule -> Maybe Expr
 reduceRoot e (e1,e2) = (e2 `assigning`) <$> (e `match` e1)
 
 -- Lists all reductions by one rule, note that reductions may be repeated.
--- For unrepeated reductions see reductionsO
+-- @nub . sort@ to remove repetitions
 reductions1 :: Expr -> Rule -> [Expr]
 reductions1 e (l,_) | lengthE l > lengthE e = [] -- optional optimization
 reductions1 e@(e1 :$ e2) r = maybeToList (e `reduceRoot` r)
                           ++ map (:$ e2) (reductions1 e1 r)
                           ++ map (e1 :$) (reductions1 e2 r)
 reductions1 e r = maybeToList (e `reduceRoot` r)
-
--- Lists all reductions by one rule without repetitions.
--- For a faster version that allows repetitions, see reductions1
-reductionsO :: Expr -> Rule -> [Expr]
-reductionsO e (l,_) | lengthE l > lengthE e = [] -- optional optimization
-reductionsO e@(e1 :$ e2) r = maybeToList (e `reduceRoot` r)
-                         +++ map (:$ e2) (reductionsO e1 r)
-                         +++ map (e1 :$) (reductionsO e2 r)
-reductionsO e r = maybeToList (e `reduceRoot` r)
 
 -- as defined by Martin & Nipkow in "Ordered Rewriting and Confluence" on 1990
 -- this definition is sound, but incomplete (some groundJoinable pairs won't be
