@@ -1,3 +1,4 @@
+{-# Language DeriveDataTypeable, StandaloneDeriving #-} -- Travis
 {-# LANGUAGE CPP #-}
 -- Test library
 import Test
@@ -11,6 +12,11 @@ import Data.List (sort)
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import Data.Typeable (typeOf)
 import Data.Maybe (isJust)
+
+-- for Travis:
+deriving instance Typeable Thyght
+deriving instance Typeable Equation
+deriving instance Typeable Expr
 
 main :: IO ()
 main = mainTest tests 10000
