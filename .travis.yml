@@ -28,8 +28,8 @@ install:
 # Speculate/LeanCheck were in early stages of development.
 script:
   - >
-    cat Makefile | grep -v eg/speculate-reason > Makefile.1
-    mv Makefile.1 Makefile
+    cat Makefile | grep -v eg/speculate-reason > Makefile.1 &&
+    mv Makefile.1 Makefile &&
     make depend GHCIMPORTDIRS=src:eg:tests &&
     make        GHCIMPORTDIRS=src:eg:tests &&
     make test   GHCIMPORTDIRS=src:eg:tests
