@@ -13,20 +13,22 @@ matrix:
       install: >
         cabal install Cabal cabal-install &&
         cabal install leancheck cmdargs regex-tdfa
-      script:
-        - >
-          make depend GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
-          make        GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
-          make test   GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests
+      script: >
+        cat Makefile | grep -v eg/speculate-reason > Makefile.1 &&
+        mv Makefile.1 Makefile &&
+        make depend GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+        make        GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+        make test   GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests
     - ghc: '7.4'
       install: >
         cabal install Cabal cabal-install &&
         cabal install leancheck cmdargs regex-tdfa
-      script:
-        - >
-          make depend GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
-          make        GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
-          make test   GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests
+      script: >
+        cat Makefile | grep -v eg/speculate-reason > Makefile.1 &&
+        mv Makefile.1 Makefile &&
+        make depend GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+        make        GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+        make test   GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests
 
 install:
   - cabal install leancheck cmdargs regex-tdfa
