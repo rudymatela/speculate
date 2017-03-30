@@ -7,18 +7,20 @@ ghc:
   - "7.10"
   - "7.8"
 
-#matrix:
-#  include:
-#    - ghc: '7.6'
-#      script: >
-#        make depend GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
-#        make        GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
-#        make test   GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests
-#    - ghc: '7.4'
-#      script: >
-#        make depend GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
-#        make        GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
-#        make test   GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests
+matrix:
+  include:
+    - ghc: '7.6'
+      script:
+        - >
+          make depend GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+          make        GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+          make test   GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests
+    - ghc: '7.4'
+      script:
+        - >
+          make depend GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+          make        GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests &&
+          make test   GHCFLAGS="-fno-warn-unrecognised-pragmas" GHCIMPORTDIRS=src:eg:tests
 
 install:
   - cabal install leancheck cmdargs regex-tdfa
