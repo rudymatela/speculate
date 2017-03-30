@@ -1,6 +1,9 @@
 Speculate
 =========
 
+[![Speculate Build Status][build-status]][build-log]
+[![Speculate on Hackage][hackage-version]][speculate-on-hackage]
+
 Speculate automatically discovers laws about Haskell functions.
 Give Speculate a bunch of Haskell functions and it will discover laws like:
 
@@ -146,3 +149,8 @@ For more examples, see the [eg](eg) and [bench](bench) folders.
 [QuickSpec]: https://github.com/nick8325/quickspec
 [QuickCheck]: https://hackage.haskell.org/package/QuickCheck
 [cmdargs]: https://hackage.haskell.org/package/cmdargs
+
+[build-status]: https://travis-ci.org/rudymatela/speculate.svg?branch=master
+[build-log]:    https://travis-ci.org/rudymatela/speculate
+[hackage-version]: https://img.shields.io/hackage/v/speculate.svg
+[speculate-on-hackage]: https://hackage.haskell.org/package/speculate
