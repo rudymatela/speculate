@@ -1,6 +1,6 @@
 {-# Language CPP #-}
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
-import Test.Speculate hiding ((\/))
+import Test.Speculate hiding ((\/),Set)
 
 import Set hiding (set)
 import qualified Set
