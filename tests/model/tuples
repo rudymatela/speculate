@@ -30,6 +30,6 @@ left :: (Int,Int,Int) -> (Int,Int,Int)
                    id xyz == xyz
 right (right (right xyz)) == xyz
                  left xyz == right (right xyz)
-       right ((,,) x y z) == (,,) z x y
+       right ((x ,, y) z) == (z ,, x) y
 
 

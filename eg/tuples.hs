@@ -18,7 +18,7 @@ main = speculate args
       , constant "id"    (id :: (Int,Int) -> (Int,Int))
       , constant "id"    (id :: (Int,Int,Int) -> (Int,Int,Int))
       , constant ","     ((,) :: Int -> Int -> (Int,Int))
-      , constant "(,,)"  ((,,) :: Int -> Int -> Int -> (Int,Int,Int))
+      , constant ",,"    ((,,) :: Int -> Int -> Int -> (Int,Int,Int))
       , constant "fst"   (fst :: (Int,Int) -> Int)
       , constant "snd"   (snd :: (Int,Int) -> Int)
       , constant "swap"  (swap :: (Int,Int) -> (Int,Int))
