@@ -1,0 +1,36 @@
+max expr size  =    4
+  |- on conds  =    3
+max  #-tests   =  500
+min  #-tests   =   25  (to consider p ==> q true)
+max  #-vars    =    3  (for inequational and conditional laws)
+
+_ :: ()  (holes: ())
+_ :: Int  (holes: Int)
+_ :: (Int,Int)  (holes: (Int,Int))
+_ :: (Int,Int,Int)  (holes: (Int,Int,Int))
+() :: ()
+id :: () -> ()
+id :: Int -> Int
+id :: (Int,Int) -> (Int,Int)
+id :: (Int,Int,Int) -> (Int,Int,Int)
+(,) :: Int -> Int -> (Int,Int)
+(,,) :: Int -> Int -> Int -> (Int,Int,Int)
+fst :: (Int,Int) -> Int
+snd :: (Int,Int) -> Int
+swap :: (Int,Int) -> (Int,Int)
+right :: (Int,Int,Int) -> (Int,Int,Int)
+left :: (Int,Int,Int) -> (Int,Int,Int)
+
+                     id x == x
+              fst (x , y) == x
+              snd (x , y) == y
+            fst (swap xy) == snd xy
+            snd (swap xy) == fst xy
+                    id xy == xy
+           swap (swap xy) == xy
+             swap (x , y) == y , x
+                   id xyz == xyz
+right (right (right xyz)) == xyz
+                 left xyz == right (right xyz)
+
+

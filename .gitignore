@@ -67,6 +67,7 @@ eg/regexes
 eg/sets
 eg/monad
 eg/tauts
+eg/tuples
 eg/oddeven
 bench/expressions
 bench/representatives

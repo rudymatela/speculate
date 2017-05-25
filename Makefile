@@ -41,6 +41,7 @@ EG = \
   eg/sets \
   eg/tauts \
   eg/monad \
+  eg/tuples \
   bench/arithficial
 QUICKTESTS = \
   tests/test-engine \
