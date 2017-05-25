@@ -1,6 +1,10 @@
 {-# Language CPP #-}
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
+#if __GLASGOW_HASKELL__ <= 704
+import Test.Speculate hiding ((\/)) -- for some reason, Set is not exported
+#else
 import Test.Speculate hiding ((\/),Set)
+#endif
 
 import Set hiding (set)
 import qualified Set
