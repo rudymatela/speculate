@@ -22,13 +22,13 @@ right :: (Int,Int,Int) -> (Int,Int,Int)
 left :: (Int,Int,Int) -> (Int,Int,Int)
 
                      id x == x
-              fst (x , y) == x
-              snd (x , y) == y
+                fst (x,y) == x
+                snd (x,y) == y
             fst (swap xy) == snd xy
             snd (swap xy) == fst xy
                     id xy == xy
            swap (swap xy) == xy
-             swap (x , y) == y , x
+               swap (x,y) == (y,x)
                    id xyz == xyz
 right (right (right xyz)) == xyz
                  left xyz == right (right xyz)

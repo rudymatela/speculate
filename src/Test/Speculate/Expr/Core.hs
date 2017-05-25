@@ -151,6 +151,21 @@ showsPrecExpr d ((Constant ":" _ :$ e1) :$ e2) =
     '[':cs -> showString "[" . showsPrecExpr 0 e1 . showString "," . showString cs
     cs -> showParen (d > prec ":")
         $ showsOpExpr ":" e1 . showString ":" . showsOpExpr ":" e2
+showsPrecExpr d ((Constant "," _ :$ e1) :$ e2) =
+    showString "(" . showsPrecExpr 0 e1
+  . showString "," . showsPrecExpr 0 e2
+  . showString ")"
+showsPrecExpr d (((Constant ",," _ :$ e1) :$ e2) :$ e3) =
+    showString "(" . showsPrecExpr 0 e1
+  . showString "," . showsPrecExpr 0 e2
+  . showString "," . showsPrecExpr 0 e3
+  . showString ")"
+showsPrecExpr d ((((Constant ",,," _ :$ e1) :$ e2) :$ e3) :$ e4) =
+    showString "(" . showsPrecExpr 0 e1
+  . showString "," . showsPrecExpr 0 e2
+  . showString "," . showsPrecExpr 0 e3
+  . showString "," . showsPrecExpr 0 e4
+  . showString ")"
 showsPrecExpr d ((Constant f _ :$ e1) :$ e2)
   | isInfix f = showParen (d > prec f)
               $ showsOpExpr f e1
