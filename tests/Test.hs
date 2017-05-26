@@ -67,10 +67,13 @@ module Test
   , odd', even'
 
   -- ** Characters
-  , aa
+  , aa, bb
+  , space, lineBreak
   , cc, dd
   , ord'
   , ordE
+  , emptyString
+  , ccs
 
   -- ** Lists (of Inteters)
   , ll
@@ -406,8 +409,17 @@ even' :: Expr -> Expr
 even' = (evenE :$) where evenE = constant "even" (even :: Int -> Bool)
 
 
-aa :: Expr -- a, the character, not variable
+aa :: Expr -- a, the character, not a variable
 aa = showConstant 'a'
+
+bb :: Expr -- bee, the character, not a variable
+bb = showConstant 'b'
+
+space :: Expr -- space, the character
+space = showConstant ' '
+
+lineBreak :: Expr -- lineBreak, the character
+lineBreak = showConstant '\n'
 
 cc :: Expr -- cee, a variable character
 cc = var "c" char
@@ -421,6 +433,12 @@ ord' = (ordE :$)
 ordE :: Expr
 ordE = constant "ord" Data.Char.ord
 
+emptyString :: Expr
+emptyString = showConstant ""
+
+ccs :: Expr -- cees
+ccs = var "cs" [char]
+
 
 ll :: Expr
 ll = showConstant ([] :: [Int])
@@ -432,7 +450,11 @@ yys :: Expr -- wyes
 yys = var "ys" [int]
 
 (-:-) :: Expr -> Expr -> Expr
-e1 -:- e2 = consE :$ e1 :$ e2
+e1 -:- e2
+  | typ e1 == typeOf (undefined :: Int)  = consE :$ e1 :$ e2
+  | typ e1 == typeOf (undefined :: Char) = stringConsE :$ e1 :$ e2
+  where
+  stringConsE = constant ":" ((:) :: Char -> String -> String)
 infixr 5 -:-
 
 consE :: Expr
@@ -459,6 +481,7 @@ elem' ex exs = elemE :$ ex :$ exs where elemE = constant "elem" (elem :: Int -> 
 
 sort' :: Expr -> Expr
 sort' exs = sortE :$ exs where sortE = constant "sort" (sort :: [Int] -> [Int])
+
 
 -- boolTy already exported by Speculate.TypeInfo
 

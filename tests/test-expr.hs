@@ -209,4 +209,12 @@ tests n =
 #endif
 
   , holds n $ \e1 e2 -> e1 `isSub` e2 == (e1 `elem` subexprsV e2)
+
+  , show (space -:- emptyString) == "' ':\"\" :: [Char]"
+  , show (space -:- ccs)         == "' ':cs :: [Char]"
+  , show (aa -:- bb -:- emptyString) == "'a':('b':\"\") :: [Char]"
+  , show (aa -:- bb -:- ccs)         == "'a':('b':cs) :: [Char]"
+  , show (aa -:- space -:- bb -:- lineBreak -:- emptyString) == "'a':(' ':('b':('\\n':\"\"))) :: [Char]"
+  , show (cc -:- space -:- dd -:- lineBreak -:- emptyString) == "c:(' ':(d:('\\n':\"\"))) :: [Char]"
+  , show (cc -:- space -:- dd -:- lineBreak -:- ccs)         == "c:(' ':(d:('\\n':cs))) :: [Char]"
   ]
