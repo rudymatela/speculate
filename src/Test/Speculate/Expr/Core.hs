@@ -145,6 +145,12 @@ showsPrecExpr d (Constant s _) = showParen sp $ showString s
   where sp = if atomic s then isInfix s else maybe True (d >) $ outernmostPrec s
 showsPrecExpr d (Var "" _)     = showString "_" -- a hole
 showsPrecExpr d (Var s _)      = showParen (isInfix s) $ showString s
+showsPrecExpr d ((Constant ":" _ :$ e1@(Constant _ _)) :$ e2)
+  | typ e1 == typeOf (undefined :: Char) =
+  case showsPrecExpr 0 e2 "" of
+    '\"':cs  -> showString ("\"" ++ (init . tail) (showsPrecExpr 0 e1 "") ++ cs)
+    cs -> showParen (d > prec ":")
+        $ showsOpExpr ":" e1 . showString ":" . showsOpExpr ":" e2
 showsPrecExpr d ((Constant ":" _ :$ e1) :$ e2) =
   case showsPrecExpr 0 e2 "" of
     "[]" -> showString "[" . showsPrecExpr 0 e1 . showString "]"
