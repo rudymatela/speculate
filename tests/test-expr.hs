@@ -210,6 +210,7 @@ tests n =
 
   , holds n $ \e1 e2 -> e1 `isSub` e2 == (e1 `elem` subexprsV e2)
 
+  , show (emptyString) == "\"\" :: [Char]"
   , show (space -:- emptyString) == "' ':\"\" :: [Char]"
   , show (space -:- ccs)         == "' ':cs :: [Char]"
   , show (aa -:- bb -:- emptyString) == "'a':('b':\"\") :: [Char]"
