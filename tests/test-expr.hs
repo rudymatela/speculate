@@ -41,6 +41,7 @@ tests n =
 
 
   , holds n $ okEqOrd -:> expr
+  , holds n $ okEqOrd -:> (undefined :: Instance)
   , holds n $ compare ==== compareComplexity
   , holds n $ LC.comparison lexicompare
   , holds n $ LC.comparison compareComplexity

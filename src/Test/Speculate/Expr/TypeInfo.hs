@@ -59,6 +59,26 @@ data Instance = Eq TypeRep Expr
               | Listable TypeRep [[Expr]]
               | Names TypeRep [String]
 
+instance Eq Instance where
+  (Eq       t1 _) == (Eq       t2 _)  =  t1 == t2
+  (Ord    t1 _ _) == (Ord    t2 _ _)  =  t1 == t2
+  (Listable t1 _) == (Listable t2 _)  =  t1 == t2
+  (Names    t1 _) == (Names    t2 _)  =  t1 == t2
+  _               == _                =  False
+
+instance Ord Instance where
+  (Eq       t1 _) `compare` (Eq       t2 _)  =  t1 `compare` t2
+  (Ord    t1 _ _) `compare` (Ord    t2 _ _)  =  t1 `compare` t2
+  (Listable t1 _) `compare` (Listable t2 _)  =  t1 `compare` t2
+  (Names    t1 _) `compare` (Names    t2 _)  =  t1 `compare` t2
+  (Eq        _ _) `compare` _                =  LT
+  _               `compare` (Eq        _ _)  =  GT
+  (Ord     _ _ _) `compare` _                =  LT
+  _               `compare` (Ord     _ _ _)  =  GT
+  (Listable  _ _) `compare` _                =  LT
+  _               `compare` (Listable  _ _)  =  GT
+
+
 -- | Type information needed to Speculate expressions.
 type Instances = [Instance]
 

@@ -670,3 +670,11 @@ expressionsT ds = [ds] \/ productMaybeWith ($$) es es `addWeight` 1
 -- TODO: maybe use expressionsT as the main function to generate Exprs.
 -- By using it, I speculate a 20% increase in runtime.  But the code will
 -- certainly be smaller and easier to maintain.
+
+instance Show Instance where
+  show (Eq       t _  )  = show "Eq "       ++ show t ++ " .."
+  show (Ord      t _ _)  = show "Ord "      ++ show t ++ " .. .."
+  show (Listable t _  )  = show "Listable " ++ show t ++ " .."
+  show (Names    t _  )  = show "Names "    ++ show t ++ " .."
+
+instance Listable Instance where list = preludeInstances
