@@ -19,6 +19,7 @@ module Test.Speculate.Expr.TypeInfo
   , ord,      ordWith
   , eqOrd
   , listable, listableWith
+  , name
 
   -- * Queries on Instances
   , instanceType
