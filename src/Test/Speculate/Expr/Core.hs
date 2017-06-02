@@ -147,16 +147,16 @@ showsPrecExpr d (Var "" _)     = showString "_" -- a hole
 showsPrecExpr d (Var s _)      = showParen (isInfix s) $ showString s
 showsPrecExpr d ((Constant ":" _ :$ e1@(Constant _ _)) :$ e2)
   | typ e1 == typeOf (undefined :: Char) =
-  case showsPrecExpr 0 e2 "" of
+  case showsTailExpr e2 "" of
     '\"':cs  -> showString ("\"" ++ (init . tail) (showsPrecExpr 0 e1 "") ++ cs)
     cs -> showParen (d > prec ":")
-        $ showsOpExpr ":" e1 . showString ":" . showsTailExpr e2
+        $ showsOpExpr ":" e1 . showString ":" . showString cs
 showsPrecExpr d ((Constant ":" _ :$ e1) :$ e2) =
-  case showsPrecExpr 0 e2 "" of
+  case showsTailExpr e2 "" of
     "[]" -> showString "[" . showsPrecExpr 0 e1 . showString "]"
     '[':cs -> showString "[" . showsPrecExpr 0 e1 . showString "," . showString cs
     cs -> showParen (d > prec ":")
-        $ showsOpExpr ":" e1 . showString ":" . showsTailExpr e2
+        $ showsOpExpr ":" e1 . showString ":" . showString cs
 showsPrecExpr d ((Constant "," _ :$ e1) :$ e2) =
     showString "(" . showsPrecExpr 0 e1
   . showString "," . showsPrecExpr 0 e2
