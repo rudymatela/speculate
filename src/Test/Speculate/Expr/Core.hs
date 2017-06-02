@@ -150,13 +150,13 @@ showsPrecExpr d ((Constant ":" _ :$ e1@(Constant _ _)) :$ e2)
   case showsPrecExpr 0 e2 "" of
     '\"':cs  -> showString ("\"" ++ (init . tail) (showsPrecExpr 0 e1 "") ++ cs)
     cs -> showParen (d > prec ":")
-        $ showsOpExpr ":" e1 . showString ":" . showsOpExpr ":" e2
+        $ showsOpExpr ":" e1 . showString ":" . showsTailExpr e2
 showsPrecExpr d ((Constant ":" _ :$ e1) :$ e2) =
   case showsPrecExpr 0 e2 "" of
     "[]" -> showString "[" . showsPrecExpr 0 e1 . showString "]"
     '[':cs -> showString "[" . showsPrecExpr 0 e1 . showString "," . showString cs
     cs -> showParen (d > prec ":")
-        $ showsOpExpr ":" e1 . showString ":" . showsOpExpr ":" e2
+        $ showsOpExpr ":" e1 . showString ":" . showsTailExpr e2
 showsPrecExpr d ((Constant "," _ :$ e1) :$ e2) =
     showString "(" . showsPrecExpr 0 e1
   . showString "," . showsPrecExpr 0 e2
@@ -188,6 +188,20 @@ showsPrecExpr d (e1 :$ e2) = showParen (d > prec " ")
                            $ showsPrecExpr (prec " ") e1
                            . showString " "
                            . showsPrecExpr (prec " " + 1) e2
+
+-- bad smell here, repeated code!
+showsTailExpr :: Expr -> String -> String
+showsTailExpr ((Constant ":" _ :$ e1@(Constant _ _)) :$ e2)
+  | typ e1 == typeOf (undefined :: Char) =
+  case showsPrecExpr 0 e2 "" of
+    '\"':cs  -> showString ("\"" ++ (init . tail) (showsPrecExpr 0 e1 "") ++ cs)
+    cs -> showsOpExpr ":" e1 . showString ":" . showsTailExpr e2
+showsTailExpr ((Constant ":" _ :$ e1) :$ e2) =
+  case showsPrecExpr 0 e2 "" of
+    "[]" -> showString "[" . showsPrecExpr 0 e1 . showString "]"
+    '[':cs -> showString "[" . showsPrecExpr 0 e1 . showString "," . showString cs
+    cs -> showsOpExpr ":" e1 . showString ":" . showsTailExpr e2
+showsTailExpr e = showsOpExpr ":" e
 
 showsOpExpr :: String -> Expr -> String -> String
 showsOpExpr op = showsPrecExpr (prec op + 1)

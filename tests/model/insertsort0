@@ -29,9 +29,9 @@ False :: Bool
     sort (insert x xs) == insert x (sort xs)
            sort (x:xs) == insert x (sort xs)
 insert x (insert y xs) == insert y (insert x xs)
-       insert x (x:xs) == x:(x:xs)
+       insert x (x:xs) == x:x:xs
           insert x [y] == insert y [x]
 
-x <= y ==> insert x (y:xs) == x:(y:xs)
+x <= y ==> insert x (y:xs) == x:y:xs
  x < y ==> insert y (x:xs) == x:insert y xs
 

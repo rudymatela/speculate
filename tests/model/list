@@ -26,12 +26,12 @@ tail :: [Int] -> [Int]
        xs <= tail (xs ++ xs)
       [x] <= x:xs
        xs <= head xs:tail xs
-     x:xs <= x:(y:xs)
+     x:xs <= x:y:xs
  xs ++ ys <= xs ++ (ys ++ zs)
  xs ++ ys <= xs ++ (zs ++ ys)
      x:xs <= x:(xs ++ ys)
      x:xs <= x:(ys ++ xs)
  xs ++ ys <= xs ++ (x:ys)
-    [x,y] <= x:(y:xs)
+    [x,y] <= x:y:xs
 xs ++ [x] <= xs ++ (x:ys)
 

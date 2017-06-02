@@ -215,10 +215,10 @@ tests n =
   , show (space -:- emptyString) == "\" \" :: [Char]"
   , show (space -:- ccs)         == "' ':cs :: [Char]"
   , show (aa -:- bb -:- emptyString) == "\"ab\" :: [Char]"
-  , show (aa -:- bb -:- ccs)         == "'a':('b':cs) :: [Char]"
+  , show (aa -:- bb -:- ccs)         == "'a':'b':cs :: [Char]"
   , show (aa -:- space -:- bb -:- lineBreak -:- emptyString) == "\"a b\\n\" :: [Char]"
-  , show (cc -:- space -:- dd -:- lineBreak -:- emptyString) == "c:(' ':(d:\"\\n\")) :: [Char]"
-  , show (cc -:- space -:- dd -:- lineBreak -:- ccs)         == "c:(' ':(d:('\\n':cs))) :: [Char]"
+  , show (cc -:- space -:- dd -:- lineBreak -:- emptyString) == "c:' ':d:\"\\n\" :: [Char]"
+  , show (cc -:- space -:- dd -:- lineBreak -:- ccs)         == "c:' ':d:'\\n':cs :: [Char]"
   , show (cc -:- aa -:- bb -:- emptyString) == "c:\"ab\" :: [Char]"
   , show (cc -:- aa -:- bb -:- space -:- aa -:- bb -:- emptyString) == "c:\"ab ab\" :: [Char]"
   ]
