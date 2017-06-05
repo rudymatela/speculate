@@ -51,42 +51,25 @@ import Data.Dynamic
 
 import Data.Maybe (isJust,fromMaybe,listToMaybe,catMaybes,mapMaybe)
 import Data.List (find,(\\))
+import Data.Monoid ((<>))
 
 
 -- | Type information needed to Speculate expressions (single type / single class).
-data Instance = Eq TypeRep Expr
-              | Ord TypeRep Expr Expr
-              | Listable TypeRep [[Expr]]
-              | Names TypeRep [String]
+data Instance = Instance String TypeRep [Expr]
+  deriving Show
 
 instance Eq Instance where
-  (Eq       t1 _) == (Eq       t2 _)  =  t1 == t2
-  (Ord    t1 _ _) == (Ord    t2 _ _)  =  t1 == t2
-  (Listable t1 _) == (Listable t2 _)  =  t1 == t2
-  (Names    t1 _) == (Names    t2 _)  =  t1 == t2
-  _               == _                =  False
+  Instance s1 t1 _ == Instance s2 t2 _  =  s1 == s2 && t1 == t2
 
 instance Ord Instance where
-  (Eq       t1 _) `compare` (Eq       t2 _)  =  t1 `compare` t2
-  (Ord    t1 _ _) `compare` (Ord    t2 _ _)  =  t1 `compare` t2
-  (Listable t1 _) `compare` (Listable t2 _)  =  t1 `compare` t2
-  (Names    t1 _) `compare` (Names    t2 _)  =  t1 `compare` t2
-  (Eq        _ _) `compare` _                =  LT
-  _               `compare` (Eq        _ _)  =  GT
-  (Ord     _ _ _) `compare` _                =  LT
-  _               `compare` (Ord     _ _ _)  =  GT
-  (Listable  _ _) `compare` _                =  LT
-  _               `compare` (Listable  _ _)  =  GT
+  Instance s1 t1 _ `compare` Instance s2 t2 _  =  s1 `compare` s2 <> t1 `compare` t2
 
 
 -- | Type information needed to Speculate expressions.
 type Instances = [Instance]
 
 instanceType :: Instance -> TypeRep
-instanceType (Eq       t _)   = t
-instanceType (Ord      t _ _) = t
-instanceType (Listable t _)   = t
-instanceType (Names    t _)   = t
+instanceType (Instance _ t _)  =  t
 
 -- | Usage: @ins1 "x" (undefined :: Type)@
 ins1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
@@ -145,25 +128,27 @@ listable :: (Typeable a, Show a, Listable a) => a -> Instances
 listable x = listableWith $ tiers `asTypeOf` [[x]]
 
 name :: Typeable a => String -> a -> Instances
-name n x = [Names (typeOf x) (namesFromTemplate n)]
+name n x = [ Instance "Names" (typeOf x)
+               [constant "names" $ namesFromTemplate n] ]
 
 eqWith :: (Typeable a, Eq a) => (a -> a -> Bool) -> Instances
-eqWith (==) = [Eq (typeOf $ arg (==)) $ constant "==" $ errorToFalse .: (==)]
+eqWith (==) = [ Instance "Eq" (typeOf $ arg (==))
+                  [constant "==" $ errorToFalse .: (==)] ]
   where
   arg :: (a -> b) -> a
   arg _ = undefined
 
 ordWith :: (Typeable a, Ord a) => (a -> a -> Bool) -> Instances
-ordWith (<=) = [Ord (typeOf $ arg (<=))
-                    (constant "<=" (errorToFalse .: (<=)))
-                    (constant "<"  ((errorToFalse . not) .: flip (<=)))]
+ordWith (<=) = [ Instance "Ord" (typeOf $ arg (<=))
+                   [ constant "<=" $ errorToFalse .: (<=)
+                   , constant "<"  $ (errorToFalse . not) .: flip (<=) ] ]
   where
   arg :: (a -> b) -> a
   arg _ = undefined
 
 listableWith :: (Typeable a, Show a) => [[a]] -> Instances
-listableWith xss =
-  [Listable (typeOf $ head $ head xss) (mapT showConstant xss)]
+listableWith xss = [ Instance "Listable" (typeOf $ head $ head xss)
+                       [constant "tiers" $ mapT showConstant xss] ]
 
 isEq :: Instances -> TypeRep -> Bool
 isEq ti = isJust . eqE ti
@@ -186,8 +171,8 @@ isEqOrdE ti = isEqOrd ti . typ
 isListable :: Instances -> TypeRep -> Bool
 isListable ti t = isJust $ findInfo m ti
   where
-  m (Listable t' ts) | t' == t = Just ts
-  m _                          = Nothing
+  m (Instance "Listable" t' ts) | t' == t = Just ts
+  m _                                     = Nothing
 
 -- TODO: implement above using something similar to the following
 -- isComparable ti = isJust . (`findInfo` ti) . typ
@@ -201,32 +186,32 @@ findInfoOr def may = fromMaybe def . findInfo may
 names :: Instances -> TypeRep -> [String]
 names ti t = findInfoOr defNames m ti
   where
-  m (Names t' ns) | t == t' = Just ns
-  m _                       = Nothing
+  m (Instance "Names" t' [ns]) | t == t' = Just $ eval defNames ns
+  m _                                    = Nothing
 
 tiersE :: Instances -> TypeRep -> [[Expr]]
 tiersE ti t = findInfoOr (error $ "could not find Listable " ++ show t) m ti
   where
-  m (Listable t' ts) | t == t' = Just ts
-  m _                          = Nothing
+  m (Instance "Listable" t' [ts]) | t == t' = Just $ eval (error $ "invalid Listable " ++ show t) ts
+  m _                                       = Nothing
 
 eqE :: Instances -> TypeRep -> Maybe Expr
 eqE ti t = findInfo m ti
   where
-  m (Eq t' eq) | t == t' = Just eq
-  m _                    = Nothing
+  m (Instance "Eq" t' [eq]) | t == t' = Just eq
+  m _                                 = Nothing
 
 ltE :: Instances -> TypeRep -> Maybe Expr
 ltE ti t = findInfo m ti
   where
-  m (Ord t' _ lt) | t == t' = Just lt
-  m _                       = Nothing
+  m (Instance "Ord" t' [_,lt]) | t == t' = Just lt
+  m _                                    = Nothing
 
 leE :: Instances -> TypeRep -> Maybe Expr
 leE ti t = findInfo m ti
   where
-  m (Ord t' le _) | t == t' = Just le
-  m _                       = Nothing
+  m (Instance "Ord" t' [le,_]) | t == t' = Just le
+  m _                                    = Nothing
 
 deriving instance Typeable Word2 -- for GHC <= 7.8
 

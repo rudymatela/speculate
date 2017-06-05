@@ -28,35 +28,12 @@ isolate most of the Expr module
 -------------------------------
 
 Maybe most of the `Expr` module could be isolated from the rest of Speculate
-and maybe released as a separate package.  The `Expr` type is already general
-enough.  One not-so-general thing remains, the `Instance` type.  A sketch of
-how it could be follows:
+and released as a separate package.
 
-    data Instance = Instance String [Expr]
-
-    eqWith :: (Typeable a, Eq a) => (a -> a -> Bool) -> Instances
-    eqWith (==) = [Instance "Eq" (typeOf $ arg (==))
-                     [constant "==" $ errorToFalse .: (==)]]
-      where
-      arg :: (a -> b) -> a
-      arg _ = undefined
-
-    ordWith :: (Typeable a, Ord a) => (a -> a -> Bool) -> Instances
-    ordWith (<=) = [Instance "Ord" (typeOf $ arg (<=))
-                      [(constant "<=" (errorToFalse .: (<=)))
-                      ,(constant "<"  ((errorToFalse . not) .: flip (<=)))] ]
-      where
-      arg :: (a -> b) -> a
-      arg _ = undefined
-
-    listableWith :: (Typeable a, Show a) => [[a]] -> Instances
-    listableWith xss =
-      [Instance "Listable" (typeOf $ head $ head xss)
-         [constant "tiersE" (mapT showConstant xss)]]
-
-Defined in the above way, the `Instance` type does not depend on `Listable` or
-LeanCheck and could potentially be used with other kinds of generators.  I'll
-have to see how it goes in other modules, specially the `grounds` function.
+I'll have to see how it goes in other modules, specially the `grounds`
+function.  Which could be interesting to include in the "expr" package but
+would still depend on Listable and LeanCheck (maybe make it depend on it
+anyway...)
 
 
 later
