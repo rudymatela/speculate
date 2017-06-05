@@ -16,7 +16,6 @@ import Data.Maybe (isJust)
 -- for Travis:
 deriving instance Typeable Thyght
 deriving instance Typeable Equation
-deriving instance Typeable Expr
 
 main :: IO ()
 main = mainTest tests 10000

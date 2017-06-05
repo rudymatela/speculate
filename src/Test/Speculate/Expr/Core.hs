@@ -7,6 +7,7 @@
 -- This module is part of Speculate.
 --
 -- Defines the 'Expr' type and basic operations on it.
+{-# LANGUAGE DeriveDataTypeable #-} -- for GHC < 7.10
 module Test.Speculate.Expr.Core
   ( Expr (..)
   -- * Smart constructors
@@ -76,6 +77,7 @@ import Test.Speculate.Utils
 data Expr = Constant String Dynamic
           | Var String TypeRep
           | Expr :$ Expr
+  deriving Typeable -- for GHC < 7.10
 
 -- | Encode a constant Haskell expression for use by Speculate.
 --   It takes a string representation of a value and a value, returning an

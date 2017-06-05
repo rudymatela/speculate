@@ -11,7 +11,6 @@ import Data.Monoid ((<>))
 -- for GHC <= 7.8
 deriving instance Typeable Thyght
 deriving instance Typeable Equation
-deriving instance Typeable Expr
 
 instance Ord Thy where
   compare = (compare `on` rules)

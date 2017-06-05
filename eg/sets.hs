@@ -1,24 +1,20 @@
 {-# Language CPP #-}
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
-#if __GLASGOW_HASKELL__ <= 704
-import Test.Speculate hiding ((\/)) -- for some reason, Set is not exported
-#else
-import Test.Speculate hiding ((\/),Set)
-#endif
+import Test.Speculate hiding ((\/))
 
 import Set hiding (set)
-import qualified Set
+import qualified Set as S
 
 #if __GLASGOW_HASKELL__ < 708
-deriving instance Typeable1 Set
+deriving instance Typeable1 S.Set
 #else
-deriving instance Typeable Set -- for GHC < 7.10
+deriving instance Typeable S.Set -- for GHC < 7.10
 #endif
 
-instance (Ord a, Listable a) => Listable (Set a) where
-  tiers = setCons Set.set
+instance (Ord a, Listable a) => Listable (S.Set a) where
+  tiers = setCons S.set
 
-set :: a -> Set a
+set :: a -> S.Set a
 set = undefined
 
 main :: IO ()

@@ -76,16 +76,16 @@ legacy-test:
 prepare-legacy-test: prepare-legacy-test-7.10 prepare-legacy-test-7.8 prepare-legacy-test-7.6 prepare-legacy-test-7.4
 
 prepare-legacy-test-7.10:
-	cabal-ghc-7.10 --ignore-sandbox install regex-tdfa
+	cabal-ghc-7.10 --ignore-sandbox install regex-tdfa cmdargs
 
 prepare-legacy-test-7.8:
-	cabal-ghc-7.8  --ignore-sandbox install regex-tdfa
+	cabal-ghc-7.8  --ignore-sandbox install regex-tdfa cmdargs
 
 prepare-legacy-test-7.6:
-	cabal-ghc-7.6  --ignore-sandbox install regex-tdfa
+	cabal-ghc-7.6  --ignore-sandbox install regex-tdfa cmdargs
 
 prepare-legacy-test-7.4:
-	cabal-ghc-7.4  --ignore-sandbox install regex-tdfa
+	cabal-ghc-7.4  --ignore-sandbox install regex-tdfa cmdargs
 
 slow-test: MAXTESTS =
 slow-test: MAXSIZE =
