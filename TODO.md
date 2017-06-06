@@ -160,7 +160,7 @@ Later Later
 
 * (for interface) I actually do not need to provide 0-argument constants in the
   background algebra.  Since I am using an enumerative strategy, I can actually
-  enumerate those from the TypeInfo.  This way, background will look nicer,
+  enumerate those from `Instances`.  This way, background will look nicer,
   with less functions and values.  Computing the size of values and expressions
   may be a problem.
 

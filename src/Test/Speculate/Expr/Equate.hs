@@ -30,7 +30,7 @@ import Test.LeanCheck ((==>))
 import Data.List ((\\))
 import Test.Speculate.Utils
 import Test.Speculate.Expr.Core
-import Test.Speculate.Expr.TypeInfo
+import Test.Speculate.Expr.Instance
 
 equation :: Instances -> Expr -> Expr -> Maybe Expr
 equation ti e1 e2 = do

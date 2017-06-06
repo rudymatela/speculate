@@ -16,7 +16,7 @@ where
 
 import Test.Speculate.Expr.Core
 import Test.Speculate.Expr.Match
-import Test.Speculate.Expr.TypeInfo
+import Test.Speculate.Expr.Instance
 import Data.List ((\\))
 
 -- | Canonicalize variable names in an expression.

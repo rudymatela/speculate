@@ -483,7 +483,7 @@ sort' :: Expr -> Expr
 sort' exs = sortE :$ exs where sortE = constant "sort" (sort :: [Int] -> [Int])
 
 
--- boolTy already exported by Speculate.TypeInfo
+-- boolTy already exported by Speculate.Instance
 
 intTy :: TypeRep
 intTy = typeOf int
