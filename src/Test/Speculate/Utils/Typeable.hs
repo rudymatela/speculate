@@ -67,7 +67,7 @@ finalResultTy t
 unFunTy :: TypeRep -> (TypeRep,TypeRep)
 unFunTy t
   | isFunTy t = let (f,[a,b]) = splitTyConApp t in (a,b)
-  | otherwise = error "unFunTy: not a function type"
+  | otherwise = error $ "error (unFunTy): `" ++ show t ++ "` is not a function type"
 
 argumentTy :: TypeRep -> TypeRep
 argumentTy = fst . unFunTy
