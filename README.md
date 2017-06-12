@@ -144,6 +144,9 @@ More documentation
 
 For more examples, see the [eg](eg) and [bench](bench) folders.
 
+Speculate has been subject to a paper, see the
+[(Draft) Paper about Speculate (to appear) on Haskell Symposium 2017](https://matela.com.br/paper/speculate.pdf)
+
 [leancheck]: https://hackage.haskell.org/package/leancheck
 [LeanCheck]: https://hackage.haskell.org/package/leancheck
 [QuickSpec]: https://github.com/nick8325/quickspec
