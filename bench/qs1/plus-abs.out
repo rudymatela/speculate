@@ -9,9 +9,9 @@ x, y, z :: Int
 
 == Testing ==
 Depth 1: 6 terms, 3 tests, 12 evaluations, 6 classes, 0 raw equations.
-Depth 2: 41 terms, 500 tests, 16551 evaluations, 19 classes, 22 raw equations.
+Depth 2: 41 terms, 500 tests, 16556 evaluations, 19 classes, 22 raw equations.
 Depth 3: 366 terms, 500 tests, 177899 evaluations, 128 classes, 238 raw equations.
-Depth 4: 1080 terms, 500 tests, 520732 evaluations, 243 classes, 837 raw equations.
+Depth 4: 1080 terms, 500 tests, 520862 evaluations, 243 classes, 837 raw equations.
 837 raw equations; 243 terms in universe.
 
 == Equations about (+) ==

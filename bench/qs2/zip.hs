@@ -1,8 +1,10 @@
+{-# LANGUAGE DataKinds #-}
 import QuickSpec hiding (insert)
 import Data.List (sort, insert)
 import Test.QuickCheck
 import Data.Dynamic
 import Control.Monad
+import Data.Proxy
 
 main = quickSpec signature
   { maxTermSize = Just 7
@@ -13,15 +15,9 @@ main = quickSpec signature
       , constant "zip"   (zip :: [Int] -> [Int] -> [(Int,Int)])
       ]
   , predicates =
---    [ predicate "eqLen" ((\xs ys -> length xs == length ys) :: [Int] -> [Int] -> Bool)
-      [ predicateGen "eqLen" ((\xs ys -> length xs == length ys) :: [Int] -> [Int] -> Bool) eqLenGen
+      [ predicate (undefined :: Proxy "eqLen") eqLen
       ]
   }
 
--- taken from quickspec/examples/Conditionals.hs
-eqLenGen :: Gen [Dynamic]
-eqLenGen = do
-  len <- arbitrary
-  xs <- replicateM len arbitrary :: Gen [Int]
-  ys <- replicateM len arbitrary :: Gen [Int]
-  return [toDyn xs, toDyn ys]
+eqLen :: [Int] -> [Int] -> Bool
+eqLen xs ys  =  length xs == length ys

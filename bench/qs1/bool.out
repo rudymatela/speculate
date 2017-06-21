@@ -8,8 +8,8 @@ not :: Bool -> Bool
 p, q, r :: Bool
 
 == Testing ==
-Depth 1: 6 terms, 6 tests, 19 evaluations, 6 classes, 0 raw equations.
-Depth 2: 61 terms, 500 tests, 28572 evaluations, 15 classes, 46 raw equations.
+Depth 1: 6 terms, 5 tests, 17 evaluations, 6 classes, 0 raw equations.
+Depth 2: 61 terms, 500 tests, 28574 evaluations, 15 classes, 46 raw equations.
 Depth 3: 412 terms, 500 tests, 205912 evaluations, 53 classes, 359 raw equations.
 359 raw equations; 53 terms in universe.
 

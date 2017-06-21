@@ -1,15 +1,18 @@
 == Signature ==
-  (++) :: [Int] -> [Int] -> [Int]
-length :: [Int] -> Int
-   zip :: [Int] -> [Int] -> [(Int, Int)]
-eqLen0 :: Predicates -> [Int]
-eqLen1 :: Predicates -> [Int]
- eqLen :: [Int] -> [Int] -> Bool
+      (++) :: [Int] -> [Int] -> [Int]
+    length :: [Int] -> Int
+       zip :: [Int] -> [Int] -> [(Int, Int)]
+ prj_eqLen ::
+  TestCaseWrapped "eqLen" ([Int] -> [Int] -> Bool) -> [Int]
+prj_eqLen' ::
+  TestCaseWrapped "eqLen" ([Int] -> [Int] -> Bool) -> [Int]
+     eqLen :: [Int] -> [Int] -> Bool
+      True :: Bool
 
 == Laws ==
-  1. eqLen xs ys => length xs = length ys
-  2. eqLen xs ys = eqLen ys xs
-  3. eqLen xs xs = eqLen ys ys
+  1. eqLen xs xs = True
+  2. eqLen xs ys => length xs = length ys
+  3. eqLen xs ys = eqLen ys xs
   4. eqLen ys zs => eqLen xs ys = eqLen xs zs
   5. length (xs ++ ys) = length (ys ++ xs)
   6. (xs ++ ys) ++ zs = xs ++ (ys ++ zs)
@@ -25,10 +28,8 @@ eqLen1 :: Predicates -> [Int]
  16. zip xs (ys ++ (xs ++ zs)) = zip xs (ys ++ xs)
  17. zip (xs ++ (ys ++ zs)) ys = zip (xs ++ ys) ys
  18. eqLen xs ys => zip (xs ++ zs) ys = zip xs ys
- 19. eqLen ys xs => zip (xs ++ zs) ys = zip xs ys
- 20. eqLen xs ys => zip xs (ys ++ zs) = zip xs ys
- 21. eqLen ys xs => zip xs (ys ++ zs) = zip xs ys
- 22. eqLen xs (ys ++ (zs ++ xs2)) = eqLen xs (ys ++ (xs2 ++ zs))
- 23. eqLen zs xs2 =>
+ 19. eqLen xs ys => zip xs (ys ++ zs) = zip xs ys
+ 20. eqLen xs (ys ++ (zs ++ xs2)) = eqLen xs (ys ++ (xs2 ++ zs))
+ 21. eqLen zs xs2 =>
        length (xs ++ (ys ++ zs)) = length (xs ++ (zs ++ ys))
 

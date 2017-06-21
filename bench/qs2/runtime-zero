@@ -1,9 +1,9 @@
-arith            2.330
-arith-negate-abs 0.540
-bool             0.260
-list             0.150
-insertsort       0.460
-zip              1.740
-arithficial      0.260
+arith            2.860
+arith-negate-abs 0.550
+bool             0.280
+list             0.120
+insertsort       0.670
+zip              1.960
+arithficial      0.340
 plus-abs         0.340
-regexes          12.240
+regexes          12.130
