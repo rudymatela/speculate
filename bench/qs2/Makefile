@@ -1,13 +1,16 @@
 BENCH = \
   arith \
+  arithficial \
   arith-negate-abs \
-  plus-abs \
+  binarytree \
   bool \
-  list \
   insertsort \
-  zip \
+  list \
+  list-ineq \
+  plus-abs \
+  plus-abs-ineq \
   regexes \
-  arithficial
+  zip
 
 all: $(BENCH)
 
