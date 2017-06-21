@@ -94,7 +94,7 @@ main = quickSpec signature
       , constant "delete" (delete :: Item -> BT Item -> BT Item)
       , constant "isIn" (isIn :: Item -> BT Item -> Bool)
 --    , constant "<="  ((<=) :: Item -> Item -> Bool)
-      , constant "<="  ((<=) :: BT Item -> BT Item -> Bool)
+--    , constant "<="  ((<=) :: BT Item -> BT Item -> Bool)
 --    , constant "/="  ((/=) :: Item -> Item -> Bool)
 --    , constant "ordered" (ordered :: [Item] -> Bool)
 --    , constant "strictlyOrdered" (strictlyOrdered :: [Item] -> Bool)
@@ -102,7 +102,7 @@ main = quickSpec signature
 --    , constant "fromList" (fromList :: [Item] -> BT Item)
 --    , constant "isSearch" (isSearch :: BT Item -> Bool)
 --    , constant "[]" ([]::[Item])
---    , constant "==>" ((==>) :: Bool -> Bool -> Bool)
+      , constant "==>" ((==>) :: Bool -> Bool -> Bool)
       , constant "True" True
       , constant "False" False
       ]
