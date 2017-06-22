@@ -115,6 +115,12 @@ tests n =
   , unification (ff xx) (ff yy) == unification xx yy
   , (canonicalize <$> unify (negate' (negate' xx) -+- yy) (xx -+- zero))
     == Just (negate' (negate' xx) -+- zero)
+  , unification (xx -+- one) (one -+- xx) == Just [("x",one)]
+  , unification (xx -+- xx) (one -+- one) == Just [("x",one)]
+-- TODO: fix unification to make the following tests pass:
+--, unification (zz -+- zz) (xx -+- yy) /= Nothing
+--, unification (xx    -*- (-+-) xx xx)
+--              (ff zz -*- (-+-) xx yy) /= Nothing
 
   , canonicalize (xx -+- yy)
               == (xx -+- yy)
