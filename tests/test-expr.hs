@@ -100,28 +100,6 @@ tests n =
   , renameBy (\(c:cs) -> succ c:cs) ((xx -+- yy) -+- ord' cc)
                                  == ((yy -+- zz) -+- ord' dd)
 
-  , unification xx yy == Just [("y",xx),("x",yy)]
-  , (canonicalize <$> unify xx yy) == Just xx
-  , unification zero zero == Just []
-  , unification zero one  == Nothing
-  , unification xx one == Just [("x",one)]
-  , unification (zero -+- xx) (zero -+- one) == Just [("x",one)]
-  , unification (zero -+- xx) (yy -+- one) == Just [("x",one),("y",zero)]
-  , unify (zero -+- xx) (yy -+- one) == Just (zero -+- one)
-  , unification (ff xx) (ff (gg yy)) == Just [("x",gg yy)]
-  , unification (ff xx -+- xx) (yy -+- zero) == Just [("x",zero),("y",ff xx)]
-  , unify (ff xx -+- xx) (yy -+- zero) == Just (ff zero -+- zero)
-  , unification (ff xx) (gg yy) == Nothing
-  , unification (ff xx) (ff yy) == unification xx yy
-  , (canonicalize <$> unify (negate' (negate' xx) -+- yy) (xx -+- zero))
-    == Just (negate' (negate' xx) -+- zero)
-  , unification (xx -+- one) (one -+- xx) == Just [("x",one)]
-  , unification (xx -+- xx) (one -+- one) == Just [("x",one)]
--- TODO: fix unification to make the following tests pass:
---, unification (zz -+- zz) (xx -+- yy) /= Nothing
---, unification (xx    -*- (-+-) xx xx)
---              (ff zz -*- (-+-) xx yy) /= Nothing
-
   , canonicalize (xx -+- yy)
               == (xx -+- yy)
   , canonicalize (jj -+- (ii -+- ii))
