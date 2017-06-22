@@ -9,6 +9,7 @@ import Test.Speculate.Expr
 import Test.Speculate.Utils
 import Data.List
 import Data.Maybe
+import Data.Functor ((<$>)) -- for GHC < 7.10
 
 main :: IO ()
 main = mainTest tests 10000
