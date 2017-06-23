@@ -158,7 +158,7 @@ tests n =
     |==|
     [ (xx -*- yy) -+- (xx -*- zz)  ~~  xx -*- (yy -+- zz)
     , (xx -*- yy) -+- (zz -*- yy)  ~~  (xx -+- zz) -*- yy
-    ] `mkThy` []
+    ] `mkThy` [ (xx -+- xx) -*- yy  ~~  xx -*- (yy -+- yy) ]
 
   , theorizeBy (|>|) [ xx -+- zero      ~~  xx
                      , xx -+- succ' yy  ~~  succ' (xx -+- yy) ]

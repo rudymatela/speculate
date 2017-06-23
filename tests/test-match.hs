@@ -47,7 +47,10 @@ tests n =
   , holds n $ \(SameTypeE e1 e2) -> sub e1 e2 e1 == e2
   , holds n $ \(IntE e1) (IntE e2) -> sub e1 e2 (e1 -+- e1) == (e2 -+- e2)
 
-  , unification xx yy == Just [("y",xx),("x",yy)]
+  , exists n $ \(SameTypeE e1 e2) -> unification e1 e2 /= unification e2 e1
+  , holds  n $ \(SameTypeE e1 e2) -> unify e1 e2 =$ fmap canonicalize $= unify e2 e1
+
+  , unification xx yy == Just [("x",yy)]
   , (canonicalize <$> unify xx yy) == Just xx
   , unification zero zero == Just []
   , unification zero one  == Nothing
@@ -56,7 +59,7 @@ tests n =
   , unification (zero -+- xx) (yy -+- one) == Just [("x",one),("y",zero)]
   , unify (zero -+- xx) (yy -+- one) == Just (zero -+- one)
   , unification (ff xx) (ff (gg yy)) == Just [("x",gg yy)]
-  , unification (ff xx -+- xx) (yy -+- zero) == Just [("x",zero),("y",ff xx)]
+  , unification (ff xx -+- xx) (yy -+- zero) == Just [("x",zero),("y",ff zero)]
   , unify (ff xx -+- xx) (yy -+- zero) == Just (ff zero -+- zero)
   , unification (ff xx) (gg yy) == Nothing
   , unification (ff xx) (ff yy) == unification xx yy
@@ -64,10 +67,9 @@ tests n =
     == Just (negate' (negate' xx) -+- zero)
   , unification (xx -+- one) (one -+- xx) == Just [("x",one)]
   , unification (xx -+- xx) (one -+- one) == Just [("x",one)]
--- TODO: fix unification to make the following tests pass:
---, unification (zz -+- zz) (xx -+- yy) /= Nothing
---, unification (xx    -*- (-+-) xx xx)
---              (ff zz -*- (-+-) xx yy) /= Nothing
+  , unification (zz -+- zz) (xx -+- yy) == Just [("x",yy),("z",yy)]
+  , unification (xx    -*- (-+-) xx xx)
+                (ff zz -*- (-+-) xx yy) == Just [("y",ff zz),("x",ff zz)]
   ]
   where
   x === y = equal preludeInstances 1000 x y

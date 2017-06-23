@@ -155,19 +155,43 @@ unify e1 e2 = (e1' `assigning`) <$> unification e1' e2'
   e1' = renameBy (++ "1") e1
   e2' = renameBy (++ "2") e2
 
--- NOTE: Take care of passing disjoing variable namespaces on both expressions!
--- see unify for an example of that.
 unification :: Expr -> Expr -> Maybe Binds
-unification e1' e2' = u e1' e2' []
+unification = naiveUnification
+
+findBind :: Expr -> Expr -> Either Bool (String,Expr)
+findBind e1         e2          |  typ e1 /= typ e2  =  Left False
+                                |  e1 == e2          =  Left True
+findBind (Var s t)  e2          =  Right (s,e2)
+findBind e1         (Var s t)   =  Right (s,e1)
+findBind (f1 :$ x1) (f2 :$ x2)  =  case findBind f1 f2 of
+                                   Left True -> findBind x1 x2
+                                   r         -> r
+findBind e1         e2          =  Left (e1 == e2)
+
+-- NOTE: there are faster methods for unification.
+naiveUnification :: Expr -> Expr -> Maybe Binds
+naiveUnification e1' e2' = uu e1' e2' []
   where
-  u :: Expr -> Expr -> Binds -> Maybe Binds
-  u e1 e2 | typ e1 /= typ e2 = const Nothing
-  u e1@(Var s1 t1) e2@(Var s2 t2) = updateAssignments s1 e2 >=> updateAssignments s2 e1
-  u e1 (Var s t) = updateAssignments s e1
-  u (Var s t) e2 = updateAssignments s e2
-  u (f1 :$ x1) (f2 :$ x2) = u f1 f2 >=> u x1 x2
-  u e1 e2 | e1 == e2  = Just
-          | otherwise = const Nothing
+  uu :: Expr -> Expr -> Binds -> Maybe Binds
+  uu e1' e2' bs' =
+    case u e1' e2' bs' of
+      Nothing -> Nothing
+      Just (e1,e2,bs) ->
+        if e1' == e1 && e2' == e2
+        then Just bs
+        else uu e1 e2 bs
+  u :: Expr -> Expr -> Binds -> Maybe (Expr,Expr,Binds)
+  u e1 e2 bs =
+    case findBind e1 e2 of
+    Left False -> Nothing
+    Left True  -> Just (e1,e2,bs)
+    Right (s,e) ->
+      if (Var s (typ e)) `isSub` e
+      then Nothing
+      else Just ( e1 `assigning` [(s,e)]
+                , e2 `assigning` [(s,e)]
+                , (s,e):[(s',e' `assigning` [(s,e)]) | (s',e') <- bs]
+                )
 
 -- 0 `isInstanceOf` x = True
 -- y `isInstanceOf` x = True
