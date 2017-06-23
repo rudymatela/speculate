@@ -70,6 +70,26 @@ tests n =
   , unification (zz -+- zz) (xx -+- yy) == Just [("x",yy),("z",yy)]
   , unification (xx    -*- (-+-) xx xx)
                 (ff zz -*- (-+-) xx yy) == Just [("y",ff zz),("x",ff zz)]
+
+  -- The following two tests are adapted from Baader and Snyder:
+  -- Example 2.8, Chapter 8, Handbook of Automated Reasoning (page 453).
+  , unification (hh5 yy zz (ff2 ii ii) (ff2 jj jj) kk) (hh5 (ff2 xx xx) (ff2 yy yy) jj kk zz)
+    == Just [ ("i",xx)
+            , ("k",ff2 (ff2 xx xx) (ff2 xx xx))
+            , ("j",ff2 xx xx)
+            , ("z",ff2 (ff2 xx xx) (ff2 xx xx))
+            , ("y",ff2 xx xx)
+            ]
+  , unification (hh7 yy zz xx' (ff2 ii ii) (ff2 jj jj) (ff2 kk kk) ii')
+                (hh7 (ff2 xx xx) (ff2 yy yy) (ff2 zz zz) jj kk ii' xx')
+    == Just [ ("i",xx)
+            , ("i'",ff2 (ff2 (ff2 xx xx) (ff2 xx xx)) (ff2 (ff2 xx xx) (ff2 xx xx)))
+            , ("k",ff2 (ff2 xx xx) (ff2 xx xx))
+            , ("j",ff2 xx xx)
+            , ("x'",ff2 (ff2 (ff2 xx xx) (ff2 xx xx)) (ff2 (ff2 xx xx) (ff2 xx xx)))
+            , ("z",ff2 (ff2 xx xx) (ff2 xx xx))
+            , ("y",ff2 xx xx)
+            ]
   ]
   where
   x === y = equal preludeInstances 1000 x y

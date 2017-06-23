@@ -49,6 +49,7 @@ module Test
   , ii, jj, kk, ii'
   , negate'
   , ff, gg
+  , ff2, hh2, hh3, hh4, hh5, hh6, hh7
   , succ'
 
   , idE
@@ -353,6 +354,38 @@ ff = (ffE :$) where ffE = constant "f" (undefined :: Int -> Int)
 gg :: Expr -> Expr
 gg = (ggE :$) where ggE = constant "g" (undefined :: Int -> Int)
 
+ff2 :: Expr -> Expr -> Expr
+ff2 e1 e2 = ffE :$ e1 :$ e2
+  where ffE = constant "f" (undefined :: Int -> Int -> Int)
+
+hh2 :: Expr -> Expr -> Expr
+hh2 e1 e2 = hhE :$ e1 :$ e2
+  where hhE = constant "h" (undefined :: Int -> Int -> Int)
+
+hh3 :: Expr -> Expr -> Expr -> Expr
+hh3 e1 e2 e3 = hhE :$ e1 :$ e2 :$ e3
+  where hhE = constant "h" (undefined :: Int -> Int -> Int -> Int)
+
+hh4 :: Expr -> Expr -> Expr -> Expr -> Expr
+hh4 e1 e2 e3 e4 = hhE :$ e1 :$ e2 :$ e3 :$ e4
+  where hhE = constant "h" (undefined :: Int -> Int -> Int -> Int -> Int)
+
+hh5 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr
+hh5 e1 e2 e3 e4 e5 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5
+  where hhE = constant "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int)
+
+hh6 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr
+hh6 e1 e2 e3 e4 e5 e6 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6
+  where hhE = constant "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int -> Int)
+
+hh7 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr
+hh7 e1 e2 e3 e4 e5 e6 e7 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6 :$ e7
+  where hhE = constant "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int)
+
+-- unification (hh5 yy zz (ff2 ii ii) (ff2 jj jj) kk) (hh5 (ff2 xx xx) (ff2 yy yy) jj kk zz)
+
+-- unification (hh7 yy zz xx' (ff2 ii ii) (ff2 jj jj) (ff2 kk kk) ii')
+--             (hh7 (ff2 xx xx) (ff2 yy yy) (ff2 zz zz) jj kk ii' xx')
 
 true :: Expr
 true = showConstant (True :: Bool)
