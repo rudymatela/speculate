@@ -23,6 +23,7 @@ EG = \
   eg/arith-negate-abs \
   eg/bool \
   eg/binarytree \
+  eg/binarytree0 \
   eg/colour \
   eg/digraphs \
   eg/list \

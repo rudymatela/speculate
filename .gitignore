@@ -46,6 +46,7 @@ eg/arith
 eg/arith-negate-abs
 eg/0arith
 eg/binarytree
+eg/binarytree0
 eg/bool
 eg/color
 eg/colour
@@ -77,6 +78,7 @@ bench/qs*/0arith
 bench/qs*/arith-negate-abs
 bench/qs*/arith
 bench/qs*/binarytree
+bench/qs*/binarytree0
 bench/qs*/plus-abs
 bench/qs*/plus-abs-ineq
 bench/qs*/bool
