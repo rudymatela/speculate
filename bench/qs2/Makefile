@@ -24,6 +24,7 @@ bench: all
 	@echo -n "arithficial      "; /usr/bin/time -f%e0 ./arithficial      2>&1 >      arithficial.out
 	@echo -n "plus-abs         "; /usr/bin/time -f%e0 ./plus-abs         2>&1 >         plus-abs.out
 	@echo -n "regexes          "; /usr/bin/time -f%e0 ./regexes          2>&1 >          regexes.out
+	@echo -n "binarytree       "; /usr/bin/time -f%e0 ./binarytree       2>&1 >       binarytree.out
 
 save-bench: bench
 	make -s bench > runtime-$$HOSTNAME
