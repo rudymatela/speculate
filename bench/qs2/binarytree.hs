@@ -88,6 +88,10 @@ type Item = Int
 main = quickSpec signature
   { maxTermSize = Just 9
   , maxTests = Just 2000
+-- the maximum number of tests above needs to be 2000,
+-- otherwise the law `isIn x t1 ==> isIn x (insert y t1) = True`
+-- does not appear in the output (which is mainly what I want with this
+-- benchmark).  Even so, it works only about 2/3 of the time.
   , constants =
       [ constant "Null" (Null :: BT Item)
       , constant "insert" (insert :: Item -> BT Item -> BT Item)

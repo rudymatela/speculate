@@ -26,6 +26,9 @@ bench: all
 	@echo -n "regexes          "; /usr/bin/time -f%e0 ./regexes          2>&1 >          regexes.out
 	@echo -n "binarytree       "; /usr/bin/time -f%e0 ./binarytree       2>&1 >       binarytree.out
 
+bench-binarytree: binarytree
+	for i in {1..6}; do /usr/bin/time -f%e0 ./binarytree 2>&1 > binarytree.out$$i; done | tee binarytree.runtime-zero
+
 save-bench: bench
 	make -s bench > runtime-$$HOSTNAME
 

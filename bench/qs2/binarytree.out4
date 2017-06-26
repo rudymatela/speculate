@@ -1,0 +1,44 @@
+== Signature ==
+  Null :: BT Int
+insert :: Int -> BT Int -> BT Int
+delete :: Int -> BT Int -> BT Int
+  isIn :: Int -> BT Int -> Bool
+ (==>) :: Bool -> Bool -> Bool
+  True :: Bool
+ False :: Bool
+
+== Laws ==
+  1. x ==> x = True
+  2. x ==> True = True
+  3. False ==> x = True
+  4. True ==> x = x
+  5. delete x Null = Null
+  6. isIn x Null = False
+  7. x ==> (x ==> y) = x ==> y
+  8. x ==> (y ==> x) = True
+  9. (x ==> y) ==> x = x
+ 10. delete x (delete x t1) = delete x t1
+ 11. delete x (insert x t1) = delete x (delete x t1)
+ 12. insert x (insert x t1) = insert x (delete x t1)
+ 13. isIn x (delete x t1) = False
+ 14. isIn x (insert x t1) = True
+ 15. (x ==> False) ==> False = x
+ 16. x ==> (y ==> z) = y ==> (x ==> z)
+ 17. (x ==> y) ==> y = (y ==> x) ==> x
+ 18. delete y (delete x t1) = delete x (delete y t1)
+ 19. insert y (insert x t1) = insert x (insert y t1)
+ 20. isIn x (insert y Null) = isIn y (insert x Null)
+ 21. delete x (insert y (delete y t1)) = delete x (insert y t1)
+ 22. isIn x (insert y (delete x t1)) = isIn x (insert y Null)
+ 23. isIn x (insert y (delete y t1)) = isIn x (insert y t1)
+ 24. isIn x (insert y Null) ==> False =
+       isIn x (delete y (insert x t1))
+ 25. insert x (delete x (delete y t1)) = insert x (delete y t1)
+ 26. isIn x (delete y (insert z Null)) =
+       isIn z (delete y (insert x Null))
+ 27. x ==> (isIn y (delete x2 t1) ==> z) = x ==> (isIn y t1 ==> z)
+ 28. insert x (delete x (insert y (insert z t1))) =
+       insert x (insert y (insert z t1))
+ 29. insert x (insert y (insert z (delete x t1))) =
+       insert x (delete x (insert y (insert z t1)))
+
