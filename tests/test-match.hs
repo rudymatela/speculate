@@ -90,5 +90,3 @@ tests n =
             , ("y",ff2 xx xx)
             ]
   ]
-  where
-  x === y = equal preludeInstances 1000 x y
