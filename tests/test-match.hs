@@ -47,7 +47,6 @@ tests n =
   , holds n $ \(SameTypeE e1 e2) -> sub e1 e2 e1 == e2
   , holds n $ \(IntE e1) (IntE e2) -> sub e1 e2 (e1 -+- e1) == (e2 -+- e2)
 
-  , exists n $ \(SameTypeE e1 e2) -> unification e1 e2 /= unification e2 e1
   , holds  n $ \(SameTypeE e1 e2) -> unify e1 e2 =$ fmap canonicalize $= unify e2 e1
 
   , unification xx yy == Just [("x",yy)]
