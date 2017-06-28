@@ -62,7 +62,7 @@ tests n =
   , unify (ff xx -+- xx) (yy -+- zero) == Just (ff zero -+- zero)
   , unification (ff xx) (gg yy) == Nothing
   , unification (ff xx) (ff yy) == unification xx yy
-  , (canonicalize <$> unify (negate' (negate' xx) -+- yy) (xx -+- zero))
+  , (canonicalize <$> unify (negate' (negate' xx) -+- yy) (zz -+- zero))
     == Just (negate' (negate' xx) -+- zero)
   , unification (xx -+- one) (one -+- xx) == Just [("x",one)]
   , unification (xx -+- xx) (one -+- one) == Just [("x",one)]

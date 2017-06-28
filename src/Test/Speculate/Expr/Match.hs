@@ -150,10 +150,7 @@ matchWith bs e1' e2' = m e1' e2' bs
           | otherwise = const Nothing
 
 unify :: Expr -> Expr -> Maybe Expr
-unify e1 e2 = (e1' `assigning`) <$> unification e1' e2'
-  where
-  e1' = renameBy (++ "1") e1
-  e2' = renameBy (++ "2") e2
+unify e1 e2 = (e1 `assigning`) <$> unification e1 e2
 
 unification :: Expr -> Expr -> Maybe Binds
 unification = naiveUnification
