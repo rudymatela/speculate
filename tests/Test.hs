@@ -42,15 +42,16 @@ module Test
   --   Operators are surrounded by dashes.
 
   -- ** Integers
-  , zero, one
+  , zero, one, two, minusOne, minusTwo
   , xx, yy, zz, xx'
   , id', abs'
-  , (-+-), (-*-), (.-.)
+  , (-+-), (-*-), (.-.), (-.-)
   , ii, jj, kk, ii'
   , negate'
   , ff, gg
   , ff2, hh2, hh3, hh4, hh5, hh6, hh7
   , succ'
+  , (-$-)
 
   , idE
   , absE
@@ -59,6 +60,9 @@ module Test
   , plusE
   , timesE
   , minusE
+  , commaE
+  , ffE
+  , ggE
 
   -- ** Booleans
   , true, false
@@ -281,6 +285,15 @@ zero = showConstant (0 :: Int)
 one :: Expr
 one = showConstant (1 :: Int)
 
+two :: Expr
+two = showConstant (2 :: Int)
+
+minusOne :: Expr
+minusOne = showConstant (-1 :: Int)
+
+minusTwo :: Expr
+minusTwo = showConstant (-2 :: Int)
+
 xx :: Expr -- ex
 xx = var "x" int
 
@@ -336,6 +349,19 @@ e1 .-. e2 = minusE :$ e1 :$ e2
 minusE :: Expr
 minusE = constant "-" ((-) :: Int -> Int -> Int)
 
+(-.-) :: Expr -> Expr -> Expr
+e1 -.- e2 = commaE :$ e1 :$ e2
+
+commaE :: Expr
+commaE = constant "," ((,) :: Int -> Int -> (Int,Int))
+
+(-$-) :: Expr -> Expr -> Expr
+e1 -$- e2 = applyE :$ e1 :$ e2
+infixl 6 -$-
+
+applyE :: Expr
+applyE = constant "$" (($) :: (Int -> Int) -> Int -> Int)
+
 ii :: Expr
 ii = var "i" int
 
@@ -349,10 +375,16 @@ ii' :: Expr
 ii' = var "i'" int
 
 ff :: Expr -> Expr
-ff = (ffE :$) where ffE = constant "f" (undefined :: Int -> Int)
+ff = (ffE :$)
+
+ffE :: Expr
+ffE = constant "f" (undefined :: Int -> Int)
 
 gg :: Expr -> Expr
-gg = (ggE :$) where ggE = constant "g" (undefined :: Int -> Int)
+gg = (ggE :$)
+
+ggE :: Expr
+ggE = constant "g" (undefined :: Int -> Int)
 
 ff2 :: Expr -> Expr -> Expr
 ff2 e1 e2 = ffE :$ e1 :$ e2

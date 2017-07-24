@@ -142,7 +142,8 @@ instance Show Expr where
                     hs -> "  (holes: " ++ intercalate ", " (map show hs) ++ ")"
 
 showsPrecExpr :: Int -> Expr -> String -> String
-showsPrecExpr d (Constant s _) | atomic s && isInfixedPrefix s = showString $ toPrefix s
+showsPrecExpr d (Constant s _) | isInfixedPrefix s = showString $ toPrefix s
+showsPrecExpr d (Constant s _) | isNegativeLiteral s = showParen (d > 0) $ showString s
 showsPrecExpr d (Constant s _) = showParen sp $ showString s
   where sp = if atomic s then isInfix s else maybe True (d >) $ outernmostPrec s
 showsPrecExpr d (Var "" _)     = showString "_" -- a hole

@@ -204,4 +204,23 @@ tests n =
   , show (cc -:- space -:- dd -:- lineBreak -:- ccs)         == "c:' ':d:'\\n':cs :: [Char]"
   , show (cc -:- aa -:- bb -:- emptyString) == "c:\"ab\" :: [Char]"
   , show (cc -:- aa -:- bb -:- space -:- aa -:- bb -:- emptyString) == "c:\"ab ab\" :: [Char]"
+
+  , show one                     == "1 :: Int"
+  , show (minusOne)              == "-1 :: Int"
+  , show (one -+- one)           == "1 + 1 :: Int"
+  , show (minusOne -+- minusOne) == "(-1) + (-1) :: Int"
+
+  , show (zero -.- one)          == "(0,1) :: (Int,Int)"
+  , show (minusOne -.- minusOne) == "(-1,-1) :: (Int,Int)"
+
+  , show (one -:- ll)                     == "[1] :: [Int]"
+  , show (zero -:- one -:- ll)            == "[0,1] :: [Int]"
+  , show (minusOne -:- ll)                == "[-1] :: [Int]"
+  , show (minusOne -:- minusTwo -:- ll)   == "[-1,-2] :: [Int]"
+  , show (xx -:- minusTwo -:- yy -:- ll)  == "[x,-2,y] :: [Int]"
+  , show (xx -:- minusTwo -:- yy -:- xxs) == "x:(-2):y:xs :: [Int]"
+
+  , show (ffE -$- zero)     == "f $ 0 :: Int"
+  , show (ggE -$- xx)       == "g $ x :: Int"
+  , show (ffE -$- minusOne) == "f $ (-1) :: Int"
   ]

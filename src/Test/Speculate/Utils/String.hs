@@ -13,6 +13,7 @@ module Test.Speculate.Utils.String
   , unquote
   , atomic
   , outernmostPrec
+  , isNegativeLiteral
   , isInfix, isPrefix, isInfixedPrefix
   , toPrefix
   , prec
@@ -45,6 +46,12 @@ outernmostPrec s =
   case words s of
     [l,o,r] | isInfix o -> Just (prec o)
     _                   -> Nothing
+
+isNegativeLiteral :: String -> Bool
+isNegativeLiteral s | not (atomic s) = False
+isNegativeLiteral "-"                = False
+isNegativeLiteral ('-':cs)           = all isDigit cs
+isNegativeLiteral _                  = False
 
 -- | Check if a function / operator is infix
 --
@@ -95,8 +102,9 @@ isPrefix = not . isInfix
 
 -- | Is the string of the form @`string`@
 isInfixedPrefix :: String -> Bool
-isInfixedPrefix ('`':cs) = last cs == '`'
-isInfixedPrefix _ = False
+isInfixedPrefix s | not (atomic s) = False
+isInfixedPrefix ('`':cs)           = last cs == '`'
+isInfixedPrefix _                  = False
 
 -- | Transform an infix operator into an infix function:
 --
