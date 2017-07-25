@@ -145,6 +145,7 @@ clean: clean-hi-o
 	rm -f $(TESTS) $(EG) eg/*.dot eg/*.pdf TAGS tags mk/toplibs
 	make clean -C bench/qs1
 	make clean -C bench/qs2
+	rm -f doc/*.html doc/*.gif doc/*.css doc/*.js doc/*.png
 
 tests/Test.o: src/Test/Speculate.o
 
