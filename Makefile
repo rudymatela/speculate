@@ -70,8 +70,6 @@ test: all $(patsubst %,%.test,$(TESTS)) \
 legacy-test:
 	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.10 && make quick-test -j8 GHC=ghc-7.10
 	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.8  && make quick-test -j8 GHC=ghc-7.8
-	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.6  && make quick-test -j8 GHC=ghc-7.6
-	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.4  && make quick-test -j8 GHC=ghc-7.4
 	make clean && make -C $(LEANCHECKPATH) clean && make -j8              && make slow-test  -j8
 
 prepare-legacy-test: prepare-legacy-test-7.10 prepare-legacy-test-7.8 prepare-legacy-test-7.6 prepare-legacy-test-7.4
@@ -81,12 +79,6 @@ prepare-legacy-test-7.10:
 
 prepare-legacy-test-7.8:
 	cabal-ghc-7.8  --ignore-sandbox install regex-tdfa cmdargs
-
-prepare-legacy-test-7.6:
-	cabal-ghc-7.6  --ignore-sandbox install regex-tdfa cmdargs
-
-prepare-legacy-test-7.4:
-	cabal-ghc-7.4  --ignore-sandbox install regex-tdfa cmdargs
 
 slow-test: MAXTESTS =
 slow-test: MAXSIZE =
