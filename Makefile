@@ -1,6 +1,5 @@
 # Makefile for Speculate
-LEANCHECKPATH = ../leancheck
-GHCIMPORTDIRS = src:eg:$(LEANCHECKPATH)/src:tests
+GHCIMPORTDIRS = src:eg:src:tests
 GHCFLAGS = -O2 -dynamic #-prof -auto-all #-caf-all
 # When profiling is enabled, to get the cost centres with more than 6% time:
 #   $ ./eg/arith  +RTS -p -RTS
@@ -68,17 +67,17 @@ test: all $(patsubst %,%.test,$(TESTS)) \
           $(patsubst %,%.test-model,$(EG) $(wildcard bench/*-c))
 
 legacy-test:
-	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.10 && make quick-test -j8 GHC=ghc-7.10
-	make clean && make -C $(LEANCHECKPATH) clean && make -j8 GHC=ghc-7.8  && make quick-test -j8 GHC=ghc-7.8
-	make clean && make -C $(LEANCHECKPATH) clean && make -j8              && make slow-test  -j8
+	make clean && make -j8 GHC=ghc-7.10 && make quick-test -j8 GHC=ghc-7.10
+	make clean && make -j8 GHC=ghc-7.8  && make quick-test -j8 GHC=ghc-7.8
+	make clean && make -j8              && make slow-test  -j8
 
 prepare-legacy-test: prepare-legacy-test-7.10 prepare-legacy-test-7.8 prepare-legacy-test-7.6 prepare-legacy-test-7.4
 
 prepare-legacy-test-7.10:
-	cabal-ghc-7.10 --ignore-sandbox install regex-tdfa cmdargs
+	cabal-ghc-7.10 --ignore-sandbox install regex-tdfa cmdargs leancheck
 
 prepare-legacy-test-7.8:
-	cabal-ghc-7.8  --ignore-sandbox install regex-tdfa cmdargs
+	cabal-ghc-7.8  --ignore-sandbox install regex-tdfa cmdargs leancheck
 
 slow-test: MAXTESTS =
 slow-test: MAXSIZE =
