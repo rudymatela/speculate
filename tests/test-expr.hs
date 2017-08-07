@@ -179,7 +179,7 @@ tests n =
   -- Data.Typeable has changed.  I do rely on this for a "nice" knuth-bendix
   -- order (by prefering less arity).  If this ever changes, I will have to
   -- explicitly compare type arity on Ord Expr.
-  -- (update: haha! It has changed from before, and twice!)
+  -- (update: haha! It has changed from before, and twice, and thrice!)
   -- TODO: fix order under GHC <= 7.8
 #if __GLASGOW_HASKELL__ < 706
   , typeOf ((+) :: Int -> Int -> Int) > typeOf (abs :: Int -> Int)
@@ -187,8 +187,11 @@ tests n =
 #elif __GLASGOW_HASKELL__ < 800
   , typeOf ((+) :: Int -> Int -> Int) < typeOf (abs :: Int -> Int)
   , typeOf (abs :: Int -> Int)        < typeOf (0 :: Int)
-#else
+#elif __GLASGOW_HASKELL__ < 802
   , typeOf ((+) :: Int -> Int -> Int) > typeOf (abs :: Int -> Int)
+  , typeOf (abs :: Int -> Int)        > typeOf (0 :: Int)
+#else
+  , typeOf ((+) :: Int -> Int -> Int) < typeOf (abs :: Int -> Int)
   , typeOf (abs :: Int -> Int)        > typeOf (0 :: Int)
 #endif
 
