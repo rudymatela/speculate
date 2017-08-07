@@ -4,6 +4,7 @@
 **/idx/
 **/dist/
 **/log/
+.stack-work
 
 **.prof
 **.swp
