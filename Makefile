@@ -4,6 +4,7 @@ GHCFLAGS = -O2 -dynamic #-prof -auto-all #-caf-all
 # When profiling is enabled, to get the cost centres with more than 6% time:
 #   $ ./eg/arith  +RTS -p -RTS
 #   $ cat arith.prof | grep -v ' [0-5].[0-9] ......$'
+HADDOCKFLAGS = --no-print-missing-docs
 MAXTESTS = 4000
 MAXSIZE = -s4
 TESTS = \
@@ -167,7 +168,7 @@ upload-haddock:
 
 doc/index.html: $(shell $(LISTLIBS))
 	./mk/haddock-i base template-haskell | xargs \
-	haddock --html --no-print-missing-docs --title=speculate \
+	haddock --html $(HADDOCKFLAGS) --title=speculate \
 	  --optghc=-i$(GHCIMPORTDIRS) \
 	  -odoc $(shell $(LISTLIBS))
 
