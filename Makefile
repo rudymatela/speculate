@@ -18,7 +18,7 @@ TESTS = \
   tests/test-reason \
   tests/test-utils \
   tests/test-stats
-EG = \
+MOSTEG = \
   eg/arith \
   eg/arith-negate-abs \
   eg/bool \
@@ -32,18 +32,21 @@ EG = \
   eg/minus \
   eg/insertsort \
   eg/insertsort0 \
-  eg/speculate-reason \
   eg/string \
   eg/oddeven \
   eg/plus-abs \
   eg/pretty \
   eg/ratio \
-  eg/regexes \
   eg/sets \
   eg/tauts \
   eg/monad \
   eg/tuples \
   bench/arithficial
+EG = $(MOSTEG) \
+  eg/regexes \
+  eg/speculate-reason
+# regexes needs regex-tdfa, which may break the build
+# speculate-reason output differs in different GHC versions
 QUICKTESTS = \
   tests/test-engine \
   tests/test-eval \
@@ -66,6 +69,9 @@ quick-test: $(patsubst %,%.test,$(QUICKTESTS)) \
 
 test: all $(patsubst %,%.test,$(TESTS)) \
           $(patsubst %,%.test-model,$(EG) $(wildcard bench/*-c))
+
+test-without-extra-deps: all $(patsubst %,%.test,$(TESTS)) \
+                             $(patsubst %,%.test-model,$(MOSTEG) $(wildcard bench/*-c))
 
 legacy-test:
 	make clean && make -j8 GHC=ghc-7.10 && make quick-test -j8 GHC=ghc-7.10
