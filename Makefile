@@ -1,5 +1,5 @@
 # Makefile for Speculate
-GHCIMPORTDIRS = src:eg:src:tests
+GHCIMPORTDIRS = src:eg:tests
 GHCFLAGS = -O2 -dynamic #-prof -auto-all #-caf-all
 # When profiling is enabled, to get the cost centres with more than 6% time:
 #   $ ./eg/arith  +RTS -p -RTS
