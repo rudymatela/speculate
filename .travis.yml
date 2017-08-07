@@ -18,7 +18,6 @@ before_install:
 - ghc --version
 - cabal --version
 - rm -f ~/.cabal/config && cabal update
-- cabal install regex-tdfa
 # Download and unpack the stack executable
 # "Once Travis whitelists the stack.dev files," simply include stack in the
 # addons section. -- https://docs.haskellstack.org/en/stable/travis_ci/
@@ -29,7 +28,10 @@ before_install:
 - stack --version
 
 script:
-- make && make test && make haddock HADDOCKFLAGS=
+- >
+  cat Makefile | grep -vE "(eg/speculate-reason|eg/regexes)" > Makefile.1 &&
+  mv Makefile.1 Makefile &&
+  make && make test && make haddock HADDOCKFLAGS=
 - cabal test
 - stack --no-terminal --skip-ghc-check test
 
@@ -60,9 +62,11 @@ matrix:
     - cabal --version
     - rm -f ~/.cabal/config && cabal update
     - cabal install Cabal==1.18.*
-    - cabal install regex-tdfa
     script:
-    - make && make test && make haddock HADDOCKFLAGS=
+    - >
+      cat Makefile | grep -vE "(eg/speculate-reason|eg/regexes)" > Makefile.1 &&
+      mv Makefile.1 Makefile &&
+      make && make test && make haddock HADDOCKFLAGS=
     - cabal test
   - ghc: '7.4'
     env:                                     GHCVER=7.4.2        CABALVER=1.18
@@ -73,7 +77,9 @@ matrix:
     - cabal --version
     - rm -f ~/.cabal/config && cabal update
     - cabal install Cabal==1.18.*
-    - cabal install regex-tdfa
     script:
-    - make && make test && make haddock HADDOCKFLAGS=
+    - >
+      cat Makefile | grep -vE "(eg/speculate-reason|eg/regexes)" > Makefile.1 &&
+      mv Makefile.1 Makefile &&
+      make && make test && make haddock HADDOCKFLAGS=
     - cabal test
