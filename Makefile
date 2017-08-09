@@ -58,11 +58,12 @@ QUICKEG = \
   eg/arith \
   eg/bool \
   eg/list
-LISTHS = find src tests eg bench/*.hs -name \*.hs
-HSS = $(shell $(LISTHS))
-LISTLIBS=find src -name \*.hs
+LISTHS   = find src tests eg bench/*.hs -name \*.hs
+LISTLIBS = find src -name \*.hs
+HSS  = $(shell $(LISTHS))
+OBJS = $(shell $(LISTLIBS) | sed -e 's/hs$$/o/')
 
-all: $(EG)
+all: mk/toplibs
 
 quick-test: $(patsubst %,%.test,$(QUICKTESTS)) \
             $(patsubst %,%.test-model,$(QUICKEG))
@@ -138,6 +139,9 @@ ghci: tests/Test.ghci
 
 list-hs:
 	$(LISTHS)
+
+list-libs:
+	$(LISTLIBS)
 
 clean: clean-hi-o
 	rm -f $(TESTS) $(EG) eg/*.dot eg/*.pdf TAGS tags mk/toplibs
