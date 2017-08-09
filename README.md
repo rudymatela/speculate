@@ -124,10 +124,14 @@ Speculate has been subject to a paper, see the
 [Cabal]:   https://www.haskell.org/cabal
 [Haskell]: https://www.haskell.org/
 
-[`(+)`]: https://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#v:-43-
-[`abs`]: https://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#v:abs
-[`<=`]:  https://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#v:-60--61-
-[`<`]:   https://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#v:-60-
+[`speculate`]: https://hackage.haskell.org/package/speculate/docs/Test-Speculate.html#v:speculate
+[`args`]:      https://hackage.haskell.org/package/speculate/docs/Test-Speculate.html#v:args
+[`constant`]:  https://hackage.haskell.org/package/speculate/docs/Test-Speculate.html#v:constant
+
+[`(+)`]:       https://hackage.haskell.org/package/base/docs/Prelude.html#v:-43-
+[`abs`]:       https://hackage.haskell.org/package/base/docs/Prelude.html#v:abs
+[`<=`]:        https://hackage.haskell.org/package/base/docs/Prelude.html#v:-60--61-
+[`<`]:         https://hackage.haskell.org/package/base/docs/Prelude.html#v:-60-
 
 [build-status]: https://travis-ci.org/rudymatela/speculate.svg?branch=master
 [build-log]:    https://travis-ci.org/rudymatela/speculate
