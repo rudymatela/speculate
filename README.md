@@ -4,7 +4,7 @@ Speculate
 [![Speculate Build Status][build-status]][build-log]
 [![Speculate on Hackage][hackage-version]][speculate-on-hackage]
 
-Speculate automatically discovers laws about Haskell functions.
+Speculate automatically discovers laws about [Haskell] functions.
 Give Speculate a bunch of Haskell functions and it will discover laws like:
 
   * equations, such as `id x == x`;
@@ -14,56 +14,24 @@ Give Speculate a bunch of Haskell functions and it will discover laws like:
 Speculate is similar to, and inspired by, [QuickSpec].
 
 
-Crash Course
-------------
-
-Install pre-requisites:
-
-	$ cabal install cmdargs
-	$ cabal install leancheck
-
-Clone and enter the repository:
-
-	$ git clone https://github.com/rudymatela/speculate
-	$ cd speculate
-
-There are some examples in the `eg` folter.  For example `eg/plus-abs.hs`:
-
-	$ cat eg/plus-abs.hs
-	...
-	...
-
-Compile and run with:
-
-	$ ghc -isrc eg/plus-abs.hs
-	$ ./eg/plus-abs
-	...
-
-
 Installing Speculate
 --------------------
 
+To install the latest [Speculate version from Hackage], just:
+
+	$ cabal update
+	$ cabal install speculate
+
 Pre-requisites are [cmdargs] and [leancheck].
-You can install them with:
-
-	$ cabal install cmdargs
-	$ cabal install leancheck
-
-No `cabal` package has been made yet.  For now, clone the repository with:
-
-	$ git clone https://github.com/rudymatela/speculate
-
-and compile programs that use it with:
-
-	$ ghc -ipath/to/speculate/src program.hs
+They should be automatically resolved and installed by [Cabal].
 
 
 Using Speculate
 ---------------
 
-Speculate is used as a library: import it, then call the function `speculate`
-with relevant arguments.  The following program Speculates about the functions
-`(+)` and `abs`:
+Speculate is used as a library: import it, then call the function [`speculate`]
+with relevant arguments.  The following program Speculates about the
+functions [`(+)`] and [`abs`]:
 
 	import Test.Speculate
 
@@ -98,7 +66,7 @@ when run, it prints the following:
 	x <= x + 1
 
 
-Now, if we add `<=` and `<` as background constants on `args`
+Now, if we add [`<=`] and [`<`] as background constants on [`args`]
 
 	  , constants =
 	      [ showConstant (0::Int)
@@ -153,7 +121,16 @@ Speculate has been subject to a paper, see the
 [QuickCheck]: https://hackage.haskell.org/package/QuickCheck
 [cmdargs]: https://hackage.haskell.org/package/cmdargs
 
+[Cabal]:   https://www.haskell.org/cabal
+[Haskell]: https://www.haskell.org/
+
+[`(+)`]: https://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#v:-43-
+[`abs`]: https://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#v:abs
+[`<=`]:  https://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#v:-60--61-
+[`<`]:   https://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#v:-60-
+
 [build-status]: https://travis-ci.org/rudymatela/speculate.svg?branch=master
 [build-log]:    https://travis-ci.org/rudymatela/speculate
 [hackage-version]: https://img.shields.io/hackage/v/speculate.svg
-[speculate-on-hackage]: https://hackage.haskell.org/package/speculate
+[speculate-on-hackage]:   https://hackage.haskell.org/package/speculate
+[Speculate from Hackage]: https://hackage.haskell.org/package/speculate
