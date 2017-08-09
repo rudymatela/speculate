@@ -17,7 +17,7 @@ Speculate is similar to, and inspired by, [QuickSpec].
 Installing Speculate
 --------------------
 
-To install the latest [Speculate version from Hackage], just:
+To install the [latest Speculate version from Hackage], just:
 
 	$ cabal update
 	$ cabal install speculate
@@ -136,5 +136,5 @@ Speculate has been subject to a paper, see the
 [build-status]: https://travis-ci.org/rudymatela/speculate.svg?branch=master
 [build-log]:    https://travis-ci.org/rudymatela/speculate
 [hackage-version]: https://img.shields.io/hackage/v/speculate.svg
-[speculate-on-hackage]:   https://hackage.haskell.org/package/speculate
-[Speculate from Hackage]: https://hackage.haskell.org/package/speculate
+[speculate-on-hackage]:                  https://hackage.haskell.org/package/speculate
+[latest Speculate version from Hackage]: https://hackage.haskell.org/package/speculate
