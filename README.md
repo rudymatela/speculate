@@ -3,6 +3,8 @@ Speculate
 
 [![Speculate Build Status][build-status]][build-log]
 [![Speculate on Hackage][hackage-version]][speculate-on-hackage]
+[![Speculate on Stackage LTS][stackage-lts-badge]][speculate-on-stackage-lts]
+[![Speculate on Stackage Nightly][stackage-nightly-badge]][speculate-on-stackage-nightly]
 
 Speculate automatically discovers laws about [Haskell] functions.
 Give Speculate a bunch of Haskell functions and it will discover laws like:
@@ -136,5 +138,10 @@ Speculate has been subject to a paper, see the
 [build-status]: https://travis-ci.org/rudymatela/speculate.svg?branch=master
 [build-log]:    https://travis-ci.org/rudymatela/speculate
 [hackage-version]: https://img.shields.io/hackage/v/speculate.svg
-[speculate-on-hackage]:                  https://hackage.haskell.org/package/speculate
 [latest Speculate version from Hackage]: https://hackage.haskell.org/package/speculate
+[speculate-on-hackage]:                  https://hackage.haskell.org/package/speculate
+[stackage-lts-badge]:            http://stackage.org/package/speculate/badge/lts
+[stackage-nightly-badge]:        http://stackage.org/package/speculate/badge/nightly
+[speculate-on-stackage]:         http://stackage.org/package/speculate
+[speculate-on-stackage-lts]:     http://stackage.org/lts/package/speculate
+[speculate-on-stackage-nightly]: http://stackage.org/nightly/package/speculate
