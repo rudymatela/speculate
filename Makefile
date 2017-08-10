@@ -74,6 +74,9 @@ test: all $(patsubst %,%.test,$(TESTS)) \
 test-without-extra-deps: all $(patsubst %,%.test,$(TESTS)) \
                              $(patsubst %,%.test-model,$(MOSTEG) $(wildcard bench/*-c))
 
+test-sdist:
+	./tests/test-sdist
+
 legacy-test:
 	make clean && make -j8 GHC=ghc-7.10 && make quick-test -j8 GHC=ghc-7.10
 	make clean && make -j8 GHC=ghc-7.8  && make quick-test -j8 GHC=ghc-7.8
