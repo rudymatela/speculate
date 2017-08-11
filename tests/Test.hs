@@ -42,7 +42,7 @@ module Test
   --   Operators are surrounded by dashes.
 
   -- ** Integers
-  , zero, one, two, minusOne, minusTwo
+  , zero, one, two, three, minusOne, minusTwo
   , xx, yy, zz, xx'
   , id', abs'
   , (-+-), (-*-), (.-.)
@@ -291,6 +291,9 @@ one = showConstant (1 :: Int)
 
 two :: Expr
 two = showConstant (2 :: Int)
+
+three :: Expr
+three = showConstant (3 :: Int)
 
 minusOne :: Expr
 minusOne = showConstant (-1 :: Int)
