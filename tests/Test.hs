@@ -45,13 +45,17 @@ module Test
   , zero, one, two, minusOne, minusTwo
   , xx, yy, zz, xx'
   , id', abs'
-  , (-+-), (-*-), (.-.), (-.-)
+  , (-+-), (-*-), (.-.)
   , ii, jj, kk, ii'
   , negate'
   , ff, gg
   , ff2, hh2, hh3, hh4, hh5, hh6, hh7
   , succ'
   , (-$-)
+
+  , (-|-), pair, duple -- synonyms
+  , triple
+  , quadruple
 
   , idE
   , absE
@@ -349,11 +353,27 @@ e1 .-. e2 = minusE :$ e1 :$ e2
 minusE :: Expr
 minusE = constant "-" ((-) :: Int -> Int -> Int)
 
-(-.-) :: Expr -> Expr -> Expr
-e1 -.- e2 = commaE :$ e1 :$ e2
+(-|-) :: Expr -> Expr -> Expr
+e1 -|- e2 = commaE :$ e1 :$ e2
 
 commaE :: Expr
 commaE = constant "," ((,) :: Int -> Int -> (Int,Int))
+
+pair :: Expr -> Expr -> Expr
+pair = (-|-)
+
+duple :: Expr -> Expr -> Expr
+duple = (-|-)
+
+triple :: Expr -> Expr -> Expr -> Expr
+triple e1 e2 e3 = ccE :$ e1 :$ e2 :$ e3
+  where
+  ccE = constant ",," ((,,) :: Int -> Int -> Int -> (Int,Int,Int))
+
+quadruple :: Expr -> Expr -> Expr -> Expr -> Expr
+quadruple e1 e2 e3 e4 = cccE :$ e1 :$ e2 :$ e3 :$ e4
+  where
+  cccE = constant ",,," ((,,,) :: Int -> Int -> Int -> Int -> (Int,Int,Int,Int))
 
 (-$-) :: Expr -> Expr -> Expr
 e1 -$- e2 = applyE :$ e1 :$ e2

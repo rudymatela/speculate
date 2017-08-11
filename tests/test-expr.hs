@@ -197,6 +197,14 @@ tests n =
 #endif
 -}
 
+  , holds n $ \(IntE e1) (IntE e2) -> isTuple (pair e1 e2)
+                                   && unfoldTuple (pair e1 e2) == [e1,e2]
+  , holds n $ \(IntE e1) (IntE e2) (IntE e3) ->
+      isTuple (triple e1 e2 e3) && unfoldTuple (triple e1 e2 e3) == [e1,e2,e3]
+  , holds n $ \(IntE e1) (IntE e2) (IntE e3) (IntE e4) ->
+      isTuple (quadruple e1 e2 e3 e4) &&
+      unfoldTuple (quadruple e1 e2 e3 e4) == [e1,e2,e3,e4]
+
   , holds n $ \e1 e2 -> e1 `isSub` e2 == (e1 `elem` subexprsV e2)
 
   , show (emptyString) == "\"\" :: [Char]"
@@ -215,8 +223,10 @@ tests n =
   , show (one -+- one)           == "1 + 1 :: Int"
   , show (minusOne -+- minusOne) == "(-1) + (-1) :: Int"
 
-  , show (zero -.- one)          == "(0,1) :: (Int,Int)"
-  , show (minusOne -.- minusOne) == "(-1,-1) :: (Int,Int)"
+  , show (zero -|- one)          == "(0,1) :: (Int,Int)"
+  , show (minusOne -|- minusOne) == "(-1,-1) :: (Int,Int)"
+  , show (triple zero one two)   == "(0,1,2) :: (Int,Int,Int)"
+  , show (quadruple minusOne zero one two) == "(-1,0,1,2) :: (Int,Int,Int,Int)"
 
   , show (one -:- ll)                     == "[1] :: [Int]"
   , show (zero -:- one -:- ll)            == "[0,1] :: [Int]"

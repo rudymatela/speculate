@@ -36,6 +36,8 @@ module Test.Speculate.Expr.Core
   , isSub
   , hasVar
   , unfoldApp
+  , isTuple
+  , unfoldTuple
   , isConstantNamed
 
   -- * Properties of expressions
@@ -191,6 +193,17 @@ showsPrecExpr d (e1 :$ e2) = showParen (d > prec " ")
                            $ showsPrecExpr (prec " ") e1
                            . showString " "
                            . showsPrecExpr (prec " " + 1) e2
+-- TODO: the above show instance is getting big.  Move it into a separate file?
+
+isTuple :: Expr -> Bool
+isTuple = not . null . unfoldTuple
+
+unfoldTuple :: Expr -> [Expr]
+unfoldTuple = u . unfoldApp
+  where
+  u (Constant cs _:es) | not (null es) && cs == replicate (length es - 1) ','
+                       = es
+  u _   = []
 
 -- bad smell here, repeated code!
 showsTailExpr :: Expr -> String -> String
