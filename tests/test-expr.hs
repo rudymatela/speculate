@@ -204,6 +204,11 @@ tests n =
   , holds n $ \(IntE e1) (IntE e2) (IntE e3) (IntE e4) ->
       isTuple (quadruple e1 e2 e3 e4) &&
       unfoldTuple (quadruple e1 e2 e3 e4) == [e1,e2,e3,e4]
+  , holds n $ \(IntE  e) -> not (isTuple e) && unfoldTuple e == []
+  , holds n $ \(CharE e) -> not (isTuple e) && unfoldTuple e == []
+  , holds n $ \(BoolE e) -> not (isTuple e) && unfoldTuple e == []
+  , holds n $ \(ListE e) -> not (isTuple e) && unfoldTuple e == []
+  , holds n $ \(FunE  e) -> not (isTuple e) && unfoldTuple e == []
 
   , holds n $ \e1 e2 -> e1 `isSub` e2 == (e1 `elem` subexprsV e2)
 
