@@ -162,20 +162,10 @@ showsPrecExpr d ((Constant ":" _ :$ e1) :$ e2) =
     '[':cs -> showString "[" . showsPrecExpr 0 e1 . showString "," . showString cs
     cs -> showParen (d > prec ":")
         $ showsOpExpr ":" e1 . showString ":" . showString cs
-showsPrecExpr d ((Constant "," _ :$ e1) :$ e2) =
-    showString "(" . showsPrecExpr 0 e1
-  . showString "," . showsPrecExpr 0 e2
-  . showString ")"
-showsPrecExpr d (((Constant ",," _ :$ e1) :$ e2) :$ e3) =
-    showString "(" . showsPrecExpr 0 e1
-  . showString "," . showsPrecExpr 0 e2
-  . showString "," . showsPrecExpr 0 e3
-  . showString ")"
-showsPrecExpr d ((((Constant ",,," _ :$ e1) :$ e2) :$ e3) :$ e4) =
-    showString "(" . showsPrecExpr 0 e1
-  . showString "," . showsPrecExpr 0 e2
-  . showString "," . showsPrecExpr 0 e3
-  . showString "," . showsPrecExpr 0 e4
+showsPrecExpr d ee | isTuple ee = id
+    showString "("
+  . foldr1 (\s1 s2 -> s1 . showString "," . s2)
+           (showsPrecExpr 0 `map` unfoldTuple ee)
   . showString ")"
 showsPrecExpr d ((Constant f _ :$ e1) :$ e2)
   | isInfix f = showParen (d > prec f)

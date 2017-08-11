@@ -56,6 +56,8 @@ module Test
   , (-|-), pair, duple -- synonyms
   , triple
   , quadruple
+  , quintuple
+  , sixtuple
 
   , idE
   , absE
@@ -377,6 +379,16 @@ quadruple :: Expr -> Expr -> Expr -> Expr -> Expr
 quadruple e1 e2 e3 e4 = cccE :$ e1 :$ e2 :$ e3 :$ e4
   where
   cccE = constant ",,," ((,,,) :: Int -> Int -> Int -> Int -> (Int,Int,Int,Int))
+
+quintuple :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr
+quintuple e1 e2 e3 e4 e5 = ccccE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5
+  where
+  ccccE = constant ",,,," ((,,,,) :: Int -> Int -> Int -> Int -> Int -> (Int,Int,Int,Int,Int))
+
+sixtuple :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr
+sixtuple e1 e2 e3 e4 e5 e6 = cccccE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6
+  where
+  cccccE = constant ",,,,," ((,,,,,) :: Int -> Int -> Int -> Int -> Int -> Int -> (Int,Int,Int,Int,Int,Int))
 
 (-$-) :: Expr -> Expr -> Expr
 e1 -$- e2 = applyE :$ e1 :$ e2

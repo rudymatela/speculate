@@ -232,6 +232,8 @@ tests n =
   , show (minusOne -|- minusOne) == "(-1,-1) :: (Int,Int)"
   , show (triple zero one two)   == "(0,1,2) :: (Int,Int,Int)"
   , show (quadruple minusOne zero one two) == "(-1,0,1,2) :: (Int,Int,Int,Int)"
+  , show (quintuple minusOne zero one two three) == "(-1,0,1,2,3) :: (Int,Int,Int,Int,Int)"
+  , show (sixtuple minusTwo minusOne zero one two three) == "(-2,-1,0,1,2,3) :: (Int,Int,Int,Int,Int,Int)"
 
   , show (one -:- ll)                     == "[1] :: [Int]"
   , show (zero -:- one -:- ll)            == "[0,1] :: [Int]"
