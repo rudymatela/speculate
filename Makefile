@@ -82,6 +82,11 @@ legacy-test:
 	make clean && make -j8 GHC=ghc-7.8  && make quick-test -j8 GHC=ghc-7.8
 	make clean && make -j8              && make slow-test  -j8
 
+legacy-test-via-cabal:
+	cabal clean  &&  cabal-ghc-7.10 configure --ghc-option=-dynamic  &&  cabal-ghc-7.10 test
+	cabal clean  &&  cabal-ghc-7.8  configure --ghc-option=-dynamic  &&  cabal-ghc-7.8  test
+	cabal clean  &&  cabal test
+
 prepare-legacy-test: prepare-legacy-test-7.10 prepare-legacy-test-7.8 prepare-legacy-test-7.6 prepare-legacy-test-7.4
 
 prepare-legacy-test-7.10:
