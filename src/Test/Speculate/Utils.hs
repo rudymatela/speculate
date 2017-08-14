@@ -7,6 +7,10 @@
 -- This module is part of Speculate.
 --
 -- Exports utility functions of all utils sub-modules.
+--
+-- This is not intended to be used by users of Speculate, only by modules of
+-- Speculate itself.  Expect symbols exported here to come and go with every
+-- minor version.
 module Test.Speculate.Utils
   ( module Test.Speculate.Utils.Misc
   , module Test.Speculate.Utils.PrettyPrint
