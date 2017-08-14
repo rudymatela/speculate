@@ -71,6 +71,22 @@ library
   hs-source-dirs:    src
   default-language:  Haskell2010
 
+test-suite creason
+  main-is:           test-creason.hs
+  other-modules:     Test
+  hs-source-dirs:    tests
+  build-depends:     base >= 4 && < 5, leancheck, speculate
+  default-language:  Haskell2010
+  type:              exitcode-stdio-1.0
+
+test-suite engine
+  main-is:           test-engine.hs
+  other-modules:     Test
+  hs-source-dirs:    tests
+  build-depends:     base >= 4 && < 5, leancheck, speculate
+  default-language:  Haskell2010
+  type:              exitcode-stdio-1.0
+
 test-suite eval
   main-is:           test-eval.hs
   other-modules:     Test
@@ -97,6 +113,30 @@ test-suite match
 
 test-suite misc
   main-is:           test-misc.hs
+  other-modules:     Test
+  hs-source-dirs:    tests
+  build-depends:     base >= 4 && < 5, leancheck, speculate
+  default-language:  Haskell2010
+  type:              exitcode-stdio-1.0
+
+test-suite order
+  main-is:           test-order.hs
+  other-modules:     Test
+  hs-source-dirs:    tests
+  build-depends:     base >= 4 && < 5, leancheck, speculate
+  default-language:  Haskell2010
+  type:              exitcode-stdio-1.0
+
+test-suite reason
+  main-is:           test-reason.hs
+  other-modules:     Test
+  hs-source-dirs:    tests
+  build-depends:     base >= 4 && < 5, leancheck, speculate
+  default-language:  Haskell2010
+  type:              exitcode-stdio-1.0
+
+test-suite utils
+  main-is:           test-utils.hs
   other-modules:     Test
   hs-source-dirs:    tests
   build-depends:     base >= 4 && < 5, leancheck, speculate
