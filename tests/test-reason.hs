@@ -107,7 +107,7 @@ tests n =
 
   -- TODO: make the following pass with n `div` 10
   -- Inference order should not matter:
-  , holds (n`div`100)
+  , holds 100
   $ \(Thyght thy) -> all (\steps -> iterateUntil (==) (chain steps) thy == complete thy)
                    $ permutations [collapse, compose, orient, delete . simplify, deduce]
   -- I now think the above property is not true in all cases, investigate.
