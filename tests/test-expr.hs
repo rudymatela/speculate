@@ -175,28 +175,6 @@ tests n =
   , zero < one
   , xx < zero
 
-{- -- commenting out as those tests are causing more harm than good.
-  -- If those two ever fail, it is because the instance for Ord TypeRep in
-  -- Data.Typeable has changed.  I do rely on this for a "nice" knuth-bendix
-  -- order (by prefering less arity).  If this ever changes, I will have to
-  -- explicitly compare type arity on Ord Expr.
-  -- (update: haha! It has changed from before, and twice, and thrice!)
-  -- TODO: fix order under GHC <= 7.8
-#if __GLASGOW_HASKELL__ < 706
-  , typeOf ((+) :: Int -> Int -> Int) > typeOf (abs :: Int -> Int)
-  , typeOf (abs :: Int -> Int)        < typeOf (0 :: Int)
-#elif __GLASGOW_HASKELL__ < 800
-  , typeOf ((+) :: Int -> Int -> Int) < typeOf (abs :: Int -> Int)
-  , typeOf (abs :: Int -> Int)        < typeOf (0 :: Int)
-#elif __GLASGOW_HASKELL__ < 802
-  , typeOf ((+) :: Int -> Int -> Int) > typeOf (abs :: Int -> Int)
-  , typeOf (abs :: Int -> Int)        > typeOf (0 :: Int)
-#else
-  , typeOf ((+) :: Int -> Int -> Int) < typeOf (abs :: Int -> Int)
-  , typeOf (abs :: Int -> Int)        > typeOf (0 :: Int)
-#endif
--}
-
   , holds n $ \(IntE e1) (IntE e2) -> isTuple (pair e1 e2)
                                    && unfoldTuple (pair e1 e2) == [e1,e2]
   , holds n $ \(IntE e1) (IntE e2) (IntE e3) ->
