@@ -74,6 +74,10 @@ tests n =
   , absE < timesE
   , aa   < ordE
   , ordE < timesE
+  , constant "id" (id -:>  int)  < constant "id"    (id    -:>  [int])
+  , constant "id" (id -:> [int]) < constant "id"    (id    -:> [[int]])
+  , constant "id" (id -:>  int)  < constant "sum"   (sum   -:>  [int])
+  , constant "id" (id -:>  int)  < constant "(:[])" ((:[]) -:>   int)
 
   -- precedent types
   , pp < xx
