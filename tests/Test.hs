@@ -74,7 +74,7 @@ module Test
   , true, false
   , pp, qq, rr
   , not', (-&&-), (-||-), (-==>-)
-  , (-==-), (-<=-), (-<-)
+  , (-==-), (-/=-), (-<=-), (-<-)
   , odd', even'
 
   -- ** Characters
@@ -489,6 +489,12 @@ e1 -==- e2 =
   fromMaybe (error $ "(-==-): cannot equate " ++ show e1 ++ " and " ++ show e2)
             (equation preludeInstances e1 e2)
 infix 4 -==-
+
+(-/=-) :: Expr -> Expr -> Expr
+e1 -/=- e2 =
+  fromMaybe (error $ "(-/=-): cannot inequate " ++ show e1 ++ " and " ++ show e2)
+            (inequality preludeInstances e1 e2)
+infix 4 -/=-
 
 (-<=-) :: Expr -> Expr -> Expr
 e1 -<=- e2 =

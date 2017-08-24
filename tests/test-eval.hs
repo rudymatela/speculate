@@ -43,6 +43,11 @@ tests n =
   , trueBinds preludeInstances 500 (xx -==- zero) == [[("x",zero)]]
   , trueBinds preludeInstances 500 (xx -==- one)  == [[("x",one)]]
   , trueBinds preludeInstances 500 ((xx -==- one) -&&- (yy -==- zero))  == [[("x",one),("y",zero)]]
+
+  , holds n $ ordOK -:> int
+  , holds n $ ordOK -:> ()
+  , holds n $ ordOK -:> bool
+  , holds n $ ordOK -:> [int]
   ]
   where
   n' = n `div` 50
@@ -51,3 +56,18 @@ tests n =
   x =/= y = not (x === y)
   infix 4 =/=
   x //= y = inequal preludeInstances 500 x y
+
+(*==*), (*/=*), (*<=*), (*<*) :: (Show a, Typeable a) => a -> a -> Bool
+x *==* y = eval undefined $ showConstant x -==- showConstant y
+x */=* y = eval undefined $ showConstant x -/=- showConstant y
+x *<=* y = eval undefined $ showConstant x -<=- showConstant y
+x *<*  y = eval undefined $ showConstant x -<-  showConstant y
+
+eqOK :: (Eq a, Show a, Typeable a) => a -> a -> Bool
+eqOK x y =  (x *==* y) == (x == y)
+         && (x */=* y) == (x /= y)
+
+ordOK :: (Eq a, Ord a, Show a, Typeable a) => a -> a -> Bool
+ordOK x y =  eqOK x y
+          && (x *<=* y) == (x <= y)
+          && (x *<*  y) == (x <  y)
