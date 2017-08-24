@@ -25,7 +25,7 @@ module Test.Speculate.Expr.Instance
   , instanceType
   , findInfo
   , names
-  , eqE,      isEq,       isEqE
+  , eqE, iqE, isEq,       isEqE
   , leE, ltE, isOrd,      isOrdE
   ,           isEqOrd,    isEqOrdE
   , tiersE,   isListable
@@ -133,7 +133,8 @@ name n x = [ Instance "Names" (typeOf x)
 
 eqWith :: (Typeable a, Eq a) => (a -> a -> Bool) -> Instances
 eqWith (==) = [ Instance "Eq" (typeOf $ arg (==))
-                  [constant "==" $ errorToFalse .: (==)] ]
+                  [ constant "==" $ errorToFalse .: (==)
+                  , constant "/=" $ (errorToFalse . not) .: (==)] ]
   where
   arg :: (a -> b) -> a
   arg _ = undefined
@@ -198,8 +199,14 @@ tiersE ti t = findInfoOr (error $ "could not find Listable " ++ show t) m ti
 eqE :: Instances -> TypeRep -> Maybe Expr
 eqE ti t = findInfo m ti
   where
-  m (Instance "Eq" t' [eq]) | t == t' = Just eq
-  m _                                 = Nothing
+  m (Instance "Eq" t' [eq,_]) | t == t' = Just eq
+  m _                                   = Nothing
+
+iqE :: Instances -> TypeRep -> Maybe Expr
+iqE ti t = findInfo m ti
+  where
+  m (Instance "Eq" t' [_,iq]) | t == t' = Just iq
+  m _                                   = Nothing
 
 ltE :: Instances -> TypeRep -> Maybe Expr
 ltE ti t = findInfo m ti
