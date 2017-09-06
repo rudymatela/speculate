@@ -3,6 +3,7 @@
 import Test.Speculate
 import Test.LeanCheck
 import Data.Function (on)
+import Data.List (isPrefixOf)
 
 import Text.PrettyPrint
 
@@ -16,10 +17,13 @@ instance Eq Doc where
 #endif
 
 instance Ord Doc where
-  compare = compare `on` show
+  (<=) = isPrefixOf `on` show
 
 instance Listable Doc where
   tiers = cons1 text
+       \/ cons2 ($$)
+       \/ cons2 (<>)
+       \/ cons2 nest
 
 main :: IO ()
 main = speculate args
@@ -30,6 +34,7 @@ main = speculate args
       [ constant "$$"       ($$)
       , constant "<>"       (<>)
       , constant "nest"     nest
+      , background
       , constant "++"     $ (++) -:> string
       , constant "length" $ length -:> string
       ]
