@@ -45,6 +45,9 @@ MOSTEG = \
 EG = $(MOSTEG) \
   eg/regexes \
   eg/speculate-reason
+EXTRAEG = $(EG) \
+  eg/pretty-compact \
+  eg/algebraic-graphs
 # regexes needs regex-tdfa, which may break the build
 # speculate-reason output differs in different GHC versions
 QUICKTESTS = \
@@ -74,6 +77,9 @@ test: all $(patsubst %,%.test,$(TESTS)) \
 test-without-extra-deps: all $(patsubst %,%.test,$(TESTS)) \
                              $(patsubst %,%.test-model,$(MOSTEG) $(wildcard bench/*-c))
 
+test-extra-deps: all $(patsubst %,%.test,$(TESTS)) \
+                     $(patsubst %,%.test-model,$(EXTRAEG) $(wildcard bench/*-c))
+
 test-sdist:
 	./tests/test-sdist
 
@@ -87,12 +93,17 @@ legacy-test-via-cabal:
 	cabal clean  &&  cabal-ghc-7.8  configure --ghc-option=-dynamic  &&  cabal-ghc-7.8  test
 	cabal clean  &&  cabal test
 
+prepare-test:
+	cabal --ignore-sandbox install regex-tdfa cmdargs leancheck algebraic-graphs pretty-compact
+
 prepare-legacy-test: prepare-legacy-test-7.10 prepare-legacy-test-7.8 prepare-legacy-test-7.6 prepare-legacy-test-7.4
 
 prepare-legacy-test-7.10:
+	cabal-ghc-7.10 update
 	cabal-ghc-7.10 --ignore-sandbox install regex-tdfa cmdargs leancheck
 
 prepare-legacy-test-7.8:
+	cabal-ghc-7.8 update
 	cabal-ghc-7.8  --ignore-sandbox install regex-tdfa cmdargs leancheck
 
 slow-test: MAXTESTS =

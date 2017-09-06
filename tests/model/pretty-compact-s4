@@ -1,0 +1,32 @@
+max expr size  =    4
+  |- on ineqs  =    3
+  |- on conds  =    3
+max  #-tests   =  360
+max  #-vars    =    2  (for inequational and conditional laws)
+
+_ :: Char  (holes: Char)
+_ :: Int  (holes: Int)
+_ :: ODoc Any  (holes: ODoc Any)
+_ :: [Char]  (holes: [Char])
+text :: [Char] -> ODoc Any
+char :: Char -> ODoc Any
+flush :: ODoc Any -> ODoc Any
+hang :: Int -> ODoc Any -> ODoc Any -> ODoc Any
+(<>) :: ODoc Any -> ODoc Any -> ODoc Any
+(<+>) :: ODoc Any -> ODoc Any -> ODoc Any
+($$) :: ODoc Any -> ODoc Any -> ODoc Any
+(</>) :: ODoc Any -> ODoc Any -> ODoc Any
+(<//>) :: ODoc Any -> ODoc Any -> ODoc Any
+(<$$>) :: ODoc Any -> ODoc Any -> ODoc Any
+
+        d1 $$ d2 == flush d1 <> d2
+      d1 <$$> d2 == flush d1 <> d2
+ flush d1 </> d2 == flush (flush d1) <> d2
+flush d1 <//> d2 == flush (flush d1) <> d2
+
+      d1 <= flush d1
+      d1 <= d1 $$ d2
+      d1 <= d1 </> d2
+      d1 <= d1 <//> d2
+flush d1 <= d1 $$ d2
+

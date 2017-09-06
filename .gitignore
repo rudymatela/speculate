@@ -43,6 +43,7 @@ tests/test-reason
 tests/test-stats
 tests/test-utils
 eg/eg
+eg/algebraic-graphs
 eg/arith
 eg/arith-negate-abs
 eg/0arith
@@ -64,6 +65,7 @@ eg/speculate-reason
 eg/string
 eg/plus-abs
 eg/pretty
+eg/pretty-compact
 eg/ratio
 eg/regexes
 eg/sets

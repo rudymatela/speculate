@@ -1,0 +1,55 @@
+max expr size  =    5
+  |- on ineqs  =    4
+  |- on conds  =    4
+max  #-tests   =  500
+max  #-vars    =    2  (for inequational and conditional laws)
+
+_ :: Bool  (holes: Bool)
+_ :: Int  (holes: Int)
+_ :: Graph Int  (holes: Graph Int)
+0 :: Int
+True :: Bool
+empty :: Graph Int
+vertex :: Int -> Graph Int
+(+) :: Graph Int -> Graph Int -> Graph Int
+(*) :: Graph Int -> Graph Int -> Graph Int
+overlay :: Graph Int -> Graph Int -> Graph Int
+connect :: Graph Int -> Graph Int -> Graph Int
+edge :: Int -> Int -> Graph Int
+length :: Graph Int -> Int
+size :: Graph Int -> Int
+
+    length (vertex i) == length (vertex j)
+      size (vertex i) == length (vertex 0)
+       length (x * y) == length (x + y)
+         size (x * y) == size (x + y)
+length (x + vertex i) == length (x + vertex j)
+  size (x + vertex i) == size (x + vertex j)
+                x + x == x
+            x + empty == x
+            x * empty == x
+            empty * x == x
+                x + y == y + x
+          overlay x y == x + y
+          connect x y == x * y
+            x + x * y == x * y
+            x + y * x == y * x
+             edge i j == vertex i * vertex j
+          (x + y) + z == x + (y + z)
+          (x * y) * z == x * (y * z)
+          x * (x * y) == x * (x + y)
+          (x + y) * x == y * (x * x)
+
+         0 <= length x
+         0 <= size x
+  length x <= size x
+size empty <= size x
+         i <= size (x + y)
+  length x <= length (edge i i)
+  length x <= length (x + y)
+     empty <= x
+         x <= x + y
+         x <= x * y
+         x <= y * x
+     x + y <= x * y
+
