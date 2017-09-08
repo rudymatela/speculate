@@ -131,6 +131,9 @@ bench/%-c.update-slow-test-model: %
 %.update-slow-test-model: %
 	./tests/update-test-model     $<
 
+%.update-7-test-model: %
+	./tests/update-test-model -s7 $<
+
 update-test-model: update-4-test-model update-slow-test-model
 
 update-4-test-model: $(patsubst %,%.update-4-test-model,$(EG) $(wildcard bench/*-c))
