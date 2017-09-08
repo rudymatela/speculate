@@ -1,5 +1,5 @@
 max expr size  =    4
-max  #-tests   =  500
+max  #-tests   = 5040
 max  #-vars    =    2  (for inequational and conditional laws)
 
 _ :: Bool  (holes: Bool)
@@ -31,18 +31,19 @@ length (edge i j) == size (edge k i')
       overlay x y == x + y
       connect x y == x * y
 
-         0 <= length x
-         0 <= size x
-  length x <= size x
-size empty <= size x
-         i <= size (x + y)
-  length x <= length (edge i i)
-  length x <= length (x + y)
-     empty <= x
-         x <= x + y
-         x <= x * y
-         x <= y * x
-  vertex i <= edge i j
-  vertex i <= edge j i
-     x + y <= x * y
+                0 <= length x
+                0 <= size x
+         length x <= size x
+       size empty <= size x
+         length x <= length (x + y)
+           size x <= size (x + y)
+         length x <= size (y + x)
+length (edge i i) <= size (x + y)
+            empty <= x
+                x <= x + y
+                x <= x * y
+                x <= y * x
+         vertex i <= edge i j
+         vertex i <= edge j i
+            x + y <= x * y
 
