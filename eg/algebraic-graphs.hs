@@ -13,7 +13,6 @@ instance Ord a => Ord (Graph a) where
 main :: IO ()
 main = speculate args
   { instances = [ins "x" (gr a), name "i" int]
-  , showConditions = False
   , constants =
       [ background
       , showConstant $ 0 -: a
@@ -30,6 +29,9 @@ main = speculate args
       , constant "length"    (length  -:> gr a)
       , constant "size"      (size    -:> gr a)
       ]
+  , showConditions = False
+  , maxSemiSize = 4
+  , maxCondSize = 4
   }
   where
   a :: Int

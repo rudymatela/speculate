@@ -1,6 +1,4 @@
 max expr size  =    4
-  |- on ineqs  =    3
-  |- on conds  =    3
 max  #-tests   =  500
 max  #-vars    =    2  (for inequational and conditional laws)
 
@@ -37,6 +35,9 @@ length (edge i j) == size (edge k i')
          0 <= size x
   length x <= size x
 size empty <= size x
+         i <= size (x + y)
+  length x <= length (edge i i)
+  length x <= length (x + y)
      empty <= x
          x <= x + y
          x <= x * y
