@@ -11,7 +11,5 @@ id :: EqButNotOrd -> EqButNotOrd
 
 Warning: no Ord instance for EqButNotOrd, inequations of this type will not be considered
 
-Warning: (==) and (<=) :: EqButNotOrd -> EqButNotOrd -> Bool are inconsistent: (x == y) /= (x <= y && y <= x)
-
 
 
