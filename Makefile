@@ -41,6 +41,7 @@ MOSTEG = \
   eg/tauts \
   eg/monad \
   eg/tuples \
+  bench/nord \
   bench/arithficial
 EG = $(MOSTEG) \
   eg/regexes \

@@ -77,6 +77,7 @@ bench/expressions
 bench/representatives
 bench/representatives2
 bench/arithficial
+bench/nord
 bench/qs*/0arith
 bench/qs*/arith-negate-abs
 bench/qs*/arith
