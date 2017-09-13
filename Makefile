@@ -41,8 +41,9 @@ MOSTEG = \
   eg/tauts \
   eg/monad \
   eg/tuples \
+  bench/arithficial \
   bench/nord \
-  bench/arithficial
+  bench/unit
 EG = $(MOSTEG) \
   eg/regexes \
   eg/speculate-reason
