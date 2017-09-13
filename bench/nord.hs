@@ -1,5 +1,11 @@
+{-# LANGUAGE CPP, DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
 import Test.Speculate
 import Test.Speculate.Expr (name, listable, eq, ord)
+
+#if __GLASGOW_HASKELL__ < 710
+import Data.Typeable (Typeable1)
+deriving instance Typeable EqButNotOrd
+#endif
 
 data EqButNotOrd = C0 deriving (Eq, Show)
 
