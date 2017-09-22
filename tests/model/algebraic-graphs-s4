@@ -1,5 +1,5 @@
 max expr size  =    4
-max  #-tests   = 2160
+max  #-tests   = 1080
 max  #-vars    =    2  (for inequational and conditional laws)
 
 _ :: Bool  (holes: Bool)

@@ -24,7 +24,7 @@ main = do
     error "incorrect Listable (Graph a), see source"
   speculate args
     { instances = [ins "x" (gr a), ins "i" a]
-    , maxTests = 2160
+    , maxTests = 1080
     , constants =
         [ background
         , showConstant $ 0 -: a
