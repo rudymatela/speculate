@@ -127,6 +127,10 @@ bench/%-c.update-slow-test-model: %
 %.test-model: %
 	./tests/test-model $(MAXSIZE) $<
 
+%.update-test-model: %
+	./tests/update-test-model -s4 $<
+	./tests/update-test-model     $<
+
 %.update-4-test-model: %
 	./tests/update-test-model -s4 $<
 
