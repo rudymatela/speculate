@@ -1,5 +1,5 @@
 max expr size  =    4
-max  #-tests   = 5040
+max  #-tests   = 2160
 max  #-vars    =    2  (for inequational and conditional laws)
 
 _ :: Bool  (holes: Bool)
@@ -38,7 +38,7 @@ length (edge i j) == size (edge k i')
          length x <= length (x + y)
            size x <= size (x + y)
          length x <= size (y + x)
-length (edge i i) <= size (x + y)
+length (edge i i) <= size x
             empty <= x
                 x <= x + y
                 x <= x * y
