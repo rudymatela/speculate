@@ -4,18 +4,20 @@ max  #-vars    =    2  (for inequational and conditional laws)
 
 _ :: Bool  (holes: Bool)
 _ :: Int  (holes: Int)
-_ :: Graph Int  (holes: Graph Int)
+_ :: Nat3  (holes: Nat3)
+_ :: Graph Nat3  (holes: Graph Nat3)
+0 :: Nat3
 0 :: Int
 True :: Bool
-empty :: Graph Int
-vertex :: Int -> Graph Int
-(+) :: Graph Int -> Graph Int -> Graph Int
-(*) :: Graph Int -> Graph Int -> Graph Int
-overlay :: Graph Int -> Graph Int -> Graph Int
-connect :: Graph Int -> Graph Int -> Graph Int
-edge :: Int -> Int -> Graph Int
-length :: Graph Int -> Int
-size :: Graph Int -> Int
+empty :: Graph Nat3
+vertex :: Nat3 -> Graph Nat3
+(+) :: Graph Nat3 -> Graph Nat3 -> Graph Nat3
+(*) :: Graph Nat3 -> Graph Nat3 -> Graph Nat3
+overlay :: Graph Nat3 -> Graph Nat3 -> Graph Nat3
+connect :: Graph Nat3 -> Graph Nat3 -> Graph Nat3
+edge :: Nat3 -> Nat3 -> Graph Nat3
+length :: Graph Nat3 -> Int
+size :: Graph Nat3 -> Int
 
 length (vertex i) == length (vertex j)
   size (vertex i) == length (vertex 0)

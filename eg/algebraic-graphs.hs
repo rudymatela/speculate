@@ -23,11 +23,12 @@ main = do
   unless (listableGraphOK 180 a) $
     error "incorrect Listable (Graph a), see source"
   speculate args
-    { instances = [ins "x" (gr a), name "i" int]
+    { instances = [ins "x" (gr a), ins "i" a]
     , maxTests = 2160
     , constants =
         [ background
         , showConstant $ 0 -: a
+        , showConstant $ 0 -: int
         , showConstant True
 
         , foreground
@@ -46,7 +47,7 @@ main = do
     , maxCondSize = 4
     }
   where
-  a :: Int
+  a :: Nat3
   a = undefined
 
 gr :: a -> Graph a
