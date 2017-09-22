@@ -9,6 +9,7 @@ import Algebra.Graph
 instance Ord a => Ord (Graph a) where
   (<=) = isSubgraphOf
 
+-- deriveListable ''Graph {-
 instance (Ord a, Listable a) => Listable (Graph a) where
   tiers = concatMapT graphs $ setsOf tiers
     where
@@ -17,6 +18,7 @@ instance (Ord a, Listable a) => Listable (Graph a) where
     fromAdjList :: [(a,[a])] -> Graph a
     fromAdjList ness = graph [n | (n,_) <- ness]
                              [(n1,n2) | (n1,n2s) <- ness, n2 <- n2s]
+-- -}
 
 main :: IO ()
 main = do
