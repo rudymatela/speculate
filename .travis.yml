@@ -32,8 +32,8 @@ before_install:
 script:
 - make && make test-without-extra-deps
 - make haddock HADDOCKFLAGS=
-- travis_wait 40 cabal test
-- travis_wait 40 stack $STACKR --no-terminal --skip-ghc-check test
+- travis_wait 50 cabal test
+- travis_wait 50 stack $STACKR --no-terminal --skip-ghc-check test
 
 matrix:
   allow_failures:
