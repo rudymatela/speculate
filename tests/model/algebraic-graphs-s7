@@ -1,7 +1,7 @@
 max expr size  =    7
   |- on ineqs  =    4
   |- on conds  =    4
-max  #-tests   = 5040
+max  #-tests   = 1080
 max  #-vars    =    2  (for inequational and conditional laws)
 
 _ :: Bool  (holes: Bool)
@@ -53,10 +53,9 @@ length (x + vertex i) == length (x + vertex j)
          0 <= size x
   length x <= size x
 size empty <= size x
+         x <= size (y + z)
+  length x <= length (edge i i)
   length x <= length (x + y)
-    size x <= size (x + y)
-  length x <= size (y + x)
-size empty <= length (edge i i)
      empty <= x
          x <= x + y
          x <= x * y
