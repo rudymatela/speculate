@@ -86,9 +86,9 @@ test-sdist:
 	./tests/test-sdist
 
 legacy-test:
-	make clean && make -j8 GHC=ghc-7.10 && make quick-test -j8 GHC=ghc-7.10
-	make clean && make -j8 GHC=ghc-7.8  && make quick-test -j8 GHC=ghc-7.8
-	make clean && make -j8              && make slow-test  -j8
+	make clean  &&  make -j8 GHC=ghc-7.10  &&  make quick-test -j8 GHC=ghc-7.10
+	make clean  &&  make -j8 GHC=ghc-7.8   &&  make quick-test -j8 GHC=ghc-7.8
+	make clean  &&  make -j8               &&  make slow-test  -j8
 
 legacy-test-via-cabal:
 	cabal clean  &&  cabal-ghc-7.10 configure  &&  cabal-ghc-7.10 test
