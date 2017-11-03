@@ -17,10 +17,6 @@ current
   Maybe a new field in args?  Or even things begining with capital letters and
   ":".
 
-* Implement expand by expanding tiers (more robust and flexible).  It
-  will allow extraction of constant values from tiers.  This will also make it
-  easy to amend a Thy: do theorization; add a bunch of atoms; do it again;
-
 
 stranger things (bugs?)
 -----------------------

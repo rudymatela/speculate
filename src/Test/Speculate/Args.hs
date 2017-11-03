@@ -38,6 +38,7 @@ import Test.Speculate.Expr
 import Test.Speculate.Utils
 import System.Console.CmdArgs.Explicit
 
+import Test.LeanCheck ((\/))
 import qualified Data.List as L (insert)
 import Data.List hiding (insert)
 import Data.Maybe (catMaybes)
@@ -59,6 +60,7 @@ data Args = Args
   , showSemiequations :: Bool  -- ^ whether to show inequalties
   , showConditions    :: Bool  -- ^ whether to show conditional equations
   , showConstantLaws  :: Bool  -- ^ whether to show laws with no variables
+  , autoConstants     :: Bool  -- ^ automatically include constants taken from tiers of values
 
   , minTests    :: Int -> Int  -- ^ __(intermediary)__ minimum number of tests
                                --   for passing postconditions in function of
@@ -98,6 +100,7 @@ args = Args
   , maxDepth             = Nothing
   , instances            = []
   , showConstants        = True
+  , autoConstants        = False
   , showArgs             = True
   , showTheory           = False
   , showEquations        = True
@@ -177,15 +180,15 @@ atoms args = [ nubSort (map holeOfTy ts)
        `union` [showConstant True  | showConds || showDot args]
        `union` [showConstant False | showConds || showDot args]
        `union` (nubSort . catMaybes) [eqE is t | showConds, t <- ts] ]
--- TODO:
---        \/ foldr (\/) [tiersE is t | t <- ts]
--- somehow discard repetitions here, make it not very slow
--- but I don't have to care that much, we aren't going past tier 7 anytime
--- soon.
+         \-/ foldr (\/) [] [tiersE is t | autoConstants args, t <- ts]
   where
   ts = types args
   is = computeInstances args
   showConds = reallyShowConditions args
+  []  \-/ []   =  []
+  xss \-/ []   =  xss
+  []  \-/ yss  =  yss
+  (xs:xss) \-/ (ys:yss)  =  xs `union` ys  :  xss \-/ yss
 
 types :: Args -> [TypeRep]
 types = nubMergeMap (typesIn . typ) . allConstants
@@ -254,6 +257,7 @@ prepareArgs args =
   , "zsemisize"          --= \s a -> a {maxSemiSize = read s}
   , "xcondsize"          --= \s a -> a {maxCondSize = read s}
   , "Aconstants"         --.   \a -> a {showConstants = False} -- TODO: fix name
+  , "Uauto-constants"    --.   \a -> a {autoConstants = True}
   , "Ohide-args"         --.   \a -> a {showArgs = False}
   , "Ttheory"            --.   \a -> a {showTheory = True}
   , "Eno-equations"      --.   \a -> a {showEquations = False}
