@@ -39,6 +39,7 @@ import Data.List hiding (insert)
 import Data.Function (on)
 import Data.Monoid ((<>))
 
+import Test.LeanCheck ((\/))
 import Test.Speculate.Utils
 import Test.Speculate.Expr
 import Test.Speculate.Reason
@@ -120,13 +121,13 @@ rehole e = e
 theoryFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> Thy
 theoryFromAtoms sz cmp keep (===) = fst . theoryAndRepresentativesFromAtoms sz cmp keep (===)
 
-representativesFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> [Expr]
+representativesFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> [[Expr]]
 representativesFromAtoms sz cmp keep (===) = snd . theoryAndRepresentativesFromAtoms sz cmp keep (===)
 
-expand :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> (Thy,[Expr]) -> (Thy,[Expr])
-expand keep (===) (thy,ss) = foldl (flip $ consider (===)) (thy,ss)
-                           . concat . zipWithReverse (*$*)
-                           $ collectOn lengthE ss
+expand :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> Int -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
+expand keep (===) sz (thy,sss) = foldl (flip $ consider (===) sz) (thy,sss)
+                               . concat . zipWithReverse (*$*)
+                               $ take sz sss
   where
   fes *$* xes = filter keep $ catMaybes [fe $$ xe | fe <- fes, xe <- xes]
 
@@ -135,11 +136,11 @@ expand keep (===) (thy,ss) = foldl (flip $ consider (===)) (thy,ss)
 theoryAndRepresentativesFromAtoms :: Int
                                   -> (Expr -> Expr -> Ordering)
                                   -> (Expr -> Bool) -> (Expr -> Expr -> Bool)
-                                  -> [Expr] -> (Thy,[Expr])
+                                  -> [Expr] -> (Thy,[[Expr]])
 theoryAndRepresentativesFromAtoms sz cmp keep (===) ds =
-  iterate ((complete *** id) . expand keep (===)) dsThy !! (sz-1)
+  chain (map ((complete *** id) .: expand keep (===)) $ reverse [2..sz]) dsThy
   where
-  dsThy = (complete *** id) $ foldl (flip $ consider (===)) (iniThy,[]) ds
+  dsThy = (complete *** id) $ foldl (flip $ consider (===) 1) (iniThy,[]) ds
   iniThy = emptyThy { keepE = keepUpToLength sz
                     , closureLimit = 2
                     , canReduceTo = dwoBy (\e1 e2 -> e1 `cmp` e2 == GT)
@@ -147,15 +148,21 @@ theoryAndRepresentativesFromAtoms sz cmp keep (===) ds =
                     }
 
 -- considers a schema
-consider :: (Expr -> Expr -> Bool) -> Expr -> (Thy,[Expr]) -> (Thy,[Expr])
-consider (===) s (thy,ss)
-  | not (s === s) = (thy,ss++[s])  -- uncomparable type
-  | rehole (normalizeE thy (mostGeneral s)) `elem` ss = (thy,ss)
+consider :: (Expr -> Expr -> Bool) -> Int -> Expr -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
+consider (===) sz s (thy,sss)
+  | not (s === s) = (thy,sssWs)  -- uncomparable type
+  | rehole (normalizeE thy (mostGeneral s)) `elem` ss = (thy,sss)
   | otherwise =
     ( append thy $ equivalencesBetween (===) s s ++ eqs
-    , ss ++ [s | not $ any (\(e1,e2) -> unrepeatedVars e1 && unrepeatedVars e2) eqs])
+    , if any (\(e1,e2) -> unrepeatedVars e1 && unrepeatedVars e2) eqs
+        then sss
+        else sssWs )
     where
+    ss = uptoT sz sss
+    sssWs = sss \/ wcons0 sz s
     eqs = concatMap (equivalencesBetween (===) s) $ filter (s ===) ss
+    wcons0 :: Int -> a -> [[a]]
+    wcons0 n s = replicate (n-1) [] ++ [[s]]
 
 distinctFromSchemas :: Instances -> Int -> Int -> Thy -> [Expr] -> [Expr]
 distinctFromSchemas ti nt nv thy = map C.rep . classesFromSchemas ti nt nv thy

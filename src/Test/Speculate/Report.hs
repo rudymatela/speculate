@@ -34,7 +34,8 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let ats = types args
   let ts = filter (isListable ti) ats
   let ds' = atoms args
-  let (thy,es) = theoryAndRepresentativesFromAtoms sz (compareExpr args) (keepExpr args) (timeout args .: equal ti n) ds'
+  let (thy,ess) = theoryAndRepresentativesFromAtoms sz (compareExpr args) (keepExpr args) (timeout args .: equal ti n) ds'
+  let es = uptoT sz ess
   putArgs args
   when (showConstants args)    . putStrLn . unlines $ map show ds'
   warnMissingInstances ti ats
