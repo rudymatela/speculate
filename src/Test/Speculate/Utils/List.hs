@@ -30,6 +30,7 @@ module Test.Speculate.Utils.List
   , takeGreaterHalf
   , accum
   , partitionByMarkers
+  , (!)
   )
 where
 
@@ -215,3 +216,10 @@ partitionByMarkers y z xs =
       | x == y -> let (ys',zs') = partitionByMarkers y z zs in (ys++ys',zs')
       | x == z -> let (zs',ys') = partitionByMarkers z y zs in (ys++ys',zs')
       | otherwise -> error "partitionByMarkers: the impossible happened, this is definitely a bug.  See source."
+
+-- Total version of !! that works on lists of lists (returning [] for index not
+-- found).
+(!) :: [[a]] -> Int -> [a]
+(xs:xss) ! 0  =  xs
+(xs:xss) ! n  =  xss ! (n-1)
+[]       ! n  =  []
