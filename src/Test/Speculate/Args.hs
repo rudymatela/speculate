@@ -176,9 +176,10 @@ atoms args = nubSort (map holeOfTy ts)
      `union` allConstants args
      `union` [showConstant True  | showConds || showDot args]
      `union` [showConstant False | showConds || showDot args]
-     `union` (nubSort . catMaybes) [eqE (computeInstances args) t | t <- ts, showConds]
+     `union` (nubSort . catMaybes) [eqE is t | showConds, t <- ts]
   where
   ts = types args
+  is = computeInstances args
   showConds = reallyShowConditions args
 
 types :: Args -> [TypeRep]
