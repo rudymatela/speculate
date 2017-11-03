@@ -171,12 +171,12 @@ reallyShowConditions :: Args -> Bool
 reallyShowConditions args = showConditions args
                          && boolTy `elem` map (finalResultTy . typ) (allConstants args)
 
-atoms :: Args -> [Expr]
-atoms args = nubSort (map holeOfTy ts)
-     `union` allConstants args
-     `union` [showConstant True  | showConds || showDot args]
-     `union` [showConstant False | showConds || showDot args]
-     `union` (nubSort . catMaybes) [eqE is t | showConds, t <- ts]
+atoms :: Args -> [[Expr]]
+atoms args = [ nubSort (map holeOfTy ts)
+       `union` allConstants args
+       `union` [showConstant True  | showConds || showDot args]
+       `union` [showConstant False | showConds || showDot args]
+       `union` (nubSort . catMaybes) [eqE is t | showConds, t <- ts] ]
 -- TODO:
 --        \/ foldr (\/) [tiersE is t | t <- ts]
 -- somehow discard repetitions here, make it not very slow
@@ -224,7 +224,10 @@ compareExpr args = compareComplexityThen (lexicompareBy cmp)
   where
   e1 `cmp` e2 | arity e1 == 0 && arity e2 /= 0 = LT
   e1 `cmp` e2 | arity e1 /= 0 && arity e2 == 0 = GT
-  e1 `cmp` e2 = compareIndex (atoms args) e1 e2 <> e1 `compare` e2
+  e1 `cmp` e2 = compareIndex (concat $ atoms args) e1 e2 <> e1 `compare` e2
+-- NOTE: "concat $ atoms args" may be an infinite list.  This function assumes
+-- that the symbols will appear on the list eventually for termination.  If I
+-- am correct this ivariant is assured by the rest of the code.
 
 -- | A special 'Expr' value.
 --   When provided on the 'constants' list, 

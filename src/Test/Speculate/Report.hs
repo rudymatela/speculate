@@ -33,11 +33,12 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let ti = computeInstances args
   let ats = types args
   let ts = filter (isListable ti) ats
-  let ds' = atoms args
-  let (thy,ess) = theoryAndRepresentativesFromAtoms sz (compareExpr args) (keepExpr args) (timeout args .: equal ti n) ds'
+  let dss = atoms args
+  let (thy,ess) = theoryAndRepresentativesFromAtoms sz (compareExpr args) (keepExpr args) (timeout args .: equal ti n) dss
   let es = uptoT sz ess
   putArgs args
-  when (showConstants args)    . putStrLn . unlines $ map show ds'
+  -- TODO: somehow show the tail of dss, maybe use "..."
+  when (showConstants args)    . putStrLn . unlines $ map show (head dss)
   warnMissingInstances ti ats
   let ies = instanceErrors ti n ats
   unless (null ies) $ do

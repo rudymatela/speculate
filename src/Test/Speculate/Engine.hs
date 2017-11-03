@@ -118,10 +118,10 @@ rehole e = e
 -- >     , closureLimit = 2
 -- >     , keepE = keepUpToLength 5
 -- >     }
-theoryFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> Thy
+theoryFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [[Expr]] -> Thy
 theoryFromAtoms sz cmp keep (===) = fst . theoryAndRepresentativesFromAtoms sz cmp keep (===)
 
-representativesFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> [[Expr]]
+representativesFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [[Expr]] -> [[Expr]]
 representativesFromAtoms sz cmp keep (===) = snd . theoryAndRepresentativesFromAtoms sz cmp keep (===)
 
 expand :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> Int -> [Expr] -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
@@ -139,11 +139,10 @@ expand keep (===) sz ss (thy,sss) = (complete *** id)
 theoryAndRepresentativesFromAtoms :: Int
                                   -> (Expr -> Expr -> Ordering)
                                   -> (Expr -> Bool) -> (Expr -> Expr -> Bool)
-                                  -> [Expr] -> (Thy,[[Expr]])
-theoryAndRepresentativesFromAtoms sz cmp keep (===) ds =
+                                  -> [[Expr]] -> (Thy,[[Expr]])
+theoryAndRepresentativesFromAtoms sz cmp keep (===) dss =
   chain [expand keep (===) sz' (dss ! (sz'-1)) | sz' <- reverse [1..sz]] (iniThy,[])
   where
-  dss = [ds]
   iniThy = emptyThy { keepE = keepUpToLength sz
                     , closureLimit = 2
                     , canReduceTo = dwoBy (\e1 e2 -> e1 `cmp` e2 == GT)
