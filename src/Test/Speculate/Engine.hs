@@ -124,10 +124,13 @@ theoryFromAtoms sz cmp keep (===) = fst . theoryAndRepresentativesFromAtoms sz c
 representativesFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [Expr] -> [[Expr]]
 representativesFromAtoms sz cmp keep (===) = snd . theoryAndRepresentativesFromAtoms sz cmp keep (===)
 
-expand :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> Int -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
-expand keep (===) sz (thy,sss) = foldl (flip $ consider (===) sz) (thy,sss)
-                               . concat . zipWithReverse (*$*)
-                               $ take sz sss
+expand :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> Int -> [Expr] -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
+expand keep (===) sz ss (thy,sss) = (complete *** id)
+                                  . foldl (flip $ consider (===) sz) (thy,sss)
+                                  . concat
+                                  . (ss:)
+                                  . zipWithReverse (*$*)
+                                  $ take sz sss
   where
   fes *$* xes = filter keep $ catMaybes [fe $$ xe | fe <- fes, xe <- xes]
 
@@ -138,9 +141,9 @@ theoryAndRepresentativesFromAtoms :: Int
                                   -> (Expr -> Bool) -> (Expr -> Expr -> Bool)
                                   -> [Expr] -> (Thy,[[Expr]])
 theoryAndRepresentativesFromAtoms sz cmp keep (===) ds =
-  chain (map ((complete *** id) .: expand keep (===)) $ reverse [2..sz]) dsThy
+  chain [expand keep (===) sz' (dss ! (sz'-1)) | sz' <- reverse [1..sz]] (iniThy,[])
   where
-  dsThy = (complete *** id) $ foldl (flip $ consider (===) 1) (iniThy,[]) ds
+  dss = [ds]
   iniThy = emptyThy { keepE = keepUpToLength sz
                     , closureLimit = 2
                     , canReduceTo = dwoBy (\e1 e2 -> e1 `cmp` e2 == GT)
