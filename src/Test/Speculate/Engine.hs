@@ -14,6 +14,7 @@ module Test.Speculate.Engine
   , mostSpecific
 
   , theoryAndRepresentativesFromAtoms
+  , representativesFromAtoms
   , theoryFromAtoms
   , equivalencesBetween
 
