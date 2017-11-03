@@ -38,7 +38,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let es = uptoT sz ess
   putArgs args
   -- TODO: somehow show the tail of dss, maybe use "..."
-  when (showConstants args)    . putStrLn . unlines $ map show (head dss)
+  when (showConstants args) . putStrLn . unlines $ map show (head dss)
   warnMissingInstances ti ats
   let ies = instanceErrors ti n ats
   unless (null ies) $ do
