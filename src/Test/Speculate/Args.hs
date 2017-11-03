@@ -177,6 +177,11 @@ atoms args = nubSort (map holeOfTy ts)
      `union` [showConstant True  | showConds || showDot args]
      `union` [showConstant False | showConds || showDot args]
      `union` (nubSort . catMaybes) [eqE is t | showConds, t <- ts]
+-- TODO:
+--        \/ foldr (\/) [tiersE is t | t <- ts]
+-- somehow discard repetitions here, make it not very slow
+-- but I don't have to care that much, we aren't going past tier 7 anytime
+-- soon.
   where
   ts = types args
   is = computeInstances args
