@@ -43,6 +43,7 @@ module Test.Speculate.Expr.Core
   -- * Properties of expressions
   , lengthE
   , depthE
+  , countHoles
   , countVar
   , countVars
   , unrepeatedVars
@@ -399,6 +400,10 @@ lengthE _           = 1
 depthE :: Expr -> Int
 depthE e@(_:$_) = 1 + maximum (map depthE $ unfoldApp e)
 depthE _        = 1
+
+-- | Number of occurrences of holes with a given type.
+countHoles :: TypeRep -> Expr -> Int
+countHoles t = count t . holes
 
 -- | Number of occurrences of a given variable name.
 -- In term rewriting terms: |s|_x
