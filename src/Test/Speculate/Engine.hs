@@ -104,14 +104,10 @@ expansionsOfType t vs e = [ fill e [Var v t | v <- vs']
 -- > , (y + y) + ord d :: Int ]
 expansions :: Instances -> Int -> Expr -> [Expr]
 expansions ti n e =
-  [ foldl fill e [ [ Var (names ti t !! i) t | i <- is ]
-                 | (t,is) <- fs ]
-  | fs <- productsList [[(t,is) | is <- foo c n] | (t,c) <- counts (holes e)] ]
-  where
-  foo :: Int -> Int -> [[Int]]
-  foo 0 nVars = [[]]
-  foo nPos nVars = [i:is | i <- [0..(nVars-1)], is <- foo (nPos-1) nVars]
--- TODO: test expansions, put foo together with iss
+  case counts (holes e) of
+    []      -> [e]
+    (t,c):_ -> expansions ti n `concatMap`
+               expansionsOfType t (take n (names ti t)) e
 
 -- | List the most general assignment of holes in an expression
 mostGeneral :: Expr -> Expr
