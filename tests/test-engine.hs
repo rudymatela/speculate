@@ -82,6 +82,24 @@ tests n =
   ,       subConsequence emptyThy [] (abs' xx -==- abs' yy) (abs' xx) (abs' yy)
   , not $ subConsequence emptyThy [] (abs' xx -<=- abs' yy) (abs' xx) (abs' yy)
   , not $ subConsequence emptyThy [] (abs' xx -==- one) (xx -+- abs' xx) zero
+
+  , holds n $ \e -> length (expansions preludeInstances 1 e) == 1
+
+  , expansions preludeInstances 2 (i_ -+- i_)
+    == [ xx -+- xx
+       , xx -+- yy
+       , yy -+- xx
+       , yy -+- yy ]
+
+  , expansions preludeInstances 2 (i_ -+- i_ -+- ord' c_)
+    == [ xx -+- xx -+- ord' cc
+       , xx -+- xx -+- ord' dd
+       , xx -+- yy -+- ord' cc
+       , xx -+- yy -+- ord' dd
+       , yy -+- xx -+- ord' cc
+       , yy -+- xx -+- ord' dd
+       , yy -+- yy -+- ord' cc
+       , yy -+- yy -+- ord' dd ]
   ]
   where
   x === y = equal preludeInstances 1000 x y

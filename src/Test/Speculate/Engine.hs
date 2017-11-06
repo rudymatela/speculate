@@ -79,6 +79,18 @@ vassignments e =
 vassignmentsEqn :: (Expr,Expr) -> [(Expr,Expr)]
 vassignmentsEqn = filter (uncurry (/=)) . map unEquation . vassignments . uncurry phonyEquation
 
+-- | List all variable assignments for a given number of variables.
+--   It only assign variables to holes (variables with "" as its name).
+--
+-- > > expansions preludeInstances 2 '(_ + _ + ord _)
+-- > [ (x + x) + ord c :: Int
+-- > , (x + x) + ord d :: Int
+-- > , (x + y) + ord c :: Int
+-- > , (x + y) + ord d :: Int
+-- > , (y + x) + ord c :: Int
+-- > , (y + x) + ord d :: Int
+-- > , (y + y) + ord c :: Int
+-- > , (y + y) + ord d :: Int ]
 expansions :: Instances -> Int -> Expr -> [Expr]
 expansions ti n e =
   [ foldl fill e [ [ Var (names ti t !! i) t | i <- is ]
