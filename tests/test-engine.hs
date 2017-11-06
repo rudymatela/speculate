@@ -100,6 +100,12 @@ tests n =
        , yy -+- xx -+- ord' dd
        , yy -+- yy -+- ord' cc
        , yy -+- yy -+- ord' dd ]
+
+  , expansionsOfType intTy ["x","y"] (i_ -+- i_ -+- ord' c_)
+    == [ xx -+- xx -+- ord' c_
+       , xx -+- yy -+- ord' c_
+       , yy -+- xx -+- ord' c_
+       , yy -+- yy -+- ord' c_ ]
   ]
   where
   x === y = equal preludeInstances 1000 x y

@@ -10,6 +10,7 @@
 module Test.Speculate.Engine
   ( vassignments
   , expansions
+  , expansionsOfType
   , mostGeneral
   , mostSpecific
 
@@ -78,6 +79,16 @@ vassignments e =
 
 vassignmentsEqn :: (Expr,Expr) -> [(Expr,Expr)]
 vassignmentsEqn = filter (uncurry (/=)) . map unEquation . vassignments . uncurry phonyEquation
+
+-- | List all variable assignments for a given type and list of variables.
+expansionsOfType :: TypeRep -> [String] -> Expr -> [Expr]
+expansionsOfType t vs e = [ fill e [Var v t | v <- vs']
+                          | vs' <- placements (countHoles t e) vs ]
+  where
+  placements :: Int -> [a] -> [[a]]
+  placements 0 xs = [[]]
+  placements n xs = [y:ys | y <- xs, ys <- placements (n-1) xs]
+
 
 -- | List all variable assignments for a given number of variables.
 --   It only assign variables to holes (variables with "" as its name).
