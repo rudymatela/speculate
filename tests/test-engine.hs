@@ -108,6 +108,21 @@ tests n =
        , yy -+- yy -+- ord' c_ ]
 
   , expansionsOfType intTy [] (i_ -+- i_ -+- ord' c_) == []
+
+  , expansionsWith [xx, yy]     (i_ -+- i_ -+- ord' c_)
+    == [ xx -+- xx -+- ord' c_
+       , xx -+- yy -+- ord' c_
+       , yy -+- xx -+- ord' c_
+       , yy -+- yy -+- ord' c_ ]
+
+  , expansionsWith [cc]         (i_ -+- i_ -+- ord' c_)
+    == [ i_ -+- i_ -+- ord' cc ]
+
+  , expansionsWith [xx, yy, cc] (i_ -+- i_ -+- ord' c_)
+    == [ xx -+- xx -+- ord' cc
+       , xx -+- yy -+- ord' cc
+       , yy -+- xx -+- ord' cc
+       , yy -+- yy -+- ord' cc ]
   ]
   where
   x === y = equal preludeInstances 1000 x y

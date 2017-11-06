@@ -11,6 +11,7 @@ module Test.Speculate.Engine
   ( vassignments
   , expansions
   , expansionsOfType
+  , expansionsWith
   , mostGeneral
   , mostSpecific
 
@@ -88,6 +89,16 @@ expansionsOfType t vs e = [ fill e [Var v t | v <- vs']
   placements :: Int -> [a] -> [[a]]
   placements 0 xs = [[]]
   placements n xs = [y:ys | y <- xs, ys <- placements (n-1) xs]
+
+expansionsWith :: [Expr] -> Expr -> [Expr]
+expansionsWith es = ew (collectWith typ nam (,) es)
+  where
+  nam (Var s _) = s
+  typ (Var _ t) = t
+  ew :: [(TypeRep,[String])] -> Expr -> [Expr]
+  ew []            e = [e]
+  ew ((t,ns):tnss) e = ew tnss
+           `concatMap` expansionsOfType t ns e
 
 -- | List all variable assignments for a given number of variables.
 --   It only assign variables to holes (variables with "" as its name).
