@@ -23,6 +23,7 @@ module Test.Speculate.Engine
   , consider
   , distinctFromSchemas
   , classesFromSchemas
+  , classesFromSchemasAndVariables
 
   , semiTheoryFromThyAndReps
 
@@ -227,6 +228,16 @@ classesFromSchema :: Instances -> Thy -> Int -> Expr -> [Class Expr]
 classesFromSchema ti thy n = C.mergesOn (normalizeE thy)
                            . map C.fromRep
                            . expansions ti n
+
+classesFromSchemasAndVariables :: Thy -> [Expr] -> [Expr] -> [Class Expr]
+classesFromSchemasAndVariables thy vs = C.mergesOn (normalizeE thy)
+                                      . concatMap (classesFromSchemaAndVariables thy vs)
+
+classesFromSchemaAndVariables :: Thy -> [Expr] -> Expr -> [Class Expr]
+classesFromSchemaAndVariables thy vs = C.mergesOn (normalizeE thy)
+                                     . map C.fromRep
+                                     . filter (null . holes)
+                                     . expansionsWith vs
 
 -- Return relevant equivalences between holed expressions:
 --
