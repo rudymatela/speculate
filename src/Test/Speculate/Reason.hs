@@ -172,7 +172,6 @@ reduceRoot :: Expr -> Rule -> Maybe Expr
 reduceRoot e (e1,e2) = (e2 `assigning`) <$> (e `match` e1)
 
 -- Lists all reductions by one rule, note that reductions may be repeated.
--- @nub . sort@ to remove repetitions
 reductions1 :: Expr -> Rule -> [Expr]
 reductions1 e (l,_) | lengthE l > lengthE e = [] -- optional optimization
 reductions1 e@(e1 :$ e2) r = maybeToList (e `reduceRoot` r)

@@ -31,6 +31,7 @@ module Test.Speculate.Utils.List
   , accum
   , partitionByMarkers
   , (!)
+  , halve
   )
 where
 
@@ -54,11 +55,20 @@ firsts :: Eq a => [a] -> [a]
 firsts [] = []
 firsts (x:xs) = x : firsts (filter (/= x) xs)
 
+halve :: [a] -> ([a],[a])
+halve [] = ([],[])
+halve xs = (take h xs, drop h xs)
+  where
+  h = length xs `div` 2
+
 nubSort :: Ord a => [a] -> [a]
-nubSort = nub . sort
+nubSort = nubSortBy compare
 
 nubSortBy :: (a -> a -> Ordering) -> [a] -> [a]
-nubSortBy cmp = nubBy (\x y -> x `cmp` y == EQ) . sortBy cmp
+nubSortBy cmp xs  =
+  case halve xs of
+  ([],zs) -> zs
+  (ys,zs) -> nubMergeBy cmp (nubSortBy cmp ys) (nubSortBy cmp zs)
 
 nubMergeBy :: (a -> a -> Ordering) -> [a] -> [a] -> [a]
 nubMergeBy cmp (x:xs) (y:ys) = case x `cmp` y of
@@ -186,7 +196,7 @@ discardByOthers f = d []
               | otherwise      = d (xs++[y]) ys
 
 allUnique :: Ord a => [a] -> Bool
-allUnique xs = nub (sort xs) == sort xs
+allUnique xs = nubSort xs == sort xs
 
 chain :: [a -> a] -> a -> a
 chain = foldr (.) id

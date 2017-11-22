@@ -127,6 +127,14 @@ tests n =
   , holds n $ \xs ys -> strictlyOrdered xs && strictlyOrdered ys
                     ==> xs +++ ys == nubSort (xs ++ ys :: [Int])
 
+  , holds n $ nubSort === nub . sort -:> [int]
+
+  , halve []        == ([],[]::[Int])
+  , halve [1]       == ([],[1])
+  , halve [1,2]     == ([1],[2])
+  , halve [1,2,3]   == ([1],[2,3])
+  , halve [1,2,3,4] == ([1,2],[3,4])
+
   , holds n $ \n xss -> 0 <  n && n <  length xss ==> xss ! n == (xss !! n :: [Int])
   , holds n $ \n xss -> 0 >= n && n >= length xss ==> xss ! n == ([] :: [Int])
   ]
