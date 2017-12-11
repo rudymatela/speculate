@@ -76,6 +76,8 @@ cnormalize chy@Chy{cequations = ceqs, unThy = thy} ce = n
           (e':_) -> n $ normalize thy e'
 -- TODO: fix silly code structure in cnormalize!
 
+-- Checks if two expressions are equivalent under a condition
+-- using the conditional theory.
 cequivalent :: Chy -> Expr -> Expr -> Expr -> Bool
 cequivalent chy ce e1 e2 =
   equivalent (unThy chy) (cnormalize chy ce e1) (cnormalize chy ce e2)
