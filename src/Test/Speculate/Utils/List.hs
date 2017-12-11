@@ -10,7 +10,7 @@
 -- Utilities for manipulating lists.
 module Test.Speculate.Utils.List
   ( pairsThat
-  , count, counts, countsBy
+  , count, counts, countsOn, countsBy
   , firsts
   , nubSort, nubSortBy
   , (+++), nubMerge, nubMergeBy, nubMergeOn, nubMerges, nubMergesBy, nubMergeMap
@@ -37,19 +37,13 @@ where
 
 import Data.List
 import Data.Function (on)
+import Test.LeanCheck.Stats
 
 pairsThat :: (a -> a -> Bool) -> [a] -> [(a,a)]
 pairsThat p xs = [(x,y) | x <- xs, y <- xs, p x y]
 
 count :: Eq a => a -> [a] -> Int
 count x = length . filter (==x)
-
-counts :: Eq a => [a] -> [(a,Int)]
-counts [] = []
-counts (x:xs) = (x,1+count x xs) : counts (filter (/= x) xs)
-
-countsBy :: Eq b => (a -> b) -> [a] -> [(b,Int)]
-countsBy f = counts . map f
 
 firsts :: Eq a => [a] -> [a]
 firsts [] = []

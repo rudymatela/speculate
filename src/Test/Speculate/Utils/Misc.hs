@@ -18,6 +18,7 @@ import Data.Ratio
 import Data.Tuple
 import Test.Speculate.Utils.String
 import Test.Speculate.Utils.List
+import Test.LeanCheck.Stats
 
 -- easy debug:
 undefined1 :: a
@@ -43,31 +44,10 @@ thn EQ o = o
 thn o  _ = o
 infixr 8 `thn`
 
--- TODO: Add a function like this on LeanCheck?  Not working exactly like
--- this, but something like:
---
--- > > classifyBy somefoo
--- > Int:    9988  99%
--- > Bool:     10   0%
--- > Char:      2   0%
--- > total: 10000 100%
---
--- > > preconditionInfo [precond_1, precond_2, precond_3]
--- > precond_1:    3   0%
--- > precond_2:  100   1%
--- > precond_3: 2345  23%
---
--- > > preconditionInfoT [...]
--- > tier           cond1      cond2      cond3
--- >   0    9       100 1%     303 2%     3821 4%
--- >   1   56       100 1%     303 2%     3821 4%
--- >   2  102       100 1%     303 2%     3821 4%
--- >   3  400       100 1%     303 2%     3821 4%
--- >   4  713       100 1%     303 2%     3821 4%
--- > all 1232       100 1%     303 2%     3821 4%
+-- TODO: Remove this function in favour of LeanCheck's classStats
 reportCountsBy :: (Eq b, Show b) => (a -> b) -> [a] -> IO ()
 reportCountsBy f xs = putStrLn . unlines
-                    . map showCount $ countsBy f xs
+                    . map showCount $ countsOn f xs
   where
   len = length xs
   showCount (x,n) = unquote (show x) ++ ": "
