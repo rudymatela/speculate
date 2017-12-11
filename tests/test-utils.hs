@@ -26,9 +26,6 @@ tests n =
                       ==> strictlyOrdered (nubMerge xs (ys::[Int]))
   , and [ nubMerge xs xs == xs | n <- [0..10], let xs = [0..n] ]
 
-  , holds 100 $ \xss -> ordered . concat $ discardLaterT (<=) (xss::[[Int]])
-  , (length . concat $ discardLaterT (<=) [[1..100]]) == 100
-
   , collectOn snd [(1,2),(2,2),(2,3),(3,3)] == [[(1,2),(2,2)],[(2,3),(3,3)]]
   , collectOn fst [(1,2),(2,2),(2,3),(3,3)] == [[(1,2)],[(2,2),(2,3)],[(3,3)]]
   , collectOn (uncurry (+)) [(1,2),(2,2),(2,3),(3,3)] == [[(1,2)],[(2,2)],[(2,3)],[(3,3)]]

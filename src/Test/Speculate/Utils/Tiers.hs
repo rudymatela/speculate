@@ -10,9 +10,6 @@
 module Test.Speculate.Utils.Tiers
   ( productsList
   , mapTMaybe
-  , discardT
-  , discardLaterT
-  , partitionT
   , uptoT
   , filterTS
   , discardTS
@@ -20,6 +17,7 @@ module Test.Speculate.Utils.Tiers
 where
 
 import Test.LeanCheck
+import Test.LeanCheck.Tiers
 import Data.Maybe (mapMaybe)
 
 productsList :: [[a]] -> [[a]]
@@ -27,9 +25,6 @@ productsList = concat . products . map toTiers
 
 mapTMaybe :: (a -> Maybe b) -> [[a]] -> [[b]]
 mapTMaybe f = map (mapMaybe f)
-
-discardT :: (a -> Bool) -> [[a]] -> [[a]]
-discardT p = filterT (not . p)
 
 partitionT :: (a -> Bool) -> [[a]] -> ([[a]],[[a]])
 partitionT p xss = (filterT p xss, discardT p xss)
@@ -46,9 +41,3 @@ filterTS p = fts 0
 
 discardTS :: (Int -> a -> Bool) -> [[a]] -> [[a]]
 discardTS p = filterTS ((not .) . p)
-
-discardLaterT :: (a -> a -> Bool) -> [[a]] -> [[a]]
-discardLaterT d []           = []
-discardLaterT d ([]:xss)     = [] : discardLaterT d xss
-discardLaterT d ((x:xs):xss) = [[x]]
-                            \/ discardLaterT d (discardT (`d` x) (xs:xss))
