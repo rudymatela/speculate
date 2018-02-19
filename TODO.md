@@ -9,6 +9,10 @@ Warning: I tend to ramble...
 current
 -------
 
+* improve out-of-the-box support for functions as data values (see `eg/fun.hs`)
+
+* add fun0 example, where functions are not instances of Eq and Ord
+
 * consistency: rename semi to inqualities everywhere.
 
 * improve printing by separating variables, constants and background constants.
