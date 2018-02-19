@@ -26,6 +26,7 @@ MOSTEG = \
   eg/binarytree0 \
   eg/colour \
   eg/digraphs \
+  eg/fun \
   eg/list \
   eg/length \
   eg/zip \
