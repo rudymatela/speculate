@@ -20,9 +20,3 @@ main = speculate args
       , constant ">=>"    ((>=>) :: (A -> [B]) -> (B -> [C]) -> (A -> [C]))
       ]
   }
-
--- TODO: make typeInfoF, which will not need typeclass instances
--- I actually should provide a selection of functions on each type!
--- So not only I enumerate listsOfPairs but also others
--- (maybe mutate my original seed functions for each type)
--- another option is to generate functions from holed expressions themselves!
