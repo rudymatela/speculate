@@ -1,25 +1,14 @@
 import Test.Speculate
+import Test.Speculate.Function
 
 import Control.Monad ((>=>))
-
-import Test.LeanCheck
-import Test.LeanCheck.Function
-import Test.LeanCheck.Error (errorToNothing)
-import Test.LeanCheck.Utils
-import Data.Function (on)
 
 type A = Int
 type B = Int
 type C = Int
 
-funToList :: Listable a => (a -> b) -> [Maybe b]
-funToList f = map (errorToNothing . f) list
-
-instance (Listable a, Eq b) => Eq (a -> b) where
-  (==) = (==) `on` (take 100 . funToList)
-
-instance (Listable a, Ord b) => Ord (a -> b) where
-  compare = compare `on` (take 100 . funToList)
+instance (Listable a, Eq b) => Eq (a -> b)    where (==)    = areEqualFor 100
+instance (Listable a, Ord b) => Ord (a -> b)  where compare = compareFor  100
 
 main :: IO ()
 main = speculate args

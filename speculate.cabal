@@ -37,6 +37,7 @@ source-repository this
 library
   exposed-modules: Test.Speculate
                  , Test.Speculate.Args
+                 , Test.Speculate.Function
                  , Test.Speculate.Report
                  , Test.Speculate.Engine
                  , Test.Speculate.Expr
