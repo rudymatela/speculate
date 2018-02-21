@@ -1,14 +1,11 @@
 import Test.Speculate
-import Test.Speculate.Function
+import Test.Speculate.Function.A100
 
 import Control.Monad ((>=>))
 
 type A = Int
 type B = Int
 type C = Int
-
-instance (Listable a, Eq b) => Eq (a -> b)    where (==)    = areEqualFor 100
-instance (Listable a, Ord b) => Ord (a -> b)  where compare = compareFor  100
 
 main :: IO ()
 main = speculate args

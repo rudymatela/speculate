@@ -1,8 +1,5 @@
 import Test.Speculate
-import Test.Speculate.Function
-
-instance (Listable a, Eq b) => Eq (a -> b)    where (==)    = areEqualFor 100
-instance (Listable a, Ord b) => Ord (a -> b)  where compare = compareFor  100
+import Test.Speculate.Function.A100
 
 main :: IO ()
 main = speculate args
