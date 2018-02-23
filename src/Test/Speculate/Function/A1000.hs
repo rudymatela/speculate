@@ -8,7 +8,7 @@
 --
 -- This module exports a Listable instance for functions along with two toy Eq
 -- and Ord instances for functions based on 1000 sample return values.
-module Test.Speculate.Function.A100 () where
+module Test.Speculate.Function.A1000 () where
 
 import Test.Speculate.Function
 
