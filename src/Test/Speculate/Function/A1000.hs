@@ -10,6 +10,7 @@
 -- and Ord instances for functions based on 1000 sample return values.
 module Test.Speculate.Function.A1000 () where
 
+import Test.Speculate
 import Test.Speculate.Function
 
 instance (Listable a, Eq b) => Eq (a -> b) where
