@@ -101,7 +101,10 @@ legacy-test-via-cabal:
 prepare-test:
 	cabal --ignore-sandbox install regex-tdfa cmdargs leancheck algebraic-graphs pretty-compact
 
-prepare-legacy-test: prepare-legacy-test-8.0 prepare-legacy-test-7.10 prepare-legacy-test-7.8
+prepare-legacy-test: \
+  prepare-legacy-test-8.0 \
+  prepare-legacy-test-7.10 \
+  prepare-legacy-test-7.8
 
 prepare-legacy-test-8.0:
 	cabal-ghc-8.0 update
