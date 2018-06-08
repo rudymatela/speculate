@@ -5,7 +5,7 @@ import Test.LeanCheck
 import Data.Function (on)
 import Data.List (isPrefixOf)
 
-import Text.PrettyPrint
+import Text.PrettyPrint as P
 
 deriving instance Typeable Doc -- for GHC < 7.10
 
@@ -22,7 +22,7 @@ instance Ord Doc where
 instance Listable Doc where
   tiers = cons1 text
        \/ cons2 ($$)
-       \/ cons2 (<>)
+       \/ cons2 (P.<>)
        \/ cons2 nest
 
 main :: IO ()
@@ -32,7 +32,7 @@ main = speculate args
   , maxVars = 3
   , constants =
       [ constant "$$"       ($$)
-      , constant "<>"       (<>)
+      , constant "<>"       (P.<>)
       , constant "nest"     nest
       , background
       , constant "++"     $ (++) -:> string
