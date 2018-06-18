@@ -6,6 +6,8 @@
 **/log/
 .stack-work
 
+doc/
+
 **.prof
 **.swp
 **.hi
