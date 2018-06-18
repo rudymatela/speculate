@@ -65,10 +65,6 @@ QUICKEG = \
   eg/arith \
   eg/bool \
   eg/list
-LISTHS   = find src tests eg bench/*.hs -name \*.hs
-LISTLIBS = find src -name \*.hs
-HSS  = $(shell $(LISTHS))
-OBJS = $(shell $(LISTLIBS) | sed -e 's/hs$$/o/')
 
 all: mk/toplibs
 
@@ -183,12 +179,6 @@ qs-save-bench:
 
 ghci: tests/Test.ghci
 
-list-hs:
-	$(LISTHS)
-
-list-libs:
-	$(LISTLIBS)
-
 clean: clean-hi-o
 	rm -f $(TESTS) $(EG) eg/*.dot eg/*.pdf TAGS tags mk/toplibs
 	make clean -C bench/qs1
@@ -211,22 +201,6 @@ hlint:
 	  --ignore "Use second" \
 	  --ignore "Use ***" \
 	  src bench tests
-
-haddock: doc/index.html
-
-clean-haddock:
-	rm -f doc/*.{html,css,js,png,gif}
-
-upload-haddock:
-	@echo "use \`cabal upload -d' instead"
-	@echo "(but 1st: cabal install --only-dependencies --enable-documentation)"
-	@echo "(to just compile docs: cabal haddock --for-hackage)"
-
-doc/index.html: $(shell $(LISTLIBS))
-	./mk/haddock-i base template-haskell | xargs \
-	haddock --html $(HADDOCKFLAGS) --title=speculate \
-	  --optghc=-i$(GHCIMPORTDIRS) \
-	  -odoc $(shell $(LISTLIBS))
 
 include mk/haskell.mk
 
