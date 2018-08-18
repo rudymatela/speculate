@@ -97,16 +97,13 @@ Speculate is inspired by [QuickSpec].
 Like QuickSpec, Speculate uses testing to speculate equational laws about given
 Haskell functions.  There are some differences:
 
-    |                   | Speculate                 | QuickSpec             |
-    | ----------------: | ------------------------- | ----------------------|
-    | testing           | enumerative ([LeanCheck]) | random ([QuickCheck]) |
-    | equational laws   | yes (after completion)    | yes (as discovered)   |
-    | inequational laws | yes                       | no                    |
-    | conditional laws  | yes                       | restricted            |
-    | polymorphism      | no                        | yes                   |
-    | performance       | slower                    | faster                |
-
-For most examples, Speculate runs slower than QuickSpec 2 but faster than QuickSpec 1.
+* Speculate tests enumeratively using [LeanCheck],
+  QuickSpec tests randomly using [QuickCheck];
+* Speculate is able to report inequalities directly;
+* QuickSpec allows polymorphism, Speculate does not;
+* For most examples,
+  Speculate runs slower than QuickSpec 2
+  but faster than QuickSpec 1.
 
 
 More documentation
