@@ -2,9 +2,6 @@ import Test.Speculate
 
 import Data.Ratio
 
-rational :: Rational
-rational = undefined
-
 main :: IO ()
 main = speculate args
   { constants =

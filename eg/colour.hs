@@ -27,9 +27,6 @@ instance Listable Colour where
 colour :: Colour
 colour = undefined
 
-rational :: Rational
-rational = undefined
-
 main :: IO ()
 main = speculate args
   { instances =
