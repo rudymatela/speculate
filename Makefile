@@ -4,12 +4,12 @@
 # License:     3-Clause BSD  (see the file LICENSE)
 # Maintainer:  Rudy Matela <rudy@matela.com.br>
 GHCIMPORTDIRS = src:eg:tests
-GHCFLAGS = -O2 -dynamic #-prof -auto-all #-caf-all
+GHCFLAGS = -O2 $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic)
+# -prof -auto-all #-caf-all
 # When profiling is enabled, to get the cost centres with more than 6% time:
 #   $ ./eg/arith  +RTS -p -RTS
 #   $ cat arith.prof | grep -v ' [0-5].[0-9] ......$'
-HADDOCKFLAGS = --no-print-missing-docs \
-  $(shell grep -q "Arch Linux" /etc/lsb-release && echo --optghc=-dynamic)
+HADDOCKFLAGS = --no-print-missing-docs
 MAXTESTS = 4000
 MAXSIZE = -s4
 TESTS = \
