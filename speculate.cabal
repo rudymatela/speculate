@@ -28,6 +28,22 @@ extra-source-files: .gitignore
                   , bench/*.hs
                   , bench/list-c
                   , bench/minus-c
+                  , bench/qs1/*.hs
+                  , bench/qs1/Makefile
+                  , bench/qs1/*.out
+                  , bench/qs1/runtime-zero
+                  , bench/qs2/binarytree.out1
+                  , bench/qs2/binarytree.out2
+                  , bench/qs2/binarytree.out3
+                  , bench/qs2/binarytree.out4
+                  , bench/qs2/binarytree.out5
+                  , bench/qs2/binarytree.out6
+                  , bench/qs2/binarytree.runtime-zero
+                  , bench/qs2/*.hs
+                  , bench/qs2/Makefile
+                  , bench/qs2/*.out
+                  , bench/qs2/runtime-zero
+                  , bench/runtime-zero
                   , bin/compare-arith
                   , bin/compare-arithficial
                   , bin/compare-bool
