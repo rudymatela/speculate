@@ -10,11 +10,11 @@ case "$1" in
 esac
 
 test-model() {
-	$1 $sz | diff -rud $model/$2$sz - || exit 1
+	$1 $sz | diff -rud $model/$2$sz.out - || exit 1
 }
 
 update-test-model() {
-	$1 $sz > $model/$2$sz
+	$1 $sz > $model/$2$sz.out
 }
 
 tym() {
