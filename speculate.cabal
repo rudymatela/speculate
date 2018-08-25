@@ -23,32 +23,32 @@ cabal-version:       1.18
 extra-doc-files: README.md
                , TODO.md
 extra-source-files: .gitignore
+                  , bench/arith-c
+                  , bench/bool-c
+                  , bench/*.hs
+                  , bench/list-c
+                  , bench/minus-c
+                  , bin/compare-arith
+                  , bin/compare-arithficial
+                  , bin/compare-bool
+                  , bin/compare-with-qs
+                  , bin/run-heavy-regexes-benchmark
+                  , eg/*.hs
                   , Makefile
                   , mk/depend.mk
                   , mk/ghcdeps
                   , mk/haddock-i
                   , mk/haskell.mk
                   , stack.yaml
-                  , .travis.yml
-                  , bin/compare-arith
-                  , bin/compare-arithficial
-                  , bin/compare-bool
-                  , bin/compare-with-qs
-                  , bin/run-heavy-regexes-benchmark
-                  , tests/test-model
-                  , tests/test-sdist
-                  , tests/update-test-model
-                  , tests/model/*.out
                   , tests/benchmark
                   , tests/benchmark-cmp
                   , tests/benchmark-save
                   , tests/memory-benchmark
-                  , bench/*.hs
-                  , bench/arith-c
-                  , bench/bool-c
-                  , bench/list-c
-                  , bench/minus-c
-                  , eg/*.hs
+                  , tests/model/*.out
+                  , tests/test-model
+                  , tests/test-sdist
+                  , tests/update-test-model
+                  , .travis.yml
 
 tested-with: GHC==8.2, GHC==8.0, GHC==7.10, GHC==7.8, GHC==7.6, GHC==7.4
 
