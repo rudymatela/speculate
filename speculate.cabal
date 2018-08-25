@@ -43,6 +43,11 @@ extra-source-files: .gitignore
                   , tests/benchmark-cmp
                   , tests/benchmark-save
                   , tests/memory-benchmark
+                  , bench/*.hs
+                  , bench/arith-c
+                  , bench/bool-c
+                  , bench/list-c
+                  , bench/minus-c
                   , eg/*.hs
 
 tested-with: GHC==8.2, GHC==8.0, GHC==7.10, GHC==7.8, GHC==7.6, GHC==7.4
