@@ -35,7 +35,7 @@ before_install:
 
 script:
 - make && make test-without-extra-deps
-- make haddock HADDOCKFLAGS=
+- make haddock
 - travis_wait 40 cabal test expr
 - travis_wait 40 stack $STACKR --no-terminal --skip-ghc-check test speculate:test:expr
 
@@ -70,7 +70,7 @@ matrix:
     - cabal install Cabal==1.18.*
     - cabal install leancheck cmdargs
     script:
-    - make GHCFLAGS=-O2 && make test-without-extra-deps GHCFLAGS=-O2
+    - make && make test-without-extra-deps
     - make haddock HADDOCKFLAGS=
     - cabal test
   - ghc: '7.6'
@@ -84,7 +84,7 @@ matrix:
     - cabal install Cabal==1.18.*
     - cabal install leancheck cmdargs
     script:
-    - make GHCFLAGS=-O2 && make test-without-extra-deps GHCFLAGS=-O2
+    - make && make test-without-extra-deps
     - make haddock HADDOCKFLAGS=
     - cabal test
   - ghc: '7.4'
@@ -98,6 +98,6 @@ matrix:
     - cabal install Cabal==1.18.*
     - cabal install leancheck cmdargs
     script:
-    - make GHCFLAGS=-O2 && make test-without-extra-deps GHCFLAGS=-O2
+    - make && make test-without-extra-deps
     - make haddock HADDOCKFLAGS=
     - cabal test
