@@ -1,4 +1,8 @@
 # Makefile for Speculate
+#
+# Copyright:   (c) 2015-2018 Rudy Matela
+# License:     3-Clause BSD  (see the file LICENSE)
+# Maintainer:  Rudy Matela <rudy@matela.com.br>
 GHCIMPORTDIRS = src:eg:tests
 GHCFLAGS = -O2 -dynamic #-prof -auto-all #-caf-all
 # When profiling is enabled, to get the cost centres with more than 6% time:
