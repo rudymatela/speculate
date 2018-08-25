@@ -23,15 +23,20 @@ cabal-version:       1.18
 extra-doc-files: README.md
                , TODO.md
 extra-source-files: .gitignore
+                  , .travis.yml
+                  , Makefile
+                  , bench/*.hs
                   , bench/arith-c
                   , bench/bool-c
-                  , bench/*.hs
                   , bench/list-c
                   , bench/minus-c
                   , bench/qs1/*.hs
-                  , bench/qs1/Makefile
                   , bench/qs1/*.out
+                  , bench/qs1/Makefile
                   , bench/qs1/runtime-zero
+                  , bench/qs2/*.hs
+                  , bench/qs2/*.out
+                  , bench/qs2/Makefile
                   , bench/qs2/binarytree.out1
                   , bench/qs2/binarytree.out2
                   , bench/qs2/binarytree.out3
@@ -39,9 +44,6 @@ extra-source-files: .gitignore
                   , bench/qs2/binarytree.out5
                   , bench/qs2/binarytree.out6
                   , bench/qs2/binarytree.runtime-zero
-                  , bench/qs2/*.hs
-                  , bench/qs2/Makefile
-                  , bench/qs2/*.out
                   , bench/qs2/runtime-zero
                   , bench/runtime-zero
                   , bin/compare-arith
@@ -50,7 +52,6 @@ extra-source-files: .gitignore
                   , bin/compare-with-qs
                   , bin/run-heavy-regexes-benchmark
                   , eg/*.hs
-                  , Makefile
                   , mk/depend.mk
                   , mk/ghcdeps
                   , mk/haddock-i
@@ -64,7 +65,6 @@ extra-source-files: .gitignore
                   , tests/test-model
                   , tests/test-sdist
                   , tests/update-test-model
-                  , .travis.yml
 
 tested-with: GHC==8.2, GHC==8.0, GHC==7.10, GHC==7.8, GHC==7.6, GHC==7.4
 
