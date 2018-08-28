@@ -9,7 +9,7 @@ packages:
 - .
 
 extra-deps:
-- leancheck-0.7.2
+- leancheck-0.7.3
 
 flags: {}
 
