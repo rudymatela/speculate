@@ -37,8 +37,8 @@ script:
 - make && make test-without-extra-deps
 - make haddock
 - make test-sdist
-- travis_wait 40 cabal test expr -v --ghc-option=-O0
-- travis_wait 40 stack $STACKR --no-terminal --skip-ghc-check test speculate:test:expr -v --ghc-options=-O0
+- travis_wait 40 cabal test expr --ghc-option=-O0
+- travis_wait 40 stack $STACKR --no-terminal --skip-ghc-check test speculate:test:expr --ghc-options=-O0
 
 matrix:
   allow_failures:
