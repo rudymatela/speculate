@@ -1,3 +1,13 @@
 #!/bin/bash
 top=`dirname $0`
-$top/benchmark "$@" | tee bench/runtime-$HOSTNAME
+get-ghc-v() {
+	ghc --version | sed -e "s/.* version/GHC/"
+}
+get-leancheck-v() {
+	ghc-pkg list leancheck 2>/dev/null | grep leancheck | sed -e "s/^ *//"
+}
+(
+	get-ghc-v
+	get-leancheck-v
+	$top/benchmark "$@"
+) | tee bench/runtime-$HOSTNAME
