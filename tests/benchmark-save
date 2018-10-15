@@ -4,7 +4,10 @@ get-ghc-v() {
 	ghc --version | sed -e "s/.* version/GHC/"
 }
 get-leancheck-v() {
-	ghc-pkg list leancheck 2>/dev/null | grep leancheck | sed -e "s/^ *//"
+	ghc-pkg list leancheck 2>/dev/null |
+	grep " leancheck-" |
+	sed -e "s/^ *//" |
+	tail -1
 }
 (
 	get-ghc-v
