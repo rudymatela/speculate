@@ -6,7 +6,12 @@
 **/log/
 .stack-work
 
-doc/
+doc/*.html
+doc/*.css
+doc/*.js
+doc/*.png
+doc/*.gif
+doc/*.json
 
 **.prof
 **.swp
