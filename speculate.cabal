@@ -22,6 +22,7 @@ cabal-version:       1.18
 
 extra-doc-files: README.md
                , TODO.md
+               , doc/speculate.svg
 extra-source-files: .gitignore
                   , .travis.yml
                   , Makefile
