@@ -144,8 +144,8 @@ Speculate is also subject to a chapter in a [PhD Thesis (2017)].
 [hackage-version]: https://img.shields.io/hackage/v/speculate.svg
 [latest Speculate version from Hackage]: https://hackage.haskell.org/package/speculate
 [speculate-on-hackage]:                  https://hackage.haskell.org/package/speculate
-[stackage-lts-badge]:            http://stackage.org/package/speculate/badge/lts
-[stackage-nightly-badge]:        http://stackage.org/package/speculate/badge/nightly
-[speculate-on-stackage]:         http://stackage.org/package/speculate
-[speculate-on-stackage-lts]:     http://stackage.org/lts/package/speculate
-[speculate-on-stackage-nightly]: http://stackage.org/nightly/package/speculate
+[stackage-lts-badge]:            https://stackage.org/package/speculate/badge/lts
+[stackage-nightly-badge]:        https://stackage.org/package/speculate/badge/nightly
+[speculate-on-stackage]:         https://stackage.org/package/speculate
+[speculate-on-stackage-lts]:     https://stackage.org/lts/package/speculate
+[speculate-on-stackage-nightly]: https://stackage.org/nightly/package/speculate
