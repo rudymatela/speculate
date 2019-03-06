@@ -69,6 +69,8 @@ QUICKEG = \
   eg/arith \
   eg/bool \
   eg/list
+LIST_ALL_HSS = find src tests eg bench/*.hs -name \*.hs
+LIST_LIB_HSS = find src -name \*.hs
 
 all: mk/toplibs
 
