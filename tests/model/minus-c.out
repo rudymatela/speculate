@@ -5,7 +5,7 @@ max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: Int  (holes: Int)
+_ :: Int
 0 :: Int
 1 :: Int
 id :: Int -> Int
@@ -13,32 +13,32 @@ id :: Int -> Int
 negate :: Int -> Int
 (-) :: Int -> Int -> Int
 
-_ :: Int  (holes: Int)
+_ :: Int
 0 :: Int
 1 :: Int
-negate _ :: Int  (holes: Int)
+negate _ :: Int
 negate 1 :: Int
-_ + _ :: Int  (holes: Int, Int)
-_ + 1 :: Int  (holes: Int)
+_ + _ :: Int
+_ + 1 :: Int
 1 + 1 :: Int
-_ - _ :: Int  (holes: Int, Int)
-_ - 1 :: Int  (holes: Int)
-1 - _ :: Int  (holes: Int)
-negate (_ + _) :: Int  (holes: Int, Int)
-negate (_ + 1) :: Int  (holes: Int)
+_ - _ :: Int
+_ - 1 :: Int
+1 - _ :: Int
+negate (_ + _) :: Int
+negate (_ + 1) :: Int
 negate (1 + 1) :: Int
-_ + (_ + _) :: Int  (holes: Int, Int, Int)
-_ + (_ + 1) :: Int  (holes: Int, Int)
-_ + (1 + 1) :: Int  (holes: Int)
-_ + (_ - _) :: Int  (holes: Int, Int, Int)
-_ + (_ - 1) :: Int  (holes: Int, Int)
-_ + (1 - _) :: Int  (holes: Int, Int)
+_ + (_ + _) :: Int
+_ + (_ + 1) :: Int
+_ + (1 + 1) :: Int
+_ + (_ - _) :: Int
+_ + (_ - 1) :: Int
+_ + (1 - _) :: Int
 1 + (1 + 1) :: Int
-1 + (1 - _) :: Int  (holes: Int)
-_ - (_ + _) :: Int  (holes: Int, Int, Int)
-_ - (_ + 1) :: Int  (holes: Int, Int)
-_ - (1 + 1) :: Int  (holes: Int)
-1 - (_ + _) :: Int  (holes: Int, Int)
+1 + (1 - _) :: Int
+_ - (_ + _) :: Int
+_ - (_ + 1) :: Int
+_ - (1 + 1) :: Int
+1 - (_ + _) :: Int
 
 x :: Int
 0 :: Int

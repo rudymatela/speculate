@@ -138,11 +138,6 @@ instance Show Expr where
                 $ showsPrecExpr 0 e
                 . showString " :: "
                 . shows (typ e)
-                . showString (showHoles e)
-    where
-    showHoles e = case holes e of
-                    [] -> ""
-                    hs -> "  (holes: " ++ intercalate ", " (map show hs) ++ ")"
 
 showsPrecExpr :: Int -> Expr -> String -> String
 showsPrecExpr d (Constant s _) | isInfixedPrefix s = showString $ toPrefix s

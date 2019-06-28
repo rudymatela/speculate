@@ -5,7 +5,7 @@ max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: Bool  (holes: Bool)
+_ :: Bool
 False :: Bool
 True :: Bool
 not :: Bool -> Bool
@@ -14,27 +14,27 @@ not :: Bool -> Bool
 (==) :: Bool -> Bool -> Bool
 
 
-_ :: Bool  (holes: Bool)
+_ :: Bool
 False :: Bool
 True :: Bool
-not _ :: Bool  (holes: Bool)
-_ && _ :: Bool  (holes: Bool, Bool)
-_ || _ :: Bool  (holes: Bool, Bool)
-_ == _ :: Bool  (holes: Bool, Bool)
-not (_ && _) :: Bool  (holes: Bool, Bool)
-not (_ || _) :: Bool  (holes: Bool, Bool)
-not (_ == _) :: Bool  (holes: Bool, Bool)
-_ && not _ :: Bool  (holes: Bool, Bool)
-_ || not _ :: Bool  (holes: Bool, Bool)
-_ && (_ && _) :: Bool  (holes: Bool, Bool, Bool)
-_ && (_ || _) :: Bool  (holes: Bool, Bool, Bool)
-_ && _ == _ :: Bool  (holes: Bool, Bool, Bool)
-_ || _ && _ :: Bool  (holes: Bool, Bool, Bool)
-_ || (_ || _) :: Bool  (holes: Bool, Bool, Bool)
-_ || _ == _ :: Bool  (holes: Bool, Bool, Bool)
-_ == (_ && _) :: Bool  (holes: Bool, Bool, Bool)
-_ == (_ || _) :: Bool  (holes: Bool, Bool, Bool)
-_ == (_ == _) :: Bool  (holes: Bool, Bool, Bool)
+not _ :: Bool
+_ && _ :: Bool
+_ || _ :: Bool
+_ == _ :: Bool
+not (_ && _) :: Bool
+not (_ || _) :: Bool
+not (_ == _) :: Bool
+_ && not _ :: Bool
+_ || not _ :: Bool
+_ && (_ && _) :: Bool
+_ && (_ || _) :: Bool
+_ && _ == _ :: Bool
+_ || _ && _ :: Bool
+_ || (_ || _) :: Bool
+_ || _ == _ :: Bool
+_ == (_ && _) :: Bool
+_ == (_ || _) :: Bool
+_ == (_ == _) :: Bool
 
 p :: Bool
 False :: Bool

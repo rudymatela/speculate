@@ -5,8 +5,8 @@ max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: Integer  (holes: Integer)
-_ :: Ratio Integer  (holes: Ratio Integer)
+_ :: Integer
+_ :: Ratio Integer
 id :: Ratio Integer -> Ratio Integer
 abs :: Ratio Integer -> Ratio Integer
 negate :: Ratio Integer -> Ratio Integer

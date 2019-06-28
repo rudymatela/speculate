@@ -5,10 +5,10 @@ max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: Bool  (holes: Bool)
-_ :: Nat  (holes: Nat)
-_ :: Digraph Nat  (holes: Digraph Nat)
-_ :: [Nat]  (holes: [Nat])
+_ :: Bool
+_ :: Nat
+_ :: Digraph Nat
+_ :: [Nat]
 [] :: [Nat]
 elem :: Nat -> [Nat] -> Bool
 empty :: Digraph Nat

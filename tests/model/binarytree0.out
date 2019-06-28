@@ -5,9 +5,9 @@ max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: Bool  (holes: Bool)
-_ :: Word2  (holes: Word2)
-_ :: BT Word2  (holes: BT Word2)
+_ :: Bool
+_ :: Word2
+_ :: BT Word2
 Null :: BT Word2
 insert :: Word2 -> BT Word2 -> BT Word2
 delete :: Word2 -> BT Word2 -> BT Word2

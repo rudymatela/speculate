@@ -4,103 +4,103 @@ max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    3  (for inequational and conditional laws)
 
-_ :: Int  (holes: Int)
-_ :: [Int]  (holes: [Int])
+_ :: Int
+_ :: [Int]
 [] :: [Int]
 (:) :: Int -> [Int] -> [Int]
 (++) :: [Int] -> [Int] -> [Int]
 head :: [Int] -> Int
 tail :: [Int] -> [Int]
 
-_ :: Int  (holes: Int)
-_ :: [Int]  (holes: [Int])
+_ :: Int
+_ :: [Int]
 [] :: [Int]
-head _ :: Int  (holes: [Int])
+head _ :: Int
 head [] :: Int
-tail _ :: [Int]  (holes: [Int])
+tail _ :: [Int]
 tail [] :: [Int]
-head (tail _) :: Int  (holes: [Int])
+head (tail _) :: Int
 head (tail []) :: Int
-tail (tail _) :: [Int]  (holes: [Int])
+tail (tail _) :: [Int]
 tail (tail []) :: [Int]
-_:_ :: [Int]  (holes: Int, [Int])
-[_] :: [Int]  (holes: Int)
-_ ++ _ :: [Int]  (holes: [Int], [Int])
-head (tail (tail _)) :: Int  (holes: [Int])
+_:_ :: [Int]
+[_] :: [Int]
+_ ++ _ :: [Int]
+head (tail (tail _)) :: Int
 head (tail (tail [])) :: Int
-head (_ ++ _) :: Int  (holes: [Int], [Int])
-tail (tail (tail _)) :: [Int]  (holes: [Int])
+head (_ ++ _) :: Int
+tail (tail (tail _)) :: [Int]
 tail (tail (tail [])) :: [Int]
-tail (_ ++ _) :: [Int]  (holes: [Int], [Int])
-_:tail _ :: [Int]  (holes: Int, [Int])
-_:tail [] :: [Int]  (holes: Int)
-_ ++ tail _ :: [Int]  (holes: [Int], [Int])
-_ ++ tail [] :: [Int]  (holes: [Int])
-[] ++ tail _ :: [Int]  (holes: [Int])
+tail (_ ++ _) :: [Int]
+_:tail _ :: [Int]
+_:tail [] :: [Int]
+_ ++ tail _ :: [Int]
+_ ++ tail [] :: [Int]
+[] ++ tail _ :: [Int]
 [] ++ tail [] :: [Int]
-head _:_ :: [Int]  (holes: [Int], [Int])
-[head _] :: [Int]  (holes: [Int])
-head []:_ :: [Int]  (holes: [Int])
+head _:_ :: [Int]
+[head _] :: [Int]
+head []:_ :: [Int]
 [head []] :: [Int]
-tail _ ++ _ :: [Int]  (holes: [Int], [Int])
-tail _ ++ [] :: [Int]  (holes: [Int])
-tail [] ++ _ :: [Int]  (holes: [Int])
+tail _ ++ _ :: [Int]
+tail _ ++ [] :: [Int]
+tail [] ++ _ :: [Int]
 tail [] ++ [] :: [Int]
-head (tail (tail (tail _))) :: Int  (holes: [Int])
+head (tail (tail (tail _))) :: Int
 head (tail (tail (tail []))) :: Int
-head (tail (_ ++ _)) :: Int  (holes: [Int], [Int])
-head (_ ++ tail _) :: Int  (holes: [Int], [Int])
-head (_ ++ tail []) :: Int  (holes: [Int])
-head ([] ++ tail _) :: Int  (holes: [Int])
+head (tail (_ ++ _)) :: Int
+head (_ ++ tail _) :: Int
+head (_ ++ tail []) :: Int
+head ([] ++ tail _) :: Int
 head ([] ++ tail []) :: Int
-head (head _:_) :: Int  (holes: [Int], [Int])
-head [head _] :: Int  (holes: [Int])
-head (head []:_) :: Int  (holes: [Int])
+head (head _:_) :: Int
+head [head _] :: Int
+head (head []:_) :: Int
 head [head []] :: Int
-head (tail _ ++ _) :: Int  (holes: [Int], [Int])
-head (tail _ ++ []) :: Int  (holes: [Int])
-head (tail [] ++ _) :: Int  (holes: [Int])
+head (tail _ ++ _) :: Int
+head (tail _ ++ []) :: Int
+head (tail [] ++ _) :: Int
 head (tail [] ++ []) :: Int
-tail (tail (tail (tail _))) :: [Int]  (holes: [Int])
+tail (tail (tail (tail _))) :: [Int]
 tail (tail (tail (tail []))) :: [Int]
-tail (tail (_ ++ _)) :: [Int]  (holes: [Int], [Int])
-tail (_:tail _) :: [Int]  (holes: Int, [Int])
-tail (_:tail []) :: [Int]  (holes: Int)
-tail (_ ++ tail _) :: [Int]  (holes: [Int], [Int])
-tail (_ ++ tail []) :: [Int]  (holes: [Int])
-tail ([] ++ tail _) :: [Int]  (holes: [Int])
+tail (tail (_ ++ _)) :: [Int]
+tail (_:tail _) :: [Int]
+tail (_:tail []) :: [Int]
+tail (_ ++ tail _) :: [Int]
+tail (_ ++ tail []) :: [Int]
+tail ([] ++ tail _) :: [Int]
 tail ([] ++ tail []) :: [Int]
-tail (tail _ ++ _) :: [Int]  (holes: [Int], [Int])
-tail (tail _ ++ []) :: [Int]  (holes: [Int])
-tail (tail [] ++ _) :: [Int]  (holes: [Int])
+tail (tail _ ++ _) :: [Int]
+tail (tail _ ++ []) :: [Int]
+tail (tail [] ++ _) :: [Int]
 tail (tail [] ++ []) :: [Int]
-_:tail (tail _) :: [Int]  (holes: Int, [Int])
-_:tail (tail []) :: [Int]  (holes: Int)
-_:_:_ :: [Int]  (holes: Int, Int, [Int])
-[_,_] :: [Int]  (holes: Int, Int)
-_:(_ ++ _) :: [Int]  (holes: Int, [Int], [Int])
-_ ++ tail (tail _) :: [Int]  (holes: [Int], [Int])
-_ ++ tail (tail []) :: [Int]  (holes: [Int])
-_ ++ (_:_) :: [Int]  (holes: [Int], Int, [Int])
-_ ++ [_] :: [Int]  (holes: [Int], Int)
-_ ++ (_ ++ _) :: [Int]  (holes: [Int], [Int], [Int])
-[] ++ tail (tail _) :: [Int]  (holes: [Int])
+_:tail (tail _) :: [Int]
+_:tail (tail []) :: [Int]
+_:_:_ :: [Int]
+[_,_] :: [Int]
+_:(_ ++ _) :: [Int]
+_ ++ tail (tail _) :: [Int]
+_ ++ tail (tail []) :: [Int]
+_ ++ (_:_) :: [Int]
+_ ++ [_] :: [Int]
+_ ++ (_ ++ _) :: [Int]
+[] ++ tail (tail _) :: [Int]
 [] ++ tail (tail []) :: [Int]
-head _:tail _ :: [Int]  (holes: [Int], [Int])
-head _:tail [] :: [Int]  (holes: [Int])
-head []:tail _ :: [Int]  (holes: [Int])
+head _:tail _ :: [Int]
+head _:tail [] :: [Int]
+head []:tail _ :: [Int]
 head []:tail [] :: [Int]
-tail _ ++ tail _ :: [Int]  (holes: [Int], [Int])
-tail _ ++ tail [] :: [Int]  (holes: [Int])
-tail [] ++ tail _ :: [Int]  (holes: [Int])
+tail _ ++ tail _ :: [Int]
+tail _ ++ tail [] :: [Int]
+tail [] ++ tail _ :: [Int]
 tail [] ++ tail [] :: [Int]
-head (tail _):_ :: [Int]  (holes: [Int], [Int])
-[head (tail _)] :: [Int]  (holes: [Int])
-head (tail []):_ :: [Int]  (holes: [Int])
+head (tail _):_ :: [Int]
+[head (tail _)] :: [Int]
+head (tail []):_ :: [Int]
 [head (tail [])] :: [Int]
-tail (tail _) ++ _ :: [Int]  (holes: [Int], [Int])
-tail (tail _) ++ [] :: [Int]  (holes: [Int])
-tail (tail []) ++ _ :: [Int]  (holes: [Int])
+tail (tail _) ++ _ :: [Int]
+tail (tail _) ++ [] :: [Int]
+tail (tail []) ++ _ :: [Int]
 tail (tail []) ++ [] :: [Int]
 
 x :: Int
