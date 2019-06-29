@@ -53,7 +53,7 @@ module Test
   , succ'
   , (-$-)
 
-  , (-|-), pair, duple -- synonyms
+  , (-|-)
   , triple
   , quadruple
   , quintuple
@@ -96,7 +96,6 @@ module Test
   , consE, appendE
 
   -- ** Typereps
-  , intTy
   , charTy
 
   -- ** checks for types
@@ -108,9 +107,6 @@ module Test
   , i_
   , c_
   , b_
-
-  -- ** Dummy
-  , expr
 
   -- ** Enumerate expressions
   , expressionsT
@@ -126,11 +122,11 @@ import System.Exit (exitFailure)
 import Data.List (elemIndices)
 
 import Test.Speculate hiding (getArgs)
-import Test.Speculate.Expr hiding (true, false, ord)
+import Test.Speculate.Expr hiding (true, false, ord, pair, expr)
 import qualified Test.Speculate.Expr as E
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
-import Test.Speculate.Engine hiding (true, false)
+import Test.Speculate.Engine hiding (true, false, pair, expr)
 
 import Data.Char (ord)
 import Data.Dynamic
@@ -179,7 +175,7 @@ instance Listable Expr where
        \/ cons1 unFunE  `addWeight` 1
 
 tiersExprTypeCorrect :: Int -> Bool
-tiersExprTypeCorrect n = all typeCorrect $ take n (list :: [Expr])
+tiersExprTypeCorrect n = all isWellTyped $ take n (list :: [Expr])
 
 -- Not a particularly efficient implementation.  If performance ever becomes an
 -- issue, declare something like:
@@ -363,12 +359,6 @@ e1 -|- e2 = commaE :$ e1 :$ e2
 
 commaE :: Expr
 commaE = constant "," ((,) :: Int -> Int -> (Int,Int))
-
-pair :: Expr -> Expr -> Expr
-pair = (-|-)
-
-duple :: Expr -> Expr -> Expr
-duple = (-|-)
 
 triple :: Expr -> Expr -> Expr -> Expr
 triple e1 e2 e3 = ccE :$ e1 :$ e2 :$ e3
@@ -591,9 +581,6 @@ sort' exs = sortE :$ exs where sortE = constant "sort" (sort :: [Int] -> [Int])
 
 -- boolTy already exported by Speculate.Instance
 
-intTy :: TypeRep
-intTy = typeOf int
-
 charTy :: TypeRep
 charTy = typeOf char
 
@@ -623,11 +610,6 @@ b_ = hole bool
 
 xs_ :: Expr
 xs_ = hole [int]
-
--- | Dummy expr value, for use in type binding
-expr :: Expr
-expr = undefined
-
 
 data Rule = Rule Expr Expr deriving (Show, Eq, Ord)
 data Equation = Equation Expr Expr deriving (Show, Eq, Ord)
@@ -659,8 +641,8 @@ instance Listable Equation where
         . mapT unSameTypeE
         $ tiers
     where
-    orientEqn (e1,e2) | e1 `compareComplexity` e2 == LT = (e2,e1)
-                      | otherwise                       = (e1,e2)
+    orientEqn (e1,e2) | e1 `compare` e2 == LT = (e2,e1)
+                      | otherwise             = (e1,e2)
 
 newtype RuleSet = RuleSet [(Expr,Expr)] deriving Show
 newtype EquationSet = EquationSet [(Expr,Expr)] deriving Show
@@ -702,7 +684,7 @@ expandKeepE thy = cons0 thy
                \/ cons0 thy {keepE = keepUpToLength (maxLen + 3)} `ofWeight` 6
                \/ cons0 thy {keepE = keepUpToLength (maxLen + 4)} `ofWeight` 8
   where
-  maxLen = maximum . map lengthE . catPairs $ equations thy ++ rules thy
+  maxLen = maximum . (0:) . map size . catPairs $ equations thy ++ rules thy
 
 expandClosureLimit :: Thy -> [[Thy]]
 expandClosureLimit thy = cons0 thy {closureLimit = 3}
@@ -776,5 +758,3 @@ expressionsT ds = [ds] \/ productMaybeWith ($$) es es `addWeight` 1
 -- TODO: maybe use expressionsT as the main function to generate Exprs.
 -- By using it, I speculate a 20% increase in runtime.  But the code will
 -- certainly be smaller and easier to maintain.
-
-instance Listable Instance where list = preludeInstances

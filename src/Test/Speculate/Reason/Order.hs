@@ -24,8 +24,10 @@ import Test.Speculate.Utils (nubMerge)
 
 -- | Greater than or equal number of occurences of each variable
 (>=\/) :: Expr -> Expr -> Bool
-e1 >=\/ e2 = all (\(t,n) -> countVar t n e1 >= countVar t n e2)
+e1 >=\/ e2 = all (\e -> countVar e e1 >= countVar e e2)
                  (vars e1 `nubMerge` vars e2)
+  where
+  countVar e = length . filter (== e) . vars
 
 
 -- | Strict order between expressions as defined in TRAAT p103.
@@ -34,7 +36,7 @@ e1 >=\/ e2 = all (\(t,n) -> countVar t n e1 >= countVar t n e2)
 --
 -- This is perhaps the simplest order that can be used with KBC.
 (|>|) :: Expr -> Expr -> Bool
-e1 |>| e2 = lengthE e1 > lengthE e2
+e1 |>| e2 = size e1 > size e2
          && e1 >=\/ e2
 infix 4 |>|
 
@@ -55,14 +57,14 @@ kboBy w (->-) e1 e2 = e1 >=\/ e2
                                         )
                       )
   where
-  ef :$ (eg :$ ex)               `fn` ey@(Var _ _) | ef == eg = fn (eg :$ ex) ey
-  ef@(Constant _ _) :$ ex@(Var _ _) `fn` ey@(Var _ _) | ex == ey = True
+  ef :$ (eg :$ ex)               `fn` ey@(Value ('_':_) _) | ef == eg = fn (eg :$ ex) ey
+  ef@(Value _ _) :$ ex@(Value ('_':_) _) `fn` ey@(Value ('_':_) _) | ex == ey = True
   _ `fn` _ = False
   e1 `fg` e2 =
     case (unfoldApp e1, unfoldApp e2) of
       -- do I really need the _:_ instead of just _?
       -- do I really need to restrict to functional values?
-      (ef@(Constant _ _):(_:_),eg@(Constant _ _):(_:_)) -> ef ->- eg
+      (ef:(_:_),eg:(_:_)) | isConst ef && isConst eg -> ef ->- eg
       _ -> False
   e1 `ff` e2 =
     case (unfoldApp e1, unfoldApp e2) of
@@ -88,11 +90,11 @@ weight :: Expr -> Int
 weight = w
   where
   w (e1 :$ e2) = weight e1 + weight e2
-  w (Var _ _)  = 1
-  w e = case arity e of
-          0 -> 1
-          1 -> 1
-          _ -> 0
+  w e | isVar e   = 1
+      | otherwise = case arity e of
+                    0 -> 1
+                    1 -> 1
+                    _ -> 0
 
 -- | Weight function for kboBy:
 --
@@ -104,11 +106,11 @@ weightExcept :: Expr -> Expr -> Int
 weightExcept f0 = w
   where
   w (e1 :$ e2) = w e1 + w e2
-  w (Var _ _)  = 1
-  w e = case arity e of
-          0 -> 1
-          1 -> if e == f0 then 0 else 1
-          _ -> 0
+  w e | isVar e   = 1
+      | otherwise = case arity e of
+                  0 -> 1
+                  1 -> if e == f0 then 0 else 1
+                  _ -> 0
 
 -- | To be used alongside weightExcept
 gtExcept :: (Expr -> Expr -> Bool) -> Expr -> Expr -> Expr -> Bool
@@ -130,7 +132,7 @@ infix 4 |>
 dwoBy :: (Expr -> Expr -> Bool) -> Expr -> Expr -> Bool
 dwoBy (>) = (|>)
   where
-  e1 |> e2@(Var n t) | (t,n) `elem` vars e1 && e1 /= e2 = True
+  e1 |> e2@(Value ('_':_) _) | e2 `elem` vars e1 && e1 /= e2 = True
   e1 |> e2 = any (|>= e2) xs
           || (notVar f && notVar g && f >  g && all (e1 |>) ys)
           || (notVar f && notVar g && f == g && all (e1 |>) ys
@@ -140,8 +142,7 @@ dwoBy (>) = (|>)
     where
     (f:xs) = unfoldApp e1
     (g:ys) = unfoldApp e2
-    notVar (Var _ _) = False
-    notVar _         = True
+    notVar = not . isVar
     e1 |>= e2 = e1 == e2
              || e1 |> e2
 

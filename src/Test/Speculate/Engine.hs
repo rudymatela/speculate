@@ -71,7 +71,7 @@ import qualified Test.Speculate.Utils.Digraph as D
 -- > vassignments (ii -+- i_) == [ii -+- ii]
 vassignments :: Expr -> [Expr]
 vassignments e =
-  [ foldl fill e [ [ Var (defNames !! i) t | i <- is ]
+  [ foldl fill e [ [ (defNames !! i) `varAsTypeOf` t | i <- is ]
                  | (t,is) <- fs ]
   | fs <- productsList [[(t,is) | is <- iss 0 c] | (t,c) <- counts (holes e)] ]
   -- > fss _ + _ = [ [(Int,[0,0])], [(Int,[0,1])] ]
@@ -80,26 +80,29 @@ vassignments e =
 -- TODO: rename vassignments, silly name.  what about canonicalExpansions?
 
 vassignmentsEqn :: (Expr,Expr) -> [(Expr,Expr)]
-vassignmentsEqn = filter (uncurry (/=)) . map unEquation . vassignments . uncurry phonyEquation
+vassignmentsEqn = filter (uncurry (/=)) . map unpair . vassignments . uncurry pair
 
 -- | List all variable assignments for a given type and list of variables.
-expansionsOfType :: TypeRep -> [String] -> Expr -> [Expr]
-expansionsOfType t vs e = [ fill e [Var v t | v <- vs']
-                          | vs' <- placements (countHoles t e) vs ]
+expansionsOfType :: Expr -> [String] -> Expr -> [Expr]
+expansionsOfType ht vs e = [ fill e [v `varAsTypeOf` ht | v <- vs']
+                           | vs' <- placements (countHoles ht e) vs ]
   where
   placements :: Int -> [a] -> [[a]]
   placements 0 xs = [[]]
   placements n xs = [y:ys | y <- xs, ys <- placements (n-1) xs]
+  countHoles :: Expr -> Expr -> Int
+  countHoles ht e = length [() | h <- holes e, typ h == typ ht]
+-- change first argument of expansionsOfType to just [Expr] with the list of
+-- possible variables?
 
 expansionsWith :: [Expr] -> Expr -> [Expr]
-expansionsWith es = ew (collectWith typ nam (,) es)
+expansionsWith es = ew (collectOn typ es)
   where
-  nam (Var s _) = s
-  typ (Var _ t) = t
-  ew :: [(TypeRep,[String])] -> Expr -> [Expr]
-  ew []            e = [e]
-  ew ((t,ns):tnss) e = ew tnss
-           `concatMap` expansionsOfType t ns e
+  nam (Value ('_':s) _) = s
+  ew :: [[Expr]] -> Expr -> [Expr]
+  ew []        e = [e]
+  ew (es:tnss) e = ew tnss
+           `concatMap` expansionsOfType (head es) (map nam es) e
 
 -- | List all variable assignments for a given number of variables.
 --   It only assign variables to holes (variables with "" as its name).
@@ -114,11 +117,11 @@ expansionsWith es = ew (collectWith typ nam (,) es)
 -- > , (y + y) + ord c :: Int
 -- > , (y + y) + ord d :: Int ]
 expansions :: Instances -> Int -> Expr -> [Expr]
-expansions ti n e =
+expansions is n e =
   case counts (holes e) of
     []      -> [e]
-    (t,c):_ -> expansions ti n `concatMap`
-               expansionsOfType t (take n (names ti t)) e
+    (h,c):_ -> expansions is n `concatMap`
+               expansionsOfType h (take n (names is h)) e
 
 -- | List the most general assignment of holes in an expression
 mostGeneral :: Expr -> Expr
@@ -129,9 +132,9 @@ mostSpecific :: Expr -> Expr
 mostSpecific = last . vassignments -- TODO: make this efficient
 
 rehole :: Expr -> Expr
-rehole (e1 :$ e2) = rehole e1 :$ rehole e2
-rehole (Var _ t) = Var "" t
-rehole e = e
+rehole (e1 :$ e2)    = rehole e1 :$ rehole e2
+rehole e | isVar e   = "" `varAsTypeOf` e
+         | otherwise = e
 
 ----------------------------
 -- * Enumerating expressions
@@ -244,7 +247,7 @@ classesFromSchemaAndVariables thy vs = C.mergesOn (normalizeE thy)
 -- > equivalencesBetween basicInstances 500 (_ + _) (_ + _) =
 -- >   [i + j == j + i]
 equivalencesBetween :: (Expr -> Expr -> Bool) -> Expr -> Expr -> [(Expr,Expr)]
-equivalencesBetween (===) e1 e2 = discardLater (isInstanceOf `on` uncurry phonyEquation)
+equivalencesBetween (===) e1 e2 = discardLater (isInstanceOf `on` uncurry pair)
                                 . filter (uncurry (===))
                                 $ vassignmentsEqn (e1,e2)
 
@@ -270,7 +273,7 @@ conditionalTheoryFromThyAndReps ti cmp nt nv csz thy es' =
     (lessOrEqual ti nt)
     csz thy clpres cles
   where
-  (cles,clpres) = (id *** filter (\(e,_) -> lengthE e <= csz))
+  (cles,clpres) = (id *** filter (\(e,_) -> size e <= csz))
                 . partition (\(e,_) -> typ e /= boolTy)
                 . filter (isEqE ti . fst)
                 $ classesFromSchemas ti nt nv thy es'
@@ -284,7 +287,7 @@ conditionalEquivalences cmp canon cequal (==>) csz thy clpres cles =
     cdiscard (\(ce,e1,e2) -> subConsequence thy clpres ce e1 e2)
   . foldl (flip cinsert) (Chy [] cdg clpres thy)
   . sortBy (\(c1,e11,e12) (c2,e21,e22) -> c1 `cmp` c2
-                                       <> ((e11 `phonyEquation` e12) `cmp` (e21 `phonyEquation` e22)))
+                                       <> ((e11 `pair` e12) `cmp` (e21 `pair` e22)))
   . discard (\(pre,e1,e2) -> pre == falseE
                           || length (vars pre \\ (vars e1 +++ vars e2)) > 0
                           || subConsequence thy [] pre e1 e2)
@@ -307,12 +310,12 @@ conditionalEquivalences cmp canon cequal (==>) csz thy clpres cles =
 -- > subConsequence (abs x == abs y) (abs x) (abs y) == True
 -- > subConsequence (abs x == 1) (x + abs x) (20) == False (artificial)
 subConsequence :: Thy -> [Class Expr] -> Expr -> Expr -> Expr -> Bool
-subConsequence thy clpres ((Constant "==" _ :$ ea) :$ eb) e1 e2
+subConsequence thy clpres ((Value "==" _ :$ ea) :$ eb) e1 e2
   -- NOTE: the first 4 are uneeded, but make it a bit faster...
-  | ea `isSub` e1 && equivalent thy{closureLimit=1} (sub ea eb e1) e2 = True
-  | eb `isSub` e1 && equivalent thy{closureLimit=1} (sub eb ea e1) e2 = True
-  | ea `isSub` e2 && equivalent thy{closureLimit=1} (sub ea eb e2) e1 = True
-  | eb `isSub` e2 && equivalent thy{closureLimit=1} (sub eb ea e2) e1 = True
+  | ea `isSubexpr` e1 && equivalent thy{closureLimit=1} (sub ea eb e1) e2 = True
+  | eb `isSubexpr` e1 && equivalent thy{closureLimit=1} (sub eb ea e1) e2 = True
+  | ea `isSubexpr` e2 && equivalent thy{closureLimit=1} (sub ea eb e2) e1 = True
+  | eb `isSubexpr` e2 && equivalent thy{closureLimit=1} (sub eb ea e2) e1 = True
   | equivalent ((ea,eb) `insert` thy){closureLimit=1} e1 e2 = True
 subConsequence thy clpres ce e1 e2 = or
   [ subConsequence thy clpres ce' e1 e2

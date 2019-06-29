@@ -10,25 +10,26 @@
 -- Typeclass instance information.
 module Test.Speculate.Expr.Instance
   ( Instances
-  , Instance (..)
   , TypeRep
 
-  -- * Smart constructors
   , ins
-  , eq,       eqWith
-  , ord,      ordWith
-  , eqOrd
-  , listable, listableWith
-  , name
 
   -- * Queries on Instances
-  , instanceType
-  , findInfo
   , names
   , eqE, iqE, isEq,       isEqE
   , leE, ltE, isOrd,      isOrdE
   ,           isEqOrd,    isEqOrdE
   , tiersE,   isListable
+  , maybeTiersE
+  , holeOfTy
+  , maybeHoleOfTy
+
+  , listable
+  , eq
+  , ord
+  , eqWith
+  , ordWith
+  , nameWith
 
   -- * Type info for standard Haskell types
   , preludeInstances
@@ -37,44 +38,44 @@ module Test.Speculate.Expr.Instance
   , defNames
 
   , boolTy
-  , mkEqnTy
+  , mkComparisonTy
   )
 where
 
-import Test.Speculate.Expr.Core
+import Test.Speculate.Expr.Core hiding (eqWith)
+import qualified Data.Haexpress.Instances as HI
 import Test.Speculate.Expr.Match
 import Test.Speculate.Utils hiding (ord)
 import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
-import Test.LeanCheck.Error (errorToFalse)
 import Data.Dynamic
 
 import Data.Maybe (isJust,fromMaybe,listToMaybe,catMaybes,mapMaybe)
 import Data.List (find,(\\))
 import Data.Monoid ((<>))
 
+type Instances = [Expr] -- TODO: remove?
 
--- | Type information needed to Speculate expressions (single type / single class).
-data Instance = Instance String TypeRep [Expr]
-  deriving Show
-
-instance Eq Instance where
-  Instance s1 t1 _ == Instance s2 t2 _  =  s1 == s2 && t1 == t2
-
-instance Ord Instance where
-  Instance s1 t1 _ `compare` Instance s2 t2 _  =  s1 `compare` s2 <> t1 `compare` t2
-
-
--- | Type information needed to Speculate expressions.
-type Instances = [Instance]
-
-instanceType :: Instance -> TypeRep
-instanceType (Instance _ t _)  =  t
+-- TODO: export functions like the following?
+--
+-- reifyEq :: Eq a => a -> [Expr]
+-- reifyOrd :: Ord a => a -> [Expr]
+-- reifyEqOrd :: (Eq a, Ord a) => a -> [Expr]
+-- reifyName :: ...
+-- reifyListable :: Listable a => a -> [Expr]
+-- reifyInstances1 :: (...) => a -> [Expr]
+-- reifyInstances :: (...) => a -> [Expr]
+--
+-- the couple last ones replace ins1 and ins
+--
+-- Note that the return type is a list of Exprs for consistency.
 
 -- | Usage: @ins1 "x" (undefined :: Type)@
 ins1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
           => String -> a -> Instances
-ins1 n x = eq x ++ ord x ++ listable x ++ name n x
+ins1 n x = [eqFor x, diffFor x, lessEqFor x, lessFor x, compareFor x, tiersFor x, nameWith name']
+  where
+  name' x'  =  n  where  _  =  x' `asTypeOf` x
 
 ins :: (Typeable a, Listable a, Show a, Eq a, Ord a)
     => String -> a -> Instances
@@ -116,40 +117,51 @@ ins n x = concat
 -- NOTE: see related TODO on the definition of basicInstances
 
 eq :: (Typeable a, Eq a) => a -> Instances
-eq x = eqWith $ (==) -:> x
+eq = (:[]) . eqFor
 
 ord :: (Typeable a, Ord a) => a -> Instances
 ord x = ordWith $ (<=) -:> x
 
-eqOrd :: (Typeable a, Eq a, Ord a) => a -> Instances
-eqOrd x = eq x ++ ord x
-
 listable :: (Typeable a, Show a, Listable a) => a -> Instances
-listable x = listableWith $ tiers `asTypeOf` [[x]]
+listable = (:[]) . tiersFor
 
-name :: Typeable a => String -> a -> Instances
-name n x = [ Instance "Names" (typeOf x)
-               [constant "names" $ namesFromTemplate n] ]
+diffFor :: (Typeable a, Eq a) => a -> Expr
+diffFor a  =  diffWith ((/=) -:> a)
+
+diffWith :: Typeable a => (a -> a -> Bool) -> Expr
+diffWith (/=)  =  value "/=" (/=)
+
+lessEqFor :: (Typeable a, Ord a) => a -> Expr
+lessEqFor a  =  lessEqWith ((<=) -:> a)
+
+lessEqWith :: Typeable a => (a -> a -> Bool) -> Expr
+lessEqWith (<=)  =  value "<=" (<=)
+
+lessFor :: (Typeable a, Ord a) => a -> Expr
+lessFor a  =  lessWith ((<) -:> a)
+
+lessWith :: Typeable a => (a -> a -> Bool) -> Expr
+lessWith (<)  =  value "<" (<)
 
 eqWith :: (Typeable a, Eq a) => (a -> a -> Bool) -> Instances
-eqWith (==) = [ Instance "Eq" (typeOf $ arg (==))
-                  [ constant "==" $ errorToFalse .: (==)
-                  , constant "/=" $ (errorToFalse . not) .: (==)] ]
-  where
-  arg :: (a -> b) -> a
-  arg _ = undefined
+eqWith (==) = [ HI.eqWith (==)
+              , diffWith $ not .: (==)
+              ]
 
 ordWith :: (Typeable a, Ord a) => (a -> a -> Bool) -> Instances
-ordWith (<=) = [ Instance "Ord" (typeOf $ arg (<=))
-                   [ constant "<=" $ errorToFalse .: (<=)
-                   , constant "<"  $ (errorToFalse . not) .: flip (<=) ] ]
+ordWith (<=) = [ lessEqWith $ (<=)
+               , lessWith   $ (<)
+               ]
   where
-  arg :: (a -> b) -> a
-  arg _ = undefined
+  (<) = not .: flip (<=)
 
-listableWith :: (Typeable a, Show a) => [[a]] -> Instances
-listableWith xss = [ Instance "Listable" (typeOf $ head $ head xss)
-                       [constant "tiers" $ mapT showConstant xss] ]
+tiersFor :: (Typeable a, Listable a, Show a) => a -> Expr
+tiersFor a  =  tiersWith (tiers -: [[a]])
+
+-- 'tiers' here are encoded indirectly because we need tiers of [[Expr]] when
+-- computing 'grounds'.
+tiersWith :: (Typeable a, Show a) => [[a]] -> Expr
+tiersWith xss  =  value "tiers" $ mapT val xss
 
 isEq :: Instances -> TypeRep -> Bool
 isEq ti = isJust . eqE ti
@@ -170,57 +182,69 @@ isEqOrdE :: Instances -> Expr -> Bool
 isEqOrdE ti = isEqOrd ti . typ
 
 isListable :: Instances -> TypeRep -> Bool
-isListable ti t = isJust $ findInfo m ti
+isListable is = isJust . maybeTiersE is
+
+names :: Instances -> Expr -> [String]
+names is e = namesFromTemplate $ case validApps is' e of
+  []        -> def
+  (nameE:_) -> eval def nameE
   where
-  m (Instance "Listable" t' ts) | t' == t = Just ts
-  m _                                     = Nothing
+  def = "x"
+  is' = [e | e@(Value "name" _) <- is]
+-- umm... maybe I could make this function return a list of variables encoded
+-- as Exprs ([Expr]).  The only drawback is that I'll have to open up the Expr
+-- and compare variable names of Exprs of different types if I want to make
+-- sure I don't repeat variables.
 
--- TODO: implement above using something similar to the following
--- isComparable ti = isJust . (`findInfo` ti) . typ
-
-findInfo :: (Instance -> Maybe a) -> Instances -> Maybe a
-findInfo may = listToMaybe . mapMaybe may
-
-findInfoOr :: a -> (Instance -> Maybe a) -> Instances -> a
-findInfoOr def may = fromMaybe def . findInfo may
-
-names :: Instances -> TypeRep -> [String]
-names ti t = findInfoOr defNames m ti
+maybeTiersE :: Instances -> TypeRep -> Maybe [[Expr]]
+maybeTiersE is t = case i of
+  [] -> Nothing
+  (tiers:_) -> Just tiers
   where
-  m (Instance "Names" t' [ns]) | t == t' = Just $ eval defNames ns
-  m _                                    = Nothing
+  i = [tiers | e@(Value "tiers" _) <- is
+             , let tiers = eval (undefined :: [[Expr]]) e
+             , typ (head . concat $ tiers) == t]
+-- TODO: on Reifying tiers enumerations, make explicit error showing that we
+--       don't allow an empty tiers enumeration (hint: or use 'headOr' above)
+
+holeOfTy :: Instances -> TypeRep -> Expr
+holeOfTy is t = fromMaybe err $ maybeHoleOfTy is t
+  where
+  err  =  error $ "holeOfTy: could not find tiers with type `[[" ++ show t ++ "]]'."
+
+maybeHoleOfTy :: Instances -> TypeRep -> Maybe Expr
+maybeHoleOfTy is t = case concat <$> maybeTiersE is t of
+                     Just (e:_) -> Just $ "" `varAsTypeOf` e
+                     _          -> Nothing
 
 tiersE :: Instances -> TypeRep -> [[Expr]]
-tiersE ti t = findInfoOr (error $ "could not find Listable " ++ show t) m ti
+tiersE is t = fromMaybe err $ maybeTiersE is t
   where
-  m (Instance "Listable" t' [ts]) | t == t' = Just $ eval (error $ "invalid Listable " ++ show t) ts
-  m _                                       = Nothing
+  err  =  error $ "Could not find tiers with type `[[" ++ show t ++ "]]'."
+
+comparisonE :: String -> Instances -> TypeRep -> Maybe Expr
+comparisonE n' is t = find (\i@(Value n _) -> n == n' && typ i == mkComparisonTy t) is
 
 eqE :: Instances -> TypeRep -> Maybe Expr
-eqE ti t = findInfo m ti
-  where
-  m (Instance "Eq" t' [eq,_]) | t == t' = Just eq
-  m _                                   = Nothing
+eqE = comparisonE "=="
 
 iqE :: Instances -> TypeRep -> Maybe Expr
-iqE ti t = findInfo m ti
-  where
-  m (Instance "Eq" t' [_,iq]) | t == t' = Just iq
-  m _                                   = Nothing
+iqE = comparisonE "/="
 
 ltE :: Instances -> TypeRep -> Maybe Expr
-ltE ti t = findInfo m ti
-  where
-  m (Instance "Ord" t' [_,lt]) | t == t' = Just lt
-  m _                                    = Nothing
+ltE = comparisonE "<"
 
 leE :: Instances -> TypeRep -> Maybe Expr
-leE ti t = findInfo m ti
-  where
-  m (Instance "Ord" t' [le,_]) | t == t' = Just le
-  m _                                    = Nothing
+leE = comparisonE "<="
+
+-- An alternative that could work on Speculate:
+-- I just need to apply (==LE), (==GT) and (==EQ) when evaluating my
+-- properties and to replace (isLE :$ (compare :$ ...)) by ((<=) :$ ...)
+-- before printing.
 
 deriving instance Typeable Word2 -- for GHC <= 7.8
+
+instance Name Word2
 
 -- TODO: include *ALL* prelude types on basicInstances
 preludeInstances :: Instances

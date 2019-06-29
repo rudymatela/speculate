@@ -51,7 +51,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
       fail "exiting"
   when (showTheory args)       . putStrLn $ showThy thy
   let shy = semiTheoryFromThyAndReps ti n (maxVars args) thy
-          $ filter (\e -> lengthE e <= computeMaxSemiSize args) es
+          $ filter (\e -> size e <= computeMaxSemiSize args) es
   let chy = conditionalTheoryFromThyAndReps ti (compareExpr args) n (maxVars args) (computeMaxCondSize args) thy es
   let equations     = finalEquations     (shouldShowEquation args) ti                          thy
   let semiEquations = finalSemiEquations (shouldShowEquation args) ti (equivalentInstance thy) shy

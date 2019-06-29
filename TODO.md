@@ -6,6 +6,19 @@ A non-exhaustive list of things TODO for Speculate
 Warning: I tend to ramble...
 
 
+current current
+---------------
+
+0. measure performance impact of changes
+
+1. rafactor Haexpress.Instances and use it on Speculate
+
+2. transfer `test-expr` tests to haexpress
+
+3. cleanup this TODO
+
+
+
 current
 -------
 

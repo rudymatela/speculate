@@ -17,7 +17,7 @@ module Test.Speculate.Expr
   )
 where
 
-import Test.Speculate.Expr.Core
+import Test.Speculate.Expr.Core hiding (eqWith)
 import Test.Speculate.Expr.Ground
 import Test.Speculate.Expr.Match
 import Test.Speculate.Expr.Instance

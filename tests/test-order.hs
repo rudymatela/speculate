@@ -51,7 +51,7 @@ tests n =
   , fails n $ closedUnderSub      lgt
   , fails n $ subtermProperty     lgt
 
-  -- compareComplexity has the subtermProperty
+  -- compare has the subtermProperty (Expr)
   , fails n $ simplificationOrder cgt
   , fails n $ compatible          cgt
   , fails n $ closedUnderSub      cgt
@@ -59,7 +59,7 @@ tests n =
   ]
   where
   e1 `lgt` e2 = e1 `lexicompare` e2 == GT
-  e1 `cgt` e2 = e1 `compareComplexity` e2 == GT
+  e1 `cgt` e2 = e1 `compare` e2 == GT
 
 simplificationOrder :: (Expr -> Expr -> Bool) -> Expr -> Expr -> Expr -> Bool
 simplificationOrder (>) = \e1 e2 e3 -> reductionOrder  (>) e1 e2 e3
@@ -77,15 +77,15 @@ reductionOrder (>) = \e1 e2 e3 -> strictPartialOrder (>) e1 e2 e3
 
 compatible :: (Expr -> Expr -> Bool) -> Expr -> Expr -> Expr -> Bool
 compatible (>) = \e e1 e2 -> e1 > e2 && typ e1 == typ e2
-                         ==> and [ assign n e1 e > assign n e2 e
-                                 | (t,n) <- vars e
-                                 , t == typ e1
-                                 , t == typ e2 ]
+                         ==> and [ (e //- [(v,e1)]) > (e //- [(v,e2)])
+                                 | v <- vars e
+                                 , typ v == typ e1
+                                 , typ v == typ e2 ]
 
 -- The formal definition contains multiple assignments,
 -- here, just a single variable is assigned.
 closedUnderSub :: (Expr -> Expr -> Bool) -> Expr -> Expr -> Expr -> Bool
 closedUnderSub (>) = \e1 e2 e -> e1 > e2
-                             ==> and [ assign n e e1 > assign n e e2
-                                     | (t,n) <- vars e1 `nubMerge` vars e2
-                                     , t == typ e ]
+                             ==> and [ (e1 //- [(v,e)]) > (e2 //- [(v,e)])
+                                     | v <- vars e1 `nubMerge` vars e2
+                                     , typ v == typ e ]

@@ -116,7 +116,7 @@ tests n =
   , holds 4000
   $ \(Thyght thy') (SameTypeE e1 e2) -> closureLimit thy' > 0 ==>
        let thy = insert (e1,e2)
-               $ thy' { keepE = keepUpToLength (max (lengthE e1) (lengthE e2)) }
+               $ thy' { keepE = keepUpToLength (max (size e1) (size e2)) }
        in  equivalent thy e1 e2
 
   , holds n $ idempotent finalize

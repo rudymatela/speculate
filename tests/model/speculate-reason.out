@@ -20,9 +20,10 @@ True :: Bool
 False :: Bool
 Equation :: Expr -> Expr -> Equation
 
-              okThy t == True
-     equivalent t e e == True
-     equivalent t e f == equivalent t f e
- normalize emptyThy e == e
-complete (complete t) == complete t
+                 okThy t == True
+        equivalent t e e == True
+        equivalent t e f == equivalent t f e
+    normalize emptyThy e == e
+normalize (complete t) e == normalize t e
+   complete (complete t) == complete t
 

@@ -29,6 +29,7 @@ import Test.Speculate.Expr.Match
 import Test.Speculate.Expr.Instance
 import Test.Speculate.Expr.Equate
 import Test.LeanCheck
+import Test.LeanCheck.Error (errorToFalse)
 import Data.Ratio
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import Data.Maybe (fromMaybe)
@@ -41,7 +42,7 @@ import Data.Maybe (fromMaybe)
 -- > take 3 $ grounds preludeInstances ((x + x) + y)
 -- >   == [(0 + 0) + 0, (0 + 0) + 1, (1 + 1) + 0]
 grounds :: Instances -> Expr -> [Expr]
-grounds ti e = (e `assigning`) <$> groundBinds ti e
+grounds ti e = (e //) <$> groundBinds ti e
 
 -- | List all possible variable bindings to an expression
 --
@@ -51,13 +52,14 @@ grounds ti e = (e `assigning`) <$> groundBinds ti e
 -- >      , [("x",1),("y",0)] ]
 groundBinds :: Instances -> Expr -> [Binds]
 groundBinds ti e =
-  concat $ products [mapT ((,) n) (tiersE ti t) | (t,n) <- vars e]
+  concat $ products [mapT ((,) v) (tiersE ti (typ v)) | v <- nubVars e]
 
 -- | List all possible variable bindings and valuations to an expression
 --
 -- > groundAndBinds ti e == zipWith (,) (grounds ti e) (groundBinds ti e)
 groundAndBinds :: Instances -> Expr -> [(Binds,Expr)]
-groundAndBinds ti e = (\bs -> (bs, e `assigning` bs)) <$> groundBinds ti e
+groundAndBinds ti e = (\bs -> (bs, e // bs)) <$> groundBinds ti e
+
 
 -- | Are two expressions equal for a given number of tests?
 equal :: Instances -> Int -> Expr -> Expr -> Bool
@@ -84,7 +86,7 @@ condEqualM :: Instances -> Int -> Int -> Expr -> Expr -> Expr -> Bool
 condEqualM ti n n0 pre e1 e2 = condEqual ti n pre e1 e2 && length cs >= n0
   where
   cs =  fromMaybe []
-     $  filter (eval False) . map condition . take n . grounds ti
+     $  filter (errorToFalse . eval False) . map condition . take n . grounds ti
     <$> conditionalEquation ti pre e1 e2
   condition ceq = let (ce,_,_) = unConditionalEquation ceq in ce
 
@@ -103,11 +105,11 @@ inequal ti n e1 e2 = maybe False (false ti n) (equation ti e1 e2)
 
 -- | Is a boolean expression true for all variable assignments?
 true :: Instances -> Int -> Expr -> Bool
-true ti n e = all (eval False) . take n $ grounds ti e
+true ti n e = errorToFalse . all (eval False) . take n $ grounds ti e
 
 -- | List variable bindings for which an expression holds true.
 trueBinds :: Instances -> Int -> Expr -> [Binds]
-trueBinds ti n e = [bs | (bs,e) <- take n $ groundAndBinds ti e, eval False e]
+trueBinds ti n e = [bs | (bs,e) <- take n $ groundAndBinds ti e, errorToFalse $ eval False e]
 
 -- | Under a maximum number of tests,
 --   returns the ratio for which an expression holds true.
@@ -117,4 +119,4 @@ trueRatio ti n e = length (trueBinds ti n e) % length (take n $ groundAndBinds t
 -- | Is an expression ALWAYS false?
 -- This is *NOT* the same as not true
 false :: Instances -> Int -> Expr -> Bool
-false ti n e = all (not . eval False) . take n $ grounds ti e
+false ti n e = errorToFalse . all (not . eval False) . take n $ grounds ti e

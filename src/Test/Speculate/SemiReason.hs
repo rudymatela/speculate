@@ -58,7 +58,7 @@ greater shy e = [ e2 | (e1,e2) <- sequations shy, e == e1 ]
 simplerThan :: Equation -> Shy -> Shy
 simplerThan seq = updateSEquationsBy upd
   where
-  isSEInstanceOf = isInstanceOf `on` uncurry phonyEquation
+  isSEInstanceOf = isInstanceOf `on` uncurry pair
   upd eqs = r ++ [seq' | seq' <- r'
                        , any (seq' `isSEInstanceOf`) r ]
     where
@@ -80,7 +80,7 @@ updateSEquationsBy f shy@Shy{sequations = seqs} = shy{sequations = f seqs}
 
 stheorize :: Thy -> [Equation] -> Shy
 stheorize thy seqs =
-  Shy{ sequations = sortBy (compareE thy `on` uncurry phonyEquation) seqs
+  Shy{ sequations = sortBy (compareE thy `on` uncurry pair) seqs
      , sthy = thy
      }
 
@@ -94,9 +94,9 @@ finalSemiEquations :: (Equation -> Bool) -> Instances -> (Expr -> Expr -> Bool) 
 finalSemiEquations shouldShow insts equivalentInstanceOf shy =
     sortBy (compareTy `on` (typ . fst))
   . filter shouldShow
-  . discardLater (equivalentInstanceOf `on` uncurry phonyEquation)
+  . discardLater (equivalentInstanceOf `on` uncurry pair)
   . discard (transConsequence shy)
-  . discardLater (isInstanceOf `on` uncurry phonyEquation)
+  . discardLater (isInstanceOf `on` uncurry pair)
   . sequations
   $ canonicalizeShyWith insts shy
 

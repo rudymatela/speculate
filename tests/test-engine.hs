@@ -36,13 +36,13 @@ tests n =
        , (xx -+- xx) -+- (ord' cc -+- ord' dd)
        , (xx -+- xx) -+- (ord' cc -+- ord' cc) ]
 
-  , holds n $ \e -> all (null . snd) (vars e)
-                ==> let xs = map (length . vars) $ vassignments e
+  , holds n $ \e -> all isHole (vars e)
+                ==> let xs = map (length . nubVars) $ vassignments e
                     in (head xs >) `all` tail xs
                     && (last xs <) `all` init xs
-  , holds n $ \e -> all null (map snd $ vars e)
+  , holds n $ \e -> all isHole (vars e)
                 ==> unrepeatedVars (head (vassignments e))
-  , holds n $ \e -> all (null . snd) (vars e)
+  , holds n $ \e -> all isHole (vars e)
                 ==> let es = vassignments e
                     in (`isInstanceOf` head es) `all` tail es
                     && (last es `isInstanceOf`) `all` init es
@@ -64,7 +64,7 @@ tests n =
        , ( xx -+- (yy -+- zz), (zz -+- xx) -+- yy )
        , ( xx -+- (yy -+- zz), (zz -+- yy) -+- xx ) ]
 
-  , holds n $ \(SameTypeE e1 e2) -> unEquation (phonyEquation e1 e2) == (e1,e2)
+  , holds n $ \e1 e2 -> unpair (pair e1 e2) == (e1,e2)
 
 -- TODO: make the following pass (add ValueE and SameTypeValueE to Test)
 --, holds n $ \(SameTypeE e1 e2) (SameTypeE e3 e4)
@@ -101,13 +101,13 @@ tests n =
        , yy -+- yy -+- ord' cc
        , yy -+- yy -+- ord' dd ]
 
-  , expansionsOfType intTy ["x","y"] (i_ -+- i_ -+- ord' c_)
+  , expansionsOfType i_ ["x","y"] (i_ -+- i_ -+- ord' c_)
     == [ xx -+- xx -+- ord' c_
        , xx -+- yy -+- ord' c_
        , yy -+- xx -+- ord' c_
        , yy -+- yy -+- ord' c_ ]
 
-  , expansionsOfType intTy [] (i_ -+- i_ -+- ord' c_) == []
+  , expansionsOfType i_ [] (i_ -+- i_ -+- ord' c_) == []
 
   , expansionsWith [xx, yy]     (i_ -+- i_ -+- ord' c_)
     == [ xx -+- xx -+- ord' c_

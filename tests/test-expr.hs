@@ -12,6 +12,7 @@ import Data.List (sort)
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import Data.Typeable (typeOf)
 import Data.Maybe (isJust)
+import Data.Haexpress (depth, size)
 
 -- for Travis:
 deriving instance Typeable Thyght
@@ -23,11 +24,11 @@ main = mainTest tests 10000
 tests :: Int -> [Bool]
 tests n =
   [ True
-  
-  , consts (xx -+- yy) == [plusE]
-  , consts (xx -+- (yy -+- zz)) == [plusE]
-  , consts (zero -+- one) =$ sort $= [zero, one, plusE]
-  , consts ((zero -+- abs' zero) -+- (ord' aa -+- ord' cc))
+
+  , nubConsts (xx -+- yy) == [plusE]
+  , nubConsts (xx -+- (yy -+- zz)) == [plusE]
+  , nubConsts (zero -+- one) =$ sort $= [zero, one, plusE]
+  , nubConsts ((zero -+- abs' zero) -+- (ord' aa -+- ord' cc))
       =$ sort $= [zero, aa, absE, plusE, ordE]
   , holds n $ \e1 e2 -> timesE `elem` consts (e1 -*- e2)
 
@@ -39,9 +40,8 @@ tests n =
   , arity timesE == 2
 
 
-  , holds n $ okEqOrd -:> expr
-  , holds n $ okEqOrd -:> (undefined :: Instance)
-  , holds n $ compare ==== compareComplexity
+  , holds n $ okEqOrd -:> (undefined :: Expr)
+  , holds n $ compare ==== (compareComplexity <> lexicompare)
   , holds n $ LC.comparison lexicompare
   , holds n $ LC.comparison compareComplexity
 
@@ -52,16 +52,8 @@ tests n =
                                          in typ e1 == typ e2 && isJust (e1 $$ e3) && isJust (e2 $$ e3)
                                         ==> e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
 
-  , holds n $ equivalence (eqExprCommuting [plusE])
-  , holds n $ equivalence (eqExprCommuting [timesE])
-  , holds n $ equivalence (eqExprCommuting [plusE,timesE])
-
   , xx -+- yy == xx -+- yy
   , xx -+- yy /= yy -+- xx
-  , not $ eqExprCommuting [timesE] (xx -+- yy) (yy -+- xx)
-  ,       eqExprCommuting [plusE]  (xx -+- yy) (yy -+- xx)
-  ,       eqExprCommuting [plusE]  (zz -+- (xx -+- yy)) ((yy -+- xx) -+- zz)
-  ,       eqExprCommuting [plusE,timesE]  (zz -+- (xx -*- yy)) ((yy -*- xx) -+- zz)
 
   -- Holes < Values < Apps
   , xx < zero
@@ -121,9 +113,10 @@ tests n =
   , holds n $ \(BoolE e) -> typ e == typ b_
   , holds n $ \(CharE e) -> typ e == typ c_
   , holds n $ \(ListE e) -> typ e == typ xxs
-  , etyp (xx :$ yy) == Left (i_ :$ i_)
-  , etyp (xx :$ (cc :$ yy)) == Left (i_ :$ (c_ :$ i_))
-  , etyp (ff xx :$ (ord' cc :$ gg yy)) == Left (i_ :$ (i_ :$ i_))
+
+  , etyp (xx :$ yy) == Left (typ i_, typ i_)
+  , etyp (xx :$ (cc :$ yy)) == Left (typ c_, typ i_)
+  , etyp (ff xx :$ (ord' cc :$ gg yy)) == Left (typ i_, typ i_)
   , holds n $ \(SameTypeE ef eg) (SameTypeE ex ey) -> (etyp (ef :$ ex) == etyp (eg :$ ey))
   , holds n $ \ef eg ex ey -> (etyp ef == etyp eg && etyp ex == etyp ey)
                            == (etyp (ef :$ ex) == etyp (eg :$ ey))
@@ -131,20 +124,20 @@ tests n =
                       Right t -> t == typ e
                       Left  _ -> error "Either Listable Expr is generating ill typed expressions or etyp is wrong!"
 
-  , lengthE zero == 1
-  , depthE  zero == 1
-  , lengthE one  == 1
-  , depthE  one  == 1
-  , lengthE (zero -+- one) == 3
-  , depthE  (zero -+- one) == 2
-  , lengthE (zero -+- (xx -+- yy)) == 5
-  , depthE  (zero -+- (xx -+- yy)) == 3
-  , lengthE (((xx -+- yy) -*- zz) -==- ((xx -*- zz) -+- (yy -*- zz))) == 13
-  , depthE  (((xx -+- yy) -*- zz) -==- ((xx -*- zz) -+- (yy -*- zz))) ==  4
-  , depthE  (xx -*- yy -+- xx -*- zz -==- xx -*- (yy -+- zz)) == 4
-  , lengthE (xx -*- yy -+- xx -*- zz -==- xx -*- (yy -+- zz)) == 13
-  , depthE  (xx -*- yy -+- xx -*- zz) == 3
-  , depthE  (xx -*- (yy -+- zz)) == 3
+  , size  zero == 1
+  , depth zero == 1
+  , size  one  == 1
+  , depth one  == 1
+  , size  (zero -+- one) == 3
+  , depth (zero -+- one) == 2
+  , size  (zero -+- (xx -+- yy)) == 5
+  , depth (zero -+- (xx -+- yy)) == 3
+  , size  (((xx -+- yy) -*- zz) -==- ((xx -*- zz) -+- (yy -*- zz))) == 13
+  , depth (((xx -+- yy) -*- zz) -==- ((xx -*- zz) -+- (yy -*- zz))) ==  4
+  , depth (xx -*- yy -+- xx -*- zz -==- xx -*- (yy -+- zz)) == 4
+  , size  (xx -*- yy -+- xx -*- zz -==- xx -*- (yy -+- zz)) == 13
+  , depth (xx -*- yy -+- xx -*- zz) == 3
+  , depth (xx -*- (yy -+- zz)) == 3
 
   , allUnique (take (n`div`10) list :: [Expr])
   , allUnique (take (n`div`10) $ map unSameTypeE list)
@@ -168,63 +161,14 @@ tests n =
   ,       (xx -+- (xx -+- xx)) `isInstanceOf` (xx -+- yy)
   , not $ (xx -+- (xx -+- xx)) `isInstanceOf` (xx -+- xx)
 
-  , vars (xx -+- yy) == [(intTy,"x"),(intTy,"y")]
-  , vars (xx -+- xx) == [(intTy,"x")]
-  , vars (xx -+- xx -+- yy) == [(intTy,"x"),(intTy,"y")]
-  , vars (yy -+- xx -+- yy) == [(intTy,"x"),(intTy,"y")]
+  , vars (xx -+- yy) == [xx, yy]
+  , nubVars (xx -+- xx) == [xx]
+  , nubVars (xx -+- xx -+- yy) == [xx, yy]
+  , nubVars (yy -+- xx -+- yy) == [xx, yy]
 
   ,  (xx -+- xx)         < (xx -+- (xx -+- xx))
   , ((xx -+- xx) -+- xx) > (xx -+- (xx -+- xx))
   , xx < yy
   , zero < one
   , xx < zero
-
-  , holds n $ \(IntE e1) (IntE e2) -> isTuple (pair e1 e2)
-                                   && unfoldTuple (pair e1 e2) == [e1,e2]
-  , holds n $ \(IntE e1) (IntE e2) (IntE e3) ->
-      isTuple (triple e1 e2 e3) && unfoldTuple (triple e1 e2 e3) == [e1,e2,e3]
-  , holds n $ \(IntE e1) (IntE e2) (IntE e3) (IntE e4) ->
-      isTuple (quadruple e1 e2 e3 e4) &&
-      unfoldTuple (quadruple e1 e2 e3 e4) == [e1,e2,e3,e4]
-  , holds n $ \(IntE  e) -> not (isTuple e) && unfoldTuple e == []
-  , holds n $ \(CharE e) -> not (isTuple e) && unfoldTuple e == []
-  , holds n $ \(BoolE e) -> not (isTuple e) && unfoldTuple e == []
-  , holds n $ \(ListE e) -> not (isTuple e) && unfoldTuple e == []
-  , holds n $ \(FunE  e) -> not (isTuple e) && unfoldTuple e == []
-
-  , holds n $ \e1 e2 -> e1 `isSub` e2 == (e1 `elem` subexprsV e2)
-
-  , show (emptyString) == "\"\" :: [Char]"
-  , show (space -:- emptyString) == "\" \" :: [Char]"
-  , show (space -:- ccs)         == "' ':cs :: [Char]"
-  , show (aa -:- bb -:- emptyString) == "\"ab\" :: [Char]"
-  , show (aa -:- bb -:- ccs)         == "'a':'b':cs :: [Char]"
-  , show (aa -:- space -:- bb -:- lineBreak -:- emptyString) == "\"a b\\n\" :: [Char]"
-  , show (cc -:- space -:- dd -:- lineBreak -:- emptyString) == "c:' ':d:\"\\n\" :: [Char]"
-  , show (cc -:- space -:- dd -:- lineBreak -:- ccs)         == "c:' ':d:'\\n':cs :: [Char]"
-  , show (cc -:- aa -:- bb -:- emptyString) == "c:\"ab\" :: [Char]"
-  , show (cc -:- aa -:- bb -:- space -:- aa -:- bb -:- emptyString) == "c:\"ab ab\" :: [Char]"
-
-  , show one                     == "1 :: Int"
-  , show (minusOne)              == "-1 :: Int"
-  , show (one -+- one)           == "1 + 1 :: Int"
-  , show (minusOne -+- minusOne) == "(-1) + (-1) :: Int"
-
-  , show (zero -|- one)          == "(0,1) :: (Int,Int)"
-  , show (minusOne -|- minusOne) == "(-1,-1) :: (Int,Int)"
-  , show (triple zero one two)   == "(0,1,2) :: (Int,Int,Int)"
-  , show (quadruple minusOne zero one two) == "(-1,0,1,2) :: (Int,Int,Int,Int)"
-  , show (quintuple minusOne zero one two three) == "(-1,0,1,2,3) :: (Int,Int,Int,Int,Int)"
-  , show (sixtuple minusTwo minusOne zero one two three) == "(-2,-1,0,1,2,3) :: (Int,Int,Int,Int,Int,Int)"
-
-  , show (one -:- ll)                     == "[1] :: [Int]"
-  , show (zero -:- one -:- ll)            == "[0,1] :: [Int]"
-  , show (minusOne -:- ll)                == "[-1] :: [Int]"
-  , show (minusOne -:- minusTwo -:- ll)   == "[-1,-2] :: [Int]"
-  , show (xx -:- minusTwo -:- yy -:- ll)  == "[x,-2,y] :: [Int]"
-  , show (xx -:- minusTwo -:- yy -:- xxs) == "x:(-2):y:xs :: [Int]"
-
-  , show (ffE -$- zero)     == "f $ 0 :: Int"
-  , show (ggE -$- xx)       == "g $ x :: Int"
-  , show (ffE -$- minusOne) == "f $ (-1) :: Int"
   ]

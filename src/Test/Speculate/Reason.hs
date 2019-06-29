@@ -144,10 +144,10 @@ ruleFilter Thy {keepE = keep} = filter keepR
   keepR (e1,e2) = keep e1 && keep e2
 
 keepUpToLength :: Int -> Expr -> Bool
-keepUpToLength limit e = lengthE e <= limit
+keepUpToLength limit e = size e <= limit
 
 keepMaxOf :: [Equation] -> Expr -> Bool
-keepMaxOf = keepUpToLength . (+1) . maximum . (0:) . map lengthE . catPairs
+keepMaxOf = keepUpToLength . (+1) . maximum . (0:) . map size . catPairs
 
 normalize :: Thy -> Expr -> Expr
 normalize Thy {rules = rs} = n
@@ -169,11 +169,11 @@ isNormal :: Thy -> Expr -> Bool
 isNormal thy e = normalizeE thy e == e
 
 reduceRoot :: Expr -> Rule -> Maybe Expr
-reduceRoot e (e1,e2) = (e2 `assigning`) <$> (e `match` e1)
+reduceRoot e (e1,e2) = (e2 //) <$> (e `match` e1)
 
 -- Lists all reductions by one rule, note that reductions may be repeated.
 reductions1 :: Expr -> Rule -> [Expr]
-reductions1 e (l,_) | lengthE l > lengthE e = [] -- optional optimization
+reductions1 e (l,_) | size l > size e = [] -- optional optimization
 reductions1 e@(e1 :$ e2) r = maybeToList (e `reduceRoot` r)
                           ++ map (:$ e2) (reductions1 e1 r)
                           ++ map (e1 :$) (reductions1 e2 r)
@@ -231,9 +231,10 @@ criticalPairs thy@Thy {rules = rs, compareE = cmp} =
 -- canonicalization here is needed for the nub
 overlaps :: Expr -> Expr -> [Expr]
 overlaps e1 e2 = id -- nubSort
-               . map (canonicalize . (e2' `assigning`))
-               $ (e1' `unification`) `mapMaybe` subexprs e2'
+               . map (canonicalize . (e2' //))
+               $ (e1' `unification`) `mapMaybe` nonVarSubexprs e2'
   where
+  nonVarSubexprs = discard isVar . subexprs
   e1' = renameBy (++ "1") e1
   e2' = renameBy (++ "2") e2
 
@@ -415,7 +416,7 @@ showThy thy = (if null rs
 finalEquations :: (Equation -> Bool) -> Instances -> Thy -> [Equation]
 finalEquations shouldShow ti thy =
     sortBy (compareTy `on` (typ . fst))
-  . sortBy (compareE thy `on` uncurry phonyEquation)
+  . sortBy (compareE thy `on` uncurry pair)
   . filter shouldShow
   $ rules thy' ++ map swap (equations thy')
   where
@@ -456,7 +457,7 @@ discardRedundantEquations thy =
   discardRedundant = d []
                    . discardLater eqnInstanceOf
                    . reverse
-                   . sortOn (uncurry (+) . (lengthE *** lengthE))
+                   . sortOn (uncurry (+) . (size *** size))
   (e1l,e1r) `eqnInstanceOf` (e0l,e0r) = e1l `hasCanonInstanceOf` e0l
                                      && e1r `hasCanonInstanceOf` e0r
                                      || e1l `hasCanonInstanceOf` e0r

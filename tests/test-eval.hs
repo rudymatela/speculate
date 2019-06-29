@@ -40,9 +40,9 @@ tests n =
                            Just e1e2 -> condEqualM preludeInstances 500 500 e1e2 e1 e2
                            Nothing   -> True
 
-  , trueBinds preludeInstances 500 (xx -==- zero) == [[("x",zero)]]
-  , trueBinds preludeInstances 500 (xx -==- one)  == [[("x",one)]]
-  , trueBinds preludeInstances 500 ((xx -==- one) -&&- (yy -==- zero))  == [[("x",one),("y",zero)]]
+  , trueBinds preludeInstances 500 (xx -==- zero) == [[(xx,zero)]]
+  , trueBinds preludeInstances 500 (xx -==- one)  == [[(xx,one)]]
+  , trueBinds preludeInstances 500 ((xx -==- one) -&&- (yy -==- zero))  == [[(xx,one),(yy,zero)]]
 
   , holds n $ ordOK -:> int
   , holds n $ ordOK -:> ()

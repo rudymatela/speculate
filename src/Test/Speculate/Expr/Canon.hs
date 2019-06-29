@@ -10,6 +10,7 @@
 module Test.Speculate.Expr.Canon
   ( canonicalize
   , canonicalizeWith
+  , canonicalizationWith
   , canonicalWith
   )
 where
@@ -28,14 +29,17 @@ import Data.List ((\\))
 -- > canonicalize (y + abs y) = (x + abs x)
 -- > canonicalize ((y + x) == (x + y)) = ((x + y) == (y + x))
 canonicalizeWith :: Instances -> Expr -> Expr
-canonicalizeWith ti e = e `assigning` ((\(t,n,n') -> (n,Var n' t)) `map` cr [] e)
+canonicalizeWith is e = e //- canonicalizationWith is e
+
+canonicalizationWith :: Instances -> Expr -> [(Expr,Expr)]
+canonicalizationWith is e = cr (vars e) []
   where
-  cr :: [(TypeRep,String,String)] -> Expr -> [(TypeRep,String,String)]
-  cr bs (e1 :$ e2) = cr (cr bs e1) e2
-  cr bs (Var n t)
-    | any (\(t',n',_) -> t == t' && n == n') bs = bs
-    | otherwise = (t,n,head $ names ti t \\ map (\(_,_,n) -> n) bs):bs
-  cr bs _ = bs
+  cr :: [Expr] -> [(Expr,Expr)] -> [(Expr,Expr)]
+  cr []     bs  =  bs
+  cr (e:es) bs  =  cr es
+                $ if e `elem` map fst bs
+                  then bs
+                  else (e, (`varAsTypeOf` e) . head $ names is e \\ [n | (_,Value ('_':n) _) <- bs]):bs
 
 canonicalize :: Expr -> Expr
 canonicalize = canonicalizeWith preludeInstances

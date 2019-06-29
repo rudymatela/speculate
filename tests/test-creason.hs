@@ -6,7 +6,7 @@ import Test.Speculate.CondReason
 
 -- Utils
 import Test.Speculate.Reason (canonicalEqn, canonicalizeEqn, emptyThy)
-import Test.Speculate.Expr (falseE)
+import Test.Speculate.Expr (val)
 
 main :: IO ()
 main = mainTest tests 10000
@@ -35,10 +35,10 @@ tests n =
       emptyChy{cequations = [(zero -<=- xx, abs' xx, xx)]}
       (zero -<=- yy) (abs' yy -+- yy) (yy -+- yy)
 
-  , holds n $ \e1 e2    -> canonicalCEqn compare (falseE,e1,e2) == canonicalEqn emptyThy (e1,e2)
-  , holds n $ \e1 e2    -> sndTrd (canonicalizeCEqn compare (falseE,e1,e2))
+  , holds n $ \e1 e2    -> canonicalCEqn compare (val False,e1,e2) == canonicalEqn emptyThy (e1,e2)
+  , holds n $ \e1 e2    -> sndTrd (canonicalizeCEqn compare (val False,e1,e2))
                         == canonicalizeEqn emptyThy (e1,e2)
-  , holds n $ \e1 e2 ce -> sndTrd (canonicalizeCEqn compare (falseE,e1,e2))
+  , holds n $ \e1 e2 ce -> sndTrd (canonicalizeCEqn compare (val False,e1,e2))
                         == sndTrd (canonicalizeCEqn compare (ce,    e1,e2))
 
   , const True -- TODO: make the following test pass!

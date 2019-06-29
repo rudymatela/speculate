@@ -44,6 +44,7 @@ import Data.List hiding (insert)
 import Data.Maybe (catMaybes)
 import Data.Monoid ((<>))
 
+import Data.Maybe
 
 -- | Arguments to Speculate
 data Args = Args
@@ -167,7 +168,7 @@ shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
 
 keepExpr :: Args -> Expr -> Bool
 keepExpr Args{maxConstants = Just n} e | length (consts e) > n = False
-keepExpr Args{maxDepth     = Just n} e |         depthE e  > n = False
+keepExpr Args{maxDepth     = Just n} e |         depth  e  > n = False
 keepExpr _                           _                         = True
 
 reallyShowConditions :: Args -> Bool
@@ -175,10 +176,10 @@ reallyShowConditions args = showConditions args
                          && boolTy `elem` map (finalResultTy . typ) (allConstants args)
 
 atoms :: Args -> [[Expr]]
-atoms args = [ nubSort (map holeOfTy ts)
+atoms args = [ nubSort (mapMaybe (maybeHoleOfTy is) ts)
        `union` allConstants args
-       `union` [showConstant True  | showConds || showDot args]
-       `union` [showConstant False | showConds || showDot args]
+       `union` [val True  | showConds || showDot args]
+       `union` [val False | showConds || showDot args]
        `union` (nubSort . catMaybes) [eqE is t | showConds, t <- ts] ]
          \-/ foldr (\/) [] [tiersE is t | autoConstants args, t <- ts]
   where
@@ -190,6 +191,7 @@ atoms args = [ nubSort (map holeOfTy ts)
   []  \-/ yss  =  yss
   (xs:xss) \-/ (ys:yss)  =  xs `union` ys  :  xss \-/ yss
 
+-- misnomer: these are not all types, but just the star kinded ones...
 types :: Args -> [TypeRep]
 types = nubMergeMap (typesIn . typ) . allConstants
 
@@ -209,10 +211,10 @@ allConstants args = discard (\c -> any (c `isConstantNamed`) (exclude args))
 -- > x + y == z `allAbout` [(+)] == False
 -- > x + y == z `allAbout` [(+),(==)] == True
 allAbout :: Expr -> [Expr] -> Bool
-e `allAbout` es = atomicConstants e `areAll` (`elem` es)
+e `allAbout` es = nubConsts e `areAll` (`elem` es)
 
 about :: Expr -> [Expr] -> Bool
-e `about` es = atomicConstants e `areAny` (`elem` es)
+e `about` es = nubConsts e `areAny` (`elem` es)
 
 notAbout :: Expr -> [Expr] -> Bool
 notAbout = not .: about
@@ -223,7 +225,7 @@ timeout Args{evalTimeout = Just t}  = timeoutToFalse t
 
 -- needs lexicompareBy
 compareExpr :: Args -> Expr -> Expr -> Ordering
-compareExpr args = compareComplexityThen (lexicompareBy cmp)
+compareExpr args = compareComplexity <> lexicompareBy cmp
   where
   e1 `cmp` e2 | arity e1 == 0 && arity e2 /= 0 = LT
   e1 `cmp` e2 | arity e1 /= 0 && arity e2 == 0 = GT
@@ -299,4 +301,3 @@ prepareArgs args =
 
 getArgs :: Args -> IO Args
 getArgs = processArgs . prepareArgs
-

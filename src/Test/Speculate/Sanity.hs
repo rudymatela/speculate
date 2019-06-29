@@ -39,9 +39,10 @@ eqErrors is n t =
   where
   f = not . true is n
   e1 -==- e2 = fromMaybe falseE $ equation is e1 e2
-  x = Var "x" t
-  y = Var "y" t
-  z = Var "z" t
+  e = holeOfTy is t
+  x = "x" `varAsTypeOf` e
+  y = "y" `varAsTypeOf` e
+  z = "z" `varAsTypeOf` e
 
 -- returns a list of errors on the Ord instance (if any)
 ordErrors :: Instances -> Int -> TypeRep -> [String]
@@ -53,9 +54,10 @@ ordErrors is n t =
   f = not . true is n
   e1 -==- e2 = fromMaybe falseE $ equation     is e1 e2
   e1 -<=- e2 = fromMaybe falseE $ comparisonLE is e1 e2
-  x = Var "x" t
-  y = Var "y" t
-  z = Var "z" t
+  e = holeOfTy is t
+  x = "x" `varAsTypeOf` e
+  y = "y" `varAsTypeOf` e
+  z = "z" `varAsTypeOf` e
 
 eqOrdErrors :: Instances -> Int -> TypeRep -> [String]
 eqOrdErrors is n t =
@@ -67,9 +69,10 @@ eqOrdErrors is n t =
      | f $ (x -==- y) -==- (x -<=- y -&&- y -<=- x), isEq is t, isOrd is t ]
   where
   f = not . true is n
-  x = Var "x" t
-  y = Var "y" t
-  z = Var "z" t
+  e = holeOfTy is t
+  x = "x" `varAsTypeOf` e
+  y = "y" `varAsTypeOf` e
+  z = "z" `varAsTypeOf` e
   e1 -==- e2 = fromMaybe falseE $ equation     is e1 e2
   e1 -<=- e2 = fromMaybe falseE $ comparisonLE is e1 e2
   ty = show t ++ " -> " ++ show t ++ " -> Bool"

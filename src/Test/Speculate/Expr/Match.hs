@@ -11,8 +11,6 @@ module Test.Speculate.Expr.Match
   ( Binds
   -- * Assigning
   , fill
-  , assign
-  , assigning
   , sub
   , renameBy
 
@@ -38,18 +36,18 @@ import Data.Functor ((<$>))
 import Test.Speculate.Utils
 import Control.Monad ((>=>))
 
-type Binds = [(String,Expr)]
+type Binds = [(Expr,Expr)]
 
-findB :: String -> TypeRep -> Binds -> Maybe Expr
-findB n t bs = snd <$> find (\(n',e) -> n' == n && typ e == t) bs
+findB :: Expr -> Binds -> Maybe Expr
+findB e bs = snd <$> find ((e ==) . fst) bs
 
-updateAssignments :: String -> Expr -> Binds -> Maybe Binds
-updateAssignments s e = \bs ->
-  case findB s (typ e) bs of
-    Nothing -> Just ((s,e):bs)
-    Just e' -> if e' == e
-                 then Just bs
-                 else Nothing
+updateAssignments :: (Expr,Expr) -> Binds -> Maybe Binds
+updateAssignments (e,e') = \bs ->
+  case findB e bs of
+    Nothing  -> Just ((e,e'):bs)
+    Just e'' -> if e'' == e'
+                then Just bs
+                else Nothing
 
 -- | Fill holes in an expression.
 --   Silently skips holes that are not of the right type.
@@ -61,47 +59,17 @@ fill e = fst . fill' e
   fill' (e1 :$ e2) es = let (e1',es')  = fill' e1 es
                             (e2',es'') = fill' e2 es'
                         in (e1' :$ e2', es'')
-  fill' (Var "" t) (e:es) | t == typ e = (e,es)
+  fill' eh (e:es) | isHole eh && typ eh == typ e = (e,es)
   fill' e es = (e,es)
-
--- | Assign all occurences of a variable in an expression.
---
--- Examples in pseudo-Haskell:
---
--- > assign "x" (10) (x + y) = (10 + y)
--- > assign "y" (y + z) ((x + y) + (y + z)) = (x + (y + z)) + ((y + z) + z)
---
--- This respects the type (won't change occurrences of a similarly named
--- variable of a different type).
-assign :: String -> Expr -> Expr -> Expr
-assign n e (e1 :$ e2) = assign n e e1 :$ assign n e e2
-assign n e (Var n' t) | t == typ e && n == n' = e
-assign n e e1 = e1
-
--- | Assign all occurrences of several variables in an expression.
---
--- For single variables, this works as assign:
---
--- > x + y `assigning` [("x",10)] = (10 + y)
--- > ((x + y) + (y + z)) `assigning` [("y",y+z)] = (x + (y + z)) + ((y + z) + z)
---
--- Note this is /not/ equivalent to @foldr (uncurry assign)@.  Variables inside
--- expressions being assigned will not be assigned.
-assigning :: Expr -> Binds -> Expr
-(e1 :$ e2) `assigning` as = (e1 `assigning` as) :$ (e2 `assigning` as)
-(Var n t) `assigning` as = fromMaybe (Var n t) $ findB n t as
-e `assigning` _ = e
 
 -- | Substitute matching subexpressios.
 --
 -- sub (x + y) 0 ((x + y) + z) == (0 + z)
 -- sub (x + y) 0 (x + (y + z)) == (x + (y + z))
+--
+-- TODO: remove
 sub :: Expr -> Expr -> Expr -> Expr
-sub ef et = s
-  where
-  s e | e == ef = et
-  s (e1 :$ e2)  = s e1 :$ s e2
-  s e           = e
+sub ef et = (// [(ef,et)])
 
 -- | Primeify variable names in an expression.
 --
@@ -112,9 +80,10 @@ sub ef et = s
 --
 -- Note this will affect holes!
 renameBy :: (String -> String) -> Expr -> Expr
-renameBy f (e1 :$ e2) = renameBy f e1 :$ renameBy f e2
-renameBy f (Var n t) = Var (f n) t
-renameBy f e = e
+renameBy f = mapValues f'
+  where
+  f' (Value ('_':n) t) = Value ('_':f n) t
+  f' e = e
 
 -- | List matches if possible
 --
@@ -143,30 +112,30 @@ matchWith :: Binds -> Expr -> Expr -> Maybe Binds
 matchWith bs e1' e2' = m e1' e2' bs
   where
   m :: Expr -> Expr -> Binds -> Maybe Binds
-  m e1 e2 | typ e1 /= typ e2 = const Nothing
-  m e1 (Var s t) = updateAssignments s e1
+  m e1 e2 | etyp e1 /= etyp e2 = const Nothing
+  m e1 e2@(Value ('_':_) _) = updateAssignments (e2,e1)
   m (f1 :$ x1) (f2 :$ x2) = m f1 f2 >=> m x1 x2
   m e1 e2 | e1 == e2  = Just
           | otherwise = const Nothing
 
 unify :: Expr -> Expr -> Maybe Expr
-unify e1 e2 = (e1 `assigning`) <$> unification e1 e2
+unify e1 e2 = (e1 //-) <$> unification e1 e2
 
-unification :: Expr -> Expr -> Maybe Binds
+unification :: Expr -> Expr -> Maybe [(Expr,Expr)]
 unification = naiveUnification
 
-findBind :: Expr -> Expr -> Either Bool (String,Expr)
+findBind :: Expr -> Expr -> Either Bool (Expr,Expr)
 findBind e1         e2          |  typ e1 /= typ e2  =  Left False
                                 |  e1 == e2          =  Left True
-findBind (Var s t)  e2          =  Right (s,e2)
-findBind e1         (Var s t)   =  Right (s,e1)
+                                |  isVar e1          =  Right (e1,e2)
+                                |  isVar e2          =  Right (e2,e1)
 findBind (f1 :$ x1) (f2 :$ x2)  =  case findBind f1 f2 of
                                    Left True -> findBind x1 x2
                                    r         -> r
 findBind e1         e2          =  Left (e1 == e2)
 
 -- NOTE: there are faster methods for unification.
-naiveUnification :: Expr -> Expr -> Maybe Binds
+naiveUnification :: Expr -> Expr -> Maybe [(Expr,Expr)]
 naiveUnification e1' e2' = uu e1' e2' []
   where
   uu :: Expr -> Expr -> Binds -> Maybe Binds
@@ -182,12 +151,12 @@ naiveUnification e1' e2' = uu e1' e2' []
     case findBind e1 e2 of
     Left False -> Nothing
     Left True  -> Just (e1,e2,bs)
-    Right (s,e) ->
-      if (Var s (typ e)) `isSub` e
+    Right (ex,e) ->
+      if ex `isSubexpr` e
       then Nothing
-      else Just ( e1 `assigning` [(s,e)]
-                , e2 `assigning` [(s,e)]
-                , (s,e):[(s',e' `assigning` [(s,e)]) | (s',e') <- bs]
+      else Just ( e1 //- [(ex,e)]
+                , e2 //- [(ex,e)]
+                , (ex,e):[(ex',e' //- [(ex,e)]) | (ex',e') <- bs]
                 )
 
 -- 0 `isInstanceOf` x = True

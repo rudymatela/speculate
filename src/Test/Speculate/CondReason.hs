@@ -48,10 +48,10 @@ listEquivalent :: Chy -> Expr -> [Expr]
 listEquivalent Chy{cclasses = ccss} ce = fromMaybe [] $ lookup ce ccss
 
 reduceRootWith :: Binds -> Expr -> (Expr,Expr) -> Maybe Expr
-reduceRootWith bs e (e1,e2) = (e2 `assigning`) <$> matchWith bs e e1
+reduceRootWith bs e (e1,e2) = (e2 //) <$> matchWith bs e e1
 
 reductions1With :: Binds -> Expr -> (Expr,Expr) -> [Expr]
-reductions1With bs e (l,_) | lengthE l > lengthE e = [] -- optional optimization
+reductions1With bs e (l,_) | size l > size e = [] -- optional optimization
 reductions1With bs e@(e1 :$ e2) r = maybeToList (reduceRootWith bs e r)
                                  ++ map (:$ e2) (reductions1With bs e1 r)
                                  ++ map (e1 :$) (reductions1With bs e2 r)
@@ -86,7 +86,7 @@ cIsInstanceOf :: Chy -> (Expr,Expr,Expr) -> (Expr,Expr,Expr) -> Bool
 cIsInstanceOf chy (ce2,le2,re2) (ce1,le1,re1) =
   case match2 (le2,re2) (le1,re1) of
     Nothing -> False
-    Just bs -> equivalent (unThy chy) (ce1 `assigning` bs) ce2
+    Just bs -> equivalent (unThy chy) (ce1 // bs) ce2
 
 -- TODO: make cinsert result independent of insertion order
 cinsert :: (Expr,Expr,Expr) -> Chy -> Chy
@@ -113,7 +113,7 @@ cfinalize chy@Chy{cequations = ceqs} =
   expandSmallerConditions ceq@(ce,e1,e2) =
     (ce,e1,e2) : [ (ce',cnormalize chy' ce' e1,cnormalize chy' ce' e2)
                  | ce' <- listImplies chy ce
-                 , lengthE ce' < lengthE ce
+                 , size ce' < size ce
                  , ce' /= falseE
                  , let chy' = chy{cequations = L.delete ceq ceqs}
                  , not $ cequivalent chy' ce' e1 e2
