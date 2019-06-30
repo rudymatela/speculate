@@ -89,7 +89,6 @@ library
                  , Test.Speculate.Report
                  , Test.Speculate.Engine
                  , Test.Speculate.Expr
-                 , Test.Speculate.Expr.Canon
                  , Test.Speculate.Expr.Core
                  , Test.Speculate.Expr.Equate
                  , Test.Speculate.Expr.Ground
