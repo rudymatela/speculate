@@ -125,7 +125,7 @@ canonicalizeCEqn cmp = canonicalizeCEqnWith cmp preludeInstances
 canonicalizeCEqnWith :: (Expr -> Expr -> Ordering) -> Instances -> (Expr,Expr,Expr) -> (Expr,Expr,Expr)
 canonicalizeCEqnWith cmp ti = c . o
   where
-  c (ce,e1,e2) = case canonicalizeWith ti (e2 :$ (e1 :$ ce)) of
+  c (ce,e1,e2) = case canonicalizeWith (getNames ti) (e2 :$ (e1 :$ ce)) of
                    (e2' :$ (e1' :$ ce')) -> (ce',e1',e2')
                    _ -> error $ "canonicalizeCEqnWith: the impossible happened,"
                              ++ "this is definitely a bug, see source!"

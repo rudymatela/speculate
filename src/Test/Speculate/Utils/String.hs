@@ -17,8 +17,7 @@ module Test.Speculate.Utils.String
   , isInfix, isPrefix, isInfixedPrefix
   , toPrefix
   , prec
-  , prime, primeCycle
-  , namesFromTemplate
+  , prime
   , indent, alignRight, alignLeft
   , splitAtCommas
   )
@@ -126,21 +125,6 @@ prime ('`':cs) = '`':init cs ++ "'`" -- `foo` to `foo'`
 prime ('(':cs) = '(':init cs ++ "-)" -- (+) to (+-)
 prime cs | isInfix cs = cs ++ "-"    -- + to +-
          | otherwise  = cs ++ "'"    -- foo to foo'
-
-primeCycle :: [String] -> [String]
-primeCycle [] = []
-primeCycle ss = ss ++ map (++ "'") (primeCycle ss)
-
-namesFromTemplate :: String -> [String]
-namesFromTemplate = primeCycle . f
-  where
-  f ""                         = f "x"
-  f cs    | isDigit (last cs)  = map (\n -> init cs ++ show n) [digitToInt (last cs)..]
-  f [c]                        = map ((:[]) . chr) [x,x+1,x+2] where x = ord c
-  f cs    | last cs == 's'     = (++ "s") <$> f (init cs)
-  f "xy"                       = ["xy","zw"]
-  f [c,d] | ord d - ord c == 1 = [[c,d], [chr $ ord c + 2, chr $ ord d + 2]]
-  f cs                         = [cs]
 
 alignRight :: Int -> String -> String
 alignRight n cs = replicate (n - length cs) ' ' ++ cs

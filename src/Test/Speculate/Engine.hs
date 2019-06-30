@@ -121,7 +121,7 @@ expansions is n e =
   case counts (holes e) of
     []      -> [e]
     (h,c):_ -> expansions is n `concatMap`
-               expansionsOfType h (take n (names is h)) e
+               expansionsOfType h (take n (getNames is h)) e
 
 -- | List the most general assignment of holes in an expression
 mostGeneral :: Expr -> Expr

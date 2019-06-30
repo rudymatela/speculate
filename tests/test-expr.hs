@@ -96,13 +96,6 @@ tests n =
   , renameBy (\(c:cs) -> succ c:cs) ((xx -+- yy) -+- ord' cc)
                                  == ((yy -+- zz) -+- ord' dd)
 
-  , canonicalize (xx -+- yy)
-              == (xx -+- yy)
-  , canonicalize (jj -+- (ii -+- ii))
-              == (xx -+- (yy -+- yy))
-  , canonicalize ((jj -+- ii) -+- (xx -+- xx))
-              == ((xx -+- yy) -+- (zz -+- zz))
-
   , typ zero == typ one
   , typ zero == typ xx
   , typ zero == typ ii

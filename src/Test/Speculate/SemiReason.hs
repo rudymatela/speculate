@@ -105,7 +105,7 @@ canonicalizeShyWith = mapSemiEquations . canonicalizeSemiEquationWith
 
 canonicalizeSemiEquationWith :: Instances -> Equation -> Equation
 canonicalizeSemiEquationWith is (e1,e2) =
-  case canonicalizeWith is (e1 :$ e2) of
+  case canonicalizeWith (getNames is) (e1 :$ e2) of
   e1' :$ e2' -> (e1',e2')
   _ -> error $ "canonicalizeShyWith: the impossible happened,"
             ++ "this is definitely a bug, see source!"

@@ -15,7 +15,7 @@ module Test.Speculate.Expr.Instance
   , ins
 
   -- * Queries on Instances
-  , names
+  , getNames
   , eqE, iqE, isEq,       isEqE
   , leE, ltE, isOrd,      isOrdE
   ,           isEqOrd,    isEqOrdE
@@ -33,9 +33,6 @@ module Test.Speculate.Expr.Instance
 
   -- * Type info for standard Haskell types
   , preludeInstances
-
-  -- * Does not belong here?
-  , defNames
 
   , boolTy
   , mkComparisonTy
@@ -184,8 +181,8 @@ isEqOrdE ti = isEqOrd ti . typ
 isListable :: Instances -> TypeRep -> Bool
 isListable is = isJust . maybeTiersE is
 
-names :: Instances -> Expr -> [String]
-names is e = namesFromTemplate $ case validApps is' e of
+getNames :: Instances -> Expr -> [String]
+getNames is e = namesFromTemplate $ case validApps is' e of
   []        -> def
   (nameE:_) -> eval def nameE
   where
@@ -286,7 +283,3 @@ preludeInstances = concat
 -- on ins and types on preludeInstances makes compilation of this module
 -- *really* slow: it takes a whopping 2 minutes!
 -- (the above report is using -O2, I have not tested without optimizations).
-
-
-defNames :: [String]
-defNames = namesFromTemplate "x"

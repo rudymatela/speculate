@@ -391,7 +391,7 @@ canonicalRule r = canonicalizeRule r == r
 
 canonicalizeRuleWith :: Instances -> Rule -> Rule
 canonicalizeRuleWith ti (e1,e2) =
-  case canonicalizeWith ti (e1 :$ e2) of
+  case canonicalizeWith (getNames ti) (e1 :$ e2) of
     e1' :$ e2' -> (e1',e2')
     _ -> error $ "canonicalizeRuleWith: the impossible happened,"
               ++ "this is definitely a bug, see source!"
