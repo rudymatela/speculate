@@ -93,8 +93,8 @@ usefulImplication :: Expr -> Bool
 usefulImplication e = vp \\ ve /= vp
   where
   (pre,e') = unImplication e
-  vp = vars pre
-  ve = vars e'
+  vp = nubVars pre
+  ve = nubVars e'
 
 conditionalEquation :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
 conditionalEquation ti pre e1 e2 = (pre `implication`) =<< equation ti e1 e2
@@ -109,8 +109,8 @@ usefulConditionalEquation :: Expr -> Bool
 usefulConditionalEquation e = e1 /= e2 && vp \\ ve /= vp
   where
   (pre,e1,e2) = unConditionalEquation e
-  vp = vars pre
-  ve = vars e1 +++ vars e2
+  vp = nubVars pre
+  ve = nubVars e1 +++ nubVars e2
 
 conditionalComparisonLE :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
 conditionalComparisonLE ti pre e1 e2 = (pre `implication`) =<< comparisonLE ti e1 e2

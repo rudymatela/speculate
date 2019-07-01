@@ -25,7 +25,7 @@ import Test.Speculate.Utils (nubMerge)
 -- | Greater than or equal number of occurences of each variable
 (>=\/) :: Expr -> Expr -> Bool
 e1 >=\/ e2 = all (\e -> countVar e e1 >= countVar e e2)
-                 (vars e1 `nubMerge` vars e2)
+                 (nubVars e1 `nubMerge` nubVars e2)
   where
   countVar e = length . filter (== e) . vars
 
@@ -132,7 +132,7 @@ infix 4 |>
 dwoBy :: (Expr -> Expr -> Bool) -> Expr -> Expr -> Bool
 dwoBy (>) = (|>)
   where
-  e1 |> e2@(Value ('_':_) _) | e2 `elem` vars e1 && e1 /= e2 = True
+  e1 |> e2@(Value ('_':_) _) | e2 `elem` nubVars e1 && e1 /= e2 = True
   e1 |> e2 = any (|>= e2) xs
           || (notVar f && notVar g && f >  g && all (e1 |>) ys)
           || (notVar f && notVar g && f == g && all (e1 |>) ys

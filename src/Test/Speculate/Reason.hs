@@ -234,7 +234,7 @@ overlaps e1 e2 = id -- nubSort
                . map (canonicalize . (e2' //))
                $ (e1' `unification`) `mapMaybe` nonVarSubexprs e2'
   where
-  nonVarSubexprs = discard isVar . subexprs
+  nonVarSubexprs = discard isVar . nubSubexprs
   e1' = renameBy (++ "1") e1
   e2' = renameBy (++ "2") e2
 

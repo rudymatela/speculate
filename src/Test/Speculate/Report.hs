@@ -131,7 +131,7 @@ reportDot ti onlyTypes quiet nVars n thy es = do
   unless quiet . putStrLn . unlines
            . map (\(r,e) -> showExprNode e
                          ++ " [style=filled, fillcolor = \""
-                         ++ showNodeColour (length (vars e) % (nVars*2)) r
+                         ++ showNodeColour (length (nubVars e) % (nVars*2)) r
                          ++ "\"]")
            . filter (\(r,e) -> typ e == boolTy)
            $ res

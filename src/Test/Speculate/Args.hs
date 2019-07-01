@@ -167,9 +167,9 @@ shouldShowConditionalEquation args (ce,e1,e2) = shouldShow3 args (ce,e1,e2)
   fore = foregroundConstants args
 
 keepExpr :: Args -> Expr -> Bool
-keepExpr Args{maxConstants = Just n} e | length (consts e) > n = False
-keepExpr Args{maxDepth     = Just n} e |         depth  e  > n = False
-keepExpr _                           _                         = True
+keepExpr Args{maxConstants = Just n} e | length (nubConsts e) > n = False
+keepExpr Args{maxDepth     = Just n} e |             depth e  > n = False
+keepExpr _                           _                            = True
 
 reallyShowConditions :: Args -> Bool
 reallyShowConditions args = showConditions args
