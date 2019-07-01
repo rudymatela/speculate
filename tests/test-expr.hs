@@ -33,13 +33,6 @@ tests n =
   , holds n $ \e1 e2 -> timesE `elem` consts (e1 -*- e2)
 
 
-  , arity zero == 0
-  , arity xx == 0
-  , arity absE == 1
-  , arity plusE == 2
-  , arity timesE == 2
-
-
   , holds n $ okEqOrd -:> (undefined :: Expr)
   , holds n $ compare ==== (compareComplexity <> lexicompare)
   , holds n $ LC.comparison lexicompare
