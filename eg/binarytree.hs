@@ -99,6 +99,7 @@ main :: IO ()
 main = speculate args
   { instances =
       [ ins "t" (undefined :: BT Item)
+      , ins "x" (undefined :: Item)
       ]
   , constants =
       [ showConstant (Null :: BT Item)

@@ -481,9 +481,7 @@ e1 -==- e2 =
 infix 4 -==-
 
 (-/=-) :: Expr -> Expr -> Expr
-e1 -/=- e2 =
-  fromMaybe (error $ "(-/=-): cannot inequate " ++ show e1 ++ " and " ++ show e2)
-            (inequality preludeInstances e1 e2)
+e1 -/=- e2 = not' (e1 -==- e2)
 infix 4 -/=-
 
 (-<=-) :: Expr -> Expr -> Expr

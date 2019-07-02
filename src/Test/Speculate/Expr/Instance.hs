@@ -70,7 +70,7 @@ type Instances = [Expr] -- TODO: remove?
 -- | Usage: @ins1 "x" (undefined :: Type)@
 ins1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
           => String -> a -> Instances
-ins1 n x = [eqFor x, diffFor x, lessEqFor x, lessFor x, compareFor x, tiersFor x, nameWith name']
+ins1 n x = [eqFor x, lessEqFor x, lessFor x, tiersFor x, nameWith name']
   where
   name' x'  =  n  where  _  =  x' `asTypeOf` x
 
@@ -80,14 +80,14 @@ ins n x = concat
   [    x      / n
 
   ,   [x]     / n ++ "s"
-  ,  [[x]]    / n ++ "ss"
+--,  [[x]]    / n ++ "ss"
 --, [[[x]]]   / n ++ "ss"
 
   , (x,x)     / n ++ m
-  , (x,x,x)   / n ++ m ++ o
+--, (x,x,x)   / n ++ m ++ o
 --, (x,x,x,x) / n ++ m ++ o ++ p
 
-  , [(x,x)]   / n ++ m ++ "s"
+--, [(x,x)]   / n ++ m ++ "s"
 --, [(x,x,x)] / n ++ m ++ o ++ "ss"
 
 --, (x,[x])   / n ++ m ++ "s"
@@ -268,7 +268,7 @@ preludeInstances = concat
 --, ins "x" (undefined :: Int3)
 --, ins "x" (undefined :: Int4)
 --, ins "x" (undefined :: Word1)
-  , ins "x" (undefined :: Word2)
+--, ins "x" (undefined :: Word2)
 --, ins "x" (undefined :: Word3)
 --, ins "x" (undefined :: Word4)
 --, ins "x" (undefined :: Nat1)

@@ -3,7 +3,8 @@ import Data.List (sort,insert)
 
 main :: IO ()
 main = speculate args
-  { constants = 
+  { instances = [ ins "css" [[char]] ]
+  , constants =
       [ showConstant ""
       , showConstant " "
       , showConstant "\n"

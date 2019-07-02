@@ -2,7 +2,8 @@ import Test.Speculate
 
 main :: IO ()
 main = speculate args
-  { constants =
+  { instances = [ins "xy" (int,int)]
+  , constants =
       [ background
       , constant "++"     $ (++)    -:> [int]
       , constant "==" $ (==) -:> int

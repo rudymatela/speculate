@@ -27,9 +27,6 @@ tests n =
   ,                      abs' (xx -+- abs' xx) === (xx -+- abs' xx) -- 2*x or 0
   , holds n' $ \e1 e2 -> typ e1 /= typ e2 ==> e1 =/= e2
 
-  , holds n' $       zero //= one
-  , holds n' $ not $   xx //= yy
-
   , holds n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
                            Just e1e2 -> condEqual preludeInstances 500 e1e2 e1 e2
                            Nothing   -> True
@@ -55,7 +52,6 @@ tests n =
   infix 4 ===
   x =/= y = not (x === y)
   infix 4 =/=
-  x //= y = inequal preludeInstances 500 x y
 
 (*==*), (*/=*), (*<=*), (*<*) :: (Show a, Typeable a) => a -> a -> Bool
 x *==* y = eval undefined $ showConstant x -==- showConstant y

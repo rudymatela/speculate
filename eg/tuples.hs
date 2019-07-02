@@ -11,6 +11,7 @@ main :: IO ()
 main = speculate args
   { maxSemiSize = 0
   , maxVars     = 3
+  , instances = [ ins "xyz" (int,int,int) ]
   , constants =
       [ showConstant (() :: ())
       , constant "id"    (id :: () -> ())
