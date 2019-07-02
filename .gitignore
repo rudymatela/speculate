@@ -44,7 +44,6 @@ tests/test-eval
 tests/test-haexpress
 tests/test-kbc
 tests/test-match
-tests/test-misc
 tests/test-order
 tests/test-creason
 tests/test-reason
