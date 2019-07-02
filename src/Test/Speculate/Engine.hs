@@ -80,7 +80,7 @@ vassignments e =
 -- TODO: rename vassignments, silly name.  what about canonicalExpansions?
 
 vassignmentsEqn :: (Expr,Expr) -> [(Expr,Expr)]
-vassignmentsEqn = filter (uncurry (/=)) . map unpair . vassignments . uncurry pair
+vassignmentsEqn = filter (uncurry (/=)) . map unfoldPair . vassignments . foldPair
 
 -- | List all variable assignments for a given type and list of variables.
 expansionsOfType :: Expr -> [String] -> Expr -> [Expr]
@@ -247,7 +247,7 @@ classesFromSchemaAndVariables thy vs = C.mergesOn (normalizeE thy)
 -- > equivalencesBetween basicInstances 500 (_ + _) (_ + _) =
 -- >   [i + j == j + i]
 equivalencesBetween :: (Expr -> Expr -> Bool) -> Expr -> Expr -> [(Expr,Expr)]
-equivalencesBetween (===) e1 e2 = discardLater (isInstanceOf `on` uncurry pair)
+equivalencesBetween (===) e1 e2 = discardLater (isInstanceOf `on` foldPair)
                                 . filter (uncurry (===))
                                 $ vassignmentsEqn (e1,e2)
 
@@ -287,7 +287,7 @@ conditionalEquivalences cmp canon cequal (==>) csz thy clpres cles =
     cdiscard (\(ce,e1,e2) -> subConsequence thy clpres ce e1 e2)
   . foldl (flip cinsert) (Chy [] cdg clpres thy)
   . sortBy (\(c1,e11,e12) (c2,e21,e22) -> c1 `cmp` c2
-                                       <> ((e11 `pair` e12) `cmp` (e21 `pair` e22)))
+                                       <> (foldPair (e11,e12) `cmp` foldPair (e21,e22)))
   . discard (\(pre,e1,e2) -> pre == falseE
                           || length (nubVars pre \\ (nubVars e1 +++ nubVars e2)) > 0
                           || subConsequence thy [] pre e1 e2)

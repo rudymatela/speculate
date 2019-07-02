@@ -64,8 +64,6 @@ tests n =
        , ( xx -+- (yy -+- zz), (zz -+- xx) -+- yy )
        , ( xx -+- (yy -+- zz), (zz -+- yy) -+- xx ) ]
 
-  , holds n $ \e1 e2 -> unpair (pair e1 e2) == (e1,e2)
-
 -- TODO: make the following pass (add ValueE and SameTypeValueE to Test)
 --, holds n $ \(SameTypeE e1 e2) (SameTypeE e3 e4)
 --         -> subConsequence emptyThy (e1 -==- e2) e3 e4

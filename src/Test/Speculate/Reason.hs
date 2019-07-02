@@ -416,7 +416,7 @@ showThy thy = (if null rs
 finalEquations :: (Equation -> Bool) -> Instances -> Thy -> [Equation]
 finalEquations shouldShow ti thy =
     sortBy (compareTy `on` (typ . fst))
-  . sortBy (compareE thy `on` uncurry pair)
+  . sortBy (compareE thy `on` foldPair)
   . filter shouldShow
   $ rules thy' ++ map swap (equations thy')
   where
