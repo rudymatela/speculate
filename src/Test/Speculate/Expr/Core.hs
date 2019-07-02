@@ -24,6 +24,7 @@ where
 
 import Data.Haexpress
 import Test.Speculate.Utils.Typeable
+import Data.Monoid ((<>))
 
 constant :: Typeable a => String -> a -> Expr
 constant = value
