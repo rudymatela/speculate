@@ -117,6 +117,9 @@ import Test.LeanCheck
 import Test.LeanCheck.Tiers
 import Test.LeanCheck.Utils hiding (comparison)
 
+import Data.Haexpress.Fixtures hiding
+  (ff, ffE, gg, ggE) -- as we define them as constants here
+
 import System.Environment (getArgs)
 import System.Exit (exitFailure)
 import Data.List (elemIndices)
@@ -281,69 +284,14 @@ instance Listable SameTypedPairsE where
   tiers = cons1 (SameTypedPairsE . map unSameTypeE) `ofWeight` 0
 
 
-zero :: Expr
-zero = showConstant (0 :: Int)
-
-one :: Expr
-one = showConstant (1 :: Int)
-
-two :: Expr
-two = showConstant (2 :: Int)
-
-three :: Expr
-three = showConstant (3 :: Int)
-
-minusOne :: Expr
-minusOne = showConstant (-1 :: Int)
-
-minusTwo :: Expr
-minusTwo = showConstant (-2 :: Int)
-
-xx :: Expr -- ex
-xx = var "x" int
-
-yy :: Expr -- wye
-yy = var "y" int
-
-zz :: Expr -- zed
-zz = var "z" int
-
-xx' :: Expr -- ex prime
-xx' = var "x'" int
-
-id' :: Expr -> Expr
-id' = (idE :$)
-
-idE :: Expr
-idE = constant "id" (id :: Int -> Int)
-
-abs' :: Expr -> Expr
-abs' = (absE :$)
-
-absE :: Expr
-absE = constant "abs" (abs :: Int -> Int)
-
-negate' :: Expr -> Expr
-negate' = (negateE :$)
-
-negateE :: Expr
-negateE = constant "negate" (negate :: Int -> Int)
-
 succ' :: Expr -> Expr
 succ' = (succE :$)
 
 succE :: Expr
 succE = constant "succ" ((1+) :: Int -> Int)
 
-(-+-) :: Expr -> Expr -> Expr
-e1 -+- e2 = plusE :$ e1 :$ e2
-infixl 6 -+-
-
 plusE :: Expr
 plusE = constant "+" ((+) :: Int -> Int -> Int)
-
-(-*-) :: Expr -> Expr -> Expr
-e1 -*- e2 = timesE :$ e1 :$ e2
 
 timesE :: Expr
 timesE = constant "*" ((*) :: Int -> Int -> Int)
@@ -354,47 +302,11 @@ e1 .-. e2 = minusE :$ e1 :$ e2
 minusE :: Expr
 minusE = constant "-" ((-) :: Int -> Int -> Int)
 
-(-|-) :: Expr -> Expr -> Expr
-e1 -|- e2 = commaE :$ e1 :$ e2
-
 commaE :: Expr
 commaE = constant "," ((,) :: Int -> Int -> (Int,Int))
 
-triple :: Expr -> Expr -> Expr -> Expr
-triple e1 e2 e3 = ccE :$ e1 :$ e2 :$ e3
-  where
-  ccE = constant ",," ((,,) :: Int -> Int -> Int -> (Int,Int,Int))
-
-quadruple :: Expr -> Expr -> Expr -> Expr -> Expr
-quadruple e1 e2 e3 e4 = cccE :$ e1 :$ e2 :$ e3 :$ e4
-  where
-  cccE = constant ",,," ((,,,) :: Int -> Int -> Int -> Int -> (Int,Int,Int,Int))
-
-quintuple :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr
-quintuple e1 e2 e3 e4 e5 = ccccE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5
-  where
-  ccccE = constant ",,,," ((,,,,) :: Int -> Int -> Int -> Int -> Int -> (Int,Int,Int,Int,Int))
-
-sixtuple :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr
-sixtuple e1 e2 e3 e4 e5 e6 = cccccE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6
-  where
-  cccccE = constant ",,,,," ((,,,,,) :: Int -> Int -> Int -> Int -> Int -> Int -> (Int,Int,Int,Int,Int,Int))
-
-(-$-) :: Expr -> Expr -> Expr
-e1 -$- e2 = applyE :$ e1 :$ e2
-infixl 6 -$-
-
 applyE :: Expr
 applyE = constant "$" (($) :: (Int -> Int) -> Int -> Int)
-
-ii :: Expr
-ii = var "i" int
-
-jj :: Expr
-jj = var "j" int
-
-kk :: Expr
-kk = var "k" int
 
 ii' :: Expr
 ii' = var "i'" int
@@ -444,31 +356,8 @@ hh7 e1 e2 e3 e4 e5 e6 e7 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6 :$ e7
 -- unification (hh7 yy zz xx' (ff2 ii ii) (ff2 jj jj) (ff2 kk kk) ii')
 --             (hh7 (ff2 xx xx) (ff2 yy yy) (ff2 zz zz) jj kk ii' xx')
 
-true :: Expr
-true = showConstant (True :: Bool)
-
-false :: Expr
-false = showConstant (False :: Bool)
-
-pp :: Expr -- pee
-pp = var "p" bool
-
-qq :: Expr -- cue
-qq = var "q" bool
-
 rr :: Expr -- ar, I'm a pirate
 rr = var "r" bool
-
-not' :: Expr -> Expr
-not' = (notE :$) where notE = constant "not" not
-
-(-&&-) :: Expr -> Expr -> Expr
-e1 -&&- e2 = andE :$ e1 :$ e2 where andE = constant "&&" (&&)
-infixr 3 -&&-
-
-(-||-) :: Expr -> Expr -> Expr
-e1 -||- e2 = orE :$ e1 :$ e2 where orE = constant "||" (||)
-infixr 2 -||-
 
 (-==>-) :: Expr -> Expr -> Expr
 e1 -==>- e2 = impliesE :$ e1 :$ e2 where impliesE = constant "==>" (==>)
@@ -515,57 +404,15 @@ space = showConstant ' '
 lineBreak :: Expr -- lineBreak, the character
 lineBreak = showConstant '\n'
 
-cc :: Expr -- cee, a variable character
-cc = var "c" char
-
-dd :: Expr -- dee, a variable character
-dd = var "d" char
-
-ord' :: Expr -> Expr
-ord' = (ordE :$)
-
-ordE :: Expr
-ordE = constant "ord" Data.Char.ord
-
 emptyString :: Expr
 emptyString = showConstant ""
-
-ccs :: Expr -- cees
-ccs = var "cs" [char]
 
 
 ll :: Expr
 ll = showConstant ([] :: [Int])
 
-xxs :: Expr -- exes
-xxs = var "xs" [int]
-
-yys :: Expr -- wyes
-yys = var "ys" [int]
-
-(-:-) :: Expr -> Expr -> Expr
-e1 -:- e2
-  | typ e1 == typeOf (undefined :: Int)  = consE :$ e1 :$ e2
-  | typ e1 == typeOf (undefined :: Char) = stringConsE :$ e1 :$ e2
-  where
-  stringConsE = constant ":" ((:) :: Char -> String -> String)
-infixr 5 -:-
-
-consE :: Expr
-consE = constant ":" ((:) :: Int -> [Int] -> [Int])
-
-(-++-) :: Expr -> Expr -> Expr
-e1 -++- e2 = appendE :$ e1 :$ e2
-infixr 5 -++-
-
 appendE :: Expr
 appendE = constant "++" ((++) :: [Int] -> [Int] -> [Int])
-
-head' :: Expr -> Expr
-head' exs = headE :$ exs where headE = constant "head" (head :: [Int] -> Int)
-
-tail' :: Expr -> Expr
-tail' exs = tailE :$ exs where tailE = constant "tail" (tail :: [Int] -> [Int])
 
 insert' :: Expr -> Expr -> Expr
 insert' ex exs = insertE :$ ex :$ exs where insertE = constant "insert" (L.insert :: Int -> [Int] -> [Int])
@@ -596,18 +443,6 @@ charE e = typ e == charTy
 
 listE :: Expr -> Bool
 listE e = typ e == listTy
-
-i_ :: Expr
-i_ = hole int
-
-c_ :: Expr
-c_ = hole char
-
-b_ :: Expr
-b_ = hole bool
-
-xs_ :: Expr
-xs_ = hole [int]
 
 data Rule = Rule Expr Expr deriving (Show, Eq, Ord)
 data Equation = Equation Expr Expr deriving (Show, Eq, Ord)
