@@ -42,7 +42,7 @@ import Data.Maybe (fromMaybe)
 -- > take 3 $ grounds preludeInstances ((x + x) + y)
 -- >   == [(0 + 0) + 0, (0 + 0) + 1, (1 + 1) + 0]
 grounds :: Instances -> Expr -> [Expr]
-grounds ti e = (e //) <$> groundBinds ti e
+grounds ti e = (e //-) <$> groundBinds ti e
 
 -- | List all possible variable bindings to an expression
 --
@@ -58,7 +58,7 @@ groundBinds ti e =
 --
 -- > groundAndBinds ti e == zipWith (,) (grounds ti e) (groundBinds ti e)
 groundAndBinds :: Instances -> Expr -> [(Binds,Expr)]
-groundAndBinds ti e = (\bs -> (bs, e // bs)) <$> groundBinds ti e
+groundAndBinds ti e = (\bs -> (bs, e //- bs)) <$> groundBinds ti e
 
 
 -- | Are two expressions equal for a given number of tests?

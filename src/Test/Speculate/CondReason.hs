@@ -48,7 +48,7 @@ listEquivalent :: Chy -> Expr -> [Expr]
 listEquivalent Chy{cclasses = ccss} ce = fromMaybe [] $ lookup ce ccss
 
 reduceRootWith :: Binds -> Expr -> (Expr,Expr) -> Maybe Expr
-reduceRootWith bs e (e1,e2) = (e2 //) <$> matchWith bs e e1
+reduceRootWith bs e (e1,e2) = (e2 //-) <$> matchWith bs e e1
 
 reductions1With :: Binds -> Expr -> (Expr,Expr) -> [Expr]
 reductions1With bs e (l,_) | size l > size e = [] -- optional optimization
@@ -86,7 +86,7 @@ cIsInstanceOf :: Chy -> (Expr,Expr,Expr) -> (Expr,Expr,Expr) -> Bool
 cIsInstanceOf chy (ce2,le2,re2) (ce1,le1,re1) =
   case match2 (le2,re2) (le1,re1) of
     Nothing -> False
-    Just bs -> equivalent (unThy chy) (ce1 // bs) ce2
+    Just bs -> equivalent (unThy chy) (ce1 //- bs) ce2
 
 -- TODO: make cinsert result independent of insertion order
 cinsert :: (Expr,Expr,Expr) -> Chy -> Chy

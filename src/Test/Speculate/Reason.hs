@@ -169,7 +169,7 @@ isNormal :: Thy -> Expr -> Bool
 isNormal thy e = normalizeE thy e == e
 
 reduceRoot :: Expr -> Rule -> Maybe Expr
-reduceRoot e (e1,e2) = (e2 //) <$> (e `match` e1)
+reduceRoot e (e1,e2) = (e2 //-) <$> (e `match` e1)
 
 -- Lists all reductions by one rule, note that reductions may be repeated.
 reductions1 :: Expr -> Rule -> [Expr]
@@ -231,7 +231,7 @@ criticalPairs thy@Thy {rules = rs, compareE = cmp} =
 -- canonicalization here is needed for the nub
 overlaps :: Expr -> Expr -> [Expr]
 overlaps e1 e2 = id -- nubSort
-               . map (canonicalize . (e2' //))
+               . map (canonicalize . (e2' //-))
                $ (e1' `unification`) `mapMaybe` nonVarSubexprs e2'
   where
   nonVarSubexprs = discard isVar . nubSubexprs
