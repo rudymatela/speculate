@@ -34,15 +34,12 @@ where
 
 import Data.Haexpress.Instances
 import Test.Speculate.Expr.Core
-import Test.Speculate.Expr.Match
 import Test.Speculate.Utils hiding (ord)
 import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
-import Data.Dynamic
 
-import Data.Maybe (isJust,fromMaybe,listToMaybe,catMaybes,mapMaybe)
-import Data.List (find,(\\))
-import Data.Monoid ((<>))
+import Data.Maybe
+import Data.Monoid ((<>)) -- for GHC <= 8.2
 
 type Instances = [Expr] -- TODO: remove?
 
@@ -94,8 +91,6 @@ ins n x = concat
   (/) = flip ins1
   infixr 0 /
   m = variableNamesFromTemplate n !! 1
-  o = variableNamesFromTemplate m !! 1
-  p = variableNamesFromTemplate o !! 1
 -- NOTE: the function typeInfoN is not perfect: it won't help produce types
 -- combining different sub-types, like for example: (Bool,Int).  But it is
 -- way better than the original version in which I had to explictly define
