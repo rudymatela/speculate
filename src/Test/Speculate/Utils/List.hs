@@ -161,7 +161,9 @@ collectWith :: Ord b
             -> [a] -> [d]
 collectWith f g h = map collapse
                   . groupOn f
-  where collapse (x:xs) = f x `h` map g (x:xs)
+  where
+  collapse (x:xs) = f x `h` map g (x:xs)
+  collapse _      = error "collectWith: the impossible happened! (see source)"
 
 collectSndByFst :: Ord a => [(a,b)] -> [(a,[b])]
 collectSndByFst = collectWith fst snd (,)

@@ -99,6 +99,7 @@ normalizeR x xs = map (x `fitR` maxLength xs) xs
 normalizeTo :: Char -> a -> [[a]] -> [[a]]
 normalizeTo 'l' = normalize
 normalizeTo 'r' = normalizeR
+normalizeTo _   = error "normalizeTo: unhandled case"
 
 -- | Given a list of lists returns the maximum length
 maxLength :: [[a]] -> Int

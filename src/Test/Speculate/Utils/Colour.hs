@@ -196,6 +196,7 @@ hue colour@(RGB r g b) = (\h' -> mod1 $ h' / 6) <$> h' -- h' * 60 / 360
      | m == r = Just $ (g - b) / c
      | m == g = Just $ (b - r) / c + 2
      | m == b = Just $ (r - g) / c + 4
+     | otherwise = error "hue: the impossible happened! (report bug)"
 
 intensity :: Colour -> Rational
 intensity (RGB r g b) = (r + g + b) / 3
@@ -262,6 +263,7 @@ fromHCM h' c m = RGB (r' + m) (g' + m) (b' + m)
     | 3%6 <= h && h <= 4%6 = (0,x,c)
     | 4%6 <= h && h <= 5%6 = (x,0,c)
     | 5%6 <= h && h <= 6%6 = (c,0,x)
+    | otherwise = error "fromHCM: the impossible happened! (report bug)"
 
 mix :: Colour -> Colour -> Colour
 mix (RGB r1 g1 b1) (RGB r2 g2 b2) = RGB ((r1 + r2) / 2) ((g1 + g2) / 2) ((b1 + b2) / 2)
