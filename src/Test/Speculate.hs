@@ -57,7 +57,6 @@ module Test.Speculate
   , mkOrdLessEqual
   , mkListable
   , mkNameWith
-  , names
   , Name (..)
 
   -- * Misc.
@@ -96,7 +95,6 @@ import Test.Speculate.Expr
   , mkOrdLessEqual
   , mkListable
   , mkNameWith
-  , names
   , Name (..)
   )
 import Test.Speculate.Args
