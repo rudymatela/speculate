@@ -72,7 +72,6 @@ eqOrdErrors is n t =
   e = holeOfTy is t
   x = "x" `varAsTypeOf` e
   y = "y" `varAsTypeOf` e
-  z = "z" `varAsTypeOf` e
   e1 -==- e2 = fromMaybe (val False) $ equation     is e1 e2
   e1 -<=- e2 = fromMaybe (val False) $ comparisonLE is e1 e2
   ty = show t ++ " -> " ++ show t ++ " -> Bool"

@@ -24,6 +24,7 @@ data Shy = Shy
   , sthy :: Thy
   }
 
+emptyShy :: Shy
 emptyShy = Shy
   { sequations = []
   , sthy = emptyThy

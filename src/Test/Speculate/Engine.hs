@@ -101,6 +101,7 @@ expansionsWith :: [Expr] -> Expr -> [Expr]
 expansionsWith es = ew (collectOn typ es)
   where
   nam (Value ('_':s) _) = s
+  nam _ = "expansionsWith: argument list must only contain vars."
   ew :: [[Expr]] -> Expr -> [Expr]
   ew []        e = [e]
   ew (es:tnss) e = ew tnss

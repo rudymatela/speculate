@@ -28,6 +28,7 @@ data Chy = Chy
   , unThy :: Thy
   }
 
+emptyChy :: Chy
 emptyChy = Chy
   { cequations = []
   , cimplications = D.empty
