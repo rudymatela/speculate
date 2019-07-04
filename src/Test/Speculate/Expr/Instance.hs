@@ -11,22 +11,22 @@
 module Test.Speculate.Expr.Instance
   ( Instances
 
-  -- * Queries on Instances
-  , isListable, tiersE
-  , maybeTiersE
-  , holeOfTy
-  , maybeHoleOfTy
-
+  -- * reifying instances
   , reifyInstances
   , reifyInstances1
   , reifyListable, mkListable
 
-  -- * Type info for standard Haskell types
+  -- * checking instances
+  , isListable
+
+  -- * finding functions
+  , tiersE, maybeTiersE
+  , holeOfTy, maybeHoleOfTy
+
+  -- * the preludeInstances definition
   , preludeInstances
 
-  , boolTy
-  , mkComparisonTy
-
+  -- * module re-export
   , module Data.Haexpress.Instances
   )
 where
@@ -40,12 +40,10 @@ import Data.Maybe
 
 type Instances = [Expr] -- TODO: remove?
 
-reifyInstances1 :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a)
-                => a -> Instances
+reifyInstances1 :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a) => a -> Instances
 reifyInstances1 a  =  concat [reifyListable a, reifyEqOrd a, reifyName a]
 
-reifyInstances :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a)
-               => a -> Instances
+reifyInstances :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a) => a -> Instances
 reifyInstances a  =  concat
   [ r1 a
   , r1 [a]
@@ -78,6 +76,11 @@ mkListable xss
 isListable :: Instances -> TypeRep -> Bool
 isListable is = isJust . maybeTiersE is
 
+tiersE :: Instances -> TypeRep -> [[Expr]]
+tiersE is t = fromMaybe err $ maybeTiersE is t
+  where
+  err  =  error $ "Could not find tiers with type `[[" ++ show t ++ "]]'."
+
 maybeTiersE :: Instances -> TypeRep -> Maybe [[Expr]]
 maybeTiersE is t = case i of
   [] -> Nothing
@@ -98,11 +101,7 @@ maybeHoleOfTy is t = case concat <$> maybeTiersE is t of
                      Just (e:_) -> Just $ "" `varAsTypeOf` e
                      _          -> Nothing
 
-tiersE :: Instances -> TypeRep -> [[Expr]]
-tiersE is t = fromMaybe err $ maybeTiersE is t
-  where
-  err  =  error $ "Could not find tiers with type `[[" ++ show t ++ "]]'."
-
+-- despite the name, this _does not_ include most types from the prelude.
 preludeInstances :: Instances
 preludeInstances  =  concat
   [ r1 (u :: ())
