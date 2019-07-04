@@ -20,6 +20,8 @@ module Test.Speculate.Expr.Instance
   , holeOfTy
   , maybeHoleOfTy
 
+  , reifyInstances
+  , reifyInstances1
   , reifyListable, mkListable
 
   -- * Type info for standard Haskell types
@@ -54,6 +56,27 @@ type Instances = [Expr] -- TODO: remove?
 -- reifyInstances :: (...) => a -> [Expr]
 --
 -- the couple last ones replace ins1 and ins
+
+reifyInstances1 :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a)
+                => a -> Instances
+reifyInstances1 a  =  concat [reifyListable a, reifyEqOrd a, reifyName a]
+
+reifyInstances :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a)
+               => a -> Instances
+reifyInstances a  =  concat
+  [ r1 a
+  , r1 [a]
+--, r1 [[a]]
+  , r1 (a,a)
+--, r1 (a,a,a)
+--, r1 [(a,a)]
+  , r1 (mayb a)
+--, r1 (eith a a)
+  ]
+  where
+  r1 :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a)
+     => a -> Instances
+  r1 = reifyInstances1
 
 -- | Usage: @ins1 "x" (undefined :: Type)@
 ins1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
