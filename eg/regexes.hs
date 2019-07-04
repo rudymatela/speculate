@@ -100,8 +100,8 @@ main = speculate args
   { maxTests = 30
   , maxSize = 4
   , instances =
-      [ eqWith  (/==/)
-      , ordWith (/<=/)
+      [ mkEq (/==/)
+      , mkOrdLessEqual (/<=/)
       , ins "c" (undefined :: Symbol)
       , ins "r" (undefined :: RE Symbol)
       ]

@@ -30,7 +30,7 @@ colour = undefined
 main :: IO ()
 main = speculate args
   { instances =
-      [ ordWith ((<=) `on` lightness)
+      [ mkOrdLessEqual ((<=) `on` lightness)
       , ins "c" colour
       ]
   , maxSize = 4

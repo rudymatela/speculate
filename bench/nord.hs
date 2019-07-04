@@ -1,6 +1,6 @@
 {-# LANGUAGE CPP, DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
 import Test.Speculate
-import Test.Speculate.Expr (name, listable, eq, ord)
+import Test.Speculate.Expr (listable)
 
 #if __GLASGOW_HASKELL__ < 710
 import Data.Typeable (Typeable1)
@@ -18,7 +18,7 @@ main :: IO ()
 main = speculate args
   { instances = [ mkNameWith "x" C0
                 , listable C0
-                , eq C0
+                , reifyEq C0
                 ]
   , constants = [ showConstant C0
                 , constant "id" (id :: EqButNotOrd -> EqButNotOrd)

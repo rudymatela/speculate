@@ -20,5 +20,5 @@ main = speculate args
       , foreground
       , constant "length" $ length  -:> [int]
       ]
-  , instances = [ ordWith (isSubsequenceOf :: [Int] -> [Int] -> Bool) ]
+  , instances = [ mkOrdLessEqual (isSubsequenceOf :: [Int] -> [Int] -> Bool) ]
   }

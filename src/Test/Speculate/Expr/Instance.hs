@@ -21,10 +21,6 @@ module Test.Speculate.Expr.Instance
   , maybeHoleOfTy
 
   , listable
-  , eq
-  , ord
-  , eqWith
-  , ordWith
 
   -- * Type info for standard Haskell types
   , preludeInstances
@@ -106,12 +102,6 @@ ins n x = concat
 -- everything.  A definitive solution is still to be thought of.
 -- NOTE: see related TODO on the definition of basicInstances
 
-eq :: (Typeable a, Eq a) => a -> Instances
-eq = reifyEq -- TODO: remove me
-
-ord :: (Typeable a, Ord a) => a -> Instances
-ord = reifyOrd -- TODO: remove me
-
 listable :: (Typeable a, Show a, Listable a) => a -> Instances
 listable = (:[]) . tiersFor
 
@@ -132,12 +122,6 @@ lessFor a  =  lessWith ((<) -:> a)
 
 lessWith :: Typeable a => (a -> a -> Bool) -> Expr
 lessWith (<)  =  value "<" (<)
-
-eqWith :: (Typeable a, Eq a) => (a -> a -> Bool) -> Instances
-eqWith  =  mkEq
-
-ordWith :: (Typeable a, Ord a) => (a -> a -> Bool) -> Instances
-ordWith  =  mkOrdLessEqual
 
 tiersFor :: (Typeable a, Listable a, Show a) => a -> Expr
 tiersFor a  =  tiersWith (tiers -: [[a]])
