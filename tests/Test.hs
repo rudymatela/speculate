@@ -63,8 +63,8 @@ module Test
   , absE
   , succE
   , negateE
-  , plusE
-  , timesE
+  , plus
+  , times
   , minusE
   , commaE
   , ffE
@@ -245,12 +245,12 @@ instance Listable ListE where
 instance Listable FunE where
   list = map FunE
        [ idE
-       , plusE
+       , plus
        , appendE
        , ordE
        , consE
        , absE
-       , timesE
+       , times
        , negateE
        , succE
        ]
@@ -279,12 +279,6 @@ succ' = (succE :$)
 
 succE :: Expr
 succE = constant "succ" ((1+) :: Int -> Int)
-
-plusE :: Expr
-plusE = constant "+" ((+) :: Int -> Int -> Int)
-
-timesE :: Expr
-timesE = constant "*" ((*) :: Int -> Int -> Int)
 
 (.-.) :: Expr -> Expr -> Expr
 e1 .-. e2 = minusE :$ e1 :$ e2

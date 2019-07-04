@@ -26,12 +26,12 @@ tests :: Int -> [Bool]
 tests n =
   [ True
 
-  , nubConsts (xx -+- yy) == [plusE]
-  , nubConsts (xx -+- (yy -+- zz)) == [plusE]
-  , nubConsts (zero -+- one) =$ sort $= [zero, one, plusE]
+  , nubConsts (xx -+- yy) == [plus]
+  , nubConsts (xx -+- (yy -+- zz)) == [plus]
+  , nubConsts (zero -+- one) =$ sort $= [zero, one, plus]
   , nubConsts ((zero -+- abs' zero) -+- (ord' aa -+- ord' cc))
-      =$ sort $= [zero, aa, absE, plusE, ordE]
-  , holds n $ \e1 e2 -> timesE `elem` consts (e1 -*- e2)
+      =$ sort $= [zero, aa, absE, plus, ordE]
+  , holds n $ \e1 e2 -> times `elem` consts (e1 -*- e2)
 
 
   , holds n $ okEqOrd -:> (undefined :: Expr)
@@ -57,9 +57,9 @@ tests n =
 
   -- Less arity is less
   , zero < absE
-  , absE < timesE
+  , absE < times
   , aa   < ordE
-  , ordE < timesE
+  , ordE < times
   , constant "id" (id -:>  int)  < constant "id"    (id    -:>  [int])
   , constant "id" (id -:> [int]) < constant "id"    (id    -:> [[int]])
   , constant "id" (id -:>  int)  < constant "sum"   (sum   -:>  [int])
@@ -82,7 +82,7 @@ tests n =
 
   , unfoldApp (abs' xx)          == [absE, xx]
   , unfoldApp (abs' (xx -+- yy)) == [absE, xx -+- yy]
-  , unfoldApp (xx -+- abs' xx)   == [plusE, xx, abs' xx]
+  , unfoldApp (xx -+- abs' xx)   == [plus, xx, abs' xx]
 
   , holds n $ \e -> renameBy id e == e
   , holds n $ \e -> renameBy tail (renameBy ('x':) e) == e
