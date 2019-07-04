@@ -4,7 +4,8 @@
 # License:     3-Clause BSD  (see the file LICENSE)
 # Maintainer:  Rudy Matela <rudy@matela.com.br>
 GHCIMPORTDIRS = src:eg:tests
-GHCFLAGS = -O2 $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic)
+GHCFLAGS = -O2 -Wall -Wno-name-shadowing -Wno-orphans \
+  $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic)
 # -prof -auto-all #-caf-all
 # When profiling is enabled, to get the cost centres with more than 6% time:
 #   $ ./eg/arith  +RTS -p -RTS
