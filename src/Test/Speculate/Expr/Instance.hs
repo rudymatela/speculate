@@ -105,24 +105,6 @@ ins n x = concat
 listable :: (Typeable a, Show a, Listable a) => a -> Instances
 listable = (:[]) . tiersFor
 
-diffFor :: (Typeable a, Eq a) => a -> Expr
-diffFor a  =  diffWith ((/=) -:> a)
-
-diffWith :: Typeable a => (a -> a -> Bool) -> Expr
-diffWith (/=)  =  value "/=" (/=)
-
-lessEqFor :: (Typeable a, Ord a) => a -> Expr
-lessEqFor a  =  lessEqWith ((<=) -:> a)
-
-lessEqWith :: Typeable a => (a -> a -> Bool) -> Expr
-lessEqWith (<=)  =  value "<=" (<=)
-
-lessFor :: (Typeable a, Ord a) => a -> Expr
-lessFor a  =  lessWith ((<) -:> a)
-
-lessWith :: Typeable a => (a -> a -> Bool) -> Expr
-lessWith (<)  =  value "<" (<)
-
 tiersFor :: (Typeable a, Listable a, Show a) => a -> Expr
 tiersFor a  =  tiersWith (tiers -: [[a]])
 
