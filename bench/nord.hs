@@ -16,7 +16,7 @@ instance Listable EqButNotOrd where
 -- Speculate reports a warning reflecting that.
 main :: IO ()
 main = speculate args
-  { instances = [ [nameWith $ \c -> let _ = c `asTypeOf` C0 in "x"]
+  { instances = [ mkNameWith "x" C0
                 , listable C0
                 , eq C0
                 ]

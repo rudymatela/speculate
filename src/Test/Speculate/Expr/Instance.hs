@@ -28,7 +28,6 @@ module Test.Speculate.Expr.Instance
   , ord
   , eqWith
   , ordWith
-  , nameWith
 
   -- * Type info for standard Haskell types
   , preludeInstances
@@ -69,9 +68,7 @@ type Instances = [Expr] -- TODO: remove?
 -- | Usage: @ins1 "x" (undefined :: Type)@
 ins1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
           => String -> a -> Instances
-ins1 n x = [eqFor x, lessEqFor x, lessFor x, tiersFor x, nameWith name']
-  where
-  name' x'  =  n  where  _  =  x' `asTypeOf` x
+ins1 n x  =  concat [reifyEqOrd x, listable x, mkNameWith n x]
 
 ins :: (Typeable a, Listable a, Show a, Eq a, Ord a)
     => String -> a -> Instances
@@ -140,16 +137,10 @@ lessWith :: Typeable a => (a -> a -> Bool) -> Expr
 lessWith (<)  =  value "<" (<)
 
 eqWith :: (Typeable a, Eq a) => (a -> a -> Bool) -> Instances
-eqWith (==) = [ HI.eqWith (==)
-              , diffWith $ not .: (==)
-              ]
+eqWith  =  mkEq
 
 ordWith :: (Typeable a, Ord a) => (a -> a -> Bool) -> Instances
-ordWith (<=) = [ lessEqWith $ (<=)
-               , lessWith   $ (<)
-               ]
-  where
-  (<) = not .: flip (<=)
+ordWith  =  mkOrdLessEqual
 
 tiersFor :: (Typeable a, Listable a, Show a) => a -> Expr
 tiersFor a  =  tiersWith (tiers -: [[a]])

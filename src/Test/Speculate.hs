@@ -47,7 +47,7 @@ module Test.Speculate
   -- | The following combinators are used to build
   --   the 'instances' list from 'Args'.
   , Instances
-  , ins, eqWith, ordWith, names, nameWith
+  , ins, eqWith, ordWith, names, mkNameWith
 
   -- * Misc.
   , report
@@ -78,7 +78,7 @@ import Test.Speculate.Expr
   , ins
   , eqWith
   , ordWith
-  , nameWith
+  , mkNameWith
   , names
   )
 import Test.Speculate.Args
