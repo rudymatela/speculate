@@ -50,7 +50,7 @@ import Data.Monoid ((<>))
 
 type Instances = [Expr] -- TODO: remove?
 
--- TODO: export functions like the following?
+-- TODO: make all functions follow the standard:
 --
 -- reifyEq :: Eq a => a -> [Expr]
 -- reifyOrd :: Ord a => a -> [Expr]
@@ -61,8 +61,6 @@ type Instances = [Expr] -- TODO: remove?
 -- reifyInstances :: (...) => a -> [Expr]
 --
 -- the couple last ones replace ins1 and ins
---
--- Note that the return type is a list of Exprs for consistency.
 
 -- | Usage: @ins1 "x" (undefined :: Type)@
 ins1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
