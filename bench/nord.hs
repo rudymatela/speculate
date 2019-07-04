@@ -1,6 +1,5 @@
 {-# LANGUAGE CPP, DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
 import Test.Speculate
-import Test.Speculate.Expr (listable)
 
 #if __GLASGOW_HASKELL__ < 710
 import Data.Typeable (Typeable1)
@@ -16,7 +15,7 @@ instance Listable EqButNotOrd where
 -- Speculate reports a warning reflecting that.
 main :: IO ()
 main = speculate args
-  { instances = [ listable C0
+  { instances = [ reifyListable C0
                 , reifyEq C0
                 ]
   , constants = [ showConstant C0

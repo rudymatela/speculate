@@ -1,7 +1,7 @@
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC <= 7.8
 -- |
 -- Module      : Test.Speculate.Expr.Instance
--- Copyright   : (c) 2016-2017 Rudy Matela
+-- Copyright   : (c) 2016-2019 Rudy Matela
 -- License     : 3-Clause BSD  (see the file LICENSE)
 -- Maintainer  : Rudy Matela <rudy@matela.com.br>
 --
@@ -20,7 +20,7 @@ module Test.Speculate.Expr.Instance
   , holeOfTy
   , maybeHoleOfTy
 
-  , listable
+  , reifyListable, mkListable
 
   -- * Type info for standard Haskell types
   , preludeInstances
@@ -33,7 +33,7 @@ module Test.Speculate.Expr.Instance
 where
 
 import Data.Haexpress.Instances
-import Test.Speculate.Expr.Core hiding (eqWith)
+import Test.Speculate.Expr.Core
 import Test.Speculate.Expr.Match
 import Test.Speculate.Utils hiding (ord)
 import Test.LeanCheck
@@ -61,7 +61,7 @@ type Instances = [Expr] -- TODO: remove?
 -- | Usage: @ins1 "x" (undefined :: Type)@
 ins1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
           => String -> a -> Instances
-ins1 n x  =  concat [reifyEqOrd x, listable x, mkNameWith n x]
+ins1 n x  =  concat [reifyEqOrd x, reifyListable x, mkNameWith n x]
 
 ins :: (Typeable a, Listable a, Show a, Eq a, Ord a)
     => String -> a -> Instances
@@ -102,16 +102,11 @@ ins n x = concat
 -- everything.  A definitive solution is still to be thought of.
 -- NOTE: see related TODO on the definition of basicInstances
 
-listable :: (Typeable a, Show a, Listable a) => a -> Instances
-listable = (:[]) . tiersFor
+reifyListable :: (Typeable a, Show a, Listable a) => a -> Instances
+reifyListable a  =  mkListable (tiers -: [[a]])
 
-tiersFor :: (Typeable a, Listable a, Show a) => a -> Expr
-tiersFor a  =  tiersWith (tiers -: [[a]])
-
--- 'tiers' here are encoded indirectly because we need tiers of [[Expr]] when
--- computing 'grounds'.
-tiersWith :: (Typeable a, Show a) => [[a]] -> Expr
-tiersWith xss  =  value "tiers" $ mapT val xss
+mkListable :: (Typeable a, Show a) => [[a]] -> [Expr]
+mkListable xss  = [value "tiers" $ mapT val xss]
 
 isListable :: Instances -> TypeRep -> Bool
 isListable is = isJust . maybeTiersE is
