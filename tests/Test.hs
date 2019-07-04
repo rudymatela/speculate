@@ -102,6 +102,7 @@ module Test
   , intE
   , charE
   , boolE
+  , listE
 
   -- ** Unamed holes
   , i_
@@ -125,25 +126,15 @@ import System.Exit (exitFailure)
 import Data.List (elemIndices)
 
 import Test.Speculate hiding (getArgs)
-import Test.Speculate.Expr hiding (true, false, ord, pair, expr)
-import qualified Test.Speculate.Expr as E
+import Test.Speculate.Expr hiding (true, false)
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
-import Test.Speculate.Engine hiding (true, false, pair, expr)
 
-import Data.Char (ord)
-import Data.Dynamic
 import Data.Function (on)
 import Data.List as L (sort,insert)
 import Data.Maybe (fromMaybe)
 
 import Test.Speculate.Utils
-
-isTrue :: Instances -> Int -> Expr -> Bool
-isTrue = E.true
-
-isFalse :: Instances -> Int -> Expr -> Bool
-isFalse = E.false
 
 reportTests :: [Bool] -> IO ()
 reportTests tests =
@@ -200,7 +191,6 @@ consI :: (Expr -> a) -> [[a]]; consI f = cons1 (f . unIntE)
 consB :: (Expr -> a) -> [[a]]; consB f = cons1 (f . unBoolE)
 consC :: (Expr -> a) -> [[a]]; consC f = cons1 (f . unCharE)
 consL :: (Expr -> a) -> [[a]]; consL f = cons1 (f . unListE)
-consF :: (Expr -> a) -> [[a]]; consF f = cons1 (f . unFunE)
 consII :: (Expr -> Expr -> a) -> [[a]]; consII o = cons2 (o `on` unIntE)
 consBB :: (Expr -> Expr -> a) -> [[a]]; consBB o = cons2 (o `on` unBoolE)
 consLL :: (Expr -> Expr -> a) -> [[a]]; consLL o = cons2 (o `on` unListE)
@@ -304,9 +294,6 @@ minusE = constant "-" ((-) :: Int -> Int -> Int)
 
 commaE :: Expr
 commaE = constant "," ((,) :: Int -> Int -> (Int,Int))
-
-applyE :: Expr
-applyE = constant "$" (($) :: (Int -> Int) -> Int -> Int)
 
 ii' :: Expr
 ii' = var "i'" int
