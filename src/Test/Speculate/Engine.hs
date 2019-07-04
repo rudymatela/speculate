@@ -290,12 +290,12 @@ conditionalEquivalences cmp canon cequal (==>) csz thy clpres cles =
   . foldl (flip cinsert) (Chy [] cdg clpres thy)
   . sortBy (\(c1,e11,e12) (c2,e21,e22) -> c1 `cmp` c2
                                        <> (foldPair (e11,e12) `cmp` foldPair (e21,e22)))
-  . discard (\(pre,e1,e2) -> pre == falseE
+  . discard (\(pre,e1,e2) -> pre == val False
                           || length (nubVars pre \\ (nubVars e1 +++ nubVars e2)) > 0
                           || subConsequence thy [] pre e1 e2)
   . filter canon
   $ [ (ce, e1, e2)
-    | e1 <- es, e2 <- es, e1 /= e2, canon (falseE,e1,e2)
+    | e1 <- es, e2 <- es, e1 /= e2, canon (val False,e1,e2)
     , typ e1 == typ e2, typ e1 /= boolTy
     , ce <- explain e1 e2
     ]

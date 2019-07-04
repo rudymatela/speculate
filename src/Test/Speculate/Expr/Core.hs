@@ -17,8 +17,6 @@ module Test.Speculate.Expr.Core
   , isConstantNamed
   , unrepeatedVars
   , isAssignment
-
-  , falseE
   )
 where
 
@@ -47,9 +45,6 @@ lexicompareBy compareConstants = cmp
   e1@(Value _ _)  `cmp` e2@(Value _ _)               =  e1 `compareConstants` e2
   -- Var < Constants < Apps
   -- the above function exists internally on Haexpress as well.
-
-falseE :: Expr
-falseE = showConstant False
 
 countVars :: Expr -> [(Expr,Int)]
 countVars e = map (\e' -> (e',length . filter (== e') $ vars e)) $ nubVars e

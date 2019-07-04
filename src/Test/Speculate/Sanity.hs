@@ -38,7 +38,7 @@ eqErrors is n t =
   ++ ["not transitive" | f (((x -==- y) -&&- (y -==- z)) -==>- (x -==- z))]
   where
   f = not . isTrue is n
-  e1 -==- e2 = fromMaybe falseE $ equation is e1 e2
+  e1 -==- e2 = fromMaybe (val False) $ equation is e1 e2
   e = holeOfTy is t
   x = "x" `varAsTypeOf` e
   y = "y" `varAsTypeOf` e
@@ -52,8 +52,8 @@ ordErrors is n t =
   ++ ["not transitive"    | f (((x -<=- y) -&&- (y -<=- z)) -==>- (x -<=- z))]
   where
   f = not . isTrue is n
-  e1 -==- e2 = fromMaybe falseE $ equation     is e1 e2
-  e1 -<=- e2 = fromMaybe falseE $ comparisonLE is e1 e2
+  e1 -==- e2 = fromMaybe (val False) $ equation     is e1 e2
+  e1 -<=- e2 = fromMaybe (val False) $ comparisonLE is e1 e2
   e = holeOfTy is t
   x = "x" `varAsTypeOf` e
   y = "y" `varAsTypeOf` e
@@ -73,8 +73,8 @@ eqOrdErrors is n t =
   x = "x" `varAsTypeOf` e
   y = "y" `varAsTypeOf` e
   z = "z" `varAsTypeOf` e
-  e1 -==- e2 = fromMaybe falseE $ equation     is e1 e2
-  e1 -<=- e2 = fromMaybe falseE $ comparisonLE is e1 e2
+  e1 -==- e2 = fromMaybe (val False) $ equation     is e1 e2
+  e1 -<=- e2 = fromMaybe (val False) $ comparisonLE is e1 e2
   ty = show t ++ " -> " ++ show t ++ " -> Bool"
 
 instanceErrors :: Instances -> Int -> [TypeRep] -> [String]

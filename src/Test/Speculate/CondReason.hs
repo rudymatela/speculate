@@ -114,7 +114,7 @@ cfinalize chy@Chy{cequations = ceqs} =
     (ce,e1,e2) : [ (ce',cnormalize chy' ce' e1,cnormalize chy' ce' e2)
                  | ce' <- listImplies chy ce
                  , size ce' < size ce
-                 , ce' /= falseE
+                 , ce' /= val False
                  , let chy' = chy{cequations = L.delete ceq ceqs}
                  , not $ cequivalent chy' ce' e1 e2
                  ]
