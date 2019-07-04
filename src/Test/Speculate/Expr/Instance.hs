@@ -64,24 +64,11 @@ ins :: (Typeable a, Listable a, Show a, Eq a, Ord a)
     => String -> a -> Instances
 ins n x = concat
   [    x      / n
-
   ,   [x]     / n ++ "s"
 --,  [[x]]    / n ++ "ss"
---, [[[x]]]   / n ++ "ss"
-
   , (x,x)     / n ++ m
 --, (x,x,x)   / n ++ m ++ o
---, (x,x,x,x) / n ++ m ++ o ++ p
-
 --, [(x,x)]   / n ++ m ++ "s"
---, [(x,x,x)] / n ++ m ++ o ++ "ss"
-
---, (x,[x])   / n ++ m ++ "s"
---, ([x],x)   / n ++ "s" ++ m
---, ([x],[x]) / n ++ "s" ++ m ++ "s"
---, (x,(x,x)) / n ++ m ++ o
---, ((x,x),x) / n ++ m ++ o
-
   , mayb x    / "m" ++ n ++ "1"
 --, eith x x  / "e" ++ n ++ o ++ "1"
   ]
@@ -136,7 +123,6 @@ deriving instance Typeable Word2 -- for GHC <= 7.8
 
 instance Name Word2
 
--- TODO: include *ALL* prelude types on basicInstances
 preludeInstances :: Instances
 preludeInstances = concat
   [ ins1 "x"  (undefined :: ())
