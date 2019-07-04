@@ -15,10 +15,10 @@ module Test.Speculate.Expr.Instance
   , ins
 
   -- * Queries on Instances
-  , eqE, iqE, isEq,       isEqT
-  , leE, ltE, isOrd,      isOrdT
-  ,           isEqOrd,    isEqOrdT
-  , tiersE,   isListable
+  , isEq,       isEqT
+  , isOrd,      isOrdT
+  , isEqOrd,    isEqOrdT
+  , isListable, tiersE
   , maybeTiersE
   , holeOfTy
   , maybeHoleOfTy
@@ -187,26 +187,6 @@ tiersE :: Instances -> TypeRep -> [[Expr]]
 tiersE is t = fromMaybe err $ maybeTiersE is t
   where
   err  =  error $ "Could not find tiers with type `[[" ++ show t ++ "]]'."
-
-comparisonE :: String -> Instances -> TypeRep -> Maybe Expr
-comparisonE n' is t = find (\i@(Value n _) -> n == n' && typ i == mkComparisonTy t) is
-
-eqE :: Instances -> TypeRep -> Maybe Expr
-eqE = comparisonE "=="
-
-iqE :: Instances -> TypeRep -> Maybe Expr
-iqE = comparisonE "/="
-
-ltE :: Instances -> TypeRep -> Maybe Expr
-ltE = comparisonE "<"
-
-leE :: Instances -> TypeRep -> Maybe Expr
-leE = comparisonE "<="
-
--- An alternative that could work on Speculate:
--- I just need to apply (==LE), (==GT) and (==EQ) when evaluating my
--- properties and to replace (isLE :$ (compare :$ ...)) by ((<=) :$ ...)
--- before printing.
 
 deriving instance Typeable Word2 -- for GHC <= 7.8
 

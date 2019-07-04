@@ -32,9 +32,7 @@ import Test.Speculate.Expr.Core
 import Test.Speculate.Expr.Instance
 
 equation :: Instances -> Expr -> Expr -> Maybe Expr
-equation ti e1 e2 = do
-  e <- eqE ti (typ e1)
-  e :$ e1 $$ e2
+equation  =  mkEquation
 
 unEquation :: Expr -> (Expr,Expr)
 unEquation ((Value "==" _ :$ e1) :$ e2) = (e1,e2)
@@ -54,15 +52,11 @@ usefulEquation :: Expr -> Bool
 usefulEquation = uncurry (/=) . unEquation
 
 comparisonLT :: Instances -> Expr -> Expr -> Maybe Expr
-comparisonLT ti e1 e2 = do
-  e <- ltE ti (typ e1)
-  e :$ e1 $$ e2
+comparisonLT  =  mkComparisonLT
 
 
 comparisonLE :: Instances -> Expr -> Expr -> Maybe Expr
-comparisonLE ti e1 e2 = do
-  e <- leE ti (typ e1)
-  e :$ e1 $$ e2
+comparisonLE  =  mkComparisonLE
 
 unComparison :: Expr -> (Expr,Expr)
 unComparison ((Value "compare"  _ :$ e1) :$ e2) = (e1,e2)
