@@ -25,9 +25,11 @@ instance Listable Doc where
        \/ cons2 (P.<>)
        \/ cons2 nest
 
+instance Name Doc where name _ = "d1"
+
 main :: IO ()
 main = speculate args
-  { instances = [ins "d1" (undefined :: Doc)]
+  { instances = [reifyInstances (undefined :: Doc)]
   , maxSize = 7
   , maxVars = 3
   , constants =

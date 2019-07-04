@@ -2,7 +2,6 @@
 import Test.Speculate
 import Test.Speculate.Expr
 import Test.Speculate.Reason
-import Test.Speculate.Utils.Timeout (timeoutToError)
 import Test
 
 import Data.Function (on)
@@ -23,6 +22,10 @@ instance Eq Thyght where
 instance Ord Thyght where
   compare = compare `on` unThyght
 
+instance Name Thyght   where name _ = "t"
+instance Name Equation where name _ = "eq"
+instance Name Expr     where name _ = "e"
+
 -- NOTE: we get wrong laws for size 5, but no wrong laws for size 4.
 -- increasing the number of tests can get rid of those laws
 
@@ -33,9 +36,9 @@ main = speculate args
   , showConditions = False
   , showSemiequations = False
   , instances =
-      [ ins "t"  (undefined :: Thyght)
-      , ins "eq" (undefined :: Equation)
-      , ins "e"  (undefined :: Expr)
+      [ reifyInstances (undefined :: Thyght)
+      , reifyInstances (undefined :: Equation)
+      , reifyInstances (undefined :: Expr)
       ]
   , constants =
       [ constant "okThy"      $ \(Thyght t)       -> okThy t

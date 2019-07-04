@@ -26,14 +26,17 @@ instance (Ord a, Listable a) => Listable (Digraph a) where
     graphs ns = mapT (D . zip ns)
               $ listsOfLength (length ns) (setsOf $ toTiers ns)
 
+instance Name (Digraph a) where name _ = "a"
+instance Name Nat         where name _ = "x"
+
 digraph :: a -> Digraph a
 digraph = undefined
 
 main :: IO ()
 main = speculate args
   { instances =
-      [ ins "x" nat
-      , ins "a" (digraph nat)
+      [ reifyInstances nat
+      , reifyInstances (digraph nat)
       ]
   , maxTests = 500
   , maxVars = 2

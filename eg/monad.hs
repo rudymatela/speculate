@@ -9,7 +9,7 @@ type C = Int
 
 main :: IO ()
 main = speculate args
-  { instances = [ins "f" (int >- [int])]
+  { instances = [reifyInstances (int >- [int])]
   , constants =
       [ hole (int >- [int])
       , constant "return" (return :: A -> [A])

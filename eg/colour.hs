@@ -24,6 +24,8 @@ instance Listable ColourComponent where
 instance Listable Colour where
   tiers = cons3 (\(ColourComponent r) (ColourComponent g) (ColourComponent b) -> RGB r g b)
 
+instance Name Colour where name _ = "c"
+
 colour :: Colour
 colour = undefined
 
@@ -31,7 +33,7 @@ main :: IO ()
 main = speculate args
   { instances =
       [ mkOrdLessEqual ((<=) `on` lightness)
-      , ins "c" colour
+      , reifyInstances colour
       ]
   , maxSize = 4
   , maxSemiSize = 2

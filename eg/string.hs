@@ -1,9 +1,8 @@
 import Test.Speculate
-import Data.List (sort,insert)
 
 main :: IO ()
 main = speculate args
-  { instances = [ ins "css" [[char]] ]
+  { instances = [ reifyInstances [string] ]
   , constants =
       [ showConstant ""
       , showConstant " "

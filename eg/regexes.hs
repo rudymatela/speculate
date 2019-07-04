@@ -17,6 +17,9 @@ instance Listable a => Listable (RE a) where
        \/ cons2 (:+)
        \/ cons2 (:.)
 
+instance Name Symbol where name _ = "c"
+instance Name (RE a) where name _ = "r"
+
 deriving instance Typeable Symbol
 #if __GLASGOW_HASKELL__ < 708
 deriving instance Typeable1 RE
@@ -102,8 +105,8 @@ main = speculate args
   , instances =
       [ mkEq (/==/)
       , mkOrdLessEqual (/<=/)
-      , ins "c" (undefined :: Symbol)
-      , ins "r" (undefined :: RE Symbol)
+      , reifyInstances (undefined :: Symbol)
+      , reifyInstances (undefined :: RE Symbol)
       ]
   , constants =
       [ constant "Empty" (Empty :: RE Symbol)

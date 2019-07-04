@@ -10,9 +10,6 @@
 -- Typeclass instance information.
 module Test.Speculate.Expr.Instance
   ( Instances
-  , TypeRep
-
-  , ins
 
   -- * Queries on Instances
   , isListable, tiersE
@@ -36,26 +33,12 @@ where
 
 import Data.Haexpress.Instances
 import Test.Speculate.Expr.Core
-import Test.Speculate.Utils hiding (ord)
+import Test.Speculate.Utils
 import Test.LeanCheck
-import Test.LeanCheck.Utils hiding (comparison)
-
+import Test.LeanCheck.Utils
 import Data.Maybe
-import Data.Monoid ((<>)) -- for GHC <= 8.2
 
 type Instances = [Expr] -- TODO: remove?
-
--- TODO: make all functions follow the standard:
---
--- reifyEq :: Eq a => a -> [Expr]
--- reifyOrd :: Ord a => a -> [Expr]
--- reifyEqOrd :: (Eq a, Ord a) => a -> [Expr]
--- reifyName :: ...
--- reifyListable :: Listable a => a -> [Expr]
--- reifyInstances1 :: (...) => a -> [Expr]
--- reifyInstances :: (...) => a -> [Expr]
---
--- the couple last ones replace ins1 and ins
 
 reifyInstances1 :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a)
                 => a -> Instances
@@ -77,35 +60,6 @@ reifyInstances a  =  concat
   r1 :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a)
      => a -> Instances
   r1 = reifyInstances1
-
--- | Usage: @ins1 "x" (undefined :: Type)@
-ins1 :: (Typeable a, Listable a, Show a, Eq a, Ord a)
-          => String -> a -> Instances
-ins1 n x  =  concat [reifyEqOrd x, reifyListable x, mkNameWith n x]
-
-ins :: (Typeable a, Listable a, Show a, Eq a, Ord a)
-    => String -> a -> Instances
-ins n x = concat
-  [    x      / n
-  ,   [x]     / n ++ "s"
---,  [[x]]    / n ++ "ss"
-  , (x,x)     / n ++ m
---, (x,x,x)   / n ++ m ++ o
---, [(x,x)]   / n ++ m ++ "s"
-  , mayb x    / "m" ++ n ++ "1"
---, eith x x  / "e" ++ n ++ o ++ "1"
-  ]
-  where
-  (/) :: (Typeable a, Listable a, Show a, Eq a, Ord a)
-      => a -> String -> Instances -- monomorphism restriction strikes again
-  (/) = flip ins1
-  infixr 0 /
-  m = variableNamesFromTemplate n !! 1
--- NOTE: the function typeInfoN is not perfect: it won't help produce types
--- combining different sub-types, like for example: (Bool,Int).  But it is
--- way better than the original version in which I had to explictly define
--- everything.  A definitive solution is still to be thought of.
--- NOTE: see related TODO on the definition of basicInstances
 
 reifyListable :: (Typeable a, Show a, Listable a) => a -> Instances
 reifyListable a  =  mkListable (tiers -: [[a]])

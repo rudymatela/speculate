@@ -25,7 +25,7 @@ main = do
   unless (listableGraphOK 180 a) $
     error "incorrect Listable (Graph a), see source"
   speculate args
-    { instances = [ins "x" (gr a), ins "i" a]
+    { instances = [reifyInstances (gr a), reifyInstances a]
     , maxTests = 1080
     , constants =
         [ background

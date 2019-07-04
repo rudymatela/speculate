@@ -14,12 +14,14 @@ deriving instance Typeable S.Set -- for GHC < 7.10
 instance (Ord a, Listable a) => Listable (S.Set a) where
   tiers = setCons S.set
 
+instance Name (S.Set a) where name _ = "s"
+
 set :: a -> S.Set a
 set = undefined
 
 main :: IO ()
 main = speculate args
-  { instances = [ins "s" (set int)]
+  { instances = [reifyInstances (set int)]
   , constants =
       [ constant "emptyS"      $ emptyS      -:  set int
       , constant "singleS"     $ singleS     -:> int    

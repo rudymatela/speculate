@@ -93,13 +93,16 @@ instance (Ord a, Listable a) => Listable (BT a) where
   tiers = truncateT
         $ cons0 Null \/ cons3 Fork `suchThat` isSearch
 
+instance Name (BT a) where name _ = "t"
+instance Name Word2 where name _ = "x"
+
 type Item = Word2
 
 main :: IO ()
 main = speculate args
   { instances =
-      [ ins "t" (undefined :: BT Item)
-      , ins "x" (undefined :: Item)
+      [ reifyInstances (undefined :: BT Item)
+      , reifyInstances (undefined :: Item)
       ]
   , constants =
       [ showConstant (Null :: BT Item)

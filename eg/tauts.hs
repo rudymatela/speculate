@@ -1,6 +1,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
-import Test.Speculate
+import Test.Speculate hiding (Name(..))
+import qualified Test.Speculate as S
 import Taut hiding (main)
 import Test.LeanCheck
 
@@ -16,11 +17,14 @@ prop = undefined
 name :: Name
 name = undefined
 
+instance S.Name Prop where name _ = "p"
+instance S.Name Name where name _ = "n"
+
 main :: IO ()
 main = speculate args
   { instances =
-      [ ins "p" prop
-      , ins "n" name
+      [ reifyInstances prop
+      , reifyInstances name
       ]
   , showConditions = True
   , maxVars = 2

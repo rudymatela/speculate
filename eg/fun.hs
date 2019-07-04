@@ -4,7 +4,7 @@ import Test.Speculate.Function.A100
 main :: IO ()
 main = speculate args
   { maxTests = 1000
-  , instances = [ins "f" (undefined :: Int -> Int)]
+  , instances = [reifyInstances (undefined :: Int -> Int)]
   , constants =
       [ hole (undefined :: Int -> Int)
       , constant "map" (map :: (Int -> Int) -> [Int] -> [Int])
