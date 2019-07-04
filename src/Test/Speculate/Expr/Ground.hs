@@ -15,8 +15,8 @@ module Test.Speculate.Expr.Ground
   , lessOrEqual
   , less
   , inequal
-  , true
-  , false
+  , isTrue
+  , isFalse
   , condEqual
   , condEqualM
   , trueBinds
@@ -64,7 +64,7 @@ groundAndBinds ti e = (\bs -> (bs, e //- bs)) <$> groundBinds ti e
 -- | Are two expressions equal for a given number of tests?
 equal :: Instances -> Int -> Expr -> Expr -> Bool
 -- equal ti _ e1 e2 | e1 == e2 = isComparable ti e1 -- optional optimization
-equal ti n e1 e2 = maybe False (true ti n) (equation ti e1 e2)
+equal ti n e1 e2 = maybe False (isTrue ti n) (equation ti e1 e2)
 -- TODO: discover why the optimization above changes the output
 -- 1. $ make eg/list && ./eg/list -ES -r0 -s4 > without
 -- 2. uncomment above
@@ -76,7 +76,7 @@ equal ti n e1 e2 = maybe False (true ti n) (equation ti e1 e2)
 --   under a given condition
 --   for a given number of tests?
 condEqual :: Instances -> Int -> Expr -> Expr -> Expr -> Bool
-condEqual ti n pre e1 e2 = maybe False (true ti n) (conditionalEquation ti pre e1 e2)
+condEqual ti n pre e1 e2 = maybe False (isTrue ti n) (conditionalEquation ti pre e1 e2)
 
 -- | Are two expressions equal
 --   under a given condition
@@ -92,20 +92,20 @@ condEqualM ti n n0 pre e1 e2 = condEqual ti n pre e1 e2 && length cs >= n0
 
 -- | Are two expressions less-than-or-equal for a given number of tests?
 lessOrEqual :: Instances -> Int -> Expr -> Expr -> Bool
-lessOrEqual ti n e1 e2 = maybe False (true ti n) (comparisonLE ti e1 e2)
+lessOrEqual ti n e1 e2 = maybe False (isTrue ti n) (comparisonLE ti e1 e2)
 
 -- | Are two expressions less-than for a given number of tests?
 less        :: Instances -> Int -> Expr -> Expr -> Bool
-less        ti n e1 e2 = maybe False (true ti n) (comparisonLT ti e1 e2)
+less        ti n e1 e2 = maybe False (isTrue ti n) (comparisonLT ti e1 e2)
 
 -- | Are two expressions inequal for *all* variable assignments?
 --   Note this is different than @not . equal@.
 inequal :: Instances -> Int -> Expr -> Expr -> Bool
-inequal ti n e1 e2 = maybe False (false ti n) (equation ti e1 e2)
+inequal ti n e1 e2 = maybe False (isFalse ti n) (equation ti e1 e2)
 
 -- | Is a boolean expression true for all variable assignments?
-true :: Instances -> Int -> Expr -> Bool
-true ti n e = errorToFalse . all (eval False) . take n $ grounds ti e
+isTrue :: Instances -> Int -> Expr -> Bool
+isTrue ti n e = errorToFalse . all (eval False) . take n $ grounds ti e
 
 -- | List variable bindings for which an expression holds true.
 trueBinds :: Instances -> Int -> Expr -> [Binds]
@@ -117,6 +117,6 @@ trueRatio :: Instances -> Int -> Expr -> Ratio Int
 trueRatio ti n e = length (trueBinds ti n e) % length (take n $ groundAndBinds ti e)
 
 -- | Is an expression ALWAYS false?
--- This is *NOT* the same as not true
-false :: Instances -> Int -> Expr -> Bool
-false ti n e = errorToFalse . all (not . eval False) . take n $ grounds ti e
+-- This is *NOT* the same as not true.
+isFalse :: Instances -> Int -> Expr -> Bool
+isFalse ti n e = errorToFalse . all (not . eval False) . take n $ grounds ti e

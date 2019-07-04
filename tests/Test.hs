@@ -126,7 +126,7 @@ import System.Exit (exitFailure)
 import Data.List (elemIndices)
 
 import Test.Speculate hiding (getArgs)
-import Test.Speculate.Expr hiding (true, false)
+import Test.Speculate.Expr
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
 
