@@ -16,8 +16,7 @@ instance Listable EqButNotOrd where
 -- Speculate reports a warning reflecting that.
 main :: IO ()
 main = speculate args
-  { instances = [ mkNameWith "x" C0
-                , listable C0
+  { instances = [ listable C0
                 , reifyEq C0
                 ]
   , constants = [ showConstant C0
