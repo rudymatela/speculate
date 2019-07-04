@@ -88,7 +88,15 @@ reifyListable :: (Typeable a, Show a, Listable a) => a -> Instances
 reifyListable a  =  mkListable (tiers -: [[a]])
 
 mkListable :: (Typeable a, Show a) => [[a]] -> [Expr]
-mkListable xss  = [value "tiers" $ mapT val xss]
+mkListable xss
+  | null (concat xss)  =  err
+  | otherwise          =  [value "tiers" $ mapT val xss]
+  where
+  err  =  error
+       $  "Speculate does not allow an empty tiers enumeration"
+       ++ ", offending type: " ++ show (typeOf . head $ head xss)
+-- TODO: reify an "undefined" value of a type to be able to holeOfTy and lift
+--       the above restriction of no empty tiers?
 
 isListable :: Instances -> TypeRep -> Bool
 isListable is = isJust . maybeTiersE is
@@ -101,8 +109,7 @@ maybeTiersE is t = case i of
   i = [tiers | e@(Value "tiers" _) <- is
              , let tiers = eval (undefined :: [[Expr]]) e
              , typ (head . concat $ tiers) == t]
--- TODO: on Reifying tiers enumerations, make explicit error showing that we
---       don't allow an empty tiers enumeration (hint: or use 'headOr' above)
+-- TODO: make the above work on empty tiers
 
 holeOfTy :: Instances -> TypeRep -> Expr
 holeOfTy is t = fromMaybe err $ maybeHoleOfTy is t
