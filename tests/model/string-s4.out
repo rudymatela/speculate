@@ -22,12 +22,12 @@ unlines (lines (unlines css)) == unlines css
    lines (unlines (lines cs)) == lines cs
    words (unlines (words cs)) == words cs
    lines (unlines (words cs)) == words cs
+   words (unlines (lines cs)) == words cs
+          words (unwords css) == words (unlines css)
             words (cs ++ " ") == words cs
            words (cs ++ "\n") == words cs
             words (" " ++ cs) == words cs
            words ("\n" ++ cs) == words cs
-   words (unlines (lines cs)) == words cs
-          words (unwords css) == words (unlines css)
 
                  "" <= cs
                  cs <= cs ++ ds

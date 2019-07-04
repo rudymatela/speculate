@@ -38,27 +38,18 @@ lexicompare = lexicompareBy compare
 lexicompareBy :: (Expr -> Expr -> Ordering) -> Expr -> Expr -> Ordering
 lexicompareBy compareConstants = cmp
   where
-  e1 `cmp` e2 | isConst e1 && isConst e2             =  e1 `compareConstants` e2
-  e1 `cmp` e2 | etyp e1 /= etyp e2                   =  etyp e1 `compareTyE` etyp e2
-  e1@(Value ('_':s1) _) `cmp` e2@(Value ('_':s2) _)  =  s1 `compare` s2
+  e1@(Value ('_':s1) _) `cmp` e2@(Value ('_':s2) _)  =  typ e1 `compareTy` typ e2 <> s1 `compare` s2
   (f :$ x)        `cmp` (g :$ y)                     =  f  `cmp` g <> x `cmp` y
   (_ :$ _)        `cmp` _                            =  GT
   _               `cmp` (_ :$ _)                     =  LT
   _               `cmp` Value ('_':_) _              =  GT
   Value ('_':_) _ `cmp` _                            =  LT
+  e1@(Value _ _)  `cmp` e2@(Value _ _)               =  e1 `compareConstants` e2
   -- Var < Constants < Apps
   -- the above function exists internally on Haexpress as well.
 
 falseE :: Expr
 falseE = showConstant False
-
--- TODO: get rid of this at some point:
-compareTyE :: Either (TypeRep, TypeRep) TypeRep
-           -> Either (TypeRep, TypeRep) TypeRep
-           -> Ordering
-compareTyE (Left (l1,l2)) (Left (r1,r2))  =  l1 `compareTy` r1 <> l2 `compareTy` r2
-compareTyE (Right l)      (Right r)       =  l `compareTy` r
-compareTyE l              r               =  l `compare` r
 
 countVars :: Expr -> [(Expr,Int)]
 countVars e = map (\e' -> (e',length . filter (== e') $ vars e)) $ nubVars e
@@ -75,3 +66,4 @@ isAssignment _ = False
 
 isConstantNamed :: Expr -> String -> Bool
 e@(Value n' _) `isConstantNamed` n = isConst e && n' == n
+_ `isConstantNamed` _ = False

@@ -14,7 +14,7 @@ return :: Int -> [Int]
 
 (xs >>= return) == xs
             f x == (return x >>= f)
-    (f >=> g) x == (f x >>= g)
+    (f x >>= g) == (f >=> g) x
  (f >=> return) == f
  (return >=> f) == f
 

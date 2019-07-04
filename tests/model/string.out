@@ -31,12 +31,12 @@ unwords (lines (unwords (words cs))) == unwords (words cs)
           lines (unlines (lines cs)) == lines cs
           words (unlines (words cs)) == words cs
           lines (unlines (words cs)) == words cs
+          words (unlines (lines cs)) == words cs
+                 words (unwords css) == words (unlines css)
                    words (cs ++ " ") == words cs
                   words (cs ++ "\n") == words cs
                    words (" " ++ cs) == words cs
                   words ("\n" ++ cs) == words cs
-          words (unlines (lines cs)) == words cs
-                 words (unwords css) == words (unlines css)
            words (cs ++ unwords css) == words (cs ++ unlines css)
 
                            "" <= cs
@@ -48,10 +48,10 @@ unwords (lines (unwords (words cs))) == unwords (words cs)
            unwords (lines cs) <= cs ++ ds
                    "\n" ++ cs <= ds ++ " "
            unlines (lines cs) <= cs ++ cs
-                   "\n" ++ cs <= cs ++ "\n"
 unwords (lines (unwords css)) <= unwords css
-                   cs ++ "\n" <= cs ++ " "
+                   "\n" ++ cs <= cs ++ "\n"
                   unwords css <= unwords (lines (unlines css))
+                   cs ++ "\n" <= cs ++ " "
                   unlines css <= unwords css ++ " "
                   unlines css <= unwords css ++ "\n"
            unlines (lines cs) <= cs ++ " "
