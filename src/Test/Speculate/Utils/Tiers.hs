@@ -26,9 +26,6 @@ productsList = concat . products . map toTiers
 mapTMaybe :: (a -> Maybe b) -> [[a]] -> [[b]]
 mapTMaybe f = map (mapMaybe f)
 
-partitionT :: (a -> Bool) -> [[a]] -> ([[a]],[[a]])
-partitionT p xss = (filterT p xss, discardT p xss)
-
 uptoT :: Int -> [[a]] -> [a]
 uptoT sz = concat . take sz
 
