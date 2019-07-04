@@ -428,9 +428,6 @@ listE e = typ e == listTy
 data Rule = Rule Expr Expr deriving (Show, Eq, Ord)
 data Equation = Equation Expr Expr deriving (Show, Eq, Ord)
 
-unEquation :: Equation -> (Expr,Expr)
-unEquation (Equation e1 e2) = (e1,e2)
-
 -- beware: enumerating beyond 600 values will  make this very slow as it is
 -- very hard to satisfy canonicalEqn and ->-.  In practice, this should not be a
 -- problem as we enumerate far less than that when enerating 'Thy's.
