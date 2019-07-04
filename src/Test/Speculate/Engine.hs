@@ -74,6 +74,8 @@ vassignments e =
   [ foldl fill e [ [ (defNames !! i) `varAsTypeOf` t | i <- is ]
                  | (t,is) <- fs ]
   | fs <- productsList [[(t,is) | is <- iss 0 c] | (t,c) <- counts (holes e)] ]
+  where
+  defNames = variableNamesFromTemplate "x"
   -- > fss _ + _ = [ [(Int,[0,0])], [(Int,[0,1])] ]
   -- > fss _ + (_ + ord _) = [ [(Int,[0,0]),(Char,[1])]
   -- >                       , [(Int,[0,1]),(Char,[1])] ]
@@ -121,7 +123,7 @@ expansions is n e =
   case counts (holes e) of
     []      -> [e]
     (h,c):_ -> expansions is n `concatMap`
-               expansionsOfType h (take n (getNames is h)) e
+               expansionsOfType h (take n (lookupNames is h)) e
 
 -- | List the most general assignment of holes in an expression
 mostGeneral :: Expr -> Expr
@@ -259,7 +261,7 @@ semiTheoryFromThyAndReps ti nt nv thy =
                       && typ e1 == typ e2
                       && lessOrEqual ti nt e1 e2)
   . distinctFromSchemas ti nt nv thy
-  . filter (isOrdE ti)
+  . filter (isOrd ti)
 
 conditionalTheoryFromThyAndReps :: Instances
                                 -> (Expr -> Expr -> Ordering)
@@ -275,7 +277,7 @@ conditionalTheoryFromThyAndReps ti cmp nt nv csz thy es' =
   where
   (cles,clpres) = (id *** filter (\(e,_) -> size e <= csz))
                 . partition (\(e,_) -> typ e /= boolTy)
-                . filter (isEqE ti . fst)
+                . filter (isEq ti . fst)
                 $ classesFromSchemas ti nt nv thy es'
 
 conditionalEquivalences :: (Expr -> Expr -> Ordering)

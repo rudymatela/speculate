@@ -112,7 +112,7 @@ matchWith :: Binds -> Expr -> Expr -> Maybe Binds
 matchWith bs e1' e2' = m e1' e2' bs
   where
   m :: Expr -> Expr -> Binds -> Maybe Binds
-  m e1 e2 | etyp e1 /= etyp e2 = const Nothing
+  m e1 e2 | etyp e1 /= etyp e2 = const Nothing -- TODO: move type matching below
   m e1 e2@(Value ('_':_) _) = updateAssignments (e2,e1)
   m (f1 :$ x1) (f2 :$ x2) = m f1 f2 >=> m x1 x2
   m e1 e2 | e1 == e2  = Just

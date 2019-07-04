@@ -99,10 +99,10 @@ warnMissingInstances is ts = putLines
      | t <- ts, not (isListable is t)]
   ++ ["Warning: no Eq instance for " ++ show t ++
       ", equations of this type will not be considered"
-     | t <- ts, not (isEq is t)]
+     | t <- ts, not (isEqT is t)]
   ++ ["Warning: no Ord instance for " ++ show t ++
       ", inequations of this type will not be considered"
-     | t <- ts, not (isOrd is t)]
+     | t <- ts, not (isOrdT is t)]
 
 reportClassesFor :: Instances -> Int -> [Int] -> Thy -> [Expr] -> IO ()
 reportClassesFor ti nTests nVarss thy res = do
@@ -111,7 +111,7 @@ reportClassesFor ti nTests nVarss thy res = do
   where
   pn 0 = putStrLn $ "Number of Eq schema classes: " ++ show (length $ r 0)
   pn n = putStrLn $ "Number of Eq " ++ show n ++ "-var classes: " ++ show (length $ r n)
-  r 0 = filter (isEqE ti) res
+  r 0 = filter (isEq ti) res
   r n = distinctFromSchemas ti nTests n thy (r 0)
 
 reportDot :: Instances -> [String] -> Bool -> Int -> Int -> Thy -> [Expr] -> IO ()
@@ -120,7 +120,7 @@ reportDot ti onlyTypes quiet nVars n thy es = do
           $ (if null onlyTypes
                then id
                else filter ((`elem` map (map toLower) onlyTypes) . map toLower . show . typ))
-          $ filter (isEqOrdE ti) es
+          $ filter (isEqOrd ti) es
   let res = [(trueRatio ti n e, e) | e <- ces, typ e == boolTy]
   putStrLn "digraph G {"
   putStrLn "  rankdir = BT"

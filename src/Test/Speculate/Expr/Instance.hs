@@ -15,10 +15,9 @@ module Test.Speculate.Expr.Instance
   , ins
 
   -- * Queries on Instances
-  , getNames
-  , eqE, iqE, isEq,       isEqE
-  , leE, ltE, isOrd,      isOrdE
-  ,           isEqOrd,    isEqOrdE
+  , eqE, iqE, isEq,       isEqT
+  , leE, ltE, isOrd,      isOrdT
+  ,           isEqOrd,    isEqOrdT
   , tiersE,   isListable
   , maybeTiersE
   , holeOfTy
@@ -104,9 +103,9 @@ ins n x = concat
       => a -> String -> Instances -- monomorphism restriction strikes again
   (/) = flip ins1
   infixr 0 /
-  m = namesFromTemplate n !! 1
-  o = namesFromTemplate m !! 1
-  p = namesFromTemplate o !! 1
+  m = variableNamesFromTemplate n !! 1
+  o = variableNamesFromTemplate m !! 1
+  p = variableNamesFromTemplate o !! 1
 -- NOTE: the function typeInfoN is not perfect: it won't help produce types
 -- combining different sub-types, like for example: (Bool,Int).  But it is
 -- way better than the original version in which I had to explictly define
@@ -114,10 +113,10 @@ ins n x = concat
 -- NOTE: see related TODO on the definition of basicInstances
 
 eq :: (Typeable a, Eq a) => a -> Instances
-eq = (:[]) . eqFor
+eq = reifyEq -- TODO: remove me
 
 ord :: (Typeable a, Ord a) => a -> Instances
-ord x = ordWith $ (<=) -:> x
+ord = reifyOrd -- TODO: remove me
 
 listable :: (Typeable a, Show a, Listable a) => a -> Instances
 listable = (:[]) . tiersFor
@@ -160,38 +159,8 @@ tiersFor a  =  tiersWith (tiers -: [[a]])
 tiersWith :: (Typeable a, Show a) => [[a]] -> Expr
 tiersWith xss  =  value "tiers" $ mapT val xss
 
-isEq :: Instances -> TypeRep -> Bool
-isEq ti = isJust . eqE ti
-
-isOrd :: Instances -> TypeRep -> Bool
-isOrd ti = isJust . ltE ti
-
-isEqOrd :: Instances -> TypeRep -> Bool
-isEqOrd ti t = isOrd ti t && isEq ti t
-
-isEqE :: Instances -> Expr -> Bool
-isEqE ti = isEq ti . typ
-
-isOrdE :: Instances -> Expr -> Bool
-isOrdE ti = isOrd ti . typ
-
-isEqOrdE :: Instances -> Expr -> Bool
-isEqOrdE ti = isEqOrd ti . typ
-
 isListable :: Instances -> TypeRep -> Bool
 isListable is = isJust . maybeTiersE is
-
-getNames :: Instances -> Expr -> [String]
-getNames is e = namesFromTemplate $ case validApps is' e of
-  []        -> def
-  (nameE:_) -> eval def nameE
-  where
-  def = "x"
-  is' = [e | e@(Value "name" _) <- is]
--- umm... maybe I could make this function return a list of variables encoded
--- as Exprs ([Expr]).  The only drawback is that I'll have to open up the Expr
--- and compare variable names of Exprs of different types if I want to make
--- sure I don't repeat variables.
 
 maybeTiersE :: Instances -> TypeRep -> Maybe [[Expr]]
 maybeTiersE is t = case i of

@@ -62,11 +62,11 @@ ordErrors is n t =
 eqOrdErrors :: Instances -> Int -> TypeRep -> [String]
 eqOrdErrors is n t =
      [ "(==) :: " ++ ty ++ "  is not an equiavalence (" ++ intercalate ", " es ++ ")"
-     | let es = eqErrors is n t, isEq is t, not (null es) ]
+     | let es = eqErrors is n t, isEqT is t, not (null es) ]
   ++ [ "(<=) :: " ++ ty ++ "  is not an ordering ("     ++ intercalate ", " es ++ ")"
-     | let es = ordErrors is n t, isOrd is t, not (null es) ]
+     | let es = ordErrors is n t, isOrdT is t, not (null es) ]
   ++ [ "(==) and (<=) :: " ++ ty ++ " are inconsistent: (x == y) /= (x <= y && y <= x)"
-     | f $ (x -==- y) -==- (x -<=- y -&&- y -<=- x), isEq is t, isOrd is t ]
+     | f $ (x -==- y) -==- (x -<=- y -&&- y -<=- x), isEqT is t, isOrdT is t ]
   where
   f = not . true is n
   e = holeOfTy is t
