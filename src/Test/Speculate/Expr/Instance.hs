@@ -15,9 +15,6 @@ module Test.Speculate.Expr.Instance
   , ins
 
   -- * Queries on Instances
-  , isEq,       isEqT
-  , isOrd,      isOrdT
-  , isEqOrd,    isEqOrdT
   , isListable, tiersE
   , maybeTiersE
   , holeOfTy
@@ -34,11 +31,13 @@ module Test.Speculate.Expr.Instance
 
   , boolTy
   , mkComparisonTy
+
+  , module Data.Haexpress.Instances
   )
 where
 
+import Data.Haexpress.Instances
 import Test.Speculate.Expr.Core hiding (eqWith)
-import qualified Data.Haexpress.Instances as HI
 import Test.Speculate.Expr.Match
 import Test.Speculate.Utils hiding (ord)
 import Test.LeanCheck
