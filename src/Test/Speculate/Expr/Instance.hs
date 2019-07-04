@@ -149,45 +149,48 @@ tiersE is t = fromMaybe err $ maybeTiersE is t
   where
   err  =  error $ "Could not find tiers with type `[[" ++ show t ++ "]]'."
 
-deriving instance Typeable Word2 -- for GHC <= 7.8
-
-instance Name Word2
-
 preludeInstances :: Instances
-preludeInstances = concat
-  [ ins1 "x"  (undefined :: ())
-  , ins1 "xs" (undefined :: [()])
+preludeInstances  =  concat
+  [ r1 (u :: ())
+  , r1 (u :: [()])
 
-  , ins "p" (undefined :: Bool)
+  , r (u :: Bool)
 
-  , ins "x" (undefined :: Int)
---, ins "x" (undefined :: Word)
-  , ins "x" (undefined :: Integer)
+  , r (u :: Int)
+--, r (u :: Word)
+  , r (u :: Integer)
 
-  , ins "o" (undefined :: Ordering)
-  , ins "c" (undefined :: Char)
+  , r (u :: Ordering)
+  , r (u :: Char)
 
-  , ins "q" (undefined :: Rational)
-  , ins "f" (undefined :: Float)
-  , ins "f" (undefined :: Double)
+  , r (u :: Rational)
+  , r (u :: Float)
+  , r (u :: Double)
 
 -- TODO: uncomment the following and investigate why compilation takes so long
---, ins "x" (undefined :: Int1)
---, ins "x" (undefined :: Int2)
---, ins "x" (undefined :: Int3)
---, ins "x" (undefined :: Int4)
---, ins "x" (undefined :: Word1)
---, ins "x" (undefined :: Word2)
---, ins "x" (undefined :: Word3)
---, ins "x" (undefined :: Word4)
---, ins "x" (undefined :: Nat1)
---, ins "x" (undefined :: Nat2)
---, ins "x" (undefined :: Nat3)
---, ins "x" (undefined :: Nat4)
---, ins "x" (undefined :: Nat5)
---, ins "x" (undefined :: Nat6)
---, ins "x" (undefined :: Nat7)
+--, r (u :: Int1)
+--, r (u :: Int2)
+--, r (u :: Int3)
+--, r (u :: Int4)
+--, r (u :: Word1)
+--, r (u :: Word2)
+--, r (u :: Word3)
+--, r (u :: Word4)
+--, r (u :: Nat1)
+--, r (u :: Nat2)
+--, r (u :: Nat3)
+--, r (u :: Nat4)
+--, r (u :: Nat5)
+--, r (u :: Nat6)
+--, r (u :: Nat7)
   ]
+  where
+  u :: a
+  u  =  undefined
+  r, r1 :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a)
+        => a -> Instances
+  r = reifyInstances
+  r1 = reifyInstances1
 -- WHOA!  Have I discovered a "bug" in GHC?  adding to many type compositions
 -- on ins and types on preludeInstances makes compilation of this module
 -- *really* slow: it takes a whopping 2 minutes!
