@@ -1,12 +1,7 @@
 -- Test library
 import Test
 
--- Helper
-import Data.Function (on)
-
 -- Functions under test
-import Test.Speculate
-import Test.Speculate.Expr
 import Test.Speculate.Reason
 import Test.Speculate.Utils
 

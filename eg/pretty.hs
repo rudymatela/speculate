@@ -1,7 +1,6 @@
 {-# LANGUAGE CPP #-}
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
 import Test.Speculate
-import Test.LeanCheck
 import Data.Function (on)
 import Data.List (isPrefixOf)
 

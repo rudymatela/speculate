@@ -2,7 +2,6 @@
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC <= 7.8
 -- Colin Runciman, December 2016
 import Test.Speculate
-import Test.LeanCheck
 import Data.Function (on)
 
 

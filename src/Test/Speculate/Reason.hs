@@ -58,13 +58,13 @@ import Test.Speculate.Expr
 import Test.Speculate.Reason.Order
 import Test.Speculate.Utils
 import Data.Either
-import Data.Tuple (swap)
-import Data.List (partition, (\\), sortBy, sort)
 import Data.Function (on)
-import Data.Monoid ((<>))
 import Data.Functor ((<$>)) -- for GHC < 7.10
+import Data.List (partition, (\\), sortBy, sort)
+import Data.Maybe
+import Data.Monoid ((<>))
+import Data.Tuple (swap)
 import qualified Data.List as L (insert)
-import Data.Maybe (fromJust,isJust,listToMaybe,maybeToList,mapMaybe)
 import Control.Monad
 
 type Rule = (Expr,Expr)

@@ -13,7 +13,7 @@ import Test.Speculate.Expr
 import Test.Speculate.Reason
 import qualified Test.Speculate.Utils.Digraph as D
 import Test.Speculate.Utils.Digraph (Digraph)
-import Data.Maybe (mapMaybe,maybeToList,fromMaybe)
+import Data.Maybe (maybeToList,fromMaybe)
 import Data.List (lookup, sortBy)
 import Data.Function (on)
 import Data.Functor ((<$>)) -- for GHC < 7.10

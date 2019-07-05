@@ -20,7 +20,7 @@ module Test.Speculate.Function
 where
 
 import Test.Speculate
-import Test.LeanCheck.Function
+import Test.LeanCheck.Function()
 import Test.LeanCheck.Error (errorToNothing)
 import Data.Function (on)
 

@@ -4,7 +4,6 @@ import Test.Speculate
 import Test.Speculate.Utils.Memoize
 import Data.Function (on)
 import Regex
-import Data.Maybe (fromJust)
 
 instance Listable Symbol where
   list = [Symbol 'a', Symbol 'b', Symbol 'c']

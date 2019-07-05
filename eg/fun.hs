@@ -1,5 +1,5 @@
 import Test.Speculate
-import Test.Speculate.Function.A100
+import Test.Speculate.Function.A100()
 
 main :: IO ()
 main = speculate args

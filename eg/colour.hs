@@ -1,10 +1,8 @@
 {-# LANGUAGE DeriveDataTypeable, StandaloneDeriving #-} -- for GHC < 7.10
 import Test.Speculate
 import Test.Speculate.Utils.Colour
-import Test.LeanCheck
 import Data.Ratio
 import Data.Function (on)
-import Test.Speculate.Sanity
 
 deriving instance Typeable Colour -- for GHC < 7.10
 

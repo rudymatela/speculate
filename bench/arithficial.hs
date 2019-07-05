@@ -1,5 +1,4 @@
 import Test.Speculate
-import System.Environment (getArgs)
 
 -- How well does this tool performs on artificial operators
 f :: Num a => a -> a -> a

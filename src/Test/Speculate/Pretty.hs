@@ -20,8 +20,6 @@ import Test.Speculate.Reason     (Thy, finalEquations)
 import Test.Speculate.SemiReason (Shy, finalSemiEquations)
 import Test.Speculate.CondReason (Chy, finalCondEquations)
 
-import Data.Typeable (typeOf, TypeRep)
-
 type Equation = (Expr,Expr)
 type CondEquation = (Expr,Expr,Expr)
 

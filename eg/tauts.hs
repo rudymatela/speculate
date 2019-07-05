@@ -3,7 +3,6 @@
 import Test.Speculate hiding (Name(..))
 import qualified Test.Speculate as S
 import Taut hiding (main)
-import Test.LeanCheck
 
 deriveListable ''Prop
 deriveListable ''Name
