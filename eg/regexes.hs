@@ -125,3 +125,5 @@ main = speculate args
   , showConditions    = False
   , force = True
   }
+  where
+  _ = (canonicalRE :: RE Symbol -> Bool) -- just to silence a warning

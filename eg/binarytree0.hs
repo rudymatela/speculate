@@ -53,8 +53,8 @@ toList :: Ord a => BT a -> [a]
 toList Null           = []
 toList (Fork t1 x t2) = toList t1 ++ [x] ++ toList t2
 
-fromList :: Ord a => [a] -> BT a
-fromList = foldr insert Null
+--fromList :: Ord a => [a] -> BT a
+--fromList = foldr insert Null
 
 {-
 fromList :: Ord a => [a] -> BT a
@@ -72,10 +72,6 @@ deal (x:xs) = (x:ys,zs)
 
 isSearch :: Ord a => BT a -> Bool
 isSearch = strictlyOrdered . toList
-
-ordered :: Ord a => [a] -> Bool
-ordered [] = True
-ordered xs = and (zipWith (<=) xs $ tail xs)
 
 strictlyOrdered :: Ord a => [a] -> Bool
 strictlyOrdered [] = True

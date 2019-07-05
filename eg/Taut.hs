@@ -28,6 +28,7 @@ varOf :: Prop -> Name
 varOf (Var v)   = v
 varOf (Not p)   = varOf p
 varOf (p :=> _) = varOf p
+varOf _         = error "varOf: found Lit."
 
 subst :: Name -> Bool -> Prop -> Prop
 subst _ _ (Lit b)   = Lit b

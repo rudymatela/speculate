@@ -28,6 +28,13 @@ module Test.Speculate.Args
   , shouldShowConditionalEquation
   , reallyShowConditions
 
+  , foregroundConstants
+  , backgroundConstants
+
+  , about
+
+  , allAbout
+
   -- TODO: remove the following exports eventually:
   , prepareArgs
   , module System.Console.CmdArgs.Explicit
@@ -216,9 +223,6 @@ e `allAbout` es = nubConsts e `areAll` (`elem` es)
 about :: Expr -> [Expr] -> Bool
 e `about` es = nubConsts e `areAny` (`elem` es)
 
-notAbout :: Expr -> [Expr] -> Bool
-notAbout = not .: about
-
 timeout :: Args -> Bool -> Bool
 timeout Args{evalTimeout = Nothing} = id
 timeout Args{evalTimeout = Just t}  = timeoutToFalse t
@@ -294,7 +298,9 @@ prepareArgs args =
   ]
   where
   (short:long) --= fun = flagReq  (filter (/= " ") [[short],long]) ((Right .) . fun) "X" ""
+  _            --= _   = error "(--=): first argument can't be \"\""
   (short:long) --. fun = flagNone (filter (/= " ") [[short],long]) fun                   ""
+  _            --. _   = error "(--.): first argument can't be \"\""
   parseMinTests :: String -> Int -> Int
   parseMinTests s | last s == '%' = \x -> read (init s) * x `div` 100
                   | otherwise     = const (read s)

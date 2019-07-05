@@ -126,6 +126,7 @@ S xs \/ S ys = S (join xs ys)
 (/\) :: Ord a => Set a -> Set a -> Set a
 S xs /\ S ys = S (meet xs ys)
 
+meet :: Ord a => [a] -> [a] -> [a]
 meet [] _  = []
 meet _  [] = []
 meet xs@(x:xs') ys@(y:ys') =
@@ -137,6 +138,7 @@ meet xs@(x:xs') ys@(y:ys') =
 (\\) :: Ord a => Set a -> Set a -> Set a
 S xs \\ S ys = S (diff xs ys)
 
+diff :: Ord a => [a] -> [a] -> [a]
 diff [] _  = []
 diff xs [] = xs
 diff xs@(x:xs') ys@(y:ys') =

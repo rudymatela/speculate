@@ -32,7 +32,6 @@ report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do
   let ti = computeInstances args
   let ats = types args
-  let ts = filter (isListable ti) ats
   let dss = atoms args
   let (thy,ess) = theoryAndRepresentativesFromAtoms sz (compareExpr args) (keepExpr args) (timeout args .: equal ti n) dss
   let es = uptoT sz ess
@@ -145,9 +144,9 @@ reportDot ti onlyTypes quiet nVars n thy es = do
 --putStrLn . unlines $ map showRank $ collectSndByFst res
   putStrLn "}"
   where
-  showRank (r,es) = "  { rank = same; " ++ "\"" ++ show r ++ "\""
-                 ++ intercalate "; " (map showExprNode es)
-                 ++ " }"
+--showRank (r,es) = "  { rank = same; " ++ "\"" ++ show r ++ "\""
+--               ++ intercalate "; " (map showExprNode es)
+--               ++ " }"
   showExprEdge (e1,e2) = "  " ++ showExprNode e1 ++ " -> " ++ showExprNode e2
   showExprNode e
     | typ e == boolTy && not quiet = let tre = trueRatio ti n e

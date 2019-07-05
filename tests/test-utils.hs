@@ -24,12 +24,12 @@ tests n =
   , and [ firsts xs `isPrefixOf` [0..]    | n <- [0..10], xs <- iss 0 n ]
   , holds 100 $ \xs ys -> strictlyOrdered xs && strictlyOrdered ys
                       ==> strictlyOrdered (nubMerge xs (ys::[Int]))
-  , and [ nubMerge xs xs == xs | n <- [0..10], let xs = [0..n] ]
+  , and [ nubMerge xs xs == xs | n <- [0..10], let xs = [0..n] :: [Int] ]
 
-  , collectOn snd [(1,2),(2,2),(2,3),(3,3)] == [[(1,2),(2,2)],[(2,3),(3,3)]]
-  , collectOn fst [(1,2),(2,2),(2,3),(3,3)] == [[(1,2)],[(2,2),(2,3)],[(3,3)]]
-  , collectOn (uncurry (+)) [(1,2),(2,2),(2,3),(3,3)] == [[(1,2)],[(2,2)],[(2,3)],[(3,3)]]
-  , collectBy (compare `on` snd) [(1,2),(2,2),(2,3),(3,3)] == [[(1,2),(2,2)],[(2,3),(3,3)]]
+  , collectOn snd [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2),(2,2)],[(2,3),(3,3)]]
+  , collectOn fst [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2)],[(2,2),(2,3)],[(3,3)]]
+  , collectOn (uncurry (+)) [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2)],[(2,2)],[(2,3)],[(3,3)]]
+  , collectBy (compare `on` snd) [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2),(2,2)],[(2,3),(3,3)]]
 
   , holds n $ \x           -> medianate (,) [x::Int]           == [(x,x)]
   , holds n $ \x y         -> medianate (,) [x::Int,y]         == [(x,y)]
@@ -86,10 +86,10 @@ tests n =
   , splitAtCommas "123,456,789," == ["123","456","789"]
   , splitAtCommas "123 456,789"  == ["123","456","789"] -- weird behaviour, but fine for speculate
 
-  , compareIndex [3,2,1] 3 1 == LT
-  , compareIndex [3,2,1] 1 3 == GT
-  , compareIndex [3,2,1] 4 1 == GT
-  , compareIndex [3,2,1] 1 0 == LT
+  , compareIndex [3,2,1::Int] 3 1 == LT
+  , compareIndex [3,2,1::Int] 1 3 == GT
+  , compareIndex [3,2,1::Int] 4 1 == GT
+  , compareIndex [3,2,1::Int] 1 0 == LT
   , holds n $ \xs -> comparison (compareIndex (xs::[Int]))
 
   , partitionByMarkers '#' '*' "" == ("","")
@@ -109,11 +109,11 @@ tests n =
 
   , holds n $ nubSort === nub . sort -:> [int]
 
-  , halve []        == ([],[]::[Int])
-  , halve [1]       == ([],[1])
-  , halve [1,2]     == ([1],[2])
-  , halve [1,2,3]   == ([1],[2,3])
-  , halve [1,2,3,4] == ([1,2],[3,4])
+  , halve []             == ([],[]::[Int])
+  , halve [1::Int]       == ([],[1])
+  , halve [1,2::Int]     == ([1],[2])
+  , halve [1,2,3::Int]   == ([1],[2,3])
+  , halve [1,2,3,4::Int] == ([1,2],[3,4])
 
   , holds n $ \n xss -> 0 <  n && n <  length xss ==> xss ! n == (xss !! n :: [Int])
   , holds n $ \n xss -> 0 >= n && n >= length xss ==> xss ! n == ([] :: [Int])
