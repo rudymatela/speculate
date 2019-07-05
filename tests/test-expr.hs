@@ -11,7 +11,6 @@ import Test.Speculate.Reason (emptyThy)
 import Data.List (sort)
 import Data.Monoid ((<>))
 import Data.Functor ((<$>)) -- for GHC < 7.10
-import Data.Typeable (typeOf)
 import Data.Maybe (isJust)
 import Data.Haexpress (depth, size)
 

@@ -26,7 +26,6 @@ import Test.Speculate.Pretty
 import Data.Ratio ((%))
 import Control.Monad (when,unless)
 import Test.LeanCheck.Utils ((&&&&))
-import Data.List (intercalate)
 
 report :: Args -> IO ()
 report args@Args {maxSize = sz, maxTests = n} = do

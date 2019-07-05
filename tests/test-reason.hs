@@ -4,13 +4,12 @@ import Test
 import Test.Speculate.Utils
 
 -- Functions under test
-import Test.Speculate
 import Test.Speculate.Expr
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
 import Data.Tuple (swap)
 import Data.Function (on)
-import Data.List (sortBy,permutations)
+import Data.List (permutations)
 
 theorize' :: [(Expr,Expr)] -> Thy
 theorize' eqs = finalize $ foldl (flip insert) emptyThy {closureLimit = 3, keepE = keepMaxOf eqs} eqs

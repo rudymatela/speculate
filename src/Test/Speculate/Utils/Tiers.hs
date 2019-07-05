@@ -17,7 +17,6 @@ module Test.Speculate.Utils.Tiers
 where
 
 import Test.LeanCheck
-import Test.LeanCheck.Tiers
 import Data.Maybe (mapMaybe)
 
 productsList :: [[a]] -> [[a]]

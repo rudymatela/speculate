@@ -9,16 +9,10 @@
 -- Miscellaneous utilities.
 module Test.Speculate.Utils.Misc where
 
-import Test.LeanCheck
 import Data.Maybe
-import Data.List
-import Data.Char
-import Data.Function
 import Data.Ratio
-import Data.Tuple
 import Test.Speculate.Utils.String
 import Test.Speculate.Utils.List
-import Test.LeanCheck.Stats
 
 -- easy debug:
 undefined1 :: a

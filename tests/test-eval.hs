@@ -3,10 +3,7 @@ import Test
 
 -- Functions under test
 import Test.Speculate.Expr.Ground
-import Test.Speculate.Utils
 import Test.Speculate.Expr
-
-import Data.Maybe
 
 -- TODO: rename test-eval to test-ground
 

@@ -19,7 +19,6 @@ import Test.Speculate.Expr
 import Test.LeanCheck ((==>))
 import Data.Maybe (fromMaybe)
 import Data.List (intercalate)
-import Test.Speculate.Utils
 
 (-==>-) :: Expr -> Expr -> Expr
 e1 -==>- e2 = impliesE :$ e1 :$ e2 where impliesE = constant "==>" (==>)

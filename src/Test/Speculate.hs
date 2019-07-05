@@ -81,7 +81,6 @@ import Test.LeanCheck.Utils hiding (comparison)
 import Test.Speculate.Expr
   ( Expr
   , constant
-  , var
   , hole
   , showConstant
   , Instances

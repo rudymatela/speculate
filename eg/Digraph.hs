@@ -11,7 +11,7 @@ module Digraph (Digraph(..), okDigraph, strictOrder,
 
 import GHC.Exts (groupWith)
 import Data.List (partition,(\\),sort)
-import Data.Maybe (isJust,fromJust)
+import Data.Maybe (isJust)
 import Control.Monad (guard)
 
 data Digraph a = D {nodeSuccs :: [(a,[a])]} deriving (Eq, Show)

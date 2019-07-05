@@ -18,7 +18,6 @@ module Test.Speculate.Utils.Class
   )
 where
 
-import Test.Speculate.Utils.List (collectOn)
 import Data.Function (on)
 import Data.List (partition)
 import Prelude hiding (map)

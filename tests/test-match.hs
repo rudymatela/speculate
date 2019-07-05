@@ -6,8 +6,6 @@ import Test.Speculate.Expr.Match
 import Test.Speculate.Expr
 
 -- Helper functions
-import Test.Speculate.Utils
-import Data.List
 import Data.Maybe
 import Data.Functor ((<$>)) -- for GHC < 7.10
 

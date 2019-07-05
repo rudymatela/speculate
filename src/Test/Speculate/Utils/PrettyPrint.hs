@@ -16,8 +16,8 @@ module Test.Speculate.Utils.PrettyPrint
 where
 -- TODO: Fix somewhat inefficient implementations, i.e.: heavy use of '(++)'.
 
-import Data.List (intercalate,transpose,isSuffixOf)
-import Data.Char (toUpper,isSpace)
+import Data.List (transpose)
+import Data.Char (isSpace)
 import Test.Speculate.Utils.List
 import Test.LeanCheck ((+|))
 

@@ -8,7 +8,6 @@ import Test.Speculate.Engine
 import Test.Speculate.Reason (emptyThy)
 import Test.Speculate.Utils
 import Data.List
-import Data.Maybe
 
 main :: IO ()
 main = mainTest tests 10000

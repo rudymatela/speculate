@@ -29,9 +29,8 @@ where
 
 import Test.Speculate.Expr.Core
 
-import Data.Typeable
 import Data.List (find)
-import Data.Maybe (isJust,fromMaybe)
+import Data.Maybe
 import Data.Functor ((<$>))
 import Test.Speculate.Utils
 import Control.Monad ((>=>))
