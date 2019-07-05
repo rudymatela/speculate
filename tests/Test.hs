@@ -12,6 +12,7 @@ module Test
     module Test.LeanCheck
   , module Test.LeanCheck.Utils
   , module Test.Speculate
+  , module Data.Haexpress.Fixtures
 
   -- * Test reporting
   , reportTests
@@ -42,58 +43,34 @@ module Test
   --   Operators are surrounded by dashes.
 
   -- ** Integers
-  , zero, one, two, three, minusOne, minusTwo
-  , xx, yy, zz, xx'
-  , id', abs'
-  , (-+-), (-*-), (.-.)
-  , ii, jj, kk, ii'
-  , negate'
+  , (.-.)
+  , ii'
   , ff, gg
   , ff2, hh2, hh3, hh4, hh5, hh6, hh7
   , succ'
-  , (-$-)
 
-  , (-|-)
-  , triple
-  , quadruple
-  , quintuple
-  , sixtuple
-
-  , idE
-  , absE
   , succE
-  , negateE
-  , plus
-  , times
   , minusE
   , commaE
   , ffE
   , ggE
 
   -- ** Booleans
-  , true, false
-  , pp, qq, rr
-  , not', (-&&-), (-||-), (-==>-)
+  , rr
+  , (-==>-)
   , (-==-), (-/=-), (-<=-), (-<-)
   , odd', even'
 
   -- ** Characters
   , aa, bb
   , space, lineBreak
-  , cc, dd
-  , ord'
-  , ordE
   , emptyString
-  , ccs
 
   -- ** Lists (of Inteters)
   , ll
-  , xxs, yys
-  , (-:-), (-++-)
-  , head', tail'
   , insert', elem', sort'
 
-  , consE, appendE
+  , appendE
 
   -- ** Typereps
   , charTy
@@ -103,11 +80,6 @@ module Test
   , charE
   , boolE
   , listE
-
-  -- ** Unamed holes
-  , i_
-  , c_
-  , b_
 
   -- ** Enumerate expressions
   , expressionsT
