@@ -42,10 +42,4 @@ tests n =
   , constant "xx" xx < zero
   , constant "xxeqxx" (Equation xx xx) < constant "xx" xx
   , constant "xx" xx < constant "emptyThyght" (Thyght emptyThy)
-
-  , holds n $ \e -> renameBy id e == e
-  , holds n $ \e -> renameBy tail (renameBy ('x':) e) == e
-  , renameBy (++ "1") (xx -+- yy) == (var "x1" int -+- var "y1" int)
-  , renameBy (\(c:cs) -> succ c:cs) ((xx -+- yy) -+- ord' cc)
-                                 == ((yy -+- zz) -+- ord' dd)
   ]

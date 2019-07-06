@@ -16,6 +16,12 @@ tests :: Int -> [Bool]
 tests n =
   [ True
 
+  , holds n $ \e -> renameBy id e == e
+  , holds n $ \e -> renameBy tail (renameBy ('x':) e) == e
+  , renameBy (++ "1") (xx -+- yy) == (var "x1" int -+- var "y1" int)
+  , renameBy (\(c:cs) -> succ c:cs) ((xx -+- yy) -+- ord' cc)
+                                 == ((yy -+- zz) -+- ord' dd)
+
   , holds n $ \(IntE e)            -> e `isInstanceOf` xx
   , holds n $ \(IntE e)            -> abs' e `isInstanceOf` abs' xx
   , holds n $ \(IntE e)            -> (e -+- e) `isInstanceOf` (xx -+- xx)
