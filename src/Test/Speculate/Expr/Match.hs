@@ -32,6 +32,7 @@ import Test.Speculate.Expr.Core
 import Data.List (lookup)
 import Data.Maybe
 import Data.Functor ((<$>))
+import Data.Function (on)
 import Test.Speculate.Utils
 import Control.Monad ((>=>))
 
@@ -95,10 +96,7 @@ match = matchWith []
 -- > (0,1)   `match2` (x,y)   = Just [x=0, y=1]
 -- > (0,1+2) `match2` (x,y+y) = Nothing
 match2 :: (Expr,Expr) -> (Expr,Expr) -> Maybe Binds
-match2 (e1,e2) (e3,e4) =
-  case matchWith [] e1 e3 of
-    Nothing -> Nothing
-    Just bs -> matchWith bs e2 e4
+match2  =  match `on` foldPair
 
 -- | List matches with preexisting bindings:
 --
