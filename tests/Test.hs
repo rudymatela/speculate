@@ -57,9 +57,6 @@ module Test
 
   -- ** Booleans
   , rr
-  , (-==>-)
-  , (-==-), (-/=-), (-<=-), (-<-)
-  , odd', even'
 
   -- ** Characters
   , aa, bb
@@ -68,7 +65,6 @@ module Test
 
   -- ** Lists (of Inteters)
   , ll
-  , insert', elem', sort'
 
   , appendE
 
@@ -103,8 +99,7 @@ import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
 
 import Data.Function (on)
-import Data.List as L (sort,insert)
-import Data.Maybe (fromMaybe)
+import Data.List (sort)
 
 import Test.Speculate.Utils
 
@@ -312,38 +307,6 @@ hh7 e1 e2 e3 e4 e5 e6 e7 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6 :$ e7
 rr :: Expr -- ar, I'm a pirate
 rr = var "r" bool
 
-(-==>-) :: Expr -> Expr -> Expr
-e1 -==>- e2 = impliesE :$ e1 :$ e2 where impliesE = constant "==>" (==>)
-infixr 0 -==>-
-
-(-==-) :: Expr -> Expr -> Expr
-e1 -==- e2 =
-  fromMaybe (error $ "(-==-): cannot equate " ++ show e1 ++ " and " ++ show e2)
-            (equation preludeInstances e1 e2)
-infix 4 -==-
-
-(-/=-) :: Expr -> Expr -> Expr
-e1 -/=- e2 = not' (e1 -==- e2)
-infix 4 -/=-
-
-(-<=-) :: Expr -> Expr -> Expr
-e1 -<=- e2 =
-  fromMaybe (error $ "(-<=-): cannot lessEq " ++ show e1 ++ " and " ++ show e2)
-            (comparisonLE preludeInstances e1 e2)
-infix 4 -<=-
-
-(-<-) :: Expr -> Expr -> Expr
-e1 -<- e2 =
-  fromMaybe (error $ "(-<-): cannot less " ++ show e1 ++ " and " ++ show e2)
-            (comparisonLT preludeInstances e1 e2)
-infix 4 -<-
-
-odd' :: Expr -> Expr
-odd' = (oddE :$) where oddE = constant "odd" (odd :: Int -> Bool)
-
-even' :: Expr -> Expr
-even' = (evenE :$) where evenE = constant "even" (even :: Int -> Bool)
-
 
 aa :: Expr -- a, the character, not a variable
 aa = showConstant 'a'
@@ -366,15 +329,6 @@ ll = showConstant ([] :: [Int])
 
 appendE :: Expr
 appendE = constant "++" ((++) :: [Int] -> [Int] -> [Int])
-
-insert' :: Expr -> Expr -> Expr
-insert' ex exs = insertE :$ ex :$ exs where insertE = constant "insert" (L.insert :: Int -> [Int] -> [Int])
-
-elem' :: Expr -> Expr -> Expr
-elem' ex exs = elemE :$ ex :$ exs where elemE = constant "elem" (elem :: Int -> [Int] -> Bool)
-
-sort' :: Expr -> Expr
-sort' exs = sortE :$ exs where sortE = constant "sort" (sort :: [Int] -> [Int])
 
 
 -- boolTy already exported by Speculate.Instance
