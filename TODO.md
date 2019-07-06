@@ -9,8 +9,6 @@ Warning: I tend to ramble...
 current current
 ---------------
 
-2. transfer `test-expr` tests to haexpress
-
 3. cleanup this TODO
 
 
