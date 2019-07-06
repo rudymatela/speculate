@@ -15,20 +15,21 @@ tests n =
   [ True
 
   ,                                    xx -+- yy === yy -+- xx
--- TODO: make the following test pass!  they ought to be equal even with errors
---, holds n' $ \(IntE e1) (IntE e2) -> e1 -+- e2 === e2 -+- e1
+  , holds n' $ \(IntE e1) (IntE e2) -> notUndefined e1 && notUndefined e2
+                                   ==> e1 -+- e2 === e2 -+- e1
   ,                                    xx -+- yy =/= xx -+- xx
   ,                                      abs' xx === abs' (abs' xx)
   ,                      abs' (xx -+- abs' xx) === (xx -+- abs' xx) -- 2*x or 0
   , holds n' $ \e1 e2 -> typ e1 /= typ e2 ==> e1 =/= e2
 
--- TODO: make the following test pass.  the issue here is error treatment
---, holds n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
---                         Just e1e2 -> condEqual preludeInstances 500 e1e2 e1 e2
---                         Nothing   -> True
---, holds n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
---                         Just e1e2 -> condEqualM preludeInstances 500 0 e1e2 e1 e2
---                         Nothing   -> True
+  , holds n' $ \e1 e2 -> notUndefined e1 && notUndefined e2
+                     ==> case equation preludeInstances e1 e2 of
+                           Just e1e2 -> condEqual preludeInstances 500 e1e2 e1 e2
+                           Nothing   -> True
+  , holds n' $ \e1 e2 -> notUndefined e1 && notUndefined e2
+                     ==> case equation preludeInstances e1 e2 of
+                           Just e1e2 -> condEqualM preludeInstances 500 0 e1e2 e1 e2
+                           Nothing   -> True
   , fails n' $ \e1 e2 -> case equation preludeInstances e1 e2 of
                            Just e1e2 -> condEqualM preludeInstances 500 500 e1e2 e1 e2
                            Nothing   -> True
@@ -43,6 +44,7 @@ tests n =
   , holds n $ ordOK -:> [int]
   ]
   where
+  notUndefined e = e === e
   n' = n `div` 50
   x === y = equal preludeInstances 500 x y
   infix 4 ===
