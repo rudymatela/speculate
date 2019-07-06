@@ -104,7 +104,7 @@ tests n =
 
   , etyp (xx :$ yy) == Left (typ i_, typ i_)
   , etyp (xx :$ (cc :$ yy)) == Left (typ c_, typ i_)
-  , etyp (ff xx :$ (ord' cc :$ gg yy)) == Left (typ i_, typ i_)
+  , etyp (foo xx :$ (ord' cc :$ goo yy)) == Left (typ i_, typ i_)
   , holds n $ \(SameTypeE ef eg) (SameTypeE ex ey) -> (etyp (ef :$ ex) == etyp (eg :$ ey))
   , holds n $ \ef eg ex ey -> (etyp ef == etyp eg && etyp ex == etyp ey)
                            == (etyp (ef :$ ex) == etyp (eg :$ ey))

@@ -155,22 +155,22 @@ tests n =
       == [ (negate' (id' xx), id' (negate' xx)) ]
 
   , criticalPairs emptyThy { canReduceTo = dwoBy (\e1 e2 -> e1 `lexicompare` e2 == GT)
-                           , rules = [ (ff (gg (ff xx)), xx)
-                                     , (ff (gg xx), gg (ff xx)) ] }
+                           , rules = [ (foo (goo (foo xx)), xx)
+                                     , (foo (goo xx), goo (foo xx)) ] }
       == (let sortuple (x,y) | x < y     = (y,x)
                              | otherwise = (x,y)
           in nubSort . map sortuple
-           $ [ (gg xx,                ff (gg (gg (ff xx))))
-             , (gg (ff xx),           ff (gg xx))
-             , (gg (ff (ff xx)),      xx)
-             , (gg (ff (ff (gg xx))), gg xx) ])
+           $ [ (goo xx,                   foo (goo (goo (foo xx))))
+             , (goo (foo xx),             foo (goo xx))
+             , (goo (foo (foo xx)),       xx)
+             , (goo (foo (foo (goo xx))), goo xx) ])
 
-  , criticalPairs emptyThy { rules = [ (ff (gg (ff xx)), xx)
-                                     , (ff (gg xx), gg (ff xx)) ] }
-      == [ (gg (ff xx),           ff (gg xx))
-         , (gg (ff (ff xx)),      xx)
-         , (ff (gg (gg (ff xx))), gg xx)
-         , (gg (ff (ff (gg xx))), gg xx) ]
+  , criticalPairs emptyThy { rules = [ (foo (goo (foo xx)), xx)
+                                     , (foo (goo xx), goo (foo xx)) ] }
+      == [ (goo (foo xx),             foo (goo xx))
+         , (goo (foo (foo xx)),       xx)
+         , (foo (goo (goo (foo xx))), goo xx)
+         , (goo (foo (foo (goo xx))), goo xx) ]
 
   , theorize [ (xx -*- yy) -*- (yy -*- zz)  ~~  yy ]
     |==|

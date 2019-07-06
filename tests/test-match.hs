@@ -52,18 +52,18 @@ tests n =
   , unification (zero -+- xx) (zero -+- one) == Just [(xx,one)]
   , unification (zero -+- xx) (yy -+- one) == Just [(xx,one),(yy,zero)]
   , unify (zero -+- xx) (yy -+- one) == Just (zero -+- one)
-  , unification (ff xx) (ff (gg yy)) == Just [(xx,gg yy)]
-  , unification (ff xx -+- xx) (yy -+- zero) == Just [(xx,zero),(yy,ff zero)]
-  , unify (ff xx -+- xx) (yy -+- zero) == Just (ff zero -+- zero)
-  , unification (ff xx) (gg yy) == Nothing
-  , unification (ff xx) (ff yy) == unification xx yy
+  , unification (foo xx) (foo (goo yy)) == Just [(xx,goo yy)]
+  , unification (foo xx -+- xx) (yy -+- zero) == Just [(xx,zero),(yy,foo zero)]
+  , unify (foo xx -+- xx) (yy -+- zero) == Just (foo zero -+- zero)
+  , unification (foo xx) (goo yy) == Nothing
+  , unification (foo xx) (foo yy) == unification xx yy
   , (canonicalize <$> unify (negate' (negate' xx) -+- yy) (zz -+- zero))
     == Just (negate' (negate' xx) -+- zero)
   , unification (xx -+- one) (one -+- xx) == Just [(xx,one)]
   , unification (xx -+- xx) (one -+- one) == Just [(xx,one)]
   , unification (zz -+- zz) (xx -+- yy) == Just [(xx,yy),(zz,yy)]
-  , unification (xx    -*- (-+-) xx xx)
-                (ff zz -*- (-+-) xx yy) == Just [(yy,ff zz),(xx,ff zz)]
+  , unification (xx     -*- (-+-) xx xx)
+                (foo zz -*- (-+-) xx yy) == Just [(yy,foo zz),(xx,foo zz)]
 
   -- The following two tests are adapted from Baader and Snyder:
   -- Example 2.8, Chapter 8, Handbook of Automated Reasoning (page 453).

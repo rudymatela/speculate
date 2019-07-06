@@ -27,10 +27,10 @@ module Test
   , Thyght (..)
   , Equation (..)
 
-  -- ** Integers
-  , ff, gg
+  -- * Test fixtures
+  , foo, goo
 
-  -- ** Enumerate expressions
+  -- * Enumerate expressions
   , expressionsT
   )
 where
@@ -38,8 +38,7 @@ where
 import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
 
-import Data.Haexpress.Fixtures hiding
-  (ff, gg) -- as we define them as constants here
+import Data.Haexpress.Fixtures
 
 import System.Environment (getArgs)
 import System.Exit (exitFailure)
@@ -75,11 +74,11 @@ mainTest tests n' = do
 printLines :: Show a => [a] -> IO ()
 printLines = putStrLn . unlines . map show
 
-ff :: Expr -> Expr
-ff = (constant "f" (undefined :: Int -> Int) :$)
+foo :: Expr -> Expr
+foo = (constant "f" (undefined :: Int -> Int) :$)
 
-gg :: Expr -> Expr
-gg = (constant "g" (undefined :: Int -> Int) :$)
+goo :: Expr -> Expr
+goo = (constant "g" (undefined :: Int -> Int) :$)
 
 
 data Rule = Rule Expr Expr deriving (Show, Eq, Ord)
