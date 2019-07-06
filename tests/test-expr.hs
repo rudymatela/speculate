@@ -48,15 +48,4 @@ tests n =
   , renameBy (++ "1") (xx -+- yy) == (var "x1" int -+- var "y1" int)
   , renameBy (\(c:cs) -> succ c:cs) ((xx -+- yy) -+- ord' cc)
                                  == ((yy -+- zz) -+- ord' dd)
-
-  , vars (xx -+- yy) == [xx, yy]
-  , nubVars (xx -+- xx) == [xx]
-  , nubVars (xx -+- xx -+- yy) == [xx, yy]
-  , nubVars (yy -+- xx -+- yy) == [xx, yy]
-
-  ,  (xx -+- xx)         < (xx -+- (xx -+- xx))
-  , ((xx -+- xx) -+- xx) > (xx -+- (xx -+- xx))
-  , xx < yy
-  , zero < one
-  , xx < zero
   ]
