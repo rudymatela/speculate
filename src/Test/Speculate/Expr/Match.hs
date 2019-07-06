@@ -29,7 +29,7 @@ where
 
 import Test.Speculate.Expr.Core
 
-import Data.List (find)
+import Data.List (lookup)
 import Data.Maybe
 import Data.Functor ((<$>))
 import Test.Speculate.Utils
@@ -37,12 +37,9 @@ import Control.Monad ((>=>))
 
 type Binds = [(Expr,Expr)]
 
-findB :: Expr -> Binds -> Maybe Expr
-findB e bs = snd <$> find ((e ==) . fst) bs
-
 updateAssignments :: (Expr,Expr) -> Binds -> Maybe Binds
 updateAssignments (e,e') = \bs ->
-  case findB e bs of
+  case lookup e bs of
     Nothing  -> Just ((e,e'):bs)
     Just e'' -> if e'' == e'
                 then Just bs
