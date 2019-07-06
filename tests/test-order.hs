@@ -48,6 +48,14 @@ tests n =
 -- The above bug did exist before the introduction of Haexpress and probably
 -- since the creation of (>|).
 
+-- TODO: fix the following two tests
+-- > > checkFor 10080 $ simplificationOrder (dwoBy (<))
+-- > *** Failed! Falsifiable (after 6901 tests):
+-- > (f _ :: Int) (id _ :: Int) (_ :: Int)
+-- > > checkFor 10080 $ simplificationOrder (|> )
+-- > *** Failed! Falsifiable (after 6901 tests):
+-- > (f _ :: Int) (id _ :: Int) (_ :: Int)
+
   , holds n $ simplificationOrder (|> )
   , holds n $ simplificationOrder (dwoBy (<))
 
