@@ -253,3 +253,6 @@ tests n =
 
   -- TODO: restore tests losts after removing test-kbc
   ]
+
+succ' :: Expr -> Expr
+succ'  =  (constant "succ" ((1+) :: Int -> Int) :$)

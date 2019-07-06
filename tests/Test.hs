@@ -30,7 +30,6 @@ module Test
   -- ** Integers
   , ff, gg
   , ff2, hh2, hh3, hh4, hh5, hh6, hh7
-  , succ'
 
   -- ** Enumerate expressions
   , expressionsT
@@ -78,9 +77,6 @@ mainTest tests n' = do
 
 printLines :: Show a => [a] -> IO ()
 printLines = putStrLn . unlines . map show
-
-succ' :: Expr -> Expr
-succ'  =  (constant "succ" ((1+) :: Int -> Int) :$)
 
 ff :: Expr -> Expr
 ff = (constant "f" (undefined :: Int -> Int) :$)
