@@ -54,10 +54,8 @@ unrepeatedVars = all (\(_,n) -> n == 1) . countVars
 
 -- Is this espression an assignment of a variable to a value?
 isAssignment :: Expr -> Bool
-isAssignment ((Value "==" _ :$ Value ('_':_) _) :$ _) = True
-isAssignment ((Value "==" _ :$ _) :$ Value ('_':_) _) = True
+isAssignment ((Value "==" _ :$ e1) :$ e2) = isVar e1 || isVar e2
 isAssignment _ = False
--- TODO: use isVar above?
 
 isConstantNamed :: Expr -> String -> Bool
 e@(Value n' _) `isConstantNamed` n = isConst e && n' == n

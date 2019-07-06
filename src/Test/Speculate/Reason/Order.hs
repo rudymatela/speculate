@@ -58,8 +58,8 @@ kboBy w (->-) e1 e2 = e1 >=\/ e2
                                         )
                       )
   where
-  ef :$ (eg :$ ex)               `fn` ey@(Value ('_':_) _) | ef == eg = fn (eg :$ ex) ey
-  ef@(Value _ _) :$ ex@(Value ('_':_) _) `fn` ey@(Value ('_':_) _) | ex == ey = True
+  ef :$ (eg :$ ex) `fn` ey | isVar ey && ef == eg = fn (eg :$ ex) ey
+  ef@(Value _ _) :$ ex `fn` ey | isVar ex && isVar ey && ex == ey = True
   _ `fn` _ = False
   e1 `fg` e2 =
     case (unfoldApp e1, unfoldApp e2) of
@@ -133,7 +133,7 @@ infix 4 |>
 dwoBy :: (Expr -> Expr -> Bool) -> Expr -> Expr -> Bool
 dwoBy (>) = (|>)
   where
-  e1 |> e2@(Value ('_':_) _) | e2 `elem` nubVars e1 && e1 /= e2 = True
+  e1 |> e2 | isVar e2 && e2 `elem` nubVars e1 && e1 /= e2 = True
   e1 |> e2 = any (|>= e2) xs
           || (notVar f && notVar g && f >  g && all (e1 |>) ys)
           || (notVar f && notVar g && f == g && all (e1 |>) ys
