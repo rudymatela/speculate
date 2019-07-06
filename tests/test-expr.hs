@@ -28,8 +28,8 @@ tests n =
   , nubConsts (xx -+- yy) == [plus]
   , nubConsts (xx -+- (yy -+- zz)) == [plus]
   , nubConsts (zero -+- one) =$ sort $= [zero, one, plus]
-  , nubConsts ((zero -+- abs' zero) -+- (ord' aa -+- ord' cc))
-      =$ sort $= [zero, aa, absE, plus, ordE]
+  , nubConsts ((zero -+- abs' zero) -+- (ord' ae -+- ord' cc))
+      =$ sort $= [zero, ae, absE, plus, ordE]
   , holds n $ \e1 e2 -> times `elem` consts (e1 -*- e2)
 
 
@@ -59,7 +59,7 @@ tests n =
   -- Less arity is less
   , zero < absE
   , absE < times
-  , aa   < ordE
+  , ae   < ordE
   , ordE < times
   , constant "id" (id -:>  int)  < constant "id"    (id    -:>  [int])
   , constant "id" (id -:> [int]) < constant "id"    (id    -:> [[int]])
@@ -71,10 +71,10 @@ tests n =
   , cc < xx
   , pp < cc
   , xx < xxs
-  , aa < zero
+  , ae < zero
   , Test.true < zero
-  , Test.true < aa
-  , zero < ll
+  , Test.true < ae
+  , zero < nil
 
   -- further precedent types
   , constant "xx" xx < zero

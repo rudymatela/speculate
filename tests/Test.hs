@@ -34,30 +34,13 @@ module Test
   --   Operators are surrounded by dashes.
 
   -- ** Integers
-  , (.-.)
-  , ii'
   , ff, gg
   , ff2, hh2, hh3, hh4, hh5, hh6, hh7
   , succ'
 
   , succE
-  , minusE
-  , commaE
   , ffE
   , ggE
-
-  -- ** Booleans
-  , rr
-
-  -- ** Characters
-  , aa, bb
-  , space, lineBreak
-  , emptyString
-
-  -- ** Lists (of Inteters)
-  , ll
-
-  , appendE
 
   -- ** Typereps
   , charTy
@@ -122,18 +105,6 @@ succ' = (succE :$)
 succE :: Expr
 succE = constant "succ" ((1+) :: Int -> Int)
 
-(.-.) :: Expr -> Expr -> Expr
-e1 .-. e2 = minusE :$ e1 :$ e2
-
-minusE :: Expr
-minusE = constant "-" ((-) :: Int -> Int -> Int)
-
-commaE :: Expr
-commaE = constant "," ((,) :: Int -> Int -> (Int,Int))
-
-ii' :: Expr
-ii' = var "i'" int
-
 ff :: Expr -> Expr
 ff = (ffE :$)
 
@@ -178,32 +149,6 @@ hh7 e1 e2 e3 e4 e5 e6 e7 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6 :$ e7
 
 -- unification (hh7 yy zz xx' (ff2 ii ii) (ff2 jj jj) (ff2 kk kk) ii')
 --             (hh7 (ff2 xx xx) (ff2 yy yy) (ff2 zz zz) jj kk ii' xx')
-
-rr :: Expr -- ar, I'm a pirate
-rr = var "r" bool
-
-
-aa :: Expr -- a, the character, not a variable
-aa = showConstant 'a'
-
-bb :: Expr -- bee, the character, not a variable
-bb = showConstant 'b'
-
-space :: Expr -- space, the character
-space = showConstant ' '
-
-lineBreak :: Expr -- lineBreak, the character
-lineBreak = showConstant '\n'
-
-emptyString :: Expr
-emptyString = showConstant ""
-
-
-ll :: Expr
-ll = showConstant ([] :: [Int])
-
-appendE :: Expr
-appendE = constant "++" ((++) :: [Int] -> [Int] -> [Int])
 
 
 -- boolTy already exported by Speculate.Instance
