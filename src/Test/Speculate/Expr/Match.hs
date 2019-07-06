@@ -16,7 +16,6 @@ module Test.Speculate.Expr.Match
 
   -- * Matching
   , match
-  , match2
   , matchWith
   , unify
   , unification
@@ -32,7 +31,6 @@ import Test.Speculate.Expr.Core
 import Data.List (lookup)
 import Data.Maybe
 import Data.Functor ((<$>))
-import Data.Function (on)
 import Test.Speculate.Utils
 import Control.Monad ((>=>))
 
@@ -90,13 +88,6 @@ renameBy f = mapValues f'
 -- > (x + x) + (1 + 2) `match` x + (y + y) = Nothing
 match :: Expr -> Expr -> Maybe Binds
 match = matchWith []
-
--- | List matches of pairs of expressions if possible
---
--- > (0,1)   `match2` (x,y)   = Just [x=0, y=1]
--- > (0,1+2) `match2` (x,y+y) = Nothing
-match2 :: (Expr,Expr) -> (Expr,Expr) -> Maybe Binds
-match2  =  match `on` foldPair
 
 -- | List matches with preexisting bindings:
 --

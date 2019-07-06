@@ -85,7 +85,7 @@ cequivalent chy ce e1 e2 =
 
 cIsInstanceOf :: Chy -> (Expr,Expr,Expr) -> (Expr,Expr,Expr) -> Bool
 cIsInstanceOf chy (ce2,le2,re2) (ce1,le1,re1) =
-  case match2 (le2,re2) (le1,re1) of
+  case foldPair (le2,re2) `match` foldPair (le1,re1) of
     Nothing -> False
     Just bs -> equivalent (unThy chy) (ce1 //- bs) ce2
 

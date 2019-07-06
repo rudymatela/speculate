@@ -51,7 +51,7 @@ tests n =
   , holds n $ \(SameTypeE e1 e2) (SameTypeE e3 e4) ->
                 not (isFunTy $ typ e1) && not (isFunTy $ typ e3)
                   ==>
-                (e1 -==- e2) `match` (e3 -==- e4) == (e1,e2) `match2` (e3,e4)
+                (e1 -==- e2) `match` (e3 -==- e4) == foldPair (e1,e2) `match` foldPair (e3,e4)
 
 
   , ((xx -+- yy) -+- (yy -+- zz)) //- [(yy, yy -+- zz)]
