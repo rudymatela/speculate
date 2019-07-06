@@ -25,14 +25,6 @@ tests :: Int -> [Bool]
 tests n =
   [ True
 
-  , nubConsts (xx -+- yy) == [plus]
-  , nubConsts (xx -+- (yy -+- zz)) == [plus]
-  , nubConsts (zero -+- one) =$ sort $= [zero, one, plus]
-  , nubConsts ((zero -+- abs' zero) -+- (ord' ae -+- ord' cc))
-      =$ sort $= [zero, ae, absE, plus, ordE]
-  , holds n $ \e1 e2 -> times `elem` consts (e1 -*- e2)
-
-
   , holds n $ compare ==== (compareComplexity <> lexicompare)
   , holds n $ LC.comparison lexicompare
   , holds n $ LC.comparison compareComplexity
@@ -46,63 +38,16 @@ tests n =
   , holds n $ \(BoolToBoolE e1) (BoolToBoolE e2) (BoolE e3) -> let cmp = lexicompareBy (flip compare) in
                 e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
 
-  , xx -+- yy == xx -+- yy
-  , xx -+- yy /= yy -+- xx
-
   -- some tests of order
   , constant "xx" xx < zero
   , constant "xxeqxx" (Equation xx xx) < constant "xx" xx
   , constant "xx" xx < constant "emptyThyght" (Thyght emptyThy)
-
-  , unfoldApp (abs' xx)          == [absE, xx]
-  , unfoldApp (abs' (xx -+- yy)) == [absE, xx -+- yy]
-  , unfoldApp (xx -+- abs' xx)   == [plus, xx, abs' xx]
 
   , holds n $ \e -> renameBy id e == e
   , holds n $ \e -> renameBy tail (renameBy ('x':) e) == e
   , renameBy (++ "1") (xx -+- yy) == (var "x1" int -+- var "y1" int)
   , renameBy (\(c:cs) -> succ c:cs) ((xx -+- yy) -+- ord' cc)
                                  == ((yy -+- zz) -+- ord' dd)
-
-  , typ zero == typ one
-  , typ zero == typ xx
-  , typ zero == typ ii
-  , typ xx /= typ cc
-  , typ xx == typ (ord' cc)
-  , holds n $ \(SameTypeE e1 e2) -> typ e1 == typ e2
-  , holds n $ \(IntE  e) -> typ e == typ i_
-  , holds n $ \(BoolE e) -> typ e == typ b_
-  , holds n $ \(CharE e) -> typ e == typ c_
-  , holds n $ \(IntsE e) -> typ e == typ xxs
-
-  , etyp (xx :$ yy) == Left (typ i_, typ i_)
-  , etyp (xx :$ (cc :$ yy)) == Left (typ c_, typ i_)
-  , etyp (foo xx :$ (ord' cc :$ goo yy)) == Left (typ i_, typ i_)
-  , holds n $ \(SameTypeE ef eg) (SameTypeE ex ey) -> (etyp (ef :$ ex) == etyp (eg :$ ey))
-  , holds n $ \ef eg ex ey -> (etyp ef == etyp eg && etyp ex == etyp ey)
-                           == (etyp (ef :$ ex) == etyp (eg :$ ey))
-  , holds n $ \e -> case etyp e of
-                      Right t -> t == typ e
-                      Left  _ -> error "Either Listable Expr is generating ill typed expressions or etyp is wrong!"
-
-  , size  zero == 1
-  , depth zero == 1
-  , size  one  == 1
-  , depth one  == 1
-  , size  (zero -+- one) == 3
-  , depth (zero -+- one) == 2
-  , size  (zero -+- (xx -+- yy)) == 5
-  , depth (zero -+- (xx -+- yy)) == 3
-  , size  (((xx -+- yy) -*- zz) -==- ((xx -*- zz) -+- (yy -*- zz))) == 13
-  , depth (((xx -+- yy) -*- zz) -==- ((xx -*- zz) -+- (yy -*- zz))) ==  4
-  , depth (xx -*- yy -+- xx -*- zz -==- xx -*- (yy -+- zz)) == 4
-  , size  (xx -*- yy -+- xx -*- zz -==- xx -*- (yy -+- zz)) == 13
-  , depth (xx -*- yy -+- xx -*- zz) == 3
-  , depth (xx -*- (yy -+- zz)) == 3
-
-  , allUnique (take (n`div`10) list :: [Expr])
-  , allUnique (take (n`div`10) $ map unSameTypeE list)
-  , allUnique (take (n`div`10) $ map unIntE list)
 
   , vars (xx -+- yy) == [xx, yy]
   , nubVars (xx -+- xx) == [xx]
