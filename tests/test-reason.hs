@@ -63,7 +63,7 @@ tests n =
   , holds n $ \(SameTypedPairsE eqs) -> theorize eqs == theorize (map swap eqs)
   , holds n $ \(SameTypedPairsE eqs) -> theorize eqs == theorize (reverse eqs)
 
--- TODO: make the following two pass (did they pass before Haexpress?)
+-- TODO: make the following two pass
 -- > > let eqs = [(xx, id' xx), (zero, id' xx)]
 -- > > theorize' eqs == theorize eqs
 -- > False
@@ -86,6 +86,9 @@ tests n =
 -- >     , closureLimit = 3
 -- >     , keepE = keepUpToLength 3
 -- >     }
+--
+-- This issue did exist before the introduction of Haexpress,
+-- it just wasn't found because Expr enumeration wasn't that good.
 --, holds n $ \(SameTypedPairsE eqs) -> theorize'  eqs == theorize eqs
 --, holds n $ \(SameTypedPairsE eqs) -> theorize'' eqs == theorize eqs
 

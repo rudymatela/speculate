@@ -24,7 +24,8 @@ tests n =
 -- > > closedUnderSub (>|) (id' xx) (id' zero) zero
 -- > False
 --
--- Did the above bug exist in the pre-Haexpress version?
+-- The above bug did exist before the introduction of Haexpress and probably
+-- since the creation of (>|).
 
   , holds n $ simplificationOrder (|> )
   , holds n $ simplificationOrder (dwoBy (<))
