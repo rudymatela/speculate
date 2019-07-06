@@ -27,20 +27,10 @@ module Test
   , Thyght (..)
   , Equation (..)
 
-  -- * Functions and values encoded as 'Expr' or functions of Exprs
-  -- | Terminal values are named;
-  --   Variables are duplicated;
-  --   Functions are primed;
-  --   Operators are surrounded by dashes.
-
   -- ** Integers
   , ff, gg
   , ff2, hh2, hh3, hh4, hh5, hh6, hh7
   , succ'
-
-  , succE
-  , ffE
-  , ggE
 
   -- ** Enumerate expressions
   , expressionsT
@@ -90,22 +80,13 @@ printLines :: Show a => [a] -> IO ()
 printLines = putStrLn . unlines . map show
 
 succ' :: Expr -> Expr
-succ' = (succE :$)
-
-succE :: Expr
-succE = constant "succ" ((1+) :: Int -> Int)
+succ'  =  (constant "succ" ((1+) :: Int -> Int) :$)
 
 ff :: Expr -> Expr
-ff = (ffE :$)
-
-ffE :: Expr
-ffE = constant "f" (undefined :: Int -> Int)
+ff = (constant "f" (undefined :: Int -> Int) :$)
 
 gg :: Expr -> Expr
-gg = (ggE :$)
-
-ggE :: Expr
-ggE = constant "g" (undefined :: Int -> Int)
+gg = (constant "g" (undefined :: Int -> Int) :$)
 
 ff2 :: Expr -> Expr -> Expr
 ff2 e1 e2 = ffE :$ e1 :$ e2
