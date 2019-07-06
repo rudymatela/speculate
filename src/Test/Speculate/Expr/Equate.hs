@@ -14,13 +14,13 @@
 --   inequations
 --   and conditional equations.
 module Test.Speculate.Expr.Equate
-  ( unEquation, isEquation, uselessEquation, usefulEquation
-
+  ( unEquation
+  , isEquation
   , unComparison
-
-  , mkImplication, unImplication, usefulImplication
-
-  , mkConditionalEquation, unConditionalEquation, usefulConditionalEquation
+  , mkImplication
+  , unImplication
+  , mkConditionalEquation
+  , unConditionalEquation
   )
 where
 
@@ -37,15 +37,6 @@ unEquation _ = error "unEquation: not an equation!"
 isEquation :: Expr -> Bool
 isEquation ((Value "==" _ :$ e1) :$ e2) = True
 isEquation _ = False
-
--- | Given an equation encoded as an 'Expr'.
---   Checks if both sides of an equation are the same.
---   If the 'Expr' is not an equation, this raises an error.
-uselessEquation :: Expr -> Bool
-uselessEquation = uncurry (==) . unEquation
-
-usefulEquation :: Expr -> Bool
-usefulEquation = uncurry (/=) . unEquation
 
 unComparison :: Expr -> (Expr,Expr)
 unComparison ((Value "compare"  _ :$ e1) :$ e2) = (e1,e2)
@@ -66,25 +57,9 @@ unImplication :: Expr -> (Expr,Expr)
 unImplication ((Value "==>" _ :$ e1) :$ e2) = (e1,e2)
 unImplication _ = error "unImplication: not an implication"
 
-usefulImplication :: Expr -> Bool
-usefulImplication e = vp \\ ve /= vp
-  where
-  (pre,e') = unImplication e
-  vp = nubVars pre
-  ve = nubVars e'
-
 mkConditionalEquation :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
 mkConditionalEquation ti pre e1 e2 = (pre `mkImplication`) =<< mkEquation ti e1 e2
 
 unConditionalEquation :: Expr -> (Expr,Expr,Expr)
 unConditionalEquation ((Value "==>" _ :$ pre) :$ ((Value "==" _ :$ e1) :$ e2)) = (pre,e1,e2)
 unConditionalEquation _ = error "unConditionalEquation: not an equation with side condition"
-
--- an equation with a side condition is useful when sides of the equation are different
--- and at least one variable is shared between the side condition and the equation
-usefulConditionalEquation :: Expr -> Bool
-usefulConditionalEquation e = e1 /= e2 && vp \\ ve /= vp
-  where
-  (pre,e1,e2) = unConditionalEquation e
-  vp = nubVars pre
-  ve = nubVars e1 +++ nubVars e2
