@@ -54,6 +54,9 @@ import Test.Speculate.Utils
 
 import Test.ListableExpr
 
+
+-- test reporting --
+
 reportTests :: [Bool] -> IO ()
 reportTests tests  =  case elemIndices False tests of
   [] -> putStrLn "+++ Tests passed!"
@@ -74,6 +77,9 @@ mainTest tests n' = do
 printLines :: Show a => [a] -> IO ()
 printLines = putStrLn . unlines . map show
 
+
+-- test fixtures --
+
 foo :: Expr -> Expr
 foo = (constant "f" (undefined :: Int -> Int) :$)
 
@@ -81,8 +87,16 @@ goo :: Expr -> Expr
 goo = (constant "g" (undefined :: Int -> Int) :$)
 
 
+-- test types --
+
 data Rule = Rule Expr Expr deriving (Show, Eq, Ord)
 data Equation = Equation Expr Expr deriving (Show, Eq, Ord)
+newtype RuleSet = RuleSet [(Expr,Expr)] deriving Show
+newtype EquationSet = EquationSet [(Expr,Expr)] deriving Show
+newtype Thyght = Thyght { unThyght :: Thy } deriving Show
+
+
+-- Listable instances --
 
 -- beware: enumerating beyond 600 values will  make this very slow as it is
 -- very hard to satisfy canonicalEqn and ->-.  In practice, this should not be a
@@ -111,9 +125,6 @@ instance Listable Equation where
     orientEqn (e1,e2) | e1 `compare` e2 == LT = (e2,e1)
                       | otherwise             = (e1,e2)
 
-newtype RuleSet = RuleSet [(Expr,Expr)] deriving Show
-newtype EquationSet = EquationSet [(Expr,Expr)] deriving Show
-
 instance Listable RuleSet where
   tiers = setCons (RuleSet . map unRule) `ofWeight` 0
     where
@@ -131,8 +142,6 @@ instance Listable Thy where
         $ cons2 (\(RuleSet rs) (EquationSet eqs)
                    -> emptyThy { rules     = sort rs
                                , equations = sort eqs })
-
-newtype Thyght = Thyght { unThyght :: Thy } deriving Show
 
 instance Listable Thyght where
   tiers = mapT Thyght
