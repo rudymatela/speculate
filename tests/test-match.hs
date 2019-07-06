@@ -85,3 +85,31 @@ tests n =
             , (yy,ff2 xx xx)
             ]
   ]
+
+ff2 :: Expr -> Expr -> Expr
+ff2 e1 e2 = ffE :$ e1 :$ e2
+  where ffE = constant "f" (undefined :: Int -> Int -> Int)
+
+hh2 :: Expr -> Expr -> Expr
+hh2 e1 e2 = hhE :$ e1 :$ e2
+  where hhE = constant "h" (undefined :: Int -> Int -> Int)
+
+hh3 :: Expr -> Expr -> Expr -> Expr
+hh3 e1 e2 e3 = hhE :$ e1 :$ e2 :$ e3
+  where hhE = constant "h" (undefined :: Int -> Int -> Int -> Int)
+
+hh4 :: Expr -> Expr -> Expr -> Expr -> Expr
+hh4 e1 e2 e3 e4 = hhE :$ e1 :$ e2 :$ e3 :$ e4
+  where hhE = constant "h" (undefined :: Int -> Int -> Int -> Int -> Int)
+
+hh5 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr
+hh5 e1 e2 e3 e4 e5 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5
+  where hhE = constant "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int)
+
+hh6 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr
+hh6 e1 e2 e3 e4 e5 e6 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6
+  where hhE = constant "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int -> Int)
+
+hh7 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr
+hh7 e1 e2 e3 e4 e5 e6 e7 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6 :$ e7
+  where hhE = constant "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int)
