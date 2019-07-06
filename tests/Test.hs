@@ -42,15 +42,6 @@ module Test
   , ffE
   , ggE
 
-  -- ** Typereps
-  , charTy
-
-  -- ** checks for types
-  , intE
-  , charE
-  , boolE
-  , listE
-
   -- ** Enumerate expressions
   , expressionsT
   )
@@ -67,7 +58,6 @@ import System.Exit (exitFailure)
 import Data.List (elemIndices)
 
 import Test.Speculate hiding (getArgs)
-import Test.Speculate.Expr
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
 
@@ -150,26 +140,6 @@ hh7 e1 e2 e3 e4 e5 e6 e7 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6 :$ e7
 -- unification (hh7 yy zz xx' (ff2 ii ii) (ff2 jj jj) (ff2 kk kk) ii')
 --             (hh7 (ff2 xx xx) (ff2 yy yy) (ff2 zz zz) jj kk ii' xx')
 
-
--- boolTy already exported by Speculate.Instance
-
-charTy :: TypeRep
-charTy = typeOf char
-
-listTy :: TypeRep
-listTy = typeOf [int]
-
-intE :: Expr -> Bool
-intE e = typ e == intTy
-
-boolE :: Expr -> Bool
-boolE e = typ e == boolTy
-
-charE :: Expr -> Bool
-charE e = typ e == charTy
-
-listE :: Expr -> Bool
-listE e = typ e == listTy
 
 data Rule = Rule Expr Expr deriving (Show, Eq, Ord)
 data Equation = Equation Expr Expr deriving (Show, Eq, Ord)
