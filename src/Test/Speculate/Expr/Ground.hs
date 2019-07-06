@@ -64,7 +64,7 @@ groundAndBinds ti e = (\bs -> (bs, e //- bs)) <$> groundBinds ti e
 -- | Are two expressions equal for a given number of tests?
 equal :: Instances -> Int -> Expr -> Expr -> Bool
 -- equal ti _ e1 e2 | e1 == e2 = isComparable ti e1 -- optional optimization
-equal ti n e1 e2 = case equation ti e1 e2 of
+equal ti n e1 e2 = case mkEquation ti e1 e2 of
   Just eq | all (isListable ti . typ) (nubVars eq) -> isTrue ti n eq
   _                                                -> False
 -- TODO: discover why the optimization above changes the output
@@ -94,16 +94,16 @@ condEqualM ti n n0 pre e1 e2 = condEqual ti n pre e1 e2 && length cs >= n0
 
 -- | Are two expressions less-than-or-equal for a given number of tests?
 lessOrEqual :: Instances -> Int -> Expr -> Expr -> Bool
-lessOrEqual ti n e1 e2 = maybe False (isTrue ti n) (comparisonLE ti e1 e2)
+lessOrEqual ti n e1 e2 = maybe False (isTrue ti n) (mkComparisonLE ti e1 e2)
 
 -- | Are two expressions less-than for a given number of tests?
 less        :: Instances -> Int -> Expr -> Expr -> Bool
-less        ti n e1 e2 = maybe False (isTrue ti n) (comparisonLT ti e1 e2)
+less        ti n e1 e2 = maybe False (isTrue ti n) (mkComparisonLT ti e1 e2)
 
 -- | Are two expressions inequal for *all* variable assignments?
 --   Note this is different than @not . equal@.
 inequal :: Instances -> Int -> Expr -> Expr -> Bool
-inequal ti n e1 e2 = maybe False (isFalse ti n) (equation ti e1 e2)
+inequal ti n e1 e2 = maybe False (isFalse ti n) (mkEquation ti e1 e2)
 
 -- | Is a boolean expression true for all variable assignments?
 isTrue :: Instances -> Int -> Expr -> Bool

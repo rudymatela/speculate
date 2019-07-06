@@ -14,9 +14,9 @@
 --   inequations
 --   and conditional equations.
 module Test.Speculate.Expr.Equate
-  ( equation, unEquation, isEquation, uselessEquation, usefulEquation
+  ( unEquation, isEquation, uselessEquation, usefulEquation
 
-  , comparisonLT, comparisonLE, unComparison
+  , unComparison
 
   , implication, unImplication, usefulImplication
 
@@ -29,9 +29,6 @@ import Data.List ((\\))
 import Test.Speculate.Utils
 import Test.Speculate.Expr.Core
 import Test.Speculate.Expr.Instance
-
-equation :: Instances -> Expr -> Expr -> Maybe Expr
-equation  =  mkEquation
 
 unEquation :: Expr -> (Expr,Expr)
 unEquation ((Value "==" _ :$ e1) :$ e2) = (e1,e2)
@@ -49,13 +46,6 @@ uselessEquation = uncurry (==) . unEquation
 
 usefulEquation :: Expr -> Bool
 usefulEquation = uncurry (/=) . unEquation
-
-comparisonLT :: Instances -> Expr -> Expr -> Maybe Expr
-comparisonLT  =  mkComparisonLT
-
-
-comparisonLE :: Instances -> Expr -> Expr -> Maybe Expr
-comparisonLE  =  mkComparisonLE
 
 unComparison :: Expr -> (Expr,Expr)
 unComparison ((Value "compare"  _ :$ e1) :$ e2) = (e1,e2)
@@ -84,7 +74,7 @@ usefulImplication e = vp \\ ve /= vp
   ve = nubVars e'
 
 conditionalEquation :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
-conditionalEquation ti pre e1 e2 = (pre `implication`) =<< equation ti e1 e2
+conditionalEquation ti pre e1 e2 = (pre `implication`) =<< mkEquation ti e1 e2
 
 unConditionalEquation :: Expr -> (Expr,Expr,Expr)
 unConditionalEquation ((Value "==>" _ :$ pre) :$ ((Value "==" _ :$ e1) :$ e2)) = (pre,e1,e2)
