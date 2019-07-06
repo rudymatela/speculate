@@ -40,7 +40,7 @@ import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
 
 import Data.Haexpress.Fixtures hiding
-  (ff, ffE, gg, ggE) -- as we define them as constants here
+  (ff, gg) -- as we define them as constants here
 
 import System.Environment (getArgs)
 import System.Exit (exitFailure)
