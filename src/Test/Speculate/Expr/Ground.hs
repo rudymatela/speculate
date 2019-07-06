@@ -86,7 +86,7 @@ condEqualM :: Instances -> Int -> Int -> Expr -> Expr -> Expr -> Bool
 condEqualM ti n n0 pre e1 e2 = condEqual ti n pre e1 e2 && length cs >= n0
   where
   cs =  fromMaybe []
-     $  filter (errorToFalse . eval False) . map condition . take n . grounds ti
+     $  filter evalBool . map condition . take n . grounds ti
     <$> conditionalEquation ti pre e1 e2
   condition ceq = let (ce,_,_) = unConditionalEquation ceq in ce
 
@@ -105,11 +105,11 @@ inequal ti n e1 e2 = maybe False (isFalse ti n) (equation ti e1 e2)
 
 -- | Is a boolean expression true for all variable assignments?
 isTrue :: Instances -> Int -> Expr -> Bool
-isTrue ti n e = all (errorToFalse . eval False) . take n $ grounds ti e
+isTrue ti n e = all evalBool . take n $ grounds ti e
 
 -- | List variable bindings for which an expression holds true.
 trueBinds :: Instances -> Int -> Expr -> [Binds]
-trueBinds ti n e = [bs | (bs,e) <- take n $ groundAndBinds ti e, errorToFalse $ eval False e]
+trueBinds ti n e = [bs | (bs,e) <- take n $ groundAndBinds ti e, evalBool e]
 
 -- | Under a maximum number of tests,
 --   returns the ratio for which an expression holds true.
@@ -119,4 +119,7 @@ trueRatio ti n e = length (trueBinds ti n e) % length (take n $ groundAndBinds t
 -- | Is an expression ALWAYS false?
 -- This is *NOT* the same as not true.
 isFalse :: Instances -> Int -> Expr -> Bool
-isFalse ti n e = all (not . errorToFalse . eval False) . take n $ grounds ti e
+isFalse ti n e = all (not . evalBool) . take n $ grounds ti e
+
+evalBool :: Expr -> Bool
+evalBool  =  errorToFalse . eval False
