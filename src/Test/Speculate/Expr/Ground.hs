@@ -78,7 +78,7 @@ equal ti n e1 e2 = case mkEquation ti e1 e2 of
 --   under a given condition
 --   for a given number of tests?
 condEqual :: Instances -> Int -> Expr -> Expr -> Expr -> Bool
-condEqual ti n pre e1 e2 = maybe False (isTrue ti n) (conditionalEquation ti pre e1 e2)
+condEqual ti n pre e1 e2 = maybe False (isTrue ti n) (mkConditionalEquation ti pre e1 e2)
 
 -- | Are two expressions equal
 --   under a given condition
@@ -89,7 +89,7 @@ condEqualM ti n n0 pre e1 e2 = condEqual ti n pre e1 e2 && length cs >= n0
   where
   cs =  fromMaybe []
      $  filter evalBool . map condition . take n . grounds ti
-    <$> conditionalEquation ti pre e1 e2
+    <$> mkConditionalEquation ti pre e1 e2
   condition ceq = let (ce,_,_) = unConditionalEquation ceq in ce
 
 -- | Are two expressions less-than-or-equal for a given number of tests?

@@ -18,9 +18,9 @@ module Test.Speculate.Expr.Equate
 
   , unComparison
 
-  , implication, unImplication, usefulImplication
+  , mkImplication, unImplication, usefulImplication
 
-  , conditionalEquation, unConditionalEquation, usefulConditionalEquation
+  , mkConditionalEquation, unConditionalEquation, usefulConditionalEquation
   )
 where
 
@@ -55,8 +55,8 @@ unComparison ((Value ">"        _ :$ e1) :$ e2) = (e1,e2)
 unComparison ((Value ">="       _ :$ e1) :$ e2) = (e1,e2)
 unComparison _ = error "unComparisonL: not a compare/(<)/(<=)/(>)/(>=) application"
 
-implication :: Expr -> Expr -> Maybe Expr
-implication e1 e2
+mkImplication :: Expr -> Expr -> Maybe Expr
+mkImplication e1 e2
   | typ e1 == boolTy = implicationE :$ e1 $$ e2
   | otherwise        = Nothing
   where
@@ -73,8 +73,8 @@ usefulImplication e = vp \\ ve /= vp
   vp = nubVars pre
   ve = nubVars e'
 
-conditionalEquation :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
-conditionalEquation ti pre e1 e2 = (pre `implication`) =<< mkEquation ti e1 e2
+mkConditionalEquation :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
+mkConditionalEquation ti pre e1 e2 = (pre `mkImplication`) =<< mkEquation ti e1 e2
 
 unConditionalEquation :: Expr -> (Expr,Expr,Expr)
 unConditionalEquation ((Value "==>" _ :$ pre) :$ ((Value "==" _ :$ e1) :$ e2)) = (pre,e1,e2)
