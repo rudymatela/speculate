@@ -16,8 +16,6 @@ tests :: Int -> [Bool]
 tests n =
   [ True
   
-  , tiersExprTypeCorrect (n*2)
-
   , holds n $ \e -> mostGeneral  e == head (vassignments e)
   , holds n $ \e -> mostSpecific e == last (vassignments e)
 

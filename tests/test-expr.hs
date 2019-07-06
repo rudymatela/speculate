@@ -38,12 +38,14 @@ tests n =
   , holds n $ LC.comparison lexicompare
   , holds n $ LC.comparison compareComplexity
 
-  , holds n $ \(FunE e1) (FunE e2) e3 -> let cmp = lexicompare
-                                         in typ e1 == typ e2 && isJust (e1 $$ e3) && isJust (e2 $$ e3)
-                                        ==> e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
-  , holds n $ \(FunE e1) (FunE e2) e3 -> let cmp = lexicompareBy (flip compare)
-                                         in typ e1 == typ e2 && isJust (e1 $$ e3) && isJust (e2 $$ e3)
-                                        ==> e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
+  , holds n $ \(IntToIntE e1) (IntToIntE e2) (IntE e3) -> let cmp = lexicompare in
+                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
+  , holds n $ \(IntToIntE e1) (IntToIntE e2) (IntE e3) -> let cmp = lexicompareBy (flip compare) in
+                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
+  , holds n $ \(BoolToBoolE e1) (BoolToBoolE e2) (BoolE e3) -> let cmp = lexicompare in
+                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
+  , holds n $ \(BoolToBoolE e1) (BoolToBoolE e2) (BoolE e3) -> let cmp = lexicompareBy (flip compare) in
+                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
 
   , xx -+- yy == xx -+- yy
   , xx -+- yy /= yy -+- xx
@@ -98,7 +100,7 @@ tests n =
   , holds n $ \(IntE  e) -> typ e == typ i_
   , holds n $ \(BoolE e) -> typ e == typ b_
   , holds n $ \(CharE e) -> typ e == typ c_
-  , holds n $ \(ListE e) -> typ e == typ xxs
+  , holds n $ \(IntsE e) -> typ e == typ xxs
 
   , etyp (xx :$ yy) == Left (typ i_, typ i_)
   , etyp (xx :$ (cc :$ yy)) == Left (typ c_, typ i_)

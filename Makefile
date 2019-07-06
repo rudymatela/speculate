@@ -187,6 +187,9 @@ qs-save-bench:
 	make -sC bench/qs1 save-bench
 	make -sC bench/qs2 save-bench
 
+update-listable-expr:
+	cp -rav ../haexpress/test/Test/ListableExpr.hs tests/Test/
+
 ghci: tests/Test.ghci
 
 clean: clean-hi-o

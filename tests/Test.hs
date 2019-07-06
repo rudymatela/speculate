@@ -13,6 +13,7 @@ module Test
   , module Test.LeanCheck.Utils
   , module Test.Speculate
   , module Data.Haexpress.Fixtures
+  , module Test.ListableExpr
 
   -- * Test reporting
   , reportTests
@@ -20,19 +21,9 @@ module Test
   , mainTest
   , printLines
 
-  -- * Properties
-  , tiersExprTypeCorrect
-
+  -- * Test types
   , listThyInefficient
 
-  , IntE  (..)
-  , BoolE (..)
-  , CharE (..)
-  , ListE (..)
-  , FunE (..)
-  , SameTypeE (..)
-  , unSameTypeE
-  , SameTypedPairsE (..)
   , Thyght (..)
   , Equation (..)
 
@@ -83,7 +74,6 @@ module Test
 where
 
 import Test.LeanCheck
-import Test.LeanCheck.Tiers
 import Test.LeanCheck.Utils hiding (comparison)
 
 import Data.Haexpress.Fixtures hiding
@@ -98,10 +88,11 @@ import Test.Speculate.Expr
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
 
-import Data.Function (on)
 import Data.List (sort)
 
 import Test.Speculate.Utils
+
+import Test.ListableExpr
 
 reportTests :: [Bool] -> IO ()
 reportTests tests =
@@ -124,122 +115,6 @@ mainTest tests n' = do
 
 printLines :: Show a => [a] -> IO ()
 printLines = putStrLn . unlines . map show
-
--- | This will not enumerate all possible 'Expr's, as that is impossible.
---   But eventually, a rather a nice subset of it, with Integers, Booleans,
---   Chars and lists of Integers.
-instance Listable Expr where
-  tiers = cons1 unIntE
-       \/ cons1 unBoolE
-       \/ cons1 unCharE
-       \/ cons1 unListE `addWeight` 1
-       \/ cons1 unFunE  `addWeight` 1
-
-tiersExprTypeCorrect :: Int -> Bool
-tiersExprTypeCorrect n = all isWellTyped $ take n (list :: [Expr])
-
--- Not a particularly efficient implementation.  If performance ever becomes an
--- issue, declare something like:
---
--- > tiersIntE = ...
--- >          \/ mapT ord tiersCharE
--- >          \/ ...
--- >   where
--- >   cons1 c = mapT c tiersIntE
--- >   cons2 c = mapT ...
-
-newtype IntE  = IntE  { unIntE  :: Expr } deriving Show
-newtype BoolE = BoolE { unBoolE :: Expr } deriving Show
-newtype CharE = CharE { unCharE :: Expr } deriving Show
-newtype ListE = ListE { unListE :: Expr } deriving Show
-newtype FunE  = FunE  { unFunE  :: Expr } deriving Show
-
-consI :: (Expr -> a) -> [[a]]; consI f = cons1 (f . unIntE)
-consB :: (Expr -> a) -> [[a]]; consB f = cons1 (f . unBoolE)
-consC :: (Expr -> a) -> [[a]]; consC f = cons1 (f . unCharE)
-consL :: (Expr -> a) -> [[a]]; consL f = cons1 (f . unListE)
-consII :: (Expr -> Expr -> a) -> [[a]]; consII o = cons2 (o `on` unIntE)
-consBB :: (Expr -> Expr -> a) -> [[a]]; consBB o = cons2 (o `on` unBoolE)
-consLL :: (Expr -> Expr -> a) -> [[a]]; consLL o = cons2 (o `on` unListE)
-consIL :: (Expr -> Expr -> a) -> [[a]]; consIL o = cons2 (\(IntE x) (ListE xs) -> x `o` xs)
-
-instance Listable IntE where
-  tiers = mapT IntE $ cons0 zero   `addWeight` 1
-                   \/ cons0 one    `addWeight` 2
-                   \/ cons0 i_
-                   \/ cons0 xx
-                   \/ cons0 yy     `addWeight` 1
-                   \/ cons0 zz     `addWeight` 2
-                   \/ consI id'
-                   \/ consI abs'   `addWeight` 1
-                   \/ consII (-+-)
-                   \/ consII (-*-) `addWeight` 1
-                   \/ consC ord'   `addWeight` 2
-
-instance Listable BoolE where
-  tiers = mapT BoolE $ cons0 true   `addWeight` 1
-                    \/ cons0 false  `addWeight` 1
-                    \/ cons0 b_
-                    \/ cons0 pp
-                    \/ cons0 qq     `addWeight` 1
-                    \/ cons0 rr     `addWeight` 2
-                    \/ consB not'
-                    \/ consBB (-&&-)  `addWeight` 1
-                    \/ consBB (-||-)  `addWeight` 2
-                    \/ consBB (-==>-) `addWeight` 3
-                    \/ maybeCons1 (uncurry (equation     preludeInstances) . unSameTypeE) `addWeight` 3
-                    \/ maybeCons1 (uncurry (comparisonLT preludeInstances) . unSameTypeE) `addWeight` 4
-                    \/ maybeCons1 (uncurry (comparisonLE preludeInstances) . unSameTypeE) `addWeight` 4
-                    \/ consI odd'   `addWeight` 1
-                    \/ consI even'  `addWeight` 1
-                    \/ consIL elem' `addWeight` 4
-
-instance Listable CharE where
-  tiers = mapT CharE $ cons0 aa   `addWeight` 1
-                    \/ cons0 c_
-                    \/ cons0 cc
-                    \/ cons0 dd   `addWeight` 1
-
-instance Listable ListE where
-  tiers = mapT ListE $ cons0 ll
-                    \/ cons0 xxs
-                    \/ cons0 yys      `addWeight` 1
-                    \/ consIL (-:-)
-                    \/ consLL (-++-)  `addWeight` 1
-                    \/ consIL insert' `addWeight` 2
-                    \/ consL  sort'   `addWeight` 2
-
-instance Listable FunE where
-  list = map FunE
-       [ idE
-       , plus
-       , appendE
-       , ordE
-       , consE
-       , absE
-       , times
-       , negateE
-       , succE
-       ]
-
-data SameTypeE = SameTypeE Expr Expr deriving Show
-
-unSameTypeE :: SameTypeE -> (Expr,Expr)
-unSameTypeE (SameTypeE e1 e2) = (e1,e2)
-
-instance Listable SameTypeE where
-  tiers = cons1 (\(IntE  e1, IntE  e2) -> SameTypeE e1 e2) `ofWeight` 0
-       \/ cons1 (\(BoolE e1, BoolE e2) -> SameTypeE e1 e2) `ofWeight` 0
-       \/ cons1 (\(CharE e1, CharE e2) -> SameTypeE e1 e2) `ofWeight` 0
-       \/ cons1 (\(ListE e1, ListE e2) -> SameTypeE e1 e2) `ofWeight` 0
-       \/ cons1 (\(FunE  e1, FunE  e2) -> SameTypeE e1 e2) `ofWeight` 0
-          `suchThat` (\(SameTypeE e1 e2) -> typ e1 == typ e2) -- for func, manual
-
-newtype SameTypedPairsE = SameTypedPairsE [(Expr,Expr)] deriving Show
-
-instance Listable SameTypedPairsE where
-  tiers = cons1 (SameTypedPairsE . map unSameTypeE) `ofWeight` 0
-
 
 succ' :: Expr -> Expr
 succ' = (succE :$)
