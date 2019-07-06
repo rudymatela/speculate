@@ -57,11 +57,9 @@ import Test.Speculate.Utils
 import Test.ListableExpr
 
 reportTests :: [Bool] -> IO ()
-reportTests tests =
-  case elemIndices False tests of
-    [] -> putStrLn "+++ Tests passed!"
-    is -> do putStrLn ("*** Failed tests:" ++ show is)
-             exitFailure
+reportTests tests  =  case elemIndices False tests of
+  [] -> putStrLn "+++ Tests passed!"
+  is -> putStrLn ("*** Failed tests:" ++ show is) >> exitFailure
 
 getMaxTestsFromArgs :: Int -> IO Int
 getMaxTestsFromArgs n = do
