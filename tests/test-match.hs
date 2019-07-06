@@ -16,6 +16,24 @@ tests :: Int -> [Bool]
 tests n =
   [ True
 
+  , holds n $ \(IntE e)            -> e `isInstanceOf` xx
+  , holds n $ \(IntE e)            -> abs' e `isInstanceOf` abs' xx
+  , holds n $ \(IntE e)            -> (e -+- e) `isInstanceOf` (xx -+- xx)
+  , holds n $ \(IntE e1) (IntE e2) -> (e1 -+- e2) `isInstanceOf` (xx -+- yy)
+  , holds n $ \(IntE e1) (IntE e2) -> e1 /= e2 ==> not ((e1 -+- e2) `isInstanceOf` (xx -+- xx))
+  , holds n $ \e                   -> e /= zero ==> not (e `isInstanceOf` zero)
+
+  ,       (zero -+- one)       `isInstanceOf` (xx -+- yy)
+  ,       (zero -+- zero)      `isInstanceOf` (xx -+- yy)
+  ,       (yy -+- xx)          `isInstanceOf` (xx -+- yy)
+  ,       (zero -+- zero)      `isInstanceOf` (xx -+- xx)
+  , not $ (zero -+- one)       `isInstanceOf` (xx -+- xx)
+  ,       zero                 `isInstanceOf`          xx
+  , not $ xx                   `isInstanceOf`        zero
+  ,       (xx -+- (yy -+- xx)) `isInstanceOf` (xx -+- yy)
+  ,       (xx -+- (xx -+- xx)) `isInstanceOf` (xx -+- yy)
+  , not $ (xx -+- (xx -+- xx)) `isInstanceOf` (xx -+- xx)
+
   , holds n $ \(IntE e1) (IntE e2) -> match (e1 -+- e2) (xx -+- yy) == Just [(yy,e2),(xx,e1)]
   , holds n $ \(IntE e)            -> match (e -+- e)   (xx -+- xx) == Just [(xx,e)]
   , holds n $ \(IntE e1) (IntE e2) -> e1 /= e2 ==> match (e1 -+- e2) (xx -+- xx) == Nothing
