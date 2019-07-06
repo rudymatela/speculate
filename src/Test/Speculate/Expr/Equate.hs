@@ -21,7 +21,6 @@ module Test.Speculate.Expr.Equate
   , implication, unImplication, usefulImplication
 
   , conditionalEquation, unConditionalEquation, usefulConditionalEquation
-  , conditionalComparisonLT, conditionalComparisonLE, unConditionalComparison
   )
 where
 
@@ -99,15 +98,3 @@ usefulConditionalEquation e = e1 /= e2 && vp \\ ve /= vp
   (pre,e1,e2) = unConditionalEquation e
   vp = nubVars pre
   ve = nubVars e1 +++ nubVars e2
-
-conditionalComparisonLE :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
-conditionalComparisonLE ti pre e1 e2 = (pre `implication`) =<< comparisonLE ti e1 e2
-
-conditionalComparisonLT :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
-conditionalComparisonLT ti pre e1 e2 = (pre `implication`) =<< comparisonLT ti e1 e2
-
-unConditionalComparison :: Expr -> (Expr,Expr,Expr)
-unConditionalComparison e = (econd,e1,e2)
-  where
-  (e1,e2) = unComparison ecmp
-  (econd,ecmp) = unImplication e
