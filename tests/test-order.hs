@@ -1,19 +1,40 @@
+{-# Language DeriveDataTypeable, StandaloneDeriving #-} -- Travis
 import Test
 import Test.Speculate.Utils
+import qualified Test.LeanCheck.Utils as LC (comparison)
 
 import Test.Speculate.Expr
+import Test.Speculate.Reason (emptyThy)
 import Test.Speculate.Reason.Order
 
+-- for Travis:
+deriving instance Typeable Thyght
+deriving instance Typeable Equation
+
 main :: IO ()
-main = do
-  n <- getMaxTestsFromArgs 10000
-
-  reportTests (tests n)
-
+main = mainTest tests 10000
 
 tests :: Int -> [Bool]
 tests n =
   [ True -- see test-expr.hs for general Expr orders
+
+  , holds n $ compare ==== (compareComplexity <> lexicompare)
+  , holds n $ LC.comparison lexicompare
+  , holds n $ LC.comparison compareComplexity
+
+  , holds n $ \(IntToIntE e1) (IntToIntE e2) (IntE e3) -> let cmp = lexicompare in
+                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
+  , holds n $ \(IntToIntE e1) (IntToIntE e2) (IntE e3) -> let cmp = lexicompareBy (flip compare) in
+                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
+  , holds n $ \(BoolToBoolE e1) (BoolToBoolE e2) (BoolE e3) -> let cmp = lexicompare in
+                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
+  , holds n $ \(BoolToBoolE e1) (BoolToBoolE e2) (BoolE e3) -> let cmp = lexicompareBy (flip compare) in
+                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
+
+  -- some tests of order
+  , constant "xx" xx < zero
+  , constant "xxeqxx" (Equation xx xx) < constant "xx" xx
+  , constant "xx" xx < constant "emptyThyght" (Thyght emptyThy)
 
   , holds n $ simplificationOrder (|>|)
   , fails n $ simplificationOrder ( >|) -- TODO: make this pass (holds)
