@@ -34,17 +34,19 @@ lexicompare :: Expr -> Expr -> Ordering
 lexicompare = lexicompareBy compare
 
 lexicompareBy :: (Expr -> Expr -> Ordering) -> Expr -> Expr -> Ordering
-lexicompareBy compareConstants = cmp
+lexicompareBy compareConstants  =  cmp
   where
-  e1@(Value ('_':s1) _) `cmp` e2@(Value ('_':s2) _)  =  typ e1 `compareTy` typ e2 <> s1 `compare` s2
-  (f :$ x)        `cmp` (g :$ y)                     =  f  `cmp` g <> x `cmp` y
-  (_ :$ _)        `cmp` _                            =  GT
-  _               `cmp` (_ :$ _)                     =  LT
-  _               `cmp` Value ('_':_) _              =  GT
-  Value ('_':_) _ `cmp` _                            =  LT
-  e1@(Value _ _)  `cmp` e2@(Value _ _)               =  e1 `compareConstants` e2
+  (f :$ x) `cmp` (g :$ y)  =  f  `cmp` g <> x `cmp` y
+  (_ :$ _) `cmp` _         =  GT
+  _        `cmp` (_ :$ _)  =  LT
+  e1 `cmp` e2  =  case (isVar e1, isVar e2) of
+    (True,  True)  -> let Value n1 _ = e1
+                          Value n2 _ = e2
+                      in typ e1 `compareTy` typ e2 <> n1 `compare` n2
+    (False, True)  -> GT
+    (True,  False) -> LT
+    (False, False) -> e1 `compareConstants` e2
   -- Var < Constants < Apps
-  -- the above function exists internally on Haexpress as well.
 
 countVars :: Expr -> [(Expr,Int)]
 countVars e = map (\e' -> (e',length . filter (== e') $ vars e)) $ nubVars e
