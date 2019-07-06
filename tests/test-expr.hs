@@ -33,7 +33,6 @@ tests n =
   , holds n $ \e1 e2 -> times `elem` consts (e1 -*- e2)
 
 
-  , holds n $ okEqOrd -:> (undefined :: Expr)
   , holds n $ compare ==== (compareComplexity <> lexicompare)
   , holds n $ LC.comparison lexicompare
   , holds n $ LC.comparison compareComplexity
@@ -50,33 +49,7 @@ tests n =
   , xx -+- yy == xx -+- yy
   , xx -+- yy /= yy -+- xx
 
-  -- Holes < Values < Apps
-  , xx < zero
-  , zero < zero -+- one
-  , xx < xx -+- yy
-  , zero < xx -+- yy
-
-  -- Less arity is less
-  , zero < absE
-  , absE < times
-  , ae   < ordE
-  , ordE < times
-  , constant "id" (id -:>  int)  < constant "id"    (id    -:>  [int])
-  , constant "id" (id -:> [int]) < constant "id"    (id    -:> [[int]])
-  , constant "id" (id -:>  int)  < constant "sum"   (sum   -:>  [int])
-  , constant "id" (id -:>  int)  < constant "(:[])" ((:[]) -:>   int)
-
-  -- precedent types
-  , pp < xx
-  , cc < xx
-  , pp < cc
-  , xx < xxs
-  , ae < zero
-  , Test.true < zero
-  , Test.true < ae
-  , zero < nil
-
-  -- further precedent types
+  -- some tests of order
   , constant "xx" xx < zero
   , constant "xxeqxx" (Equation xx xx) < constant "xx" xx
   , constant "xx" xx < constant "emptyThyght" (Thyght emptyThy)
