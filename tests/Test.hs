@@ -312,9 +312,10 @@ expandCanReduceTo thy = cons0 thy
                      \/ if all (uncurry (|>|)) (rules thy)
                           then cons0 thy {canReduceTo = (|>|)} `ofWeight` 1
                           else []
-                     \/ if all (uncurry ( >|)) (rules thy)
-                          then cons0 thy {canReduceTo = ( >|)} `ofWeight` 2
-                          else []
+-- FIXME: KBO is broken ATM:
+--                   \/ if all (uncurry ( >|)) (rules thy)
+--                        then cons0 thy {canReduceTo = ( >|)} `ofWeight` 2
+--                        else []
 
 listThyInefficient :: [Thy]
 listThyInefficient = concat

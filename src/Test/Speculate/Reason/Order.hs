@@ -47,6 +47,7 @@ infix 4 |>|
 (>|) :: Expr -> Expr -> Bool
 (>|) = kboBy weight (>)
 infix 4 >|
+-- TODO: FIXME: this KBO is not closed under substitution!
 
 kboBy :: (Expr -> Int) -> (Expr -> Expr -> Bool) -> Expr -> Expr -> Bool
 kboBy w (->-) e1 e2 = e1 >=\/ e2

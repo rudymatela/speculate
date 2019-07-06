@@ -16,7 +16,16 @@ tests n =
   [ True -- see test-expr.hs for general Expr orders
 
   , holds n $ simplificationOrder (|>|)
---, holds n $ simplificationOrder ( >|) -- TODO: make this pass, errors are making it fail
+  , fails n $ simplificationOrder ( >|) -- TODO: make this pass (holds)
+  , fails n $ closedUnderSub ( >|) -- reason for the above, I believe this is an actual bug in >|
+-- > > checkFor 5040 $ closedUnderSub ( >|)
+-- > *** Failed! Falsifiable (after 3707 tests):
+-- > (id _ :: Int) (id 0 :: Int) (0 :: Int)
+-- > > closedUnderSub (>|) (id' xx) (id' zero) zero
+-- > False
+--
+-- Did the above bug exist in the pre-Haexpress version?
+
   , holds n $ simplificationOrder (|> )
   , holds n $ simplificationOrder (dwoBy (<))
 
