@@ -63,7 +63,29 @@ tests n =
   , holds n $ \(SameTypedPairsE eqs) -> theorize eqs == theorize (map swap eqs)
   , holds n $ \(SameTypedPairsE eqs) -> theorize eqs == theorize (reverse eqs)
 
--- TODO: make the following couple tests pass (error treatment?)
+-- TODO: make the following two pass (did they pass before Haexpress?)
+-- > > let eqs = [(xx, id' xx), (zero, id' xx)]
+-- > > theorize' eqs == theorize eqs
+-- > False
+-- > > theorize' eqs
+-- > Thy { rules = [ id x == x
+-- >               ]
+-- >     , equations = [ 0 == x
+-- >                   ]
+-- >     , canReduceTo = (|>)
+-- >     , closureLimit = 3
+-- >     , keepE = keepUpToLength 3
+-- >     }
+-- > > theorize eqs
+-- > Thy { rules = [ id x == x
+-- >               , id x == 0
+-- >               ]
+-- >     , equations = [ 0 == x
+-- >                   ]
+-- >     , canReduceTo = (|>)
+-- >     , closureLimit = 3
+-- >     , keepE = keepUpToLength 3
+-- >     }
 --, holds n $ \(SameTypedPairsE eqs) -> theorize'  eqs == theorize eqs
 --, holds n $ \(SameTypedPairsE eqs) -> theorize'' eqs == theorize eqs
 
