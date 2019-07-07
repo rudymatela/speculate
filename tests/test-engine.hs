@@ -18,23 +18,8 @@ tests n =
   
   , holds n $ \e -> mostGeneral  e == head (vassignments e)
   , holds n $ \e -> mostSpecific e == last (vassignments e)
-
-  , holds n $ \e -> all isHole (vars e)
-                ==> let xs = map (length . nubVars) $ vassignments e
-                    in (head xs >) `all` tail xs
-                    && (last xs <) `all` init xs
-  , holds n $ \e -> all isHole (vars e)
-                ==> unrepeatedVars (head (vassignments e))
-  , holds n $ \e -> all isHole (vars e)
-                ==> let es = vassignments e
-                    in (`isInstanceOf` head es) `all` tail es
-                    && (last es `isInstanceOf`) `all` init es
   , holds n $ \e -> allLater (\e1 e0 -> not (e0 `isInstanceOf` e1))
                   $ vassignments e
-  , holds n $ \e -> let es = vassignments e
-                    in length (nub (sort es)) == length es
-  , holds n $ \e -> length (vassignments e)
-                 == product (map (bell . snd) . counts $ holes e)
 
   , equivalencesBetween (===) (i_ -+- i_) (i_ -+- i_)
     == [ ( xx -+- yy, yy -+- xx ) ]

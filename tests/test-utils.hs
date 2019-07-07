@@ -17,11 +17,6 @@ tests :: Int -> [Bool]
 tests n =
   [ True
   
-  -- iss is sound
-  , and [ length xs == n     | m <- [0..5], n <- [0..5], xs <- iss m n ]
-  , and [ head (iss 0 n) == [0..(n-1)]    | n <- [0..10] ]
-  , and [ last (iss 0 n) == replicate n 0 | n <- [0..10] ]
-  , and [ firsts xs `isPrefixOf` [0..]    | n <- [0..10], xs <- iss 0 n ]
   , holds 100 $ \xs ys -> strictlyOrdered xs && strictlyOrdered ys
                       ==> strictlyOrdered (nubMerge xs (ys::[Int]))
   , and [ nubMerge xs xs == xs | n <- [0..10], let xs = [0..n] :: [Int] ]

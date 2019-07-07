@@ -21,18 +21,6 @@ undefined1 = error "undefined1"
 undefined2 :: a
 undefined2 = error "undefined2"
 
--- TODO: Find a better name for iss:
---
--- > iss 0 0 = [ [] ]
--- > iss 0 1 = [ [0] ]
--- > iss 0 2 = [ [0,1], [0,0] ]
--- > iss 0 3 = [ [0,1,2], [0,1,0], [0,1,1], [0,0,1], [0,0,0] ]
-iss :: Int -> Int -> [[Int]]
-iss _ 0 = [[]]
-iss i n = concat [map (j:) (iss (i + j-=-i) (n-1)) | j <- i:[0..(i-1)]]
-  where x -=- y | x == y    = 1
-                | otherwise = 0
-
 thn :: Ordering -> Ordering -> Ordering
 thn EQ o = o
 thn o  _ = o
@@ -47,20 +35,6 @@ reportCountsBy f xs = putStrLn . unlines
   showCount (x,n) = unquote (show x) ++ ": "
                  ++ show n ++ "/" ++ show len ++ " "
                  ++ show (100 * n `div` len) ++ "%"
-
--- O(1) bell number implementation (I'm lazy)
--- TODO: actually implement bell
-bell :: Int -> Int
-bell 0 = 1
-bell 1 = 1
-bell 2 = 2
-bell 3 = 5
-bell 4 = 15
-bell 5 = 52
-bell 6 = 203
-bell 7 = 877
-bell 8 = 4140
-bell _ = error "bell: argument > 8, implement me!"
 
 maybesToMaybe :: [Maybe a] -> Maybe a
 maybesToMaybe = listToMaybe . catMaybes
