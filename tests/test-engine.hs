@@ -16,10 +16,10 @@ tests :: Int -> [Bool]
 tests n =
   [ True
   
-  , holds n $ \e -> mostGeneral  e == head (vassignments e)
-  , holds n $ \e -> mostSpecific e == last (vassignments e)
+  , holds n $ \e -> mostGeneral  e == head (canonicalVariations e)
+  , holds n $ \e -> mostSpecific e == last (canonicalVariations e)
   , holds n $ \e -> allLater (\e1 e0 -> not (e0 `isInstanceOf` e1))
-                  $ vassignments e
+                  $ canonicalVariations e
 
   , equivalencesBetween (===) (i_ -+- i_) (i_ -+- i_)
     == [ ( xx -+- yy, yy -+- xx ) ]

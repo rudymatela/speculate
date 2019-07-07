@@ -8,8 +8,7 @@
 --
 -- Main engine to process data.
 module Test.Speculate.Engine
-  ( vassignments
-  , expansions
+  ( expansions
   , expansionsOfType
   , expansionsWith
   , mostGeneral
@@ -56,25 +55,11 @@ import qualified Test.Speculate.Utils.Digraph as D
 ------------------------------
 -- * Manipulating expressions
 
--- | List all relevant variable assignments in an expresssion.
---   In pseudo-Haskell:
---
--- > vassignments (0 + x) == [0 + x]
--- > vassignments (0 + 0) == [0 + 0]
--- > vassignments (0 + _) == [0 + x]
--- > vassignments (_ + _) == [x + x, x + y]
--- > vassignments (_ + (_ + ord _)) == [x + (x + ord c), x + (y + ord c)]
---
--- You should not use this on expression with already assinged variables
--- (undefined, but currently defined behavior):
---
--- > vassignments (ii -+- i_) == [ii -+- ii]
-vassignments :: Expr -> [Expr]
-vassignments = canonicalVariations
--- TODO: rename vassignments, silly name.  what about canonicalExpansions?
-
-vassignmentsEqn :: (Expr,Expr) -> [(Expr,Expr)]
-vassignmentsEqn = filter (uncurry (/=)) . map unfoldPair . vassignments . foldPair
+canonicalVariationsEqn :: (Expr,Expr) -> [(Expr,Expr)]
+canonicalVariationsEqn = filter (uncurry (/=))
+                       . map unfoldPair
+                       . canonicalVariations
+                       . foldPair
 
 -- | List all variable assignments for a given type and list of variables.
 expansionsOfType :: Expr -> [String] -> Expr -> [Expr]
@@ -120,11 +105,11 @@ expansions is n e =
 
 -- | List the most general assignment of holes in an expression
 mostGeneral :: Expr -> Expr
-mostGeneral = head . vassignments -- TODO: make this efficient
+mostGeneral = head . canonicalVariations -- TODO: make this efficient
 
 -- | List the most specific assignment of holes in an expression
 mostSpecific :: Expr -> Expr
-mostSpecific = last . vassignments -- TODO: make this efficient
+mostSpecific = last . canonicalVariations -- TODO: make this efficient
 
 rehole :: Expr -> Expr
 rehole (e1 :$ e2)    = rehole e1 :$ rehole e2
@@ -244,7 +229,7 @@ classesFromSchemaAndVariables thy vs = C.mergesOn (normalizeE thy)
 equivalencesBetween :: (Expr -> Expr -> Bool) -> Expr -> Expr -> [(Expr,Expr)]
 equivalencesBetween (===) e1 e2 = discardLater (isInstanceOf `on` foldPair)
                                 . filter (uncurry (===))
-                                $ vassignmentsEqn (e1,e2)
+                                $ canonicalVariationsEqn (e1,e2)
 
 semiTheoryFromThyAndReps :: Instances -> Int -> Int
                          -> Thy -> [Expr] -> Shy
