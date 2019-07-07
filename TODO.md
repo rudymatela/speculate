@@ -3,6 +3,15 @@ TODO
 
 A list of things to do for Speculate.
 
+* release new Speculate after releasing Haexpress
+  (which will happen after I have a version of Extrapolate that uses Haexpress)
+
+* simplify "test" handling.  Do like in LeanCheck and Extrapolate.
+  instead of having to run `make tests/test-something.test`,
+  run with `make test/something.run`.
+
+* simpilfy "bench" handing.  Do like in LeanCheck and Extrapolate.
+
 * (code readability) review and document code
 
 * (code readability) rename semi to inqualities everywhere.
