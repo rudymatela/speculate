@@ -70,15 +70,7 @@ import qualified Test.Speculate.Utils.Digraph as D
 --
 -- > vassignments (ii -+- i_) == [ii -+- ii]
 vassignments :: Expr -> [Expr]
-vassignments e =
-  [ foldl fill e [ [ (defNames !! i) `varAsTypeOf` t | i <- is ]
-                 | (t,is) <- fs ]
-  | fs <- productsList [[(t,is) | is <- iss 0 c] | (t,c) <- counts (holes e)] ]
-  where
-  defNames = variableNamesFromTemplate "x"
-  -- > fss _ + _ = [ [(Int,[0,0])], [(Int,[0,1])] ]
-  -- > fss _ + (_ + ord _) = [ [(Int,[0,0]),(Char,[1])]
-  -- >                       , [(Int,[0,1]),(Char,[1])] ]
+vassignments = canonicalVariations
 -- TODO: rename vassignments, silly name.  what about canonicalExpansions?
 
 vassignmentsEqn :: (Expr,Expr) -> [(Expr,Expr)]

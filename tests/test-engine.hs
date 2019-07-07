@@ -19,20 +19,6 @@ tests n =
   , holds n $ \e -> mostGeneral  e == head (vassignments e)
   , holds n $ \e -> mostSpecific e == last (vassignments e)
 
-  , vassignments (zero -+- xx) == [zero -+- xx]
-  , vassignments (zero -+- i_) == [zero -+- xx]
-  , vassignments (i_ -+- i_) == [xx -+- yy, xx -+- xx]
-  , map canonicalize (vassignments (i_ -+- (i_ -+- ord' c_)))
-    == [ xx -+- (yy -+- ord' cc)
-       , xx -+- (xx -+- ord' cc) ]
-
-  , vassignments (ii -+- i_) == [ii -+- xx]
-  , map canonicalize (vassignments ((i_ -+- i_) -+- (ord' c_ -+- ord' c_)))
-    == [ (xx -+- yy) -+- (ord' cc -+- ord' dd)
-       , (xx -+- yy) -+- (ord' cc -+- ord' cc)
-       , (xx -+- xx) -+- (ord' cc -+- ord' dd)
-       , (xx -+- xx) -+- (ord' cc -+- ord' cc) ]
-
   , holds n $ \e -> all isHole (vars e)
                 ==> let xs = map (length . nubVars) $ vassignments e
                     in (head xs >) `all` tail xs
