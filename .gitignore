@@ -39,10 +39,10 @@ mk/toplibs
 
 tests/test-compose-dynamic
 tests/test-engine
+tests/test-expr
 tests/test-eval
 tests/test-haexpress
 tests/test-kbc
-tests/test-match
 tests/test-order
 tests/test-creason
 tests/test-reason

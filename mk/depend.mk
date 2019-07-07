@@ -24,7 +24,6 @@ bench/arithficial.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -59,7 +58,6 @@ bench/nord.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -94,7 +92,6 @@ bench/unit.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -129,7 +126,6 @@ eg/algebraic-graphs.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -167,7 +163,6 @@ eg/arith-negate-abs.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -199,7 +194,6 @@ eg/arith.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -234,7 +228,6 @@ eg/binarytree0.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -269,7 +262,6 @@ eg/binarytree.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -304,7 +296,6 @@ eg/bool.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -339,7 +330,6 @@ eg/colour.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -377,7 +367,6 @@ eg/digraphs.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -415,7 +404,6 @@ eg/fun.o: \
   src/Test/Speculate/Function.hs \
   src/Test/Speculate/Function/A100.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -450,7 +438,6 @@ eg/insertsort0.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -485,7 +472,6 @@ eg/insertsort.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -520,7 +506,6 @@ eg/length.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -555,7 +540,6 @@ eg/list.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -590,7 +574,6 @@ eg/minus.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -627,7 +610,6 @@ eg/monad.o: \
   src/Test/Speculate/Function.hs \
   src/Test/Speculate/Function/A100.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -662,7 +644,6 @@ eg/oddeven.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -697,7 +678,6 @@ eg/plus-abs.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -732,7 +712,6 @@ eg/pretty-compact.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -767,7 +746,6 @@ eg/pretty.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -802,7 +780,6 @@ eg/ratio.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -838,7 +815,6 @@ eg/regexes.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -879,7 +855,6 @@ eg/sets.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -914,7 +889,6 @@ eg/speculate-reason.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -954,7 +928,6 @@ eg/string.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -995,7 +968,6 @@ eg/tauts.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1031,7 +1003,6 @@ eg/tuples.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1066,7 +1037,6 @@ eg/zip.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1088,7 +1058,6 @@ src/Test/Speculate/Args.o: \
   src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1110,7 +1079,6 @@ src/Test/Speculate/CondReason.o: \
   src/Test/Speculate/Reason.hs \
   src/Test/Speculate/Reason/Order.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1136,13 +1104,14 @@ src/Test/Speculate/Engine.o: \
   src/Test/Speculate/Reason.hs \
   src/Test/Speculate/Reason/Order.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
   src/Test/Speculate/Expr/Core.hs \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs
+src/Test/Speculate/Expr/Core: \
+  mk/toplibs
 src/Test/Speculate/Expr/Core.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/List.hs \
@@ -1174,7 +1143,6 @@ src/Test/Speculate/Expr/Ground.o: \
   src/Test/Speculate/Utils/Misc.hs \
   src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1193,22 +1161,6 @@ src/Test/Speculate/Expr/Instance.o: \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Core.hs
-src/Test/Speculate/Expr/Match: \
-  mk/toplibs
-src/Test/Speculate/Expr/Match.o: \
-  src/Test/Speculate/Utils/Typeable.hs \
-  src/Test/Speculate/Utils/Tuple.hs \
-  src/Test/Speculate/Utils/Timeout.hs \
-  src/Test/Speculate/Utils/Tiers.hs \
-  src/Test/Speculate/Utils/String.hs \
-  src/Test/Speculate/Utils/PrettyPrint.hs \
-  src/Test/Speculate/Utils.hs \
-  src/Test/Speculate/Utils/Ord.hs \
-  src/Test/Speculate/Utils/Misc.hs \
-  src/Test/Speculate/Utils/Memoize.hs \
-  src/Test/Speculate/Utils/List.hs \
-  src/Test/Speculate/Expr/Match.hs \
-  src/Test/Speculate/Expr/Core.hs
 src/Test/Speculate/Expr.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
@@ -1222,7 +1174,6 @@ src/Test/Speculate/Expr.o: \
   src/Test/Speculate/Utils/Memoize.hs \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1252,7 +1203,6 @@ src/Test/Speculate/Function/A1000.o: \
   src/Test/Speculate/Function.hs \
   src/Test/Speculate/Function/A1000.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1285,7 +1235,6 @@ src/Test/Speculate/Function/A100.o: \
   src/Test/Speculate/Function.hs \
   src/Test/Speculate/Function/A100.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1317,7 +1266,6 @@ src/Test/Speculate/Function.o: \
   src/Test/Speculate.hs \
   src/Test/Speculate/Function.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1350,7 +1298,6 @@ src/Test/Speculate.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1376,7 +1323,6 @@ src/Test/Speculate/Pretty.o: \
   src/Test/Speculate/Reason/Order.hs \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1396,7 +1342,6 @@ src/Test/Speculate/Reason/Order.o: \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Reason/Order.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1416,7 +1361,6 @@ src/Test/Speculate/Reason.o: \
   src/Test/Speculate/Reason.hs \
   src/Test/Speculate/Reason/Order.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1443,7 +1387,6 @@ src/Test/Speculate/Report.o: \
   src/Test/Speculate/Reason/Order.hs \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1465,7 +1408,6 @@ src/Test/Speculate/Sanity.o: \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Sanity.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1486,7 +1428,6 @@ src/Test/Speculate/SemiReason.o: \
   src/Test/Speculate/Reason.hs \
   src/Test/Speculate/Reason/Order.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1570,7 +1511,6 @@ tests/test-creason.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1609,7 +1549,6 @@ tests/test-engine.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1648,7 +1587,6 @@ tests/test-eval.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1661,12 +1599,10 @@ tests/test-eval: \
   tests/Test/ListableExpr.hs \
   tests/test-eval.hs \
   mk/toplibs
-tests/Test/ListableExpr.o: \
-  tests/Test/ListableExpr.hs
-tests/test-match.o: \
+tests/test-expr.o: \
   tests/Test.hs \
-  tests/test-match.hs \
   tests/Test/ListableExpr.hs \
+  tests/test-expr.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
   src/Test/Speculate/Utils/Timeout.hs \
@@ -1689,7 +1625,6 @@ tests/test-match.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1697,11 +1632,13 @@ tests/test-match.o: \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs \
   src/Test/Speculate/Args.hs
-tests/test-match: \
+tests/test-expr: \
   tests/Test.hs \
-  tests/test-match.hs \
   tests/Test/ListableExpr.hs \
+  tests/test-expr.hs \
   mk/toplibs
+tests/Test/ListableExpr.o: \
+  tests/Test/ListableExpr.hs
 tests/test-order.o: \
   tests/Test.hs \
   tests/test-order.hs \
@@ -1728,7 +1665,6 @@ tests/test-order.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1766,7 +1702,6 @@ tests/Test.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1800,7 +1735,6 @@ tests/test-reason.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1839,7 +1773,6 @@ tests/test-stats.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \
@@ -1882,7 +1815,6 @@ tests/test-utils.o: \
   src/Test/Speculate/Pretty.hs \
   src/Test/Speculate.hs \
   src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Match.hs \
   src/Test/Speculate/Expr/Instance.hs \
   src/Test/Speculate/Expr/Ground.hs \
   src/Test/Speculate/Expr/Equate.hs \

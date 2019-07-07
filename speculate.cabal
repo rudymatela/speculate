@@ -147,8 +147,8 @@ test-suite eval
   default-language:  Haskell2010
   type:              exitcode-stdio-1.0
 
-test-suite match
-  main-is:           test-match.hs
+test-suite expr
+  main-is:           test-expr.hs
   other-modules:     Test
   hs-source-dirs:    tests
   build-depends:     base >= 4 && < 5, leancheck, speculate

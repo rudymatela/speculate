@@ -18,7 +18,7 @@ TESTS = \
   tests/test-creason \
   tests/test-engine \
   tests/test-eval \
-  tests/test-match \
+  tests/test-expr \
   tests/test-order \
   tests/test-reason \
   tests/test-utils \

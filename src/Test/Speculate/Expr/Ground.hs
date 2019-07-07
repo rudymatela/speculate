@@ -25,7 +25,6 @@ module Test.Speculate.Expr.Ground
 where
 
 import Test.Speculate.Expr.Core
-import Test.Speculate.Expr.Match
 import Test.Speculate.Expr.Instance
 import Test.Speculate.Expr.Equate
 import Test.LeanCheck
