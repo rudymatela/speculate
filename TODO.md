@@ -1,160 +1,25 @@
 TODO
 ====
 
-A non-exhaustive list of things TODO for Speculate
+A list of things to do for Speculate.
 
-Warning: I tend to ramble...
+* (code readability) review and document code
 
+* (code readability) rename semi to inqualities everywhere.
 
-current current
----------------
+* (interface) print errors on stderr, not on stdout
 
-3. cleanup this TODO
-
-
-
-current
--------
-
-* improve out-of-the-box support for functions as data values (see `eg/fun.hs`)
-
-* add fun0 example, where functions are not instances of Eq and Ord
-
-* consistency: rename semi to inqualities everywhere.
-
-* improve printing by separating variables, constants and background constants.
-
-* derive `tiers` using speculate itself.  Use provided constructors.
-  Maybe a new field in args?  Or even things begining with capital letters and
-  ":".
-
-
-stranger things (bugs?)
------------------------
-
-* after adding:
-
-    constant "/=" $ (/=) -:> integer
-
-  to `backgroundConstants`, these:
-
-    (q == negate q) == False
-       (q == q + r) == False
-
-  along with a handful of other strange laws appear.
-  Find out why and remove them.
-
-
-* see commit `f7b323a`, why does the following equation disappears after
-  requiring a minimum number of tests to pass?
-
-    x /= y ==>        delete y (insert x Null) == insert x Null
-
-  The precondition should hold most of the time, so, a minimum number of
-  tests should not discard it.
-
-
-redundancy to remove
---------------------
-
-* remove redundancy on taut example:
-
-	taut q ==> subst n (taut q) p == subst n True p
-
-  pruning principle:
-  1. `genericMatch LHS RHS = [(taut q, True)]`
-  2. `equivalent thy (taut q) (taut q == True)`
-
-* remove the following redundant laws on insertsort:
-
-	ordered (ys ++ xs) ==>       ys ++ sort xs == sort (xs ++ ys)
-	ordered (ys ++ xs) ==>       sort ys ++ xs == sort (xs ++ ys)
-	ordered (ys ++ xs) ==>  sort ys ++ sort xs == sort (xs ++ ys)
-
-  implied by `ordered (sort xs) == True` *and* `sort (xs++ys) == sort (ys++xs)`
-
-* on `./eg/insertsort`, we get:
-
-    xs == sort ys ==> ordered xs
-    (sort xs == []) == (xs == [])
-
-  those are consequences of substitution
-
-* On `./eg/digraphs -s6`, I get
-  `False == isNode x a ==>  succs x a == preds x a`
-  (and other related equations.) A more general version wouldn't be
-  `False == isNode x a ==>  succs x a == []`?
-
-  I checked on ghci, it does hold for 30000 tests, so the library isn't buggy.
-
-  Maybe the issue is that `== []` is redundant and discarded?
-
-  There are lots of other redundant equations there.  Maybe those are related
-  to the planned genericMatch pruning principle?  (see a bit above)
-
-* On `./eg/binarytree`, when toList and fromList are moved into the foreground,
-  the following redundant laws appear:
-
-  (xs == []) == (Null == fromList xs)
-  xs == toList t ==> ordered xs
-  xs == toList t ==> strictlyOrdered xs
-  xs == toList t ==> t == fromList xs
-
-
-Later Later
------------
-
-* check if equivalences (==) are congruences (s == s' ==> f s == f s')
-
-* automatically detect and use orders.  algorithm sketch:
-  1. list everything of the type a -> a -> Bool
-  2. check and filter everything that is an order
-  3. parameterize semiTheoryFromEtc so that it takes an order re-run for
-     several different types
-
-* improve performance of inequality generation by using the following
-  algorithm:
-
-	1. compute a theory and equivalence classes of schemas as usual;
-	2. from classes of schemas, build class representatives of canonical
-	   expressions (first occurrences in lexicographic order);
-	3. rehole those representatives then compute <= relations
-	4. expand <= expressions, filtering those that are true and discarding
-	   redundancies "internally" (within possible variable namings)
-	5. filter redundant <= expressions.  I believe this has to be adapted a
-	   tiny bit.
-
-  I am not sure if it will work.  But it might be worth a try.
-
-* print errors on stderr, not on stdout
-
-* add maximum commutative size limit?
-
-* improve error message for missing typeInfo.  Maybe add full suggestion.
-
-* (for performance and interface): actually compute what happens with
-  undefined values.  e.g.: head [] == undefined.  This will/may make things
-  faster as we can prune foo (head []) or head [] ++ head [], which are also
-  undefined.
-
-* (for performance) note that variable assignments form a lattice.  So I only
+* (performance) note that variable assignments form a lattice.  So I only
   need to test stuff from upper if the lower is true.  Of course, testing is
   the expensive thing.  But it does not pay off to test x + y = z + w before
   testing x + y = y + x.  The second needs to hold for the first to hold.  And,
   it will be far more common!
 
-* (for interface) I actually do not need to provide 0-argument constants in the
+* (interface) I actually do not need to provide 0-argument constants in the
   background algebra.  Since I am using an enumerative strategy, I can actually
   enumerate those from `Instances`.  This way, background will look nicer,
   with less functions and values.  Computing the size of values and expressions
   may be a problem.
-
-* (for interface) make dwoList, where the order between expressions is given by
-  the order in which they appear in a list.  Note this *cannot* be composed
-  with a lexicographical order (as it could break transitivity, I think).
-  Better raise an error in case a symbol is not in the list.  On second thought,
-  I think it can be composed.  Just make everything in the list "smaller" than
-  whatever is not in the list.
 
 * (performance) Improve the performance of KBCompletion.
   In the process of generating equivalences, the slowest function is complete,
@@ -174,5 +39,7 @@ Later Later
   - finish groundJoinable from "Ordered Rewriting and Confluence" by
     adding one last condition
 
-* require _some_ cases of `e1 == e2` before considering `ce ==> e1 == e2`.
-  10% by default?
+* (performance and interface): actually compute what happens with
+  undefined values.  e.g.: head [] == undefined.  This will/may make things
+  faster as we can prune foo (head []) or head [] ++ head [], which are also
+  undefined.
