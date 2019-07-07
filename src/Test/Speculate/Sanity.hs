@@ -21,11 +21,11 @@ import Data.Maybe (fromMaybe)
 import Data.List (intercalate)
 
 (-==>-) :: Expr -> Expr -> Expr
-e1 -==>- e2 = impliesE :$ e1 :$ e2 where impliesE = constant "==>" (==>)
+e1 -==>- e2 = impliesE :$ e1 :$ e2 where impliesE = value "==>" (==>)
 infixr 1 -==>-
 
 (-&&-) :: Expr -> Expr -> Expr
-e1 -&&- e2 = andE :$ e1 :$ e2 where andE = constant "&&" (&&)
+e1 -&&- e2 = andE :$ e1 :$ e2 where andE = value "&&" (&&)
 infixr 3 -&&-
 
 -- returns a list of errors on the Eq instances (if any)

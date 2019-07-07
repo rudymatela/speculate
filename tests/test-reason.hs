@@ -255,4 +255,4 @@ tests n =
   ]
 
 succ' :: Expr -> Expr
-succ'  =  (constant "succ" ((1+) :: Int -> Int) :$)
+succ'  =  (value "succ" ((1+) :: Int -> Int) :$)

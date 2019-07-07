@@ -32,9 +32,9 @@ tests n =
                 e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
 
   -- some tests of order
-  , constant "xx" xx < zero
-  , constant "xxeqxx" (Equation xx xx) < constant "xx" xx
-  , constant "xx" xx < constant "emptyThyght" (Thyght emptyThy)
+  , value "xx" xx < zero
+  , value "xxeqxx" (Equation xx xx) < value "xx" xx
+  , value "xx" xx < value "emptyThyght" (Thyght emptyThy)
 
   , holds n $ simplificationOrder (|>|)
   , fails n $ simplificationOrder ( >|) -- TODO: make this pass (holds)

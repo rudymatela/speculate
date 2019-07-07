@@ -12,6 +12,8 @@ module Test.Speculate.Args
   ( Args (..)
   , args
 
+  , constant
+  , showConstant
   , foreground
   , background
 
@@ -237,6 +239,12 @@ compareExpr args = compareComplexity <> lexicompareBy cmp
 -- NOTE: "concat $ atoms args" may be an infinite list.  This function assumes
 -- that the symbols will appear on the list eventually for termination.  If I
 -- am correct this ivariant is assured by the rest of the code.
+
+constant :: Typeable a => String -> a -> Expr
+constant = value
+
+showConstant :: (Typeable a, Show a) => a -> Expr
+showConstant = val
 
 -- | A special 'Expr' value.
 --   When provided on the 'constants' list, 

@@ -12,8 +12,6 @@ module Test.Speculate.Expr.Core
   ( module Data.Haexpress
   , lexicompare
   , lexicompareBy
-  , constant
-  , showConstant
   , isConstantNamed
   , unrepeatedVars
   , isAssignment
@@ -23,12 +21,6 @@ where
 import Data.Haexpress
 import Test.Speculate.Utils.Typeable
 import Data.Monoid ((<>))
-
-constant :: Typeable a => String -> a -> Expr
-constant = value
-
-showConstant :: (Typeable a, Show a) => a -> Expr
-showConstant = val
 
 lexicompare :: Expr -> Expr -> Ordering
 lexicompare = lexicompareBy compare

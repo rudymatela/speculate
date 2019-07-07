@@ -80,9 +80,7 @@ import Test.LeanCheck.Utils hiding (comparison)
 
 import Test.Speculate.Expr
   ( Expr
-  , constant
   , hole
-  , showConstant
   , Instances
   , reifyInstances
   , reifyEq
@@ -100,6 +98,8 @@ import Test.Speculate.Args
   ( Args (..)
   , args
   , getArgs
+  , constant
+  , showConstant
   , foreground
   , background
   , processArgs

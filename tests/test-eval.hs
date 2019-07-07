@@ -52,10 +52,10 @@ tests n =
   infix 4 =/=
 
 (*==*), (*/=*), (*<=*), (*<*) :: (Show a, Typeable a) => a -> a -> Bool
-x *==* y = eval undefined $ showConstant x -==- showConstant y
-x */=* y = eval undefined $ showConstant x -/=- showConstant y
-x *<=* y = eval undefined $ showConstant x -<=- showConstant y
-x *<*  y = eval undefined $ showConstant x -<-  showConstant y
+x *==* y = eval undefined $ val x -==- val y
+x */=* y = eval undefined $ val x -/=- val y
+x *<=* y = eval undefined $ val x -<=- val y
+x *<*  y = eval undefined $ val x -<-  val y
 
 eqOK :: (Eq a, Show a, Typeable a) => a -> a -> Bool
 eqOK x y =  (x *==* y) == (x == y)

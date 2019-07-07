@@ -81,10 +81,10 @@ printLines = putStrLn . unlines . map show
 -- test fixtures --
 
 foo :: Expr -> Expr
-foo = (constant "f" (undefined :: Int -> Int) :$)
+foo = (value "f" (undefined :: Int -> Int) :$)
 
 goo :: Expr -> Expr
-goo = (constant "g" (undefined :: Int -> Int) :$)
+goo = (value "g" (undefined :: Int -> Int) :$)
 
 
 -- test types --
