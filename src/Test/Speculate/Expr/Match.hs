@@ -12,15 +12,10 @@ module Test.Speculate.Expr.Match
   -- * Assigning
   , fill
   , sub
-  , renameBy
 
   -- * Matching
-  , match
-  , matchWith
   , unify
   , unification
-  , isInstanceOf
-  , hasInstanceOf
   , isCanonInstanceOf
   , hasCanonInstanceOf
   )
@@ -35,14 +30,6 @@ import Test.Speculate.Utils
 import Control.Monad ((>=>))
 
 type Binds = [(Expr,Expr)]
-
-updateAssignments :: (Expr,Expr) -> Binds -> Maybe Binds
-updateAssignments (e,e') = \bs ->
-  case lookup e bs of
-    Nothing  -> Just ((e,e'):bs)
-    Just e'' -> if e'' == e'
-                then Just bs
-                else Nothing
 
 -- | Fill holes in an expression.
 --   Silently skips holes that are not of the right type.
@@ -65,43 +52,6 @@ fill e = fst . fill' e
 -- TODO: remove
 sub :: Expr -> Expr -> Expr -> Expr
 sub ef et = (// [(ef,et)])
-
--- | Primeify variable names in an expression.
---
--- > renameBy (++ "'") (x + y) = (x' + y')
--- > renameBy (++ "'") (y + (z + x)) = (y' + (z' + x'))
--- > renameBy (++ "1") abs x = abs x1
--- > renameBy (++ "2") abs (x + y) = abs (x2 + y2)
---
--- Note this will affect holes!
-renameBy :: (String -> String) -> Expr -> Expr
-renameBy f = mapValues f'
-  where
-  f' (Value ('_':n) t) = Value ('_':f n) t
-  f' e = e
-
--- | List matches if possible
---
--- > 0 + 1       `match` x + y       = Just [x=0, y=1]
--- > 0 + (1 + 2) `match` x + y       = Just [x=0, y=1 + 2]
--- > 0 + (1 + 2) `match` x + (y + y) = Nothing
--- > (x + x) + (1 + 2) `match` x + (y + y) = Nothing
-match :: Expr -> Expr -> Maybe Binds
-match = matchWith []
-
--- | List matches with preexisting bindings:
---
--- > 0 + 1 `matchWith [(x,0)]` x + y = Just [x=0, y=1]
--- > 0 + 1 `matchWith [(x,1)]` x + y = Nothing
-matchWith :: Binds -> Expr -> Expr -> Maybe Binds
-matchWith bs e1' e2' = m e1' e2' bs
-  where
-  m :: Expr -> Expr -> Binds -> Maybe Binds
-  m (f1 :$ x1) (f2 :$ x2)             =  m f1 f2 >=> m x1 x2
-  m e1 e2
-    | isVar e2 && mtyp e1 == mtyp e2  =  updateAssignments (e2,e1)
-    | e1 == e2                        =  Just
-    | otherwise                       =  const Nothing
 
 unify :: Expr -> Expr -> Maybe Expr
 unify e1 e2 = (e1 //-) <$> unification e1 e2
@@ -143,24 +93,6 @@ naiveUnification e1' e2' = uu e1' e2' []
                 , e2 //- [(ex,e)]
                 , (ex,e):[(ex',e' //- [(ex,e)]) | (ex',e') <- bs]
                 )
-
--- 0 `isInstanceOf` x = True
--- y `isInstanceOf` x = True
--- x `isInstanceOf` 0 = False
--- 1 `isInstanceOf` 0 = False
--- x + (y + x) `isInstanceOf` x + y = True
--- y + (y + x) `isInstanceOf` x + y = True
--- 0 + (y + x) `isInstanceOf` x + y = True
--- x `isInstanceOf` x = True
--- _ `isInstanceOf` x = True
-isInstanceOf :: Expr -> Expr -> Bool
-e1 `isInstanceOf` e2 = isJust $ e1 `match` e2
-
-hasInstanceOf :: Expr -> Expr -> Bool
-e1           `hasInstanceOf` e2 | e1   `isInstanceOf` e2 = True
-(e1f :$ e1x) `hasInstanceOf` e2 | e1f `hasInstanceOf` e2 ||
-                                  e1x `hasInstanceOf` e2 = True
-_            `hasInstanceOf` _                           = False
 
 isCanonInstanceOf :: Expr -> Expr -> Bool
 e1 `isCanonInstanceOf` e2 =

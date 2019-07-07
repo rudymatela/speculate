@@ -235,8 +235,8 @@ overlaps e1 e2 = id -- nubSort
                $ (e1' `unification`) `mapMaybe` nonVarSubexprs e2'
   where
   nonVarSubexprs = discard isVar . nubSubexprs
-  e1' = renameBy (++ "1") e1
-  e2' = renameBy (++ "2") e2
+  e1' = renameVarsBy (++ "1") e1
+  e2' = renameVarsBy (++ "2") e2
 
 equivalent :: Thy -> Expr -> Expr -> Bool
 equivalent thy e1 e2 = e1' == e2'
