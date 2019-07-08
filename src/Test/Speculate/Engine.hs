@@ -58,7 +58,7 @@ import qualified Test.Speculate.Utils.Digraph as D
 canonicalVariationsEqn :: (Expr,Expr) -> [(Expr,Expr)]
 canonicalVariationsEqn = filter (uncurry (/=))
                        . map unfoldPair
-                       . canonicalVariations
+                       . fastCanonicalVariations
                        . foldPair
 
 -- | List all variable assignments for a given type and list of variables.
@@ -105,11 +105,11 @@ expansions is n e =
 
 -- | List the most general assignment of holes in an expression
 mostGeneral :: Expr -> Expr
-mostGeneral = head . canonicalVariations -- TODO: make this efficient
+mostGeneral = head . fastCanonicalVariations -- TODO: make this efficient
 
 -- | List the most specific assignment of holes in an expression
 mostSpecific :: Expr -> Expr
-mostSpecific = last . canonicalVariations -- TODO: make this efficient
+mostSpecific = last . fastCanonicalVariations -- TODO: make this efficient
 
 rehole :: Expr -> Expr
 rehole (e1 :$ e2)    = rehole e1 :$ rehole e2
