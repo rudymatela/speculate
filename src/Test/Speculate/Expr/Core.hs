@@ -128,7 +128,7 @@ naiveUnification e1' e2' = uu e1' e2' []
     Left False -> Nothing
     Left True  -> Just (e1,e2,bs)
     Right (ex,e) ->
-      if ex `isSubexpr` e
+      if ex `isSubexprOf` e
       then Nothing
       else Just ( e1 //- [(ex,e)]
                 , e2 //- [(ex,e)]
