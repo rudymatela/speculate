@@ -77,8 +77,9 @@ all: mk/toplibs
 quick-test: $(patsubst %,%.test,$(QUICKTESTS)) \
             $(patsubst %,%.test-model,$(QUICKEG))
 
-test: all $(patsubst %,%.test,$(TESTS)) \
-          $(patsubst %,%.test-model,$(EG) $(wildcard bench/*-c))
+test: all test-sdist \
+  $(patsubst %,%.test,$(TESTS)) \
+  $(patsubst %,%.test-model,$(EG) $(wildcard bench/*-c))
 
 test-without-extra-deps: all $(patsubst %,%.test,$(TESTS)) \
                              $(patsubst %,%.test-model,$(MOSTEG) $(wildcard bench/*-c))
