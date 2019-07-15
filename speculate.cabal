@@ -93,14 +93,12 @@ library
                  , Test.Speculate.Expr.Equate
                  , Test.Speculate.Expr.Ground
                  , Test.Speculate.Expr.Instance
-                 , Test.Speculate.Expr.Match
                  , Test.Speculate.Pretty
                  , Test.Speculate.Reason
                  , Test.Speculate.Reason.Order
                  , Test.Speculate.SemiReason
                  , Test.Speculate.CondReason
                  , Test.Speculate.Sanity
-                 , Test.Speculate.Misc
                  , Test.Speculate.Utils
   other-modules:   Test.Speculate.Utils.Class
                  , Test.Speculate.Utils.Colour
