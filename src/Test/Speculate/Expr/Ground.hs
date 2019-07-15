@@ -64,7 +64,7 @@ groundAndBinds ti e = (\bs -> (bs, e //- bs)) <$> groundBinds ti e
 equal :: Instances -> Int -> Expr -> Expr -> Bool
 -- equal ti _ e1 e2 | e1 == e2 = isComparable ti e1 -- optional optimization
 equal ti n e1 e2 = case mkEquation ti e1 e2 of
-  Just eq | all (isListable ti . typ) (nubVars eq) -> isTrue ti n eq
+  Just eq | all (isListable ti) (nubVars eq) -> isTrue ti n eq
   _                                                -> False
 -- TODO: discover why the optimization above changes the output
 -- 1. $ make eg/list && ./eg/list -ES -r0 -s4 > without

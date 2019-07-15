@@ -17,7 +17,7 @@ module Test.Speculate.Expr.Instance
   , reifyListable, mkListable
 
   -- * checking instances
-  , isListable
+  , isListable, isListableT
 
   -- * finding functions
   , tiersE, maybeTiersE
@@ -73,8 +73,11 @@ mkListable xss
 -- TODO: reify an "undefined" value of a type to be able to holeOfTy and lift
 --       the above restriction of no empty tiers?
 
-isListable :: Instances -> TypeRep -> Bool
-isListable is = isJust . maybeTiersE is
+isListable :: Instances -> Expr -> Bool
+isListable is = isListableT is . typ
+
+isListableT :: Instances -> TypeRep -> Bool
+isListableT is = isJust . maybeTiersE is
 
 tiersE :: Instances -> TypeRep -> [[Expr]]
 tiersE is t = fromMaybe err $ maybeTiersE is t

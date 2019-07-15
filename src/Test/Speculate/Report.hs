@@ -94,7 +94,7 @@ warnMissingInstances :: Instances -> [TypeRep] -> IO ()
 warnMissingInstances is ts = putLines
   $  ["Warning: no Listable instance for " ++ show t ++
       ", variables of this type will not be considered"
-     | t <- ts, not (isListable is t)]
+     | t <- ts, not (isListableT is t)]
   ++ ["Warning: no Eq instance for " ++ show t ++
       ", equations of this type will not be considered"
      | t <- ts, not (isEqT is t)]
