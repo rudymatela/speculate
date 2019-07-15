@@ -123,7 +123,7 @@ library
 
 test-suite creason
   main-is:           test-creason.hs
-  other-modules:     Test
+  other-modules:     Test, Test.ListableExpr
   hs-source-dirs:    tests
   build-depends:     base >= 4 && < 5, leancheck, speculate
   default-language:  Haskell2010
@@ -131,7 +131,7 @@ test-suite creason
 
 test-suite engine
   main-is:           test-engine.hs
-  other-modules:     Test
+  other-modules:     Test, Test.ListableExpr
   hs-source-dirs:    tests
   build-depends:     base >= 4 && < 5, leancheck, speculate
   default-language:  Haskell2010
@@ -139,7 +139,7 @@ test-suite engine
 
 test-suite eval
   main-is:           test-eval.hs
-  other-modules:     Test
+  other-modules:     Test, Test.ListableExpr
   hs-source-dirs:    tests
   build-depends:     base >= 4 && < 5, leancheck, speculate
   default-language:  Haskell2010
@@ -147,7 +147,7 @@ test-suite eval
 
 test-suite expr
   main-is:           test-expr.hs
-  other-modules:     Test
+  other-modules:     Test, Test.ListableExpr
   hs-source-dirs:    tests
   build-depends:     base >= 4 && < 5, leancheck, speculate
   default-language:  Haskell2010
@@ -155,7 +155,7 @@ test-suite expr
 
 test-suite order
   main-is:           test-order.hs
-  other-modules:     Test
+  other-modules:     Test, Test.ListableExpr
   hs-source-dirs:    tests
   build-depends:     base >= 4 && < 5, leancheck, speculate
   default-language:  Haskell2010
@@ -163,7 +163,7 @@ test-suite order
 
 test-suite reason
   main-is:           test-reason.hs
-  other-modules:     Test
+  other-modules:     Test, Test.ListableExpr
   hs-source-dirs:    tests
   build-depends:     base >= 4 && < 5, leancheck, speculate
   default-language:  Haskell2010
@@ -171,7 +171,7 @@ test-suite reason
 
 test-suite utils
   main-is:           test-utils.hs
-  other-modules:     Test
+  other-modules:     Test, Test.ListableExpr
   hs-source-dirs:    tests
   build-depends:     base >= 4 && < 5, leancheck, speculate
   default-language:  Haskell2010
@@ -186,7 +186,7 @@ benchmark plus-abs
 
 benchmark test-stats
   main-is:           test-stats.hs
-  other-modules:     Test
+  other-modules:     Test, Test.ListableExpr
   hs-source-dirs:    tests
   build-depends:     base >= 4 && < 5, leancheck, speculate
   default-language:  Haskell2010
