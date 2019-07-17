@@ -6,12 +6,12 @@
 **/log/
 .stack-work
 
-doc/*.html
-doc/*.css
-doc/*.js
-doc/*.png
-doc/*.gif
-doc/*.json
+doc/**/*.html
+doc/**/*.css
+doc/**/*.js
+doc/**/*.png
+doc/**/*.gif
+doc/**/*.json
 
 **.prof
 **.swp

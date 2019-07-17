@@ -1,6 +1,6 @@
 # Makefile for Speculate
 #
-# Copyright:   (c) 2015-2018 Rudy Matela
+# Copyright:   (c) 2015-2019 Rudy Matela
 # License:     3-Clause BSD  (see the file LICENSE)
 # Maintainer:  Rudy Matela <rudy@matela.com.br>
 GHCIMPORTDIRS = src:eg:tests
@@ -71,6 +71,7 @@ QUICKEG = \
   eg/list
 LIST_ALL_HSS = find src tests eg bench/*.hs -name \*.hs
 LIST_LIB_HSS = find src -name \*.hs
+LIB_DEPS = base leancheck haexpress cmdargs containers
 
 all: mk/toplibs
 
