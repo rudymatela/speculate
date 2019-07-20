@@ -3,6 +3,12 @@ top=`dirname $0`
 get-ghc-v() {
 	ghc --version | sed -e "s/.* version/GHC/"
 }
+get-haexpress-v() {
+	ghc-pkg list haexpress 2>/dev/null |
+	grep " haexpress-" |
+	sed -e "s/^ *//" |
+	tail -1
+}
 get-leancheck-v() {
 	ghc-pkg list leancheck 2>/dev/null |
 	grep " leancheck-" |
@@ -11,6 +17,7 @@ get-leancheck-v() {
 }
 (
 	get-ghc-v
+	get-haexpress-v
 	get-leancheck-v
 	$top/benchmark "$@"
 ) | tee bench/runtime-$HOSTNAME
