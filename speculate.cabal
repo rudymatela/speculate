@@ -115,7 +115,7 @@ library
                  , Test.Speculate.Utils.Typeable
   build-depends: base >= 4 && < 5
                , leancheck >= 0.9.1
-               , haexpress >= 0.0.1
+               , haexpress >= 0.0.2
                , cmdargs
                , containers
   hs-source-dirs:    src
