@@ -210,7 +210,7 @@ instance Listable BoolToBoolE where
          \/ cons2 (\(BoolToBoolToBoolE ef) (BoolE ex) -> ef :$ ex)
 
 instance Listable BoolToBoolToBoolE where
-  list  =  map BoolToBoolToBoolE [orE, andE, impliesE]
+  list  =  map BoolToBoolToBoolE [orE, andE, implies]
 
 instance Listable CharE where
   tiers  =  mapT CharE $ cons0 c_
