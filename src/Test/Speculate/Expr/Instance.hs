@@ -80,9 +80,7 @@ isListableT :: Instances -> TypeRep -> Bool
 isListableT is = isJust . maybeTiersE is
 
 tiersE :: Instances -> TypeRep -> [[Expr]]
-tiersE is t = fromMaybe err $ maybeTiersE is t
-  where
-  err  =  error $ "Could not find tiers with type `[[" ++ show t ++ "]]'."
+tiersE is t = fromMaybe [] $ maybeTiersE is t
 
 maybeTiersE :: Instances -> TypeRep -> Maybe [[Expr]]
 maybeTiersE is t = case i of
