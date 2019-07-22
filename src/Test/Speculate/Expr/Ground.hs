@@ -40,6 +40,9 @@ import Data.Maybe (fromMaybe)
 --
 -- > take 3 $ grounds preludeInstances ((x + x) + y)
 -- >   == [(0 + 0) + 0, (0 + 0) + 1, (1 + 1) + 0]
+--
+-- Note this function will return an empty list when a 'Listable' instance is
+-- not found in the 'Instances' list.
 grounds :: Instances -> Expr -> [Expr]
 grounds ti e = (e //-) <$> groundBinds ti e
 

@@ -20,7 +20,7 @@ module Test.Speculate.Expr.Instance
   , isListable, isListableT
 
   -- * finding functions
-  , tiersE, maybeTiersE
+  , tiersE
   , holeOfTy, maybeHoleOfTy
 
   -- * the preludeInstances definition
@@ -77,20 +77,20 @@ isListable :: Instances -> Expr -> Bool
 isListable is = isListableT is . typ
 
 isListableT :: Instances -> TypeRep -> Bool
-isListableT is = isJust . maybeTiersE is
+isListableT is = not . null . tiersE is
 
 tiersE :: Instances -> TypeRep -> [[Expr]]
 tiersE is t = fromMaybe [] $ maybeTiersE is t
-
-maybeTiersE :: Instances -> TypeRep -> Maybe [[Expr]]
-maybeTiersE is t = case i of
-  [] -> Nothing
-  (tiers:_) -> Just tiers
   where
-  i = [tiers | e@(Value "tiers" _) <- is
-             , let tiers = eval (undefined :: [[Expr]]) e
-             , typ (head . concat $ tiers) == t]
--- TODO: make the above work on empty tiers
+  maybeTiersE :: Instances -> TypeRep -> Maybe [[Expr]]
+  maybeTiersE is t = case i of
+    [] -> Nothing
+    (tiers:_) -> Just tiers
+    where
+    i = [tiers | e@(Value "tiers" _) <- is
+               , let tiers = eval (undefined :: [[Expr]]) e
+               , typ (head . concat $ tiers) == t]
+  -- TODO: make the above work on empty tiers
 
 holeOfTy :: Instances -> TypeRep -> Expr
 holeOfTy is t = fromMaybe err $ maybeHoleOfTy is t
@@ -98,9 +98,9 @@ holeOfTy is t = fromMaybe err $ maybeHoleOfTy is t
   err  =  error $ "holeOfTy: could not find tiers with type `[[" ++ show t ++ "]]'."
 
 maybeHoleOfTy :: Instances -> TypeRep -> Maybe Expr
-maybeHoleOfTy is t = case concat <$> maybeTiersE is t of
-                     Just (e:_) -> Just $ "" `varAsTypeOf` e
-                     _          -> Nothing
+maybeHoleOfTy is t = case concat $ tiersE is t of
+                     (e:_) -> Just $ "" `varAsTypeOf` e
+                     _     -> Nothing
 
 -- despite the name, this _does not_ include most types from the prelude.
 preludeInstances :: Instances
