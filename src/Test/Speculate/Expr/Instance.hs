@@ -20,7 +20,8 @@ module Test.Speculate.Expr.Instance
   , isListable, isListableT
 
   -- * finding functions
-  , tiersE
+  , lookupTiers
+  , lookupTiersT
   , holeOfTy, maybeHoleOfTy
 
   -- * the preludeInstances definition
@@ -74,16 +75,19 @@ mkListable xss
 --       the above restriction of no empty tiers?
 
 isListable :: Instances -> Expr -> Bool
-isListable is = isListableT is . typ
+isListable is  =  isListableT is . typ
 
 isListableT :: Instances -> TypeRep -> Bool
-isListableT is = not . null . tiersE is
+isListableT is  =  not . null . lookupTiersT is
 
-tiersE :: Instances -> TypeRep -> [[Expr]]
-tiersE is t = fromMaybe [] $ maybeTiersE is t
+lookupTiers :: Instances -> Expr -> [[Expr]]
+lookupTiers is  =  lookupTiersT is . typ
+
+lookupTiersT :: Instances -> TypeRep -> [[Expr]]
+lookupTiersT is t  =  fromMaybe [] $ maybeTiersE is t
   where
   maybeTiersE :: Instances -> TypeRep -> Maybe [[Expr]]
-  maybeTiersE is t = case i of
+  maybeTiersE is t  =  case i of
     [] -> Nothing
     (tiers:_) -> Just tiers
     where
@@ -98,7 +102,7 @@ holeOfTy is t = fromMaybe err $ maybeHoleOfTy is t
   err  =  error $ "holeOfTy: could not find tiers with type `[[" ++ show t ++ "]]'."
 
 maybeHoleOfTy :: Instances -> TypeRep -> Maybe Expr
-maybeHoleOfTy is t = case concat $ tiersE is t of
+maybeHoleOfTy is t = case concat $ lookupTiersT is t of
                      (e:_) -> Just $ "" `varAsTypeOf` e
                      _     -> Nothing
 

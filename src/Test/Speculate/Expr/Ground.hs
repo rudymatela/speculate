@@ -54,7 +54,7 @@ grounds ti e = (e //-) <$> groundBinds ti e
 -- >      , [("x",1),("y",0)] ]
 groundBinds :: Instances -> Expr -> [Binds]
 groundBinds ti e =
-  concat $ products [mapT ((,) v) (tiersE ti (typ v)) | v <- nubVars e]
+  concat $ products [mapT ((,) v) (lookupTiers ti v) | v <- nubVars e]
 
 -- | List all possible variable bindings and valuations to an expression
 --

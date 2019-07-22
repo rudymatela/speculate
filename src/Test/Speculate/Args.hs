@@ -190,7 +190,7 @@ atoms args = [ nubSort (mapMaybe (maybeHoleOfTy is) ts)
        `union` [val True  | showConds || showDot args]
        `union` [val False | showConds || showDot args]
        `union` (nubSort . catMaybes) [lookupComparison "==" t is | showConds, t <- ts] ]
-         \-/ foldr (\/) [] [tiersE is t | autoConstants args, t <- ts]
+         \-/ foldr (\/) [] [lookupTiersT is t | autoConstants args, t <- ts]
   where
   ts = types args
   is = computeInstances args
