@@ -22,17 +22,15 @@ tests n =
   ,                      abs' (xx -+- abs' xx) === (xx -+- abs' xx) -- 2*x or 0
   , holds n' $ \e1 e2 -> typ e1 /= typ e2 ==> e1 =/= e2
 
-  , holds n' $ \e1 e2 -> notUndefined e1 && notUndefined e2
-                     ==> case mkEquation preludeInstances e1 e2 of
-                           Just e1e2 -> condEqual preludeInstances 500 e1e2 e1 e2
-                           Nothing   -> True
-  , holds n' $ \e1 e2 -> notUndefined e1 && notUndefined e2
-                     ==> case mkEquation preludeInstances e1 e2 of
-                           Just e1e2 -> condEqualM preludeInstances 500 0 e1e2 e1 e2
-                           Nothing   -> True
-  , fails n' $ \e1 e2 -> case mkEquation preludeInstances e1 e2 of
-                           Just e1e2 -> condEqualM preludeInstances 500 500 e1e2 e1 e2
-                           Nothing   -> True
+  , holds n' $ \e1 e2 -> let e1e2 = mkEquation preludeInstances e1 e2
+                         in  notUndefined e1 && notUndefined e2 && isEquation e1e2
+                         ==> condEqual preludeInstances 500 e1e2 e1 e2
+  , holds n' $ \e1 e2 -> let e1e2 = mkEquation preludeInstances e1 e2
+                         in  notUndefined e1 && notUndefined e2 && isEquation e1e2
+                         ==> condEqualM preludeInstances 500 0 e1e2 e1 e2
+  , fails n' $ \e1 e2 -> let e1e2 = mkEquation preludeInstances e1 e2
+                         in  isEquation e1e2
+                         ==> condEqualM preludeInstances 500 500 e1e2 e1 e2
 
   , holds n $ ordOK -:> int
   , holds n $ ordOK -:> ()

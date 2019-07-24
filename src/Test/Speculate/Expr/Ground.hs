@@ -61,7 +61,7 @@ equal ti n = isTrueComparison (take n . grounds (lookupTiers ti)) (mkEquation ti
 --   under a given condition
 --   for a given number of tests?
 condEqual :: Instances -> Int -> Expr -> Expr -> Expr -> Bool
-condEqual ti n pre e1 e2 = maybe False (isTrue $ take n . grounds (lookupTiers ti)) (mkConditionalEquation ti pre e1 e2)
+condEqual ti n pre e1 e2 = isTrue (take n . grounds (lookupTiers ti)) (mkConditionalEquation ti pre e1 e2)
 
 -- | Are two expressions equal
 --   under a given condition
@@ -70,9 +70,8 @@ condEqual ti n pre e1 e2 = maybe False (isTrue $ take n . grounds (lookupTiers t
 condEqualM :: Instances -> Int -> Int -> Expr -> Expr -> Expr -> Bool
 condEqualM ti n n0 pre e1 e2 = condEqual ti n pre e1 e2 && length cs >= n0
   where
-  cs =  fromMaybe []
-     $  filter evalBool . map condition . take n . grounds (lookupTiers ti)
-    <$> mkConditionalEquation ti pre e1 e2
+  cs = filter evalBool . map condition . take n . grounds (lookupTiers ti)
+     $ mkConditionalEquation ti pre e1 e2
   condition ceq = let (ce,_,_) = unConditionalEquation ceq in ce
 
 -- | Are two expressions less-than-or-equal for a given number of tests?
@@ -86,7 +85,7 @@ less ti n = isTrueComparison (take n . grounds (lookupTiers ti)) (mkComparisonLT
 -- | Are two expressions inequal for *all* variable assignments?
 --   Note this is different than @not . equal@.
 inequal :: Instances -> Int -> Expr -> Expr -> Bool
-inequal ti n e1 e2 = maybe False (isFalse $ take n . grounds (lookupTiers ti)) (mkEquation ti e1 e2)
+inequal ti n e1 e2 = isFalse (take n . grounds (lookupTiers ti)) (mkEquation ti e1 e2)
 
 -- | Under a maximum number of tests,
 --   returns the ratio for which an expression holds true.
@@ -96,8 +95,8 @@ trueRatio is n e = length trueBinds % length gs
   gs = take n $ grounds (lookupTiers is) e
   trueBinds = [e | e <- gs , eval False e]
 
-isTrueComparison :: (Expr -> [Expr]) -> (Expr -> Expr -> Maybe Expr) -> Expr -> Expr -> Bool
-isTrueComparison grounds mkComparison e1 e2  =  maybe False (isTrue grounds) (mkComparison e1 e2)
+isTrueComparison :: (Expr -> [Expr]) -> (Expr -> Expr -> Expr) -> Expr -> Expr -> Bool
+isTrueComparison grounds mkComparison e1 e2  =  isTrue grounds (mkComparison e1 e2)
 
 -- | Is a boolean expression true for all variable assignments?
 isTrue :: (Expr -> [Expr]) -> Expr -> Bool

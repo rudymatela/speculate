@@ -37,7 +37,7 @@ eqErrors is n t =
   ++ ["not transitive" | f (((x -==- y) -&&- (y -==- z)) -==>- (x -==- z))]
   where
   f = not . isTrue (take n . grounds (lookupTiers is))
-  e1 -==- e2 = fromMaybe (val False) $ mkEquation is e1 e2
+  e1 -==- e2 = mkEquation is e1 e2
   e = holeOfTy is t
   x = "x" `varAsTypeOf` e
   y = "y" `varAsTypeOf` e
@@ -51,8 +51,8 @@ ordErrors is n t =
   ++ ["not transitive"    | f (((x -<=- y) -&&- (y -<=- z)) -==>- (x -<=- z))]
   where
   f = not . isTrue (take n . grounds (lookupTiers is))
-  e1 -==- e2 = fromMaybe (val False) $ mkEquation     is e1 e2
-  e1 -<=- e2 = fromMaybe (val False) $ mkComparisonLE is e1 e2
+  e1 -==- e2 = mkEquation     is e1 e2
+  e1 -<=- e2 = mkComparisonLE is e1 e2
   e = holeOfTy is t
   x = "x" `varAsTypeOf` e
   y = "y" `varAsTypeOf` e
@@ -71,8 +71,8 @@ eqOrdErrors is n t =
   e = holeOfTy is t
   x = "x" `varAsTypeOf` e
   y = "y" `varAsTypeOf` e
-  e1 -==- e2 = fromMaybe (val False) $ mkEquation is e1 e2
-  e1 -<=- e2 = fromMaybe (val False) $ mkComparisonLE is e1 e2
+  e1 -==- e2 = mkEquation is e1 e2
+  e1 -<=- e2 = mkComparisonLE is e1 e2
   ty = show t ++ " -> " ++ show t ++ " -> Bool"
 
 instanceErrors :: Instances -> Int -> [TypeRep] -> [String]

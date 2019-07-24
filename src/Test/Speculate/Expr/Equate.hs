@@ -17,8 +17,6 @@ module Test.Speculate.Expr.Equate
   ( unEquation
   , isEquation
   , unComparison
-  , mkImplication
-  , unImplication
   , mkConditionalEquation
   , unConditionalEquation
   )
@@ -29,6 +27,7 @@ import Data.List ((\\))
 import Test.Speculate.Utils
 import Test.Speculate.Expr.Core
 import Test.Speculate.Expr.Instance
+import Data.Haexpress.Fixtures ((-==>-))
 
 unEquation :: Expr -> (Expr,Expr)
 unEquation ((Value "==" _ :$ e1) :$ e2) = (e1,e2)
@@ -46,19 +45,8 @@ unComparison ((Value ">"        _ :$ e1) :$ e2) = (e1,e2)
 unComparison ((Value ">="       _ :$ e1) :$ e2) = (e1,e2)
 unComparison _ = error "unComparisonL: not a compare/(<)/(<=)/(>)/(>=) application"
 
-mkImplication :: Expr -> Expr -> Maybe Expr
-mkImplication e1 e2
-  | typ e1 == boolTy = implicationE :$ e1 $$ e2
-  | otherwise        = Nothing
-  where
-  implicationE = value "==>" (==>)
-
-unImplication :: Expr -> (Expr,Expr)
-unImplication ((Value "==>" _ :$ e1) :$ e2) = (e1,e2)
-unImplication _ = error "unImplication: not an implication"
-
-mkConditionalEquation :: Instances -> Expr -> Expr -> Expr -> Maybe Expr
-mkConditionalEquation ti pre e1 e2 = (pre `mkImplication`) =<< mkEquation ti e1 e2
+mkConditionalEquation :: Instances -> Expr -> Expr -> Expr -> Expr
+mkConditionalEquation ti pre e1 e2 = pre -==>- mkEquation ti e1 e2
 
 unConditionalEquation :: Expr -> (Expr,Expr,Expr)
 unConditionalEquation ((Value "==>" _ :$ pre) :$ ((Value "==" _ :$ e1) :$ e2)) = (pre,e1,e2)
