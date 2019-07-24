@@ -7,7 +7,6 @@ import Test.Speculate.Engine
 -- Helper functions
 import Test.Speculate.Reason (emptyThy)
 import Test.Speculate.Utils
-import Data.List
 
 main :: IO ()
 main = mainTest tests 10000

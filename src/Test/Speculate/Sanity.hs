@@ -36,7 +36,7 @@ eqErrors is n t =
   ++ ["not symmetric"  | f  ((x -==- y) -==- (y -==- x))]
   ++ ["not transitive" | f (((x -==- y) -&&- (y -==- z)) -==>- (x -==- z))]
   where
-  f = not . isTrue is n
+  f = not . isTrue (take n . grounds (lookupTiers is))
   e1 -==- e2 = fromMaybe (val False) $ mkEquation is e1 e2
   e = holeOfTy is t
   x = "x" `varAsTypeOf` e
@@ -50,7 +50,7 @@ ordErrors is n t =
   ++ ["not antisymmetric" | f (((x -<=- y) -&&- (y -<=- x)) -==>- (x -==- y))]
   ++ ["not transitive"    | f (((x -<=- y) -&&- (y -<=- z)) -==>- (x -<=- z))]
   where
-  f = not . isTrue is n
+  f = not . isTrue (take n . grounds (lookupTiers is))
   e1 -==- e2 = fromMaybe (val False) $ mkEquation     is e1 e2
   e1 -<=- e2 = fromMaybe (val False) $ mkComparisonLE is e1 e2
   e = holeOfTy is t
@@ -67,7 +67,7 @@ eqOrdErrors is n t =
   ++ [ "(==) and (<=) :: " ++ ty ++ " are inconsistent: (x == y) /= (x <= y && y <= x)"
      | f $ (x -==- y) -==- (x -<=- y -&&- y -<=- x), isEqT is t, isOrdT is t ]
   where
-  f = not . isTrue is n
+  f = not . isTrue (take n . grounds (lookupTiers is))
   e = holeOfTy is t
   x = "x" `varAsTypeOf` e
   y = "y" `varAsTypeOf` e
