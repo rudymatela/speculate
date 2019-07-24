@@ -6,6 +6,8 @@ A list of things to do for Speculate.
 * release new Speculate after releasing Haexpress
   (which will happen after I have a version of Extrapolate that uses Haexpress)
 
+* `-U` / `--auto-constants` is broken, fix it.
+
 * simplify "test" handling.  Do like in LeanCheck and Extrapolate.
   instead of having to run `make tests/test-something.test`,
   run with `make test/something.run`.
@@ -23,12 +25,6 @@ A list of things to do for Speculate.
   the expensive thing.  But it does not pay off to test x + y = z + w before
   testing x + y = y + x.  The second needs to hold for the first to hold.  And,
   it will be far more common!
-
-* (interface) I actually do not need to provide 0-argument constants in the
-  background algebra.  Since I am using an enumerative strategy, I can actually
-  enumerate those from `Instances`.  This way, background will look nicer,
-  with less functions and values.  Computing the size of values and expressions
-  may be a problem.
 
 * (performance) Improve the performance of KBCompletion.
   In the process of generating equivalences, the slowest function is complete,
