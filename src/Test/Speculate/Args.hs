@@ -229,7 +229,6 @@ timeout :: Args -> Bool -> Bool
 timeout Args{evalTimeout = Nothing} = id
 timeout Args{evalTimeout = Just t}  = timeoutToFalse t
 
--- needs lexicompareBy
 compareExpr :: Args -> Expr -> Expr -> Ordering
 compareExpr args = compareComplexity <> lexicompareBy cmp
   where
