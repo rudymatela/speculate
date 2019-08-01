@@ -273,7 +273,8 @@ insert (e1,e2) thy
 append :: Thy -> [Equation] -> Thy
 append thy eqs = updateEquationsBy (nubSort . (++ eqs')) thy
   where
-  eqs' = map (canonicalizeEqn thy) $ filter (uncurry ((/=) `on` normalize thy)) eqs
+  eqs' = [ canonicalizeEqn thy (e1,e2)
+         | (e1,e2) <- eqs, normalize thy e1 /= normalize thy e2 ]
 
 difference :: Thy -> Thy -> Thy
 difference thy1@Thy {equations = eqs1, rules = rs1}
