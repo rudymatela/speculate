@@ -29,7 +29,6 @@ import Test.LeanCheck
 import Test.LeanCheck.Error (errorToFalse)
 import Data.Ratio
 import Data.Functor ((<$>)) -- for GHC < 7.10
-import Data.Maybe (fromMaybe)
 
 -- | List all possible valuations of an expression (potentially infinite).
 --   In pseudo-Haskell:

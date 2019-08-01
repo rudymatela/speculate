@@ -14,7 +14,6 @@ module Test.Speculate.Utils.Typeable
 where
 
 import Data.Haexpress.Utils.Typeable
-import Data.Monoid ((<>))
 import Test.Speculate.Utils.List ((+++))
 
 -- | For a given type, return all *-kinded types.

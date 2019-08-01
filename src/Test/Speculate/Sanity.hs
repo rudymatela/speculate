@@ -17,7 +17,6 @@ where
 
 import Test.Speculate.Expr
 import Test.LeanCheck ((==>))
-import Data.Maybe (fromMaybe)
 import Data.List (intercalate)
 
 (-==>-) :: Expr -> Expr -> Expr

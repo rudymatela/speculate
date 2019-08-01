@@ -22,9 +22,6 @@ module Test.Speculate.Expr.Equate
   )
 where
 
-import Test.LeanCheck ((==>))
-import Data.List ((\\))
-import Test.Speculate.Utils
 import Test.Speculate.Expr.Core
 import Test.Speculate.Expr.Instance
 import Data.Haexpress.Fixtures ((-==>-))

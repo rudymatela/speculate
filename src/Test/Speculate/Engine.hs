@@ -40,7 +40,6 @@ import Data.Dynamic
 import Data.Maybe
 import Data.List hiding (insert)
 import Data.Function (on)
-import Data.Monoid ((<>))
 
 import Test.LeanCheck ((\/))
 import Test.Speculate.Utils
