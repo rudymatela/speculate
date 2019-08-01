@@ -266,8 +266,7 @@ conditionalEquivalences :: (Expr -> Expr -> Ordering)
 conditionalEquivalences cmp canon cequal (==>) csz thy clpres cles =
     cdiscard (\(ce,e1,e2) -> subConsequence thy clpres ce e1 e2)
   . foldl (flip cinsert) (Chy [] cdg clpres thy)
-  . sortBy (\(c1,e11,e12) (c2,e21,e22) -> c1 `cmp` c2
-                                       <> (foldPair (e11,e12) `cmp` foldPair (e21,e22)))
+  . sortBy (cmp `on` foldTrio)
   . discard (\(pre,e1,e2) -> pre == val False
                           || length (nubVars pre \\ (nubVars e1 +++ nubVars e2)) > 0
                           || subConsequence thy [] pre e1 e2)
