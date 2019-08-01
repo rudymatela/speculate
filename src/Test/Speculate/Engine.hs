@@ -226,9 +226,13 @@ classesFromSchemaAndVariables thy vs = C.mergesOn (normalizeE thy)
 -- > equivalencesBetween basicInstances 500 (_ + _) (_ + _) =
 -- >   [i + j == j + i]
 equivalencesBetween :: (Expr -> Expr -> Bool) -> Expr -> Expr -> [(Expr,Expr)]
-equivalencesBetween (===) e1 e2 = discardLater (isInstanceOf `on` foldPair)
-                                . filter (uncurry (===))
-                                $ canonicalVariationsEqn (e1,e2)
+equivalencesBetween (===) e1 e2 = filterRelevant $ canonicalVariationsEqn (e1,e2)
+  where
+  isInstanceOf'  =  isInstanceOf `on` foldPair
+  filterRelevant []      =  []
+  filterRelevant (e:es)
+    | uncurry (===) e    =  e : filterRelevant (discard (`isInstanceOf'` e) es)
+    | otherwise          =  filterRelevant es
 
 semiTheoryFromThyAndReps :: Instances -> Int -> Int
                          -> Thy -> [Expr] -> Shy
