@@ -3,8 +3,8 @@ TODO
 
 A list of things to do for Speculate.
 
-* release new Speculate after releasing Haexpress
-  (which will happen after I have a version of Extrapolate that uses Haexpress)
+* release new Speculate after releasing Express
+  (which will happen after I have a version of Extrapolate that uses Express)
 
 * `-U` / `--auto-constants` is broken, fix it.
 

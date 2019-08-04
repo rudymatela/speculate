@@ -47,7 +47,7 @@ tests n =
 -- > > closedUnderSub (>|) (id' xx) (id' zero) zero
 -- > False
 --
--- The above bug did exist before the introduction of Haexpress and probably
+-- The above bug did exist before the introduction of Express and probably
 -- since the creation of (>|).
 
 -- TODO: fix the following two tests

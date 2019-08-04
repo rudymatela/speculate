@@ -8,12 +8,12 @@
 --
 -- Utilities to manipulate 'TypeRep's (of 'Typeable' values).
 module Test.Speculate.Utils.Typeable
-  ( module Data.Haexpress.Utils.Typeable
+  ( module Data.Express.Utils.Typeable
   , typesIn
   )
 where
 
-import Data.Haexpress.Utils.Typeable
+import Data.Express.Utils.Typeable
 import Test.Speculate.Utils.List ((+++))
 
 -- | For a given type, return all *-kinded types.

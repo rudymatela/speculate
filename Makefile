@@ -71,7 +71,7 @@ QUICKEG = \
   eg/list
 LIST_ALL_HSS = find src tests eg bench/*.hs -name \*.hs
 LIST_LIB_HSS = find src -name \*.hs
-LIB_DEPS = base leancheck haexpress cmdargs containers
+LIB_DEPS = base leancheck express cmdargs containers
 
 all: mk/toplibs
 
@@ -189,11 +189,11 @@ qs-save-bench:
 	make -sC bench/qs2 save-bench
 
 update-listable-expr:
-	cp -rav ../haexpress/test/Test/ListableExpr.hs tests/Test/
+	cp -rav ../express/test/Test/ListableExpr.hs tests/Test/
 
 ghci: tests/Test.ghci
 
-clean: clean-hi-o
+clean: clean-hi-o clean-haddock
 	rm -f $(TESTS) $(EG) eg/*.dot eg/*.pdf TAGS tags mk/toplibs
 	make clean -C bench/qs1
 	make clean -C bench/qs2

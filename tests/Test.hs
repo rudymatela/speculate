@@ -12,7 +12,7 @@ module Test
     module Test.LeanCheck
   , module Test.LeanCheck.Utils
   , module Test.Speculate
-  , module Data.Haexpress.Fixtures
+  , module Data.Express.Fixtures
   , module Test.ListableExpr
 
   -- * Test reporting
@@ -38,7 +38,7 @@ where
 import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
 
-import Data.Haexpress.Fixtures
+import Data.Express.Fixtures
 
 import System.Environment (getArgs)
 import System.Exit (exitFailure)

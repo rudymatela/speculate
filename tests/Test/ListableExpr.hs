@@ -41,7 +41,7 @@ where
 
 import Test.LeanCheck
 import Test.LeanCheck.Function.ShowFunction
-import Data.Haexpress.Fixtures
+import Data.Express.Fixtures
 import Data.Function (on)
 
 -- | Terminal constants.

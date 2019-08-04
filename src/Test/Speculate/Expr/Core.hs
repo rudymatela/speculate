@@ -6,9 +6,9 @@
 --
 -- This module is part of Speculate.
 --
--- This module reexports 'Data.Haexpress' along with some extra utilities.
+-- This module reexports 'Data.Express' along with some extra utilities.
 module Test.Speculate.Expr.Core
-  ( module Data.Haexpress
+  ( module Data.Express
 
   -- * Order
   , lexicompare
@@ -32,7 +32,7 @@ module Test.Speculate.Expr.Core
   )
 where
 
-import Data.Haexpress
+import Data.Express
 import Test.Speculate.Utils.Typeable
 import Test.Speculate.Utils.List
 import Data.Monoid ((<>))

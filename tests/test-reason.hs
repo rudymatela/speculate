@@ -87,7 +87,7 @@ tests n =
 -- >     , keepE = keepUpToLength 3
 -- >     }
 --
--- This issue did exist before the introduction of Haexpress,
+-- This issue did exist before the introduction of Express,
 -- it just wasn't found because Expr enumeration wasn't that good.
 --, holds n $ \(SameTypedPairsE eqs) -> theorize'  eqs == theorize eqs
 --, holds n $ \(SameTypedPairsE eqs) -> theorize'' eqs == theorize eqs

@@ -28,11 +28,11 @@ module Test.Speculate.Expr.Instance
   , preludeInstances
 
   -- * module re-export
-  , module Data.Haexpress.Instances
+  , module Data.Express.Instances
   )
 where
 
-import Data.Haexpress.Instances
+import Data.Express.Instances
 import Test.Speculate.Expr.Core
 import Test.Speculate.Utils
 import Test.LeanCheck

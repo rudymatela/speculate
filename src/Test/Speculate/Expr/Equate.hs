@@ -24,7 +24,7 @@ where
 
 import Test.Speculate.Expr.Core
 import Test.Speculate.Expr.Instance
-import Data.Haexpress.Fixtures ((-==>-))
+import Data.Express.Fixtures ((-==>-))
 
 unEquation :: Expr -> (Expr,Expr)
 unEquation ((Value "==" _ :$ e1) :$ e2) = (e1,e2)
