@@ -36,6 +36,7 @@ import Data.Haexpress
 import Test.Speculate.Utils.Typeable
 import Test.Speculate.Utils.List
 import Data.Monoid ((<>))
+import Data.Functor ((<$>)) -- for GHC <= 7.8
 
 lexicompare :: Expr -> Expr -> Ordering
 lexicompare = lexicompareBy compare
