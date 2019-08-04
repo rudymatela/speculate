@@ -31,7 +31,7 @@ before_install:
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
 - stack config set system-ghc --global true
 - stack --version
-- cabal install leancheck cmdargs
+- cabal install leancheck express cmdargs
 
 script:
 - make && make test-without-extra-deps
@@ -72,7 +72,7 @@ matrix:
     - cabal --version
     - rm -f ~/.cabal/config && cabal update
     - cabal install Cabal==1.18.*
-    - cabal install leancheck cmdargs
+    - cabal install leancheck express cmdargs
     script:
     - make && make test-without-extra-deps
     - make haddock HADDOCKFLAGS=
