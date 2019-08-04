@@ -14,6 +14,8 @@ A list of things to do for Speculate.
   I can use a custom data structure that computes
   matches all at once while traversing an expression.
 
+* fix issues with Dershowitz and Knuth-Bendix orders.
+
 * (code readability) review and document code
 
 * (code readability) rename semi to inqualities everywhere.
