@@ -91,6 +91,8 @@ instance (Ord a, Listable a) => Listable (BT a) where
 instance Name (BT a) where name _ = "t"
 instance Name Word2 where name _ = "x"
 
+deriving instance Typeable Word2 -- for GHC <= 7.8
+
 type Item = Word2
 
 main :: IO ()
