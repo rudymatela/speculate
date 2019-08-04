@@ -62,7 +62,6 @@ QUICKTESTS = \
   tests/test-engine \
   tests/test-eval \
   tests/test-expr \
-  tests/test-match \
   tests/test-order \
   tests/test-reason
 QUICKEG = \
