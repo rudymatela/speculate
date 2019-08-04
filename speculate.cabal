@@ -73,8 +73,6 @@ tested-with: GHC==8.6
            , GHC==8.0
            , GHC==7.10
            , GHC==7.8
-           , GHC==7.6
-           , GHC==7.4
 
 source-repository head
   type:            git
