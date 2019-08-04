@@ -76,7 +76,7 @@ where
 
 import Data.Typeable
 import Test.LeanCheck
-import Test.LeanCheck.Utils hiding (comparison)
+import Test.LeanCheck.Utils
 
 import Test.Speculate.Expr
   ( Expr
