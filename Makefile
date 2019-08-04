@@ -119,19 +119,19 @@ prepare-legacy-test: \
 
 prepare-legacy-test-8.2:
 	cabal-ghc-8.2 update
-	cabal-ghc-8.2 --ignore-sandbox install regex-tdfa cmdargs leancheck
+	cabal-ghc-8.2 --ignore-sandbox install cmdargs leancheck
 
 prepare-legacy-test-8.0:
 	cabal-ghc-8.0 update
-	cabal-ghc-8.0 --ignore-sandbox install regex-tdfa cmdargs leancheck
+	cabal-ghc-8.0 --ignore-sandbox install cmdargs leancheck
 
 prepare-legacy-test-7.10:
 	cabal-ghc-7.10 update
-	cabal-ghc-7.10 --ignore-sandbox install regex-tdfa cmdargs leancheck
+	cabal-ghc-7.10 --ignore-sandbox install cmdargs-0.10.17 leancheck
 
 prepare-legacy-test-7.8:
 	cabal-ghc-7.8 update
-	cabal-ghc-7.8  --ignore-sandbox install regex-tdfa cmdargs leancheck
+	cabal-ghc-7.8  --ignore-sandbox install cmdargs-0.10.17 leancheck
 
 slow-test: MAXTESTS =
 slow-test: MAXSIZE =
