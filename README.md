@@ -26,7 +26,7 @@ To install the [latest Speculate version from Hackage], just:
 	$ cabal update
 	$ cabal install speculate
 
-Pre-requisites are [cmdargs] and [leancheck].
+Pre-requisites are [cmdargs], [express] and [leancheck].
 They should be automatically resolved and installed by [Cabal].
 
 
@@ -119,6 +119,7 @@ Speculate is also subject to a chapter in a [PhD Thesis (2017)].
 
 [leancheck]: https://hackage.haskell.org/package/leancheck
 [LeanCheck]: https://hackage.haskell.org/package/leancheck
+[express]:   https://hackage.haskell.org/package/express
 [QuickSpec]: https://github.com/nick8325/quickspec
 [QuickCheck]: https://hackage.haskell.org/package/QuickCheck
 [cmdargs]: https://hackage.haskell.org/package/cmdargs
