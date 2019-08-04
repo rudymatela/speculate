@@ -3,16 +3,16 @@ TODO
 
 A list of things to do for Speculate.
 
-* release new Speculate after releasing Express
-  (which will happen after I have a version of Extrapolate that uses Express)
-
-* `-U` / `--auto-constants` is broken, fix it.
-
 * simplify "test" handling.  Do like in LeanCheck and Extrapolate.
   instead of having to run `make tests/test-something.test`,
   run with `make test/something.run`.
 
 * simpilfy "bench" handing.  Do like in LeanCheck and Extrapolate.
+
+* improve performance of the Reason module:
+  when listing rewrites of a given expression,
+  I can use a custom data structure that computes
+  matches all at once while traversing an expression.
 
 * (code readability) review and document code
 
