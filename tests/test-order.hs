@@ -7,6 +7,8 @@ import Test.Speculate.Expr
 import Test.Speculate.Reason (emptyThy)
 import Test.Speculate.Reason.Order
 
+import Data.Monoid ((<>))
+
 -- for Travis:
 deriving instance Typeable Thyght
 deriving instance Typeable Equation
