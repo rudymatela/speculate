@@ -54,6 +54,6 @@ subgraph xs (subgraph ys a) == subgraph ys (subgraph xs a)
       addNode x a <=  addEdge x y a
 addEdge x y empty <=  addEdge x y a
 
-   elem x xs ==> subgraph xs (addNode x a) == addNode x (subgraph xs a)
 isEdge x y a ==>             addEdge x y a == a
+   elem x xs ==> subgraph xs (addNode x a) == addNode x (subgraph xs a)
 

@@ -58,14 +58,14 @@ sort (xs ++ ys) <=  xs ++ sort ys
 sort (xs ++ ys) <=  sort xs ++ ys
   sort xs ++ xs <=  xs ++ sort xs
 
+     all (x <=) xs ==>         insert x xs == x:xs
+ordered (ys ++ xs) ==>       ys ++ sort xs == sort (xs ++ ys)
+ordered (ys ++ xs) ==>       sort ys ++ xs == sort (xs ++ ys)
+     all (x <=) xs ==>           x:sort xs == sort (x:xs)
          elem x xs ==> insert x (xs ++ ys) == insert x xs ++ ys
             x <= y ==>     insert x (y:xs) == x:y:xs
              x < y ==>     insert y (x:xs) == x:insert y xs
-ordered (ys ++ xs) ==>       ys ++ sort xs == sort (xs ++ ys)
-ordered (ys ++ xs) ==>       sort ys ++ xs == sort (xs ++ ys)
 ordered (ys ++ xs) ==>  sort ys ++ sort xs == sort (xs ++ ys)
-     all (x <=) xs ==>         insert x xs == x:xs
-     all (x <=) xs ==>           x:sort xs == sort (x:xs)
      all (x <=) xs ==>     insert y (x:xs) == insert x (insert y xs)
      all (x <=) ys ==> insert x (xs ++ ys) == insert x xs ++ ys
 

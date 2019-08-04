@@ -47,6 +47,6 @@ x `mod` 2 <=  1
  odd x ==>           x `mod` x == 0
  odd x ==>           0 `mod` x == 0
  odd x ==>           x `mod` 2 == 1
- odd y ==> (x `mod` y) `mod` y == x `mod` y
 even x ==>           x `mod` 2 == 0
+ odd y ==> (x `mod` y) `mod` y == x `mod` y
 
