@@ -17,7 +17,7 @@ sed -e "y/ijk/xyz/;s/=/==/" |
 sed -e "s/xd/id/" |
 sort > $qs2
 
-cat tests/model/arithficial |
+cat test/model/arithficial |
 grep " == " |
 sed -e "s/ *//" |
 sed -e 's/\([^a-z]\) (\([a-z]* .\))/\1 \2/g' |

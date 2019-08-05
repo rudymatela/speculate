@@ -865,8 +865,8 @@ eg/sets.o: \
   eg/sets.hs \
   eg/Set.hs
 eg/speculate-reason.o: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
   src/Test/Speculate/Utils/Timeout.hs \
@@ -898,8 +898,8 @@ eg/speculate-reason.o: \
   src/Test/Speculate/Args.hs \
   eg/speculate-reason.hs
 eg/speculate-reason: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
   eg/speculate-reason.hs \
   mk/toplibs
 eg/string: \
@@ -1485,10 +1485,10 @@ src/Test/Speculate/Utils/Tuple.o: \
 src/Test/Speculate/Utils/Typeable.o: \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/List.hs
-tests/test-creason.o: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
-  tests/test-creason.hs \
+test/creason.o: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/creason.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
   src/Test/Speculate/Utils/Timeout.hs \
@@ -1518,15 +1518,15 @@ tests/test-creason.o: \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs \
   src/Test/Speculate/Args.hs
-tests/test-creason: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
-  tests/test-creason.hs \
+test/creason: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/creason.hs \
   mk/toplibs
-tests/test-engine.o: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
-  tests/test-engine.hs \
+test/engine.o: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/engine.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
   src/Test/Speculate/Utils/Timeout.hs \
@@ -1556,15 +1556,15 @@ tests/test-engine.o: \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs \
   src/Test/Speculate/Args.hs
-tests/test-engine: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
-  tests/test-engine.hs \
+test/engine: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/engine.hs \
   mk/toplibs
-tests/test-eval.o: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
-  tests/test-eval.hs \
+test/eval.o: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/eval.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
   src/Test/Speculate/Utils/Timeout.hs \
@@ -1594,15 +1594,15 @@ tests/test-eval.o: \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs \
   src/Test/Speculate/Args.hs
-tests/test-eval: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
-  tests/test-eval.hs \
+test/eval: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/eval.hs \
   mk/toplibs
-tests/test-expr.o: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
-  tests/test-expr.hs \
+test/expr.o: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/expr.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
   src/Test/Speculate/Utils/Timeout.hs \
@@ -1632,17 +1632,15 @@ tests/test-expr.o: \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs \
   src/Test/Speculate/Args.hs
-tests/test-expr: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
-  tests/test-expr.hs \
+test/expr: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/expr.hs \
   mk/toplibs
-tests/Test/ListableExpr.o: \
-  tests/Test/ListableExpr.hs
-tests/test-order.o: \
-  tests/Test.hs \
-  tests/test-order.hs \
-  tests/Test/ListableExpr.hs \
+test/order.o: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/order.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
   src/Test/Speculate/Utils/Timeout.hs \
@@ -1672,14 +1670,15 @@ tests/test-order.o: \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs \
   src/Test/Speculate/Args.hs
-tests/test-order: \
-  tests/Test.hs \
-  tests/test-order.hs \
-  tests/Test/ListableExpr.hs \
+test/order: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/order.hs \
   mk/toplibs
-tests/Test.o: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
+test/reason.o: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/reason.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
   src/Test/Speculate/Utils/Timeout.hs \
@@ -1709,48 +1708,15 @@ tests/Test.o: \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs \
   src/Test/Speculate/Args.hs
-tests/test-reason.o: \
-  tests/test-reason.hs \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
-  src/Test/Speculate/Utils/Typeable.hs \
-  src/Test/Speculate/Utils/Tuple.hs \
-  src/Test/Speculate/Utils/Timeout.hs \
-  src/Test/Speculate/Utils/Tiers.hs \
-  src/Test/Speculate/Utils/String.hs \
-  src/Test/Speculate/Utils/PrettyPrint.hs \
-  src/Test/Speculate/Utils.hs \
-  src/Test/Speculate/Utils/Ord.hs \
-  src/Test/Speculate/Utils/Misc.hs \
-  src/Test/Speculate/Utils/Memoize.hs \
-  src/Test/Speculate/Utils/List.hs \
-  src/Test/Speculate/Utils/Digraph.hs \
-  src/Test/Speculate/Utils/Colour.hs \
-  src/Test/Speculate/Utils/Class.hs \
-  src/Test/Speculate/SemiReason.hs \
-  src/Test/Speculate/Sanity.hs \
-  src/Test/Speculate/Report.hs \
-  src/Test/Speculate/Reason.hs \
-  src/Test/Speculate/Reason/Order.hs \
-  src/Test/Speculate/Pretty.hs \
-  src/Test/Speculate.hs \
-  src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Instance.hs \
-  src/Test/Speculate/Expr/Ground.hs \
-  src/Test/Speculate/Expr/Equate.hs \
-  src/Test/Speculate/Expr/Core.hs \
-  src/Test/Speculate/Engine.hs \
-  src/Test/Speculate/CondReason.hs \
-  src/Test/Speculate/Args.hs
-tests/test-reason: \
-  tests/test-reason.hs \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
+test/reason: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/reason.hs \
   mk/toplibs
-tests/test-stats.o: \
-  tests/test-stats.hs \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
+test/stats.o: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/stats.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
   src/Test/Speculate/Utils/Timeout.hs \
@@ -1780,19 +1746,16 @@ tests/test-stats.o: \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs \
   src/Test/Speculate/Args.hs
-tests/test-stats: \
-  tests/test-stats.hs \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
+test/stats: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  test/stats.hs \
   mk/toplibs
-tests/Test: \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
-  mk/toplibs
-tests/test-utils.o: \
-  tests/test-utils.hs \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
+test/Test/ListableExpr.o: \
+  test/Test/ListableExpr.hs
+test/Test.o: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
   src/Test/Speculate/Utils/Typeable.hs \
   src/Test/Speculate/Utils/Tuple.hs \
   src/Test/Speculate/Utils/Timeout.hs \
@@ -1822,8 +1785,45 @@ tests/test-utils.o: \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs \
   src/Test/Speculate/Args.hs
-tests/test-utils: \
-  tests/test-utils.hs \
-  tests/Test.hs \
-  tests/Test/ListableExpr.hs \
+test/Test: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  mk/toplibs
+test/utils.o: \
+  test/utils.hs \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  src/Test/Speculate/Utils/Typeable.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Ord.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Colour.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Sanity.hs \
+  src/Test/Speculate/Report.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate/Pretty.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Instance.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
+  src/Test/Speculate/Args.hs
+test/utils: \
+  test/utils.hs \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
   mk/toplibs

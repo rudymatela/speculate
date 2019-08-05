@@ -3,7 +3,7 @@
 # Copyright:   (c) 2015-2019 Rudy Matela
 # License:     3-Clause BSD  (see the file LICENSE)
 # Maintainer:  Rudy Matela <rudy@matela.com.br>
-GHCIMPORTDIRS = src:eg:tests
+GHCIMPORTDIRS = src:eg:test
 GHCFLAGS = -O2 \
   $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic)
 # -Wall -Wno-name-shadowing -Wno-orphans -Wno-unused-matches
@@ -16,14 +16,14 @@ HADDOCKFLAGS = --no-print-missing-docs \
 MAXTESTS = 4000
 MAXSIZE = -s4
 TESTS = \
-  tests/test-creason \
-  tests/test-engine \
-  tests/test-eval \
-  tests/test-expr \
-  tests/test-order \
-  tests/test-reason \
-  tests/test-utils \
-  tests/test-stats
+  test/creason \
+  test/engine \
+  test/eval \
+  test/expr \
+  test/order \
+  test/reason \
+  test/utils \
+  test/stats
 MOSTEG = \
   eg/arith \
   eg/arith-negate-abs \
@@ -60,16 +60,16 @@ EXTRAEG = $(EG) \
 # regexes needs regex-tdfa, which may break the build
 # speculate-reason output differs in different GHC versions
 QUICKTESTS = \
-  tests/test-engine \
-  tests/test-eval \
-  tests/test-expr \
-  tests/test-order \
-  tests/test-reason
+  test/engine \
+  test/eval \
+  test/expr \
+  test/order \
+  test/reason
 QUICKEG = \
   eg/arith \
   eg/bool \
   eg/list
-LIST_ALL_HSS = find src tests eg bench/*.hs -name \*.hs
+LIST_ALL_HSS = find src test eg bench/*.hs -name \*.hs
 LIST_LIB_HSS = find src -name \*.hs
 LIB_DEPS = base leancheck express cmdargs containers
 
@@ -89,7 +89,7 @@ test-extra-deps: all $(patsubst %,%.test,$(TESTS)) \
                      $(patsubst %,%.test-model,$(EXTRAEG) $(wildcard bench/*-c))
 
 test-sdist:
-	./tests/test-sdist
+	./test/sdist
 
 legacy-test:
 	make clean  &&  make -j8 GHC=ghc-8.2   &&  make quick-test -j8 GHC=ghc-8.2
@@ -141,29 +141,29 @@ slow-test: test
 	./$< $(MAXTESTS)
 
 bench/%-c.test-model: eg/%
-	./tests/test-model $(MAXSIZE) bench/$*-c
+	./test/test-model $(MAXSIZE) bench/$*-c
 
 bench/%-c.update-4-test-model: %
-	./tests/update-test-model -s4 bench/$*-c
+	./test/update-test-model -s4 bench/$*-c
 
 bench/%-c.update-slow-test-model: %
-	./tests/update-test-model     bench/$*-c
+	./test/update-test-model     bench/$*-c
 
 %.test-model: %
-	./tests/test-model $(MAXSIZE) $<
+	./test/test-model $(MAXSIZE) $<
 
 %.update-test-model: %
-	./tests/update-test-model -s4 $<
-	./tests/update-test-model     $<
+	./test/update-test-model -s4 $<
+	./test/update-test-model     $<
 
 %.update-4-test-model: %
-	./tests/update-test-model -s4 $<
+	./test/update-test-model -s4 $<
 
 %.update-slow-test-model: %
-	./tests/update-test-model     $<
+	./test/update-test-model     $<
 
 %.update-7-test-model: %
-	./tests/update-test-model -s7 $<
+	./test/update-test-model -s7 $<
 
 update-test-model: update-4-test-model update-slow-test-model
 
@@ -172,13 +172,13 @@ update-4-test-model: $(patsubst %,%.update-4-test-model,$(EG) $(wildcard bench/*
 update-slow-test-model: $(patsubst %,%.update-slow-test-model,$(EG) $(wildcard bench/*-c))
 
 bench: all
-	./tests/benchmark-cmp $(EG) bench/*-c
+	./test/benchmark-cmp $(EG) bench/*-c
 
 save-bench: all
-	./tests/benchmark-save $(EG) bench/*-c
+	./test/benchmark-save $(EG) bench/*-c
 
 memory-benchmark: all
-	./tests/memory-benchmark $(EG) bench/*-c
+	./test/memory-benchmark $(EG) bench/*-c
 
 qs-bench:
 	make -sC bench/qs1 bench
@@ -189,9 +189,9 @@ qs-save-bench:
 	make -sC bench/qs2 save-bench
 
 update-listable-expr:
-	cp -rav ../express/test/Test/ListableExpr.hs tests/Test/
+	cp -rav ../express/test/Test/ListableExpr.hs test/Test/
 
-ghci: tests/Test.ghci
+ghci: test/Test.ghci
 
 clean: clean-hi-o clean-haddock
 	rm -f $(TESTS) $(EG) eg/*.dot eg/*.pdf TAGS tags mk/toplibs
@@ -199,13 +199,13 @@ clean: clean-hi-o clean-haddock
 	make clean -C bench/qs2
 	rm -f doc/*.html doc/*.gif doc/*.css doc/*.js doc/*.png
 
-tests/Test.o: src/Test/Speculate.o
+test/Test.o: src/Test/Speculate.o
 
 # NOTE: (very hacky!) the following target allows parallel compilation (-jN) of
 # eg and tests programs so long as they don't share dependencies _not_ stored
-# in src/ and tests/.  Runnable binaries should depend on mk/toplibs instead of
+# in src/ and test/.  Runnable binaries should depend on mk/toplibs instead of
 # actual Haskell source files
-mk/toplibs: src/Test/Speculate.o tests/Test.o
+mk/toplibs: src/Test/Speculate.o test/Test.o
 	touch mk/toplibs
 
 hlint:
