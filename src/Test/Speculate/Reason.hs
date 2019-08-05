@@ -277,6 +277,7 @@ append thy eqs = updateEquationsBy (nubSort . (++ eqs')) thy
          | (e1,e2) <- eqs
          , let e1' = normalize thy e1
          , let e2' = normalize thy e2
+         , e1' /= e2'
          ]
 
 difference :: Thy -> Thy -> Thy
