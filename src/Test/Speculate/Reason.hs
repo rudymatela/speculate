@@ -273,8 +273,11 @@ insert (e1,e2) thy
 append :: Thy -> [Equation] -> Thy
 append thy eqs = updateEquationsBy (nubSort . (++ eqs')) thy
   where
-  eqs' = [ canonicalizeEqn thy (e1,e2)
-         | (e1,e2) <- eqs, normalize thy e1 /= normalize thy e2 ]
+  eqs' = [ canonicalizeEqn thy (e1',e2')
+         | (e1,e2) <- eqs
+         , let e1' = normalize thy e1
+         , let e2' = normalize thy e2
+         ]
 
 difference :: Thy -> Thy -> Thy
 difference thy1@Thy {equations = eqs1, rules = rs1}
