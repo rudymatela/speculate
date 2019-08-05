@@ -168,14 +168,15 @@ consider (===) sz s (thy,sss)
   | not (s === s) = (thy,sssWs)  -- uncomparable type
   | rehole (normalizeE thy (mostGeneral s)) `elem` ss = (thy,sss)
   | otherwise =
-    ( append thy $ equivalencesBetween (===) s s ++ eqs
+    ( append thy $ equivalencesBetween (-===-) s s ++ eqs
     , if any (\(e1,e2) -> unrepeatedVars e1 && unrepeatedVars e2) eqs
         then sss
         else sssWs )
     where
+    e1 -===- e2  =  normalize thy e1 == normalize thy e2 || e1 === e2
     ss = uptoT sz sss
     sssWs = sss \/ wcons0 sz s
-    eqs = concatMap (equivalencesBetween (===) s) $ filter (s ===) ss
+    eqs = concatMap (equivalencesBetween (-===-) s) $ filter (s ===) ss
     wcons0 :: Int -> a -> [[a]]
     wcons0 n s = replicate (n-1) [] ++ [[s]]
 
