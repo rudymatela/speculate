@@ -75,18 +75,18 @@ LIB_DEPS = base leancheck express cmdargs containers
 
 all: mk/toplibs
 
-quick-test: $(patsubst %,%.test,$(QUICKTESTS)) \
-            $(patsubst %,%.test-model,$(QUICKEG))
+quick-test: $(patsubst %,%.run,$(QUICKTESTS)) \
+            $(patsubst %,%.diff-test,$(QUICKEG))
 
 test: all test-sdist \
-  $(patsubst %,%.test,$(TESTS)) \
-  $(patsubst %,%.test-model,$(EG) $(wildcard bench/*-c))
+  $(patsubst %,%.run,$(TESTS)) \
+  $(patsubst %,%.diff-test,$(EG) $(wildcard bench/*-c))
 
-test-without-extra-deps: all $(patsubst %,%.test,$(TESTS)) \
-                             $(patsubst %,%.test-model,$(MOSTEG) $(wildcard bench/*-c))
+test-without-extra-deps: all $(patsubst %,%.run,$(TESTS)) \
+                             $(patsubst %,%.diff-test,$(MOSTEG) $(wildcard bench/*-c))
 
-test-extra-deps: all $(patsubst %,%.test,$(TESTS)) \
-                     $(patsubst %,%.test-model,$(EXTRAEG) $(wildcard bench/*-c))
+test-extra-deps: all $(patsubst %,%.run,$(TESTS)) \
+                     $(patsubst %,%.diff-test,$(EXTRAEG) $(wildcard bench/*-c))
 
 test-sdist:
 	./test/sdist
@@ -137,39 +137,39 @@ slow-test: MAXTESTS =
 slow-test: MAXSIZE =
 slow-test: test
 
-%.test: %
+%.run: %
 	./$< $(MAXTESTS)
 
-bench/%-c.test-model: eg/%
-	./test/test-model $(MAXSIZE) bench/$*-c
+bench/%-c.diff-test: eg/%
+	./test/diff $(MAXSIZE) bench/$*-c
 
-bench/%-c.update-4-test-model: %
-	./test/update-test-model -s4 bench/$*-c
+bench/%-c.update-4-diff-test: %
+	./test/update-diff -s4 bench/$*-c
 
-bench/%-c.update-slow-test-model: %
-	./test/update-test-model     bench/$*-c
+bench/%-c.update-slow-diff-test: %
+	./test/update-diff     bench/$*-c
 
-%.test-model: %
-	./test/test-model $(MAXSIZE) $<
+%.diff-test: %
+	./test/diff $(MAXSIZE) $<
 
-%.update-test-model: %
-	./test/update-test-model -s4 $<
-	./test/update-test-model     $<
+%.update-diff-test: %
+	./test/update-diff -s4 $<
+	./test/update-diff     $<
 
-%.update-4-test-model: %
-	./test/update-test-model -s4 $<
+%.update-4-diff-test: %
+	./test/update-diff -s4 $<
 
-%.update-slow-test-model: %
-	./test/update-test-model     $<
+%.update-slow-diff-test: %
+	./test/update-diff     $<
 
-%.update-7-test-model: %
-	./test/update-test-model -s7 $<
+%.update-7-diff-test: %
+	./test/update-diff -s7 $<
 
-update-test-model: update-4-test-model update-slow-test-model
+update-diff-test: update-4-diff-test update-slow-diff-test
 
-update-4-test-model: $(patsubst %,%.update-4-test-model,$(EG) $(wildcard bench/*-c))
+update-4-diff-test: $(patsubst %,%.update-4-diff-test,$(EG) $(wildcard bench/*-c))
 
-update-slow-test-model: $(patsubst %,%.update-slow-test-model,$(EG) $(wildcard bench/*-c))
+update-slow-diff-test: $(patsubst %,%.update-slow-diff-test,$(EG) $(wildcard bench/*-c))
 
 bench: all
 	./test/benchmark-cmp $(EG) bench/*-c

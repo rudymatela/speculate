@@ -63,9 +63,9 @@ extra-source-files: .gitignore
                   , test/benchmark-save
                   , test/memory-benchmark
                   , test/model/*.out
-                  , test/test-model
+                  , test/diff
+                  , test/update-diff
                   , test/sdist
-                  , test/update-test-model
 
 tested-with: GHC==8.6
            , GHC==8.4
