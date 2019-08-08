@@ -28,7 +28,6 @@ module Test.Speculate.Reason
   , criticalPairs
   , normalizedCriticalPairs
   , append
-  , difference
 
   , okThy
   , canonicalEqn
@@ -279,11 +278,6 @@ append thy eqs = updateEquationsBy (nubSort . (++ eqs')) thy
          , let e2' = normalize thy e2
          , e1' /= e2'
          ]
-
-difference :: Thy -> Thy -> Thy
-difference thy1@Thy {equations = eqs1, rules = rs1}
-           thy2@Thy {equations = eqs2, rules = rs2} =
-  thy1 {equations = eqs1 \\ eqs2, rules = rs1 \\ rs2}
 
 complete :: Thy -> Thy
 complete = iterateUntil (==)
