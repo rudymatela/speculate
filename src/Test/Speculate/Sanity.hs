@@ -30,7 +30,7 @@ infixr 3 -&&-
 -- returns a list of errors on the Eq instances (if any)
 -- returns an empty list when ok
 eqErrors :: Instances -> Int -> TypeRep -> [String]
-eqErrors is n t =
+eqErrors is n t = takeWhile (const $ isListableT is t) $
      ["not reflexive"  | f   (x -==- x)]
   ++ ["not symmetric"  | f  ((x -==- y) -==- (y -==- x))]
   ++ ["not transitive" | f (((x -==- y) -&&- (y -==- z)) -==>- (x -==- z))]
@@ -44,7 +44,7 @@ eqErrors is n t =
 
 -- returns a list of errors on the Ord instance (if any)
 ordErrors :: Instances -> Int -> TypeRep -> [String]
-ordErrors is n t =
+ordErrors is n t = takeWhile (const $ isListableT is t) $
      ["not reflexive"     | f   (x -<=- x)]
   ++ ["not antisymmetric" | f (((x -<=- y) -&&- (y -<=- x)) -==>- (x -==- y))]
   ++ ["not transitive"    | f (((x -<=- y) -&&- (y -<=- z)) -==>- (x -<=- z))]
@@ -60,12 +60,15 @@ ordErrors is n t =
 eqOrdErrors :: Instances -> Int -> TypeRep -> [String]
 eqOrdErrors is n t =
      [ "(==) :: " ++ ty ++ "  is not an equiavalence (" ++ intercalate ", " es ++ ")"
-     | let es = eqErrors is n t, isEqT is t, not (null es) ]
+     | listable, eq,  let es = eqErrors  is n t, not (null es) ]
   ++ [ "(<=) :: " ++ ty ++ "  is not an ordering ("     ++ intercalate ", " es ++ ")"
-     | let es = ordErrors is n t, isOrdT is t, not (null es) ]
+     | listable, ord, let es = ordErrors is n t, not (null es) ]
   ++ [ "(==) and (<=) :: " ++ ty ++ " are inconsistent: (x == y) /= (x <= y && y <= x)"
-     | f $ (x -==- y) -==- (x -<=- y -&&- y -<=- x), isEqT is t, isOrdT is t ]
+     | listable, eq, ord, f $ (x -==- y) -==- (x -<=- y -&&- y -<=- x) ]
   where
+  listable = isListableT is t
+  eq       = isEqT       is t
+  ord      = isOrdT      is t
   f = not . isTrue (take n . grounds (lookupTiers is))
   e = holeOfTy is t
   x = "x" `varAsTypeOf` e

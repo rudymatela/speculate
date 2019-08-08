@@ -94,13 +94,13 @@ warnMissingInstances :: Instances -> [TypeRep] -> IO ()
 warnMissingInstances is ts = putLines
   $  ["Warning: no Listable instance for " ++ show t ++
       ", variables of this type will not be considered"
-     | t <- ts, not (isListableT is t)]
+     | t <- ts, not (isFunTy t), not (isListableT is t)]
   ++ ["Warning: no Eq instance for " ++ show t ++
       ", equations of this type will not be considered"
-     | t <- ts, not (isEqT is t)]
+     | t <- ts, not (isFunTy t), not (isEqT is t)]
   ++ ["Warning: no Ord instance for " ++ show t ++
       ", inequations of this type will not be considered"
-     | t <- ts, not (isOrdT is t)]
+     | t <- ts, not (isFunTy t), not (isOrdT is t)]
 
 reportClassesFor :: Instances -> Int -> [Int] -> Thy -> [Expr] -> IO ()
 reportClassesFor ti nTests nVarss thy res = do

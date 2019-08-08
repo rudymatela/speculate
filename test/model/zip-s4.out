@@ -9,6 +9,7 @@ _ :: Bool
 _ :: Int
 _ :: [Int]
 _ :: [(Int,Int)]
+_ :: (Int,Int)
 (++) :: [Int] -> [Int] -> [Int]
 (==) :: Int -> Int -> Bool
 length :: [Int] -> Int
@@ -18,6 +19,7 @@ False :: Bool
 (==) :: Bool -> Bool -> Bool
 (==) :: [Int] -> [Int] -> Bool
 (==) :: [(Int,Int)] -> [(Int,Int)] -> Bool
+(==) :: (Int,Int) -> (Int,Int) -> Bool
 
 
 

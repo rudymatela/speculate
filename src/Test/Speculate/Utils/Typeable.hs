@@ -14,15 +14,20 @@ module Test.Speculate.Utils.Typeable
 where
 
 import Data.Express.Utils.Typeable
-import Test.Speculate.Utils.List ((+++))
+import Data.List
 
--- | For a given type, return all *-kinded types.
---   (all non-function types)
---
--- > typesIn (typeOf (undefined :: (Int -> Int) -> Int -> Bool))
--- >   == [Bool,Int]
 typesIn :: TypeRep -> [TypeRep]
-typesIn t
-  | isFunTy t = typesIn (argumentTy t)
-            +++ typesIn (resultTy   t)
-  | otherwise = [t]
+typesIn t  =  nubSortBy compareTy $ tin t []
+  where
+  tin :: TypeRep -> [TypeRep] -> [TypeRep]
+  tin t  =  foldr (.) (t:) (map tin ts)  where  (_,ts)  =  splitTyConApp t
+
+-- temporary
+nubSortBy :: (a -> a -> Ordering) -> [a] -> [a]
+nubSortBy cmp  =  nnub . sortBy cmp
+  where
+  x -==- y  =  x `cmp` y == EQ
+  -- linear nub of adjacent values
+  nnub [] = []
+  nnub [x] = [x]
+  nnub (x:xs) = x : nnub (dropWhile (-==-x) xs)

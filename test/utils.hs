@@ -70,13 +70,6 @@ tests n =
       \ 123   456  3\n\
       \       789\n"
 
-  -- different versions of GHC/typeable impose different orders on TypeReps,
-  -- hence: map show . sort
-  , (sort . map show . typesIn $ typeOf (undefined :: (Int -> Int) -> Int -> Bool))
-      == ["Bool","Int"]
-  , (sort . map show . typesIn $ typeOf (undefined :: (Int -> Char) -> Integer -> Bool))
-      == ["Bool","Char","Int","Integer"]
-
   , splitAtCommas "1,2,3" == ["1","2","3"]
   , splitAtCommas "123,456,789," == ["123","456","789"]
   , splitAtCommas "123 456,789"  == ["123","456","789"] -- weird behaviour, but fine for speculate

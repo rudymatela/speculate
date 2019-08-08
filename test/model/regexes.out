@@ -5,6 +5,7 @@ max  #-tests   =   30
 max  #-vars    =    2  (for inequational and conditional laws)
 
 _ :: Bool
+_ :: Symbol
 _ :: RE Symbol
 Empty :: RE Symbol
 None :: RE Symbol

@@ -6,6 +6,7 @@ min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
 
 _ :: Colour
+_ :: Integer
 _ :: Maybe (Ratio Integer)
 _ :: Ratio Integer
 (+) :: Colour -> Colour -> Colour

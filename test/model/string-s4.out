@@ -5,6 +5,7 @@ max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
 
+_ :: Char
 _ :: [Char]
 _ :: [[Char]]
 "" :: [Char]
