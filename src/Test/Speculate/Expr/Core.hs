@@ -22,7 +22,6 @@ module Test.Speculate.Expr.Core
   -- * Assigning
   , Binds
   , fill
-  , sub
 
   -- * Matching
   , unify
@@ -85,15 +84,6 @@ fill e = fst . fill' e
                         in (e1' :$ e2', es'')
   fill' eh (e:es) | isHole eh && typ eh == typ e = (e,es)
   fill' e es = (e,es)
-
--- | Substitute matching subexpressios.
---
--- sub (x + y) 0 ((x + y) + z) == (0 + z)
--- sub (x + y) 0 (x + (y + z)) == (x + (y + z))
---
--- TODO: remove
-sub :: Expr -> Expr -> Expr -> Expr
-sub ef et = (// [(ef,et)])
 
 unify :: Expr -> Expr -> Maybe Expr
 unify e1 e2 = (e1 //-) <$> unification e1 e2

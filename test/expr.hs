@@ -14,18 +14,6 @@ tests :: Int -> [Bool]
 tests n =
   [ True
 
-  , ((xx -+- yy) -+- (yy -+- zz)) //- [(yy, yy -+- zz)]
-      == (xx -+- (yy -+- zz)) -+- ((yy -+- zz) -+- zz)
-
-  , (xx -+- yy) // [(yy, yy -+- zz), (xx, xx -+- yy)]
-      == (xx -+- yy) -+- (yy -+- zz)
-
-  , sub (xx -+- yy) zero ((xx -+- yy) -+- zz) == (zero -+- zz)
-  , sub (xx -+- yy) zero (xx -+- (yy -+- zz)) == (xx -+- (yy -+- zz))
-
-  , holds n $ \(SameTypeE e1 e2) -> sub e1 e2 e1 == e2
-  , holds n $ \(IntE e1) (IntE e2) -> sub e1 e2 (e1 -+- e1) == (e2 -+- e2)
-
   , holds n $ \(SameTypeE e1 e2) -> unify e1 e2 =$ fmap canonicalize $= unify e2 e1
 
   , unification xx yy == Just [(xx,yy)]

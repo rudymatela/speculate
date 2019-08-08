@@ -295,11 +295,13 @@ conditionalEquivalences cmp canon cequal (==>) csz thy clpres cles =
 subConsequence :: Thy -> [Class Expr] -> Expr -> Expr -> Expr -> Bool
 subConsequence thy clpres ((Value "==" _ :$ ea) :$ eb) e1 e2
   -- NOTE: the first 4 are uneeded, but make it a bit faster...
-  | ea `isSubexprOf` e1 && equivalent thy{closureLimit=1} (sub ea eb e1) e2 = True
-  | eb `isSubexprOf` e1 && equivalent thy{closureLimit=1} (sub eb ea e1) e2 = True
-  | ea `isSubexprOf` e2 && equivalent thy{closureLimit=1} (sub ea eb e2) e1 = True
-  | eb `isSubexprOf` e2 && equivalent thy{closureLimit=1} (sub eb ea e2) e1 = True
+  | ea `isSubexprOf` e1 && equivalent thy{closureLimit=1} (e1 / (ea,eb)) e2 = True
+  | eb `isSubexprOf` e1 && equivalent thy{closureLimit=1} (e1 / (eb,ea)) e2 = True
+  | ea `isSubexprOf` e2 && equivalent thy{closureLimit=1} (e2 / (ea,eb)) e1 = True
+  | eb `isSubexprOf` e2 && equivalent thy{closureLimit=1} (e2 / (eb,ea)) e1 = True
   | equivalent ((ea,eb) `insert` thy){closureLimit=1} e1 e2 = True
+  where
+  e / (e1,e2)  =  e // [(e1,e2)]
 subConsequence thy clpres ce e1 e2 = or
   [ subConsequence thy clpres ce' e1 e2
   | (rce,ces) <- clpres, ce == rce, ce' <- ces ]
