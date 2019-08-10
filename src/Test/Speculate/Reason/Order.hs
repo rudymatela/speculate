@@ -16,6 +16,8 @@ module Test.Speculate.Reason.Order
   , weight
   , weightExcept
   , gtExcept
+  , funny
+  , serious
   )
 where
 
@@ -47,7 +49,6 @@ infix 4 |>|
 (>|) :: Expr -> Expr -> Bool
 (>|) = kboBy weight (>)
 infix 4 >|
--- TODO: FIXME: this KBO is not closed under substitution!
 
 kboBy :: (Expr -> Int) -> (Expr -> Expr -> Bool) -> Expr -> Expr -> Bool
 kboBy w (->-) e1 e2 = e1 >=\/ e2
@@ -123,6 +124,8 @@ gtExcept (>) f0 e1 e2 | e2 == f0  = False -- nothing can be greater than f0
 --
 -- > x - y |> x + negate y  -- as (-) > (+)
 -- > negate x + y |> negate (x + negate y)  -- as (+) > negate, as I->I->I > I->I
+--
+-- This is not a simplification order on 'funny' 'Expr's.
 (|>) :: Expr -> Expr -> Bool
 (|>) = dwoBy (>)
 infix 4 |>
@@ -130,6 +133,8 @@ infix 4 |>
 -- | Dershowitz reduction order as defined in TRAAT
 --
 -- @|>@ a "D" for Dershowitz
+--
+-- This is not a simplification order on 'funny' 'Expr's.
 dwoBy :: (Expr -> Expr -> Bool) -> Expr -> Expr -> Bool
 dwoBy (>) = (|>)
   where
@@ -147,6 +152,25 @@ dwoBy (>) = (|>)
     e1 |>= e2 = e1 == e2
              || e1 |> e2
 
+-- | Returns 'True' when an 'Expr'ession has either
+--   a functional type or functional 'var'iables.
+--
+-- > funny xx        =  False
+-- > funny one       =  False
+-- > funny idE       =  True
+-- > funny (ff one)  =  True
+funny :: Expr -> Bool
+funny e  =  any (isFunTy . typ) $ e:vars e
+
+-- | Returns 'True' when an 'Expr'ession has
+--   no functional return type and no functional 'var'iables.
+--
+-- > serious xx        =  True
+-- > serious one       =  True
+-- > serious idE       =  False
+-- > serious (ff one)  =  False
+serious :: Expr -> Bool
+serious  =  not . funny
 
 
 --- Misc Utilities ---
