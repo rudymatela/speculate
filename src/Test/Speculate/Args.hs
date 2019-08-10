@@ -202,7 +202,7 @@ atoms args = [ nubSort (mapMaybe (maybeHoleOfTy is) ts)
 
 -- misnomer: these are not all types, but just the star kinded ones...
 types :: Args -> [TypeRep]
-types = nubMergeMap (typesIn . typ) . allConstants
+types = typesInList . map typ . allConstants
 
 foregroundConstants, backgroundConstants :: Args -> [Expr]
 foregroundConstants = fst . partitionByMarkers foreground background . constants
