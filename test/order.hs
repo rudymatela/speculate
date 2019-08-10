@@ -67,6 +67,7 @@ tests n =
 -- > *** Failed! Falsifiable (after 6901 tests):
 -- > (f _ :: Int) (id _ :: Int) (_ :: Int)
 -- Like the one above
+-- Compatibility fails whenever there are function variables.
 
 
   , fails n $ \e1 e2 -> (e1 |>| e2) == (e1 |>  e2)
