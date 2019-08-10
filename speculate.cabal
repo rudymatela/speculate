@@ -116,10 +116,9 @@ library
                  , Test.Speculate.Utils.Tiers
                  , Test.Speculate.Utils.Timeout
                  , Test.Speculate.Utils.Tuple
-                 , Test.Speculate.Utils.Typeable
   build-depends: base >= 4 && < 5
                , leancheck >= 0.9.1
-               , express >= 0.1.0
+               , express >= 0.1.1
                , cmdargs
                , containers
   hs-source-dirs:    src

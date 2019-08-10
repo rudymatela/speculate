@@ -9,6 +9,7 @@
 -- This module reexports 'Data.Express' along with some extra utilities.
 module Test.Speculate.Expr.Core
   ( module Data.Express
+  , module Data.Express.Utils.Typeable
 
   -- * Order
   , lexicompare
@@ -32,7 +33,7 @@ module Test.Speculate.Expr.Core
 where
 
 import Data.Express
-import Test.Speculate.Utils.Typeable
+import Data.Express.Utils.Typeable
 import Test.Speculate.Utils.List
 import Data.Monoid ((<>))
 import Data.Functor ((<$>)) -- for GHC <= 7.8
