@@ -171,13 +171,13 @@ update-4-diff-test: $(patsubst %,%.update-4-diff-test,$(EG) $(wildcard bench/*-c
 
 update-slow-diff-test: $(patsubst %,%.update-slow-diff-test,$(EG) $(wildcard bench/*-c))
 
-bench: all
+bench: all $(EG)
 	./test/benchmark-cmp $(EG) bench/*-c
 
-save-bench: all
+save-bench: all $(EG)
 	./test/benchmark-save $(EG) bench/*-c
 
-memory-benchmark: all
+memory-benchmark: all $(EG)
 	./test/memory-benchmark $(EG) bench/*-c
 
 qs-bench:
