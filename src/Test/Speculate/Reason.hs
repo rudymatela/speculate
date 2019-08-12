@@ -208,22 +208,23 @@ normalizedCriticalPairs thy = nubSortBy (compareEqn thy)
                             $ criticalPairs thy
 
 criticalPairs :: Thy -> [(Expr,Expr)]
-criticalPairs thy@Thy {rules = rs, compareE = cmp} =
-  nubMerges [r `criticalPairsWith` s | r <- rs, s <- rs]
+criticalPairs thy@Thy{rules = rs}  =
+  nubMergesBy fastCompareEqn [r `criticalPairsWith` s | r <- rs, s <- rs]
   where
   criticalPairsWith :: Rule -> Rule -> [(Expr,Expr)]
   r1@(e1,_) `criticalPairsWith` r2@(e2,_) =
-      nubSortBy (compareEqn thy)
+      nubSortBy fastCompareEqn
     . map sortuple
     . filter (uncurry (/=))
     . concatMap (\e -> (e `reductions1` r1) ** (e `reductions1` r2))
-    . nubSortBy cmp
+    . nubSortBy fastCompare
     $ overlaps e1 e2
   xs ** ys = [(x,y) | x <- xs, y <- ys]
   sortuple (x,y) | x < y     = (y,x)
                  | otherwise = (x,y)
+  fastCompareEqn = fastCompare `on` foldPair
   (<) :: Expr -> Expr -> Bool
-  e1 < e2 = e1 `cmp` e2 == LT
+  e1 < e2 = e1 `fastCompare` e2 == LT
 
 -- Warning: will have to also be applied in reverse to get all overlaps.
 --

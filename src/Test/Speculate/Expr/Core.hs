@@ -14,6 +14,7 @@ module Test.Speculate.Expr.Core
   -- * Order
   , lexicompare
   , lexicompareBy
+  , fastCompare
 
   -- * Properties
   , isConstantNamed
@@ -37,6 +38,16 @@ import Data.Express.Utils.Typeable
 import Test.Speculate.Utils.List
 import Data.Monoid ((<>))
 import Data.Functor ((<$>)) -- for GHC <= 7.8
+
+-- faster comparison, to be used when nubSorting Expr values
+fastCompare :: Expr -> Expr -> Ordering
+fastCompare  =  cmp
+  where
+  (f :$ x)       `cmp` (g :$ y)        =  f  `cmp` g <> x `cmp` y
+  (_ :$ _)       `cmp` _               =  GT
+  _              `cmp` (_ :$ _)        =  LT
+  x@(Value n1 _) `cmp` y@(Value n2 _)  =  typ x `compareTy` typ y
+                                       <> n1 `compare` n2
 
 lexicompare :: Expr -> Expr -> Ordering
 lexicompare = lexicompareBy compare

@@ -154,22 +154,11 @@ tests n =
   , criticalPairs emptyThy { rules = [ (negate' (negate' xx), id' xx) ] }
       == [ (negate' (id' xx), id' (negate' xx)) ]
 
-  , criticalPairs emptyThy { canReduceTo = dwoBy (\e1 e2 -> e1 `lexicompare` e2 == GT)
-                           , rules = [ (foo (goo (foo xx)), xx)
-                                     , (foo (goo xx), goo (foo xx)) ] }
-      == (let sortuple (x,y) | x < y     = (y,x)
-                             | otherwise = (x,y)
-          in nubSort . map sortuple
-           $ [ (goo xx,                   foo (goo (goo (foo xx))))
-             , (goo (foo xx),             foo (goo xx))
-             , (goo (foo (foo xx)),       xx)
-             , (goo (foo (foo (goo xx))), goo xx) ])
-
   , criticalPairs emptyThy { rules = [ (foo (goo (foo xx)), xx)
                                      , (foo (goo xx), goo (foo xx)) ] }
-      == [ (goo (foo xx),             foo (goo xx))
+      == [ (goo xx,                   foo (goo (goo (foo xx))))
+         , (goo (foo xx),             foo (goo xx))
          , (goo (foo (foo xx)),       xx)
-         , (foo (goo (goo (foo xx))), goo xx)
          , (goo (foo (foo (goo xx))), goo xx) ]
 
   , theorize [ (xx -*- yy) -*- (yy -*- zz)  ~~  yy ]
