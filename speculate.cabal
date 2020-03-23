@@ -180,13 +180,6 @@ test-suite utils
   default-language:  Haskell2010
   type:              exitcode-stdio-1.0
 
-benchmark plus-abs
-  main-is:           plus-abs.hs
-  hs-source-dirs:    eg
-  build-depends:     base >= 4 && < 5, speculate
-  default-language:  Haskell2010
-  type:              exitcode-stdio-1.0
-
 benchmark test-stats
   main-is:           stats.hs
   other-modules:     Test, Test.ListableExpr
