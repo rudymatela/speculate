@@ -3,6 +3,7 @@
 **/cabal.sandbox.config
 **/idx/
 **/dist/
+dist-newstyle
 **/log/
 .stack-work
 
