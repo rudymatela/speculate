@@ -1,7 +1,6 @@
 {-# Language DeriveDataTypeable, StandaloneDeriving #-} -- Travis
 import Test
 import Test.Speculate.Utils
-import qualified Test.LeanCheck.Utils as LC (comparison)
 
 import Test.Speculate.Expr
 import Test.Speculate.Reason (emptyThy)
@@ -21,8 +20,8 @@ tests n =
   [ True -- see test-expr.hs for general Expr orders
 
   , holds n $ compare ==== (compareComplexity <> lexicompare)
-  , holds n $ LC.comparison lexicompare
-  , holds n $ LC.comparison compareComplexity
+  , holds n $ isComparison lexicompare
+  , holds n $ isComparison compareComplexity
 
   , holds n $ \(IntToIntE e1) (IntToIntE e2) (IntE e3) -> let cmp = lexicompare in
                 e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
@@ -112,7 +111,7 @@ subtermProperty (>) = \e -> all (e >)
                           $ subexprs e -- isn't this subexprsV? I don't think so
 
 reductionOrder :: (Expr -> Expr -> Bool) -> Expr -> Expr -> Expr -> Bool
-reductionOrder (>) = \e1 e2 e3 -> strictPartialOrder (>) e1 e2 e3
+reductionOrder (>) = \e1 e2 e3 -> isStrictPartialOrder (>) e1 e2 e3
                                && compatible         (>) e1 e2 e3
                                && closedUnderSub     (>) e1 e2 e3
 

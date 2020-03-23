@@ -8,7 +8,7 @@ import Test.Speculate.Utils
 import Data.List
 import Data.Function
 
-import Test.LeanCheck.Utils (comparison)
+import Test.LeanCheck.Utils
 
 main :: IO ()
 main = mainTest tests 10000
@@ -78,7 +78,7 @@ tests n =
   , compareIndex [3,2,1::Int] 1 3 == GT
   , compareIndex [3,2,1::Int] 4 1 == GT
   , compareIndex [3,2,1::Int] 1 0 == LT
-  , holds n $ \xs -> comparison (compareIndex (xs::[Int]))
+  , holds n $ \xs -> isComparison (compareIndex (xs::[Int]))
 
   , partitionByMarkers '#' '*' "" == ("","")
   , partitionByMarkers '#' '*' "abc*def" == ("abc","def")

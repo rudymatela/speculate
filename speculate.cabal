@@ -117,7 +117,7 @@ library
                  , Test.Speculate.Utils.Timeout
                  , Test.Speculate.Utils.Tuple
   build-depends: base >= 4 && < 5
-               , leancheck >= 0.9.1
+               , leancheck >= 0.9.2
                , express >= 0.1.1
                , cmdargs
                , containers

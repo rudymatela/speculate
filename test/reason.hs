@@ -93,34 +93,34 @@ tests n =
 --, holds n $ \(SameTypedPairsE eqs) -> theorize'' eqs == theorize eqs
 
   , holds n $ okThy . deduce
-  , holds n $ idempotent deduce
+  , holds n $ isIdempotent deduce
   , holds n $ \thy -> ((>=) `on` length . equations) (deduce thy) thy
   , holds n $ \thy -> ((==) `on` rules)              (deduce thy) thy
 
   , holds n $ okThy . simplify
-  , holds n $ idempotent simplify
+  , holds n $ isIdempotent simplify
   , holds n $ \thy -> ((<=) `on` length . equations) (simplify thy) thy
   , holds n $ \thy -> ((==) `on` rules)              (simplify thy) thy
 
   , holds n $ okThy . delete
-  , holds n $ idempotent delete
+  , holds n $ isIdempotent delete
   , holds n $ \thy -> ((<=) `on` length . equations) (delete thy) thy
   , holds n $ \thy -> ((==) `on` rules)              (delete thy) thy
 
   , holds n $ okThy . orient
-  , holds n $ idempotent orient
+  , holds n $ isIdempotent orient
   , holds n $ \thy -> ((<=) `on` length . equations) (orient thy) thy
   , holds n $ \thy -> ((>=) `on` length . rules)     (orient thy) thy
   , holds n $ \thy -> length (equations thy)      - length (equations $ orient thy)
                    >= length (rules $ orient thy) - length (rules thy)
 
   , holds n $ okThy . compose
-  , holds n $ idempotent compose
+  , holds n $ isIdempotent compose
   , holds n $ \thy -> ((<=) `on` length . rules)     (compose thy) thy
   , holds n $ \thy -> ((==) `on` equations)          (compose thy) thy
 
   , holds n $ okThy . collapse
-  , holds n $ idempotent collapse
+  , holds n $ isIdempotent collapse
   , holds n $ \thy -> ((<=) `on` length . rules)     (collapse thy) thy
   , holds n $ \thy -> ((>=) `on` length . equations) (collapse thy) thy
 
@@ -144,7 +144,7 @@ tests n =
                $ thy' { keepE = keepUpToLength (max (size e1) (size e2)) }
        in  equivalent thy e1 e2
 
-  , holds n $ idempotent finalize
+  , holds n $ isIdempotent finalize
 
   , criticalPairs emptyThy { rules = [ ((xx -+- yy) -+- zz,xx -+- (yy -+- zz))
                                      , (negate' xx -+- xx, zero) ] }

@@ -4,7 +4,7 @@ packages:
 - .
 
 extra-deps:
-- leancheck-0.9.1
+- leancheck-0.9.2
 - express-0.1.1
 
 flags: {}
