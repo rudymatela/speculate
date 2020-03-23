@@ -12,14 +12,16 @@ set -xe
 cabal sdist &&
 pkg=`find dist* -name $pkgbase.tar.gz`
 tmp=`mktemp -d /tmp/test-sdist-XXXXXXXXXX`
-tar -tf $pkg | sort --ignore-case          > $tmp/ls-cabal-i  &&
-tar -tf $pkg | sort --ignore-case --unique > $tmp/ls-cabal-iu &&
+tar -tf $pkg | sort -u | sort --ignore-case          > $tmp/ls-cabal-i  &&
+tar -tf $pkg | sort -u | sort --ignore-case --unique > $tmp/ls-cabal-iu &&
 diff -rud $tmp/ls-cabal-i $tmp/ls-cabal-iu &&
 if [ -d .git ]
 then
 	# on git repo, test if files are the same
 	git ls-files                                         | sort > $tmp/ls-git   &&
-	tar -tf $pkg | grep -v "/$" | sed -e "s,$pkgbase/,," | sort > $tmp/ls-cabal &&
+	tar -tf $pkg | sort -u | grep -v "/$" | sed -e "s,$pkgbase/,," | sort > $tmp/ls-cabal &&
 	diff -rud $tmp/ls-git $tmp/ls-cabal
 fi
 rm -r $tmp
+# NOTE: above the "sort -u" is only needed because of a bug in cabal:
+# the "plus-abs.hs" file is included twice for some reason...
