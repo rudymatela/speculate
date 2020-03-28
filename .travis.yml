@@ -35,7 +35,7 @@ before_install:
 - cabal install leancheck express cmdargs || cabal install leancheck express cmdargs --lib
 
 script:
-- make && make test-without-extra-deps
+- make && make test
 - make haddock
 - make test-sdist
 - cabal test expr --ghc-option=-O0
@@ -79,7 +79,7 @@ matrix:
     - cabal install Cabal==1.18.*
     - cabal install leancheck express cmdargs
     script:
-    - make && make test-without-extra-deps
+    - make && make test
     - make haddock HADDOCKFLAGS=
     - make test-sdist
     - cabal test

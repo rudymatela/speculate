@@ -24,7 +24,7 @@ TESTS = \
   test/reason \
   test/utils \
   test/stats
-MOSTEG = \
+EG = \
   eg/arith \
   eg/arith-negate-abs \
   eg/bool \
@@ -48,13 +48,12 @@ MOSTEG = \
   eg/tauts \
   eg/monad \
   eg/tuples \
+  eg/speculate-reason \
   bench/arithficial \
   bench/nord \
   bench/unit
-EG = $(MOSTEG) \
+EXTRAEG = \
   eg/regexes \
-  eg/speculate-reason
-EXTRAEG = $(EG) \
   eg/pretty-compact \
   eg/algebraic-graphs
 # regexes needs regex-tdfa, which may break the build
@@ -82,11 +81,8 @@ test: all test-sdist \
   $(patsubst %,%.run,$(TESTS)) \
   $(patsubst %,%.diff-test,$(EG) $(wildcard bench/*-c))
 
-test-without-extra-deps: all $(patsubst %,%.run,$(TESTS)) \
-                             $(patsubst %,%.diff-test,$(MOSTEG) $(wildcard bench/*-c))
-
-test-extra-deps: all $(patsubst %,%.run,$(TESTS)) \
-                     $(patsubst %,%.diff-test,$(EXTRAEG) $(wildcard bench/*-c))
+test-with-extra-deps: all test test-sdist \
+  $(patsubst %,%.diff-test,$(EXTRAEG) $(wildcard bench/*-c))
 
 test-sdist:
 	./test/sdist
