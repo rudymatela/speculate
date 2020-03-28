@@ -39,7 +39,7 @@ script:
 - make haddock
 - make test-sdist
 - cabal test expr --ghc-option=-O0
-- stack --resolver $STACKVER --no-terminal --skip-ghc-check speculate:test:expr test --ghc-options=-O0
+- stack --resolver $STACKVER --no-terminal --skip-ghc-check test speculate:test:expr --ghc-options=-O0
 
 matrix:
   allow_failures:
