@@ -1,13 +1,9 @@
 {-# LANGUAGE TemplateHaskell #-}
 import Test.Speculate
-import Test.Speculate.Expr.Instance (name)
 import Data.Function (on)
 import Control.Monad (unless)
 
 import Algebra.Graph
-
-instance Ord a => Ord (Graph a) where
-  (<=) = isSubgraphOf
 
 -- deriveListable ''Graph {-
 instance (Ord a, Listable a) => Listable (Graph a) where
@@ -18,7 +14,11 @@ instance (Ord a, Listable a) => Listable (Graph a) where
     fromAdjList :: [(a,[a])] -> Graph a
     fromAdjList ness = graph [n | (n,_) <- ness]
                              [(n1,n2) | (n1,n2s) <- ness, n2 <- n2s]
+    graph vs es = foldr overlay empty $ map vertex vs ++ map (uncurry edge) es
 -- -}
+
+instance Name Nat3 where name _ = "x"
+instance Name (Graph a) where name _ = "g1"
 
 main :: IO ()
 main = do
@@ -41,7 +41,6 @@ main = do
         , constant "overlay"   (overlay -:> gr a)
         , constant "connect"   (connect -:> gr a)
         , constant "edge"      (edge    -:> a)
-        , constant "length"    (length  -:> gr a)
         , constant "size"      (size    -:> gr a)
         ]
     , showConditions = False

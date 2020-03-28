@@ -4,10 +4,10 @@ max expr size  =    5
 max  #-tests   = 1080
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: Bool  (holes: Bool)
-_ :: Int  (holes: Int)
-_ :: Nat3  (holes: Nat3)
-_ :: Graph Nat3  (holes: Graph Nat3)
+_ :: Bool
+_ :: Int
+_ :: Nat3
+_ :: Graph Nat3
 0 :: Nat3
 0 :: Int
 True :: Bool
@@ -18,41 +18,37 @@ vertex :: Nat3 -> Graph Nat3
 overlay :: Graph Nat3 -> Graph Nat3 -> Graph Nat3
 connect :: Graph Nat3 -> Graph Nat3 -> Graph Nat3
 edge :: Nat3 -> Nat3 -> Graph Nat3
-length :: Graph Nat3 -> Int
 size :: Graph Nat3 -> Int
 
-    length (vertex i) == length (vertex j)
-      size (vertex i) == length (vertex 0)
-       length (x * y) == length (x + y)
-         size (x * y) == size (x + y)
-length (x + vertex i) == length (x + vertex j)
-  size (x + vertex i) == size (x + vertex j)
-                x + x == x
-            x + empty == x
-            x * empty == x
-            empty * x == x
-                x + y == y + x
-          overlay x y == x + y
-          connect x y == x * y
-            x + x * y == x * y
-            x + y * x == y * x
-             edge i j == vertex i * vertex j
-          (x + y) + z == x + (y + z)
-          (x * y) * z == x * (y * z)
-          x * (x * y) == x * (x + y)
-          (x + y) * x == y * (x * x)
+     size (vertex x) == size empty
+      size (g1 * g2) == size (g1 + g2)
+size (g1 + vertex x) == size (g1 + vertex y)
+             g1 + g1 == g1
+          g1 + empty == g1
+          g1 * empty == g1
+          empty * g1 == g1
+             g1 + g2 == g2 + g1
+       overlay g1 g2 == g1 + g2
+       connect g1 g2 == g1 * g2
+        g1 + g1 * g2 == g1 * g2
+        g1 + g2 * g1 == g2 * g1
+            edge x y == vertex x * vertex y
+      (g1 + g2) + g3 == g1 + (g2 + g3)
+      (g1 * g2) * g3 == g1 * (g2 * g3)
+      g1 * (g1 * g2) == g1 * (g1 + g2)
+      (g1 + g2) * g1 == g2 * (g1 * g1)
 
-         0 <= length x
-         0 <= size x
-  length x <= size x
-size empty <= size x
-  length x <= length (x + y)
-    size x <= size (x + y)
-  length x <= size (y + x)
-size empty <= length (edge i i)
-     empty <= x
-         x <= x + y
-         x <= x * y
-         x <= y * x
-     x + y <= x * y
+         0 <= size g1
+size empty <= size g1
+   size g1 <= size (g1 + g2)
+     empty <= g1
+        g1 <= g1 + g2
+        g1 <= g1 * g2
+        g1 <= g2 * g1
+  vertex 0 <= vertex x
+  edge x x <= edge x y
+  edge x x <= edge y x
+   g1 + g2 <= g1 * g2
+  edge 0 0 <= edge x y
+  edge 0 x <= edge x 0
 

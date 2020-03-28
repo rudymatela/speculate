@@ -2,10 +2,10 @@ max expr size  =    4
 max  #-tests   = 1080
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: Bool  (holes: Bool)
-_ :: Int  (holes: Int)
-_ :: Nat3  (holes: Nat3)
-_ :: Graph Nat3  (holes: Graph Nat3)
+_ :: Bool
+_ :: Int
+_ :: Nat3
+_ :: Graph Nat3
 0 :: Nat3
 0 :: Int
 True :: Bool
@@ -16,36 +16,33 @@ vertex :: Nat3 -> Graph Nat3
 overlay :: Graph Nat3 -> Graph Nat3 -> Graph Nat3
 connect :: Graph Nat3 -> Graph Nat3 -> Graph Nat3
 edge :: Nat3 -> Nat3 -> Graph Nat3
-length :: Graph Nat3 -> Int
 size :: Graph Nat3 -> Int
 
-length (vertex i) == length (vertex j)
-  size (vertex i) == length (vertex 0)
-length (edge i j) == length (edge k i')
-length (edge i j) == size (edge k i')
-   length (x * y) == length (x + y)
-     size (x * y) == size (x + y)
-            x + x == x
-        x + empty == x
-        x * empty == x
-        empty * x == x
-            x + y == y + x
-      overlay x y == x + y
-      connect x y == x * y
+size (vertex x) == size empty
+size (edge x y) == size (edge z x')
+ size (g1 * g2) == size (g1 + g2)
+        g1 + g1 == g1
+     g1 + empty == g1
+     g1 * empty == g1
+     empty * g1 == g1
+        g1 + g2 == g2 + g1
+  overlay g1 g2 == g1 + g2
+  connect g1 g2 == g1 * g2
 
-                0 <= length x
-                0 <= size x
-         length x <= size x
-       size empty <= size x
-         length x <= length (x + y)
-           size x <= size (x + y)
-         length x <= size (y + x)
-length (edge i i) <= size x
-            empty <= x
-                x <= x + y
-                x <= x * y
-                x <= y * x
-         vertex i <= edge i j
-         vertex i <= edge j i
-            x + y <= x * y
+              0 <= size g1
+     size empty <= size g1
+        size g1 <= size (g1 + g2)
+size (edge x x) <= size (g1 + g2)
+          empty <= g1
+             g1 <= g1 + g2
+             g1 <= g1 * g2
+             g1 <= g2 * g1
+       vertex 0 <= vertex x
+       vertex x <= edge x y
+       vertex x <= edge y x
+       edge x x <= edge x y
+       edge x x <= edge y x
+        g1 + g2 <= g1 * g2
+       edge 0 0 <= edge x y
+       edge 0 x <= edge x 0
 
