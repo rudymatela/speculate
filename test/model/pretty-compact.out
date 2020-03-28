@@ -4,10 +4,10 @@ max expr size  =    4
 max  #-tests   =  360
 max  #-vars    =    2  (for inequational and conditional laws)
 
-_ :: Char  (holes: Char)
-_ :: Int  (holes: Int)
-_ :: ODoc Any  (holes: ODoc Any)
-_ :: [Char]  (holes: [Char])
+_ :: Char
+_ :: Int
+_ :: ODoc Any
+_ :: [Char]
 text :: [Char] -> ODoc Any
 char :: Char -> ODoc Any
 flush :: ODoc Any -> ODoc Any
@@ -18,6 +18,10 @@ hang :: Int -> ODoc Any -> ODoc Any -> ODoc Any
 (</>) :: ODoc Any -> ODoc Any -> ODoc Any
 (<//>) :: ODoc Any -> ODoc Any -> ODoc Any
 (<$$>) :: ODoc Any -> ODoc Any -> ODoc Any
+
+Warning: no Listable instance for Any, variables of this type will not be considered
+Warning: no Eq instance for Any, equations of this type will not be considered
+Warning: no Ord instance for Any, inequations of this type will not be considered
 
         d1 $$ d2 == flush d1 <> d2
       d1 <$$> d2 == flush d1 <> d2

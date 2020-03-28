@@ -34,11 +34,11 @@ instance Monoid a => Show (Doc a) where
 da :: Doc Any
 da = undefined
 
-instance Name Doc where name _ = "d1"
+instance Name (Doc a) where name _ = "d1"
 
 main :: IO ()
 main = speculate args
-  { instances = [reifyInstances "d1" da]
+  { instances = [reifyInstances da]
   , showConditions = False
   , maxSize = 4
   , maxTests = 360
