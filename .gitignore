@@ -6,6 +6,7 @@
 dist-newstyle
 **/log/
 .stack-work
+stack.yaml.lock
 
 doc/**/*.html
 doc/**/*.css
