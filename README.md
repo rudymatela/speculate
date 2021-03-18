@@ -93,7 +93,7 @@ For more examples, see the [eg](eg) folder.
 
 (One can use the [TypeApplications] to simplify the above examples:
 `((+) @ Int)` instead of `((+) :: Int -> Int -> Int))`.
-I have chosen to keep the example [Haskell 98] compliant.
+I have chosen to keep the example [Haskell 98] compliant.)
 
 
 Supported types
