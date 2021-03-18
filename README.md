@@ -91,6 +91,10 @@ then run again, we get the following as well:
 
 For more examples, see the [eg](eg) folder.
 
+(One can use the [TypeApplications] to simplify the above examples:
+`((+) @ Int)` instead of `((+) :: Int -> Int -> Int))`.
+I have chosen to keep the example [Haskell 98] compliant.
+
 
 Supported types
 ---------------
@@ -259,6 +263,7 @@ Speculate is also subject to a chapter in a [PhD Thesis (2017)].
 [Haskell 2010 Language Report]:          https://www.haskell.org/onlinereport/haskell2010/
 [Haskell 2010]:                          https://www.haskell.org/onlinereport/haskell2010/
 [Haskell 98]:                            https://www.haskell.org/onlinereport/
+[TypeApplications]:                      https://gitlab.haskell.org/ghc/ghc/-/wikis/type-application
 
 [speculate-logo]: https://github.com/rudymatela/speculate/raw/master/doc/speculate.svg?sanitize=true
 
