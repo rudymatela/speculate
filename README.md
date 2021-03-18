@@ -191,7 +191,7 @@ Not having the reified instances for a given type will cause the following warni
 	Warning: no Ord instance for <YourTypeHere>, inequations of this type will not be considered
 	Warning: no Ord instance for <YourTypeHere>, inequations of this type will not be considered
 
-You can solve it by following the instructions above.
+You can silence the above warnings by following the instructions above.
 However, it may be the case that you don't want variables, equations or comparisons for a given type.
 If that is so, you can ignore these warnings.
 
@@ -205,7 +205,7 @@ Haskell functions.  There are some differences:
 
 * Speculate tests enumeratively using [LeanCheck],
   QuickSpec tests randomly using [QuickCheck];
-* Speculate is able to report inequalities directly;
+* Speculate is able to report comparisons directly;
 * QuickSpec allows polymorphism, Speculate does not;
 * For most examples,
   Speculate runs slower than QuickSpec 2
