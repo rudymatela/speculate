@@ -104,11 +104,13 @@ expansions is n e =
 
 -- | List the most general assignment of holes in an expression
 mostGeneral :: Expr -> Expr
-mostGeneral = head . fastCanonicalVariations -- TODO: make this efficient
+mostGeneral = head . fastCanonicalVariations
+-- TODO: use mostGeneralCanonicalVariation from Express after its next release
 
 -- | List the most specific assignment of holes in an expression
 mostSpecific :: Expr -> Expr
-mostSpecific = last . fastCanonicalVariations -- TODO: make this efficient
+mostSpecific = last . fastCanonicalVariations
+-- TODO: use mostSpecificCanonicalVariation from Express after its next release
 
 rehole :: Expr -> Expr
 rehole (e1 :$ e2)    = rehole e1 :$ rehole e2

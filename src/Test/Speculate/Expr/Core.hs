@@ -96,6 +96,8 @@ fill e = fst . fill' e
                         in (e1' :$ e2', es'')
   fill' eh (e:es) | isHole eh && typ eh == typ e = (e,es)
   fill' e es = (e,es)
+-- TODO: use fill provided by Express after its next release,
+--       it's the same as this one (2021-04-06).
 
 unify :: Expr -> Expr -> Maybe Expr
 unify e1 e2 = (e1 //-) <$> unification e1 e2
