@@ -36,44 +36,26 @@ _:tail _ :: [Int]
 _:tail [] :: [Int]
 _ ++ tail _ :: [Int]
 _ ++ tail [] :: [Int]
-[] ++ tail _ :: [Int]
-[] ++ tail [] :: [Int]
 head _:_ :: [Int]
 [head _] :: [Int]
 head []:_ :: [Int]
 [head []] :: [Int]
 tail _ ++ _ :: [Int]
-tail _ ++ [] :: [Int]
 tail [] ++ _ :: [Int]
-tail [] ++ [] :: [Int]
 head (tail (tail (tail _))) :: Int
 head (tail (tail (tail []))) :: Int
 head (tail (_ ++ _)) :: Int
 head (_ ++ tail _) :: Int
 head (_ ++ tail []) :: Int
-head ([] ++ tail _) :: Int
-head ([] ++ tail []) :: Int
-head (head _:_) :: Int
-head [head _] :: Int
-head (head []:_) :: Int
-head [head []] :: Int
 head (tail _ ++ _) :: Int
-head (tail _ ++ []) :: Int
 head (tail [] ++ _) :: Int
-head (tail [] ++ []) :: Int
 tail (tail (tail (tail _))) :: [Int]
 tail (tail (tail (tail []))) :: [Int]
 tail (tail (_ ++ _)) :: [Int]
-tail (_:tail _) :: [Int]
-tail (_:tail []) :: [Int]
 tail (_ ++ tail _) :: [Int]
 tail (_ ++ tail []) :: [Int]
-tail ([] ++ tail _) :: [Int]
-tail ([] ++ tail []) :: [Int]
 tail (tail _ ++ _) :: [Int]
-tail (tail _ ++ []) :: [Int]
 tail (tail [] ++ _) :: [Int]
-tail (tail [] ++ []) :: [Int]
 _:tail (tail _) :: [Int]
 _:tail (tail []) :: [Int]
 _:_:_ :: [Int]
@@ -84,8 +66,6 @@ _ ++ tail (tail []) :: [Int]
 _ ++ (_:_) :: [Int]
 _ ++ [_] :: [Int]
 _ ++ (_ ++ _) :: [Int]
-[] ++ tail (tail _) :: [Int]
-[] ++ tail (tail []) :: [Int]
 head _:tail _ :: [Int]
 head _:tail [] :: [Int]
 head []:tail _ :: [Int]
@@ -99,9 +79,7 @@ head (tail _):_ :: [Int]
 head (tail []):_ :: [Int]
 [head (tail [])] :: [Int]
 tail (tail _) ++ _ :: [Int]
-tail (tail _) ++ [] :: [Int]
 tail (tail []) ++ _ :: [Int]
-tail (tail []) ++ [] :: [Int]
 
 x :: Int
 xs :: [Int]
@@ -771,7 +749,7 @@ tail (tail []) ++ xs :: [Int]
 tail (tail []) ++ ys :: [Int]
 tail (tail []) ++ zs :: [Int]
 
-Number of Eq schema classes: 90
+Number of Eq schema classes: 68
 Number of Eq 1-var classes: 68
 Number of Eq 2-var classes: 191
 Number of Eq 3-var classes: 406

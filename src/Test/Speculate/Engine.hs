@@ -158,20 +158,21 @@ theoryAndRepresentativesFromAtoms sz cmp keep (===) dss =
 -- considers a schema
 consider :: (Expr -> Expr -> Bool) -> Int -> Expr -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
 consider (===) sz s (thy,sss)
-  | not (s === s) = (thy,sssWs)  -- uncomparable type
-  | rehole (normalizeE thy (fastMostGeneralVariation s)) `elem` ss = (thy,sss)
+  | ns `elem` ss = (thy,sss)
+  | not (ns === ns) = (thy,sssWs)  -- uncomparable type
   | otherwise =
-    ( append thy $ equivalencesBetween (-===-) s s ++ eqs
+    ( append thy $ equivalencesBetween (-===-) ns ns ++ eqs
     , if any (\(e1,e2) -> unrepeatedVars e1 && unrepeatedVars e2) eqs
         then sss
         else sssWs )
-    where
-    e1 -===- e2  =  normalize thy e1 == normalize thy e2 || e1 === e2
-    ss = uptoT sz sss
-    sssWs = sss \/ wcons0 sz s
-    eqs = concatMap (equivalencesBetween (-===-) s) $ filter (s ===) ss
-    wcons0 :: Int -> a -> [[a]]
-    wcons0 n s = replicate (n-1) [] ++ [[s]]
+  where
+  ns = rehole $ normalizeE thy (fastMostGeneralVariation s)
+  e1 -===- e2  =  normalize thy e1 == normalize thy e2 || e1 === e2
+  ss = uptoT sz sss
+  sssWs = sss \/ wcons0 sz s
+  eqs = concatMap (equivalencesBetween (-===-) s) $ filter (s ===) ss
+  wcons0 :: Int -> a -> [[a]]
+  wcons0 n s = replicate (n-1) [] ++ [[s]]
 
 distinctFromSchemas :: Instances -> Int -> Int -> Thy -> [Expr] -> [Expr]
 distinctFromSchemas ti nt nv thy = map C.rep . classesFromSchemas ti nt nv thy
