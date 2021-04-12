@@ -1077,8 +1077,6 @@ src/Test/Speculate/Engine.o: \
   src/Test/Speculate/Expr/Core.hs \
   src/Test/Speculate/Engine.hs \
   src/Test/Speculate/CondReason.hs
-src/Test/Speculate/Expr/Core: \
-  mk/toplibs
 src/Test/Speculate/Expr/Core.o: \
   src/Test/Speculate/Utils/List.hs \
   src/Test/Speculate/Expr/Core.hs
