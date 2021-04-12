@@ -4,11 +4,11 @@ import Test.Speculate hiding (Name(..))
 import qualified Test.Speculate as S
 import Taut hiding (main)
 
-deriveListable ''Prop
 deriveListable ''Name
+deriveListable ''Prop
 
-deriving instance Typeable Prop
 deriving instance Typeable Name
+deriving instance Typeable Prop
 
 prop :: Prop
 prop = undefined
