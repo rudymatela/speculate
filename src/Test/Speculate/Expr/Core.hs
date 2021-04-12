@@ -23,7 +23,6 @@ module Test.Speculate.Expr.Core
 
   -- * Assigning
   , Binds
-  , fill
 
   -- * Matching
   , unify
@@ -83,21 +82,6 @@ e@(Value n' _) `isConstantNamed` n = isConst e && n' == n
 _ `isConstantNamed` _ = False
 
 type Binds = [(Expr,Expr)]
-
--- | Fill holes in an expression.
---   Silently skips holes that are not of the right type.
---   Silently discard remaining expressions.
-fill :: Expr -> [Expr] -> Expr
-fill e = fst . fill' e
-  where
-  fill' :: Expr -> [Expr] -> (Expr,[Expr])
-  fill' (e1 :$ e2) es = let (e1',es')  = fill' e1 es
-                            (e2',es'') = fill' e2 es'
-                        in (e1' :$ e2', es'')
-  fill' eh (e:es) | isHole eh && typ eh == typ e = (e,es)
-  fill' e es = (e,es)
--- TODO: use fill provided by Express after its next release,
---       it's the same as this one (2021-04-06).
 
 unify :: Expr -> Expr -> Maybe Expr
 unify e1 e2 = (e1 //-) <$> unification e1 e2
