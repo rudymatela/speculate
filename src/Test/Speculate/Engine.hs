@@ -11,8 +11,6 @@ module Test.Speculate.Engine
   ( expansions
   , expansionsOfType
   , expansionsWith
-  , mostGeneral
-  , mostSpecific
 
   , theoryAndRepresentativesFromAtoms
   , representativesFromAtoms
@@ -102,16 +100,6 @@ expansions is n e =
     (h,c):_ -> expansions is n `concatMap`
                expansionsOfType h (take n (lookupNames is h)) e
 
--- | List the most general assignment of holes in an expression
-mostGeneral :: Expr -> Expr
-mostGeneral = head . fastCanonicalVariations
--- TODO: use mostGeneralCanonicalVariation from Express after its next release
-
--- | List the most specific assignment of holes in an expression
-mostSpecific :: Expr -> Expr
-mostSpecific = last . fastCanonicalVariations
--- TODO: use mostSpecificCanonicalVariation from Express after its next release
-
 rehole :: Expr -> Expr
 rehole (e1 :$ e2)    = rehole e1 :$ rehole e2
 rehole e | isVar e   = "" `varAsTypeOf` e
@@ -171,7 +159,7 @@ theoryAndRepresentativesFromAtoms sz cmp keep (===) dss =
 consider :: (Expr -> Expr -> Bool) -> Int -> Expr -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
 consider (===) sz s (thy,sss)
   | not (s === s) = (thy,sssWs)  -- uncomparable type
-  | rehole (normalizeE thy (mostGeneral s)) `elem` ss = (thy,sss)
+  | rehole (normalizeE thy (fastMostGeneralVariation s)) `elem` ss = (thy,sss)
   | otherwise =
     ( append thy $ equivalencesBetween (-===-) s s ++ eqs
     , if any (\(e1,e2) -> unrepeatedVars e1 && unrepeatedVars e2) eqs
