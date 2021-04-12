@@ -135,6 +135,9 @@ rehole e | isVar e   = "" `varAsTypeOf` e
 -- >     }
 theoryFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [[Expr]] -> Thy
 theoryFromAtoms sz cmp keep (===) = fst . theoryAndRepresentativesFromAtoms sz cmp keep (===)
+-- TODO: eliminate two arguments:
+-- * cmp can default to use order of appearance
+-- * keep can default to "const True"
 
 representativesFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [[Expr]] -> [[Expr]]
 representativesFromAtoms sz cmp keep (===) = snd . theoryAndRepresentativesFromAtoms sz cmp keep (===)
