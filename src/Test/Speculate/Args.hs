@@ -234,7 +234,6 @@ compareExpr  =  compareComplexityThenIndex . concat . atoms
 -- NOTE: "concat $ atoms args" may be an infinite list.  This function assumes
 -- that the symbols will appear on the list eventually for termination.  If I
 -- am correct this ivariant is assured by the rest of the code.
--- TODO: eventually remove this function after refactoring Report
 
 constant :: Typeable a => String -> a -> Expr
 constant = value
