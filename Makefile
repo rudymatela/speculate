@@ -51,6 +51,7 @@ EG = \
   eg/speculate-reason \
   bench/arithficial \
   bench/nord \
+  bench/trilean \
   bench/unit
 EXTRAEG = \
   eg/regexes \

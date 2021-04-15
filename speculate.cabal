@@ -91,6 +91,7 @@ library
   exposed-modules: Test.Speculate
                  , Test.Speculate.Args
                  , Test.Speculate.Function
+                 , Test.Speculate.Function.A10
                  , Test.Speculate.Function.A100
                  , Test.Speculate.Function.A1000
                  , Test.Speculate.Report
