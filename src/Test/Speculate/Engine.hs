@@ -15,6 +15,9 @@ module Test.Speculate.Engine
   , theoryAndRepresentativesFromAtoms
   , representativesFromAtoms
   , theoryFromAtoms
+  , theoryAndRepresentativesFromAtomsKeeping
+  , representativesFromAtomsKeeping
+  , theoryFromAtomsKeeping
   , equivalencesBetween
 
   , consider
@@ -121,13 +124,20 @@ rehole e | isVar e   = "" `varAsTypeOf` e
 -- >     , closureLimit = 2
 -- >     , keepE = keepUpToLength 5
 -- >     }
-theoryFromAtoms :: Int -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [[Expr]] -> Thy
-theoryFromAtoms sz keep (===)  =  fst . theoryAndRepresentativesFromAtoms sz keep (===)
--- TODO: eliminate one arguments:
--- * keep can default to "const True"
+theoryFromAtoms :: (Expr -> Expr -> Bool) -> Int -> [[Expr]] -> Thy
+theoryFromAtoms  =  theoryFromAtomsKeeping (const True)
 
-representativesFromAtoms :: Int -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [[Expr]] -> [[Expr]]
-representativesFromAtoms sz keep (===)  =  snd . theoryAndRepresentativesFromAtoms sz keep (===)
+representativesFromAtoms :: (Expr -> Expr -> Bool) -> Int -> [[Expr]] -> [[Expr]]
+representativesFromAtoms  =  representativesFromAtomsKeeping (const True)
+
+theoryAndRepresentativesFromAtoms :: (Expr -> Expr -> Bool) -> Int -> [[Expr]] -> (Thy,[[Expr]])
+theoryAndRepresentativesFromAtoms  =  theoryAndRepresentativesFromAtomsKeeping (const True)
+
+theoryFromAtomsKeeping :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> Int -> [[Expr]] -> Thy
+theoryFromAtomsKeeping keep (===) sz  =  fst . theoryAndRepresentativesFromAtomsKeeping keep (===) sz
+
+representativesFromAtomsKeeping :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> Int -> [[Expr]] -> [[Expr]]
+representativesFromAtomsKeeping keep (===) sz  =  snd . theoryAndRepresentativesFromAtomsKeeping keep (===) sz
 
 expand :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> Int -> [Expr] -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
 expand keep (===) sz ss (thy,sss) = (complete *** id)
@@ -141,10 +151,9 @@ expand keep (===) sz ss (thy,sss) = (complete *** id)
 
 -- | Given atomic expressions, compute theory and representative schema
 --   expressions.  (cf. 'theoryFromAtoms')
-theoryAndRepresentativesFromAtoms :: Int
-                                  -> (Expr -> Bool) -> (Expr -> Expr -> Bool)
-                                  -> [[Expr]] -> (Thy,[[Expr]])
-theoryAndRepresentativesFromAtoms sz keep (===) dss  =
+theoryAndRepresentativesFromAtomsKeeping :: (Expr -> Bool) -> (Expr -> Expr -> Bool)
+                                         -> Int -> [[Expr]] -> (Thy,[[Expr]])
+theoryAndRepresentativesFromAtomsKeeping keep (===) sz dss  =
   chain [expand keep (===) sz' (dss ! (sz'-1)) | sz' <- reverse [1..sz]] (iniThy,[])
   where
   iniThy = emptyThy { keepE = keepUpToLength sz
