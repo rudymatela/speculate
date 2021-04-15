@@ -23,7 +23,6 @@ module Test.Speculate.Args
   , computeInstances
   , types
   , atoms
-  , compareExpr
   , keepExpr
   , timeout
   , shouldShowEquation
@@ -228,12 +227,6 @@ e `about` es = nubConsts e `areAny` (`elem` es)
 timeout :: Args -> Bool -> Bool
 timeout Args{evalTimeout = Nothing} = id
 timeout Args{evalTimeout = Just t}  = timeoutToFalse t
-
-compareExpr :: Args -> Expr -> Expr -> Ordering
-compareExpr  =  compareComplexityThenIndex . concat . atoms
--- NOTE: "concat $ atoms args" may be an infinite list.  This function assumes
--- that the symbols will appear on the list eventually for termination.  If I
--- am correct this ivariant is assured by the rest of the code.
 
 constant :: Typeable a => String -> a -> Expr
 constant = value

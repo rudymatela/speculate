@@ -242,13 +242,11 @@ semiTheoryFromThyAndReps ti nt nv thy =
   . filter (isOrd ti)
 
 conditionalTheoryFromThyAndReps :: Instances
-                                -> (Expr -> Expr -> Ordering)
                                 -> Int -> Int -> Int
                                 -> Thy -> [Expr] -> Chy
-conditionalTheoryFromThyAndReps ti cmp nt nv csz thy es' =
+conditionalTheoryFromThyAndReps ti nt nv csz thy es' =
   conditionalEquivalences
-    cmp
-    (canonicalCEqnBy cmp ti)
+    (canonicalCEqnBy (compareE thy) ti)
     (condEqual ti nt)
     (lessOrEqual ti nt)
     csz thy clpres cles
@@ -258,15 +256,14 @@ conditionalTheoryFromThyAndReps ti cmp nt nv csz thy es' =
                 . filter (isEq ti . fst)
                 $ classesFromSchemas ti nt nv thy es'
 
-conditionalEquivalences :: (Expr -> Expr -> Ordering)
-                        -> ((Expr,Expr,Expr) -> Bool)
+conditionalEquivalences :: ((Expr,Expr,Expr) -> Bool)
                         -> (Expr -> Expr -> Expr -> Bool)
                         -> (Expr -> Expr -> Bool)
                         -> Int -> Thy -> [Class Expr] -> [Class Expr] -> Chy
-conditionalEquivalences cmp canon cequal (==>) csz thy clpres cles =
+conditionalEquivalences canon cequal (==>) csz thy clpres cles =
     cdiscard (\(ce,e1,e2) -> subConsequence thy clpres ce e1 e2)
   . foldl (flip cinsert) (Chy [] cdg clpres thy)
-  . sortBy (cmp `on` foldTrio)
+  . sortBy (compareE thy `on` foldTrio)
   . discard (\(pre,e1,e2) -> pre == val False
                           || length (nubVars pre \\ (nubVars e1 +++ nubVars e2)) > 0
                           || subConsequence thy [] pre e1 e2)

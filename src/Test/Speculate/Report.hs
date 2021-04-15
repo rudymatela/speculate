@@ -50,7 +50,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
   when (showTheory args)       . putStrLn $ showThy thy
   let shy = semiTheoryFromThyAndReps ti n (maxVars args) thy
           $ filter (\e -> size e <= computeMaxSemiSize args) es
-  let chy = conditionalTheoryFromThyAndReps ti (compareExpr args) n (maxVars args) (computeMaxCondSize args) thy es
+  let chy = conditionalTheoryFromThyAndReps ti n (maxVars args) (computeMaxCondSize args) thy es
   let equations     = finalEquations     (shouldShowEquation args) ti                          thy
   let semiEquations = finalSemiEquations (shouldShowEquation args) ti (equivalentInstance thy) shy
   let condEquations = finalCondEquations (shouldShowConditionalEquation args)                  chy
