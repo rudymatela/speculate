@@ -14,6 +14,7 @@ module Test.Speculate.Expr.Core
   -- * Order
   , lexicompare
   , lexicompareBy
+  , compareComplexityThenIndex
   , fastCompare
 
   -- * Properties
@@ -34,11 +35,11 @@ where
 
 import Data.Express
 import Data.Express.Utils.Typeable
-import Test.Speculate.Utils.List
+import Test.Speculate.Utils
 import Data.Monoid ((<>))
 import Data.Functor ((<$>)) -- for GHC <= 7.8
 
--- faster comparison, to be used when nubSorting Expr values
+-- | Faster comparison, to be used when 'nubSort'ing 'Expr' values
 fastCompare :: Expr -> Expr -> Ordering
 fastCompare  =  cmp
   where
@@ -48,12 +49,14 @@ fastCompare  =  cmp
   x@(Value n1 _) `cmp` y@(Value n2 _)  =  typ x `compareTy` typ y
                                        <> n1 `compare` n2
 
--- | True lexicographical comparison of two 'Expr's
+-- | Lexicographical comparison of 'Expr's
+--   where variables < constants < applications.
 lexicompare :: Expr -> Expr -> Ordering
 lexicompare = lexicompareBy compare
 
--- | Lexicographical comparison of two 'Expr's
---   but disambiguates atoms by the given function.
+-- | Lexicographical comparison of 'Expr's
+--   where variables < constants < applications and
+--   constants are disambiguated by the given function.
 lexicompareBy :: (Expr -> Expr -> Ordering) -> Expr -> Expr -> Ordering
 lexicompareBy compareConstants  =  cmp
   where
@@ -67,7 +70,17 @@ lexicompareBy compareConstants  =  cmp
     (False, True)  -> GT
     (True,  False) -> LT
     (False, False) -> e1 `compareConstants` e2
-  -- Var < Constants < Apps
+
+-- | Comparison of 'Expr's:
+--
+-- 1. 'compareComplexity' from 'Data.Express'
+-- 2. 'lexicompareBy' index of the given list
+compareComplexityThenIndex :: [Expr] -> Expr -> Expr -> Ordering
+compareComplexityThenIndex as  =  compareComplexity <> lexicompareBy cmp
+  where
+  e1 `cmp` e2 | arity e1 == 0 && arity e2 /= 0 = LT
+  e1 `cmp` e2 | arity e1 /= 0 && arity e2 == 0 = GT
+  e1 `cmp` e2 = compareIndex as e1 e2 <> e1 `compare` e2
 
 countVars :: Expr -> [(Expr,Int)]
 countVars e = map (\e' -> (e',length . filter (== e') $ vars e)) $ nubVars e
