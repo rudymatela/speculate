@@ -32,7 +32,7 @@ report args@Args {maxSize = sz, maxTests = n} = do
   let ti = computeInstances args
   let ats = types args
   let dss = atoms args
-  let (thy,ess) = theoryAndRepresentativesFromAtoms sz (compareExpr args) (keepExpr args) (timeout args .: equal ti n) dss
+  let (thy,ess) = theoryAndRepresentativesFromAtoms sz (keepExpr args) (timeout args .: equal ti n) dss
   let es = uptoT sz ess
   putArgs args
   -- TODO: somehow show the tail of dss, maybe use "..."

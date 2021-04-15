@@ -110,7 +110,7 @@ rehole e | isVar e   = "" `varAsTypeOf` e
 
 -- | Computes a theory from atomic expressions.  Example:
 --
--- > > theoryFromAtoms 5 compare (const True) (equal preludeInstances 100)
+-- > > theoryFromAtoms 5 (const True) (equal preludeInstances 100)
 -- > >   [hole (undefined :: Int),constant "+" ((+) :: Int -> Int -> Int)]
 -- > Thy { rules = [ (x + y) + z == x + (y + z) ]
 -- >     , equations = [ y + x == x + y
@@ -121,14 +121,13 @@ rehole e | isVar e   = "" `varAsTypeOf` e
 -- >     , closureLimit = 2
 -- >     , keepE = keepUpToLength 5
 -- >     }
-theoryFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [[Expr]] -> Thy
-theoryFromAtoms sz cmp keep (===) = fst . theoryAndRepresentativesFromAtoms sz cmp keep (===)
--- TODO: eliminate two arguments:
--- * cmp can default to use order of appearance
+theoryFromAtoms :: Int -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [[Expr]] -> Thy
+theoryFromAtoms sz keep (===)  =  fst . theoryAndRepresentativesFromAtoms sz keep (===)
+-- TODO: eliminate one arguments:
 -- * keep can default to "const True"
 
-representativesFromAtoms :: Int -> (Expr -> Expr -> Ordering) -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [[Expr]] -> [[Expr]]
-representativesFromAtoms sz cmp keep (===) = snd . theoryAndRepresentativesFromAtoms sz cmp keep (===)
+representativesFromAtoms :: Int -> (Expr -> Bool) -> (Expr -> Expr -> Bool) -> [[Expr]] -> [[Expr]]
+representativesFromAtoms sz keep (===)  =  snd . theoryAndRepresentativesFromAtoms sz keep (===)
 
 expand :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> Int -> [Expr] -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
 expand keep (===) sz ss (thy,sss) = (complete *** id)
@@ -141,12 +140,11 @@ expand keep (===) sz ss (thy,sss) = (complete *** id)
   fes *$* xes = filter keep $ catMaybes [fe $$ xe | fe <- fes, xe <- xes]
 
 -- | Given atomic expressions, compute theory and representative schema
---   expressions.
+--   expressions.  (cf. 'theoryFromAtoms')
 theoryAndRepresentativesFromAtoms :: Int
-                                  -> (Expr -> Expr -> Ordering)
                                   -> (Expr -> Bool) -> (Expr -> Expr -> Bool)
                                   -> [[Expr]] -> (Thy,[[Expr]])
-theoryAndRepresentativesFromAtoms sz cmp keep (===) dss =
+theoryAndRepresentativesFromAtoms sz keep (===) dss  =
   chain [expand keep (===) sz' (dss ! (sz'-1)) | sz' <- reverse [1..sz]] (iniThy,[])
   where
   iniThy = emptyThy { keepE = keepUpToLength sz
@@ -154,6 +152,10 @@ theoryAndRepresentativesFromAtoms sz cmp keep (===) dss =
                     , canReduceTo = dwoBy (\e1 e2 -> e1 `cmp` e2 == GT)
                     , compareE = cmp
                     }
+  cmp  =  compareComplexityThenIndex (concat dss)
+  -- NOTE: "concat dss" may be an infinite list.  This function assumes that
+  -- the symbols will appear on the list eventually for termination.  If I am
+  -- correct, this invariant is assured by the rest of the code.
 
 -- considers a schema
 consider :: (Expr -> Expr -> Bool) -> Int -> Expr -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
