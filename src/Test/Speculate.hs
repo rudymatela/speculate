@@ -52,6 +52,7 @@ module Test.Speculate
   , reifyOrd
   , reifyEqOrd
   , reifyListable
+  , reifyName
   , mkEq
   , mkOrd
   , mkOrdLessEqual
@@ -87,6 +88,7 @@ import Test.Speculate.Expr
   , reifyOrd
   , reifyEqOrd
   , reifyListable
+  , reifyName
   , mkEq
   , mkOrd
   , mkOrdLessEqual
