@@ -48,9 +48,12 @@ fastCompare  =  cmp
   x@(Value n1 _) `cmp` y@(Value n2 _)  =  typ x `compareTy` typ y
                                        <> n1 `compare` n2
 
+-- | True lexicographical comparison of two 'Expr's
 lexicompare :: Expr -> Expr -> Ordering
 lexicompare = lexicompareBy compare
 
+-- | Lexicographical comparison of two 'Expr's
+--   but disambiguates atoms by the given function.
 lexicompareBy :: (Expr -> Expr -> Ordering) -> Expr -> Expr -> Ordering
 lexicompareBy compareConstants  =  cmp
   where
