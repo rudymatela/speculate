@@ -234,8 +234,7 @@ compareExpr args = compareComplexity <> lexicompareBy cmp
   where
   e1 `cmp` e2 | arity e1 == 0 && arity e2 /= 0 = LT
   e1 `cmp` e2 | arity e1 /= 0 && arity e2 == 0 = GT
-  e1 `cmp` e2 = compareIndex (exprPair:concat (atoms args)) e1 e2 <> e1 `compare` e2
-  exprPair = head . unfoldApp $ foldPair (val (), val ())
+  e1 `cmp` e2 = compareIndex (concat (atoms args)) e1 e2 <> e1 `compare` e2
 -- NOTE: "concat $ atoms args" may be an infinite list.  This function assumes
 -- that the symbols will appear on the list eventually for termination.  If I
 -- am correct this ivariant is assured by the rest of the code.
