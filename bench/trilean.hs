@@ -50,11 +50,15 @@
 -- however you will lose interesting equations if you do that
 -- so it does not pay off.
 
+{-# Language DeriveDataTypeable, StandaloneDeriving #-}  -- for GHC <= 7.8
+
 import Test.Speculate hiding ((|||), (&&&))
 import Test.Speculate.Function.A10
 import Test.LeanCheck.Function.ShowFunction
 
 data Tril = M | F | T deriving (Show, Eq, Ord)
+
+deriving instance Typeable Tril  -- for GHC <= 7.8
 
 instance Listable Tril where
   tiers  =  cons0 F
