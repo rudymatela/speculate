@@ -11,26 +11,8 @@ F :: Tril
 T :: Tril
 neg :: Tril -> Tril
 (&&&) :: Tril -> Tril -> Tril
-(|||) :: Tril -> Tril -> Tril
 
-    p &&& p == p
-    p ||| p == p
-neg (neg p) == p
-    p &&& T == p
-    p ||| F == p
-    p &&& M == M
-    p ||| M == M
-    p &&& q == q &&& p
-    p ||| q == q ||| p
-p &&& neg p == p &&& F
-neg p &&& F == p &&& F
-    p ||| T == neg (p &&& F)
-p ||| neg p == neg (p &&& F)
+p == M
 
-      p <= T
-      M <= p
-p &&& q <= p
-      p <= p ||| T
-p &&& q <= p ||| q
-p ||| q <= p ||| T
+M <= p
 

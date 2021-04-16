@@ -11,41 +11,8 @@ F :: Tril
 T :: Tril
 neg :: Tril -> Tril
 (&&&) :: Tril -> Tril -> Tril
-(|||) :: Tril -> Tril -> Tril
 
-        p &&& p == p
-        p ||| p == p
-    neg (neg p) == p
-        p &&& T == p
-        p ||| F == p
-        p &&& M == M
-        p ||| M == M
-        p &&& q == q &&& p
-        p ||| q == q ||| p
-    p &&& neg p == p &&& F
-    F &&& neg p == F &&& p
-        p ||| T == neg (p &&& F)
-  neg (p ||| q) == neg p &&& neg q
-    p ||| neg q == neg (q &&& neg p)
-(p &&& q) &&& r == p &&& (q &&& r)
-(p ||| q) ||| r == p ||| (q ||| r)
-p ||| (p &&& q) == p &&& (p ||| q)
-p ||| (q &&& F) == p &&& (p ||| q)
-F &&& (p ||| q) == p &&& (q &&& F)
+p == M
 
-            p <= T
-            M <= p
-      p &&& q <= p
-            p <= p ||| T
-        neg p <= p ||| T
-      p &&& F <= neg p
-      p &&& q <= p ||| q
-      p ||| q <= p ||| T
-      p &&& q <= p ||| neg q
-  p &&& neg q <= p ||| q
-  p ||| neg q <= q ||| T
-neg (p &&& q) <= p ||| T
-neg (p ||| q) <= p ||| neg q
-  p &&& neg q <= neg (p &&& q)
-neg (p ||| q) <= neg (p &&& q)
+M <= p
 

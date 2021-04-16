@@ -21,8 +21,3 @@ A list of things to do for Speculate.
   the expensive thing.  But it does not pay off to test x + y = z + w before
   testing x + y = y + x.  The second needs to hold for the first to hold.  And,
   it will be far more common!
-
-* (performance and interface): actually compute what happens with
-  undefined values.  e.g.: head [] == undefined.  This will/may make things
-  faster as we can prune foo (head []) or head [] ++ head [], which are also
-  undefined.
