@@ -157,12 +157,12 @@ normalize Thy {rules = rs} = n
 
 -- normalize by rules and equations
 normalizeE :: Thy -> Expr -> Expr
-normalizeE Thy {rules = rs, equations = eqs, canReduceTo = (->-) } = n
+normalizeE thy@(Thy {equations = eqs, canReduceTo = (->-)})  =  n1
   where
-  n e = case concatMap (e `reductions1`) rs
-          ++ filter (e ->-) (concatMap (e `reductions1`) $ eqs ++ map swap eqs) of
-          []     -> e -- already normalized
-          (e':_) -> n e'
+  n1  =  n2 . normalize thy
+  n2 e = case filter (e ->-) (concatMap (e `reductions1`) $ eqs ++ map swap eqs) of
+         []     -> e -- already normalized
+         (e':_) -> n1 e'
 
 isNormal :: Thy -> Expr -> Bool
 isNormal thy e = normalizeE thy e == e
