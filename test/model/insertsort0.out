@@ -22,7 +22,7 @@ False :: Bool
 
    (xs == insert x xs) == False
    ([] == insert x xs) == False
-       (sort xs == []) == (xs == [])
+            (xs == []) == ([] == sort xs)
                sort [] == []
         sort (sort xs) == sort xs
            insert x [] == [x]

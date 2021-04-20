@@ -28,7 +28,7 @@ sort :: [Int] -> [Int]
 ordered (insert x xs) == ordered xs
       (xs == sort xs) == ordered xs
      elem x (sort xs) == elem x xs
-      (sort xs == []) == (xs == [])
+           (xs == []) == ([] == sort xs)
        sort (sort xs) == sort xs
           insert x [] == [x]
       sort (xs ++ ys) == sort (ys ++ xs)

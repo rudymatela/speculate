@@ -169,15 +169,14 @@ theoryAndRepresentativesFromAtomsKeeping keep (===) sz dss  =
 -- considers a schema
 consider :: (Expr -> Expr -> Bool) -> Int -> Expr -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
 consider (===) sz s (thy,sss)
-  | ns `elem` ss = (thy,sss)
-  | not (ns === ns) = (thy,sssWs)  -- uncomparable type
+  | not (isRootNormalE thy $ fastMostGeneralVariation s)  =  (thy,sss)
+  | not (s === s) = (thy,sssWs)  -- uncomparable type
   | otherwise =
-    ( append thy $ equivalencesBetween (-===-) ns ns ++ eqs
+    ( append thy $ equivalencesBetween (-===-) s s ++ eqs
     , if any (\(e1,e2) -> unrepeatedVars e1 && unrepeatedVars e2) eqs
         then sss
         else sssWs )
   where
-  ns = rehole $ normalizeE thy (fastMostGeneralVariation s)
   e1 -===- e2  =  normalize thy e1 == normalize thy e2 || e1 === e2
   ss = uptoT sz sss
   sssWs = sss \/ wcons0 sz s

@@ -13,6 +13,8 @@ module Test.Speculate.Reason
   , normalize
   , normalizeE
   , isNormal
+  , isRootNormal
+  , isRootNormalE
   , complete
   , equivalent
   , equivalentInstance
@@ -166,6 +168,19 @@ normalizeE thy@(Thy {equations = eqs, canReduceTo = (->-)})  =  n1
 
 isNormal :: Thy -> Expr -> Bool
 isNormal thy e = normalizeE thy e == e
+
+isRootNormal :: Thy -> Expr -> Bool
+isRootNormal thy e  =  none (e `isInstanceOf`) $ map fst (rules thy)
+  where
+  none p  =  not . any p
+
+isRootNormalE :: Thy -> Expr -> Bool
+isRootNormalE thy e  =  isRootNormal thy e
+                    &&  null (filter (e ->-) . mapMaybe (reduceRoot e) $ equations thy ++ map swap (equations thy))
+  where
+  (->-)  =  canReduceTo thy
+  reduceRoot e (e1,e2) = (e2 //-) <$> (e `match` e1)
+
 
 reduceRoot :: Expr -> Rule -> Maybe Expr
 reduceRoot e (e1,e2) = (e2 //-) <$> (e `match` e1)
