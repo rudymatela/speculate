@@ -3,6 +3,8 @@ TODO
 
 A list of things to do for Speculate.
 
+* remove lexicompare as it is already exported by Express
+
 * simpilfy "bench" handing.  Do like in LeanCheck and Extrapolate.
 
 * (code readability) review and document code
