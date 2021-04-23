@@ -4,5 +4,5 @@ packages:
 - .
 
 extra-deps:
-- leancheck-0.9.3
-- express-0.1.4
+- leancheck-0.9.4
+- express-0.1.6
