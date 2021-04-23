@@ -19,24 +19,10 @@ tests :: Int -> [Bool]
 tests n =
   [ True -- see test-expr.hs for general Expr orders
 
-  , holds n $ compare ==== (compareComplexity <> lexicompare)
-  , holds n $ isComparison lexicompare
-  , holds n $ isComparison compareComplexity
-  , holds n $ lexicompareBy compareLexicographically ==== compareLexicographically
-
-  , holds n $ \(IntToIntE e1) (IntToIntE e2) (IntE e3) -> let cmp = lexicompare in
-                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
-  , holds n $ \(IntToIntE e1) (IntToIntE e2) (IntE e3) -> let cmp = lexicompareBy (flip compare) in
-                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
-  , holds n $ \(BoolToBoolE e1) (BoolToBoolE e2) (BoolE e3) -> let cmp = lexicompare in
-                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
-  , holds n $ \(BoolToBoolE e1) (BoolToBoolE e2) (BoolE e3) -> let cmp = lexicompareBy (flip compare) in
-                e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)
-
-  -- some tests of order
-  , value "xx" xx < zero
-  , value "xxeqxx" (Equation xx xx) < value "xx" xx
-  , value "xx" xx < value "emptyThyght" (Thyght emptyThy)
+  , holds n $ compareLexicographicallyBy compareLexicographically ==== compareLexicographically
+  , holds n $ compareLexicographicallyBy compare ==== compareLexicographically
+  , holds n $ isComparison (compareLexicographicallyBy $ flip compareLexicographically)
+  , holds n $ isComparison (compareLexicographicallyBy $ flip compare)
 
   , holds n $ simplificationOrder (|>|)
   , holds n $ seriousSimplificationOrder (|> )
@@ -79,7 +65,7 @@ tests n =
   , holds n $ \e     -> weightExcept absE (abs' e)    == weightExcept absE e
   , holds n $ \e     -> weightExcept absE (negate' e) == weightExcept absE e + 1
 
-  -- lexicompare is compatible (almost as if by coincidence)
+  -- compareLexicographically is compatible (almost as if by coincidence)
   , fails n $ simplificationOrder lgt
   , holds n $ compatible          lgt
   , fails n $ closedUnderSub      lgt
@@ -92,7 +78,7 @@ tests n =
   , holds n $ subtermProperty     cgt
   ]
   where
-  e1 `lgt` e2 = e1 `lexicompare` e2 == GT
+  e1 `lgt` e2 = e1 `compareLexicographically` e2 == GT
   e1 `cgt` e2 = e1 `compare` e2 == GT
 
 -- weaker than simplificationOrder

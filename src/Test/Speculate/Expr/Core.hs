@@ -12,8 +12,7 @@ module Test.Speculate.Expr.Core
   , module Data.Express.Utils.Typeable
 
   -- * Order
-  , lexicompare
-  , lexicompareBy
+  , compareLexicographicallyBy
   , compareComplexityThenIndex
 
   -- * Properties
@@ -39,15 +38,10 @@ import Data.Monoid ((<>))
 import Data.Functor ((<$>)) -- for GHC <= 7.8
 
 -- | Lexicographical comparison of 'Expr's
---   where variables < constants < applications.
-lexicompare :: Expr -> Expr -> Ordering
-lexicompare = lexicompareBy compare
-
--- | Lexicographical comparison of 'Expr's
 --   where variables < constants < applications and
 --   constants are disambiguated by the given function.
-lexicompareBy :: (Expr -> Expr -> Ordering) -> Expr -> Expr -> Ordering
-lexicompareBy compareConstants  =  cmp
+compareLexicographicallyBy :: (Expr -> Expr -> Ordering) -> Expr -> Expr -> Ordering
+compareLexicographicallyBy compareConstants  =  cmp
   where
   (f :$ x) `cmp` (g :$ y)  =  f  `cmp` g <> x `cmp` y
   (_ :$ _) `cmp` _         =  GT
@@ -67,7 +61,7 @@ lexicompareBy compareConstants  =  cmp
 -- 1. 'compareComplexity' from 'Data.Express'
 -- 2. 'lexicompareBy' index of the given list
 compareComplexityThenIndex :: [Expr] -> Expr -> Expr -> Ordering
-compareComplexityThenIndex as  =  compareComplexity <> lexicompareBy cmp
+compareComplexityThenIndex as  =  compareComplexity <> compareLexicographicallyBy cmp
   where
   e1 `cmp` e2 | arity e1 == 0 && arity e2 /= 0 = LT
   e1 `cmp` e2 | arity e1 /= 0 && arity e2 == 0 = GT
