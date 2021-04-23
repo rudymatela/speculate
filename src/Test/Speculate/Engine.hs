@@ -174,8 +174,8 @@ consider (===) sz s (thy,sss)
   | otherwise =
     ( append thy $ equivalencesBetween (-===-) ns ns ++ eqs
     , if any (\(e1,e2) -> unrepeatedVars e1 && unrepeatedVars e2) eqs
-        then sss
-        else sssWs )
+      then sss
+      else sssWs )
   where
   ns = rehole $ normalizeE thy (fastMostGeneralVariation s)
   e1 -===- e2  =  normalize thy e1 == normalize thy e2 || e1 === e2
