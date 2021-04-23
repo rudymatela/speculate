@@ -19,7 +19,7 @@ negate (negate x) == x
      x + negate x == 0
             x + y == y + x
             x - y == x + negate y
-   negate (x + y) == negate y + negate x
+   negate (x + y) == negate x + negate y
       (x + y) + z == x + (y + z)
 
     x <= x + 1

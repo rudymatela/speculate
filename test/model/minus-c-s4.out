@@ -35,6 +35,10 @@ _ + (_ - 1) :: Int
 _ + (1 - _) :: Int
 1 + (1 + 1) :: Int
 1 + (1 - _) :: Int
+_ - (_ + _) :: Int
+_ - (_ + 1) :: Int
+_ - (1 + 1) :: Int
+1 - (_ + _) :: Int
 
 x :: Int
 0 :: Int
@@ -55,6 +59,8 @@ x + (1 + 1) :: Int
 x + (x - 1) :: Int
 1 + (1 + 1) :: Int
 1 + (1 - x) :: Int
+x - (1 + 1) :: Int
+1 - (x + x) :: Int
 
 x :: Int
 y :: Int
@@ -100,6 +106,15 @@ y + (1 - x) :: Int
 1 + (1 + 1) :: Int
 1 + (1 - x) :: Int
 1 + (1 - y) :: Int
+x - (y + y) :: Int
+y - (x + x) :: Int
+x - (y + 1) :: Int
+y - (x + 1) :: Int
+x - (1 + 1) :: Int
+y - (1 + 1) :: Int
+1 - (x + x) :: Int
+1 - (x + y) :: Int
+1 - (y + y) :: Int
 
 x :: Int
 y :: Int
@@ -186,8 +201,32 @@ z + (1 - y) :: Int
 1 + (1 - x) :: Int
 1 + (1 - y) :: Int
 1 + (1 - z) :: Int
+x - (y + y) :: Int
+x - (y + z) :: Int
+x - (z + z) :: Int
+y - (x + x) :: Int
+y - (x + z) :: Int
+y - (z + z) :: Int
+z - (x + x) :: Int
+z - (x + y) :: Int
+z - (y + y) :: Int
+x - (y + 1) :: Int
+x - (z + 1) :: Int
+y - (x + 1) :: Int
+y - (z + 1) :: Int
+z - (x + 1) :: Int
+z - (y + 1) :: Int
+x - (1 + 1) :: Int
+y - (1 + 1) :: Int
+z - (1 + 1) :: Int
+1 - (x + x) :: Int
+1 - (x + y) :: Int
+1 - (x + z) :: Int
+1 - (y + y) :: Int
+1 - (y + z) :: Int
+1 - (z + z) :: Int
 
-Number of Eq schema classes: 22
-Number of Eq 1-var classes: 19
-Number of Eq 2-var classes: 44
-Number of Eq 3-var classes: 85
+Number of Eq schema classes: 26
+Number of Eq 1-var classes: 21
+Number of Eq 2-var classes: 53
+Number of Eq 3-var classes: 109
