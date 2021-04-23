@@ -15,7 +15,6 @@ module Test.Speculate.Expr.Core
   , lexicompare
   , lexicompareBy
   , compareComplexityThenIndex
-  , fastCompare
 
   -- * Properties
   , isConstantNamed
@@ -38,16 +37,6 @@ import Data.Express.Utils.Typeable
 import Test.Speculate.Utils
 import Data.Monoid ((<>))
 import Data.Functor ((<$>)) -- for GHC <= 7.8
-
--- | Faster comparison, to be used when 'nubSort'ing 'Expr' values
-fastCompare :: Expr -> Expr -> Ordering
-fastCompare  =  cmp
-  where
-  (f :$ x)       `cmp` (g :$ y)        =  f  `cmp` g <> x `cmp` y
-  (_ :$ _)       `cmp` _               =  GT
-  _              `cmp` (_ :$ _)        =  LT
-  x@(Value n1 _) `cmp` y@(Value n2 _)  =  typ x `compareTy` typ y
-                                       <> n1 `compare` n2
 
 -- | Lexicographical comparison of 'Expr's
 --   where variables < constants < applications.
