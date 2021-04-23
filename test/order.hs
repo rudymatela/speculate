@@ -22,6 +22,7 @@ tests n =
   , holds n $ compare ==== (compareComplexity <> lexicompare)
   , holds n $ isComparison lexicompare
   , holds n $ isComparison compareComplexity
+  , holds n $ lexicompareBy compareLexicographically ==== compareLexicographically
 
   , holds n $ \(IntToIntE e1) (IntToIntE e2) (IntE e3) -> let cmp = lexicompare in
                 e1 `cmp` e2 == (e1 :$ e3) `cmp` (e2 :$ e3)

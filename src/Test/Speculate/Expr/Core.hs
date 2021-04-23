@@ -55,7 +55,9 @@ lexicompareBy compareConstants  =  cmp
   e1 `cmp` e2  =  case (isVar e1, isVar e2) of
     (True,  True)  -> let Value n1 _ = e1
                           Value n2 _ = e2
-                      in typ e1 `compareTy` typ e2 <> n1 `compare` n2
+                      in typ e1 `compareTy` typ e2
+                      <> length n1 `compare` length n2
+                      <> n1 `compare` n2
     (False, True)  -> GT
     (True,  False) -> LT
     (False, False) -> e1 `compareConstants` e2
