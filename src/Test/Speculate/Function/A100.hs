@@ -11,6 +11,7 @@
 module Test.Speculate.Function.A100 () where
 
 import Test.Speculate
+import Test.LeanCheck.Function ()
 import Test.LeanCheck.Function.List (areEqualFor, compareFor)
 
 instance (Listable a, Eq b) => Eq (a -> b) where
