@@ -107,9 +107,6 @@ legacy-test:
 	make clean  &&  make -j8 GHC=ghc-7.8   &&  make quick-test -j8 GHC=ghc-7.8
 	make clean  &&  make -j8               &&  make slow-test  -j8
 
-test-via-cabal:
-	cabal configure --enable-tests --enable-benchmarks --ghc-options="-dynamic -Werror" && cabal build && cabal test
-
 legacy-test-via-cabal:
 	cabal clean  &&  cabal-ghc-8.2  configure  &&  cabal-ghc-8.2  test
 	cabal clean  &&  cabal-ghc-8.0  configure  &&  cabal-ghc-8.0  test
