@@ -71,7 +71,8 @@ QUICKEG = \
   eg/list
 LIST_ALL_HSS = find src test eg bench/*.hs -name \*.hs
 LIST_LIB_HSS = find src -name \*.hs
-LIB_DEPS = base leancheck express cmdargs containers
+LIB_DEPS = base template-haskell $(INSTALL_DEPS)
+INSTALL_DEPS = leancheck express cmdargs containers
 
 all: mk/toplibs
 
