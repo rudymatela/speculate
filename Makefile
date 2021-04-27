@@ -88,6 +88,17 @@ test-with-extra-deps: all test test-sdist \
 test-sdist:
 	./test/sdist
 
+test-via-cabal:
+	cabal configure --enable-tests --enable-benchmarks --ghc-options="$(GHCFLAGS) -O0"
+	cabal build
+	cabal test engine
+
+test-via-stack:
+	stack test speculate:test:engine --ghc-options="$(GHCFLAGS) -O0" --system-ghc --no-install-ghc --no-terminal
+
+install-dependencies:
+	$(CABAL_INSTALL) $(LIB_DEPS)
+
 legacy-test:
 	make clean  &&  make -j8 GHC=ghc-8.2   &&  make quick-test -j8 GHC=ghc-8.2
 	make clean  &&  make -j8 GHC=ghc-8.0   &&  make quick-test -j8 GHC=ghc-8.0
