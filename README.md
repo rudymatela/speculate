@@ -267,8 +267,8 @@ Speculate is also subject to a chapter in a [PhD Thesis (2017)].
 
 [speculate-logo]: https://github.com/rudymatela/speculate/raw/master/doc/speculate.svg?sanitize=true
 
-[build-status]: https://travis-ci.org/rudymatela/speculate.svg?branch=master
-[build-log]:    https://travis-ci.org/rudymatela/speculate
+[build-log]:    https://github.com/rudymatela/speculate/actions/workflows/build.yml
+[build-status]: https://github.com/rudymatela/speculate/actions/workflows/build.yml/badge.svg
 [hackage-version]: https://img.shields.io/hackage/v/speculate.svg
 [latest Speculate version from Hackage]: https://hackage.haskell.org/package/speculate
 [speculate-on-hackage]:                  https://hackage.haskell.org/package/speculate
