@@ -211,7 +211,7 @@ test/Test.o: src/Test/Speculate.o
 # eg and tests programs so long as they don't share dependencies _not_ stored
 # in src/ and test/.  Runnable binaries should depend on mk/toplibs instead of
 # actual Haskell source files
-mk/toplibs: src/Test/Speculate.o test/Test.o
+mk/toplibs: mk/Toplibs.o
 	touch mk/toplibs
 
 hlint:
