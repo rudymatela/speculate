@@ -122,7 +122,7 @@ library
                  , Test.Speculate.Utils.Tuple
   build-depends: base >= 4 && < 5
                , leancheck >= 0.9.6
-               , express >= 0.1.6
+               , express >= 0.1.10
                , cmdargs
                , containers
   hs-source-dirs:    src
