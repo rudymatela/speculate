@@ -200,7 +200,7 @@ update-listable-expr:
 ghci: test/Test.ghci
 
 clean: clean-hi-o clean-haddock
-	rm -f $(TESTS) $(EG) eg/*.dot eg/*.pdf TAGS tags mk/toplibs
+	rm -f $(TESTS) $(EG) eg/*.dot eg/*.pdf TAGS tags mk/toplibs mk/Toplibs.{o,hi}
 	make clean -C bench/qs1
 	make clean -C bench/qs2
 	rm -f doc/*.html doc/*.gif doc/*.css doc/*.js doc/*.png
