@@ -58,6 +58,7 @@ extra-source-files: .gitignore
                   , mk/haddock-i
                   , mk/haskell.mk
                   , mk/install-on
+                  , mk/Toplibs.hs
                   , stack.yaml
                   , test/benchmark
                   , test/benchmark-cmp
