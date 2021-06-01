@@ -24,7 +24,6 @@ extra-doc-files: README.md
                , TODO.md
                , doc/speculate.svg
 extra-source-files: .gitignore
-                  , .travis.yml
                   , .github/workflows/build.yml
                   , Makefile
                   , bench/*.hs
