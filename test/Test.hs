@@ -38,7 +38,7 @@ where
 import Test.LeanCheck
 import Test.LeanCheck.Utils hiding (comparison)
 
-import Data.Express.Fixtures
+import Data.Express.Fixtures hiding (compose)
 
 import System.Environment (getArgs)
 import System.Exit (exitFailure)
