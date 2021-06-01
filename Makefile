@@ -69,7 +69,7 @@ QUICKEG = \
   eg/arith \
   eg/bool \
   eg/list
-LIST_ALL_HSS = find src test eg bench/*.hs -name \*.hs
+LIST_ALL_HSS = find src test eg bench/*.hs -name \*.hs | grep -vE 'eg/(regexes|pretty-compact|algebraic-graphs)'
 LIST_LIB_HSS = find src -name \*.hs
 LIB_DEPS = base template-haskell $(INSTALL_DEPS)
 INSTALL_DEPS = leancheck express cmdargs containers
