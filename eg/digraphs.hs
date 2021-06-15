@@ -10,7 +10,6 @@ deriving instance Typeable1 Digraph
 #else
 deriving instance Typeable Digraph
 #endif
-deriving instance Typeable Nat
 #endif
 
 instance Ord a => Ord (Digraph a) where
