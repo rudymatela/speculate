@@ -1,5 +1,5 @@
 name:                speculate
-version:             0.4.10
+version:             0.4.11
 synopsis:            discovery of properties about Haskell functions
 description:
   Speculate automatically discovers laws about Haskell functions.
@@ -86,7 +86,7 @@ source-repository head
 source-repository this
   type:            git
   location:        https://github.com/rudymatela/speculate
-  tag:             v0.4.10
+  tag:             v0.4.11
 
 
 library
