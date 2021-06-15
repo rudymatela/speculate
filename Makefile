@@ -97,9 +97,6 @@ test-via-cabal:
 test-via-stack:
 	stack test speculate:test:engine --ghc-options="$(GHCFLAGS) -O0" --system-ghc --no-install-ghc --no-terminal
 
-hugs-test:
-	echo 'Hugs is not supported at the moment'
-
 legacy-test:
 	make clean  &&  make -j8 GHC=ghc-8.2   &&  make quick-test -j8 GHC=ghc-8.2
 	make clean  &&  make -j8 GHC=ghc-8.0   &&  make quick-test -j8 GHC=ghc-8.0
