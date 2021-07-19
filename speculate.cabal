@@ -21,6 +21,7 @@ build-type:          Simple
 cabal-version:       1.18
 
 extra-doc-files: README.md
+               , changelog.md
                , TODO.md
                , doc/speculate.svg
 extra-source-files: .gitignore
