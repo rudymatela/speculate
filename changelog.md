@@ -11,7 +11,7 @@ upcoming
 v0.4.10
 -------
 
-* no changes in the actual Speculate library
+* no changes in the actual [Speculate] library
 * cleanup build files
 * remove uneeded typeable derivations on examples and tests
 
@@ -19,10 +19,10 @@ v0.4.10
 v0.4.8
 ------
 
-* no changes in the actual Speculate library
+* no changes in the actual [Speculate] library
 * refactor build scripts
 * use GitHub Workflows as the CI
-* fix compilation of some examples under the new LeanCheck
+* fix compilation of some examples under the new [LeanCheck]
 
 
 v0.4.6
@@ -42,9 +42,11 @@ v0.4.6
 Earlier versions
 ----------------
 
-Please refer to the git commit history.
+Please refer to the [git commit history].
 
+[git commit history]: https://github.com/rudymatela/speculate/commits/master
 
-[express]: https://hackage.haskell.org/package/express
-[Speculate]: https://hackage.haskell.org/package/speculate/docs/Test-Speculate.html
+[Speculate]:        https://hackage.haskell.org/package/speculate/docs/Test-Speculate.html
 [`Test.Speculate`]: https://hackage.haskell.org/package/speculate/docs/Test-Speculate.html
+[LeanCheck]:        https://hackage.haskell.org/package/leancheck/docs/Test-LeanCheck.html
+[express]:          https://hackage.haskell.org/package/express
