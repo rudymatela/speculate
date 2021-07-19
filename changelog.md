@@ -4,6 +4,7 @@ Changelog for Speculate
 upcoming
 --------
 
+* bump [express] requirement to v0.2.0
 * add this changelog
 
 
@@ -27,7 +28,7 @@ v0.4.8
 v0.4.6
 ------
 
-* `Test.Speculate`: export `reifyName`;
+* [`Test.Speculate`]: export `reifyName`;
 * "internal" modules:
 	- `Test.Speculate.Args`: remove `compareExpr`;
 	- `Test.Speculate.Engine`: add three new wrappers for "theory and representatives";
@@ -42,3 +43,8 @@ Earlier versions
 ----------------
 
 Please refer to the git commit history.
+
+
+[express]: https://hackage.haskell.org/package/express
+[Speculate]: https://hackage.haskell.org/package/speculate/docs/Test-Speculate.html
+[`Test.Speculate`]: https://hackage.haskell.org/package/speculate/docs/Test-Speculate.html
