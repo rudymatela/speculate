@@ -1,8 +1,8 @@
 Changelog for Speculate
 =======================
 
-upcoming
---------
+v0.4.12
+-------
 
 * bump [express] requirement to v0.2.0
 * add this changelog
