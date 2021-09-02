@@ -2,8 +2,8 @@ Changelog for Speculate
 =======================
 
 
-upcoming
---------
+v0.4.14
+-------
 
 * `Test.Speculate.Reason`: add `doubleCheck`;
 * add `lowtests` benchmark;
