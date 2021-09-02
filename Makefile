@@ -50,6 +50,7 @@ EG = \
   eg/tuples \
   eg/speculate-reason \
   bench/arithficial \
+  bench/lowtests \
   bench/nord \
   bench/trilean \
   bench/unit

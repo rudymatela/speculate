@@ -1,0 +1,56 @@
+max expr size  =    4
+  |- on ineqs  =    3
+  |- on conds  =    3
+max  #-tests   =  500
+min  #-tests   =   25  (to consider p ==> q true)
+max  #-vars    =    2  (for inequational and conditional laws)
+
+_ :: Bool
+_ :: Int
+_ :: [Int]
+sort :: [Int] -> [Int]
+isSubsequenceOf :: [Int] -> [Int] -> Bool
+True :: Bool
+False :: Bool
+(==) :: Bool -> Bool -> Bool
+(==) :: Int -> Int -> Bool
+(==) :: [Int] -> [Int] -> Bool
+
+     xs `isSubsequenceOf` xs == True
+sort xs `isSubsequenceOf` xs == xs `isSubsequenceOf` sort xs
+             (xs == sort xs) == xs `isSubsequenceOf` sort xs
+              sort (sort xs) == sort xs
+
+xs == ys ==> xs `isSubsequenceOf` ys
+ sort xs <=  xs
+
+
+max expr size  =    4
+  |- on ineqs  =    3
+  |- on conds  =    3
+max  #-tests   =   60
+min  #-tests   =    3  (to consider p ==> q true)
+max  #-vars    =    2  (for inequational and conditional laws)
+
+_ :: Bool
+_ :: Int
+_ :: [Int]
+sort :: [Int] -> [Int]
+isSubsequenceOf :: [Int] -> [Int] -> Bool
+True :: Bool
+False :: Bool
+(==) :: Bool -> Bool -> Bool
+(==) :: Int -> Int -> Bool
+(==) :: [Int] -> [Int] -> Bool
+
+     xs `isSubsequenceOf` xs == True
+xs `isSubsequenceOf` sort xs == True
+             (xs == sort xs) == True
+sort xs `isSubsequenceOf` ys == xs `isSubsequenceOf` sort ys
+             (sort xs == ys) == (xs == sort ys)
+              sort (sort xs) == sort xs
+
+xs == ys ==> xs `isSubsequenceOf` ys
+ sort xs <=  xs
+
+

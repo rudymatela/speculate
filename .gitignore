@@ -86,6 +86,7 @@ bench/expressions
 bench/representatives
 bench/representatives2
 bench/arithficial
+bench/lowtests
 bench/nord
 bench/unit
 bench/trilean
