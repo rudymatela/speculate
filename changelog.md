@@ -1,6 +1,16 @@
 Changelog for Speculate
 =======================
 
+
+upcoming
+--------
+
+* `Test.Speculate.Reason`: add `doubleCheck`;
+* add `lowtests` benchmark;
+* bump [express] requirement to v1.0.0;
+* fix parallel compilation when using the Makefile.
+
+
 v0.4.12
 -------
 
