@@ -47,6 +47,7 @@ module Test.Speculate.Reason
   , finalize
   , initialize
   , defaultKeep
+  , doubleCheck
 
   , reductions1
 
@@ -78,6 +79,7 @@ data Thy = Thy
   , compareE :: Expr -> Expr -> Ordering -- ^ total order used to "sort" equations
   , closureLimit :: Int
   , keepE :: Expr -> Bool
+  , invalid :: [Equation] -- ^ reserved for rules and equations that were later found to be invalid through testing
   }
 
 compareEqn :: Thy -> Equation -> Equation -> Ordering
@@ -137,6 +139,7 @@ emptyThy = Thy
          , compareE = compare
          , closureLimit = 0
          , keepE = const True
+         , invalid = []
          }
 
 ruleFilter :: Thy -> [Rule] -> [Rule]
@@ -440,6 +443,28 @@ finalEquations shouldShow ti thy =
 --   you 'complete', redundant equations might pop-up again.
 finalize :: Thy -> Thy
 finalize = discardRedundantEquations
+
+-- | Double-checks a resulting theory moving untrue rules and equations to the
+--   invalid list.
+--
+-- As a side-effect of using testing to conjecturing equations,
+-- we may get smaller equations that are obviously incorrect
+-- when we consider a bigger (harder-to-test) equation that is incorrect.
+--
+-- For example, given an incorrect large equation, it may follow that
+-- False=True.
+--
+-- This function can be used to double-check the generated theory.
+-- If any equation or rule is discarded, that means the number of tests
+-- should probably be increased.
+doubleCheck :: (Expr -> Expr -> Bool) -> Thy -> Thy
+doubleCheck (===) thy  =  thy
+                       {  rules     = filter correct (rules thy)
+                       ,  equations = filter correct (equations thy)
+                       ,  invalid   = filter (not . correct) (rules thy ++ equations thy)
+                       }
+  where
+  correct  =  uncurry (===)
 
 theorize :: [Equation] -> Thy
 theorize = theorizeBy (canReduceTo emptyThy)
