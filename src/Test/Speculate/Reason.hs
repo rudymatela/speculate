@@ -413,9 +413,11 @@ canonicalizeRuleWith ti (e1,e2) =
     _ -> error $ "canonicalizeRuleWith: the impossible happened,"
               ++ "this is definitely a bug, see source!"
 
+-- | Prints a 'Thy' (theory) on the console. (cf. 'showThy')
 printThy :: Thy -> IO ()
 printThy = putStrLn . showThy
 
+-- | Pretty-prints a theory into a string. (cf. 'printThy')
 showThy :: Thy -> String
 showThy thy = (if null rs
                  then "no rules.\n"
