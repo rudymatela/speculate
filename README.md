@@ -222,7 +222,7 @@ More documentation
 For more examples, see the [eg](eg) and [bench](bench) folders.
 
 Speculate has been subject to a paper, see the
-[Speculate Paper on Haskell Symposium 2017](https://matela.com.br/paper/speculate.pdf).
+[Speculate Paper on Haskell Symposium 2017](https://matela.com.br/speculate.pdf).
 Speculate is also subject to a chapter in a [PhD Thesis (2017)].
 
 [leancheck]: https://hackage.haskell.org/package/leancheck
@@ -235,7 +235,7 @@ Speculate is also subject to a chapter in a [PhD Thesis (2017)].
 [Cabal]:   https://www.haskell.org/cabal
 [Haskell]: https://www.haskell.org/
 
-[PhD Thesis (2017)]: https://matela.com.br/paper/rudy-phd-thesis-2017.pdf
+[PhD Thesis (2017)]: https://matela.com.br/thesis-rudy.pdf
 
 [`speculate`]:      https://hackage.haskell.org/package/speculate/docs/Test-Speculate.html#v:speculate
 [`constant`]:       https://hackage.haskell.org/package/speculate/docs/Test-Speculate.html#v:constant
