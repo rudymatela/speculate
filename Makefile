@@ -5,7 +5,7 @@
 # Maintainer:  Rudy Matela <rudy@matela.com.br>
 GHCIMPORTDIRS = src:eg:test
 GHCFLAGS = -O2 \
-  $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic)
+  $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic -package cmdargs -package regex-tdfa)
 # -Wall -Wno-name-shadowing -Wno-orphans -Wno-unused-matches
 # -prof -auto-all #-caf-all
 # When profiling is enabled, to get the cost centres with more than 6% time:
