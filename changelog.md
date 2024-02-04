@@ -2,8 +2,8 @@ Changelog for Speculate
 =======================
 
 
-upcoming
---------
+v0.4.16 (February 2024)
+-----------------------
 
 * no changes in API
 * fix compatibility with [express] >= v1.0.16
