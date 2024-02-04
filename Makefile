@@ -42,7 +42,6 @@ EG = \
   eg/string \
   eg/oddeven \
   eg/plus-abs \
-  eg/pretty \
   eg/ratio \
   eg/sets \
   eg/tauts \
@@ -55,6 +54,7 @@ EG = \
   bench/trilean \
   bench/unit
 EXTRAEG = \
+  eg/pretty \
   eg/regexes \
   eg/pretty-compact \
   eg/algebraic-graphs
