@@ -2,8 +2,8 @@ Changelog for Speculate
 =======================
 
 
-v0.4.14
--------
+v0.4.14 (September 2021)
+------------------------
 
 * `Test.Speculate.Reason`: add `doubleCheck`;
 * add `lowtests` benchmark;
@@ -11,23 +11,23 @@ v0.4.14
 * fix parallel compilation when using the Makefile.
 
 
-v0.4.12
--------
+v0.4.12 (July 2021)
+-------------------
 
 * bump [express] requirement to v0.2.0
 * add this changelog
 
 
-v0.4.10
--------
+v0.4.10 (June 2021)
+-------------------
 
 * no changes in the actual [Speculate] library
 * cleanup build files
 * remove uneeded typeable derivations on examples and tests
 
 
-v0.4.8
-------
+v0.4.8 (June 2021)
+------------------
 
 * no changes in the actual [Speculate] library
 * refactor build scripts
@@ -35,8 +35,8 @@ v0.4.8
 * fix compilation of some examples under the new [LeanCheck]
 
 
-v0.4.6
-------
+v0.4.6 (April 2021)
+-------------------
 
 * [`Test.Speculate`]: export `reifyName`;
 * "internal" modules:
