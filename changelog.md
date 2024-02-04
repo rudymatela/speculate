@@ -2,6 +2,16 @@ Changelog for Speculate
 =======================
 
 
+upcoming
+--------
+
+* no changes in API
+* fix compatibility with [express] >= v1.0.16
+* bump [LeanCheck] requirement to >= 1.0.0
+* improve tests of Speculate itself
+* add release dates on this changelog
+
+
 v0.4.14 (September 2021)
 ------------------------
 
