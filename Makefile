@@ -4,7 +4,7 @@
 # License:     3-Clause BSD  (see the file LICENSE)
 # Maintainer:  Rudy Matela <rudy@matela.com.br>
 GHCIMPORTDIRS = src:eg:test
-GHCFLAGS = -O2 \
+GHCFLAGS = -O2 -v0 \
   $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic -package cmdargs -package regex-tdfa)
 # -Wall -Wno-name-shadowing -Wno-orphans -Wno-unused-matches
 # -prof -auto-all #-caf-all
