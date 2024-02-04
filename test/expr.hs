@@ -57,15 +57,19 @@ tests n =
             , (yy,ff2 xx xx)
             ]
   ]
+  where
+  -- now uneeded as Data.Express.Fixtures exports something of sorts
+  ff2 :: Expr -> Expr -> Expr
+  ff2 e1 e2 = ffE :$ e1 :$ e2
+    where ffE = value "f" (undefined :: Int -> Int -> Int)
+  -- however there ffE = var "f" (...)
+  -- so I am keeping a local definition of ff2 here
+  -- to make it uniform with hh5 and hh7
 
-ff2 :: Expr -> Expr -> Expr
-ff2 e1 e2 = ffE :$ e1 :$ e2
-  where ffE = value "f" (undefined :: Int -> Int -> Int)
+  hh5 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr
+  hh5 e1 e2 e3 e4 e5 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5
+    where hhE = value "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int)
 
-hh5 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr
-hh5 e1 e2 e3 e4 e5 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5
-  where hhE = value "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int)
-
-hh7 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr
-hh7 e1 e2 e3 e4 e5 e6 e7 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6 :$ e7
-  where hhE = value "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int)
+  hh7 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr
+  hh7 e1 e2 e3 e4 e5 e6 e7 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6 :$ e7
+    where hhE = value "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int)
