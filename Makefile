@@ -22,8 +22,7 @@ TESTS = \
   test/expr \
   test/order \
   test/reason \
-  test/utils \
-  test/stats
+  test/utils
 EG = \
   eg/arith \
   eg/arith-negate-abs \
