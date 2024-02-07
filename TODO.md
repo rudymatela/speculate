@@ -3,7 +3,11 @@ TODO
 
 A list of things to do for Speculate.
 
-* transform `test/stats` into a full benchmark as others
+* update CI to include newer GHCs
+
+* add a couple of tests to `groundJoinable`
+
+* implement missing `groundJoinable` criterium
 
 * (code readability) review and document code
 
