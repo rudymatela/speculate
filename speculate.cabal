@@ -33,11 +33,12 @@ extra-source-files: .gitignore
                   , bench/bool-c
                   , bench/list-c
                   , bench/minus-c
-                  , bench/runtime-zero
+                  , bench/runtime/zero/bench/*.runtime
+                  , bench/runtime/zero/eg/*.runtime
+                  , bench/runtime/zero/versions
                   , bench/runtime/lapmatrud/bench/*.runtime
                   , bench/runtime/lapmatrud/eg/*.runtime
                   , bench/runtime/lapmatrud/versions
-                  , bench/versions
                   , bin/*.sh
                   , eg/*.hs
                   , eg/*.txt
