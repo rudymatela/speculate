@@ -87,6 +87,14 @@ test: all test-sdist \
 test-with-extra-deps: all test test-sdist \
   $(patsubst %,%.diff-test,$(EXTRAEG) $(wildcard bench/*-c))
 
+txt: $(patsubst %,%.txt,$(EG) $(wildcard bench/*-c))
+
+diff-test: $(patsubst %,%.diff,$(EG) $(wildcard bench/*-c))
+
+txt-extra: $(patsubst %,%.txt,$(EXTRAEG) $(wildcard bench/*-c))
+
+diff-test-extra: $(patsubst %,%.diff,$(EXTRAEG) $(wildcard bench/*-c))
+
 test-sdist:
 	./test/sdist
 
@@ -143,6 +151,12 @@ slow-test: test
 
 %.run: %
 	./$< $(MAXTESTS)
+
+%.txt: %
+	./$< >$<.txt
+
+%.diff: %
+	./$< | diff -rud $<.txt -
 
 bench/%-c.diff-test: eg/%
 	./test/diff $(MAXSIZE) bench/$*-c
