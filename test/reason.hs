@@ -19,9 +19,9 @@ theorize'' eqs = finalize $ foldr insert emptyThy {closureLimit = 3, keepE = kee
 
 main :: IO ()
 main = do
-  n <- getMaxTestsFromArgs 10000
+  mainTest tests 10000
 
-  reportTests (tests n)
+  n <- getMaxTestsFromArgs 10000
 
   putStrLn "\nlength (rules $ theorize eqs)"
   reportCountsBy (\(SameTypedPairsE eqs) -> show . length . rules $ theorize eqs)

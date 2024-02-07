@@ -5,8 +5,6 @@ A list of things to do for Speculate.
 
 * transform `test/stats` into a full benchmark as others
 
-* report test suite name on success/failure
-
 * (code readability) review and document code
 
 * (code readability) rename semi to inqualities everywhere.

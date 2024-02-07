@@ -40,7 +40,7 @@ import Test.LeanCheck.Utils hiding (comparison)
 
 import Data.Express.Fixtures hiding (compose)
 
-import System.Environment (getArgs)
+import System.Environment (getArgs, getProgName)
 import System.Exit (exitFailure)
 import Data.List (elemIndices)
 
@@ -57,10 +57,12 @@ import Test.ListableExpr
 
 -- test reporting --
 
-reportTests :: [Bool] -> IO ()
-reportTests tests  =  case elemIndices False tests of
-  [] -> putStrLn "+++ Tests passed!"
-  is -> putStrLn ("*** Failed tests:" ++ show is) >> exitFailure
+reportTests :: String -> [Bool] -> IO ()
+reportTests s tests = do
+  case elemIndices False tests of
+    [] -> putStrLn $ s ++ ": tests passed"
+    is -> do putStrLn (s ++ ": failed tests: " ++ show is)
+             exitFailure
 
 getMaxTestsFromArgs :: Int -> IO Int
 getMaxTestsFromArgs n = do
@@ -71,8 +73,9 @@ getMaxTestsFromArgs n = do
 
 mainTest :: (Int -> [Bool]) -> Int -> IO ()
 mainTest tests n' = do
+  pn <- getProgName
   n <- getMaxTestsFromArgs n'
-  reportTests (tests n)
+  reportTests pn (tests n)
 
 printLines :: Show a => [a] -> IO ()
 printLines = putStrLn . unlines . map show
