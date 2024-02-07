@@ -169,14 +169,6 @@ bench: $(EG) $(patsubst %,%.bench,$(EG))
 	@/usr/bin/time -f%e ./$< 2>&1 >/dev/null | \
 	tee bench/runtime/$$HOSTNAME/$<.runtime
 
-qs-bench:
-	make -sC bench/qs1 bench
-	make -sC bench/qs2 bench
-
-qs-save-bench:
-	make -sC bench/qs1 save-bench
-	make -sC bench/qs2 save-bench
-
 update-listable-expr:
 	cp -rav ../express/test/Test/ListableExpr.hs test/Test/
 
@@ -184,8 +176,6 @@ ghci: test/Test.ghci
 
 clean: clean-hi-o clean-haddock
 	rm -f $(TESTS) $(EG) eg/*.dot eg/*.pdf TAGS tags mk/toplibs mk/Toplibs.{o,hi}
-	make clean -C bench/qs1
-	make clean -C bench/qs2
 	rm -f doc/*.html doc/*.gif doc/*.css doc/*.js doc/*.png
 
 test/Test.o: src/Test/Speculate.o
