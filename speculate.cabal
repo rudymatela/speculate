@@ -162,11 +162,3 @@ test-suite utils
   build-depends:     base >= 4 && < 5, leancheck, express, speculate
   default-language:  Haskell2010
   type:              exitcode-stdio-1.0
-
-benchmark test-stats
-  main-is:           stats.hs
-  other-modules:     Test, Test.ListableExpr
-  hs-source-dirs:    test
-  build-depends:     base >= 4 && < 5, leancheck, express, speculate
-  default-language:  Haskell2010
-  type:              exitcode-stdio-1.0

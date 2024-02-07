@@ -52,7 +52,8 @@ EG = \
   bench/lowtests \
   bench/nord \
   bench/trilean \
-  bench/unit
+  bench/unit \
+  bench/stats
 EXTRAEG = \
   eg/pretty \
   eg/regexes \
