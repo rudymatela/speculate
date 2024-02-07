@@ -5,7 +5,7 @@
 # Maintainer:  Rudy Matela <rudy@matela.com.br>
 GHCIMPORTDIRS = src:eg:test
 GHCFLAGS = -O2 -v0 \
-  $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic -package cmdargs -package regex-tdfa)
+  $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic -package cmdargs -package regex-tdfa -package algebraic-graphs)
 # -Wall -Wno-name-shadowing -Wno-orphans -Wno-unused-matches
 # -prof -auto-all #-caf-all
 # When profiling is enabled, to get the cost centres with more than 6% time:
@@ -56,7 +56,6 @@ EG = \
 EXTRAEG = \
   eg/pretty \
   eg/regexes \
-  eg/pretty-compact \
   eg/algebraic-graphs
 # regexes needs regex-tdfa, which may break the build
 # speculate-reason output differs in different GHC versions
@@ -77,23 +76,17 @@ INSTALL_DEPS = leancheck express cmdargs containers
 
 all: mk/toplibs
 
-quick-test: $(patsubst %,%.run,$(QUICKTESTS)) \
-            $(patsubst %,%.diff-test,$(QUICKEG))
+test: all test-sdist $(patsubst %,%.run,$(TESTS)) diff-test
 
-test: all test-sdist \
-  $(patsubst %,%.run,$(TESTS)) \
-  $(patsubst %,%.diff-test,$(EG) $(wildcard bench/*-c))
-
-test-with-extra-deps: all test test-sdist \
-  $(patsubst %,%.diff-test,$(EXTRAEG) $(wildcard bench/*-c))
+test-with-extra-deps: test diff-test-extra
 
 txt: $(patsubst %,%.txt,$(EG) $(wildcard bench/*-c))
 
 diff-test: $(patsubst %,%.diff,$(EG) $(wildcard bench/*-c))
 
-txt-extra: $(patsubst %,%.txt,$(EXTRAEG) $(wildcard bench/*-c))
+txt-extra: $(EXTRAEG) $(patsubst %,%.txt,$(EXTRAEG))
 
-diff-test-extra: $(patsubst %,%.diff,$(EXTRAEG) $(wildcard bench/*-c))
+diff-test-extra: $(EXTRAEG) $(patsubst %,%.diff,$(EXTRAEG))
 
 test-sdist:
 	./test/sdist
@@ -158,45 +151,23 @@ slow-test: test
 %.diff: %
 	./$< | diff -rud $<.txt -
 
-bench/%-c.diff-test: eg/%
-	./test/diff $(MAXSIZE) bench/$*-c
+bench/%-c: eg/%
+	touch $@
 
-bench/%-c.update-4-diff-test: %
-	./test/update-diff -s4 bench/$*-c
+# Disclaimer: This bench target is not intended to generate paper-grade runtime
+#             datapoints as it runs each benchmark just once.  This target is
+#             meant to track large runtime changes across different git
+#             versions.
+.PHONY: bench
+bench: $(EG) $(patsubst %,%.bench,$(EG))
+	@mkdir -p bench/runtime/$$HOSTNAME
+	./bench/versions $(INSTALL_DEPS) | tee bench/runtime/$$HOSTNAME/versions
 
-bench/%-c.update-slow-diff-test: %
-	./test/update-diff     bench/$*-c
-
-%.diff-test: %
-	./test/diff $(MAXSIZE) $<
-
-%.update-diff-test: %
-	./test/update-diff -s4 $<
-	./test/update-diff     $<
-
-%.update-4-diff-test: %
-	./test/update-diff -s4 $<
-
-%.update-slow-diff-test: %
-	./test/update-diff     $<
-
-%.update-7-diff-test: %
-	./test/update-diff -s7 $<
-
-update-diff-test: update-4-diff-test update-slow-diff-test
-
-update-4-diff-test: $(patsubst %,%.update-4-diff-test,$(EG) $(wildcard bench/*-c))
-
-update-slow-diff-test: $(patsubst %,%.update-slow-diff-test,$(EG) $(wildcard bench/*-c))
-
-bench: all $(EG)
-	./test/benchmark-cmp $(EG) bench/*-c
-
-save-bench: all $(EG)
-	./test/benchmark-save $(EG) bench/*-c
-
-memory-benchmark: all $(EG)
-	./test/memory-benchmark $(EG) bench/*-c
+%.bench: %
+	@mkdir -p bench/runtime/$$HOSTNAME/`dirname $<`
+	@printf "%-20s " $<
+	@/usr/bin/time -f%e ./$< 2>&1 >/dev/null | \
+	tee bench/runtime/$$HOSTNAME/$<.runtime
 
 qs-bench:
 	make -sC bench/qs1 bench

@@ -28,6 +28,7 @@ extra-source-files: .gitignore
                   , .github/workflows/build.yml
                   , Makefile
                   , bench/*.hs
+                  , bench/*.txt
                   , bench/arith-c
                   , bench/bool-c
                   , bench/list-c
@@ -48,12 +49,17 @@ extra-source-files: .gitignore
                   , bench/qs2/binarytree.runtime-zero
                   , bench/qs2/runtime-zero
                   , bench/runtime-zero
+                  , bench/runtime/lapmatrud/bench/*.runtime
+                  , bench/runtime/lapmatrud/eg/*.runtime
+                  , bench/runtime/lapmatrud/versions
+                  , bench/versions
                   , bin/compare-arith
                   , bin/compare-arithficial
                   , bin/compare-bool
                   , bin/compare-with-qs
                   , bin/run-heavy-regexes-benchmark
                   , eg/*.hs
+                  , eg/*.txt
                   , mk/depend.mk
                   , mk/ghcdeps
                   , mk/haddock-i
@@ -61,13 +67,6 @@ extra-source-files: .gitignore
                   , mk/install-on
                   , mk/Toplibs.hs
                   , stack.yaml
-                  , test/benchmark
-                  , test/benchmark-cmp
-                  , test/benchmark-save
-                  , test/memory-benchmark
-                  , test/model/*.out
-                  , test/diff
-                  , test/update-diff
                   , test/sdist
 
 tested-with: GHC==9.4
