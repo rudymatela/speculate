@@ -291,13 +291,11 @@ constifications  =  slowConstifications
 slowConstifications :: Expr -> [Expr]
 slowConstifications e  =
   [ e //- vcs
-  | p <- permutations cs
-  , let vcs = zip vs p
+  | let vs = nubVars e
+  , cs <- permutations (map constify vs)
+  , let vcs = zip vs cs
   , all (uncurry ((==) `on` typ)) vcs
   ]
-  where
-  vs  =  nubVars e
-  cs  =  map constify vs
   -- TODO: "classifyOn typ" first for the fastConstifications
 
 constify :: Expr -> Expr
