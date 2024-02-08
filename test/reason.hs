@@ -244,7 +244,47 @@ tests n =
          ] `mkThy` [( negate' zero, zero )]
 
   -- TODO: restore tests losts after removing test-kbc
+
+  , slowConstifications xx == map constify [xx]
+
+  , slowConstifications (xx -+- yy)
+    == map constify
+       [ xx -+- yy
+       , yy -+- xx ]
+
+  , slowConstifications (xx -+- yy -+- yy)
+    == map constify
+       [ xx -+- yy -+- yy
+       , yy -+- xx -+- xx
+       ]
+
+  , slowConstifications (xx -+- yy -+- zz)
+    == map constify
+       [ xx -+- yy -+- zz
+       , yy -+- xx -+- zz
+       , zz -+- yy -+- xx
+       , yy -+- zz -+- xx
+       , zz -+- xx -+- yy
+       , xx -+- zz -+- yy
+       ]
   ]
 
 succ' :: Expr -> Expr
 succ'  =  (value "succ" ((1+) :: Int -> Int) :$)
+
+slowConstifications :: Expr -> [Expr]
+slowConstifications e  =
+  [ e //- vcs
+  | p <- permutations cs
+  , let vcs = zip vs p
+  , all (uncurry ((==) `on` typ)) vcs
+  ]
+  where
+  vs  =  nubVars e
+  cs  =  map constify vs
+  -- TODO: "classifyOn typ" first for the fastConstifications
+
+constify :: Expr -> Expr
+constify (Value ('_':s) d)  =  Value s d
+constify (e1 :$ e2)  =  constify e1 :$ constify e2
+constify e  =  e
