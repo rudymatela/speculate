@@ -16,7 +16,7 @@ main = mainTest tests 10000
 tests :: Int -> [Bool]
 tests n =
   [ True
-  
+
   , holds 100 $ \xs ys -> strictlyOrdered xs && strictlyOrdered ys
                       ==> strictlyOrdered (nubMerge xs (ys::[Int]))
   , and [ nubMerge xs xs == xs | n <- [0..10], let xs = [0..n] :: [Int] ]
