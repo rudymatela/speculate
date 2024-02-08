@@ -280,13 +280,21 @@ tests n =
        , yy -+- xx -+- ord' cc -+- ord' dd
        , yy -+- xx -+- ord' dd -+- ord' cc
        ]
+
+  , holds n $ \e -> constifications e == slowConstifications e
   ]
 
 succ' :: Expr -> Expr
 succ'  =  (value "succ" ((1+) :: Int -> Int) :$)
 
 constifications :: Expr -> [Expr]
-constifications  =  slowConstifications
+constifications e  =  [ e //- vcs | vcs <- cons . classifyOn typ $ nubVars e ]
+  where
+  cons []        =  [[]]
+  cons (vs:vss)  =  [ zip vs cs ++ vcs
+                    | vcs <- cons vss
+                    , cs <- permutations (map constify vs)
+                    ]
 
 slowConstifications :: Expr -> [Expr]
 slowConstifications e  =
