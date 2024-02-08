@@ -245,20 +245,20 @@ tests n =
 
   -- TODO: restore tests losts after removing test-kbc
 
-  , slowConstifications xx == map constify [xx]
+  , constifications xx == map constify [xx]
 
-  , slowConstifications (xx -+- yy)
+  , constifications (xx -+- yy)
     == map constify
        [ xx -+- yy
        , yy -+- xx ]
 
-  , slowConstifications (xx -+- yy -+- yy)
+  , constifications (xx -+- yy -+- yy)
     == map constify
        [ xx -+- yy -+- yy
        , yy -+- xx -+- xx
        ]
 
-  , slowConstifications (xx -+- yy -+- zz)
+  , constifications (xx -+- yy -+- zz)
     == map constify
        [ xx -+- yy -+- zz
        , yy -+- xx -+- zz
@@ -271,6 +271,9 @@ tests n =
 
 succ' :: Expr -> Expr
 succ'  =  (value "succ" ((1+) :: Int -> Int) :$)
+
+constifications :: Expr -> [Expr]
+constifications  =  slowConstifications
 
 slowConstifications :: Expr -> [Expr]
 slowConstifications e  =
