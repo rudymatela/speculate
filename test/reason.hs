@@ -267,6 +267,19 @@ tests n =
        , zz -+- xx -+- yy
        , xx -+- zz -+- yy
        ]
+
+  , constifications (xx -+- yy -+- ord' cc)
+    == map constify
+       [ xx -+- yy -+- ord' cc
+       , yy -+- xx -+- ord' cc]
+
+  , constifications (xx -+- yy -+- ord' cc -+- ord' dd)
+    == map constify
+       [ xx -+- yy -+- ord' cc -+- ord' dd
+       , xx -+- yy -+- ord' dd -+- ord' cc
+       , yy -+- xx -+- ord' cc -+- ord' dd
+       , yy -+- xx -+- ord' dd -+- ord' cc
+       ]
   ]
 
 succ' :: Expr -> Expr
