@@ -200,14 +200,13 @@ reductions1 e r = maybeToList (e `reduceRoot` r)
 -- this definition is sound, but incomplete (some groundJoinable pairs won't be
 -- detected).
 groundJoinable :: Thy -> Expr -> Expr -> Bool
-groundJoinable thy@Thy{equations = eqs} e1 e2 =
+groundJoinable thy@Thy{rules = rs, equations = eqs} e1 e2 =
      e1 == e2
-  || any (\(el,er) -> maybe2 False ((==) `on` sort) (e1 `match` el) (e2 `match` er)) (eqs ++ map swap eqs)
+  || any (\(el,er) -> maybe2 False ((==) `on` sort) (e1 `match` el) (e2 `match` er)) (rs ++ map swap rs ++ eqs ++ map swap eqs)
   || (f == g && and (zipWith (groundJoinable thy) xs ys))
   where
   (f:xs) = unfoldApp e1
   (g:ys) = unfoldApp e2
--- TODO: (rs ++ map swap rs ++ eqs ++ map swap eqs)
 -- TODO: || all ((\(e1,e2) -> normalize thy e1 == normalize thy e2) . unfoldPair) (constifications $ foldPair (e1,e2))
 
 normalizedCriticalPairs :: Thy -> [(Expr,Expr)]
