@@ -50,6 +50,7 @@ module Test.Speculate.Reason
   , doubleCheck
 
   , reductions1
+  , groundJoinable
 
   , dwoBy
   , (|>)

@@ -244,6 +244,10 @@ tests n =
          ] `mkThy` [( negate' zero, zero )]
 
   -- TODO: restore tests losts after removing test-kbc
+
+  , groundJoinable emptyThy xx xx -- Eq case
+  , groundJoinable emptyThy xx yy == False
+  , groundJoinable emptyThy (ff2 xx yy) (ff2 xx yy) -- Eq case
   ]
 
 succ' :: Expr -> Expr
