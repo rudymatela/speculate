@@ -244,69 +244,7 @@ tests n =
          ] `mkThy` [( negate' zero, zero )]
 
   -- TODO: restore tests losts after removing test-kbc
-
-  , constifications xx == map constify [xx]
-
-  , constifications (xx -+- yy)
-    == map constify
-       [ xx -+- yy
-       , yy -+- xx ]
-
-  , constifications (xx -+- yy -+- yy)
-    == map constify
-       [ xx -+- yy -+- yy
-       , yy -+- xx -+- xx
-       ]
-
-  , constifications (xx -+- yy -+- zz)
-    == map constify
-       [ xx -+- yy -+- zz
-       , yy -+- xx -+- zz
-       , zz -+- yy -+- xx
-       , yy -+- zz -+- xx
-       , zz -+- xx -+- yy
-       , xx -+- zz -+- yy
-       ]
-
-  , constifications (xx -+- yy -+- ord' cc)
-    == map constify
-       [ xx -+- yy -+- ord' cc
-       , yy -+- xx -+- ord' cc]
-
-  , constifications (xx -+- yy -+- ord' cc -+- ord' dd)
-    == map constify
-       [ xx -+- yy -+- ord' cc -+- ord' dd
-       , xx -+- yy -+- ord' dd -+- ord' cc
-       , yy -+- xx -+- ord' cc -+- ord' dd
-       , yy -+- xx -+- ord' dd -+- ord' cc
-       ]
-
-  , holds n $ \e -> constifications e == slowConstifications e
   ]
 
 succ' :: Expr -> Expr
 succ'  =  (value "succ" ((1+) :: Int -> Int) :$)
-
-constifications :: Expr -> [Expr]
-constifications e  =  [ e //- vcs | vcs <- cons . classifyOn typ $ nubVars e ]
-  where
-  cons []        =  [[]]
-  cons (vs:vss)  =  [ zip vs cs ++ vcs
-                    | vcs <- cons vss
-                    , cs <- permutations (map constify vs)
-                    ]
-
-slowConstifications :: Expr -> [Expr]
-slowConstifications e  =
-  [ e //- vcs
-  | let vs = nubVars e
-  , cs <- permutations (map constify vs)
-  , let vcs = zip vs cs
-  , all (uncurry ((==) `on` typ)) vcs
-  ]
-  -- TODO: "classifyOn typ" first for the fastConstifications
-
-constify :: Expr -> Expr
-constify (Value ('_':s) d)  =  Value s d
-constify (e1 :$ e2)  =  constify e1 :$ constify e2
-constify e  =  e

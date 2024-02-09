@@ -19,6 +19,8 @@ module Test.Speculate.Expr.Ground
   , condEqual
   , condEqualM
   , trueRatio
+  , constify
+  , constifications
   )
 where
 
@@ -27,8 +29,10 @@ import Test.Speculate.Expr.Instance
 import Test.Speculate.Expr.Equate
 import Test.LeanCheck
 import Test.LeanCheck.Error (errorToFalse)
+import Test.LeanCheck.Stats (classifyOn)
 import Data.Ratio
 import Data.Functor ((<$>)) -- for GHC < 7.10
+import Data.List (permutations)
 
 -- | List all possible valuations of an expression (potentially infinite).
 --   In pseudo-Haskell:
@@ -108,3 +112,43 @@ isFalse grounds  =  all (not . evalBool) . grounds
 
 evalBool :: Expr -> Bool
 evalBool  =  errorToFalse . eval False
+
+-- | /O(n)/.
+-- Turn all variables in an expression into fake constants.
+--
+-- > > vars (xx -+- yy)
+-- > [x :: Int, y :: Int]
+--
+-- > > constify (xx -+- yy)
+-- > x + y :: Int
+--
+-- > > vars (constify (xx -+- yy))
+-- > []
+constify :: Expr -> Expr
+constify (Value ('_':s) d)  =  Value s d
+constify (e1 :$ e2)  =  constify e1 :$ constify e2
+constify e  =  e
+
+-- | /O(n)/.
+-- Returns a list with all possible permutations
+-- of variables in the given expression,
+-- all 'constify'ed into fake constants.
+--
+-- > > constifications (xx -+- yy)
+-- > [ x + y :: Int
+-- > , y + x :: Int ]
+--
+-- > > constifications (xx -:- xxs)
+-- > [ x:xs :: [Int] ]
+--
+-- Types are respected.
+--
+-- This is useful for checking ground-joinability in term rewriting.
+constifications :: Expr -> [Expr]
+constifications e  =  [ e //- vcs | vcs <- cons . classifyOn typ $ nubVars e ]
+  where
+  cons []        =  [[]]
+  cons (vs:vss)  =  [ zip vs cs ++ vcs
+                    | vcs <- cons vss
+                    , cs <- permutations (map constify vs)
+                    ]

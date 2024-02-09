@@ -6,6 +6,8 @@ import Test.Speculate.Expr
 
 -- Helper functions
 import Data.Functor ((<$>)) -- for GHC < 7.10
+import Data.Function (on)
+import Data.List (permutations)
 
 main :: IO ()
 main = mainTest tests 10000
@@ -56,6 +58,44 @@ tests n =
             , (zz,ff2 (ff2 xx xx) (ff2 xx xx))
             , (yy,ff2 xx xx)
             ]
+
+  , constifications xx == map constify [xx]
+
+  , constifications (xx -+- yy)
+    == map constify
+       [ xx -+- yy
+       , yy -+- xx ]
+
+  , constifications (xx -+- yy -+- yy)
+    == map constify
+       [ xx -+- yy -+- yy
+       , yy -+- xx -+- xx
+       ]
+
+  , constifications (xx -+- yy -+- zz)
+    == map constify
+       [ xx -+- yy -+- zz
+       , yy -+- xx -+- zz
+       , zz -+- yy -+- xx
+       , yy -+- zz -+- xx
+       , zz -+- xx -+- yy
+       , xx -+- zz -+- yy
+       ]
+
+  , constifications (xx -+- yy -+- ord' cc)
+    == map constify
+       [ xx -+- yy -+- ord' cc
+       , yy -+- xx -+- ord' cc]
+
+  , constifications (xx -+- yy -+- ord' cc -+- ord' dd)
+    == map constify
+       [ xx -+- yy -+- ord' cc -+- ord' dd
+       , xx -+- yy -+- ord' dd -+- ord' cc
+       , yy -+- xx -+- ord' cc -+- ord' dd
+       , yy -+- xx -+- ord' dd -+- ord' cc
+       ]
+
+  , holds n $ \e -> constifications e == slowConstifications e
   ]
   where
   -- now uneeded as Data.Express.Fixtures exports something of sorts
@@ -73,3 +113,13 @@ tests n =
   hh7 :: Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr -> Expr
   hh7 e1 e2 e3 e4 e5 e6 e7 = hhE :$ e1 :$ e2 :$ e3 :$ e4 :$ e5 :$ e6 :$ e7
     where hhE = value "h" (undefined :: Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int)
+
+slowConstifications :: Expr -> [Expr]
+slowConstifications e  =
+  [ e //- vcs
+  | let vs = nubVars e
+  , cs <- permutations (map constify vs)
+  , let vcs = zip vs cs
+  , all (uncurry ((==) `on` typ)) vcs
+  ]
+  -- TODO: "classifyOn typ" first for the fastConstifications
