@@ -245,10 +245,28 @@ tests n =
 
   -- TODO: restore tests losts after removing test-kbc
 
-  , groundJoinable emptyThy xx xx -- Eq case
-  , groundJoinable emptyThy xx yy == False
-  , groundJoinable emptyThy (ff2 xx yy) (ff2 xx yy) -- Eq case
+  , groundJoinable aThy xx xx -- Eq case
+  , groundJoinable aThy xx yy == False
+  , groundJoinable aThy (ff2 xx yy) (ff2 xx yy) -- Eq case
+  , groundJoinable aThy (xx -+- yy) (yy -+- xx) -- match case
+  , groundJoinable aThy (xx -+- (yy -+- one)) ((yy -+- one) -+- xx) -- match case
+  , groundJoinable aThy ((xx -+- yy) -*- zero) (zero -*- (yy -+- xx)) == False -- match case?
   ]
 
 succ' :: Expr -> Expr
 succ'  =  (value "succ" ((1+) :: Int -> Int) :$)
+
+aThy :: Thy
+aThy  =  theorize
+      [  xx -+- zero ~~ xx
+      ,  xx -*- one ~~ xx
+      ,  xx -*- zero ~~ zero
+      ,  zero -+- xx ~~ xx
+      ,  one -*- xx ~~ xx
+      ,  zero -*- xx ~~ zero
+      ,  xx -+- yy ~~ yy -+- xx
+      ,  xx -*- yy ~~ yy -*- xx
+      ,  (xx -+- yy) -+- zz ~~ xx -+- (yy -+- zz)
+      ,  (xx -*- yy) -*- zz ~~ xx -*- (yy -*- zz)
+      ,  xx -*- (yy -+- yy) ~~ xx -*- yy -+- xx -*- yy
+      ]
