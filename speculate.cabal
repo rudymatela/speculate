@@ -33,6 +33,7 @@ extra-source-files: .gitignore
                   , bench/bool-c
                   , bench/list-c
                   , bench/minus-c
+                  , bench/versions
                   , bench/runtime/zero/bench/*.runtime
                   , bench/runtime/zero/eg/*.runtime
                   , bench/runtime/zero/versions
