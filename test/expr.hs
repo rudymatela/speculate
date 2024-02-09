@@ -59,6 +59,25 @@ tests n =
             , (yy,ff2 xx xx)
             ]
 
+  , commutations [plus]  (xx -+- yy)  ==  [xx -+- yy, yy -+- xx]
+  , commutations [times] (xx -*- yy)  ==  [xx -*- yy, yy -*- xx]
+  , commutations [times] (xx -+- yy)  ==  [xx -+- yy]
+  , commutations [plus]  (xx -*- yy)  ==  [xx -*- yy]
+
+  , commutations [plus]  (xx -+- (yy -+- zz))
+    ==  [ xx -+- (yy -+- zz)
+        , (yy -+- zz) -+- xx
+        , xx -+- (zz -+- yy)
+        , (zz -+- yy) -+- xx
+        ]
+
+  , commutations [plus,times]  (xx -+- (yy -*- zz))
+    ==  [ xx -+- (yy -*- zz)
+        , (yy -*- zz) -+- xx
+        , xx -+- (zz -*- yy)
+        , (zz -*- yy) -+- xx
+        ]
+
   , constifications xx == map constify [xx]
 
   , constifications (xx -+- yy)

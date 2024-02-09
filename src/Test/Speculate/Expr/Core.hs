@@ -28,6 +28,9 @@ module Test.Speculate.Expr.Core
   , unification
   , isCanonInstanceOf
   , hasCanonInstanceOf
+
+  -- * Commuting
+  , commutations
   )
 where
 
@@ -136,3 +139,17 @@ e1           `hasCanonInstanceOf` e2 | e1   `isCanonInstanceOf` e2 = True
 (e1f :$ e1x) `hasCanonInstanceOf` e2 | e1f `hasCanonInstanceOf` e2 ||
                                        e1x `hasCanonInstanceOf` e2 = True
 _            `hasCanonInstanceOf` _                                = False
+
+commutations :: [Expr] -> Expr -> [Expr]
+commutations cos  =  cmms
+  where
+  cmms (eo :$ ex :$ ey)  |  isValue eo && eo `elem` cos
+                        =  concat [ [eo :$ ex' :$ ey', eo :$ ey' :$ ex']
+                                  | ex' <- cmms ex
+                                  , ey' <- cmms ey
+                                  ]
+  cmms (ef :$ ex)  =  [ ef' :$ ex'
+                     | ef' <- cmms ef
+                     , ex' <- cmms ex
+                     ]
+  cmms e  =  [e]
