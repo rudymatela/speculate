@@ -12,7 +12,7 @@ GHCFLAGS = -O2 -v0 \
 #   $ ./eg/arith  +RTS -p -RTS
 #   $ cat arith.prof | grep -v ' [0-5].[0-9] ......$'
 HADDOCKFLAGS = \
-  $(shell grep -q "Arch Linux" /etc/lsb-release && echo --optghc=-dynamic)
+  $(shell grep -q "Arch Linux" /etc/lsb-release && echo --optghc=-dynamic --optghc=-package=cmdargs --optghc=-package=regex-tdfa --optghc=-package=algebraic-graphs)
 MAXTESTS = 4000
 MAXSIZE = -s4
 TESTS = \
