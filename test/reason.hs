@@ -250,7 +250,9 @@ tests n =
   , groundJoinable aThy (ff2 xx yy) (ff2 xx yy) -- Eq case
   , groundJoinable aThy (xx -+- yy) (yy -+- xx) -- match case
   , groundJoinable aThy (xx -+- (yy -+- one)) ((yy -+- one) -+- xx) -- match case
-  , groundJoinable aThy ((xx -+- yy) -*- zero) (zero -*- (yy -+- xx)) == False -- match case?
+  , groundJoinable aThy ((xx -+- yy) -*- zero) (zero -*- (yy -+- xx)) == False -- match case? no double-equation
+  , groundJoinable aThy (zero -*- xx) (zero -*- yy) == False -- rewrite case?
+  , groundJoinable aThy (xx -+- (yy -+- zz)) (zz -+- (xx -+- yy)) == False -- TODO: rewrite case
   ]
 
 succ' :: Expr -> Expr
