@@ -172,16 +172,19 @@ consider (===) sz s (thy,sss)
   | ns `elem` ss = (thy,sss)
   | not (ns === ns) = (thy,sssWs)  -- uncomparable type
   | otherwise =
-    ( append thy $ equivalencesBetween (-===-) ns ns ++ eqs
+    ( append thy $ equivalencesBetween (-===-) ms ms ++ eqs
     , if any (\(e1,e2) -> unrepeatedVars e1 && unrepeatedVars e2) eqs
       then sss
       else sssWs )
   where
   ns = rehole $ normalizeE thy (fastMostGeneralVariation s)
+  -- between s and ns, choose the one with less variables to call equivalencesBetween
+  ms | length (nubVars s) < length (nubVars ns) = s
+     | otherwise = ns
   e1 -===- e2  =  normalize thy e1 == normalize thy e2 || e1 === e2
   ss = uptoT sz sss
   sssWs = sss \/ wcons0 sz s
-  eqs = concatMap (equivalencesBetween (-===-) s) $ filter (s ===) ss
+  eqs = concatMap (equivalencesBetween (-===-) ms) $ filter (ms ===) ss
   wcons0 :: Int -> a -> [[a]]
   wcons0 n s = replicate (n-1) [] ++ [[s]]
 

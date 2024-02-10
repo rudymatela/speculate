@@ -30,7 +30,7 @@ sort :: [Int] -> [Int]
     ([] == insert x xs) == False
         (xs == sort xs) == ordered xs
        elem x (sort xs) == elem x xs
-        (sort xs == []) == (xs == [])
+             (xs == []) == ([] == sort xs)
    all (x ==) (sort xs) == all (x ==) xs
     all (x <) (sort xs) == all (x <) xs
           all (x <=) xs == ordered (x:sort xs)
