@@ -26,6 +26,7 @@ module Test.Speculate.Expr.Core
   -- * Matching
   , unify
   , unification
+  , unificationC
   , isCanonInstanceOf
   , hasCanonInstanceOf
 
@@ -39,6 +40,7 @@ import Data.Express.Utils.Typeable
 import Test.Speculate.Utils
 import Data.Monoid ((<>))
 import Data.Functor ((<$>)) -- for GHC <= 7.8
+import Data.Maybe (catMaybes, listToMaybe)
 
 -- | Lexicographical comparison of 'Expr's
 --   where variables < constants < applications and
@@ -139,6 +141,12 @@ e1           `hasCanonInstanceOf` e2 | e1   `isCanonInstanceOf` e2 = True
 (e1f :$ e1x) `hasCanonInstanceOf` e2 | e1f `hasCanonInstanceOf` e2 ||
                                        e1x `hasCanonInstanceOf` e2 = True
 _            `hasCanonInstanceOf` _                                = False
+
+unificationC :: [Expr] -> Expr -> Expr -> Maybe [(Expr,Expr)]
+unificationC cos e  =  listToMaybe
+                    .  catMaybes
+                    .  map (e `unification`)
+                    .  commutations cos
 
 commutations :: [Expr] -> Expr -> [Expr]
 commutations cos  =  cmms

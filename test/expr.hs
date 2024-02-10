@@ -8,6 +8,7 @@ import Test.Speculate.Expr
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import Data.Function (on)
 import Data.List (permutations)
+import Data.Maybe
 
 main :: IO ()
 main = mainTest tests 10000
@@ -59,6 +60,13 @@ tests n =
             , (zz,ff2 (ff2 xx xx) (ff2 xx xx))
             , (yy,ff2 xx xx)
             ]
+
+  , unificationC [plus,times] (zero -+- xx) (yy -+- one) == Just [(xx,one),(yy,zero)]
+  , unificationC [plus,times] (zero -+- xx) (one -+- yy) == Just [(xx,one),(yy,zero)]
+
+  , holds n $ unification ==== unificationC []
+  , holds n $ (\e1 e2 -> isNothing (unificationC [plus,times] e1 e2) ==> isNothing (unification e1 e2))
+  , holds n $ (\e1 e2 -> isJust (unification e1 e2) ==> isJust (unificationC [plus,times] e1 e2))
 
   , commutations [plus]  (xx -+- yy)  ==  [xx -+- yy, yy -+- xx]
   , commutations [times] (xx -*- yy)  ==  [xx -*- yy, yy -*- xx]
