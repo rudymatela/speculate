@@ -236,18 +236,16 @@ criticalPairs thy@Thy{rules = rs}  =
   compareEqnQuickly = compareQuickly `on` foldPair
   (<) :: Expr -> Expr -> Bool
   e1 < e2 = e1 `compareQuickly` e2 == LT
-
--- Warning: will have to also be applied in reverse to get all overlaps.
---
--- canonicalization here is needed for the nub
-overlaps :: Expr -> Expr -> [Expr]
-overlaps e1 e2 = id -- nubSort
-               . map (canonicalize . (e2' //-))
-               $ (e1' `unification`) `mapMaybe` nonVarSubexprs e2'
-  where
-  nonVarSubexprs = discard isVar . nubSubexprs
-  e1' = renameVarsBy (++ "1") e1
-  e2' = renameVarsBy (++ "2") e2
+  -- NOTE: will have to also be applied in reverse to get all overlaps.
+  -- canonicalization here is needed for the nub
+  overlaps :: Expr -> Expr -> [Expr]
+  overlaps e1 e2 = id -- nubSort
+                 . map (canonicalize . (e2' //-))
+                 $ (e1' `unification`) `mapMaybe` nonVarSubexprs e2'
+    where
+    nonVarSubexprs = discard isVar . nubSubexprs
+    e1' = renameVarsBy (++ "1") e1
+    e2' = renameVarsBy (++ "2") e2
 
 equivalent :: Thy -> Expr -> Expr -> Bool
 equivalent thy e1 e2 = e1' == e2'
