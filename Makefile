@@ -80,16 +80,16 @@ test: all test-sdist $(patsubst %,%.run,$(TESTS)) diff-test
 
 test-with-extra-deps: test diff-test-extra
 
-txt: $(patsubst %,%.txt,$(EG) $(wildcard bench/*-c))
+txt: $(patsubst %,%.txt,$(EG) $(wildcard bench/*-c) $(wildcard bench/*-t))
 
-diff-test: $(patsubst %,%.diff,$(EG) $(wildcard bench/*-c))
+diff-test: $(patsubst %,%.diff,$(EG) $(wildcard bench/*-c) $(wildcard bench/*-t))
 
 # Disclaimer: This bench target is not intended to generate paper-grade runtime
 #             datapoints as it runs each benchmark just once.  This target is
 #             meant to track large runtime changes across different git
 #             versions.
 .PHONY: bench
-bench: $(EG) $(patsubst %,%.bench,$(EG) $(wildcard bench/*-c))
+bench: $(EG) $(patsubst %,%.bench,$(EG) $(wildcard bench/*-c) $(wildcard bench/*-t))
 	@mkdir -p bench/runtime/$$HOSTNAME
 	./bench/versions $(INSTALL_DEPS) | tee bench/runtime/$$HOSTNAME/versions
 

@@ -1,0 +1,3 @@
+#!/bin/bash
+EG=`dirname "$0"`/../eg
+$EG/list -TSs7 -r0

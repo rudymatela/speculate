@@ -1,0 +1,464 @@
+max expr size  =    7
+  |- on conds  =    6
+max  #-tests   =  500
+min  #-tests   =   25  (to consider p ==> q true)
+max  #-vars    =    3  (for inequational and conditional laws)
+
+_ :: Int
+_ :: [Int]
+[] :: [Int]
+(:) :: Int -> [Int] -> [Int]
+(++) :: [Int] -> [Int] -> [Int]
+head :: [Int] -> Int
+tail :: [Int] -> [Int]
+
+rules:
+xs ++ [] == xs
+[] ++ xs == xs
+head (x:xs) == x
+tail (x:xs) == xs
+(xs ++ ys) ++ zs == xs ++ (ys ++ zs)
+(x:xs) ++ ys == x:(xs ++ ys)
+equations:
+head (xs ++ (x:zs)) == head (xs ++ (x:ys))
+head (xs ++ [x]) == head (xs ++ (x:ys))
+head (xs ++ (x:tail zs)) == head (xs ++ (x:ys))
+head (xs ++ (x:tail [])) == head (xs ++ (x:ys))
+
+        head (x:xs) == x
+head (xs ++ (x:ys)) == head (xs ++ (x:zs))
+           xs ++ [] == xs
+           [] ++ xs == xs
+        tail (x:xs) == xs
+   (xs ++ ys) ++ zs == xs ++ (ys ++ zs)
+       (x:xs) ++ ys == x:(xs ++ ys)
+
+_ :: Int
+_ :: [Int]
+[] :: [Int]
+head _ :: Int
+head [] :: Int
+tail _ :: [Int]
+tail [] :: [Int]
+head (tail _) :: Int
+head (tail []) :: Int
+tail (tail _) :: [Int]
+tail (tail []) :: [Int]
+_:_ :: [Int]
+[_] :: [Int]
+_ ++ _ :: [Int]
+head (tail (tail _)) :: Int
+head (tail (tail [])) :: Int
+head (_ ++ _) :: Int
+tail (tail (tail _)) :: [Int]
+tail (tail (tail [])) :: [Int]
+tail (_ ++ _) :: [Int]
+_:tail _ :: [Int]
+_:tail [] :: [Int]
+_ ++ tail _ :: [Int]
+_ ++ tail [] :: [Int]
+head _:_ :: [Int]
+[head _] :: [Int]
+head []:_ :: [Int]
+[head []] :: [Int]
+tail _ ++ _ :: [Int]
+tail [] ++ _ :: [Int]
+head (tail (tail (tail _))) :: Int
+head (tail (tail (tail []))) :: Int
+head (tail (_ ++ _)) :: Int
+head (_ ++ tail _) :: Int
+head (_ ++ tail []) :: Int
+head (tail _ ++ _) :: Int
+head (tail [] ++ _) :: Int
+tail (tail (tail (tail _))) :: [Int]
+tail (tail (tail (tail []))) :: [Int]
+tail (tail (_ ++ _)) :: [Int]
+tail (_ ++ tail _) :: [Int]
+tail (_ ++ tail []) :: [Int]
+tail (tail _ ++ _) :: [Int]
+tail (tail [] ++ _) :: [Int]
+_:tail (tail _) :: [Int]
+_:tail (tail []) :: [Int]
+_:_:_ :: [Int]
+[_,_] :: [Int]
+_:(_ ++ _) :: [Int]
+_ ++ tail (tail _) :: [Int]
+_ ++ tail (tail []) :: [Int]
+_ ++ (_:_) :: [Int]
+_ ++ [_] :: [Int]
+_ ++ (_ ++ _) :: [Int]
+head _:tail _ :: [Int]
+head _:tail [] :: [Int]
+head []:tail _ :: [Int]
+head []:tail [] :: [Int]
+tail _ ++ tail _ :: [Int]
+tail _ ++ tail [] :: [Int]
+tail [] ++ tail _ :: [Int]
+tail [] ++ tail [] :: [Int]
+head (tail _):_ :: [Int]
+[head (tail _)] :: [Int]
+head (tail []):_ :: [Int]
+[head (tail [])] :: [Int]
+tail (tail _) ++ _ :: [Int]
+tail (tail []) ++ _ :: [Int]
+head (tail (tail (tail (tail _)))) :: Int
+head (tail (tail (tail (tail [])))) :: Int
+head (tail (tail (_ ++ _))) :: Int
+head (tail (_ ++ tail _)) :: Int
+head (tail (_ ++ tail [])) :: Int
+head (tail (tail _ ++ _)) :: Int
+head (tail (tail [] ++ _)) :: Int
+head (_ ++ tail (tail _)) :: Int
+head (_ ++ tail (tail [])) :: Int
+head (_ ++ (_:_)) :: Int
+head (_ ++ (_ ++ _)) :: Int
+head (tail _ ++ tail _) :: Int
+head (tail _ ++ tail []) :: Int
+head (tail [] ++ tail _) :: Int
+head (tail [] ++ tail []) :: Int
+head (tail (tail _) ++ _) :: Int
+head (tail (tail []) ++ _) :: Int
+tail (tail (tail (tail (tail _)))) :: [Int]
+tail (tail (tail (tail (tail [])))) :: [Int]
+tail (tail (tail (_ ++ _))) :: [Int]
+tail (tail (_ ++ tail _)) :: [Int]
+tail (tail (_ ++ tail [])) :: [Int]
+tail (tail (tail _ ++ _)) :: [Int]
+tail (tail (tail [] ++ _)) :: [Int]
+tail (_ ++ tail (tail _)) :: [Int]
+tail (_ ++ tail (tail [])) :: [Int]
+tail (_ ++ (_:_)) :: [Int]
+tail (_ ++ [_]) :: [Int]
+tail (_ ++ (_ ++ _)) :: [Int]
+tail (tail _ ++ tail _) :: [Int]
+tail (tail _ ++ tail []) :: [Int]
+tail (tail [] ++ tail _) :: [Int]
+tail (tail [] ++ tail []) :: [Int]
+tail (tail (tail _) ++ _) :: [Int]
+tail (tail (tail []) ++ _) :: [Int]
+_:tail (tail (tail _)) :: [Int]
+_:tail (tail (tail [])) :: [Int]
+_:tail (_ ++ _) :: [Int]
+_:_:tail _ :: [Int]
+_:_:tail [] :: [Int]
+_:(_ ++ tail _) :: [Int]
+_:(_ ++ tail []) :: [Int]
+_:head _:_ :: [Int]
+[_,head _] :: [Int]
+_:head []:_ :: [Int]
+[_,head []] :: [Int]
+_:(tail _ ++ _) :: [Int]
+_:(tail [] ++ _) :: [Int]
+_ ++ tail (tail (tail _)) :: [Int]
+_ ++ tail (tail (tail [])) :: [Int]
+_ ++ tail (_ ++ _) :: [Int]
+_ ++ (_:tail _) :: [Int]
+_ ++ (_:tail []) :: [Int]
+_ ++ (_ ++ tail _) :: [Int]
+_ ++ (_ ++ tail []) :: [Int]
+_ ++ (head _:_) :: [Int]
+_ ++ [head _] :: [Int]
+_ ++ (head []:_) :: [Int]
+_ ++ [head []] :: [Int]
+_ ++ (tail _ ++ _) :: [Int]
+_ ++ (tail [] ++ _) :: [Int]
+head _:tail (tail _) :: [Int]
+head _:tail (tail []) :: [Int]
+head _:_:_ :: [Int]
+[head _,_] :: [Int]
+head _:(_ ++ _) :: [Int]
+head []:tail (tail _) :: [Int]
+head []:tail (tail []) :: [Int]
+head []:_:_ :: [Int]
+[head [],_] :: [Int]
+head []:(_ ++ _) :: [Int]
+tail _ ++ tail (tail _) :: [Int]
+tail _ ++ tail (tail []) :: [Int]
+tail _ ++ (_:_) :: [Int]
+tail _ ++ [_] :: [Int]
+tail _ ++ (_ ++ _) :: [Int]
+tail [] ++ tail (tail _) :: [Int]
+tail [] ++ tail (tail []) :: [Int]
+tail [] ++ (_:_) :: [Int]
+tail [] ++ [_] :: [Int]
+tail [] ++ (_ ++ _) :: [Int]
+head (tail _):tail _ :: [Int]
+head (tail _):tail [] :: [Int]
+head (tail []):tail _ :: [Int]
+head (tail []):tail [] :: [Int]
+tail (tail _) ++ tail _ :: [Int]
+tail (tail _) ++ tail [] :: [Int]
+tail (tail []) ++ tail _ :: [Int]
+tail (tail []) ++ tail [] :: [Int]
+head (tail (tail _)):_ :: [Int]
+[head (tail (tail _))] :: [Int]
+head (tail (tail [])):_ :: [Int]
+[head (tail (tail []))] :: [Int]
+head (_ ++ _):_ :: [Int]
+[head (_ ++ _)] :: [Int]
+tail (tail (tail _)) ++ _ :: [Int]
+tail (tail (tail [])) ++ _ :: [Int]
+tail (_ ++ _) ++ _ :: [Int]
+head (tail (tail (tail (tail (tail _))))) :: Int
+head (tail (tail (tail (tail (tail []))))) :: Int
+head (tail (tail (tail (_ ++ _)))) :: Int
+head (tail (tail (_ ++ tail _))) :: Int
+head (tail (tail (_ ++ tail []))) :: Int
+head (tail (tail (tail _ ++ _))) :: Int
+head (tail (tail (tail [] ++ _))) :: Int
+head (tail (_ ++ tail (tail _))) :: Int
+head (tail (_ ++ tail (tail []))) :: Int
+head (tail (_ ++ (_:_))) :: Int
+head (tail (_ ++ [_])) :: Int
+head (tail (_ ++ (_ ++ _))) :: Int
+head (tail (tail _ ++ tail _)) :: Int
+head (tail (tail _ ++ tail [])) :: Int
+head (tail (tail [] ++ tail _)) :: Int
+head (tail (tail [] ++ tail [])) :: Int
+head (tail (tail (tail _) ++ _)) :: Int
+head (tail (tail (tail []) ++ _)) :: Int
+head (_ ++ tail (tail (tail _))) :: Int
+head (_ ++ tail (tail (tail []))) :: Int
+head (_ ++ tail (_ ++ _)) :: Int
+head (_ ++ (_ ++ tail _)) :: Int
+head (_ ++ (_ ++ tail [])) :: Int
+head (_ ++ (head _:_)) :: Int
+head (_ ++ [head _]) :: Int
+head (_ ++ (head []:_)) :: Int
+head (_ ++ [head []]) :: Int
+head (_ ++ (tail _ ++ _)) :: Int
+head (_ ++ (tail [] ++ _)) :: Int
+head (tail _ ++ tail (tail _)) :: Int
+head (tail _ ++ tail (tail [])) :: Int
+head (tail _ ++ (_:_)) :: Int
+head (tail _ ++ [_]) :: Int
+head (tail _ ++ (_ ++ _)) :: Int
+head (tail [] ++ tail (tail _)) :: Int
+head (tail [] ++ tail (tail [])) :: Int
+head (tail [] ++ (_:_)) :: Int
+head (tail [] ++ [_]) :: Int
+head (tail [] ++ (_ ++ _)) :: Int
+head (tail (tail _) ++ tail _) :: Int
+head (tail (tail _) ++ tail []) :: Int
+head (tail (tail []) ++ tail _) :: Int
+head (tail (tail []) ++ tail []) :: Int
+head (tail (tail (tail _)) ++ _) :: Int
+head (tail (tail (tail [])) ++ _) :: Int
+head (tail (_ ++ _) ++ _) :: Int
+tail (tail (tail (tail (tail (tail _))))) :: [Int]
+tail (tail (tail (tail (tail (tail []))))) :: [Int]
+tail (tail (tail (tail (_ ++ _)))) :: [Int]
+tail (tail (tail (_ ++ tail _))) :: [Int]
+tail (tail (tail (_ ++ tail []))) :: [Int]
+tail (tail (tail (tail _ ++ _))) :: [Int]
+tail (tail (tail (tail [] ++ _))) :: [Int]
+tail (tail (_ ++ tail (tail _))) :: [Int]
+tail (tail (_ ++ tail (tail []))) :: [Int]
+tail (tail (_ ++ (_:_))) :: [Int]
+tail (tail (_ ++ [_])) :: [Int]
+tail (tail (_ ++ (_ ++ _))) :: [Int]
+tail (tail (tail _ ++ tail _)) :: [Int]
+tail (tail (tail _ ++ tail [])) :: [Int]
+tail (tail (tail [] ++ tail _)) :: [Int]
+tail (tail (tail [] ++ tail [])) :: [Int]
+tail (tail (tail (tail _) ++ _)) :: [Int]
+tail (tail (tail (tail []) ++ _)) :: [Int]
+tail (_ ++ tail (tail (tail _))) :: [Int]
+tail (_ ++ tail (tail (tail []))) :: [Int]
+tail (_ ++ tail (_ ++ _)) :: [Int]
+tail (_ ++ (_:tail _)) :: [Int]
+tail (_ ++ (_:tail [])) :: [Int]
+tail (_ ++ (_ ++ tail _)) :: [Int]
+tail (_ ++ (_ ++ tail [])) :: [Int]
+tail (_ ++ (head _:_)) :: [Int]
+tail (_ ++ [head _]) :: [Int]
+tail (_ ++ (head []:_)) :: [Int]
+tail (_ ++ [head []]) :: [Int]
+tail (_ ++ (tail _ ++ _)) :: [Int]
+tail (_ ++ (tail [] ++ _)) :: [Int]
+tail (tail _ ++ tail (tail _)) :: [Int]
+tail (tail _ ++ tail (tail [])) :: [Int]
+tail (tail _ ++ (_:_)) :: [Int]
+tail (tail _ ++ [_]) :: [Int]
+tail (tail _ ++ (_ ++ _)) :: [Int]
+tail (tail [] ++ tail (tail _)) :: [Int]
+tail (tail [] ++ tail (tail [])) :: [Int]
+tail (tail [] ++ (_:_)) :: [Int]
+tail (tail [] ++ [_]) :: [Int]
+tail (tail [] ++ (_ ++ _)) :: [Int]
+tail (tail (tail _) ++ tail _) :: [Int]
+tail (tail (tail _) ++ tail []) :: [Int]
+tail (tail (tail []) ++ tail _) :: [Int]
+tail (tail (tail []) ++ tail []) :: [Int]
+tail (tail (tail (tail _)) ++ _) :: [Int]
+tail (tail (tail (tail [])) ++ _) :: [Int]
+tail (tail (_ ++ _) ++ _) :: [Int]
+_:tail (tail (tail (tail _))) :: [Int]
+_:tail (tail (tail (tail []))) :: [Int]
+_:tail (tail (_ ++ _)) :: [Int]
+_:tail (_ ++ tail _) :: [Int]
+_:tail (_ ++ tail []) :: [Int]
+_:tail (tail _ ++ _) :: [Int]
+_:tail (tail [] ++ _) :: [Int]
+_:_:tail (tail _) :: [Int]
+_:_:tail (tail []) :: [Int]
+_:_:_:_ :: [Int]
+[_,_,_] :: [Int]
+_:_:(_ ++ _) :: [Int]
+_:(_ ++ tail (tail _)) :: [Int]
+_:(_ ++ tail (tail [])) :: [Int]
+_:(_ ++ (_:_)) :: [Int]
+_:(_ ++ [_]) :: [Int]
+_:(_ ++ (_ ++ _)) :: [Int]
+_:head _:tail _ :: [Int]
+_:head _:tail [] :: [Int]
+_:head []:tail _ :: [Int]
+_:head []:tail [] :: [Int]
+_:(tail _ ++ tail _) :: [Int]
+_:(tail _ ++ tail []) :: [Int]
+_:(tail [] ++ tail _) :: [Int]
+_:(tail [] ++ tail []) :: [Int]
+_:head (tail _):_ :: [Int]
+[_,head (tail _)] :: [Int]
+_:head (tail []):_ :: [Int]
+[_,head (tail [])] :: [Int]
+_:(tail (tail _) ++ _) :: [Int]
+_:(tail (tail []) ++ _) :: [Int]
+_ ++ tail (tail (tail (tail _))) :: [Int]
+_ ++ tail (tail (tail (tail []))) :: [Int]
+_ ++ tail (tail (_ ++ _)) :: [Int]
+_ ++ tail (_ ++ tail _) :: [Int]
+_ ++ tail (_ ++ tail []) :: [Int]
+_ ++ tail (tail _ ++ _) :: [Int]
+_ ++ tail (tail [] ++ _) :: [Int]
+_ ++ (_:tail (tail _)) :: [Int]
+_ ++ (_:tail (tail [])) :: [Int]
+_ ++ (_:_:_) :: [Int]
+_ ++ [_,_] :: [Int]
+_ ++ (_:(_ ++ _)) :: [Int]
+_ ++ (_ ++ tail (tail _)) :: [Int]
+_ ++ (_ ++ tail (tail [])) :: [Int]
+_ ++ (_ ++ (_:_)) :: [Int]
+_ ++ (_ ++ [_]) :: [Int]
+_ ++ (_ ++ (_ ++ _)) :: [Int]
+_ ++ (head _:tail _) :: [Int]
+_ ++ (head _:tail []) :: [Int]
+_ ++ (head []:tail _) :: [Int]
+_ ++ (head []:tail []) :: [Int]
+_ ++ (tail _ ++ tail _) :: [Int]
+_ ++ (tail _ ++ tail []) :: [Int]
+_ ++ (tail [] ++ tail _) :: [Int]
+_ ++ (tail [] ++ tail []) :: [Int]
+_ ++ (head (tail _):_) :: [Int]
+_ ++ [head (tail _)] :: [Int]
+_ ++ (head (tail []):_) :: [Int]
+_ ++ [head (tail [])] :: [Int]
+_ ++ (tail (tail _) ++ _) :: [Int]
+_ ++ (tail (tail []) ++ _) :: [Int]
+head _:tail (tail (tail _)) :: [Int]
+head _:tail (tail (tail [])) :: [Int]
+head _:tail (_ ++ _) :: [Int]
+head _:_:tail _ :: [Int]
+head _:_:tail [] :: [Int]
+head _:(_ ++ tail _) :: [Int]
+head _:(_ ++ tail []) :: [Int]
+head _:head _:_ :: [Int]
+[head _,head _] :: [Int]
+head _:head []:_ :: [Int]
+[head _,head []] :: [Int]
+head _:(tail _ ++ _) :: [Int]
+head _:(tail [] ++ _) :: [Int]
+head []:tail (tail (tail _)) :: [Int]
+head []:tail (tail (tail [])) :: [Int]
+head []:tail (_ ++ _) :: [Int]
+head []:_:tail _ :: [Int]
+head []:_:tail [] :: [Int]
+head []:(_ ++ tail _) :: [Int]
+head []:(_ ++ tail []) :: [Int]
+head []:head _:_ :: [Int]
+[head [],head _] :: [Int]
+head []:head []:_ :: [Int]
+[head [],head []] :: [Int]
+head []:(tail _ ++ _) :: [Int]
+head []:(tail [] ++ _) :: [Int]
+tail _ ++ tail (tail (tail _)) :: [Int]
+tail _ ++ tail (tail (tail [])) :: [Int]
+tail _ ++ tail (_ ++ _) :: [Int]
+tail _ ++ (_:tail _) :: [Int]
+tail _ ++ (_:tail []) :: [Int]
+tail _ ++ (_ ++ tail _) :: [Int]
+tail _ ++ (_ ++ tail []) :: [Int]
+tail _ ++ (head _:_) :: [Int]
+tail _ ++ [head _] :: [Int]
+tail _ ++ (head []:_) :: [Int]
+tail _ ++ [head []] :: [Int]
+tail _ ++ (tail _ ++ _) :: [Int]
+tail _ ++ (tail [] ++ _) :: [Int]
+tail [] ++ tail (tail (tail _)) :: [Int]
+tail [] ++ tail (tail (tail [])) :: [Int]
+tail [] ++ tail (_ ++ _) :: [Int]
+tail [] ++ (_:tail _) :: [Int]
+tail [] ++ (_:tail []) :: [Int]
+tail [] ++ (_ ++ tail _) :: [Int]
+tail [] ++ (_ ++ tail []) :: [Int]
+tail [] ++ (head _:_) :: [Int]
+tail [] ++ [head _] :: [Int]
+tail [] ++ (head []:_) :: [Int]
+tail [] ++ [head []] :: [Int]
+tail [] ++ (tail _ ++ _) :: [Int]
+tail [] ++ (tail [] ++ _) :: [Int]
+head (tail _):tail (tail _) :: [Int]
+head (tail _):tail (tail []) :: [Int]
+head (tail _):_:_ :: [Int]
+[head (tail _),_] :: [Int]
+head (tail _):(_ ++ _) :: [Int]
+head (tail []):tail (tail _) :: [Int]
+head (tail []):tail (tail []) :: [Int]
+head (tail []):_:_ :: [Int]
+[head (tail []),_] :: [Int]
+head (tail []):(_ ++ _) :: [Int]
+tail (tail _) ++ tail (tail _) :: [Int]
+tail (tail _) ++ tail (tail []) :: [Int]
+tail (tail _) ++ (_:_) :: [Int]
+tail (tail _) ++ [_] :: [Int]
+tail (tail _) ++ (_ ++ _) :: [Int]
+tail (tail []) ++ tail (tail _) :: [Int]
+tail (tail []) ++ tail (tail []) :: [Int]
+tail (tail []) ++ (_:_) :: [Int]
+tail (tail []) ++ [_] :: [Int]
+tail (tail []) ++ (_ ++ _) :: [Int]
+head (tail (tail _)):tail _ :: [Int]
+head (tail (tail _)):tail [] :: [Int]
+head (tail (tail [])):tail _ :: [Int]
+head (tail (tail [])):tail [] :: [Int]
+head (_ ++ _):tail _ :: [Int]
+head (_ ++ _):tail [] :: [Int]
+tail (tail (tail _)) ++ tail _ :: [Int]
+tail (tail (tail _)) ++ tail [] :: [Int]
+tail (tail (tail [])) ++ tail _ :: [Int]
+tail (tail (tail [])) ++ tail [] :: [Int]
+tail (_ ++ _) ++ tail _ :: [Int]
+tail (_ ++ _) ++ tail [] :: [Int]
+head (tail (tail (tail _))):_ :: [Int]
+[head (tail (tail (tail _)))] :: [Int]
+head (tail (tail (tail []))):_ :: [Int]
+[head (tail (tail (tail [])))] :: [Int]
+head (tail (_ ++ _)):_ :: [Int]
+[head (tail (_ ++ _))] :: [Int]
+head (_ ++ tail _):_ :: [Int]
+[head (_ ++ tail _)] :: [Int]
+head (_ ++ tail []):_ :: [Int]
+[head (_ ++ tail [])] :: [Int]
+head (tail _ ++ _):_ :: [Int]
+[head (tail _ ++ _)] :: [Int]
+head (tail [] ++ _):_ :: [Int]
+[head (tail [] ++ _)] :: [Int]
+tail (tail (tail (tail _))) ++ _ :: [Int]
+tail (tail (tail (tail []))) ++ _ :: [Int]
+tail (tail (_ ++ _)) ++ _ :: [Int]
+tail (_ ++ tail _) ++ _ :: [Int]
+tail (_ ++ tail []) ++ _ :: [Int]
+tail (tail _ ++ _) ++ _ :: [Int]
+tail (tail [] ++ _) ++ _ :: [Int]
+
+Number of Eq schema classes: 427
