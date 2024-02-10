@@ -25,6 +25,7 @@ tests n =
   , unification xx one == Just [(xx,one)]
   , unification (zero -+- xx) (zero -+- one) == Just [(xx,one)]
   , unification (zero -+- xx) (yy -+- one) == Just [(xx,one),(yy,zero)]
+  , unification (zero -+- xx) (one -+- yy) == Nothing
   , unify (zero -+- xx) (yy -+- one) == Just (zero -+- one)
   , unification (foo xx) (foo (goo yy)) == Just [(xx,goo yy)]
   , unification (foo xx -+- xx) (yy -+- zero) == Just [(xx,zero),(yy,foo zero)]
