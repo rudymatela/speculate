@@ -1,6 +1,6 @@
-max expr size  =    6
-  |- on ineqs  =    5
-  |- on conds  =    5
+max expr size  =    7
+  |- on ineqs  =    6
+  |- on conds  =    6
 max  #-tests   =  500
 min  #-tests   =   25  (to consider p ==> q true)
 max  #-vars    =    2  (for inequational and conditional laws)
@@ -22,10 +22,16 @@ x + 0 == x
 (x * y) * z == y * (x * z)
 (x + y) + z == x + (y + z)
 (x + y) + z == y + (x + z)
-(x + x) * y == x * (y + y)
-x * (y + 1) == x + x * y
-x * (y + 1) == x * y + x
+x * (y + z) == x * y + x * z
+x * (y + z) == x * z + x * y
+(x + x) * y == x * y + x * y
 (x + 1) * y == y + x * y
+(1 + x) * y == y + x * y
+(x + x * y) * z == x * z + x * (y * z)
+(x + y * x) * z == x * z + x * (y * z)
+(x * y + x) * z == x * z + x * (y * z)
+(x + (y + 1)) * z == z + (x + y) * z
+(x + (x + x)) * y == x * y + (x * y + x * y)
 equations:
 y * x == x * y
 y + x == x + y
@@ -35,19 +41,42 @@ z * (y * x) == x * (y * z)
 y + (x + z) == x + (y + z)
 z + (x + y) == x + (y + z)
 z + (y + x) == x + (y + z)
-(z + y) * x == x * (y + z)
 z * y + x == x + y * z
-y * (x + x) == x * (y + y)
+y * (x * (x' * z)) == x * (y * (z * x'))
+z * (x * (y * x')) == x * (y * (z * x'))
+z * (y * (x * x')) == x * (y * (z * x'))
+z * (x' * (x * y)) == x * (y * (z * x'))
+x' * (y * (z * x)) == x * (y * (z * x'))
+x' * (z * (y * x)) == x * (y * (z * x'))
+y + (x + (x' + z)) == x + (y + (z + x'))
+z + (x + (y + x')) == x + (y + (z + x'))
+z + (y + (x + x')) == x + (y + (z + x'))
+z + (x' + (x + y)) == x + (y + (z + x'))
+x' + (y + (z + x)) == x + (y + (z + x'))
+x' + (z + (y + x)) == x + (y + (z + x'))
+x' * ((z + y) * x) == x * ((y + z) * x')
+y + (x + x' * z) == x + (y + z * x')
+x' + (x + z * y) == x + (y * z + x')
+x' + (z * y + x) == x + (y * z + x')
+y * (x' * z) + x == x + y * (z * x')
+z * (y * x') + x == x + y * (z * x')
+z * (x' * y) + x == x + y * (z * x')
+x' * z + y * x == x * y + z * x'
+x' * z + (x + y) == x + (y + z * x')
+x' * z + (y + x) == x + (y + z * x')
+x' * (y * z) + x == x + y * (z * x')
+x' * (z * y) + x == x + y * (z * x')
+z * y + z * x == (x + y) * z
 
-      x + 0 == x
-      x * 1 == x
-      x * 0 == 0
-      x + y == y + x
-      x * y == y * x
-(x + y) + z == x + (y + z)
-(x * y) * z == x * (y * z)
-(x + x) * y == x * (y + y)
-x * (y + 1) == x + x * y
+            x + 0 == x
+            x * 1 == x
+            x * 0 == 0
+            x + y == y + x
+            x * y == y * x
+      (x + y) + z == x + (y + z)
+      (x * y) * z == x * (y * z)
+      x * (y + z) == x * y + x * z
+(x + (x + x)) * y == x * y + (x * y + x * y)
 
 _ :: Int
 0 :: Int
@@ -65,5 +94,29 @@ _ + _ * _ :: Int
 _ * (_ + _) :: Int
 _ * (_ + 1) :: Int
 _ * (_ * _) :: Int
+_ + (_ + (_ + _)) :: Int
+_ + (_ + (_ + 1)) :: Int
+_ + (_ + (1 + 1)) :: Int
+_ + (_ + _ * _) :: Int
+_ + (1 + (1 + 1)) :: Int
+_ + (1 + _ * _) :: Int
+_ + _ * (_ + _) :: Int
+_ + _ * (_ * _) :: Int
+1 + (1 + (1 + 1)) :: Int
+1 + (1 + _ * _) :: Int
+1 + _ * (_ + _) :: Int
+1 + _ * (_ + 1) :: Int
+1 + _ * (_ * _) :: Int
+_ * (_ + (_ + _)) :: Int
+_ * (_ + _ * _) :: Int
+_ * (_ * (_ + _)) :: Int
+_ * (_ * (_ * _)) :: Int
+_ * _ + _ * _ :: Int
+(_ + _) * (_ + _) :: Int
+(_ + _) * (_ + 1) :: Int
+(_ + 1) * (_ + 1) :: Int
+(_ + 1) * (1 + 1) :: Int
+(_ + 1) * (_ * _) :: Int
+(_ + (_ + 1)) * _ :: Int
 
-Number of Eq schema classes: 16
+Number of Eq schema classes: 40
