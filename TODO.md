@@ -3,12 +3,6 @@ TODO
 
 A list of things to do for Speculate.
 
-* update CI to include newer GHCs
-
-* add a couple of tests to `groundJoinable`
-
-* implement missing `groundJoinable` criterium
-
 * (code readability) review and document code
 
 * (code readability) rename semi to inqualities everywhere.
