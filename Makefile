@@ -69,6 +69,7 @@ QUICKEG = \
   eg/arith \
   eg/bool \
   eg/list
+BENCH = $(EG) $(wildcard bench/*-t) $(wildcard bench/*-c)
 LIST_ALL_HSS = find src test eg bench/*.hs mk -name \*.hs | grep -vE 'eg/(regexes|pretty-compact|algebraic-graphs)'
 LIST_LIB_HSS = find src -name \*.hs
 LIB_DEPS = base template-haskell $(INSTALL_DEPS)
@@ -80,16 +81,16 @@ test: all test-sdist $(patsubst %,%.run,$(TESTS)) diff-test
 
 test-with-extra-deps: test diff-test-extra
 
-txt: $(patsubst %,%.txt,$(EG) $(wildcard bench/*-c) $(wildcard bench/*-t))
+txt: $(patsubst %,%.txt,$(BENCH))
 
-diff-test: $(patsubst %,%.diff,$(EG) $(wildcard bench/*-c) $(wildcard bench/*-t))
+diff-test: $(patsubst %,%.diff,$(BENCH))
 
 # Disclaimer: This bench target is not intended to generate paper-grade runtime
 #             datapoints as it runs each benchmark just once.  This target is
 #             meant to track large runtime changes across different git
 #             versions.
 .PHONY: bench
-bench: $(EG) $(patsubst %,%.bench,$(EG) $(wildcard bench/*-c) $(wildcard bench/*-t))
+bench: $(EG) $(patsubst %,%.bench,$(BENCH))
 	@mkdir -p bench/runtime/$$HOSTNAME
 	./bench/versions $(INSTALL_DEPS) | tee bench/runtime/$$HOSTNAME/versions
 
