@@ -48,6 +48,7 @@ module Test.Speculate.Reason
   , initialize
   , defaultKeep
   , doubleCheck
+  , commutativeOperators
 
   , reductions1
   , groundJoinable
@@ -508,3 +509,15 @@ discardRedundantRulesByEquations thy = updateRulesBy (d [] . reverse) thy
   d ks ((e1,e2):rs)
     | equivalent thy {rules = ks++rs} e1 e2 = d          ks  rs
     | otherwise                             = d ((e1,e2):ks) rs
+
+commutativeOperators :: Thy -> [Expr]
+commutativeOperators thy  =  [ ef
+                             | (ef :$ ex :$ ey, ef' :$ ey' :$ ex') <- equations thy
+                             , isConst ef
+                             , isVar ex
+                             , isVar ey
+                             , ex /= ey
+                             , ef == ef'
+                             , ex == ex'
+                             , ey == ey'
+                             ]

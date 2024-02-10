@@ -253,6 +253,8 @@ tests n =
   , groundJoinable aThy ((xx -+- yy) -*- zero) (zero -*- (yy -+- xx)) -- rewrite case
   , groundJoinable aThy (zero -*- xx) (zero -*- yy) -- rewrite case
   , groundJoinable aThy (xx -+- (yy -+- zz)) (zz -+- (xx -+- yy)) == False -- rewrite case only with commutative rewrites
+
+  , commutativeOperators aThy == [times, plus]
   ]
 
 succ' :: Expr -> Expr
