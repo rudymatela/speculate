@@ -84,6 +84,15 @@ txt: $(patsubst %,%.txt,$(EG) $(wildcard bench/*-c))
 
 diff-test: $(patsubst %,%.diff,$(EG) $(wildcard bench/*-c))
 
+# Disclaimer: This bench target is not intended to generate paper-grade runtime
+#             datapoints as it runs each benchmark just once.  This target is
+#             meant to track large runtime changes across different git
+#             versions.
+.PHONY: bench
+bench: $(EG) $(patsubst %,%.bench,$(EG) $(wildcard bench/*-c))
+	@mkdir -p bench/runtime/$$HOSTNAME
+	./bench/versions $(INSTALL_DEPS) | tee bench/runtime/$$HOSTNAME/versions
+
 txt-extra: $(EXTRAEG) $(patsubst %,%.txt,$(EXTRAEG))
 
 diff-test-extra: $(EXTRAEG) $(patsubst %,%.diff,$(EXTRAEG))
@@ -153,15 +162,6 @@ slow-test: test
 
 bench/%-c: eg/%
 	touch $@
-
-# Disclaimer: This bench target is not intended to generate paper-grade runtime
-#             datapoints as it runs each benchmark just once.  This target is
-#             meant to track large runtime changes across different git
-#             versions.
-.PHONY: bench
-bench: $(EG) $(patsubst %,%.bench,$(EG))
-	@mkdir -p bench/runtime/$$HOSTNAME
-	./bench/versions $(INSTALL_DEPS) | tee bench/runtime/$$HOSTNAME/versions
 
 %.bench: %
 	@mkdir -p bench/runtime/$$HOSTNAME/`dirname $<`
