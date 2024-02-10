@@ -239,11 +239,12 @@ criticalPairs thy@Thy{rules = rs}  =
   overlaps :: Expr -> Expr -> [Expr]
   overlaps e1 e2 = nubSortBy compareQuickly
                  . map (canonicalize . (e2' //-))
-                 $ (e1' `unification`) `mapMaybe` nonVarSubexprs e2'
+                 $ (e1' `unifn`) `mapMaybe` nonVarSubexprs e2'
     where
     nonVarSubexprs = discard isVar . nubSubexprs
     e1' = renameVarsBy (++ "1") e1
     e2' = renameVarsBy (++ "2") e2
+    unifn = unificationC (commutativeOperators thy)
 
 equivalent :: Thy -> Expr -> Expr -> Bool
 equivalent thy e1 e2 = e1' == e2'
