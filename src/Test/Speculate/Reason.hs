@@ -228,7 +228,6 @@ criticalPairs thy@Thy{rules = rs}  =
     . map sortuple
     . filter (uncurry (/=))
     . concatMap (\e -> (e `reductions1` r1) ** (e `reductions1` r2))
-    . nubSortBy compareQuickly
     $ overlaps e1 e2
   xs ** ys = [(x,y) | x <- xs, y <- ys]
   sortuple (x,y) | x < y     = (y,x)
@@ -237,9 +236,8 @@ criticalPairs thy@Thy{rules = rs}  =
   (<) :: Expr -> Expr -> Bool
   e1 < e2 = e1 `compareQuickly` e2 == LT
   -- NOTE: will have to also be applied in reverse to get all overlaps.
-  -- canonicalization here is needed for the nub
   overlaps :: Expr -> Expr -> [Expr]
-  overlaps e1 e2 = id -- nubSort
+  overlaps e1 e2 = nubSortBy compareQuickly
                  . map (canonicalize . (e2' //-))
                  $ (e1' `unification`) `mapMaybe` nonVarSubexprs e2'
     where
