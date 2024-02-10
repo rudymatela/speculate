@@ -163,6 +163,9 @@ slow-test: test
 bench/%-c: eg/%
 	touch $@
 
+bench/%-t: eg/%
+	touch $@
+
 %.bench: %
 	@mkdir -p bench/runtime/$$HOSTNAME/`dirname $<`
 	@printf "%-20s " $<
