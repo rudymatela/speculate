@@ -1,6 +1,6 @@
 -- |
 -- Module      : Test.Speculate.Utils.PrettyPrint
--- Copyright   : (c) 2016-2019 Rudy Matela
+-- Copyright   : (c) 2016-2024 Rudy Matela
 -- License     : 3-Clause BSD  (see the file LICENSE)
 -- Maintainer  : Rudy Matela <rudy@matela.com.br>
 --
