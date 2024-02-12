@@ -352,7 +352,7 @@ compose thy = updateRulesBy (nubSort . map canonicalizeRule)
 -- a.k.a. L-Simplify-rule
 collapse :: Thy -> Thy
 collapse thy@Thy {equations = eqs, rules = rs} =
-  thy {equations = eqs +++ foldr (+++) [] (map collapse eqs'), rules = rs'}
+  thy {equations = nubMerges (eqs : map collapse eqs'), rules = rs'}
   where
   (eqs',rs') = partition collapsable rs
   collapsable = not . null . collapse
