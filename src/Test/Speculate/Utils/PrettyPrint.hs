@@ -67,8 +67,7 @@ above cs ds = if last cs == '\n' || head ds == '\n'
 table :: String -> [[String]] -> String
 table s []  = ""
 table s sss = unlines
-            . map (removeTrailing ' ')
-            . map (concat . (+| spaces s))
+            . map (removeTrailing ' ' . concat . (+| spaces s))
             . transpose
             . zipWith (`normalizeTo` ' ') (discard  isSpace s)
             . foldr1 (zipWith (++))
