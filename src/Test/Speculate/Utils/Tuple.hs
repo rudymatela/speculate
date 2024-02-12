@@ -99,7 +99,7 @@ both :: (a -> b) -> (a,a) -> (b,b)
 both f (x,y)  =  (f x, f y)
 
 (***) :: (a -> b) -> (c -> d) -> (a,c) -> (b,d)
-f *** g = \(x,y) -> (f x, g y)
+(f *** g) (x,y)  =  (f x, g y)
 
 catPairs :: [(a,a)] -> [a]
 catPairs [] = []
