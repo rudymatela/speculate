@@ -191,13 +191,19 @@ test/Test.o: src/Test/Speculate.o
 mk/toplibs: mk/Toplibs.o
 	touch mk/toplibs
 
-hlint:
-	hlint \
+hlint: ..hlint
+
+test.hlint:  HLINT_EXTRA = --ignore "Redundant ==" \
+                           --ignore "Use null" \
+                           --ignore "Redundant $$" \
+                           --ignore "Use isNothing"
+
+%.hlint:
+	hlint $(HLINT_EXTRA) \
 	  --ignore "Use import/export shortcut" \
-	  --ignore "Use first" \
-	  --ignore "Use second" \
-	  --ignore "Use ***" \
-	  src bench tests
+	  --ignore "Use lambda-case" \
+	  --ignore "Use typeRep" \
+	  $*
 
 include mk/haskell.mk
 
