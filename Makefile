@@ -15,6 +15,9 @@ HADDOCKFLAGS = \
   $(shell grep -q "Arch Linux" /etc/lsb-release && echo --optghc=-dynamic --optghc=-package=cmdargs --optghc=-package=regex-tdfa --optghc=-package=algebraic-graphs)
 MAXTESTS = 4000
 MAXSIZE = -s4
+# Sets the number of jobs to the the number of processors minus one.
+NJOBS := $(shell grep ^processor /proc/cpuinfo | head -n -1 | wc -l | sed 's/^0$$/1/')
+LONG := $(shell which long >/dev/null 2>/dev/null && echo long)
 TESTS = \
   test/creason \
   test/engine \
@@ -109,6 +112,15 @@ test-via-cabal:
 
 test-via-stack:
 	stack test speculate:test:engine --ghc-options="$(GHCFLAGS) -O0" --system-ghc --no-install-ghc --no-terminal
+
+fastest:
+	$(LONG) make test -j$(NJOBS)
+
+fastestbench:
+	$(LONG) make test -j$(NJOBS) && $(LONG) make bench
+
+fastxtestbench:
+	$(LONG) make txt -j$(NJOBS) && $(LONG) make test -j$(NJOBS) && $(LONG) make bench
 
 legacy-test:
 	make clean  &&  make -j8 GHC=ghc-8.2   &&  make quick-test -j8 GHC=ghc-8.2
