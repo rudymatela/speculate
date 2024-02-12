@@ -21,7 +21,7 @@ module Test.Speculate.Utils.List
   , (+-)
   , sortOn
   , groupOn
-  , collectOn, collectBy, collectWith, collectSndByFst
+  , classifyOn, classifyBy, classifyWith, classifySndByFst
   , discard, discardLater, discardEarlier, discardOthers, discardByOthers
   , allUnique
   , chain
@@ -38,7 +38,7 @@ where
 
 import Data.List
 import Data.Function (on)
-import Test.LeanCheck.Stats
+import Test.LeanCheck.Stats (counts, countsOn, countsBy) -- TODO: replace by more efficient versions
 import Data.Express.Utils.List (none, nubSort, nubSortBy, (+++))
 
 pairsThat :: (a -> a -> Bool) -> [a] -> [(a,a)]
@@ -133,29 +133,28 @@ sortOn :: Ord b => (a -> b) -> [a] -> [a]
 sortOn f = sortBy (compare `on` f)
 #endif
 
--- TODO: rename this to classify!
-collectOn :: Ord b => (a -> b) -> [a] -> [[a]]
-collectOn f = groupOn f . sortOn f
+classifyOn :: Ord b => (a -> b) -> [a] -> [[a]]
+classifyOn f  =  groupOn f . sortOn f
 
-collectBy :: (a -> a -> Ordering) -> [a] -> [[a]]
-collectBy cmp = groupBy (===) . sortBy cmp
+classifyBy :: (a -> a -> Ordering) -> [a] -> [[a]]
+classifyBy cmp  =  groupBy (===) . sortBy cmp
   where
-  x === y = x `cmp` y == EQ
+  x === y  =  x `cmp` y == EQ
 
-collectWith :: Ord b
+classifyWith :: Ord b
             => (a -> b) -> (a -> c) -> (b -> [c] -> d)
             -> [a] -> [d]
-collectWith f g h = map collapse
-                  . groupOn f
+classifyWith f g h  =  map collapse
+                    .  groupOn f
   where
-  collapse (x:xs) = f x `h` map g (x:xs)
-  collapse _      = error "collectWith: the impossible happened! (see source)"
+  collapse (x:xs)  =  f x `h` map g (x:xs)
+  collapse _       =  error "Test.Speculate.Utils.List.classifyWith: the impossible happened! (see source)"
 
-collectSndByFst :: Ord a => [(a,b)] -> [(a,[b])]
-collectSndByFst = collectWith fst snd (,)
+classifySndByFst :: Ord a => [(a,b)] -> [(a,[b])]
+classifySndByFst  =  classifyWith fst snd (,)
 
 discard :: (a -> Bool) -> [a] -> [a]
-discard p = filter (not . p)
+discard p  =  filter (not . p)
 
 discardLater :: (a -> a -> Bool) -> [a] -> [a]
 discardLater d []     = []

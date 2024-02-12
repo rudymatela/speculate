@@ -10,7 +10,6 @@ module Test
   (
   -- * Module exports
     module Test.LeanCheck
-  , module Test.LeanCheck.Utils
   , module Test.Speculate
   , module Data.Express.Fixtures
   , module Test.ListableExpr
@@ -36,7 +35,6 @@ module Test
 where
 
 import Test.LeanCheck
-import Test.LeanCheck.Utils hiding (comparison)
 
 import Data.Express.Fixtures hiding (compose)
 

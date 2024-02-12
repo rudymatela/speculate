@@ -20,7 +20,7 @@ where
 import Prelude hiding (filter)
 import qualified Data.List as L
 import Data.Maybe (fromMaybe,isJust)
-import Test.Speculate.Utils (collectSndByFst)
+import Test.Speculate.Utils (classifySndByFst)
 
 type Digraph a = [(a,[a])]
 
@@ -52,7 +52,7 @@ invsubgraph :: Eq a => [a] -> Digraph a -> Digraph a
 invsubgraph xs = discard (`elem` xs)
 
 fromEdges :: Ord a => [(a,a)] -> Digraph a
-fromEdges = collectSndByFst
+fromEdges = classifySndByFst
 
 -- | pick a node in a Digraph
 pick :: Eq a => Digraph a -> Maybe a

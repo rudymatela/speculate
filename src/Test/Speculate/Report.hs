@@ -140,7 +140,7 @@ reportDot ti onlyTypes quiet nVars n thy es = do
            $ res
 --let rs = sort $ map fst ress
 --putStrLn . unlines $ zipWith (\r1 r2 -> "\"" ++ show r1 ++ "\" -> \"" ++ show r2 ++ "\"") rs (tail rs)
---putStrLn . unlines $ map showRank $ collectSndByFst res
+--putStrLn . unlines $ map showRank $ classifySndByFst res
   putStrLn "}"
   where
 --showRank (r,es) = "  { rank = same; " ++ "\"" ++ show r ++ "\""

@@ -97,6 +97,43 @@ bench/nord.o: \
   src/Test/Speculate/CondReason.hs \
   src/Test/Speculate/Args.hs \
   bench/nord.hs
+bench/stats.o: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Ord.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Colour.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Sanity.hs \
+  src/Test/Speculate/Report.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate/Pretty.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Instance.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
+  src/Test/Speculate/Args.hs \
+  bench/stats.hs
+bench/stats: \
+  test/Test.hs \
+  test/Test/ListableExpr.hs \
+  bench/stats.hs \
+  mk/toplibs
 bench/trilean: \
   bench/trilean.hs \
   mk/toplibs
@@ -1654,43 +1691,6 @@ test/reason: \
   test/Test.hs \
   test/Test/ListableExpr.hs \
   test/reason.hs \
-  mk/toplibs
-test/stats.o: \
-  test/Test.hs \
-  test/Test/ListableExpr.hs \
-  test/stats.hs \
-  src/Test/Speculate/Utils/Tuple.hs \
-  src/Test/Speculate/Utils/Timeout.hs \
-  src/Test/Speculate/Utils/Tiers.hs \
-  src/Test/Speculate/Utils/String.hs \
-  src/Test/Speculate/Utils/PrettyPrint.hs \
-  src/Test/Speculate/Utils.hs \
-  src/Test/Speculate/Utils/Ord.hs \
-  src/Test/Speculate/Utils/Misc.hs \
-  src/Test/Speculate/Utils/Memoize.hs \
-  src/Test/Speculate/Utils/List.hs \
-  src/Test/Speculate/Utils/Digraph.hs \
-  src/Test/Speculate/Utils/Colour.hs \
-  src/Test/Speculate/Utils/Class.hs \
-  src/Test/Speculate/SemiReason.hs \
-  src/Test/Speculate/Sanity.hs \
-  src/Test/Speculate/Report.hs \
-  src/Test/Speculate/Reason.hs \
-  src/Test/Speculate/Reason/Order.hs \
-  src/Test/Speculate/Pretty.hs \
-  src/Test/Speculate.hs \
-  src/Test/Speculate/Expr.hs \
-  src/Test/Speculate/Expr/Instance.hs \
-  src/Test/Speculate/Expr/Ground.hs \
-  src/Test/Speculate/Expr/Equate.hs \
-  src/Test/Speculate/Expr/Core.hs \
-  src/Test/Speculate/Engine.hs \
-  src/Test/Speculate/CondReason.hs \
-  src/Test/Speculate/Args.hs
-test/stats: \
-  test/Test.hs \
-  test/Test/ListableExpr.hs \
-  test/stats.hs \
   mk/toplibs
 test/Test/ListableExpr.o: \
   test/Test/ListableExpr.hs

@@ -2,13 +2,11 @@
 import Test
 
 -- Functions under test
-import Test.Speculate.Utils
+import Test.Speculate.Utils as U
 
 -- Helper functions
 import Data.List
 import Data.Function
-
-import Test.LeanCheck.Utils
 
 main :: IO ()
 main = mainTest tests 10000
@@ -21,10 +19,10 @@ tests n =
                       ==> strictlyOrdered (nubMerge xs (ys::[Int]))
   , and [ nubMerge xs xs == xs | n <- [0..10], let xs = [0..n] :: [Int] ]
 
-  , collectOn snd [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2),(2,2)],[(2,3),(3,3)]]
-  , collectOn fst [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2)],[(2,2),(2,3)],[(3,3)]]
-  , collectOn (uncurry (+)) [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2)],[(2,2)],[(2,3)],[(3,3)]]
-  , collectBy (compare `on` snd) [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2),(2,2)],[(2,3),(3,3)]]
+  , U.classifyOn snd [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2),(2,2)],[(2,3),(3,3)]]
+  , U.classifyOn fst [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2)],[(2,2),(2,3)],[(3,3)]]
+  , U.classifyOn (uncurry (+)) [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2)],[(2,2)],[(2,3)],[(3,3)]]
+  , U.classifyBy (compare `on` snd) [(1,2),(2,2),(2,3),(3,3)::(Int,Int)] == [[(1,2),(2,2)],[(2,3),(3,3)]]
 
   , holds n $ \x           -> medianate (,) [x::Int]           == [(x,x)]
   , holds n $ \x y         -> medianate (,) [x::Int,y]         == [(x,y)]

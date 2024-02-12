@@ -30,7 +30,6 @@ import Test.Speculate.Expr.Equate
 import Test.Speculate.Utils
 import Test.LeanCheck
 import Test.LeanCheck.Error (errorToFalse)
-import Test.LeanCheck.Stats (classifyOn)
 import Data.Ratio
 import Data.Functor ((<$>)) -- for GHC < 7.10
 import Data.List (permutations)

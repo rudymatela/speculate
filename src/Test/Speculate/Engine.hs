@@ -76,7 +76,7 @@ expansionsOfType ht vs e = [ fill e [v `varAsTypeOf` ht | v <- vs']
 -- possible variables?
 
 expansionsWith :: [Expr] -> Expr -> [Expr]
-expansionsWith es = ew (collectOn typ es)
+expansionsWith es = ew (classifyOn typ es)
   where
   nam (Value ('_':s) _) = s
   nam _ = "expansionsWith: argument list must only contain vars."
