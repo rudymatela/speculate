@@ -38,8 +38,10 @@ prettyEquations =
   table "r l l" . map showEquation
   where
   showEquation (e1,e2)
---  | typ e1 == boolTy = [showOpExpr "<==>" e1, "<==>", showOpExpr "<==>" e2]
-    | otherwise        = [showOpExpr "==" e1, "==", showOpExpr "==" e2]
+--  | typ e1 == boolTy
+--  = [showOpExpr "<==>" e1, "<==>", showOpExpr "<==>" e2]
+--  | otherwise
+    = [showOpExpr "==" e1, "==", showOpExpr "==" e2]
 
 prettySemiEquations :: [Equation] -> String
 prettySemiEquations =

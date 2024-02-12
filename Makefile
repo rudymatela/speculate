@@ -203,7 +203,12 @@ test.hlint:  HLINT_EXTRA = --ignore "Redundant ==" \
 	  --ignore "Use import/export shortcut" \
 	  --ignore "Use lambda-case" \
 	  --ignore "Use typeRep" \
+	  --ignore "Use tuple-section" \
 	  $*
+
+.PHONY: tags
+tags:
+	hasktags src
 
 include mk/haskell.mk
 

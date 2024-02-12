@@ -40,7 +40,7 @@ import Data.Express.Utils.Typeable
 import Test.Speculate.Utils
 import Data.Monoid ((<>))
 import Data.Functor ((<$>)) -- for GHC <= 7.8
-import Data.Maybe (catMaybes, listToMaybe)
+import Data.Maybe (mapMaybe, listToMaybe)
 
 -- | Lexicographical comparison of 'Expr's
 --   where variables < constants < applications and
@@ -144,8 +144,7 @@ _            `hasCanonInstanceOf` _                                = False
 
 unificationC :: [Expr] -> Expr -> Expr -> Maybe [(Expr,Expr)]
 unificationC cos e  =  listToMaybe
-                    .  catMaybes
-                    .  map (e `unification`)
+                    .  mapMaybe (e `unification`)
                     .  commutations cos
 
 commutations :: [Expr] -> Expr -> [Expr]

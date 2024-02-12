@@ -349,7 +349,7 @@ simplify thy = updateEquationsBy (nubSort . map (canonicalizeEqn thy))
 -- a.k.a. R-Simplify-rule
 compose :: Thy -> Thy
 compose thy = updateRulesBy (nubSort . map canonicalizeRule)
-            $ mapRules (id *** normalize thy) thy
+            $ mapRules (second $ normalize thy) thy
 
 -- a.k.a. L-Simplify-rule
 collapse :: Thy -> Thy

@@ -1,4 +1,3 @@
-{-# Language DeriveDataTypeable, StandaloneDeriving #-} -- for GHC <= 7.8
 -- |
 -- Module      : Test.Speculate.Expr.Instance
 -- Copyright   : (c) 2016-2019 Rudy Matela
@@ -65,8 +64,8 @@ reifyListable a  =  mkListable (tiers -: [[a]])
 
 mkListable :: (Typeable a, Show a) => [[a]] -> [Expr]
 mkListable xss
-  | null (concat xss)  =  err
-  | otherwise          =  [value "tiers" $ mapT val xss]
+  | all null xss  =  err
+  | otherwise     =  [value "tiers" $ mapT val xss]
   where
   err  =  error
        $  "Speculate does not allow an empty tiers enumeration"

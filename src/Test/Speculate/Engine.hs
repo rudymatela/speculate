@@ -263,7 +263,7 @@ conditionalTheoryFromThyAndReps ti nt nv csz thy es' =
     (lessOrEqual ti nt)
     csz thy clpres cles
   where
-  (cles,clpres) = (id *** filter (\(e,_) -> size e <= csz))
+  (cles,clpres) = second (filter (\(e,_) -> size e <= csz))
                 . partition (\(e,_) -> typ e /= boolTy)
                 . filter (isEq ti . fst)
                 $ classesFromSchemas ti nt nv thy es'
@@ -277,7 +277,7 @@ conditionalEquivalences canon cequal (==>) csz thy clpres cles =
   . foldl (flip cinsert) (Chy [] cdg clpres thy)
   . sortBy (compareE thy `on` foldTrio)
   . discard (\(pre,e1,e2) -> pre == val False
-                          || length (nubVars pre \\ (nubVars e1 +++ nubVars e2)) > 0
+                          || not (null (nubVars pre \\ (nubVars e1 +++ nubVars e2)))
                           || subConsequence thy [] pre e1 e2)
   . filter canon
   $ [ (ce, e1, e2)

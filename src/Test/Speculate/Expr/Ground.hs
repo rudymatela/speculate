@@ -108,7 +108,9 @@ isTrue grounds  =  all evalBool . grounds
 -- | Is an expression ALWAYS false?
 -- This is *NOT* the same as not true.
 isFalse :: (Expr -> [Expr]) -> Expr -> Bool
-isFalse grounds  =  all (not . evalBool) . grounds
+isFalse grounds  =  none evalBool . grounds
+  where
+  none p  =  not . any p
 
 evalBool :: Expr -> Bool
 evalBool  =  errorToFalse . eval False
