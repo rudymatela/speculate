@@ -179,7 +179,7 @@ isRootNormal thy e  =  none (e `isInstanceOf`) $ map fst (rules thy)
 
 isRootNormalE :: Thy -> Expr -> Bool
 isRootNormalE thy e  =  isRootNormal thy e
-                    &&  null (filter (e ->-) . mapMaybe (reduceRoot e) $ equations thy ++ map swap (equations thy))
+                    &&  none (e ->-) (mapMaybe (reduceRoot e) $ equations thy ++ map swap (equations thy))
   where
   (->-)  =  canReduceTo thy
   reduceRoot e (e1,e2) = (e2 //-) <$> (e `match` e1)
