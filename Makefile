@@ -194,6 +194,7 @@ mk/toplibs: mk/Toplibs.o
 hlint: ..hlint
 
 test.hlint:  HLINT_EXTRA = --ignore "Redundant ==" \
+                           --ignore "Redundant lambda" \
                            --ignore "Use null" \
                            --ignore "Redundant $$" \
                            --ignore "Use isNothing"

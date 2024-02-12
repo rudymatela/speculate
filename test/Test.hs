@@ -42,13 +42,11 @@ import Data.Express.Fixtures hiding (compose)
 
 import System.Environment (getArgs, getProgName)
 import System.Exit (exitFailure)
-import Data.List (elemIndices)
+import Data.List (elemIndices, sort)
 
 import Test.Speculate hiding (getArgs)
 import Test.Speculate.Reason
 import Test.Speculate.Reason.Order
-
-import Data.List (sort)
 
 import Test.Speculate.Utils
 
@@ -125,8 +123,8 @@ instance Listable Equation where
         . mapT unSameTypeE
         $ tiers
     where
-    orientEqn (e1,e2) | e1 `compare` e2 == LT = (e2,e1)
-                      | otherwise             = (e1,e2)
+    orientEqn (e1,e2) | e1 < e2    =  (e2,e1)
+                      | otherwise  =  (e1,e2)
 
 instance Listable RuleSet where
   tiers = setCons (RuleSet . map unRule) `ofWeight` 0

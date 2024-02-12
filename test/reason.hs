@@ -188,10 +188,10 @@ tests n =
     [ xx -+- zero      ~~  xx
     , xx -+- succ' yy  ~~  succ' (xx -+- yy) ]
     |==|
-    [                 xx -+- zero  ~~  xx
-    , succ' (xx -+- yy)            ~~  xx -+- succ' yy
-    , xx -+-         succ' zero    ~~         succ' xx
-    , xx -+- (succ' (succ' zero))  ~~  succ' (succ' xx)
+    [               xx -+- zero  ~~  xx
+    , succ' (xx -+- yy)          ~~  xx -+- succ' yy
+    , xx -+-         succ' zero  ~~         succ' xx
+    , xx -+- succ' (succ' zero)  ~~  succ' (succ' xx)
     ] `mkThy` []
 
   , theorizeBy (|>) [ xx -+- zero      ~~  xx
