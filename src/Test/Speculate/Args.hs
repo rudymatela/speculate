@@ -49,10 +49,8 @@ import System.Console.CmdArgs.Explicit
 import Test.LeanCheck ((\/))
 import qualified Data.List as L (insert)
 import Data.List hiding (insert)
-import Data.Maybe (catMaybes)
-import Data.Monoid ((<>))
-
 import Data.Maybe
+import Data.Monoid ((<>))
 
 -- | Arguments to Speculate
 data Args = Args
@@ -103,7 +101,7 @@ args :: Args
 args = Args
   { maxSize              = 5
   , maxTests             = 500
-  , minTests             = \n -> n `div` 20 -- defaults to 5% of maxTests
+  , minTests             = (`div` 20) -- defaults to 5% of maxTests
   , maxSemiSize          = -1
   , maxCondSize          = -1
   , maxDepth             = Nothing

@@ -140,7 +140,7 @@ representativesFromAtomsKeeping :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> I
 representativesFromAtomsKeeping keep (===) sz  =  snd . theoryAndRepresentativesFromAtomsKeeping keep (===) sz
 
 expand :: (Expr -> Bool) -> (Expr -> Expr -> Bool) -> Int -> [Expr] -> (Thy,[[Expr]]) -> (Thy,[[Expr]])
-expand keep (===) sz ss (thy,sss) = (complete *** id)
+expand keep (===) sz ss (thy,sss) = first complete
                                   . foldl (flip $ consider (===) sz) (thy,sss)
                                   . concat
                                   . (ss:)

@@ -1,6 +1,6 @@
 -- |
 -- Module      : Test.Speculate.Utils.Tuple
--- Copyright   : (c) 2016-2019 Rudy Matela
+-- Copyright   : (c) 2016-2024 Rudy Matela
 -- License     : 3-Clause BSD  (see the file LICENSE)
 -- Maintainer  : Rudy Matela <rudy@matela.com.br>
 module Test.Speculate.Utils.Tuple
@@ -12,12 +12,13 @@ module Test.Speculate.Utils.Tuple
   , curry3, curry4
   , uncurry3, uncurry4, uncurry5, uncurry6, uncurry7
   , uncurry8, uncurry9, uncurry10, uncurry11, uncurry12
-  , (***)
+  , first, second, both, (***)
   , catPairs
   )
 where
 
 import Data.Tuple
+
 
 fst3 :: (a,b,c) -> a
 fst3 (x,y,z) = x
@@ -77,6 +78,25 @@ uncurry11 f (x,y,z,w,v,u,r,s,t,o,p) = f x y z w v u r s t o p
 uncurry12 :: (a->b->c->d->e->f->g->h->i->j->k->l->m)
           -> (a,b,c,d,e,f,g,h,i,j,k,l) -> m
 uncurry12 f (x,y,z,w,v,u,r,s,t,o,p,q) = f x y z w v u r s t o p q
+
+-- | Applies a function to the first element of a pair.
+--   Often known on the wild as @mapFst@.
+--
+-- > > first (*10) (1,2)
+-- > (10,2)
+first :: (a -> a') -> (a,b) -> (a',b)
+first f (x,y)  =  (f x, y)
+
+-- | Applies a function to the second element of a pair.
+--   Often known on the wild as @mapSnd@.
+--
+-- > > second (*100) (1,2)
+-- > (1,200)
+second :: (b -> b') -> (a,b) -> (a,b')
+second f (x,y)  =  (x, f y)
+
+both :: (a -> b) -> (a,a) -> (b,b)
+both f (x,y)  =  (f x, f y)
 
 (***) :: (a -> b) -> (c -> d) -> (a,c) -> (b,d)
 f *** g = \(x,y) -> (f x, g y)
