@@ -38,7 +38,7 @@ import Test.LeanCheck
 import Test.LeanCheck.Utils
 import Data.Maybe
 
-type Instances = [Expr] -- TODO: remove?
+type Instances = [Expr]
 
 reifyInstances1 :: (Typeable a, Listable a, Show a, Eq a, Ord a, Name a) => a -> Instances
 reifyInstances1 a  =  concat [reifyListable a, reifyEqOrd a, reifyName a]

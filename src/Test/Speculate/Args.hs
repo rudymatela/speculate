@@ -245,7 +245,7 @@ foreground = constant "foreground" (undefined :: Args)
 --   themselves.
 background :: Expr
 background = constant "background" (undefined :: Args)
--- NOTE: Hack!  TODO: add reason why
+-- NOTE: The use of @undefined :: Args@ above is sort of a hack, but works.
 
 -- for cmdArgs
 prepareArgs :: Args -> Mode Args

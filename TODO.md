@@ -3,8 +3,6 @@ TODO
 
 A list of things to do for Speculate.
 
-* bump copyright notices
-
 * sweep some easy TODO marks from code
 
 * remove some unused functions
