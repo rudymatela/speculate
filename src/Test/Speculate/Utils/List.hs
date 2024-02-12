@@ -52,10 +52,7 @@ firsts [] = []
 firsts (x:xs) = x : firsts (filter (/= x) xs)
 
 halve :: [a] -> ([a],[a])
-halve [] = ([],[])
-halve xs = (take h xs, drop h xs)
-  where
-  h = length xs `div` 2
+halve xs  =  splitAt (length xs `div` 2) xs
 
 nubMergeBy :: (a -> a -> Ordering) -> [a] -> [a] -> [a]
 nubMergeBy cmp (x:xs) (y:ys) = case x `cmp` y of
