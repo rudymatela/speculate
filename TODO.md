@@ -3,6 +3,12 @@ TODO
 
 A list of things to do for Speculate.
 
+* some linting does not hurt
+
+* bump copyright notices
+
+* release new version
+
 * (code readability) review and document code
 
 * (code readability) rename semi to inqualities everywhere.
