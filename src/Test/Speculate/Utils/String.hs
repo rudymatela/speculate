@@ -26,6 +26,7 @@ where
 import Data.String
 import Data.Char
 import Data.Functor ((<$>)) -- for GHC < 7.10
+import Test.Speculate.Utils.List (none)
 
 unquote :: String -> String
 unquote ('"':s) | last s == '"' = init s
@@ -33,7 +34,7 @@ unquote s = s
 
 -- wrong but will work for a lot of cases
 atomic :: String -> Bool
-atomic s | all (not . isSpace) s = True
+atomic s | none isSpace s = True
 atomic ('\'':s) | last s == '\'' = True
 atomic ('"':s)  | last s == '"'  = True
 atomic ('[':s)  | last s == ']'  = True

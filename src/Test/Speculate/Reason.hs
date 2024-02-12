@@ -176,8 +176,6 @@ isNormal thy e = normalizeE thy e == e
 
 isRootNormal :: Thy -> Expr -> Bool
 isRootNormal thy e  =  none (e `isInstanceOf`) $ map fst (rules thy)
-  where
-  none p  =  not . any p
 
 isRootNormalE :: Thy -> Expr -> Bool
 isRootNormalE thy e  =  isRootNormal thy e

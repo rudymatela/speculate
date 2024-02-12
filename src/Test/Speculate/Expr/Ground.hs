@@ -27,6 +27,7 @@ where
 import Test.Speculate.Expr.Core
 import Test.Speculate.Expr.Instance
 import Test.Speculate.Expr.Equate
+import Test.Speculate.Utils
 import Test.LeanCheck
 import Test.LeanCheck.Error (errorToFalse)
 import Test.LeanCheck.Stats (classifyOn)
@@ -109,8 +110,6 @@ isTrue grounds  =  all evalBool . grounds
 -- This is *NOT* the same as not true.
 isFalse :: (Expr -> [Expr]) -> Expr -> Bool
 isFalse grounds  =  none evalBool . grounds
-  where
-  none p  =  not . any p
 
 evalBool :: Expr -> Bool
 evalBool  =  errorToFalse . eval False

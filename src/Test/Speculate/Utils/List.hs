@@ -32,12 +32,14 @@ module Test.Speculate.Utils.List
   , partitionByMarkers
   , (!)
   , halve
+  , none
   )
 where
 
 import Data.List
 import Data.Function (on)
 import Test.LeanCheck.Stats
+import Data.Express.Utils.List (none, nubSort, nubSortBy, (+++))
 
 pairsThat :: (a -> a -> Bool) -> [a] -> [(a,a)]
 pairsThat p xs = [(x,y) | x <- xs, y <- xs, p x y]
@@ -55,15 +57,6 @@ halve xs = (take h xs, drop h xs)
   where
   h = length xs `div` 2
 
-nubSort :: Ord a => [a] -> [a]
-nubSort = nubSortBy compare
-
-nubSortBy :: (a -> a -> Ordering) -> [a] -> [a]
-nubSortBy cmp xs  =
-  case halve xs of
-  ([],zs) -> zs
-  (ys,zs) -> nubMergeBy cmp (nubSortBy cmp ys) (nubSortBy cmp zs)
-
 nubMergeBy :: (a -> a -> Ordering) -> [a] -> [a] -> [a]
 nubMergeBy cmp (x:xs) (y:ys) = case x `cmp` y of
                                  LT -> x:nubMergeBy cmp xs (y:ys)
@@ -76,10 +69,6 @@ nubMergeOn f = nubMergeBy (compare `on` f)
 
 nubMerge :: Ord a => [a] -> [a] -> [a]
 nubMerge = nubMergeBy compare
-
-(+++) :: Ord a => [a] -> [a] -> [a]
-(+++) = nubMerge
-infixr 5 +++
 
 ordIntersectBy :: (a -> a -> Ordering) -> [a] -> [a] -> [a]
 ordIntersectBy cmp (x:xs) (y:ys) = case x `cmp` y of

@@ -49,6 +49,7 @@ import Test.Speculate.Reason
 import Test.Speculate.CondReason
 import Test.Speculate.SemiReason
 import Test.Speculate.Utils.Class (Class)
+import Test.Speculate.Utils.List (none)
 import qualified Test.Speculate.Utils.Class as C
 import qualified Test.Speculate.Utils.Digraph as D
 
@@ -313,5 +314,3 @@ subConsequence thy clpres ce e1 e2 = or
 
 psortBy :: (a -> a -> Bool) -> [a] -> [(a,a)]
 psortBy (<) xs = [(x,y) | x <- xs, y <- xs, x < y, none (\z -> x < z && z < y) xs]
-  where
-  none = (not .) . any
