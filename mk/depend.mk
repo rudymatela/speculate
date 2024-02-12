@@ -1,3 +1,36 @@
+bench/addition: \
+  bench/addition.hs \
+  mk/toplibs
+bench/addition.o: \
+  src/Test/Speculate/Utils/Tuple.hs \
+  src/Test/Speculate/Utils/Timeout.hs \
+  src/Test/Speculate/Utils/Tiers.hs \
+  src/Test/Speculate/Utils/String.hs \
+  src/Test/Speculate/Utils/PrettyPrint.hs \
+  src/Test/Speculate/Utils.hs \
+  src/Test/Speculate/Utils/Ord.hs \
+  src/Test/Speculate/Utils/Misc.hs \
+  src/Test/Speculate/Utils/Memoize.hs \
+  src/Test/Speculate/Utils/List.hs \
+  src/Test/Speculate/Utils/Digraph.hs \
+  src/Test/Speculate/Utils/Colour.hs \
+  src/Test/Speculate/Utils/Class.hs \
+  src/Test/Speculate/SemiReason.hs \
+  src/Test/Speculate/Sanity.hs \
+  src/Test/Speculate/Report.hs \
+  src/Test/Speculate/Reason.hs \
+  src/Test/Speculate/Reason/Order.hs \
+  src/Test/Speculate/Pretty.hs \
+  src/Test/Speculate.hs \
+  src/Test/Speculate/Expr.hs \
+  src/Test/Speculate/Expr/Instance.hs \
+  src/Test/Speculate/Expr/Ground.hs \
+  src/Test/Speculate/Expr/Equate.hs \
+  src/Test/Speculate/Expr/Core.hs \
+  src/Test/Speculate/Engine.hs \
+  src/Test/Speculate/CondReason.hs \
+  src/Test/Speculate/Args.hs \
+  bench/addition.hs
 bench/arithficial: \
   bench/arithficial.hs \
   mk/toplibs

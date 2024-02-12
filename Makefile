@@ -47,6 +47,7 @@ EG = \
   eg/monad \
   eg/tuples \
   eg/speculate-reason \
+  bench/addition \
   bench/arithficial \
   bench/lowtests \
   bench/nord \

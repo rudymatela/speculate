@@ -82,6 +82,7 @@ eg/monad
 eg/tauts
 eg/tuples
 eg/oddeven
+bench/addition
 bench/expressions
 bench/representatives
 bench/representatives2

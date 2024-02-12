@@ -1,0 +1,31 @@
+max expr size  =    7
+  |- on ineqs  =    6
+  |- on conds  =    6
+max  #-tests   =  500
+max  #-vars    =    2  (for inequational and conditional laws)
+
+_ :: Int
+0 :: Int
+(+) :: Int -> Int -> Int
+
+rules:
+x + 0 == x
+0 + x == x
+(x + y) + z == x + (y + z)
+(x + y) + z == y + (x + z)
+equations:
+y + x == x + y
+y + (x + z) == x + (y + z)
+z + (x + y) == x + (y + z)
+z + (y + x) == x + (y + z)
+y + (x + (x' + z)) == x + (y + (z + x'))
+z + (x + (y + x')) == x + (y + (z + x'))
+z + (y + (x + x')) == x + (y + (z + x'))
+z + (x' + (x + y)) == x + (y + (z + x'))
+x' + (y + (z + x)) == x + (y + (z + x'))
+x' + (z + (y + x)) == x + (y + (z + x'))
+
+      x + 0 == x
+      x + y == y + x
+(x + y) + z == x + (y + z)
+
