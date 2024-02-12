@@ -3,9 +3,13 @@ TODO
 
 A list of things to do for Speculate.
 
-* some linting does not hurt
-
 * bump copyright notices
+
+* sweep some easy TODO marks from code
+
+* remove some unused functions
+
+* use functions from Utils imports (e.g.: collectOn)
 
 * release new version
 
