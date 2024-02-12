@@ -2,8 +2,8 @@ Changelog for Speculate
 =======================
 
 
-upcoming
---------
+v0.4.18 (February 2024)
+-----------------------
 
 * `Test.Speculate.Expr.Ground`: add `constify` and `constifications`
 * `Reason`: fix `groundJoinable` with the last criterium
