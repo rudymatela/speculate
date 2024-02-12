@@ -1,4 +1,4 @@
-{-# LANGUAGE TemplateHaskell #-}
+-- {-# LANGUAGE TemplateHaskell #-}
 import Test.Speculate
 import Data.Function (on)
 import Control.Monad (unless)
@@ -57,7 +57,7 @@ gr _ = undefined
 
 -- tests for the Listable (Graph a) implementation:
 listableGraphOK :: (Listable a, Ord a) => Int -> a -> Bool
-listableGraphOK n x = and
+listableGraphOK n x  =  and
   [ take n list `subset` take m (listGraphsInnefficient -: [gr x]) -- sound
   , take n (listGraphsInnefficient -: [gr x]) `subset` take m list -- complete
   ]

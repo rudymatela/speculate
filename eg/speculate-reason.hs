@@ -65,6 +65,6 @@ main = speculate args
       , constant "emptyThy" $ Thyght emptyThy
       , constant "True" True
       , constant "False" False
-      , constant "Equation" $ Equation
+      , constant "Equation" Equation
       ]
   } 
