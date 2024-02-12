@@ -7,6 +7,7 @@ upcoming
 
 * `Test.Speculate.Expr.Ground`: add `constify` and `constifications`
 * `Reason`: fix `groundJoinable` with the last criterium
+* `Reason`: use `unificationsC` to unify
 * minor improvements in the code
 * rework test scripts and `Makefile`
 * remove stale tests
