@@ -158,7 +158,7 @@ keepMaxOf = keepUpToLength . (+1) . maximum . (0:) . map size . catPairs
 normalize :: Thy -> Expr -> Expr
 normalize Thy {rules = rs} = n
   where
-  n e = case concatMap (e `reductions1`) rs of
+  n e = case concatMap (`reductions1` e) rs of
           []     -> e -- already normalized
           (e':_) -> n e'
 
@@ -167,7 +167,7 @@ normalizeE :: Thy -> Expr -> Expr
 normalizeE thy@(Thy {equations = eqs, canReduceTo = (->-)})  =  n1
   where
   n1  =  n2 . normalize thy
-  n2 e = case filter (e ->-) (concatMap (e `reductions1`) $ eqs ++ map swap eqs) of
+  n2 e = case filter (e ->-) (concatMap (`reductions1` e) $ eqs ++ map swap eqs) of
          []     -> e -- already normalized
          (e':_) -> n1 e'
 
@@ -188,12 +188,14 @@ reduceRoot :: Expr -> Rule -> Maybe Expr
 reduceRoot e (e1,e2) = (e2 //-) <$> (e `match` e1)
 
 -- Lists all reductions by one rule, note that reductions may be repeated.
-reductions1 :: Expr -> Rule -> [Expr]
-reductions1 e (l,_) | size l > size e = [] -- optional optimization
-reductions1 e@(e1 :$ e2) r = maybeToList (e `reduceRoot` r)
-                          ++ map (:$ e2) (reductions1 e1 r)
-                          ++ map (e1 :$) (reductions1 e2 r)
-reductions1 e r = maybeToList (e `reduceRoot` r)
+reductions1 :: Rule -> Expr -> [Expr]
+reductions1 r@(l,_)  =  r1
+  where
+  r1 e  |  size l > size e  =  [] -- optional optimization
+  r1 e@(e1 :$ e2)  =  maybeToList (e `reduceRoot` r)
+                   ++ map (:$ e2) (r1 e1)
+                   ++ map (e1 :$) (r1 e2)
+  r1 e  =  maybeToList (e `reduceRoot` r)
 
 -- as defined by Martin & Nipkow in "Ordered Rewriting and Confluence" on 1990
 -- this definition is sound, but incomplete (some groundJoinable pairs won't be
@@ -225,7 +227,7 @@ criticalPairs thy@Thy{rules = rs}  =
       nubSortBy compareEqnQuickly
     . map sortuple
     . filter (uncurry (/=))
-    . concatMap (\e -> (e `reductions1` r1) ** (e `reductions1` r2))
+    . concatMap (\e -> (r1 `reductions1` e) ** (r2 `reductions1` e))
     $ overlaps e1 e2
   xs ** ys = [(x,y) | x <- xs, y <- ys]
   sortuple (x,y) | x < y     = (y,x)
@@ -269,7 +271,7 @@ closure thy e = iterateUntilLimit (closureLimit thy) (==) step [normalizeE thy e
   where
   eqs = equations thy
   step = nubMergeMap reductionsEqs1
-  reductionsEqs1 e = e `L.insert` nubMergeMap (reductions1 e) (eqs ++ map swap eqs)
+  reductionsEqs1 e = e `L.insert` nubMergeMap (`reductions1` e) (eqs ++ map swap eqs)
 
 insert :: Equation -> Thy -> Thy
 insert (e1,e2) thy
@@ -358,7 +360,7 @@ collapse thy@Thy {equations = eqs, rules = rs} =
   collapsable = not . null . collapse
   collapse :: Rule -> [Equation]
   collapse (e1,e2) = foldr (+++) []
-    [ nubSort [ canonicalizeEqn thy (e,e2) | e <- reductions1 e1 (e1',e2') ]
+    [ nubSort [ canonicalizeEqn thy (e,e2) | e <- reductions1 (e1',e2') e1 ]
     | (e1',e2') <- rs
     , (e1',e2') /= (e1,e2)
     , e1 =| e1' ]

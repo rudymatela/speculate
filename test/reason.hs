@@ -42,7 +42,7 @@ printStats  =  do
 
   putStrLn "\\e e1 e2 -> length $ reductions 1 e (e1,e2)"
   reportCountsBy (\(e,e1,e2) -> if e1 > e2 && typ e1 == typ e2
-                                  then "OK, length " ++ show (length $ reductions1 e (e1,e2))
+                                  then "OK, length " ++ show (length $ reductions1 (e1,e2) e)
                                   else "Not OK")
                  (take n list)
 
