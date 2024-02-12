@@ -197,6 +197,7 @@ test.hlint:  HLINT_EXTRA = --ignore "Redundant ==" \
                            --ignore "Redundant lambda" \
                            --ignore "Use null" \
                            --ignore "Redundant $$" \
+                           --ignore "Use >" \
                            --ignore "Use isNothing"
 
 %.hlint:
