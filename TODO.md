@@ -3,8 +3,6 @@ TODO
 
 A list of things to do for Speculate.
 
-* release new version
-
 * (code readability) review and document code
 
 * (code readability) rename semi to inqualities everywhere.
