@@ -2,6 +2,17 @@ Changelog for Speculate
 =======================
 
 
+upcoming
+--------
+
+* minor changes only
+* improve `consider` by favouring the normalization
+  _only_ if it reduces the number of variables
+* revert back (v0.4.16) to using vanilla syntactic unification
+  instead of syntactic unification modulo commutativity
+* some internal refactoring
+
+
 v0.4.18 (February 2024)
 -----------------------
 
