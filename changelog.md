@@ -2,8 +2,8 @@ Changelog for Speculate
 =======================
 
 
-upcoming
---------
+v0.4.20 (February 2024)
+-----------------------
 
 * minor changes only
 * improve `consider` by favouring the normalization
