@@ -180,8 +180,8 @@ consider (===) sz s (thy,sss)
   where
   ns = rehole $ normalizeE thy (fastMostGeneralVariation s)
   -- between s and ns, choose the one with less holes to call equivalencesBetween
-  ms | length (holes s) < length (holes ns) = s
-     | otherwise = ns
+  ms | length (holes s) <= length (holes ns) = s
+     | otherwise = ns -- favour ns only if it reduces the number of variables
   e1 -===- e2  =  normalize thy e1 == normalize thy e2 || e1 === e2
   ss = uptoT sz sss
   sssWs = sss \/ wcons0 sz s

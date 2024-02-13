@@ -22,6 +22,7 @@ tail (x:xs) == xs
 equations:
 head (xs ++ (x:zs)) == head (xs ++ (x:ys))
 head (xs ++ [x]) == head (xs ++ (x:ys))
+head (xs ++ (x:tail [])) == head (xs ++ (x:ys))
 
         head (x:xs) == x
 head (xs ++ (x:ys)) == head (xs ++ (x:zs))
