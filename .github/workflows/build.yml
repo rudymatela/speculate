@@ -70,12 +70,13 @@ jobs:
       matrix:
         # starting with 9.10, docker/_/haskell requires -bullseye as suffix
         ghc:
+          - '9.10-bullseye'
           - '9.8'
           - '9.6'
           - '9.4'
           - '9.2'
           - '9.0'
-          - '8.10'
+          - '8.8'
     runs-on: ubuntu-latest
     needs: build-and-test
     container: haskell:${{ matrix.ghc }}
